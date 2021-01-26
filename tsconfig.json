@@ -8,5 +8,5 @@
         "declaration": true,
         "declarationDir": "dist"
     },
-    "include": ["./index.ts"]
+    "include": ["src"]
 }
