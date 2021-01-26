@@ -1,0 +1,12 @@
+{
+    "compilerOptions": {
+        "target": "esnext",
+        "module": "esnext",
+        "moduleResolution": "node",
+        "esModuleInterop": true,
+        "sourceMap": true,
+        "declaration": true,
+        "declarationDir": "dist"
+    },
+    "include": ["./index.ts"]
+}
