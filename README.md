@@ -1,4 +1,4 @@
-# rollup-plugin-imageset
+# vite-plugin-imageset
 
 > Please note, while I have confidence that this module works bug-free (it's pretty simple afterall) there are no unit tests implemented to ensure this.
 
