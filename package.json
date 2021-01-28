@@ -1,6 +1,6 @@
 {
   "name": "vite-plugin-imageset",
-  "version": "1.0.0",
+  "version": "0.0.0-development",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
   "license": "MIT",
@@ -11,7 +11,8 @@
   "scripts": {
     "dev": "rollup -cw",
     "build": "rollup -c",
-    "docs": "typedoc --out ./docs --plugin typedoc-plugin-markdown ./src/index.ts ./src/types.ts"
+    "docs": "typedoc --out ./docs --plugin typedoc-plugin-markdown ./src/index.ts ./src/types.ts",
+    "semantic-release": "semantic-release"
   },
   "dependencies": {
     "cacache": "^15.0.5",
@@ -26,6 +27,11 @@
     "rollup": "^2.38.0",
     "rollup-plugin-typescript2": "^0.29.0",
     "typedoc": "^0.20.18",
-    "typedoc-plugin-markdown": "^3.4.3"
+    "typedoc-plugin-markdown": "^3.4.3",
+    "semantic-release": "^17.3.7"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/JonasKruckenberg/vite-plugin-imageset.git"
   }
 }
