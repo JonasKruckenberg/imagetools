@@ -8,7 +8,7 @@ import path from 'path'
 import { PluginContext } from 'rollup'
 
 const defaultOptions: Options = {
-  include: ['**/*.png', '**/*.jpg', '**/*.jpeg', '**/*.gif'],
+  include: ['**/*.png', '**/*.jpg', '**/*.jpeg', '**/*.gif', '**/*.webp'],
   exclude: '',
   targets: [{ format: 'jpeg' }, { format: 'webp' }, { format: 'avif' }]
 }
