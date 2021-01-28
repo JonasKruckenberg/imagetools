@@ -2,6 +2,10 @@
 
 > Please note, while I have confidence that this module works bug-free (it's pretty simple afterall) there are no unit tests implemented to ensure this.
 
+This plugin creates different versions from your websites images. You can specify different targets to transform into.
+Supported output formats are `.jpeg` `.png` `.webp` `.avif` `.gif` `.tiff` and `.heif`.
+All of the image transformations are powered by [sharp](https://sharp.pixelplumbing.com)
+
 ## Options
 
 ### `exclude`
