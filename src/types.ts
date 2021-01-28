@@ -11,6 +11,10 @@ import {
 } from 'sharp'
 
 export interface GTarget extends ResizeOptions {
+  /**
+   * A function that receives the sharp instance and the format.
+   * You can do any manipulation of the image, as long as you return another Sharp instance
+   */
   transform?: (sharp: Sharp, format: Target['format']) => Sharp
   fileName?: string
 }
