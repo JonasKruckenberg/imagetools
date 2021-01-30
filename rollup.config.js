@@ -7,7 +7,6 @@ export default {
       file: 'dist/index.js',
       format: 'cjs',
       sourcemap: true,
-      exports: 'default'
     },
     {
       file: 'dist/index.mjs',
