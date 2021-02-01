@@ -20,18 +20,18 @@ All of the image transformations are powered by [sharp](https://sharp.pixelplumb
 
 With [npm](https://npmjs.com):
 ```
-npm install --dev vite-plugin-imageset
+npm install --dev vite-imagetools
 ```
 Or with [yarn](https://yarnpkg.com):
 ```
-yarn add --dev vite-plugin-imageset
+yarn add --dev vite-imagetools
 ```
 
 ## Usage
 
 Add the plugin to your vite config:
 ```typescript
-import imageset from 'vite-plugin-imageset'
+import imageset from 'vite-imagetools'
 
 export default defineConfig({
   plugins: [
