@@ -1,4 +1,3 @@
-import pm from "picomatch"
 import sharp from 'sharp'
 import { buildOptions, has, Options } from "./options"
 import { directives } from './directives'
