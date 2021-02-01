@@ -64,41 +64,53 @@ import Image from 'example.jpg?format=avif'
 All plugin options are optional.
 
 #### `include`
-Type: _string_ | _RegExp_ | Array<_string_ | _RegExp_><br/>
+**Type**: _string_ | _RegExp_ | Array<_string_ | _RegExp_><br/>
 Default: `['**/*.jpg', '**/*.jpg', '**/*.png', '**/*.webp', '**/*.webp', '**/*.avif', '**/*.gif', '**/*.heif']`<br/>
 
 Which files to include when processing.
 
 #### `exclude`
-Type: string | RegExp | Array<string | RegExp><br/>
-Default: `['public/**/*']`<br/>
+**Type**: string | RegExp | Array<string | RegExp><br/>
+**Default**: `['public/**/*']`<br/>
 
 Which files to exclude when processing. By default this excludes vites _public_ folder to match the default behavior.
 
 ## Directives
 
-`vite-plugin-imagset` works on a directive based workflow where you can specify what you want in the import statement. Directives can depend on other directives and some my be incompatible with others.
+`vite-plugin-imagset` works on a directive based workflow where you specify what transformation to apply in the import statement. 
+A **Directive** is basically a querystring field followed by an optional argument like you have seen above.
+```
+example.jpg?directive=argument
+```
+
+Commonly used directives also expose **Shorthands**. Shorthands have no arguments.
+```
+example.jpg?shorthand
+```
+A good example for shorthands is the [`format` directive](#format)
+
+Directives can depend on other directives and some my be incompatible with others.
 Directives can also be composed into more complex directives. (The `size` directive is a good example, it is composed from the `width` and `height` directives). See [the contributing section](#contributing) for details.
 
 Below is the list of all directives shipped by default: 
 
 #### `width`
-Argument: <_number_><br/>
+**Argument**: <_number_><br/>
 Resizes the image to have a with of `width` pixels. If not set, the height will be scaled automatically to match the width.
 > You cannot use `with` and `size` together.
 
 #### `height`
-Argument: <_number_><br/>
+**Argument**: <_number_><br/>
 Resize the image to have a height of `height` pixels. If not set, the width will be scaled automatically to match the height.
 > You cannot use `height` and `size` together.
 
 #### `size`
-Argument: <_number_>x<_number_><br/>
+**Argument**: <_number_>x<_number_><br/>
 Sets width and height of the image simultaneously.
 > When using `size` you cannot set `width` or `height`on the same resource.
 
 #### `fit`
-Argument: <_'cover'_ | _'contain'_ | _'fill'_ | _'inside'_ | _'outside'_><br/>
+**Argument**: <_'cover'_ | _'contain'_ | _'fill'_ | _'inside'_ | _'outside'_><br/>
 How the image should be resized when both `width` and `height` are given.
 If only one is specified this has no effect since the missing side will be scaled to keep the aspect ratio.
 The default behavior when resizing is `cover`. 
@@ -111,7 +123,7 @@ The default behavior when resizing is `cover`.
 - `outside`
 
 #### `position`
-Argument: < _'top'_ | 
+**Argument**: < _'top'_ | 
             _'right top'_ | 
             _'right'_ | 
             _'right bottom'_ | 
@@ -156,11 +168,11 @@ For further details on the two special values `entropy` & `attention` see the [s
 - `attention
 
 #### `kernel`
-Argument: <_'nearest'_ | _'cubic'_ | _'mitchell'_ | _'lanczos2'_ | _'lanczos3'_><br/>
+**Argument**: <_'nearest'_ | _'cubic'_ | _'mitchell'_ | _'lanczos2'_ | _'lanczos3'_><br/>
 The interpolation kernel to use when resizing the image, the default value is `lanczos3`.
 
 #### `format`
-Argument: <_'jpeg'_ | _'jpg'_ | _'webp'_ | _'avif'_ | _'png'_ | _'gif'_ | _'tiff'_ | _'heif'_><br/>
+**Argument**: <_'jpeg'_ | _'jpg'_ | _'webp'_ | _'avif'_ | _'png'_ | _'gif'_ | _'tiff'_ | _'heif'_><br/>
 Transcodes the image to the give format. This directive will always be applied last.
 > Some of these formats my not be available on your platform/setup
 
