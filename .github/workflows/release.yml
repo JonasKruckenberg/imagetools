@@ -1,5 +1,7 @@
 name: Release
-on: push
+on: 
+  push:
+    branches: ['main','next']
 jobs:
   test:
     runs-on: ubuntu-latest
@@ -9,6 +11,7 @@ jobs:
         with:
           node-version: '14'
       - run: yarn
+      - run: yarn test
       - run: yarn build
       - name: Release
         env:
