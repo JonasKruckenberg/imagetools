@@ -5,10 +5,22 @@ import { directives } from './directives'
 import { createHash } from 'crypto'
 import path from 'path'
 import { promises as fs } from 'fs'
-import { dataToEsm } from "rollup-pluginutils"
+import { dataToEsm, createFilter } from "rollup-pluginutils"
 
-export default function () {
-    const filter = pm(['**/*.jpg', '**/*.jpg', '**/*.png', '**/*.webp', '**/*.webp', '**/*.avif', '**/*.gif', '**/*.heif'])
+interface pluginOptions {
+    include?: Array<string | RegExp> | string | RegExp
+    exclude?: Array<string | RegExp> | string | RegExp
+}
+
+const defaultOptions: pluginOptions = {
+    include: ['**/*.jpg', '**/*.jpg', '**/*.png', '**/*.webp', '**/*.webp', '**/*.avif', '**/*.gif', '**/*.heif'],
+    exclude: ['public/**/*']
+}
+
+export default function (userOptions: pluginOptions = {}) {
+    const pluginOptions = { ...defaultOptions, ...userOptions }
+
+    const filter = createFilter(pluginOptions.include, pluginOptions.exclude)
 
     const CACHE_DIR = './node_modules/.cache/vite-plugin-imageset'
 
