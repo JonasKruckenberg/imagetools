@@ -94,21 +94,25 @@ Directives can also be composed into more complex directives. (The `size` direct
 
 Below is the list of all directives shipped by default: 
 
+---
 #### `width`
 **Argument**: <_number_><br/>
 Resizes the image to have a with of `width` pixels. If not set, the height will be scaled automatically to match the width.
 > You cannot use `with` and `size` together.
 
+---
 #### `height`
 **Argument**: <_number_><br/>
 Resize the image to have a height of `height` pixels. If not set, the width will be scaled automatically to match the height.
 > You cannot use `height` and `size` together.
 
+---
 #### `size`
 **Argument**: <_number_>x<_number_><br/>
 Sets width and height of the image simultaneously.
 > When using `size` you cannot set `width` or `height`on the same resource.
 
+---
 #### `fit`
 **Argument**: <_'cover'_ | _'contain'_ | _'fill'_ | _'inside'_ | _'outside'_><br/>
 How the image should be resized when both `width` and `height` are given.
@@ -122,6 +126,7 @@ The default behavior when resizing is `cover`.
 - `inside`
 - `outside`
 
+---
 #### `position`
 **Argument**: < _'top'_ | 
             _'right top'_ | 
@@ -167,15 +172,24 @@ For further details on the two special values `entropy` & `attention` see the [s
 - `entropy`
 - `attention
 
+---
 #### `kernel`
 **Argument**: <_'nearest'_ | _'cubic'_ | _'mitchell'_ | _'lanczos2'_ | _'lanczos3'_><br/>
 The interpolation kernel to use when resizing the image, the default value is `lanczos3`.
 
+---
 #### `format`
 **Argument**: <_'jpeg'_ | _'jpg'_ | _'webp'_ | _'avif'_ | _'png'_ | _'gif'_ | _'tiff'_ | _'heif'_><br/>
 Transcodes the image to the give format. This directive will always be applied last.
 > Some of these formats my not be available on your platform/setup
 
+Optionally you can use one of the Shorthands below like so:
+```html
+<!-- instead of -->
+<img src="example.jpg?format=webp">
+<!-- you can write -->
+<img src="example.jpg?webp">
+```
 **Shorthands**:
 - `jpeg`
 - `jpg`
@@ -186,33 +200,43 @@ Transcodes the image to the give format. This directive will always be applied l
 - `tiff`
 - `heif`
 
+---
 ### `rotate`
 _TODO_
 
+---
 ### `flip`
 _TODO_
 
+---
 ### `flop`
 _TODO_
 
+---
 ### `sharpen`
 _TODO_
 
+---
 ### `blur`
 _TODO_
 
+---
 ### `median`
 _TODO_
 
+---
 ### `flatten`
 _TODO_
 
+---
 ### `gamma`
 _TODO_
 
+---
 ### `invert`
 _TODO_
 
+---
 ### `normalize`
 _TODO_
 
