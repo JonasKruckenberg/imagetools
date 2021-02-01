@@ -36,11 +36,5 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/JonasKruckenberg/vite-plugin-imageset.git"
-  },
-  "release": {
-    "branches": [
-      "main",
-      "next"
-    ]
   }
 }
