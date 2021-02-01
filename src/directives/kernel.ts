@@ -6,6 +6,12 @@ export const kernelDirective: Directive = {
     with: ['width', 'height', 'size'],
 
     test(key: string, value: string) {
-        return key === 'kernel' && pm.isMatch(value, ['nearest', 'cubic', 'mitchell', 'lanczos2', 'lanczos3'])
+        return key === 'kernel' && pm.isMatch(value, [
+            'nearest',
+            'cubic',
+            'mitchell',
+            'lanczos2',
+            'lanczos3'
+        ])
     }
 }
