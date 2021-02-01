@@ -3,10 +3,12 @@ import pm from 'picomatch'
 
 export const positionDirective: Directive = {
     name: 'position',
-    test(key: string, value: string) {
-        if (key === 'position') return true
+    with: ['width', 'height', 'size'],
 
-        return pm.isMatch(key, ['top', 'right top', 'right', 'right bottom', 'bottom', 'left bottom', 'left', 'left top', 'north', 'northeast', 'east', 'southeast', 'south', 'southwest', 'west', 'northwest', 'center', 'centre', 'entropy', 'attention']) && value === ''
+    test(key: string, value: string) {
+        const isKeyword = pm(['top', 'right top', 'right', 'right bottom', 'bottom', 'left bottom', 'left', 'left top', 'north', 'northeast', 'east', 'southeast', 'south', 'southwest', 'west', 'northwest', 'center', 'entropy', 'attention'])
+        return (key === 'position' && isKeyword(value))
+            || (isKeyword(key) && value === '')
     },
     transform(key: string, value: string) {
         return { position: !!value ? value : key }

@@ -3,10 +3,13 @@ import pm from 'picomatch'
 
 export const fitDirective: Directive = {
     name: 'fit',
-    test(key: string, value: string) {
-        if (key === 'fit') return true
+    with: ['width', 'height', 'size'],
 
-        return pm.isMatch(key, ['cover', 'contain', 'fill', 'inside', 'outside']) && value === ''
+    test(key: string, value: string) {
+        const isKeyword = pm(['cover', 'contain', 'fill', 'inside', 'outside'])
+
+        return (key === 'fit' && isKeyword(value))
+            || (isKeyword(key) && value === '')
     },
     transform(key: string, value: string) {
         return { fit: !!value ? value : key }
