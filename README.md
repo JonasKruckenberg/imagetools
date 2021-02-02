@@ -201,6 +201,10 @@ Optionally you can use one of the Shorthands below like so:
 - `heif`
 
 ---
+### `favicon`
+_TODO_
+
+---
 ### `rotate`
 _TODO_
 
