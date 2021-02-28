@@ -98,18 +98,33 @@ Below is the list of all directives shipped by default:
 #### `width`
 **Argument**: <_number_><br/>
 Resizes the image to have a with of `width` pixels. If not set, the height will be scaled automatically to match the width.
+
+```typescript
+import Image from "example.jpg?width=300"
+```
+
 > You cannot use `with` and `size` together.
 
 ---
 #### `height`
 **Argument**: <_number_><br/>
 Resize the image to have a height of `height` pixels. If not set, the width will be scaled automatically to match the height.
+
+```typescript
+import Image from "example.jpg?height=300"
+```
+
 > You cannot use `height` and `size` together.
 
 ---
 #### `size`
-**Argument**: <_number_>x<_number_><br/>
+**Argument**: <_width_>x<_height_><br/>
 Sets width and height of the image simultaneously.
+
+```typescript
+import Image from "example.jpg?size=1920x1080"
+```
+
 > When using `size` you cannot set `width` or `height`on the same resource.
 
 ---
@@ -184,11 +199,11 @@ Transcodes the image to the give format. This directive will always be applied l
 > Some of these formats my not be available on your platform/setup
 
 Optionally you can use one of the Shorthands below like so:
-```html
-<!-- instead of -->
-<img src="example.jpg?format=webp">
-<!-- you can write -->
-<img src="example.jpg?webp">
+```typescript
+// instead of
+import Image from "example.jpg?format=webp"
+// you can write
+import Image from "example.jpg?webp"
 ```
 **Shorthands**:
 - `jpeg`
