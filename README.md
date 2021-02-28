@@ -19,12 +19,12 @@ All of the image transformations are powered by [sharp](https://sharp.pixelplumb
 ## Install
 
 With [npm](https://npmjs.com):
-```
-npm install --dev vite-imagetools
+```console
+$ npm install --dev vite-imagetools
 ```
 Or with [yarn](https://yarnpkg.com):
-```
-yarn add --dev vite-imagetools
+```console
+$ yarn add --dev vite-imagetools
 ```
 
 ## Usage
