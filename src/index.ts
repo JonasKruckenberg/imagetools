@@ -12,7 +12,7 @@ interface pluginOptions {
 }
 
 const defaultOptions: pluginOptions = {
-    include: ['**/*.jpg', '**/*.jpg', '**/*.png', '**/*.webp', '**/*.webp', '**/*.avif', '**/*.gif', '**/*.heif'],
+    include: ['**/*.jpeg', '**/*.jpg', '**/*.png', '**/*.webp', '**/*.webp', '**/*.avif', '**/*.gif', '**/*.heif'],
     exclude: ['public/**/*']
 }
 
