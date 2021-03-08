@@ -75,12 +75,11 @@ export default function imagetools(userOptions: Partial<PluginOptions> = {}): Pl
                     }
                 }
 
-                if(!this.meta.watchMode) {
-                    // emit the file
-                    const file = src.pathname
+                if (!this.meta.watchMode) {
+                    const fileName = basename(src.pathname, extname(src.pathname))
 
                     const fileHandle = this.emitFile({
-                        name: `${basename(file, extname(file))}.${metadata.format}`,
+                        name: `${fileName}.${metadata.format}`,
                         type: 'asset',
                         source: data
                     })
