@@ -1,14 +1,13 @@
 import { createFilter, dataToEsm } from '@rollup/pluginutils'
-import { Plugin } from 'vite'
-import { get as cacheGet, put as cachePut } from 'cacache'
+import { Plugin, ResolvedConfig } from 'vite'
+import { put as cachePut } from 'cacache'
 import findCacheDir from 'find-cache-dir'
 import { basename, extname } from 'path'
 
-import * as directives from './directives'
-import * as outputFormats from './output'
-import { buildDirectiveOptions } from './util'
-import sharp, { Sharp } from 'sharp'
-import { DirectiveOptions, DirectiveContext, ImageTransformation, Directive } from './types'
+import * as builtinDiretcives from './directives'
+import * as builtinOutputFormats from './output'
+import { buildDirectiveOptions, buildTransforms, restoreFromCache, transformImage } from './util'
+import { PluginOptions } from './types'
 
 const options = {
     include: '**/*.{heic,heif,avif,jpeg,jpg,png,tiff,webp,gif}?*',
