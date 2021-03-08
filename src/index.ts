@@ -18,6 +18,8 @@ const defaultOptions: PluginOptions = {
 }
 
 export default function imagetools(userOptions: Partial<PluginOptions> = {}): Plugin {
+    const pluginOptions = { ...defaultOptions, ...userOptions }
+
 
     return {
         name: 'imagetools',
@@ -30,7 +32,15 @@ export default function imagetools(userOptions: Partial<PluginOptions> = {}): Pl
             const pipelineConfigs = buildDirectiveOptions(src)
 
             const outputMetadatas = await Promise.all(pipelineConfigs.map(async config => {
-                let { data, metadata } = await restoreFromCache(id, options.cache)
+                const cacheId = JSON.stringify(config) // each image is addressed by its configuration
+                let data, metadata
+
+                // Only try to load from cache when caching is enabled
+                if (pluginOptions.cache) {
+                    const res = await restoreFromCache(cacheId, pluginOptions.cache)
+                    data = res.data
+                    metadata = res.metadata
+                }
 
                 if (!data) {
                     // build transformation pipeline
@@ -50,9 +60,9 @@ export default function imagetools(userOptions: Partial<PluginOptions> = {}): Pl
                         metadata = Object.assign({}, await image.metadata(), metadata)
 
                         delete metadata.xmp
-                        // cache the result
 
-                        //await cachePut(options.cache,id,data,{ metadata })
+                        // if caching is enabled cache the result for future builds
+                        if (pluginOptions.cache) await cachePut(pluginOptions.cache, cacheId, data, { metadata })
                     }
                 }
 
