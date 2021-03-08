@@ -13,26 +13,29 @@ export interface PluginOptions {
     */
     exclude: Array<string | RegExp> | string | RegExp
     /** 
-     * The path to the image cache.
-     * You can set this to false to disable caching.
+     * The path to use as the cache for images, set this option to false to disable caching completely.
      * @default 'node_modules/.cache/vite-imagetools'
     */
     cache: string | false
 
     /**
-     * An array of custom directives to include in the image processing pipeline.
+     * You can use this option to extend the builtin list of import directives.
+     * This list will be merged with the builtin directives before applying them to the input image.
      * @default []
      */
     customDirectives: Directive[]
 
     /**
-     * An array of custom output formats to consider when generating the output for each image.
+     * You can use this option to extend the builtin list of output formats.
+     * This list will be merged with the builtin output formats before determining the format to use.
      * @default []
      */
     customOutputFormats: OutputFormat[]
 
     /**
-     * Force images to be transformed during devmode
+     * By default vite-imagetools only generates output metadata during development mode
+     * and only generates the actual images in build mode.
+     * You can set this option to `true` to override this behaviour.
      * @default false
      */
     force: boolean
