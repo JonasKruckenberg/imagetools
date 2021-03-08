@@ -1,5 +1,7 @@
-export const metadataOutput = (src:URL, outputMetadatas: Record<string, any>[]) => {
-    if(!src.searchParams.has('metadata') && !src.searchParams.has('meta')) return null
+import { OutputFormat } from "./types"
+
+export const metadataOutput: OutputFormat = (src: URL, outputMetadatas: Record<string, any>[]) => {
+    if (!src.searchParams.has('metadata') && !src.searchParams.has('meta')) return null
 
     return outputMetadatas.length === 1 ? outputMetadatas[0] : outputMetadatas
 }
