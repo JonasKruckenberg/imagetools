@@ -21,6 +21,10 @@ export default function imagetools(userOptions: Partial<PluginOptions> = {}): Pl
     const pluginOptions = { ...defaultOptions, ...userOptions }
 
 
+    const directives = [...Object.values(builtinDiretcives), ...pluginOptions.customDirectives]
+
+    const outputFormats = [...Object.values(builtinOutputFormats), ...pluginOptions.customOutputFormats]
+
     return {
         name: 'imagetools',
         enforce: 'pre',
@@ -43,8 +47,8 @@ export default function imagetools(userOptions: Partial<PluginOptions> = {}): Pl
                 }
 
                 if (!data) {
-                    // build transformation pipeline
-                    const { transforms, metadata: _metadata, parametersUsed } = buildTransforms(config,directives)
+                    // build the transformation pipeline
+                    const { transforms, metadata: _metadata, parametersUsed } = buildTransforms(config, directives)
 
                     metadata = { src: src.pathname, ..._metadata }
 
@@ -83,8 +87,9 @@ export default function imagetools(userOptions: Partial<PluginOptions> = {}): Pl
                 return metadata
             }))
 
-            const output = Object.values(outputFormats)
-                .map(f => f(src,outputMetadatas))
+            // go through all output formats to find the one to use
+            const output = outputFormats
+                .map(f => f(src, outputMetadatas))
                 .find(res => !!res)
 
             return dataToEsm(output)
