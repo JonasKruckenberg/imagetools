@@ -3,6 +3,7 @@ import { Plugin, ResolvedConfig } from 'vite'
 import { put as cachePut } from 'cacache'
 import findCacheDir from 'find-cache-dir'
 import { basename, extname } from 'path'
+import sharp from 'sharp'
 
 import * as builtinDiretcives from './directives'
 import * as builtinOutputFormats from './output'
