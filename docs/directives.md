@@ -165,4 +165,18 @@ import Image from 'exmaple.jpg?flip=true'
 ```
 
 ___
+
+
+### Blur
+• **Keyword**: `blur`
+• **Type**: _float_
+
+Blurs the image. When no argument is provided it performs a fast blur.
+When an argument between 0.3 and 1000 is provided it performs a more accurate gaussian blur.
+
+• **Example**:
+```js
+import Image from 'example.jpg?blur'
+import Image from 'exmaple.jpg?blur=0.75'
+import Image from 'example.jpg?blur=100'
 ```
