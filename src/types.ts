@@ -34,6 +34,8 @@ export interface PluginOptions {
 export type ImageTransformation = (image: Sharp) => Sharp
 
 export type DirectiveOptions = Record<string,any>
+export type OutputFormat = (src:URL, outputMetadatas: Record<string, any>[]) => any
+
 
 export interface DirectiveContext {
     useParam: (param: string) => void
