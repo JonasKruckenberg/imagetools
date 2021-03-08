@@ -1,7 +1,7 @@
 {
   "name": "vite-imagetools",
   "version": "0.0.0-development",
-  "main": "dist/index.js",
+  "main": "dist/index.cjs",
   "module": "dist/index.mjs",
   "license": "MIT",
   "homepage": "https://github.com/JonasKruckenberg/vite-imagetools",
