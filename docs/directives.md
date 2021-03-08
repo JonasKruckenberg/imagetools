@@ -167,6 +167,21 @@ import Image from 'exmaple.jpg?flip=true'
 ___
 
 
+### Flop
+• **Keyword**: `flop`
+• **Type**: _boolean_
+
+Flop the image image about the horizontal axis. This step is always performed **after** any rotation.
+
+• **Example**:
+```js
+import Image from 'example.jpg?flop'
+import Image from 'exmaple.jpg?flop=true'
+```
+
+___
+
+
 ### Blur
 • **Keyword**: `blur`
 • **Type**: _float_
