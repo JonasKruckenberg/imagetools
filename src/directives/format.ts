@@ -1,17 +1,19 @@
-import { Directive } from "./index"
-import pm from 'picomatch'
+import { Directive, ImageFormat } from "../types"
 
+interface FormatOptions {
+    format: ImageFormat
+}
 
-export const formatDirective: Directive = {
-    name: 'format',
+export const format: Directive<FormatOptions> = (ctx, { useParam, setMetadata }) => {
+    const formats: ImageFormat[] = ['avif', 'jpg', 'jpeg', 'png', 'webp', 'tiff', 'heif', 'heic', 'gif']
 
-    test(key: string, value: string) {
-        const isKeyword = pm(['jpeg', 'jpg', 'webp', 'avif', 'png', 'gif', 'tiff', 'heif'])
+    const format = formats.includes(ctx.format) ? ctx.format : formats.find(f => f in ctx && ctx[f] === '')
 
-        return (key === 'format' && isKeyword(value))
-            || (isKeyword(key) && value === '')
-    },
-    transform(key: string, value: string) {
-        return { format: !!value ? value : key }
+    useParam('format')
+    setMetadata('format', format)
+
+    return function formatTransform(image) {
+        //@ts-expect-error sharps types are not quite accurate
+        return image.toFormat(format)
     }
 }
