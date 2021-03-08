@@ -20,6 +20,8 @@ const defaultOptions: PluginOptions = {
 export default function imagetools(userOptions: Partial<PluginOptions> = {}): Plugin {
     const pluginOptions = { ...defaultOptions, ...userOptions }
 
+    let viteConfig: ResolvedConfig
+
     const filter = createFilter(pluginOptions.include, pluginOptions.exclude)
 
     const directives = [...Object.values(builtinDiretcives), ...pluginOptions.customDirectives]
@@ -29,6 +31,9 @@ export default function imagetools(userOptions: Partial<PluginOptions> = {}): Pl
     return {
         name: 'imagetools',
         enforce: 'pre',
+        configResolved(cfg) {
+            viteConfig = cfg
+        },
         async load(id) {
             const src = new URL(id, 'file://')
 
@@ -93,7 +98,13 @@ export default function imagetools(userOptions: Partial<PluginOptions> = {}): Pl
                 .map(f => f(src, outputMetadatas))
                 .find(res => !!res)
 
-            return dataToEsm(output)
+            // output as JSON or esm depending on the vite config 
+            return viteConfig.json?.stringify 
+                ? `export default = JSON.parse(${JSON.stringify(JSON.stringify(output))})`
+                : dataToEsm(output, { 
+                    namedExports: viteConfig.json.namedExports,
+                    compact: !!viteConfig.build.minify
+                })
         }
     }
 }
