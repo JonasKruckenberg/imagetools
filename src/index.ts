@@ -60,8 +60,6 @@ export default function imagetools(userOptions: Partial<PluginOptions> = {}): Pl
 
                     metadata = { src: src.pathname, ..._metadata }
 
-                    console.log(transforms,metadata);
-
                     // only apply the actual transformtions in build mode
                     if (!this.meta.watchMode) {
                         const image = transformImage(sharp(src.pathname), transforms)
