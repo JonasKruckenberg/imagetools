@@ -12,13 +12,15 @@ export const format: Directive<FormatOptions> = (ctx, { useParam, setMetadata })
 
     if (!format) return null
 
-    const quality = getQuality(ctx, { useParam, setMetadata })
+    const quality = getQuality(ctx, { useParam, setMetadata })    
 
     useParam('format')
+    // mark the shorthand as used
+    if (!ctx.format) useParam(format) 
     setMetadata('format', format)
 
     return function formatTransform(image) {
         //@ts-expect-error sharps types are not quite accurate
-        return image.toFormat(format,{ quality })
+        return image.toFormat(format, { quality })
     }
 }
