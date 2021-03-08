@@ -1,0 +1,81 @@
+# Import directives
+
+## Table of Contents
+
+- [Format](#format)
+- [Quality](#quality)
+- [Width](#width)
+- [Height](#height)
+- [Fit](#fit)
+- [Position](#position)
+- [Kernel](#kernel)
+- [Rotate](#rotate)
+- [Background](#background)
+
+### Format
+• **Keyword**: `format`<br>
+• **Type**: _heic_ \| _heif_ \| _avif_ \| _jpeg_ \| _jpg_ \| _png_ \| _tiff_ \| _webp_ \| _gif_<br>
+• **Shorthands**: `heic` \| `heif` \| `avif` \| `jpg` \|`jpeg` \| `png` \| `tiff` \| `webp` \| (`gif`)
+
+> NOTE: Converting to the `gif` format requires libvips compiled with support for ImageMagick or GraphicsMagick
+> See [The sharp docs](https://sharp.pixelplumbing.com/install#custom-libvips) for details.
+
+> You cannot use multiple shorthands, use `format` instead.
+
+• **Example**:
+```js
+import Image from 'example.jpg?format=webp'
+import Image from 'examepl.jpg?png'
+import Images from 'examepl.jpg?format=webp,avif,heic'
+```
+
+___
+
+
+### Width
+• **Keyword**: `width` \| `w`<br>
+• **Type**: _integer_
+
+Resizes the image to be the specified amount of pixels wide. If not given the height will be scaled accordingly.
+
+• **Example**:
+```js
+import Image from 'example.jpg?width=200'
+import Image from 'examepl.jpg?w=200'
+import Images from 'examepl.jpg?width=200,400,700'
+```
+
+___
+
+
+### Height
+• **Keyword**: `height` \| `h`
+• **Type**: _integer_
+
+Resizes the image to be the specified amount of pixels tall. If not given the width will be scaled accordingly.
+
+• **Example**:
+```js
+import Image from 'example.jpg?height=200'
+import Image from 'examepl.jpg?h=200'
+import Images from 'examepl.jpg?height=200,400,700'
+```
+
+___
+
+### Rotate
+• **Keyword**: `rotate`<br>
+• **Type**: _integer_
+
+Rotate the image by the specified number of degrees.
+
+> NOTE: You can change the background color the empty parts are filled with by setting the [background](#background) directive.
+
+• **Example**:
+```js
+import Image from 'example.jpg`rotate=90'
+import Image from 'example.jpg`rotate=68'
+import Images from 'example.jpg`rotate=90,180,270'
+```
+
+___
