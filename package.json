@@ -17,10 +17,10 @@
     "semantic-release": "semantic-release"
   },
   "dependencies": {
+    "@rollup/pluginutils": "^4.1.0",
     "cacache": "^15.0.5",
     "find-cache-dir": "^3.3.1",
     "picomatch": "^2.2.2",
-    "rollup-pluginutils": "^2.8.2",
     "sharp": "^0.27.0"
   },
   "devDependencies": {
