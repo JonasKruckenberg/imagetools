@@ -13,45 +13,13 @@ All of the image transformations are powered by [sharp](https://sharp.pixelplumb
 > :warning: This is the development branch of v3! <br>
 > Try it out and leave feedback via the issues!<br>
 
-## v3 Roadmap
-
-- [x] Custom directives
-- [ ] Query parameter passthrough 
-- [ ] Srcset output
-- [x] Metadata output
-- [ ] Full test coverage
-- [x] **Resize** (i.e. `width`,`w`,`height`,`h`,`resize`)
-- [x] **Rotate**
-- [x] **Format** (`format` and it's shorthands)
-- [ ] **flip**
-- [ ] **flop**
-- [ ] **sharpen**
-- [ ] **blur**
-- [ ] **median**
-- [ ] **flatten**
-- [ ] **gamma**
-- [ ] **invert**
-- [ ] **normalize**
-- [ ] **tint**
-- [ ] **grayscale**
-- [ ] **toColorspace**
-- [ ] **pad**
-- [ ] **crop**
-- [ ] **trim**
-- [ ] **hue**
-- [ ] **saturation**
-- [ ] **brightness**
-
-<!--
 ## Features
 
-- **Output modern formats like avif or webp**
-- **Resizing**
-- **Generate SrcSets**
-- **Custom import directives & output formats**
-- **Image filters**
-- **Import image metadata**
--->
+- **Output modern formats :rocket:**
+- **Resizing :framed_picture:**
+- **No transformations in development mode :zap:**
+- **Extensible :jigsaw:**
+<!-- - **Image filters :art:** -->
 
 ## Table of Contents
 
