@@ -20,6 +20,7 @@ const defaultOptions: PluginOptions = {
 export default function imagetools(userOptions: Partial<PluginOptions> = {}): Plugin {
     const pluginOptions = { ...defaultOptions, ...userOptions }
 
+    const filter = createFilter(pluginOptions.include, pluginOptions.exclude)
 
     const directives = [...Object.values(builtinDiretcives), ...pluginOptions.customDirectives]
 
