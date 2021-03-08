@@ -30,6 +30,12 @@ export interface PluginOptions {
      * @default []
      */
     customOutputFormats: OutputFormat[]
+
+    /**
+     * Force images to be transformed during devmode
+     * @default false
+     */
+    force: boolean
 }
 
 /**

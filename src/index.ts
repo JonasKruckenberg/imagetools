@@ -15,13 +15,17 @@ const defaultOptions: PluginOptions = {
     exclude: 'public/**/*',
     cache: findCacheDir({ name: 'vite-imagetools' }),
     customDirectives: [],
-    customOutputFormats: []
+    customOutputFormats: [],
+    force: false
 }
 
 export default function imagetools(userOptions: Partial<PluginOptions> = {}): Plugin {
     const pluginOptions = { ...defaultOptions, ...userOptions }
 
     let viteConfig: ResolvedConfig
+
+    // wether to actually transform the images, disabled in devmode by default
+    let transformImages: boolean
 
     const filter = createFilter(pluginOptions.include, pluginOptions.exclude)
 
@@ -34,6 +38,7 @@ export default function imagetools(userOptions: Partial<PluginOptions> = {}): Pl
         enforce: 'pre',
         configResolved(cfg) {
             viteConfig = cfg
+            transformImages = cfg.command === 'build' || pluginOptions.force
         },
         async load(id) {
             const src = new URL(id, 'file://')
@@ -62,7 +67,7 @@ export default function imagetools(userOptions: Partial<PluginOptions> = {}): Pl
                     metadata = { src: src.pathname, ..._metadata }
 
                     // only apply the actual transformtions in build mode
-                    if (!this.meta.watchMode) {
+                    if (transformImages) {
                         const image = transformImage(sharp(src.pathname), transforms)
 
                         data = await image.toBuffer()
@@ -76,7 +81,7 @@ export default function imagetools(userOptions: Partial<PluginOptions> = {}): Pl
                     }
                 }
 
-                if (!this.meta.watchMode) {
+                if (transformImages) {
                     const fileName = basename(src.pathname, extname(src.pathname))
 
                     const fileHandle = this.emitFile({
