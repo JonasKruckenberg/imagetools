@@ -38,7 +38,7 @@ export function imagetools(userOptions: Partial<PluginOptions> = {}): Plugin {
 
     const directives = [...pluginOptions.customDirectives, ...Object.values(builtinDiretcives)]
 
-    const outputFormats = [...pluginOptions.customOutputFormats, ...Object.values(builtinOutputFormats)]
+    const outputFormats = [...pluginOptions.customOutputFormats, builtinOutputFormats.metadataFormat, builtinOutputFormats.srcsetFormat]
 
     return {
         name: 'imagetools',
@@ -116,7 +116,8 @@ export function imagetools(userOptions: Partial<PluginOptions> = {}): Plugin {
             // go through all output formats to find the one to use
             const output = outputFormats
                 .map(f => f(src, outputMetadatas))
-                .find(res => !!res)
+                .find(res => !!res) || builtinOutputFormats.urlFormat(src, outputMetadatas)
+
 
             // output as JSON or esm depending on the vite config 
             return viteConfig.json?.stringify
