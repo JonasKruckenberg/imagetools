@@ -3,6 +3,8 @@
 
 <!-- badges -->
 [![standard-readme compliant](https://img.shields.io/badge/readme%20style-standard-brightgreen.svg?style=flat-square)](https://github.com/RichardLitt/standard-readme)
+[![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release)
+![npm (tag)](https://img.shields.io/npm/v/vite-imagetools/next)
 
 <!-- Introduction -->
 A toolbox of custom import directives that can transform your image at compile-time.
@@ -13,7 +15,6 @@ All of the image transformations are powered by [sharp](https://sharp.pixelplumb
 
 ## v3 Roadmap
 
-- [ ] ~Worker support~
 - [x] Custom directives
 - [ ] Query parameter passthrough 
 - [ ] Srcset output
