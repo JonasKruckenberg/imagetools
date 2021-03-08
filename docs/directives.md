@@ -205,3 +205,17 @@ Produces a 'negative' of the image.
 import Image from 'example.jpg?invert'
 import Image from 'exmaple.jpg?invert=true'
 ```
+___
+
+### Invert
+• **Keyword**: `invert`
+• **Type**: _boolean_
+
+'Normalizes' the image by stretching its luminance to cover the full dynamic range.
+This Eenhances the output image contrast.
+
+• **Example**:
+```js
+import Image from 'example.jpg?invert'
+import Image from 'exmaple.jpg?invert=true'
+```
