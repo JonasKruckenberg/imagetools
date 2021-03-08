@@ -83,6 +83,14 @@ import Images from 'examepl.jpg?height=200,400,700'
 
 ___
 
+
+### Fit
+• **Keyword**: `fit`
+• **Type**: _cover_ \| _contain_ \| _fill_ \| _inside_ \| _outside_ 
+
+When both a `width` and `height` are provided, this directive can be used to specify the method by which the image should **fit**.
+
+___
 ### Rotate
 • **Keyword**: `rotate`<br>
 • **Type**: _integer_
