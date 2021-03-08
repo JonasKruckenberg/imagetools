@@ -192,6 +192,17 @@ You can set this option to `true` to override this behaviour.
 
 **`default`** false
 
+___
+
+### silent
+
+• **silent**: *boolean*
+
+Vite-imagetools emits warnings whenever your directives are incorrect.
+If you don't want this bevahiour set this option to true to disable all warnings.
+
+**`default`** false
+
 ## Caching
 
 Processing a lot of images is quite resource intensive, that's why vite-imagetools caches all generated images on disk.
