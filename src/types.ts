@@ -39,6 +39,12 @@ export interface PluginOptions {
      * @default false
      */
     force: boolean
+
+    /**
+     * Settings this option to true disables all warnings produced by this plugin
+     * @default false
+     */
+    silent: boolean
 }
 
 /**

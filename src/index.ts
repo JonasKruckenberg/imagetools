@@ -19,7 +19,8 @@ const defaultOptions: PluginOptions = {
     cache: findCacheDir({ name: 'vite-imagetools' }),
     customDirectives: [],
     customOutputFormats: [],
-    force: false
+    force: false,
+    silent: false
 }
 
 export function imagetools(userOptions: Partial<PluginOptions> = {}): Plugin {
@@ -67,6 +68,15 @@ export function imagetools(userOptions: Partial<PluginOptions> = {}): Plugin {
                     // build the transformation pipeline
                     const { transforms, metadata: _metadata, parametersUsed } = buildTransforms(config, directives)
 
+                    const unusedParams = Array.from(src.searchParams.keys())
+                        .filter(key => !parametersUsed.has(key))
+
+                    if (!pluginOptions.silent) {
+                        for (const key of unusedParams) {
+                            this.warn(`Unknown directive "${key}" found!`)
+                        }
+                    }
+
                     metadata = { src: src.pathname, ..._metadata }
 
                     // only apply the actual transformtions in build mode
@@ -106,11 +116,11 @@ export function imagetools(userOptions: Partial<PluginOptions> = {}): Plugin {
                 .find(res => !!res)
 
             // output as JSON or esm depending on the vite config 
-            return viteConfig.json?.stringify 
+            return viteConfig.json?.stringify
                 ? `export default = JSON.parse(${JSON.stringify(JSON.stringify(output))})`
-                : dataToEsm(output, { 
-                    namedExports: viteConfig.json.namedExports,
-                    compact: !!viteConfig.build.minify
+                : dataToEsm(output, {
+                    namedExports: !!viteConfig.json?.namedExports,
+                    compact: !!viteConfig.build?.minify
                 })
         }
     }
