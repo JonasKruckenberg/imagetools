@@ -4,8 +4,8 @@ export const metadataOutput = (src:URL, outputMetadatas: Record<string, any>[]) 
     return outputMetadatas.length === 1 ? outputMetadatas[0] : outputMetadatas
 }
 
-export const srcsetOutput = (src:URL, outputMetadatas: Record<string, any>[]) => {
-    if(!src.searchParams.has('srcset')) return null
+export const srcsetOutput: OutputFormat = (src: URL, outputMetadatas: Record<string, any>[]) => {
+    if (!src.searchParams.has('srcset')) return null
 
     return outputMetadatas.length === 1 ? outputMetadatas[0] : outputMetadatas
 }
