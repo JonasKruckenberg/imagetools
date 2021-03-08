@@ -39,6 +39,7 @@ export default function imagetools(userOptions: Partial<PluginOptions> = {}): Pl
 
             if (!filter(src.href)) return null
 
+            // generate configurations for all resulting images
             const pipelineConfigs = buildDirectiveOptions(src)
 
             const outputMetadatas = await Promise.all(pipelineConfigs.map(async config => {
@@ -52,6 +53,7 @@ export default function imagetools(userOptions: Partial<PluginOptions> = {}): Pl
                     metadata = res.metadata
                 }
 
+                // If the image could not be found in the cache we have to transform it
                 if (!data) {
                     // build the transformation pipeline
                     const { transforms, metadata: _metadata, parametersUsed } = buildTransforms(config, directives)
@@ -60,15 +62,14 @@ export default function imagetools(userOptions: Partial<PluginOptions> = {}): Pl
 
                     console.log(transforms,metadata);
 
+                    // only apply the actual transformtions in build mode
                     if (!this.meta.watchMode) {
-                        // transform the image
                         const image = transformImage(sharp(src.pathname), transforms)
 
                         data = await image.toBuffer()
 
-                        // assign the metadata
                         metadata = Object.assign({}, await image.metadata(), metadata)
-
+                        // delete the xmp buffer to not leak private metadata
                         delete metadata.xmp
 
                         // if caching is enabled cache the result for future builds
@@ -86,7 +87,7 @@ export default function imagetools(userOptions: Partial<PluginOptions> = {}): Pl
                         source: data
                     })
 
-                    // adjust the src atrribute
+                    // set the src attribute so that vite can replace it with the generated path
                     metadata.src = `__VITE_ASSET__${fileHandle}__`
                 }
 
