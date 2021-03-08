@@ -18,11 +18,11 @@ All of the image transformations are powered by [sharp](https://sharp.pixelplumb
 
 ## Roadmap
 
-- [ ] Worker support
-- [ ] Custom directives
+- [ ] ~Worker support~
+- [x] Custom directives
 - [ ] Query parameter passthrough 
 - [ ] Srcset output
-- [ ] Metadata output
+- [x] Metadata output
 - [ ] Full test coverage
 
 ### Directives
@@ -57,52 +57,7 @@ npm install --dev vite-imagetools@next
 Or with [yarn](https://yarnpkg.com):
 ```
 yarn add --dev vite-imagetools@next
-```
-<!--
-## Usage
-
-Add the plugin to your vite config:
-```typescript
-import imageset from 'vite-imagetools'
-
-export default defineConfig({
-  plugins: [
-    imageset()
-  ]
-})
-```
-The you can use all the directives when importing image files:
-
-This for example will resize the image to 1200x900 pixels, using the object-fit cover and keeping the top of the image in view. It will also produce a webp image from the jpeg source.
-
-You can of course also import images from javascript like so:
-```typescript
-import Image from 'example.jpg?format=avif'
-```
-
-### Options
-
-All plugin options are optional.
-
-#### `include`
-**Type**: _string_ | _RegExp_ | Array<_string_ | _RegExp_><br/>
-**Default**: `['**/*.jpg', '**/*.jpg', '**/*.png', '**/*.webp', '**/*.webp', '**/*.avif', '**/*.gif', '**/*.heif']`<br/>
-
-Which files to include when processing.
-
-#### `exclude`
-**Type**: string | RegExp | Array<string | RegExp><br/>
-**Default**: `['public/**/*']`<br/>
-
-Which files to exclude when processing. By default this excludes vites _public_ folder to match the default behavior.
-
-### `cache`
-**Type**: string<br/>
-**Default**: `node_modules/.cache/vite-imagetools`
-
-The path to the folder to use as the cache. See the next section [Caching](#caching) for details.
-
--->
+``
 
 ## License
 [MIT © Jonas Kruckenberg.](./LICENSE)
