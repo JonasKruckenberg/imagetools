@@ -3,6 +3,7 @@ import { Plugin, ResolvedConfig } from 'vite'
 import { put as cachePut } from 'cacache'
 import findCacheDir from 'find-cache-dir'
 import { basename, extname } from 'path'
+import MagicString from 'magic-string'
 import sharp from 'sharp'
 
 import * as builtinDiretcives from './directives'
@@ -22,6 +23,8 @@ const defaultOptions: PluginOptions = {
     force: false,
     silent: false
 }
+
+const assetUrlQuotedRE = /__VITE_IMAGE_ASSET__([a-z\d]{8})__(?:_(.*?)__)?/g
 
 export function imagetools(userOptions: Partial<PluginOptions> = {}): Plugin {
     const pluginOptions = { ...defaultOptions, ...userOptions }
@@ -104,12 +107,12 @@ export function imagetools(userOptions: Partial<PluginOptions> = {}): Plugin {
                     })
 
                     // set the src attribute so that vite can replace it with the generated path
-                    metadata.src = `__VITE_ASSET__${fileHandle}__`
+                    metadata.src = `__VITE_IMAGE_ASSET__${fileHandle}__`
                 }
 
                 return metadata
             }))
-
+            
             // go through all output formats to find the one to use
             const output = outputFormats
                 .map(f => f(src, outputMetadatas))
@@ -122,6 +125,33 @@ export function imagetools(userOptions: Partial<PluginOptions> = {}): Plugin {
                     namedExports: !!viteConfig.json?.namedExports,
                     compact: !!viteConfig.build?.minify
                 })
-        }
+        },
+        renderChunk(code) {
+            let match
+            let s
+            while ((match = assetUrlQuotedRE.exec(code))) {
+                s = s || (s = new MagicString(code))
+                const [full, hash, postfix = ''] = match
+
+                const file = this.getFileName(hash)
+
+                const outputFilepath = viteConfig.base + file + postfix
+
+                s.overwrite(
+                    match.index,
+                    match.index + full.length,
+                    outputFilepath
+                )
+            }
+
+            if (s) {
+                return {
+                    code: s.toString(),
+                    map: viteConfig.build.sourcemap ? s.generateMap({ hires: true }) : null
+                }
+            } else {
+                return null
+            }
+        },
     }
 }
