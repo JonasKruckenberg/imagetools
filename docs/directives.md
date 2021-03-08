@@ -91,6 +91,19 @@ ___
 When both a `width` and `height` are provided, this directive can be used to specify the method by which the image should **fit**.
 
 ___
+
+### Position
+• **Keyword**: `position`
+• **Type**: _top_ \| _right top_ \| _right_ \| _right bottom_ \| _bottom_ \| _left bottom_ \| _left_ \| _left top_ \|
+    _north_ \| _northeast_ \| _east_ \| _southeast_ \| _south_ \| _southwest_ \| _west_ \| _northwest_ \| _center_ \| _centre_ \|
+    _cover_ \| _entropy_ \| _attention_
+
+When both `width` and `height` are provided AND the fit is one of `fit` of `cover` or `contain`, 
+this directive can be used to set the position of the image.
+
+See sharps [resize options](https://sharp.pixelplumbing.com/api-resize#resize) for a detailed explanation of each.
+
+___
 ### Rotate
 • **Keyword**: `rotate`<br>
 • **Type**: _integer_
