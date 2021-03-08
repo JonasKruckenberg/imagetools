@@ -9,14 +9,15 @@ import * as builtinOutputFormats from './output'
 import { buildDirectiveOptions, buildTransforms, restoreFromCache, transformImage } from './util'
 import { PluginOptions } from './types'
 
-const options = {
+const defaultOptions: PluginOptions = {
     include: '**/*.{heic,heif,avif,jpeg,jpg,png,tiff,webp,gif}?*',
     exclude: 'public/**/*',
-    cache: findCacheDir({ name: 'vite-imagetools' })
+    cache: findCacheDir({ name: 'vite-imagetools' }),
+    customDirectives: [],
+    customOutputFormats: []
 }
 
-export default function imagetools(): Plugin {
-    const filter = createFilter('**/*.{heic,heif,avif,jpeg,jpg,png,tiff,webp,gif}?*')
+export default function imagetools(userOptions: Partial<PluginOptions> = {}): Plugin {
 
     return {
         name: 'imagetools',
