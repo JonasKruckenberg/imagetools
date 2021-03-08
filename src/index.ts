@@ -10,6 +10,9 @@ import * as builtinOutputFormats from './output'
 import { buildDirectiveOptions, buildTransforms, restoreFromCache, transformImage } from './util'
 import { PluginOptions } from './types'
 
+export * from './directives'
+export * from './output'
+
 const defaultOptions: PluginOptions = {
     include: '**/*.{heic,heif,avif,jpeg,jpg,png,tiff,webp,gif}?*',
     exclude: 'public/**/*',
@@ -19,7 +22,7 @@ const defaultOptions: PluginOptions = {
     force: false
 }
 
-export default function imagetools(userOptions: Partial<PluginOptions> = {}): Plugin {
+export function imagetools(userOptions: Partial<PluginOptions> = {}): Plugin {
     const pluginOptions = { ...defaultOptions, ...userOptions }
 
     let viteConfig: ResolvedConfig
@@ -29,9 +32,9 @@ export default function imagetools(userOptions: Partial<PluginOptions> = {}): Pl
 
     const filter = createFilter(pluginOptions.include, pluginOptions.exclude)
 
-    const directives = [...Object.values(builtinDiretcives), ...pluginOptions.customDirectives]
+    const directives = [...pluginOptions.customDirectives, ...Object.values(builtinDiretcives)]
 
-    const outputFormats = [...Object.values(builtinOutputFormats), ...pluginOptions.customOutputFormats]
+    const outputFormats = [...pluginOptions.customOutputFormats, ...Object.values(builtinOutputFormats)]
 
     return {
         name: 'imagetools',
