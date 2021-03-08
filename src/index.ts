@@ -1,105 +1,140 @@
-import sharp from 'sharp'
-import { buildOptions, has, Options } from "./options"
-import { directives } from './directives'
-import { createHash } from 'crypto'
-import path from 'path'
-import { promises as fs } from 'fs'
-import { dataToEsm, createFilter } from "rollup-pluginutils"
+import { createFilter, dataToEsm } from '@rollup/pluginutils'
+import { Plugin } from 'vite'
+import { get as cacheGet, put as cachePut } from 'cacache'
+import findCacheDir from 'find-cache-dir'
+import { basename, extname } from 'path'
 
-interface pluginOptions {
-    include?: Array<string | RegExp> | string | RegExp
-    exclude?: Array<string | RegExp> | string | RegExp
+import * as directives from './directives'
+import * as outputFormats from './output'
+import { buildDirectiveOptions } from './util'
+import sharp, { Sharp } from 'sharp'
+import { DirectiveOptions, DirectiveContext, ImageTransformation, Directive } from './types'
+
+const options = {
+    include: '**/*.{heic,heif,avif,jpeg,jpg,png,tiff,webp,gif}?*',
+    exclude: 'public/**/*',
+    cache: findCacheDir({ name: 'vite-imagetools' })
 }
 
-const defaultOptions: pluginOptions = {
-    include: ['**/*.jpeg', '**/*.jpg', '**/*.png', '**/*.webp', '**/*.webp', '**/*.avif', '**/*.gif', '**/*.heif'],
-    exclude: ['public/**/*']
-}
-
-export default function (userOptions: pluginOptions = {}) {
-    const pluginOptions = { ...defaultOptions, ...userOptions }
-
-    const filter = createFilter(pluginOptions.include, pluginOptions.exclude)
-
-    const CACHE_DIR = './node_modules/.cache/vite-plugin-imageset'
-
-    let globalConfig
+export default function imagetools(): Plugin {
+    const filter = createFilter('**/*.{heic,heif,avif,jpeg,jpg,png,tiff,webp,gif}?*')
 
     return {
-        name: 'imageset',
-        enforce: 'pre' as 'pre',
-        async buildStart() {
-            await fs.mkdir(CACHE_DIR, { recursive: true })
-        },
-        configResolved(config) {
-            globalConfig = config
-        },
-        async load(assetPath: string) {
-            const url = new URL(assetPath, 'file://')
+        name: 'imagetools',
+        enforce: 'pre',
+        async load(id) {
+            const src = new URL(id, 'file://')
 
-            if (!filter(url.pathname)) {
-                return null
-            } else {
-                const options = buildOptions(url, directives())
-                const id = generateId(assetPath)
-                const ext = options.format ? `.${options.format}` : path.extname(url.pathname)
-                const cachePath = path.join(CACHE_DIR, id + ext)
+            if (!filter(src.href)) return null
 
-                if (globalConfig.command === 'serve') {
-                    if (!(await isCached(cachePath))) {
-                        const content = await transformImage(url, options)
-                        await fs.writeFile(cachePath, content)
+            const pipelineConfigs = buildDirectiveOptions(src)
+
+            const outputMetadatas = await Promise.all(pipelineConfigs.map(async config => {
+                let { data, metadata } = await restoreFromCache(id, options.cache)
+
+                if (!data) {
+                    // build transformation pipeline
+                    const { transforms, metadata: _metadata, parametersUsed } = buildTransforms(config,directives)
+
+                    metadata = { src: src.pathname, ..._metadata }
+
+                    console.log(transforms,metadata);
+
+                    if (!this.meta.watchMode) {
+                        // transform the image
+                        const image = transformImage(sharp(src.pathname), transforms)
+
+                        data = await image.toBuffer()
+
+                        // assign the metadata
+                        metadata = Object.assign({}, await image.metadata(), metadata)
+
+                        delete metadata.xmp
+                        // cache the result
+
+                        //await cachePut(options.cache,id,data,{ metadata })
                     }
-
-                    return dataToEsm('/' + path.relative(globalConfig.root, cachePath), globalConfig.build.rollupOptions)
-                } else {
-                    let content: Uint8Array
-                    if (await isCached(cachePath)) {
-                        content = await fs.readFile(cachePath)
-                    } else {
-                        content = await transformImage(url, options)
-                        await fs.writeFile(cachePath, content)
-                    }
-
-                    const file = url.pathname
-
-                    const fileHandle = this.emitFile({
-                        name: `${path.basename(file, path.extname(file))}${ext}`,
-                        type: 'asset',
-                        source: content
-                    })
-
-                    return dataToEsm(`__VITE_ASSET__${fileHandle}__`, globalConfig.build.rollupOptions)
                 }
 
-            }
+                if(!this.meta.watchMode) {
+                    // emit the file
+                    const file = src.pathname
+
+                    const fileHandle = this.emitFile({
+                        name: `${basename(file, extname(file))}.${metadata.format}`,
+                        type: 'asset',
+                        source: data
+                    })
+
+                    // adjust the src atrribute
+                    metadata.src = `__VITE_ASSET__${fileHandle}__`
+                }
+
+                return metadata
+            }))
+
+            const output = Object.values(outputFormats)
+                .map(f => f(src,outputMetadatas))
+                .find(res => !!res)
+
+            return dataToEsm(output)
         }
     }
 }
 
-async function isCached(path: string) {
+function buildTransforms(config: DirectiveOptions, directives:Record<string,Directive>) {
+    const parametersUsed = new Set()
+    const metadata = {}
+
+    const context: DirectiveContext = {
+        useParam: (key) => parametersUsed.add(key),
+        setMetadata: (key, value) => metadata[key] = value
+    }
+
+    const transforms = Object.values(directives)
+        .map(dir => dir(config as any, context))
+        .filter(transform => typeof transform === 'function')
+
+    return { metadata, transforms, parametersUsed }
+}
+
+async function restoreFromCache(id: string, cachePath: string) {
+    let res
     try {
-        const stat = await fs.stat(path)
-        return stat.isFile()
+        res = await cacheGet(options.cache, id)
     } catch {
-        return false
+        res = {}
     }
-
+    return res
 }
 
-function transformImage(url: URL, options: Options) {
-    let pipeline = sharp(url.pathname)
-
-    if (has(options, 'size', 'width', 'height')) {
-        pipeline = pipeline.resize(options)
-    }
-    if (has(options, 'format')) {
-        pipeline = pipeline.toFormat(options.format)
-    }
-
-    return pipeline.toBuffer()
+function transformImage(image: Sharp, transforms: ImageTransformation[]) {
+    return transforms.reduce((image, transform) => transform(image), image)
 }
 
-function generateId(id: string) {
-    return createHash('sha1').update(id).digest('hex').slice(0, 16)
-}
+// try {
+//     const { data, metadata } = await cacheGet(options.cache, id)
+//     outputData = data
+//     outputMetadata = metadata
+// } catch {
+//     const { transforms, metadata, usedParameters } = buildTransforms(config)
+
+//     if (!this.meta.watchMode) {
+//         const image = sharp(src.pathname)
+
+//         outputMetadata = Object.assign({ src: src.pathname }, metadata, await image.metadata())
+
+//         outputMetadata.xmp = null
+
+//         outputData = await (await transformImage(image, transforms)).toBuffer()
+
+//         await cachePut(
+//             options.cache,
+//             id,
+//             outputData,
+//             {
+//                 metadata: outputMetadata
+//             }
+//         )
+//     }
+// }
