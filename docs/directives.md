@@ -32,6 +32,26 @@ import Images from 'examepl.jpg?format=webp,avif,heic'
 ___
 
 
+### Quality
+• **Keyword**: `quality`<br>
+• **Type**: _integer_
+
+All formats (except `gif`) allow the quality to be adjusted by setting this directive.
+
+It has to be a number between 0 and 100.
+
+> See sharps [Output options](https://sharp.pixelplumbing.com/api-output) for default quality values.
+
+• **Example**:
+```js
+import Image from 'example.jpg?format=webp&quality=100'
+import Image from 'examepl.jpg?png&quality=200'
+import Images from 'examepl.jpg?avif&quality=10,50,75'
+```
+
+___
+
+
 ### Width
 • **Keyword**: `width` \| `w`<br>
 • **Type**: _integer_
