@@ -148,3 +148,21 @@ import Image from 'foo.jpg`background=#FFFFFFAA'
 import Image from 'foo.jpg`background=hsl(360, 100%, 50%)'
 import Image from 'foo.jpg`background=rgb(200, 200, 200)'
 ```
+
+___
+
+### Flip
+• **Keyword**: `flip`
+• **Type**: _boolean_
+
+Flip the image image about the vertical axis. This step is always performed **after** any rotation.
+
+
+• **Example**:
+```js
+import Image from 'example.jpg?flip'
+import Image from 'exmaple.jpg?flip=true'
+```
+
+___
+```
