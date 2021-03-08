@@ -10,8 +10,8 @@ export const srcsetOutput = (src:URL, outputMetadatas: Record<string, any>[]) =>
     return outputMetadatas.length === 1 ? outputMetadatas[0] : outputMetadatas
 }
 
-export const urlOutput = (src:URL, outputMetadatas: Record<string, any>[]) => {
-    const out:string[] = outputMetadatas.map(metadata => metadata.src)
+export const urlOutput: OutputFormat = (src: URL, outputMetadatas: Record<string, any>[]) => {
+    const out: string[] = outputMetadatas.map(metadata => metadata.src)
 
     return out.length == 1 ? out[0] : out
 }
