@@ -17,11 +17,15 @@
     "semantic-release": "semantic-release"
   },
   "dependencies": {
+    "cacache": "^15.0.5",
+    "find-cache-dir": "^3.3.1",
     "picomatch": "^2.2.2",
     "rollup-pluginutils": "^2.8.2",
     "sharp": "^0.27.0"
   },
   "devDependencies": {
+    "@types/cacache": "^15.0.0",
+    "@types/find-cache-dir": "^3.2.0",
     "@types/jest": "^26.0.20",
     "@types/picomatch": "^2.2.1",
     "@types/sharp": "^0.27.1",
