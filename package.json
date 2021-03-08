@@ -5,6 +5,15 @@
   "module": "dist/index.mjs",
   "license": "MIT",
   "homepage": "https://github.com/JonasKruckenberg/vite-imagetools",
+  "description": "Load and transform images using a toolbox of custom import directives!",
+  "keywords": [
+    "webp",
+    "resize-images",
+    "responsive-images",
+    "avif",
+    "vitejs",
+    "vite-plugin"
+  ],
   "files": [
     "dist"
   ],
