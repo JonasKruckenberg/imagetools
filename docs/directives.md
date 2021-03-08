@@ -104,6 +104,15 @@ this directive can be used to set the position of the image.
 See sharps [resize options](https://sharp.pixelplumbing.com/api-resize#resize) for a detailed explanation of each.
 
 ___
+
+### Kernel
+• **Keyword**: `kernel`
+• **Type**: _nearest_ \| _cubic_ \| _mitchell_ \| _lanczos2_ \| _lanczos3_
+
+Use this directive to set a different interpolation kernel when resizing the image.
+
+___
+
 ### Rotate
 • **Keyword**: `rotate`<br>
 • **Type**: _integer_
