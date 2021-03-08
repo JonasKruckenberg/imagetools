@@ -130,7 +130,6 @@ import Images from 'example.jpg`rotate=90,180,270'
 
 ___
 
-
 ### Background
 • **Keyword**: `background`<br>
 • **Type**: _string_
@@ -166,7 +165,6 @@ import Image from 'exmaple.jpg?flip=true'
 
 ___
 
-
 ### Flop
 • **Keyword**: `flop`
 • **Type**: _boolean_
@@ -181,7 +179,6 @@ import Image from 'exmaple.jpg?flop=true'
 
 ___
 
-
 ### Blur
 • **Keyword**: `blur`
 • **Type**: _float_
@@ -194,4 +191,17 @@ When an argument between 0.3 and 1000 is provided it performs a more accurate ga
 import Image from 'example.jpg?blur'
 import Image from 'exmaple.jpg?blur=0.75'
 import Image from 'example.jpg?blur=100'
+```
+___
+
+### Invert
+• **Keyword**: `invert`
+• **Type**: _boolean_
+
+Produces a 'negative' of the image.
+
+• **Example**:
+```js
+import Image from 'example.jpg?invert'
+import Image from 'exmaple.jpg?invert=true'
 ```
