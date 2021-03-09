@@ -1,4 +1,4 @@
-import { Directive, DirectiveContext, DirectiveOptions } from "../types";
+import { Directive } from "../types";
 
 interface BlurOptions {
     blur: string
