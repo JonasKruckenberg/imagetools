@@ -16,8 +16,9 @@ All of the image transformations are powered by [sharp](https://sharp.pixelplumb
 ## Features
 
 - **Output modern formats :rocket:**
-- **Resizing :framed_picture:**
-- **No transformations in development mode :zap:**
+- **Resize Images :framed_picture:**
+- **Easy Srcset generation :link:**
+- **Fast in development mode :zap:**
 - **Extensible :jigsaw:**
 <!-- - **Image filters :art:** -->
 
