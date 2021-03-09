@@ -3,6 +3,12 @@ import { Directive, DirectiveContext, DirectiveOptions, ImageTransformation } fr
 import { get as cacheGet } from 'cacache'
 
 export const cartesian = (...a: any[]) => a.reduce((a, b) => a.flatMap(d => b.map(e => [d, e].flat())))
+/**
+ * This function calculates the cartesian product of two or more array and is straight from stackoverflow ;)
+ * Should be replaced with something more legible but works for now.
+ * @internal
+ */
+export const cartesian = (...a: any[]) => a.reduce((a: any, b: any) => a.flatMap((d: any) => b.map((e: any) => [d, e].flat())))
 
 export function buildDirectiveOptions(src: URL): DirectiveOptions[] {
     return Array.from(src.searchParams.entries())
@@ -13,6 +19,15 @@ export function buildDirectiveOptions(src: URL): DirectiveOptions[] {
 }
 
 export function buildTransforms(config: DirectiveOptions, directives: Directive[]) {
+/**
+ * This method takes a directive options and an array of directives,
+ * invoking each directive with the config an evaluating each return.
+ * This builds up an array of transformation functions that can then be applied to the Sharp image instance.
+ * @param options The directive options
+ * @param directives The directives to apply
+ * @returns An array of ImageTransforms
+ */
+export function buildTransforms(options: DirectiveOptions, directives: Directive[]) {
     const parametersUsed = new Set()
     const metadata = {}
 
@@ -28,6 +43,13 @@ export function buildTransforms(config: DirectiveOptions, directives: Directive[
     return { metadata, transforms, parametersUsed }
 }
 
+/**
+ * This function tries to load a given id from cache and return the data + metadata.
+ * If loading fails (i.e. the image is not cached) it will return and empty object.
+ * @param id The image cache ID to restore
+ * @param cachePath The cache path to restore from
+ * @returns The image data and metadata
+ */
 export async function restoreFromCache(id: string, cachePath: string) {
     try {
         return await cacheGet(cachePath, id)
