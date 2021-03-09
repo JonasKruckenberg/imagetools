@@ -1,10 +1,10 @@
 import { Directive, DirectiveContext, DirectiveOptions } from "../types";
 
-interface FlipOptions {
+interface InvertOptions {
     invert: string
 }
 
-export const invert:Directive<FlipOptions> = ({ invert }: DirectiveOptions, ctx: DirectiveContext) => {
+export const invert:Directive<InvertOptions> = ({ invert }: DirectiveOptions, ctx: DirectiveContext) => {
     if (invert !== '' && invert !== 'true') return null
 
     ctx.useParam('invert')

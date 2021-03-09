@@ -51,7 +51,9 @@ export interface PluginOptions {
  * A Directive is a function that takes in the parsed parameters and returns a function that applies some transformation to the image.
  * You can also return null to indicate that you don't want to handle this specific image (i.e. this directive is not applicable).
  */
-export type Directive<A = {}> = (cfg: DirectiveOptions & A, ctx: DirectiveContext) => ImageTransformation | null
+export type Directive<A = {}> = (cfg: Partial<DirectiveOptions & A>, ctx: DirectiveContext) => ImageTransformation | null
+
+export type MetaDirective<A = {},T = any> = (cfg: Partial<DirectiveOptions & A>, ctx: DirectiveContext) => T | null
 
 /**
  * A function that takes an image applies some transformations and returns the image.
@@ -75,6 +77,3 @@ export interface DirectiveContext {
      */
     setMetadata: (key: string, value: any) => void
 }
-
-
-export type ImageFormat = 'heic' | 'heif' | 'avif' | 'jpeg' | 'jpg' | 'png' | 'tiff' | 'webp' | 'gif'

@@ -1,6 +1,11 @@
-import { DirectiveContext, DirectiveOptions } from "../types";
+import { Color } from "sharp";
+import { MetaDirective } from "../types";
 
-export const background = ({ background }: DirectiveOptions, ctx: DirectiveContext) => {
+interface BackgroundOptions {
+    background: string
+}
+
+export const background:MetaDirective<BackgroundOptions,Color> = ({ background }, ctx) => {
     if (!background) return null
 
     ctx.useParam('background')

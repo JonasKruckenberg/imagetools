@@ -1,7 +1,14 @@
-import { FitEnum } from "sharp";
-import { DirectiveContext, DirectiveOptions } from "../types";
+import { MetaDirective } from "../types";
 
-export const fit = ({ fit }: DirectiveOptions, ctx: DirectiveContext): keyof FitEnum => {
+interface FitOptions {
+    fit: FitValue
+}
+
+export const fitValues = ['cover', 'contain', 'fill', 'inside', 'outside'] as const
+
+export type FitValue = typeof fitValues[number]
+
+export const fit: MetaDirective<FitOptions, FitValue> = ({ fit }, ctx) => {
     if (!fit || !fitValues.includes(fit)) return null
 
     ctx.useParam('fit')
@@ -9,5 +16,3 @@ export const fit = ({ fit }: DirectiveOptions, ctx: DirectiveContext): keyof Fit
 
     return fit
 }
-
-const fitValues = ['cover', 'contain', 'fill', 'inside', 'outside']
