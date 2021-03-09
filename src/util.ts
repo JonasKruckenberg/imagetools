@@ -23,7 +23,7 @@ export function buildTransforms(config: DirectiveOptions, directives: Directive[
 
     const transforms = directives
         .map(dir => dir(config as any, context))
-        .filter(transform => typeof transform === 'function')
+        .filter((transform): transform is ImageTransformation => typeof transform === 'function')
 
     return { metadata, transforms, parametersUsed }
 }
