@@ -1,6 +1,8 @@
 import { createFilter, dataToEsm } from '@rollup/pluginutils'
 import { Plugin, ResolvedConfig } from 'vite'
-import { put as cachePut } from 'cacache'
+import { put as cachePut, tmp } from 'cacache'
+import fs from 'fs/promises'
+import { join, relative } from 'path'
 import findCacheDir from 'find-cache-dir'
 import { basename, extname } from 'path'
 import MagicString from 'magic-string'
@@ -58,11 +60,12 @@ export function imagetools(userOptions: Partial<PluginOptions> = {}): Plugin {
             // generate configurations for all resulting images
             const pipelineConfigs = buildDirectiveOptions(parameters)
 
+
             const outputMetadatas = await Promise.all(pipelineConfigs.map(async config => {
-                const cacheId = JSON.stringify(config) // each image is addressed by its configuration
-                
-                let data:Uint8Array | undefined
-                let metadata:Record<string,any> = {}
+                const cacheId = JSON.stringify(config) // each image is addressed by its configuration                
+
+                let data: Uint8Array | undefined
+                let metadata: Record<string, any> = {}
 
                 // Only try to load from cache when caching is enabled
                 if (pluginOptions.cache) {
@@ -102,9 +105,9 @@ export function imagetools(userOptions: Partial<PluginOptions> = {}): Plugin {
                     }
                 }
 
-                if (transformImages) {
-                    const fileName = basename(src.pathname, extname(src.pathname))
+                const fileName = basename(src.pathname, extname(src.pathname))
 
+                if (viteConfig.command === 'build') {
                     const fileHandle = this.emitFile({
                         name: `${fileName}.${metadata.format}`,
                         type: 'asset',
@@ -113,16 +116,23 @@ export function imagetools(userOptions: Partial<PluginOptions> = {}): Plugin {
 
                     // set the src attribute so that vite can replace it with the generated path
                     metadata.src = `__VITE_IMAGE_ASSET__${fileHandle}__`
+
+                } else if (transformImages && pluginOptions.cache) {
+                    const dir = await tmp.mkdir(pluginOptions.cache)
+                    const tmpFile = join(dir, `${fileName}.${metadata.format}`)
+
+                    await fs.writeFile(tmpFile, data || '')
+
+                    metadata.src = relative(viteConfig.root,tmpFile)
                 }
 
                 return metadata
             }))
-            
+
             // go through all output formats to find the one to use
             const output = outputFormats
                 .map(f => f(src, outputMetadatas))
                 .find(res => !!res) || builtinOutputFormats.urlFormat(src, outputMetadatas)
-
 
             // output as JSON or esm depending on the vite config 
             return viteConfig.json?.stringify
