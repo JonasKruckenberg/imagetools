@@ -4,7 +4,7 @@
 
 - [Background](#background)
 - [Blur](#blur)
-- [Background](#background)
+- [Fit](#fit)
 - [Flip](#flip)
 - [Flop](#flop)
 - [Format](#format)
@@ -14,7 +14,7 @@
 - [Position](#position)
 - [Quality](#quality)
 - [Width](#width)
-- [Heigt](#heigt)
+- [Height](#height)
 
 
 ### Background
@@ -55,7 +55,7 @@ When an argument between 0.3 and 1000 is provided it performs a more accurate ga
 
 ___
 
-### Background
+### Fit
 • **Keyword**: `fit`<br>
 • **Type**: _cover_\| _contain_ \| _fill_ \| _inside_ \| _outside_ <br>
 
@@ -213,7 +213,7 @@ import Images from 'examepl.jpg?width=200,400,700'
 
 ___
 
-### Heigt
+### Height
 • **Keyword**: `height`\| `h`<br>
 • **Type**: _integer_<br>
 
@@ -228,12 +228,4 @@ import Image from 'examepl.jpg?h=200'
 import Images from 'examepl.jpg?height=200,400,700'
 ```
 
-___
-
-### undefined
-
-
-
-
-undefined
 

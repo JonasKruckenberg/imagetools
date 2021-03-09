@@ -12,7 +12,7 @@ type FitValue = typeof fitValues[number]
  * When both a `width` and `height` are provided, 
  * this directive can be used to specify the method by which the image should **fit**.
  * 
- * @name Background
+ * @name Fit
  * @category Import Directives
  * @keyword `fit`
  * @type _cover_ \| _contain_ \| _fill_ \| _inside_ \| _outside_ 

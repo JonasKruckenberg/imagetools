@@ -38,7 +38,7 @@ interface ResizeOptions {
  * import Images from 'examepl.jpg?height=200,400,700'
  * ```
  * 
- * @name Heigt
+ * @name Height
  * @category Import Directives
  * @keyword `height` \| `h`
  * @type _integer_
