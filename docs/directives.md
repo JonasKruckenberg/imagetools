@@ -5,16 +5,20 @@
 - [Background](#background)
 - [Blur](#blur)
 - [Fit](#fit)
+- [Flatten](#flatten)
 - [Flip](#flip)
 - [Flop](#flop)
 - [Format](#format)
+- [Grayscale](#grayscale)
 - [Invert](#invert)
 - [Kernel](#kernel)
+- [Median](#median)
 - [Normalize](#normalize)
 - [Position](#position)
 - [Quality](#quality)
 - [Width](#width)
 - [Height](#height)
+- [Tint](#tint)
 
 
 ### Background
@@ -61,6 +65,17 @@ ___
 
 When both a `width` and `height` are provided, 
 this directive can be used to specify the method by which the image should **fit**.
+
+
+undefined
+___
+
+### Flatten
+• **Keyword**: `flatten`<br>
+• **Type**: _boolean_<br>
+
+This directive will remove the aplha channel of the image, reducing filesize.
+Transparent pixels will be merged with the color set by the [background directive](#background).
 
 
 undefined
@@ -120,6 +135,24 @@ import Images from 'examepl.jpg?format=webp,avif,heic'
 
 ___
 
+### Grayscale
+• **Keyword**: `grayscale`<br>
+• **Type**: _boolean_<br>
+
+Converts the image to an 8-bit grayscale image.
+
+> This directive will convert the image to the `b-w` colorspace, 
+> meaning the resulting image will only have one channel.
+
+
+• **Example**:  
+```js
+import Image from 'example.jpg?grayscale'
+import Image from 'exmaple.jpg?grayscale=true'
+```
+
+___
+
 ### Invert
 • **Keyword**: `invert`<br>
 • **Type**: _boolean_<br>
@@ -143,6 +176,22 @@ Use this directive to set a different interpolation kernel when resizing the ima
 
 
 undefined
+___
+
+### Median
+• **Keyword**: `median`<br>
+• **Type**: _float_\| _boolean_<br>
+
+Applies a median filter. This is commonly used to remove noise from images.
+
+
+• **Example**:  
+```js
+  import Image from 'example.jpg?median'
+  import Image from 'exmaple.jpg?median=3'
+  import Image from 'example.jpg?median=50'
+```
+
 ___
 
 ### Normalize
@@ -228,4 +277,15 @@ import Image from 'examepl.jpg?h=200'
 import Images from 'examepl.jpg?height=200,400,700'
 ```
 
+___
+
+### Tint
+• **Keyword**: `tint`<br>
+• **Type**: _string_<br>
+
+Tints the image using the provided chroma while preserving the image luminance. 
+If the image has han alpha channel it will be untouched.
+
+
+undefined
 
