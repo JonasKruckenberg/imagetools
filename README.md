@@ -50,7 +50,7 @@ Each query parameter basically corresponds to a _pure function_ under the hood.
 We call these parameters **Import Directives** and you can do a lot of powerful stuff with them.
 
 For  example the following diretive will turn the _jpg_ image into a _webp_ one and resize it to be 400 pixels wide:
-```
+```js
 import Logo from 'example.jpg?format=webp&width=400'
 ```
 
@@ -80,7 +80,7 @@ example.jpg?format=avif,webp&width=100,200,300
 ```
 
 This functionality is especially useful when generating responsive images, as you can easily generate a list of different widths.
-(You can even generate a correct srcset as output! See [output formats](#output-formats)) for details.)
+(You can even generate a correct srcset as output! See [output formats](#output-formats) for details.)
 
 ## Install
 
