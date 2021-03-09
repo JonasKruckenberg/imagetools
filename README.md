@@ -157,7 +157,12 @@ ___
 
 By default vite-imagetools only generates output metadata during development mode
 and only generates the actual images in build mode.
-You can set this option to `true` to override this behaviour.
+Set this option to `true` to override this behaviour.
+
+> NOTE: This option is very much hacking around the idea & restrictions of vite,<br>
+> Vite normally does not transpile assets during dev-mode to keep the developer experience as fast as possible.<br>
+> Therefore we write the transformed image to a temp folder and pretend that's the 'source' image.<br>
+> It is a bit hacky and needs the cache to be enabled.
 
 **`default`** false
 
