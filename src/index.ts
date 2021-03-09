@@ -17,7 +17,7 @@ export * from './output'
 const defaultOptions: PluginOptions = {
     include: '**/*.{heic,heif,avif,jpeg,jpg,png,tiff,webp,gif}?*',
     exclude: 'public/**/*',
-    cache: findCacheDir({ name: 'vite-imagetools' }),
+    cache: findCacheDir({ name: 'vite-imagetools' }) || false,
     customDirectives: [],
     customOutputFormats: [],
     force: false,
