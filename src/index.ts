@@ -9,6 +9,7 @@ import sharp from 'sharp'
 import * as builtinDiretcives from './directives'
 import * as builtinOutputFormats from './output'
 import { buildDirectiveOptions, buildTransforms, restoreFromCache, transformImage } from './util'
+import { buildDirectiveOptions, buildTransforms, extractParameterEntries, restoreFromCache, transformImage } from './util'
 import { PluginOptions } from './types'
 
 export * from './directives'
@@ -52,8 +53,12 @@ export function imagetools(userOptions: Partial<PluginOptions> = {}): Plugin {
 
             if (!filter(src.href)) return null
 
+            // get all parameters from the url query string
+            const parameters = extractParameterEntries(src)
+
             // generate configurations for all resulting images
             const pipelineConfigs = buildDirectiveOptions(src)
+            const pipelineConfigs = buildDirectiveOptions(parameters)
 
             const outputMetadatas = await Promise.all(pipelineConfigs.map(async config => {
                 const cacheId = JSON.stringify(config) // each image is addressed by its configuration

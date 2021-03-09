@@ -11,11 +11,38 @@ export const cartesian = (...a: any[]) => a.reduce((a, b) => a.flatMap(d => b.ma
 export const cartesian = (...a: any[]) => a.reduce((a: any, b: any) => a.flatMap((d: any) => b.map((e: any) => [d, e].flat())))
 
 export function buildDirectiveOptions(src: URL): DirectiveOptions[] {
+/**
+ * This function extracts all parameters from a given URL and returns them as an array of entries.
+ * @param src the url to get the parameter from
+ * @returns 
+ */
+export function extractParameterEntries(src: URL) {
+    // generate parameter entries from the url
+    // splits at ";" instead of "," because of vues srcset parser
     return Array.from(src.searchParams.entries())
         .map<[string, string[]]>(([key, value]) => [key, value.split(';')])
         .map(([key, values]) => values.map(v => ({ [key]: v })))
+}
+
+/**
+ * This function builds up all possible combinations the given entries can be combined
+ * an returns it as an array of objects that can be given to a the directives.
+ * @param entries The url parameter entries
+ * @returns An array of directive options
+ */
+export function buildDirectiveOptions(entries: [string, string[]][]) {
+
+    // create a new array of entries for each argument
+    const singleArgEntries = entries
+        .map(([key, values]) => values.map<[[string, string]]>(v => [[key, v]]))
+
+    // do a cartesian product on all entries to get all combainations we need to produce
+    const combinations = singleArgEntries
         .reduce((prev, cur) => prev.length ? cartesian(prev, cur) : cur, [])
         .map((options: Record<string, any>[]) => Array.isArray(options) ? Object.assign({}, ...options) : options)
+
+    // and return as an array of objects
+    return combinations.map((options) => Object.fromEntries(options))
 }
 
 export function buildTransforms(config: DirectiveOptions, directives: Directive[]) {
