@@ -1,8 +1,8 @@
 import { Directive } from "../types"
 import { background as getBackground } from './background'
-import { fit as getFit, FitValue } from './fit'
-import { position as getPosition,PositionValue } from './position'
-import { kernel as getKernel, KernelValue } from './kernel'
+import { fit as getFit } from './fit'
+import { position as getPosition } from './position'
+import { kernel as getKernel } from './kernel'
 
 interface ResizeOptions {
     height: string
@@ -11,6 +11,38 @@ interface ResizeOptions {
     w: string
 }
 
+/**
+ * Resizes the image to be the specified amount of pixels wide. 
+ * If not given the height will be scaled accordingly.
+ * 
+ * @example
+ * ```js
+ * import Image from 'example.jpg?width=200'
+ * import Image from 'examepl.jpg?w=200'
+ * import Images from 'examepl.jpg?width=200,400,700'
+ * ```
+ * 
+ * @name Width
+ * @category Import Directives
+ * @keyword `width` \| `w`
+ * @type _integer_
+ */
+/**
+ * Resizes the image to be the specified amount of pixels tall. 
+ * If not given the width will be scaled accordingly.
+ * 
+ * @example
+ * ```js
+ * import Image from 'example.jpg?height=200'
+ * import Image from 'examepl.jpg?h=200'
+ * import Images from 'examepl.jpg?height=200,400,700'
+ * ```
+ * 
+ * @name Heigt
+ * @category Import Directives
+ * @keyword `height` \| `h`
+ * @type _integer_
+ */
 export const resize: Directive<ResizeOptions> = (opts, { useParam, setMetadata }) => {
     const width = parseInt(opts.width || opts.w || '')
     const height = parseInt(opts.height || opts.h || '')

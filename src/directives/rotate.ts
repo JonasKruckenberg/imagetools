@@ -6,6 +6,9 @@ interface RotateOptions {
     background: string
 }
 
+/**
+ * @category Import Directives
+ */
 export const rotate: Directive<RotateOptions> = (ctx, { useParam, setMetadata }) => {
     const degrees = parseInt(ctx.rotate || '')    
 

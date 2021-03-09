@@ -1,5 +1,5 @@
 import { Sharp } from "sharp"
-import { Directive, DirectiveContext, DirectiveOptions, ImageTransformation } from "./types"
+import { Directive, DirectiveContext, DirectiveOptions, ImageTransformation, MetaDirective } from "./types"
 import { get as cacheGet } from 'cacache'
 
 /**
@@ -49,7 +49,7 @@ export function buildDirectiveOptions(entries: [string, string[]][]) {
  * @param directives The directives to apply
  * @returns An array of ImageTransforms
  */
-export function buildTransforms(options: DirectiveOptions, directives: Directive[]) {
+export function buildTransforms(options: DirectiveOptions, directives: Array<Directive | MetaDirective>) {
     const parametersUsed = new Set()
     const metadata: Record<string, any> = {}
 
