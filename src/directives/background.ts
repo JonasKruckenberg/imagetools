@@ -15,9 +15,7 @@ export interface BackgroundOptions {
  * 
  * @example
  * ```js
- * import Image from 'foo.jpg`background=#FFFFFFAA'
- * import Image from 'foo.jpg`background=hsl(360, 100%, 50%)'
- * import Image from 'foo.jpg`background=rgb(200, 200, 200)'
+ * import Image from 'foo.jpg`background=FFFFFFAA'
  * ```
  * 
  * @name Background
@@ -31,5 +29,5 @@ export const background:MetaDirective<BackgroundOptions,Color> = ({ background }
     ctx.useParam('background')
     ctx.setMetadata('background', background)
 
-    return background
+    return '#' + background
 }
