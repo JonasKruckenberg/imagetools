@@ -31,7 +31,9 @@ export interface HSBOptions {
  * @type _float_
  */
 export const hsb: Directive<HSBOptions> = (opts, ctx) => {
-    let hue:number, saturation:number, brightness:number
+    let hue: number | undefined = undefined
+    let saturation: number | undefined = undefined
+    let brightness: number | undefined = undefined
 
     if (opts.hue) {
         hue = parseInt(opts.hue)
@@ -51,7 +53,9 @@ export const hsb: Directive<HSBOptions> = (opts, ctx) => {
         ctx.setMetadata('brightness', brightness)
     }
 
+    if (!brightness && !saturation && !hue) return null
+
     return function hsbTransform(image) {
-        return image.modulate({hue,saturation,brightness})
+        return image.modulate({ hue, saturation, brightness })
     }
 }
