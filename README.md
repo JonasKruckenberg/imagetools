@@ -224,7 +224,7 @@ import Images from 'example.jpg?width=300;400;700&format=avif;webp'
 ```
 This will generate 6 images in total. One for each combination of imput arguments.
 ```
-example.jpg?format=avif,webp&width=100,200,300
+example.jpg?format=avif,webp&width=100;200;300
    └-> example.avif width: 100
    └-> example.avif width: 200
    └-> example.avif width: 300
@@ -255,7 +255,7 @@ import imageUrl from 'example.jpg?width=300'
 
 > NOTE: If the specified directive generates multiple images the output will be an array of strings!
 >```js
-> import imageUrls from 'example.jpg?width=300,400,500'
+> import imageUrls from 'example.jpg?width=300;400;500'
 >
 > // imageUrls will be an Array
 > console.log(imageUrls)
@@ -274,7 +274,7 @@ const image = <img src={src}>
 
 > NOTE: If the specified directive generates multiple images the output will be an array!
 > ```jsx
-> import images from 'example.jpg?width=300,400,500?metadata'
+> import images from 'example.jpg?width=300;400;500?metadata'
 >
 > // images is an array now
 > const component => images.map(({src}) => <img src={src}>)
@@ -284,7 +284,7 @@ const image = <img src={src}>
 
 You can import a fully generated srcset for your images like so:
 ```html
-<source srcset="example.jpg?width=200,300,400&srcset">
+<source srcset="example.jpg?width=200;300;400&srcset">
 ```
 will compile to:
 ```html
