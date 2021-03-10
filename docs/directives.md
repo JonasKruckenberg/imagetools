@@ -10,6 +10,9 @@
 - [Flop](#flop)
 - [Format](#format)
 - [Grayscale](#grayscale)
+- [Hue](#hue)
+- [Saturation](#saturation)
+- [Brightness](#brightness)
 - [Invert](#invert)
 - [Kernel](#kernel)
 - [Median](#median)
@@ -83,7 +86,7 @@ This directive will remove the aplha channel of the image, reducing filesize.
 Transparent pixels will be merged with the color set by the [background directive](#background).
 
 
-undefined
+
 ___
 
 ### Flip
@@ -158,6 +161,36 @@ import Image from 'exmaple.jpg?grayscale=true'
 
 ___
 
+### Hue
+• **Keyword**: `hue`<br>
+• **Type**: _integer_<br>
+
+Adjusts the images hue rotation by the given number of degrees.
+Commonly used together with [`saturation`](#saturation) and [`brightness`](#brightness).
+
+
+___
+
+### Saturation
+• **Keyword**: `saturation`<br>
+• **Type**: _float_<br>
+
+Adjusts the images saturation with the given saturation multiplier.
+Commonly used together with [`hue`](#hue) and [`brightness`](#brightness).
+
+
+___
+
+### Brightness
+• **Keyword**: `brightness`<br>
+• **Type**: _float_<br>
+
+Adjusts the images brightness with the given brightness multiplier.
+Commonly used together with [`hue`](#hue) and [`saturation`](#saturation).
+
+
+___
+
 ### Invert
 • **Keyword**: `invert`<br>
 • **Type**: _boolean_<br>
@@ -180,7 +213,7 @@ ___
 Use this directive to set a different interpolation kernel when resizing the image.
 
 
-undefined
+
 ___
 
 ### Median
@@ -227,7 +260,7 @@ this directive can be used to set the position of the image.
 See sharps [resize options](https://sharp.pixelplumbing.com/api-resize#resize) for a detailed explanation of each.
 
 
-undefined
+
 ___
 
 ### Quality

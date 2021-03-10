@@ -80,13 +80,15 @@ function generateSection(comment) {
 
     if(!name) throw new Error()
 
+    console.log(example);
+
     const data = `
 ### ${name}
 ${Object.values(rest).join('\n')}
 
 ${comment.description}
 
-${example}
+${example || ''}
 `
 
     return { data, ...out }
