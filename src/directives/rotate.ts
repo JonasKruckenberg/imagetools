@@ -23,15 +23,15 @@ export interface RotateOptions {
  * @keyword `rotate`
  * @type _integer^_
  */
-export const rotate: Directive<RotateOptions> = (ctx, { useParam, setMetadata }) => {
-    const degrees = parseInt(ctx.rotate || '')    
+export const rotate: Directive<RotateOptions> = (opts, { useParam, setMetadata }) => {
+    const degrees = parseInt(opts.rotate || '')    
 
     if (isNaN(degrees)) return null
 
     useParam('rotate')
     setMetadata('rotate', degrees)
 
-    const background = getBackground(ctx,{ useParam, setMetadata }) || undefined
+    const background = getBackground(opts,{ useParam, setMetadata }) || undefined
 
     return function rotateTransform(image) {
         return image.rotate(degrees, { background })
