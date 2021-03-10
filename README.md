@@ -2,17 +2,14 @@
 <!-- Demo gif -->
 
 <!-- badges -->
-[![codecov](https://codecov.io/gh/JonasKruckenberg/vite-imagetools/branch/next/graph/badge.svg?token=ECD3D95LX4)](https://codecov.io/gh/JonasKruckenberg/vite-imagetools)
-![npm (tag)](https://img.shields.io/npm/v/vite-imagetools/next)
+[![codecov](https://codecov.io/gh/JonasKruckenberg/vite-imagetools/branch/main/graph/badge.svg?token=ECD3D95LX4)](https://codecov.io/gh/JonasKruckenberg/vite-imagetools)
+![npm (tag)](https://img.shields.io/npm/v/vite-imagetools)
 [![standard-readme compliant](https://img.shields.io/badge/readme%20style-standard-brightgreen.svg?style=flat-square)](https://github.com/RichardLitt/standard-readme)
 [![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release)
 
 <!-- Introduction -->
 A toolbox of custom import directives that can transform your image at compile-time.
 All of the image transformations are powered by [sharp](https://sharp.pixelplumbing.com).
-
-> :warning: This is the development branch of v3! <br>
-> Try it out and leave feedback via the issues!<br>
 
 ## Features
 
