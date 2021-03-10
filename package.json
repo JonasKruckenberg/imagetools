@@ -27,6 +27,7 @@
   "scripts": {
     "dev": "rollup -cw",
     "test": "jest",
+    "coverage": "jest --collectCoverage --json",
     "build": "rollup -c",
     "docs": "node docs.js",
     "semantic-release": "semantic-release"

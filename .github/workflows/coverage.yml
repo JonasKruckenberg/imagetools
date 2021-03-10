@@ -16,7 +16,7 @@ jobs:
           node-version: 14.x
       - run: yarn
       - name: Generate coverage report
-        run: node_modules/.bin/jest --config jest.json --collectCoverage > coverage.json
+        run: yarn coverage > coverage.json
       - name: Upload report
         run: node_modules/.bin/codecov --disable=gcov
         env:
