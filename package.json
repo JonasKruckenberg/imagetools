@@ -15,12 +15,9 @@
     "url": "https://github.com/JonasKruckenberg/vite-imagetools.git"
   },
   "keywords": [
-    "webp",
     "resize-images",
     "responsive-images",
-    "avif",
     "vite",
-    "vitejs",
     "image",
     "vite-plugin"
   ],
