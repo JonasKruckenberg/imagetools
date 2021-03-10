@@ -8,6 +8,12 @@ export interface TintOptions {
  * Tints the image using the provided chroma while preserving the image luminance. 
  * If the image has han alpha channel it will be untouched.
  * 
+ * @example
+ * ```js
+ * import Image from 'example.jpg?tint=#ffaa22'
+ * import Image from 'example.jpg?tint=rgba(10,33,127)'
+ * ```
+ * 
  * @name Tint
  * @category "Import Directives"
  * @keyword `tint`

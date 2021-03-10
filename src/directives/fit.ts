@@ -12,6 +12,11 @@ export type FitValue = typeof fitValues[number]
  * When both a `width` and `height` are provided, 
  * this directive can be used to specify the method by which the image should **fit**.
  * 
+ * @example
+ * ```js
+ * import Image from 'example.jpg?fit=cover'
+ * ```
+ * 
  * @name Fit
  * @category Import Directives
  * @keyword `fit`

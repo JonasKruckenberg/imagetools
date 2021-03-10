@@ -23,7 +23,7 @@ export type ImageFormat = 'heic' | 'heif' | 'avif' | 'jpeg' | 'jpg' | 'png' | 't
  * ```js
  * import Image from 'example.jpg?format=webp'
  * import Image from 'examepl.jpg?png'
- * import Images from 'examepl.jpg?format=webp,avif,heic'
+ * import Images from 'examepl.jpg?format=webp;avif;heic'
  * ```
  * 
  * @name Format

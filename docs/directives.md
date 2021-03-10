@@ -18,6 +18,7 @@
 - [Quality](#quality)
 - [Width](#width)
 - [Height](#height)
+- [Rotate](#rotate)
 - [Tint](#tint)
 
 
@@ -67,7 +68,11 @@ When both a `width` and `height` are provided,
 this directive can be used to specify the method by which the image should **fit**.
 
 
-undefined
+• **Example**:  
+```js
+import Image from 'example.jpg?fit=cover'
+```
+
 ___
 
 ### Flatten
@@ -130,7 +135,7 @@ Convert the image into the given format.
 ```js
 import Image from 'example.jpg?format=webp'
 import Image from 'examepl.jpg?png'
-import Images from 'examepl.jpg?format=webp,avif,heic'
+import Images from 'examepl.jpg?format=webp;avif;heic'
 ```
 
 ___
@@ -257,7 +262,7 @@ If not given the height will be scaled accordingly.
 ```js
 import Image from 'example.jpg?width=200'
 import Image from 'examepl.jpg?w=200'
-import Images from 'examepl.jpg?width=200,400,700'
+import Images from 'examepl.jpg?width=200;400;700'
 ```
 
 ___
@@ -274,7 +279,25 @@ If not given the width will be scaled accordingly.
 ```js
 import Image from 'example.jpg?height=200'
 import Image from 'examepl.jpg?h=200'
-import Images from 'examepl.jpg?height=200,400,700'
+import Images from 'examepl.jpg?height=200;400;700'
+```
+
+___
+
+### Rotate
+• **Keyword**: `rotate`<br>
+• **Type**: _integer^_<br>
+
+Rotate the image by the specified number of degrees.
+
+> NOTE: You can change the background color the empty parts are filled with by setting the [background](#background) directive.
+
+
+• **Example**:  
+```js
+import Image from 'example.jpg`rotate=90'
+import Image from 'example.jpg`rotate=68'
+import Images from 'example.jpg`rotate=90;180;270'
 ```
 
 ___
@@ -287,5 +310,10 @@ Tints the image using the provided chroma while preserving the image luminance.
 If the image has han alpha channel it will be untouched.
 
 
-undefined
+• **Example**:  
+```js
+import Image from 'example.jpg?tint=#ffaa22'
+import Image from 'example.jpg?tint=rgba(10,33,127)'
+```
+
 

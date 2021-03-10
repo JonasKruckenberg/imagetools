@@ -19,7 +19,7 @@ export interface ResizeOptions {
  * ```js
  * import Image from 'example.jpg?width=200'
  * import Image from 'examepl.jpg?w=200'
- * import Images from 'examepl.jpg?width=200,400,700'
+ * import Images from 'examepl.jpg?width=200;400;700'
  * ```
  * 
  * @name Width
@@ -35,7 +35,7 @@ export interface ResizeOptions {
  * ```js
  * import Image from 'example.jpg?height=200'
  * import Image from 'examepl.jpg?h=200'
- * import Images from 'examepl.jpg?height=200,400,700'
+ * import Images from 'examepl.jpg?height=200;400;700'
  * ```
  * 
  * @name Height
