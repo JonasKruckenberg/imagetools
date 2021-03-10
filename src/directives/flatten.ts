@@ -2,7 +2,7 @@ import { Directive } from "../types";
 import { background as getBackground } from './background'
 
 export interface FlattenOptions {
-    flatten: ''
+    flatten: '' | 'true'
     background: string
 }
 
@@ -16,9 +16,12 @@ export interface FlattenOptions {
  * @type _boolean_
  */
 export const flatten: Directive<FlattenOptions> = (opts, ctx) => {
-    const background = getBackground(opts,ctx) || undefined
+    const background = getBackground(opts, ctx) || undefined
 
-    if (opts.flatten !== '') return null
+    if (opts.flatten !== '' && opts.flatten !== 'true') return null
+
+    ctx.useParam('flatten')
+    ctx.setMetadata('flatten', true)
 
     return function flattenTransform(image) {
         return image.flatten({
