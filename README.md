@@ -37,7 +37,7 @@ All of the image transformations are powered by [sharp](https://sharp.pixelplumb
 
 Add the plugin to your vite config:
 ```js
-import { imagetools } from 'vite-imagetools@next'
+import { imagetools } from 'vite-imagetools'
 
 export default defineConfig({
   plugins: [
@@ -45,43 +45,33 @@ export default defineConfig({
   ]
 })
 ```
-
-You use the query parameters to specify which transformations to apply to your image.
-Each query parameter basically corresponds to a _pure function_ under the hood.
-We call these parameters **Import Directives** and you can do a lot of powerful stuff with them.
-
-For  example the following diretive will turn the _jpg_ image into a _webp_ one and resize it to be 400 pixels wide:
+Images can now be imported from javascript:
 ```js
-import Logo from 'example.jpg?format=webp&width=400'
+import Image from 'example.jpg?width=200&format=webp'
+```
+or html(e.g. vue templates):
+```html
+<img src="example.jpg?width=200&format=webp">
 ```
 
-The most common directives also allow you to use **shorthands**.<br>
+You can also generate multiple images by adding more values:
 ```js
-// the following statement
-import logo from 'example.jpg?format=webp'
-// can be shortened to 
-import logo from 'example.jpg?webp'
+import Images from 'example.jpg?width=200;300;400'
+```
+This will now generate an array of 3 images with width 200, 300 and 400.
+
+Or choose how you want to import your image:
+- **Srcset Output**
+```html
+<source srcset="example.jpg?width=200;300;500&srcset">
 ```
 
-### Multiple values
-
-Instead of providing a single value to each directive you can give it a comma-separated list of values:
-```
-example.jpg?format=avif,webp&width=100,200,300
-```
-This will generate one image for each combination, so the above import statement will result in the following images:
-```
-example.jpg?format=avif,webp&width=100,200,300
-   └-> example.avif width=100
-   └-> example.avif width=200
-   └-> example.avif width=300
-   └-> example.webp width=100
-   └-> example.webp width=200
-   └-> example.webp width=300
+- **Metadata Output**
+```js
+import { src, width, height, channels } from 'example.jpg?w=200'
 ```
 
-This functionality is especially useful when generating responsive images, as you can easily generate a list of different widths.
-(You can even generate a correct srcset as output! See [output formats](#output-formats) for details.)
+> See the sections [Import directives](#import-directives) and [Output formats](#output-formats) for more!
 
 ## Install
 
@@ -188,9 +178,66 @@ To take full advantage of this you want to configure your CI provider to persist
 
 ## Import directives
 
-Vite-imagetools provides a lot lot of directives out of the box, see the [big list of directives](./docs/directives.md)
+vite-imagetools is a collection of functions, that can transform your image at compile-time, generate multiple versions etc.<br>
+We call these functions **Import Directives** and they pack quite a punch!
+
+> See the [big list of directives](./docs/directives.md) to see all directives vite-imagetools has built in.
+
+### Shorthands
+
+The most common directives allow you to use shorthands:
+```js
+// for example instead of this
+import Image from 'example.jpg?format=webp'
+// you can simply write
+import Image from 'example.jpg?webp'
+```
+This allows you to keep you import statements short and readable.
+
+### Multiple directives
+
+You can specify any number of directives by chaining them together with the `&` sign:
+```js
+import Image from 'example.jpg?width=300&height=700&rotate=45&format=webp'
+```
+The above example will resize the image, rotate it and then output as webp.
+
+> Under normal circumstances directives will be executed from left to right.<br>
+> There are a few excpetions however, for example the `format` directive will always be applied last.
+
+### Multiple arguments
+
+The real power of vite-imagetools comes with specifying multiple arguments for the same directive:
+
+```js
+import Images from 'example.jpg?width=300;500;700'
+```
+This import statement will generate 3 images with width 300, 500 and 700.
+```
+example.jpg?width=300;500;700
+  └-> example.jpg width: 300
+  └-> example.jpg width: 500
+  └-> example.jpg width: 700
+```
+This is not where is stops however, you can combine multiple directives with multiple arguments for maximum ease!
+
+```js
+import Images from 'example.jpg?width=300;400;700&format=avif;webp'
+```
+This will generate 6 images in total. One for each combination of imput arguments.
+```
+example.jpg?format=avif,webp&width=100,200,300
+   └-> example.avif width: 100
+   └-> example.avif width: 200
+   └-> example.avif width: 300
+   └-> example.webp width: 100
+   └-> example.webp width: 200
+   └-> example.webp width: 300
+```
 
 ### Custom import directives
+
+_TODO_
 
 ## Output formats
 
@@ -237,7 +284,16 @@ const image = <img src={src}>
 
 ### srcset
 
-_TODO_
+You can import a fully generated srcset for your images like so:
+```html
+<source srcset="example.jpg?width=200,300,400&srcset">
+```
+will compile to:
+```html
+<source srcset="example.jpg 200w, example.jpg 300w, example.jpg 400w">
+```
+
+> This only works for different widths at the moment.
 
 ### Custom output formats
 
