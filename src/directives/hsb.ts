@@ -55,7 +55,12 @@ export const hsb: Directive<HSBOptions> = (opts, ctx) => {
 
     if (!brightness && !saturation && !hue) return null
 
+    const filteredOpts = Object.fromEntries(Object
+        .entries({ hue, saturation, brightness })
+        .filter(([, v]) => !!v)
+    )
+
     return function hsbTransform(image) {
-        return image.modulate({ hue, saturation, brightness })
+        return image.modulate(filteredOpts)
     }
 }
