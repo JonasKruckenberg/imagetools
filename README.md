@@ -1,37 +1,41 @@
 # vite-imagetools :toolbox:
+<!-- Demo gif -->
 
+<!-- badges -->
+[![codecov](https://codecov.io/gh/JonasKruckenberg/vite-imagetools/branch/main/graph/badge.svg?token=ECD3D95LX4)](https://codecov.io/gh/JonasKruckenberg/vite-imagetools)
+![npm (tag)](https://img.shields.io/npm/v/vite-imagetools)
 [![standard-readme compliant](https://img.shields.io/badge/readme%20style-standard-brightgreen.svg?style=flat-square)](https://github.com/RichardLitt/standard-readme)
+[![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release)
 
-
-A toolbox of custom import directives that can transform your images at compile-time.
+<!-- Introduction -->
+A toolbox of custom import directives that can transform your image at compile-time.
 All of the image transformations are powered by [sharp](https://sharp.pixelplumbing.com).
 
+## Features
+
+- **Output modern formats :rocket:**
+- **Resize Images :framed_picture:**
+- **Easy Srcset generation :link:**
+- **Fast in development mode :zap:**
+- **Extensible :jigsaw:**
+- **Caches transformed images to speed up CI :green_heart:**
 
 ## Table of Contents
 
-- [Install](#install)
 - [Usage](#usage)
+- [Install](#install)
 - [Options](#options)
-- [Directives](#directives)
+- [Caching](#caching)
+- [Import directives](#import-directives)
+- [Output formats](#output-formats)
 - [Contributing](#contributing)
 - [License](#license)
-
-## Install
-
-With [npm](https://npmjs.com):
-```console
-$ npm install --dev vite-imagetools
-```
-Or with [yarn](https://yarnpkg.com):
-```console
-$ yarn add --dev vite-imagetools
-```
 
 ## Usage
 
 Add the plugin to your vite config:
-```typescript
-import imagetools from 'vite-imagetools'
+```js
+import { imagetools } from 'vite-imagetools'
 
 export default defineConfig({
   plugins: [
@@ -39,236 +43,289 @@ export default defineConfig({
   ]
 })
 ```
-The you can use all the directives when importing image files:
+Images can now be imported from javascript:
+```js
+import Image from 'example.jpg?width=200&format=webp'
+```
+or html(e.g. vue templates):
 ```html
-<!-- This will transcode the image into webp-->
-<img src="../assets/example.jpg?webp">
-
-<!-- This resizes the image to be width x height pixels -->
-<img src="../assets/example.jpg?size=500x300">
+<img src="example.jpg?width=200&format=webp">
 ```
 
-You can specify any number of directives to customize almost any aspect of the image:
+You can also generate multiple images by adding more values:
+```js
+import Images from 'example.jpg?width=200;300;400'
+```
+This will now generate an array of 3 images with width 200, 300 and 400.
+
+Or choose how you want to import your image:
+- **Srcset Output**
 ```html
-<img src="../assets/example.jpg?size=1200x900&fit=cover&position=top?webp">
-```
-This for example will resize the image to 1200x900 pixels, using the object-fit cover and keeping the top of the image in view. It will also produce a webp image from the jpeg source.
-
-You can of course also import images from javascript like so:
-```typescript
-import Image from 'example.jpg?format=avif'
+<source srcset="example.jpg?width=200;300;500&srcset">
 ```
 
-### Options
-
-All plugin options are optional.
-
-#### `include`
-**Type**: _string_ | _RegExp_ | Array<_string_ | _RegExp_><br/>
-Default: `['**/*.jpg', '**/*.jpg', '**/*.png', '**/*.webp', '**/*.webp', '**/*.avif', '**/*.gif', '**/*.heif']`<br/>
-
-Which files to include when processing.
-
-#### `exclude`
-**Type**: string | RegExp | Array<string | RegExp><br/>
-**Default**: `['public/**/*']`<br/>
-
-Which files to exclude when processing. By default this excludes vites _public_ folder to match the default behavior.
-
-## Directives
-
-`vite-plugin-imagset` works on a directive based workflow where you specify what transformation to apply in the import statement. 
-A **Directive** is basically a querystring field followed by an optional argument like you have seen above.
-```
-example.jpg?directive=argument
+- **Metadata Output**
+```js
+import { src, width, height, channels } from 'example.jpg?w=200'
 ```
 
-Commonly used directives also expose **Shorthands**. Shorthands have no arguments.
+> See the sections [Import directives](#import-directives) and [Output formats](#output-formats) for more!
+
+## Install
+
+With npm:
 ```
-example.jpg?shorthand
+npm install --dev vite-imagetools
 ```
-A good example for shorthands is the [`format` directive](#format)
-
-Directives can depend on other directives and some my be incompatible with others.
-Directives can also be composed into more complex directives. (The `size` directive is a good example, it is composed from the `width` and `height` directives). See [the contributing section](#contributing) for details.
-
-Below is the list of all directives shipped by default: 
-
----
-#### `width`
-**Argument**: <_number_><br/>
-Resizes the image to have a with of `width` pixels. If not set, the height will be scaled automatically to match the width.
-
-```typescript
-import Image from "example.jpg?width=300"
+Or with yarn:
+```
+yarn add --dev vite-imagetools
 ```
 
-> You cannot use `with` and `size` together.
+## Options
 
----
-#### `height`
-**Argument**: <_number_><br/>
-Resize the image to have a height of `height` pixels. If not set, the width will be scaled automatically to match the height.
+### include
 
-```typescript
-import Image from "example.jpg?height=300"
+• **include**: *string* \| *RegExp* \| (*string* \| *RegExp*)[]
+
+Which paths to include when processing images.
+
+**`default`** '**\/*.{heic,heif,avif,jpeg,jpg,png,tiff,webp,gif}?*'
+
+___
+
+### exclude
+
+• **exclude**: *string* \| *RegExp* \| (*string* \| *RegExp*)[]
+
+What paths to exclude when processing images.
+This defaults to the public dir to mirror vites behavior.
+
+**`default`** 'public\/**\/*'
+
+___
+
+### cache
+
+• **cache**: *string* \| *false*
+
+The path to use as the cache for images, set this option to false to disable caching completely.
+
+**`default`** 'node_modules/.cache/vite-imagetools'
+
+___
+
+### customDirectives
+
+• **customDirectives**: [*Directive*](docs/modules/types.md#directive)<{}\>[]
+
+You can use this option to extend the builtin list of import directives.
+This list will be merged with the builtin directives before applying them to the input image.
+See the section [Custom import directives](#custom-import-directives) for details.
+
+**`default`** []
+
+___
+
+### customOutputFormats
+
+• **customOutputFormats**: [*OutputFormat*](docs/modules/types.md#outputformat)[]
+
+You can use this option to extend the builtin list of output formats.
+This list will be merged with the builtin output formats before determining the format to use.
+See the section [Custom output formats](#custom-output-formats) for details.
+
+**`default`** []
+
+___
+
+### force
+
+• **force**: *boolean*
+
+By default vite-imagetools only generates output metadata during development mode
+and only generates the actual images in build mode.
+Set this option to `true` to override this behaviour.
+
+> NOTE: This option is very much hacking around the idea & restrictions of vite,<br>
+> Vite normally does not transpile assets during dev-mode to keep the developer experience as fast as possible.<br>
+> Therefore we write the transformed image to a temp folder and pretend that's the 'source' image.<br>
+> It is a bit hacky and needs the cache to be enabled.
+
+**`default`** false
+
+___
+
+### silent
+
+• **silent**: *boolean*
+
+Vite-imagetools emits warnings whenever your directives are incorrect.
+If you don't want this bevahiour set this option to true to disable all warnings.
+
+**`default`** false
+
+## Caching
+
+Processing a lot of images is quite resource intensive, that's why vite-imagetools caches all generated images on disk.
+
+To take full advantage of this you want to configure your CI provider to persist the cache folder (`node_modules/.cache/vite-imagetools`) between builds.
+
+> While cache eviction is not completely finished, it's a good idea to regularly delete the cache folder<br>
+> Otherwhise you end up with gigabytes of wasted disk space!
+
+## Import directives
+
+vite-imagetools is a collection of functions, that can transform your image at compile-time, generate multiple versions etc.<br>
+We call these functions **Import Directives** and they pack quite a punch!
+
+> See the [big list of directives](./docs/directives.md) to see all directives vite-imagetools has built in.
+
+### Shorthands
+
+The most common directives allow you to use shorthands:
+```js
+// for example instead of this
+import Image from 'example.jpg?format=webp'
+// you can simply write
+import Image from 'example.jpg?webp'
+```
+This allows you to keep you import statements short and readable.
+
+### Multiple directives
+
+You can specify any number of directives by chaining them together with the `&` sign:
+```js
+import Image from 'example.jpg?width=300&height=700&rotate=45&format=webp'
+```
+The above example will resize the image, rotate it and then output as webp.
+
+> Under normal circumstances directives will be executed from left to right.<br>
+> There are a few excpetions however, for example the `format` directive will always be applied last.
+
+### Multiple arguments
+
+The real power of vite-imagetools comes with specifying multiple arguments for the same directive:
+
+```js
+import Images from 'example.jpg?width=300;500;700'
+```
+This import statement will generate 3 images with width 300, 500 and 700.
+```
+example.jpg?width=300;500;700
+  └-> example.jpg width: 300
+  └-> example.jpg width: 500
+  └-> example.jpg width: 700
+```
+This is not where is stops however, you can combine multiple directives with multiple arguments for maximum ease!
+
+```js
+import Images from 'example.jpg?width=300;400;700&format=avif;webp'
+```
+This will generate 6 images in total. One for each combination of imput arguments.
+```
+example.jpg?format=avif,webp&width=100,200,300
+   └-> example.avif width: 100
+   └-> example.avif width: 200
+   └-> example.avif width: 300
+   └-> example.webp width: 100
+   └-> example.webp width: 200
+   └-> example.webp width: 300
 ```
 
-> You cannot use `height` and `size` together.
+### Custom import directives
 
----
-#### `size`
-**Argument**: <_width_>x<_height_><br/>
-Sets width and height of the image simultaneously.
+_TODO_
 
-```typescript
-import Image from "example.jpg?size=1920x1080"
+## Output formats
+
+Depending on your use-case just importing the url of the image might not be enough, <br>
+that's why vite-imagetools let's you customize the exported data with output formats.
+All the builtin formats are listed below.
+
+> You can extend the list with the `customOutputFormats` option. See [Custom output formats](#custom-output-formats)
+
+### url
+
+This is the default format, it returns the url of the generated image.
+
+```js
+import imageUrl from 'example.jpg?width=300'
 ```
 
-> When using `size` you cannot set `width` or `height`on the same resource.
+> NOTE: If the specified directive generates multiple images the output will be an array of strings!
+>```js
+> import imageUrls from 'example.jpg?width=300,400,500'
+>
+> // imageUrls will be an Array
+> console.log(imageUrls)
+>```
 
----
-#### `fit`
-**Argument**: <_'cover'_ | _'contain'_ | _'fill'_ | _'inside'_ | _'outside'_><br/>
-How the image should be resized when both `width` and `height` are given.
-If only one is specified this has no effect since the missing side will be scaled to keep the aspect ratio.
-The default behavior when resizing is `cover`. 
+### metadata
 
-**Shorthands**
-- `cover`
-- `contain`
-- `fill`
-- `inside`
-- `outside`
+You can import the whole set of image metadata by adding the `metadata` directive:
 
----
-#### `position`
-**Argument**: < _'top'_ | 
-            _'right top'_ | 
-            _'right'_ | 
-            _'right bottom'_ | 
-            _'bottom'_ | 
-            _'left bottom'_ | 
-            _'left'_ |
-            _'left top'_ |
-            _'north'_ |
-            _'northeast'_ |
-            _'east'_ |
-            _'southeast'_ |
-            _'south'_ |
-            _'southwest'_ |
-            _'west'_ | 
-            _'northwest'_ | 
-            _'center'_ | 
-            _'entropy'_ | 
-            _'attention'_><br/>
-When fit is `cover` or `contain` you can specify where the image should be anchored.
-The behavior is similar to the [css object-postion](https://developer.mozilla.org/en-US/docs/Web/CSS/object-position) property.
-For further details on the two special values `entropy` & `attention` see the [sharp documentation](https://sharp.pixelplumbing.com/api-resize#resize)
+```jsx
+import { src, width, height, format, channels } from 'example.jpg?width=300&webp?metadata'
 
-**Shorthands**
-- `top`
-- `right top`
-- `right`
-- `right bottom`
-- `bottom`
-- `left bottom`
-- `left`
-- `left top`
-- `north`
-- `northeast`
-- `east`
-- `southeast`
-- `south`
-- `southwest`
-- `west`
-- `northwest`
-- `center`
-- `entropy`
-- `attention
-
----
-#### `kernel`
-**Argument**: <_'nearest'_ | _'cubic'_ | _'mitchell'_ | _'lanczos2'_ | _'lanczos3'_><br/>
-The interpolation kernel to use when resizing the image, the default value is `lanczos3`.
-
----
-#### `format`
-**Argument**: <_'jpeg'_ | _'jpg'_ | _'webp'_ | _'avif'_ | _'png'_ | _'gif'_ | _'tiff'_ | _'heif'_><br/>
-Transcodes the image to the give format. This directive will always be applied last.
-> Some of these formats my not be available on your platform/setup
-
-Optionally you can use one of the Shorthands below like so:
-```typescript
-// instead of
-import Image from "example.jpg?format=webp"
-// you can write
-import Image from "example.jpg?webp"
+// the src attribute holds the url to the image
+const image = <img src={src}>
 ```
-**Shorthands**:
-- `jpeg`
-- `jpg`
-- `webp`
-- `avif`
-- `png`
-- `gif`
-- `tiff`
-- `heif`
 
----
-### `favicon`
-_TODO_
+> NOTE: If the specified directive generates multiple images the output will be an array!
+> ```jsx
+> import images from 'example.jpg?width=300,400,500?metadata'
+>
+> // images is an array now
+> const component => images.map(({src}) => <img src={src}>)
+> ```
 
----
-### `rotate`
-_TODO_
+### srcset
 
----
-### `flip`
-_TODO_
+You can import a fully generated srcset for your images like so:
+```html
+<source srcset="example.jpg?width=200,300,400&srcset">
+```
+will compile to:
+```html
+<source srcset="example.jpg 200w, example.jpg 300w, example.jpg 400w">
+```
 
----
-### `flop`
-_TODO_
+> This only works for different widths at the moment.
 
----
-### `sharpen`
-_TODO_
+### Custom output formats
 
----
-### `blur`
-_TODO_
+If the builtin output formats do not satisfy your needs you can easily extend add a custom format.
+An output format is basically a function gets the outputMetadata objects and returns some value.
 
----
-### `median`
-_TODO_
+> NOTE: While you can return any value from your format, it has to be JSON serializeable if you have json.stringify truned on!
 
----
-### `flatten`
-_TODO_
+So a format that only exports the width and height for some reason would look like this:
+```ts
+export const myCustomFormat: OutputFormat = (src: URL, outputMetadatas: Record<string, any>[]) => {
+    // you always get an array of metdatas
+    const out: string[] = outputMetadatas.map(metadata => ({ width, metadata.width, height: metadata.height }))
 
----
-### `gamma`
-_TODO_
+    // this mirrors the behaviour of the builtin formats
+    // by returning the first element if only one is present
+    return out.length == 1 ? out[0] : out
+}
+```
 
----
-### `invert`
-_TODO_
+Finally you have to tell vite-imagetools to take your format into consideration:
+```js
+import { imagetools } from 'vite-imagetools@next'
 
----
-### `normalize`
-_TODO_
+export default defineConfig({
+  plugins: [
+    imagetools({
+        customOutputFormats: [myCustomFormat]
+    })
+  ]
+})
+```
 
 ## Contributing
-
-Saw a _TODO_ somewhere above? Chances are these are features I didn't have time for yet, so if you want this feature to be implemented have a look at the [custom directive section](#custom%20directives) below.
-PRs are very welcome!
-
-See [the contributing file](CONTRIBUTING.md)!
-
-### Custom Directives
-
-_TODO_
 
 ## License
 [MIT © Jonas Kruckenberg.](./LICENSE)

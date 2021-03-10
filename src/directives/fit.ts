@@ -1,17 +1,32 @@
-import { Directive } from "./index"
-import pm from 'picomatch'
+import { MetaDirective } from "../types";
 
-export const fitDirective: Directive = {
-    name: 'fit',
-    with: ['width', 'height', 'size'],
+export interface FitOptions {
+    fit: FitValue
+}
 
-    test(key: string, value: string) {
-        const isKeyword = pm(['cover', 'contain', 'fill', 'inside', 'outside'])
+export const fitValues = ['cover', 'contain', 'fill', 'inside', 'outside'] as const
 
-        return (key === 'fit' && isKeyword(value))
-            || (isKeyword(key) && value === '')
-    },
-    transform(key: string, value: string) {
-        return { fit: !!value ? value : key }
-    }
+export type FitValue = typeof fitValues[number]
+
+/**
+ * When both a `width` and `height` are provided, 
+ * this directive can be used to specify the method by which the image should **fit**.
+ * 
+ * @example
+ * ```js
+ * import Image from 'example.jpg?fit=cover'
+ * ```
+ * 
+ * @name Fit
+ * @category Import Directives
+ * @keyword `fit`
+ * @type _cover_ \| _contain_ \| _fill_ \| _inside_ \| _outside_ 
+ */
+export const fit: MetaDirective<FitOptions, FitValue> = ({ fit }, ctx) => {
+    if (!fit || !fitValues.includes(fit)) return null
+
+    ctx.useParam('fit')
+    ctx.setMetadata('fit', fit)
+
+    return fit
 }

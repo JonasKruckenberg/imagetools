@@ -1,18 +1,26 @@
 import typescript from 'rollup-plugin-typescript2'
 
 export default {
-  input: './src/index.ts',
+  input: 'src/index.ts',
   output: [
     {
-      file: 'dist/index.js',
+      dir: 'dist',
       format: 'cjs',
       sourcemap: true,
+      entryFileNames: '[name].cjs',
+      chunkFileNames: '[name].cjs'
     },
     {
-      file: 'dist/index.mjs',
+      dir: 'dist',
       format: 'esm',
-      sourcemap: true
+      sourcemap: true,
+      entryFileNames: '[name].mjs',
+      chunkFileNames: '[name].mjs'
     }
   ],
-  plugins: [typescript()]
+  plugins: [
+    typescript({
+      typescript: require('typescript')
+    })
+  ]
 }

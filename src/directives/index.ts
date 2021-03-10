@@ -1,27 +1,19 @@
-import { sizeDirective } from './size'
-import { fitDirective } from './fit'
-import { widthDirective } from './width'
-import { heightDirective } from './height'
-import { formatDirective } from './format'
-import { positionDirective } from './position'
-import { kernelDirective } from './kernel'
+export { blur } from './blur'
+export { flip } from './flip'
+export { flop } from './flop'
+export { format } from './format'
+export { invert } from './invert'
+export { normalize } from './normalize'
+export { resize } from './resize'
+export { rotate } from './rotate'
+export { flatten } from './flatten'
+export { grayscale } from './grayscale'
+export { median } from './median'
+export { tint } from './tint'
+export { hsb } from './hsb'
 
-export interface Directive {
-    name: string,
-    with?: string[],
-    without?: string[],
-    test: (key: string, value: string) => boolean
-    transform?: (key: string, value: string) => Record<string, any>
-}
-
-export function directives(): Directive[] {
-    return [
-        sizeDirective,
-        widthDirective,
-        heightDirective,
-        formatDirective,
-        positionDirective,
-        fitDirective,
-        kernelDirective
-    ]
-}
+export { background } from './background'
+export { fit } from './fit'
+export { kernel } from './kernel'
+export { position } from './position'
+export { quality } from './quality'

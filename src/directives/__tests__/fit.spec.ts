@@ -1,66 +1,39 @@
-import { buildOptions } from '../../options'
-import { fitDirective } from '../fit'
-import { widthDirective } from '../width'
+import { fit, FitValue } from "../fit"
 
-describe('directive: "fit"', () => {
-    describe('w/ argument: "cover"', () => {
-        it('can be used as an argument', () => {
-            const url = new URL('/test.jpg?width=300&fit=cover', 'file://')
-            expect(buildOptions(url, [fitDirective, widthDirective]))
-                .toHaveProperty('fit', 'cover')
-        })
-        it('can be used as a shorthand', () => {
-            const url = new URL('/test.jpg?width=300&cover', 'file://')
-            expect(buildOptions(url, [fitDirective, widthDirective]))
-                .toHaveProperty('fit', 'cover')
-        })
+describe('fit', () => {
+    it('marks "fit" as used', () => {
+        const usedParams = new Set()
+        fit({ fit: 'cover' }, { useParam: (k) => usedParams.add(k), setMetadata: jest.fn })
+
+        expect(usedParams.has('fit')).toBeTruthy()
     })
-    describe('w/ argument: "contain"', () => {
-        it('can be used as an argument', () => {
-            const url = new URL('/test.jpg?width=300&fit=contain', 'file://')
-            expect(buildOptions(url, [fitDirective, widthDirective]))
-                .toHaveProperty('fit', 'contain')
-        })
-        it('can be used as a shorthand', () => {
-            const url = new URL('/test.jpg?width=300&contain', 'file://')
-            expect(buildOptions(url, [fitDirective, widthDirective]))
-                .toHaveProperty('fit', 'contain')
-        })
+
+    it('adds "fit" the the output metadata', () => {
+        const metadata = new Map()
+        fit({ fit: 'cover' }, { useParam: jest.fn, setMetadata: (k, v) => metadata.set(k, v) })
+
+        expect(metadata.has('fit')).toBeTruthy()
+        expect(metadata.get('fit')).toEqual('cover')
     })
-    describe('w/ argument: "fill"', () => {
-        it('can be used as an argument', () => {
-            const url = new URL('/test.jpg?width=300&fit=fill', 'file://')
-            expect(buildOptions(url, [fitDirective, widthDirective]))
-                .toHaveProperty('fit', 'fill')
-        })
-        it('can be used as a shorthand', () => {
-            const url = new URL('/test.jpg?width=300&fill', 'file://')
-            expect(buildOptions(url, [fitDirective, widthDirective]))
-                .toHaveProperty('fit', 'fill')
-        })
+
+    it('returns null if the arg is not in the whitelist', () => {
+        //@ts-expect-error
+        const res = fit({ fit: 'test' }, { useParam: jest.fn, setMetadata: jest.fn })
+
+        expect(res).toBeNull()
     })
-    describe('w/ argument: "inside"', () => {
-        it('can be used as an argument', () => {
-            const url = new URL('/test.jpg?width=300&fit=inside', 'file://')
-            expect(buildOptions(url, [fitDirective, widthDirective]))
-                .toHaveProperty('fit', 'inside')
-        })
-        it('can be used as a shorthand', () => {
-            const url = new URL('/test.jpg?width=300&inside', 'file://')
-            expect(buildOptions(url, [fitDirective, widthDirective]))
-                .toHaveProperty('fit', 'inside')
-        })
+
+    it('returns null if "fit" is missing', () => {
+        const res = fit({}, { useParam: jest.fn, setMetadata: jest.fn })
+        expect(res).toBeNull()
     })
-    describe('w/ argument: "outside"', () => {
-        it('can be used as an argument', () => {
-            const url = new URL('/test.jpg?width=300&fit=outside', 'file://')
-            expect(buildOptions(url, [fitDirective, widthDirective]))
-                .toHaveProperty('fit', 'outside')
-        })
-        it('can be used as a shorthand', () => {
-            const url = new URL('/test.jpg?width=300&outside', 'file://')
-            expect(buildOptions(url, [fitDirective, widthDirective]))
-                .toHaveProperty('fit', 'outside')
-        })
+
+    it('returns whitelisted arguments', () => {
+        const whitelist: FitValue[] = ['cover', 'contain', 'fill', 'inside', 'outside']
+
+        for (const keyword of whitelist) {
+            const res = fit({ fit: keyword }, { useParam: jest.fn, setMetadata: jest.fn })
+            expect(res).toEqual(keyword)
+        }
     })
 })

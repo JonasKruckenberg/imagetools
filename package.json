@@ -1,41 +1,57 @@
 {
   "name": "vite-imagetools",
+  "description": "Load and transform images using a toolbox of custom import directives!",
   "version": "0.0.0-development",
-  "main": "dist/index.js",
+  "main": "dist/index.cjs",
   "module": "dist/index.mjs",
-  "license": "MIT",
-  "homepage": "https://github.com/JonasKruckenberg/vite-imagetools",
+  "types": "dist/index.d.ts",
   "files": [
     "dist"
   ],
+  "homepage": "https://github.com/JonasKruckenberg/vite-imagetools",
   "author": "jkruckenberg <iterpre@protonmail.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/JonasKruckenberg/vite-imagetools.git"
+  },
+  "keywords": [
+    "resize-images",
+    "responsive-images",
+    "vite",
+    "image",
+    "vite-plugin"
+  ],
   "scripts": {
     "dev": "rollup -cw",
     "test": "jest",
+    "coverage": "jest --collectCoverage --json",
     "build": "rollup -c",
-    "docs": "typedoc --out ./docs --plugin typedoc-plugin-markdown ./src/index.ts ./src/types.ts",
+    "docs": "node docs.js",
     "semantic-release": "semantic-release"
   },
   "dependencies": {
-    "picomatch": "^2.2.2",
-    "rollup-pluginutils": "^2.8.2",
+    "@rollup/pluginutils": "^4.1.0",
+    "cacache": "^15.0.5",
+    "find-cache-dir": "^3.3.1",
+    "magic-string": "^0.25.7",
     "sharp": "^0.27.0"
   },
   "devDependencies": {
+    "@types/cacache": "^15.0.0",
+    "@types/find-cache-dir": "^3.2.0",
     "@types/jest": "^26.0.20",
     "@types/picomatch": "^2.2.1",
     "@types/sharp": "^0.27.1",
+    "codecov": "^3.8.1",
+    "comment-parser": "^1.1.2",
     "jest": "^26.6.3",
     "rollup": "^2.38.0",
     "rollup-plugin-typescript2": "^0.29.0",
     "semantic-release": "^17.3.7",
+    "tiny-glob": "^0.2.8",
     "ts-jest": "^26.5.0",
-    "typedoc": "^0.20.18",
-    "typedoc-plugin-markdown": "^3.4.3",
-    "typescript": "^4.1.3"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/JonasKruckenberg/vite-imagetools.git"
+    "typescript": "^4.2.3",
+    "vite": "^2.0.5"
   }
 }
