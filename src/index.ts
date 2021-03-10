@@ -51,7 +51,7 @@ export function imagetools(userOptions: Partial<PluginOptions> = {}): Plugin {
         },
         async load(id) {
             const src = new URL(id, 'file://')
-
+            
             if (!filter(src.href)) return null
 
             // get all parameters from the url query string
