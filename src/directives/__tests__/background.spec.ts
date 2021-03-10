@@ -1,9 +1,9 @@
 import { background } from '../background'
 
 describe('background', () => {
-    it('returns a string', () => {
-        const res = background({ background: 'test' }, { useParam: jest.fn, setMetadata: jest.fn })
-        expect(res).toEqual('test')
+    it('returns a string prefixed with "#"', () => {
+        const res = background({ background: 'fff' }, { useParam: jest.fn, setMetadata: jest.fn })
+        expect(res).toEqual('#fff')
     })
 
     it('returns null if "background" is missing', () => {
