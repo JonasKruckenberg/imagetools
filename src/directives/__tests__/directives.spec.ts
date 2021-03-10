@@ -52,4 +52,7 @@ describe('directives',() => {
     it('exports "tint"',() => {
         expect('tint' in directives).toBeTruthy()
     })
+    it('exports "hsb"',() => {
+        expect('hsb' in directives).toBeTruthy()
+    })
 })

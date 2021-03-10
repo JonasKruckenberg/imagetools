@@ -10,6 +10,7 @@ export { flatten } from './flatten'
 export { grayscale } from './grayscale'
 export { median } from './median'
 export { tint } from './tint'
+export { hsb } from './hsb'
 
 export { background } from './background'
 export { fit } from './fit'
