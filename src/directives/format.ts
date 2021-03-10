@@ -1,11 +1,11 @@
 import { Directive } from "../types"
 import { quality as getQuality } from "./quality"
 
-type FormatShorthandOptions = {
+export type FormatShorthandOptions = {
     [key in ImageFormat]?: ''
 }
 
-interface FormatOptions {
+export interface FormatOptions {
     format: ImageFormat
 }
 

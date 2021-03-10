@@ -1,6 +1,6 @@
 import { Directive, DirectiveContext, DirectiveOptions } from "../types";
 
-interface InvertOptions {
+export interface InvertOptions {
     invert: string
 }
 

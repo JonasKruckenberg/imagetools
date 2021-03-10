@@ -1,6 +1,6 @@
 import { Directive } from "../types";
 
-interface MedianOptions {
+export interface MedianOptions {
     median: string
 }
 

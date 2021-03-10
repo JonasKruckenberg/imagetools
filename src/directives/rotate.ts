@@ -1,7 +1,7 @@
 import { Directive } from "../types"
 import { background as getBackground } from './background'
 
-interface RotateOptions {
+export interface RotateOptions {
     rotate: string
     background: string
 }

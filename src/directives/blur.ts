@@ -1,6 +1,6 @@
 import { Directive } from "../types";
 
-interface BlurOptions {
+export interface BlurOptions {
     blur: string
 }
 

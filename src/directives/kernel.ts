@@ -1,12 +1,12 @@
 import { MetaDirective } from "../types";
 
-interface KernelOptions {
+export interface KernelOptions {
     kernel: KernelValue
 }
 
-const kernelValues = ['nearest', 'cubic', 'mitchell', 'lanczos2', 'lanczos3'] as const
+export const kernelValues = ['nearest', 'cubic', 'mitchell', 'lanczos2', 'lanczos3'] as const
 
-type KernelValue = typeof kernelValues[number]
+export type KernelValue = typeof kernelValues[number]
 
 /**
  * Use this directive to set a different interpolation kernel when resizing the image.

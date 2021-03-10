@@ -4,7 +4,7 @@ import { fit as getFit } from './fit'
 import { position as getPosition } from './position'
 import { kernel as getKernel } from './kernel'
 
-interface ResizeOptions {
+export interface ResizeOptions {
     height: string
     h: string
     width: string

@@ -1,14 +1,14 @@
 import { MetaDirective } from "../types";
 
-interface PositionOptions {
+export interface PositionOptions {
     position: PositionValue
 }
 
-const positionValues = ['top', 'right top', 'right', 'right bottom', 'bottom', 'left bottom', 'left', 'left top',
+export const positionValues = ['top', 'right top', 'right', 'right bottom', 'bottom', 'left bottom', 'left', 'left top',
     'north', 'northeast', 'east', 'southeast', 'south', 'southwest', 'west', 'northwest', 'center', 'centre',
     'cover', 'entropy', 'attention'] as const
 
-type PositionValue = typeof positionValues[number]
+export type PositionValue = typeof positionValues[number]
 
 /**
  * When both `width` and `height` are provided AND the fit is one of `fit` of `cover` or `contain`, 

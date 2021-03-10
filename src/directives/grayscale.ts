@@ -1,6 +1,6 @@
 import { Directive, DirectiveContext, DirectiveOptions } from "../types";
 
-interface GrayscaleOptions {
+export interface GrayscaleOptions {
     grayscale: string
 }
 

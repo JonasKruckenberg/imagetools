@@ -1,6 +1,6 @@
 import { Directive, DirectiveContext, DirectiveOptions } from "../types";
 
-interface NormalizeOptions {
+export interface NormalizeOptions {
     normalize: string
 }
 

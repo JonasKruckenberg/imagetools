@@ -1,7 +1,7 @@
 import { Color } from "sharp";
 import { MetaDirective } from "../types";
 
-interface BackgroundOptions {
+export interface BackgroundOptions {
     background: string
 }
 

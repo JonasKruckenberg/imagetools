@@ -1,6 +1,6 @@
 import { Directive, DirectiveContext, DirectiveOptions } from "../types";
 
-interface FlipOptions {
+export interface FlopOptions {
     flop: string
 }
 
@@ -19,7 +19,7 @@ interface FlipOptions {
  * @keyword `flop`
  * @type _boolean_
  */
-export const flop:Directive<FlipOptions> = ({ flop }: DirectiveOptions, ctx: DirectiveContext) => {
+export const flop:Directive<FlopOptions> = ({ flop }: DirectiveOptions, ctx: DirectiveContext) => {
     if (flop !== '' && flop !== 'true') return null
 
     ctx.useParam('flop')

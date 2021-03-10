@@ -1,6 +1,6 @@
 import { MetaDirective } from "../types";
 
-interface QualityOptions {
+export interface QualityOptions {
     quality: string
 }
 

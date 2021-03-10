@@ -1,6 +1,6 @@
 import { Directive } from "../types";
 
-interface TintOptions {
+export interface TintOptions {
     tint: string
 }
 

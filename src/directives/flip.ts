@@ -1,6 +1,6 @@
 import { Directive, DirectiveContext, DirectiveOptions } from "../types";
 
-interface FlipOptions {
+export interface FlipOptions {
     flip: string
 }
 

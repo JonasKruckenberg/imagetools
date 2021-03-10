@@ -1,7 +1,7 @@
 import { Directive } from "../types";
 import { background as getBackground } from './background'
 
-interface FlattenOptions {
+export interface FlattenOptions {
     flatten: ''
     background: string
 }

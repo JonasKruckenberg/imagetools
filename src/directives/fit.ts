@@ -1,12 +1,12 @@
 import { MetaDirective } from "../types";
 
-interface FitOptions {
+export interface FitOptions {
     fit: FitValue
 }
 
-const fitValues = ['cover', 'contain', 'fill', 'inside', 'outside'] as const
+export const fitValues = ['cover', 'contain', 'fill', 'inside', 'outside'] as const
 
-type FitValue = typeof fitValues[number]
+export type FitValue = typeof fitValues[number]
 
 /**
  * When both a `width` and `height` are provided, 
