@@ -1,6 +1,6 @@
 import { createFilter, dataToEsm } from '@rollup/pluginutils'
 import { Plugin, ResolvedConfig } from 'vite'
-import { put as cachePut, tmp } from 'cacache'
+import { put as cachePut, tmp, ls as listCache, rm as removeFromCache } from 'cacache'
 import fs from 'fs/promises'
 import { join, relative } from 'path'
 import findCacheDir from 'find-cache-dir'
@@ -36,6 +36,9 @@ export function imagetools(userOptions: Partial<PluginOptions> = {}): Plugin {
     // wether to actually transform the images, disabled in devmode by default
     let transformImages: boolean
 
+    // this set keeps track of all cacheId we have used during the build
+    let totalImages = new Set()
+
     const filter = createFilter(pluginOptions.include, pluginOptions.exclude)
 
     const directives = [...pluginOptions.customDirectives, ...Object.values(builtinDiretcives)]
@@ -51,7 +54,7 @@ export function imagetools(userOptions: Partial<PluginOptions> = {}): Plugin {
         },
         async load(id) {
             const src = new URL(id, 'file://')
-            
+
             if (!filter(src.href)) return null
 
             // get all parameters from the url query string
@@ -62,7 +65,9 @@ export function imagetools(userOptions: Partial<PluginOptions> = {}): Plugin {
 
 
             const outputMetadatas = await Promise.all(pipelineConfigs.map(async config => {
-                const cacheId = JSON.stringify(config) // each image is addressed by its configuration                
+                const cacheId = JSON.stringify(config) + src.href // each image is addressed by its configuration                
+
+                totalImages.add(cacheId)
 
                 let data: Uint8Array | undefined
                 let metadata: Record<string, any> = {}
@@ -121,9 +126,9 @@ export function imagetools(userOptions: Partial<PluginOptions> = {}): Plugin {
                     const dir = await tmp.mkdir(pluginOptions.cache)
                     const tmpFile = join(dir, `${fileName}.${metadata.format}`)
 
-                    await fs.writeFile(tmpFile, data || '')
+                    await fs.writeFile(tmpFile, data || '')
 
-                    metadata.src = relative(viteConfig.root,tmpFile)
+                    metadata.src = relative(viteConfig.root, tmpFile)
                 }
 
                 return metadata
@@ -169,5 +174,20 @@ export function imagetools(userOptions: Partial<PluginOptions> = {}): Plugin {
                 return null
             }
         },
+        // cleanup the cache on build end
+        async buildEnd() {
+            if (pluginOptions.cache) {
+                const cachedImages = await listCache(pluginOptions.cache)
+
+                // we will delete all images that are in the cache that have not been referenced during the current build.
+                // This means that the image is likely not needed anymore
+                for (const key in cachedImages) {
+                    if (!totalImages.has(key)) {
+                        await removeFromCache(pluginOptions.cache, key)
+                        console.log(`deleted image ${key} from cache`);
+                    }
+                }
+            }
+        }
     }
 }
