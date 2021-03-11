@@ -1,8 +1,20 @@
 import { hsb } from '../hsb'
+import { DirectiveContext } from '../../types'
+import { transformImage } from '../../util'
+import { toMatchFile } from 'jest-file-snapshot'
+import { join } from 'path'
+import sharp from 'sharp'
+
+expect.extend({ toMatchFile })
 
 describe('hsb', () => {
+    let dirCtx: DirectiveContext
+    beforeEach(() => {
+        dirCtx = { useParam: jest.fn, setMetadata: jest.fn }
+    })
+
     it('returns null if all parameters are missing', () => {
-        const res = hsb({}, { useParam: jest.fn, setMetadata: jest.fn })
+        const res = hsb({}, dirCtx)
 
         expect(res).toBeNull()
     })
@@ -10,7 +22,7 @@ describe('hsb', () => {
     it('returns a function if all parameters are present', () => {
         const usedParams = new Set()
         const metadata = new Map()
-        const res = hsb({ hue: '20', saturation: '20', brightness: '20' }, { useParam: k => usedParams.add(k), setMetadata: (k,v) => metadata.set(k,v) })
+        const res = hsb({ hue: '20', saturation: '20', brightness: '20' }, { useParam: k => usedParams.add(k), setMetadata: (k, v) => metadata.set(k, v) })
 
         expect(res).toBeInstanceOf(Function)
         expect(usedParams.has('hue')).toBeTruthy()
@@ -25,7 +37,7 @@ describe('hsb', () => {
         {
             const usedParams = new Set()
             const metadata = new Map()
-            const res = hsb({ hue: '20', saturation: '20' }, { useParam: k => usedParams.add(k), setMetadata: (k,v) => metadata.set(k,v) })
+            const res = hsb({ hue: '20', saturation: '20' }, { useParam: k => usedParams.add(k), setMetadata: (k, v) => metadata.set(k, v) })
 
             expect(res).toBeInstanceOf(Function)
             expect(usedParams.has('hue')).toBeTruthy()
@@ -37,7 +49,7 @@ describe('hsb', () => {
         {
             const usedParams = new Set()
             const metadata = new Map()
-            const res = hsb({ hue: '20', brightness: '20' }, { useParam: k => usedParams.add(k), setMetadata: (k,v) => metadata.set(k,v) })
+            const res = hsb({ hue: '20', brightness: '20' }, { useParam: k => usedParams.add(k), setMetadata: (k, v) => metadata.set(k, v) })
 
             expect(res).toBeInstanceOf(Function)
             expect(usedParams.has('hue')).toBeTruthy()
@@ -49,7 +61,7 @@ describe('hsb', () => {
         {
             const usedParams = new Set()
             const metadata = new Map()
-            const res = hsb({ saturation: '20', brightness: '20' }, { useParam: k => usedParams.add(k), setMetadata: (k,v) => metadata.set(k,v) })
+            const res = hsb({ saturation: '20', brightness: '20' }, { useParam: k => usedParams.add(k), setMetadata: (k, v) => metadata.set(k, v) })
 
             expect(res).toBeInstanceOf(Function)
             expect(usedParams.has('hue')).toBeFalsy()
@@ -62,7 +74,7 @@ describe('hsb', () => {
 
     describe('hue', () => {
         it('returns a function when "hue" an integer', () => {
-            const res = hsb({ hue: '20' }, { useParam: jest.fn, setMetadata: jest.fn })
+            const res = hsb({ hue: '20' }, dirCtx)
 
             expect(res).toBeInstanceOf(Function)
         })
@@ -83,15 +95,44 @@ describe('hsb', () => {
         })
 
         it('returns null if the argument is invalid', () => {
-            const res = hsb({ hue: 'invalid' }, { useParam: jest.fn, setMetadata: jest.fn })
+            const res = hsb({ hue: 'invalid' }, dirCtx)
 
             expect(res).toBeNull()
+        })
+
+        describe('transform', () => {
+            test('45', async () => {
+                const img = sharp(join(__dirname, '/__assets__/pexels-allec-gomes-5195763.jpg'))
+
+                //@ts-ignore
+                const out = await transformImage(img, [hsb({ hue: '45' }, dirCtx)]).toBuffer()
+
+                expect(out).toMatchFile()
+            })
+
+            test('90', async () => {
+                const img = sharp(join(__dirname, '/__assets__/pexels-allec-gomes-5195763.jpg'))
+
+                //@ts-ignore
+                const out = await transformImage(img, [hsb({ hue: '90' }, dirCtx)]).toBuffer()
+
+                expect(out).toMatchFile()
+            })
+
+            test('180', async () => {
+                const img = sharp(join(__dirname, '/__assets__/pexels-allec-gomes-5195763.jpg'))
+
+                //@ts-ignore
+                const out = await transformImage(img, [hsb({ hue: '180' }, dirCtx)]).toBuffer()
+
+                expect(out).toMatchFile()
+            })
         })
     })
 
     describe('saturation', () => {
         it('returns a function when saturation is a number', () => {
-            const res = hsb({ saturation: '20' }, { useParam: jest.fn, setMetadata: jest.fn })
+            const res = hsb({ saturation: '20' }, dirCtx)
 
             expect(res).toBeInstanceOf(Function)
         })
@@ -108,11 +149,31 @@ describe('hsb', () => {
             expect(metadata.has('saturation')).toBeTruthy()
             expect(metadata.get('saturation')).toEqual(20)
         })
+
+        describe('transform', () => {
+            test('0.5', async () => {
+                const img = sharp(join(__dirname, '/__assets__/pexels-allec-gomes-5195763.jpg'))
+
+                //@ts-ignore
+                const out = await transformImage(img, [hsb({ saturation: '0.5' }, dirCtx)]).toBuffer()
+
+                expect(out).toMatchFile()
+            })
+
+            test('1.5', async () => {
+                const img = sharp(join(__dirname, '/__assets__/pexels-allec-gomes-5195763.jpg'))
+
+                //@ts-ignore
+                const out = await transformImage(img, [hsb({ saturation: '1.5' }, dirCtx)]).toBuffer()
+
+                expect(out).toMatchFile()
+            })
+        })
     })
 
     describe('brightness', () => {
         it('returns a function when brightness is a number', () => {
-            const res = hsb({ brightness: '20' }, { useParam: jest.fn, setMetadata: jest.fn })
+            const res = hsb({ brightness: '20' }, dirCtx)
 
             expect(res).toBeInstanceOf(Function)
         })
@@ -128,6 +189,26 @@ describe('hsb', () => {
 
             expect(metadata.has('brightness')).toBeTruthy()
             expect(metadata.get('brightness')).toEqual(20)
+        })
+
+        describe('transform', () => {
+            test('0.5', async () => {
+                const img = sharp(join(__dirname, '/__assets__/pexels-allec-gomes-5195763.jpg'))
+
+                //@ts-ignore
+                const out = await transformImage(img, [hsb({ brightness: '0.5' }, dirCtx)]).toBuffer()
+
+                expect(out).toMatchFile()
+            })
+
+            test('1.5', async () => {
+                const img = sharp(join(__dirname, '/__assets__/pexels-allec-gomes-5195763.jpg'))
+
+                //@ts-ignore
+                const out = await transformImage(img, [hsb({ brightness: '1.5' }, dirCtx)]).toBuffer()
+
+                expect(out).toMatchFile()
+            })
         })
     })
 })

@@ -1,14 +1,26 @@
 import { tint } from '../tint'
+import { join } from 'path'
+import sharp from 'sharp'
+import { DirectiveContext } from '../../types'
+import { transformImage } from '../../util'
+import { toMatchFile } from 'jest-file-snapshot'
+
+expect.extend({ toMatchFile })
 
 describe('tint', () => {
+    let dirCtx: DirectiveContext
+    beforeEach(() => {
+        dirCtx = { useParam: jest.fn, setMetadata: jest.fn }
+    })
+
     it('returns a function when the argument is a string', () => {
-        const res = tint({ tint: '#fff' }, { useParam: jest.fn, setMetadata: jest.fn })
+        const res = tint({ tint: '#fff' }, dirCtx)
 
         expect(res).toBeInstanceOf(Function)
     })
 
     it('returns null when the parameter is missing', () => {
-        const res = tint({}, { useParam: jest.fn, setMetadata: jest.fn })
+        const res = tint({}, dirCtx)
 
         expect(res).toBeNull()
     })
@@ -26,5 +38,32 @@ describe('tint', () => {
 
         expect(metadata.has('tint')).toBeTruthy()
         expect(metadata.get('tint')).toEqual('#fff')
+    })
+
+    describe('transform', () => {
+        test('red', async () => {
+            const img = sharp(join(__dirname, '/__assets__/pexels-allec-gomes-5195763.jpg'))
+
+            //@ts-ignore
+            const out = await transformImage(img, [tint({ tint: 'f00' }, dirCtx)]).toBuffer()
+
+            expect(out).toMatchFile()
+        })
+        test('green', async () => {
+            const img = sharp(join(__dirname, '/__assets__/pexels-allec-gomes-5195763.jpg'))
+
+            //@ts-ignore
+            const out = await transformImage(img, [tint({ tint: '0f0' }, dirCtx)]).toBuffer()
+
+            expect(out).toMatchFile()
+        })
+        test('blue', async () => {
+            const img = sharp(join(__dirname, '/__assets__/pexels-allec-gomes-5195763.jpg'))
+
+            //@ts-ignore
+            const out = await transformImage(img, [tint({ tint: '00f' }, dirCtx)]).toBuffer()
+
+            expect(out).toMatchFile()
+        })
     })
 })
