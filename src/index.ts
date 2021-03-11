@@ -11,6 +11,7 @@ import sharp from 'sharp'
 import * as builtinDiretcives from './directives'
 import * as builtinOutputFormats from './output'
 import { buildDirectiveOptions, buildTransforms, extractParameterEntries, restoreFromCache, transformImage } from './util'
+    parseURL,
 import { PluginOptions } from './types'
 
 export * from './directives'
@@ -59,6 +60,7 @@ export function imagetools(userOptions: Partial<PluginOptions> = {}): Plugin {
 
             // get all parameters from the url query string
             const parameters = extractParameterEntries(src)
+            const parameters = parseURL(src)
 
             // generate configurations for all resulting images
             const pipelineConfigs = buildDirectiveOptions(parameters)

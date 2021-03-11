@@ -15,6 +15,7 @@ export const cartesian = (...a: any[]) => a.reduce((a: any, b: any) => a.flatMap
  * @returns 
  */
 export function extractParameterEntries(src: URL) {
+export function parseURL(src: URL) {
     // generate parameter entries from the url
     // splits at ";" instead of "," because of vues srcset parser
     return Array.from(src.searchParams.entries())
