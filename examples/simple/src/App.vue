@@ -12,6 +12,8 @@
   import Logo1 from './assets/logo.png?rotate=180&background=fff&hue=80'
   import Logo2 from './assets/logo.png?rotate=180&brightness=1.2&grayscale'
   import Logo3 from './assets/logo.png?blur=5'
+
+  import Logo4 from './assets/logo.png?width=200;400&meta'
 </script>
 
 <style>

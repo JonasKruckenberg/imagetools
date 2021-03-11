@@ -44,8 +44,8 @@ export interface ResizeOptions {
  * @type _integer_
  */
 export const resize: Directive<ResizeOptions> = (opts, { useParam, setMetadata }) => {
-    const width = parseInt(opts.width || opts.w || '')
-    const height = parseInt(opts.height || opts.h || '')
+    const width = parseInt(opts.width || opts.w || '') || undefined
+    const height = parseInt(opts.height || opts.h || '') || undefined
 
     if (!width && !height) return null
 
