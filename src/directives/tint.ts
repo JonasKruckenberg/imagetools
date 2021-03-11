@@ -26,6 +26,6 @@ export const tint: Directive<TintOptions> = ({ tint:color }, { useParam, setMeta
     setMetadata('tint',color)
 
     return function tintTransform(image) {
-        return image.tint(color)
+        return image.tint('#' + color)
     }
 }
