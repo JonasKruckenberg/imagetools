@@ -1,0 +1,2 @@
+**/__file_snapshots__/* filter=lfs diff=lfs merge=lfs -text
+**/__assets__/* filter=lfs diff=lfs merge=lfs -text
