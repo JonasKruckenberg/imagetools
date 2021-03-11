@@ -3,6 +3,7 @@ import { join } from 'path'
 import sharp from 'sharp'
 import { DirectiveContext } from '../../types'
 import { transformImage } from '../../util'
+import { applyTransforms } from '../../util'
 import { toMatchFile } from 'jest-file-snapshot'
 
 expect.extend({ toMatchFile })
@@ -61,6 +62,7 @@ describe('normalize', () => {
 
             //@ts-ignore
             const out = await transformImage(img, [normalize({ normalize: 'true' }, dirCtx)]).toBuffer()
+            const out = await applyTransforms(img, [normalize({ normalize: 'true' }, dirCtx)]).toBuffer()
 
             expect(out).toMatchFile()
         })

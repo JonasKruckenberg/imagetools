@@ -1,6 +1,7 @@
 import { grayscale } from '../grayscale'
 import { DirectiveContext } from '../../types'
 import { transformImage } from '../../util'
+import { applyTransforms } from '../../util'
 import { toMatchFile } from 'jest-file-snapshot'
 import { join } from 'path'
 import sharp from 'sharp'
@@ -48,6 +49,7 @@ describe('grayscale', () => {
 
             //@ts-ignore
             const out = await transformImage(img, [grayscale({ grayscale: 'true' }, dirCtx)]).toBuffer()
+            const out = await applyTransforms(img, [grayscale({ grayscale: 'true' }, dirCtx)]).toBuffer()
 
             expect(out).toMatchFile()
         })

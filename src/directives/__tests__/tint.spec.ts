@@ -3,6 +3,7 @@ import { join } from 'path'
 import sharp from 'sharp'
 import { DirectiveContext } from '../../types'
 import { transformImage } from '../../util'
+import { applyTransforms } from '../../util'
 import { toMatchFile } from 'jest-file-snapshot'
 
 expect.extend({ toMatchFile })
@@ -46,6 +47,7 @@ describe('tint', () => {
 
             //@ts-ignore
             const out = await transformImage(img, [tint({ tint: 'f00' }, dirCtx)]).toBuffer()
+            const out = await applyTransforms(img, [tint({ tint: 'f00' }, dirCtx)]).toBuffer()
 
             expect(out).toMatchFile()
         })
@@ -54,6 +56,7 @@ describe('tint', () => {
 
             //@ts-ignore
             const out = await transformImage(img, [tint({ tint: '0f0' }, dirCtx)]).toBuffer()
+            const out = await applyTransforms(img, [tint({ tint: '0f0' }, dirCtx)]).toBuffer()
 
             expect(out).toMatchFile()
         })
@@ -62,6 +65,7 @@ describe('tint', () => {
 
             //@ts-ignore
             const out = await transformImage(img, [tint({ tint: '00f' }, dirCtx)]).toBuffer()
+            const out = await applyTransforms(img, [tint({ tint: '00f' }, dirCtx)]).toBuffer()
 
             expect(out).toMatchFile()
         })

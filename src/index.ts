@@ -12,6 +12,7 @@ import * as builtinDiretcives from './directives'
 import * as builtinOutputFormats from './output'
 import { buildDirectiveOptions, buildTransforms, extractParameterEntries, restoreFromCache, transformImage } from './util'
     parseURL,
+    applyTransforms,
 import { PluginOptions } from './types'
 
 export * from './directives'
@@ -100,6 +101,7 @@ export function imagetools(userOptions: Partial<PluginOptions> = {}): Plugin {
                     // only apply the actual transformtions in build mode
                     if (transformImages) {
                         const image = transformImage(sharp(src.pathname), transforms)
+                        const image = applyTransforms(sharp(src.pathname), transforms)
 
                         data = await image.toBuffer()
 

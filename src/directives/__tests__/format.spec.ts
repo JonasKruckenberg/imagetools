@@ -1,6 +1,7 @@
 import { format, ImageFormat } from '../format'
 import { DirectiveContext } from '../../types'
 import { transformImage } from '../../util'
+import { applyTransforms } from '../../util'
 import { toMatchFile } from 'jest-file-snapshot'
 import { join } from 'path'
 import sharp from 'sharp'
@@ -57,6 +58,7 @@ describe('format', () => {
 
             // @ts-ignore
             const out = await transformImage(img, [format({ format: 'webp' }, dirCtx)]).toBuffer()
+            const out = await applyTransforms(img, [format({ format: 'webp' }, dirCtx)]).toBuffer()
 
             expect(out).toMatchFile()
         })
@@ -66,11 +68,13 @@ describe('format', () => {
 
             // @ts-ignore
             const out1 = await transformImage(img, [format({ format: 'jpg' }, dirCtx)]).toBuffer()
+            const out1 = await applyTransforms(img, [format({ format: 'jpg' }, dirCtx)]).toBuffer()
 
             expect(out1).toMatchFile()
 
             // @ts-ignore
             const out2 = await transformImage(img, [format({ format: 'jpeg' }, dirCtx)]).toBuffer()
+            const out2 = await applyTransforms(img, [format({ format: 'jpeg' }, dirCtx)]).toBuffer()
 
             expect(out1).toEqual(out2)
         })
@@ -80,6 +84,7 @@ describe('format', () => {
 
             // @ts-ignore
             const out = await transformImage(img, [format({ format: 'png' }, dirCtx)]).toBuffer()
+            const out = await applyTransforms(img, [format({ format: 'png' }, dirCtx)]).toBuffer()
 
             expect(out).toMatchFile()
         })
@@ -90,6 +95,7 @@ describe('format', () => {
 
             // @ts-ignore
             const out = await transformImage(img, [format({ format: 'avif' }, dirCtx)]).toBuffer()
+            const out = await applyTransforms(img, [format({ format: 'avif' }, dirCtx)]).toBuffer()
 
             expect(out).toMatchFile()
         })
@@ -100,6 +106,7 @@ describe('format', () => {
 
             // @ts-ignore
             const out = await transformImage(img, [format({ format: 'heif' }, dirCtx)]).toBuffer()
+            const out = await applyTransforms(img, [format({ format: 'heif' }, dirCtx)]).toBuffer()
 
             expect(out).toMatchFile()
         })
@@ -110,6 +117,7 @@ describe('format', () => {
 
             // @ts-ignore
             const out = await transformImage(img, [format({ format: 'heic' }, dirCtx)]).toBuffer()
+            const out = await applyTransforms(img, [format({ format: 'heic' }, dirCtx)]).toBuffer()
 
             expect(out).toMatchFile()
         })
@@ -120,6 +128,7 @@ describe('format', () => {
 
             // @ts-ignore
             const out = await transformImage(img, [format({ format: 'tiff' }, dirCtx)]).toBuffer()
+            const out = await applyTransforms(img, [format({ format: 'tiff' }, dirCtx)]).toBuffer()
 
             expect(out).toMatchFile()
         })

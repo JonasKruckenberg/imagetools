@@ -1,5 +1,6 @@
 import { invert } from '../invert'
 import { transformImage } from '../../util'
+import { applyTransforms } from '../../util'
 import { toMatchFile } from 'jest-file-snapshot'
 import { join } from 'path'
 import sharp from 'sharp'
@@ -61,6 +62,7 @@ describe('invert', () => {
 
             //@ts-ignore
             const out = await transformImage(img, [invert({ invert: 'true' }, dirCtx)]).toBuffer()
+            const out = await applyTransforms(img, [invert({ invert: 'true' }, dirCtx)]).toBuffer()
 
             expect(out).toMatchFile()
         })

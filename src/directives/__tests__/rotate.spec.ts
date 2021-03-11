@@ -1,6 +1,7 @@
 import { DirectiveContext } from '../../types'
 import { rotate } from '../rotate'
 import { transformImage } from '../../util'
+import { applyTransforms } from '../../util'
 import { toMatchFile } from 'jest-file-snapshot'
 import sharp from 'sharp'
 import { join } from 'path'
@@ -59,6 +60,7 @@ describe('rotate', () => {
 
             // @ts-ignore
             const out = await transformImage(img, [rotate({ rotate: '90' }, dirCtx)]).toBuffer()
+            const out = await applyTransforms(img, [rotate({ rotate: '90' }, dirCtx)]).toBuffer()
 
             expect(out).toMatchFile()
         })
@@ -68,6 +70,7 @@ describe('rotate', () => {
 
             // @ts-ignore
             const out = await transformImage(img, [rotate({ rotate: '45' }, dirCtx)]).toBuffer()
+            const out = await applyTransforms(img, [rotate({ rotate: '45' }, dirCtx)]).toBuffer()
 
             expect(out).toMatchFile()
         })
@@ -77,6 +80,7 @@ describe('rotate', () => {
 
             // @ts-ignore
             const out = await transformImage(img, [rotate({ rotate: '45', background: 'fff' }, dirCtx)]).toBuffer()
+            const out = await applyTransforms(img, [rotate({ rotate: '45', background: 'fff' }, dirCtx)]).toBuffer()
 
             expect(out).toMatchFile()
         })

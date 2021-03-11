@@ -3,6 +3,7 @@ import { flip } from '../flip'
 import { join } from 'path'
 import sharp from 'sharp'
 import { transformImage } from '../../util'
+import { applyTransforms } from '../../util'
 import { toMatchFile } from 'jest-file-snapshot'
 
 expect.extend({ toMatchFile })
@@ -61,6 +62,7 @@ describe('flip', () => {
 
             // @ts-ignore
             const out = await transformImage(img, [flip({ flip: 'true' }, dirCtx)]).toBuffer()
+            const out = await applyTransforms(img, [flip({ flip: 'true' }, dirCtx)]).toBuffer()
 
             expect(out).toMatchFile()
         })

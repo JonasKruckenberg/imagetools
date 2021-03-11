@@ -83,5 +83,6 @@ export async function restoreFromCache(id: string, cachePath: string) {
 }
 
 export function transformImage(image: Sharp, transforms: ImageTransformation[]) {
+export function applyTransforms(image: Sharp, transforms: ImageTransformation[]) {
     return transforms.reduce((image, transform) => transform(image), image)
 }

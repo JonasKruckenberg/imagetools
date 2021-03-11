@@ -1,6 +1,7 @@
 import { hsb } from '../hsb'
 import { DirectiveContext } from '../../types'
 import { transformImage } from '../../util'
+import { applyTransforms } from '../../util'
 import { toMatchFile } from 'jest-file-snapshot'
 import { join } from 'path'
 import sharp from 'sharp'
@@ -106,6 +107,7 @@ describe('hsb', () => {
 
                 //@ts-ignore
                 const out = await transformImage(img, [hsb({ hue: '45' }, dirCtx)]).toBuffer()
+                const out = await applyTransforms(img, [hsb({ hue: '45' }, dirCtx)]).toBuffer()
 
                 expect(out).toMatchFile()
             })
@@ -115,6 +117,7 @@ describe('hsb', () => {
 
                 //@ts-ignore
                 const out = await transformImage(img, [hsb({ hue: '90' }, dirCtx)]).toBuffer()
+                const out = await applyTransforms(img, [hsb({ hue: '90' }, dirCtx)]).toBuffer()
 
                 expect(out).toMatchFile()
             })
@@ -124,6 +127,7 @@ describe('hsb', () => {
 
                 //@ts-ignore
                 const out = await transformImage(img, [hsb({ hue: '180' }, dirCtx)]).toBuffer()
+                const out = await applyTransforms(img, [hsb({ hue: '180' }, dirCtx)]).toBuffer()
 
                 expect(out).toMatchFile()
             })
@@ -156,6 +160,7 @@ describe('hsb', () => {
 
                 //@ts-ignore
                 const out = await transformImage(img, [hsb({ saturation: '0.5' }, dirCtx)]).toBuffer()
+                const out = await applyTransforms(img, [hsb({ saturation: '0.5' }, dirCtx)]).toBuffer()
 
                 expect(out).toMatchFile()
             })
@@ -165,6 +170,7 @@ describe('hsb', () => {
 
                 //@ts-ignore
                 const out = await transformImage(img, [hsb({ saturation: '1.5' }, dirCtx)]).toBuffer()
+                const out = await applyTransforms(img, [hsb({ saturation: '1.5' }, dirCtx)]).toBuffer()
 
                 expect(out).toMatchFile()
             })
@@ -197,6 +203,7 @@ describe('hsb', () => {
 
                 //@ts-ignore
                 const out = await transformImage(img, [hsb({ brightness: '0.5' }, dirCtx)]).toBuffer()
+                const out = await applyTransforms(img, [hsb({ brightness: '0.5' }, dirCtx)]).toBuffer()
 
                 expect(out).toMatchFile()
             })
@@ -206,6 +213,7 @@ describe('hsb', () => {
 
                 //@ts-ignore
                 const out = await transformImage(img, [hsb({ brightness: '1.5' }, dirCtx)]).toBuffer()
+                const out = await applyTransforms(img, [hsb({ brightness: '1.5' }, dirCtx)]).toBuffer()
 
                 expect(out).toMatchFile()
             })

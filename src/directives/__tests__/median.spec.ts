@@ -3,6 +3,7 @@ import { join } from 'path'
 import sharp from 'sharp'
 import { DirectiveContext } from '../../types'
 import { transformImage } from '../../util'
+import { applyTransforms } from '../../util'
 import { toMatchFile } from 'jest-file-snapshot'
 
 expect.extend({ toMatchFile })
@@ -47,6 +48,7 @@ describe('median', () => {
 
             //@ts-ignore
             const out = await transformImage(img, [median({ median: '3' }, dirCtx)]).toBuffer()
+            const out = await applyTransforms(img, [median({ median: '3' }, dirCtx)]).toBuffer()
 
             expect(out).toMatchFile()
         })

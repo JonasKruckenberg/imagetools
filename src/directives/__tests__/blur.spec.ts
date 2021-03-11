@@ -1,5 +1,6 @@
 import { blur } from '../blur'
 import { transformImage } from '../../util'
+import { applyTransforms } from '../../util'
 import { toMatchFile } from 'jest-file-snapshot'
 import sharp from 'sharp'
 import { DirectiveContext } from '../../types'
@@ -78,6 +79,7 @@ describe('blur', () => {
 
             //@ts-ignore
             const out = await transformImage(img, [blur({ blur: '' }, dirCtx)]).toBuffer()
+            const out = await applyTransforms(img, [blur({ blur: '' }, dirCtx)]).toBuffer()
 
             expect(out).toMatchFile()
         })
@@ -87,6 +89,7 @@ describe('blur', () => {
             
             //@ts-ignore
             const out = await transformImage(img, [blur({ blur: '5' }, dirCtx)]).toBuffer()
+            const out = await applyTransforms(img, [blur({ blur: '5' }, dirCtx)]).toBuffer()
             
             expect(out).toMatchFile()
         })
@@ -96,6 +99,7 @@ describe('blur', () => {
             
             //@ts-ignore
             const out = await transformImage(img, [blur({ blur: '50' }, dirCtx)]).toBuffer()
+            const out = await applyTransforms(img, [blur({ blur: '50' }, dirCtx)]).toBuffer()
             
             expect(out).toMatchFile()
         })
@@ -106,6 +110,7 @@ describe('blur', () => {
     
             //@ts-ignore
             const out = await transformImage(img, [blur({ blur: '500' }, dirCtx)]).toBuffer()
+            const out = await applyTransforms(img, [blur({ blur: '500' }, dirCtx)]).toBuffer()
     
             expect(out).toMatchFile()
         })
