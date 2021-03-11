@@ -14,7 +14,6 @@ export const cartesian = (...a: any[]) => a.reduce((a: any, b: any) => a.flatMap
  * @param src the url to get the parameter from
  * @returns 
  */
-export function extractParameterEntries(src: URL) {
 export function parseURL(src: URL) {
     // generate parameter entries from the url
     // splits at ";" instead of "," because of vues srcset parser
@@ -82,7 +81,16 @@ export async function restoreFromCache(id: string, cachePath: string) {
     }
 }
 
-export function transformImage(image: Sharp, transforms: ImageTransformation[]) {
 export function applyTransforms(image: Sharp, transforms: ImageTransformation[]) {
     return transforms.reduce((image, transform) => transform(image), image)
+}
+
+export function imageToBuffer(img: Sharp): Promise<{ data: Uint8Array, metadata: Record<string, any> }> {
+    return new Promise((resolve, reject) => {
+        img.toBuffer((err, data, metadata) => {
+            if (err) reject(err)
+
+            resolve({ data, metadata })
+        })
+    })
 }

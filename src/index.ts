@@ -13,6 +13,7 @@ import * as builtinOutputFormats from './output'
 import { buildDirectiveOptions, buildTransforms, extractParameterEntries, restoreFromCache, transformImage } from './util'
     parseURL,
     applyTransforms,
+    imageToBuffer,
 import { PluginOptions } from './types'
 
 export * from './directives'
@@ -104,12 +105,11 @@ export function imagetools(userOptions: Partial<PluginOptions> = {}): Plugin {
                         const image = applyTransforms(sharp(src.pathname), transforms)
 
                         data = await image.toBuffer()
+                        const res = await imageToBuffer(image)
 
                         metadata = Object.assign({}, await image.metadata(), metadata)
-                        // delete the xmp buffer to not leak private metadata
-                        delete metadata.xmp
-                        delete metadata.exif
-                        delete metadata.iptc
+                        data = res.data
+                        metadata = { ...res.metadata, ...metadata }
 
                         // if caching is enabled cache the result for future builds
                         if (pluginOptions.cache) await cachePut(pluginOptions.cache, cacheId, data, { metadata })
