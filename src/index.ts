@@ -10,10 +10,14 @@ import sharp from 'sharp'
 
 import * as builtinDiretcives from './directives'
 import * as builtinOutputFormats from './output'
-import { buildDirectiveOptions, buildTransforms, extractParameterEntries, restoreFromCache, transformImage } from './util'
+import {
+    buildDirectiveOptions,
+    buildTransforms,
     parseURL,
     applyTransforms,
     imageToBuffer,
+    restoreFromCache
+} from './util'
 import { PluginOptions } from './types'
 
 export * from './directives'
@@ -61,7 +65,6 @@ export function imagetools(userOptions: Partial<PluginOptions> = {}): Plugin {
             if (!filter(src.href)) return null
 
             // get all parameters from the url query string
-            const parameters = extractParameterEntries(src)
             const parameters = parseURL(src)
 
             // generate configurations for all resulting images
@@ -89,7 +92,7 @@ export function imagetools(userOptions: Partial<PluginOptions> = {}): Plugin {
                     const { transforms, metadata: _metadata, parametersUsed } = buildTransforms(config, directives)
 
                     const unusedParams = Array.from(src.searchParams.keys())
-                        .filter(key => !parametersUsed.has(key) && !['meta','metadata','srcset'].includes(key))
+                        .filter(key => !parametersUsed.has(key) && !['meta', 'metadata', 'srcset'].includes(key))
 
                     if (!pluginOptions.silent) {
                         for (const key of unusedParams) {
@@ -101,13 +104,10 @@ export function imagetools(userOptions: Partial<PluginOptions> = {}): Plugin {
 
                     // only apply the actual transformtions in build mode
                     if (transformImages) {
-                        const image = transformImage(sharp(src.pathname), transforms)
                         const image = applyTransforms(sharp(src.pathname), transforms)
 
-                        data = await image.toBuffer()
                         const res = await imageToBuffer(image)
 
-                        metadata = Object.assign({}, await image.metadata(), metadata)
                         data = res.data
                         metadata = { ...res.metadata, ...metadata }
 
