@@ -85,7 +85,7 @@ export function imagetools(userOptions: Partial<PluginOptions> = {}): Plugin {
                     const { transforms, metadata: _metadata, parametersUsed } = buildTransforms(config, directives)
 
                     const unusedParams = Array.from(src.searchParams.keys())
-                        .filter(key => !parametersUsed.has(key))
+                        .filter(key => !parametersUsed.has(key) && !['meta','metadata','srcset'].includes(key))
 
                     if (!pluginOptions.silent) {
                         for (const key of unusedParams) {
@@ -184,7 +184,7 @@ export function imagetools(userOptions: Partial<PluginOptions> = {}): Plugin {
                 for (const key in cachedImages) {
                     if (!totalImages.has(key)) {
                         await removeFromCache(pluginOptions.cache, key)
-                        console.log(`deleted image ${key} from cache`);
+                        //console.log(`deleted image ${key} from cache`);
                     }
                 }
             }
