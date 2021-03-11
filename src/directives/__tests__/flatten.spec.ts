@@ -1,5 +1,4 @@
 import { flatten } from '../flatten'
-import { transformImage } from '../../util'
 import { applyTransforms } from '../../util'
 import { toMatchFile } from 'jest-file-snapshot'
 import sharp from 'sharp'
@@ -60,7 +59,7 @@ describe('flatten', () => {
 
     describe('transform', () => {
         test('boolean', async () => {
-            const img = sharp(join(__dirname, '/__assets__/pexels-allec-gomes-5195763.jpg'))
+            const img = sharp(join(__dirname, '../../__tests__/__assets__/pexels-allec-gomes-5195763.jpg'))
 
             //@ts-ignore
             const out = await applyTransforms(img, [flatten({ flatten: 'true' }, dirCtx)]).toBuffer()
@@ -69,10 +68,9 @@ describe('flatten', () => {
         })
 
         test('w/ background', async () => {
-            const img = sharp(join(__dirname, '/__assets__/pexels-allec-gomes-5195763.jpg'))
+            const img = sharp(join(__dirname, '../../__tests__/__assets__/pexels-allec-gomes-5195763.jpg'))
 
             //@ts-ignore
-            const out = await transformImage(img, [flatten({ flatten: 'true', background: 'fff' }, dirCtx)]).toBuffer()
             const out = await applyTransforms(img, [flatten({ flatten: 'true', background: 'fff' }, dirCtx)]).toBuffer()
 
             expect(out).toMatchFile(snapshot('flatten-boolean-bg.jpg'))

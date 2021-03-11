@@ -1,6 +1,5 @@
 import { format, ImageFormat } from '../format'
 import { DirectiveContext } from '../../types'
-import { transformImage } from '../../util'
 import { applyTransforms } from '../../util'
 import { toMatchFile } from 'jest-file-snapshot'
 import { join } from 'path'
@@ -54,36 +53,32 @@ describe('format', () => {
 
     describe('transform', () => {
         test('webp', async () => {
-            const img = sharp(join(__dirname, '/__assets__/pexels-allec-gomes-5195763.jpg'))
+            const img = sharp(join(__dirname, '../../__tests__/__assets__/pexels-allec-gomes-5195763.jpg'))
 
             // @ts-ignore
-            const out = await transformImage(img, [format({ format: 'webp' }, dirCtx)]).toBuffer()
             const out = await applyTransforms(img, [format({ format: 'webp' }, dirCtx)]).toBuffer()
 
             expect(out).toMatchFile()
         })
 
         test('jpg/jpeg', async () => {
-            const img = sharp(join(__dirname, '/__assets__/pexels-allec-gomes-5195763.jpg'))
+            const img = sharp(join(__dirname, '../../__tests__/__assets__/pexels-allec-gomes-5195763.jpg'))
 
             // @ts-ignore
-            const out1 = await transformImage(img, [format({ format: 'jpg' }, dirCtx)]).toBuffer()
             const out1 = await applyTransforms(img, [format({ format: 'jpg' }, dirCtx)]).toBuffer()
 
             expect(out1).toMatchFile()
 
             // @ts-ignore
-            const out2 = await transformImage(img, [format({ format: 'jpeg' }, dirCtx)]).toBuffer()
             const out2 = await applyTransforms(img, [format({ format: 'jpeg' }, dirCtx)]).toBuffer()
 
             expect(out1).toEqual(out2)
         })
 
         test('png', async () => {
-            const img = sharp(join(__dirname, '/__assets__/pexels-allec-gomes-5195763.jpg'))
+            const img = sharp(join(__dirname, '../../__tests__/__assets__/pexels-allec-gomes-5195763.jpg'))
 
             // @ts-ignore
-            const out = await transformImage(img, [format({ format: 'png' }, dirCtx)]).toBuffer()
             const out = await applyTransforms(img, [format({ format: 'png' }, dirCtx)]).toBuffer()
 
             expect(out).toMatchFile()
@@ -91,10 +86,9 @@ describe('format', () => {
 
         test('avif', async () => {
             jest.setTimeout(200000)// such a high blur number takes longer than 5 sec
-            const img = sharp(join(__dirname, '/__assets__/pexels-allec-gomes-5195763.jpg'))
+            const img = sharp(join(__dirname, '../../__tests__/__assets__/pexels-allec-gomes-5195763.jpg'))
 
             // @ts-ignore
-            const out = await transformImage(img, [format({ format: 'avif' }, dirCtx)]).toBuffer()
             const out = await applyTransforms(img, [format({ format: 'avif' }, dirCtx)]).toBuffer()
 
             expect(out).toMatchFile()
@@ -102,10 +96,9 @@ describe('format', () => {
 
         test('heif', async () => {
             jest.setTimeout(200000)// such a high blur number takes longer than 5 sec
-            const img = sharp(join(__dirname, '/__assets__/pexels-allec-gomes-5195763.jpg'))
+            const img = sharp(join(__dirname, '../../__tests__/__assets__/pexels-allec-gomes-5195763.jpg'))
 
             // @ts-ignore
-            const out = await transformImage(img, [format({ format: 'heif' }, dirCtx)]).toBuffer()
             const out = await applyTransforms(img, [format({ format: 'heif' }, dirCtx)]).toBuffer()
 
             expect(out).toMatchFile()
@@ -113,10 +106,9 @@ describe('format', () => {
 
         test('heic', async () => {
             jest.setTimeout(200000)// such a high blur number takes longer than 5 sec
-            const img = sharp(join(__dirname, '/__assets__/pexels-allec-gomes-5195763.jpg'))
+            const img = sharp(join(__dirname, '../../__tests__/__assets__/pexels-allec-gomes-5195763.jpg'))
 
             // @ts-ignore
-            const out = await transformImage(img, [format({ format: 'heic' }, dirCtx)]).toBuffer()
             const out = await applyTransforms(img, [format({ format: 'heic' }, dirCtx)]).toBuffer()
 
             expect(out).toMatchFile()
@@ -124,10 +116,9 @@ describe('format', () => {
 
         test('tiff', async () => {
             jest.setTimeout(200000)// such a high blur number takes longer than 5 sec
-            const img = sharp(join(__dirname, '/__assets__/pexels-allec-gomes-5195763.jpg'))
+            const img = sharp(join(__dirname, '../../__tests__/__assets__/pexels-allec-gomes-5195763.jpg'))
 
             // @ts-ignore
-            const out = await transformImage(img, [format({ format: 'tiff' }, dirCtx)]).toBuffer()
             const out = await applyTransforms(img, [format({ format: 'tiff' }, dirCtx)]).toBuffer()
 
             expect(out).toMatchFile()

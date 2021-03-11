@@ -1,5 +1,4 @@
 import { blur } from '../blur'
-import { transformImage } from '../../util'
 import { applyTransforms } from '../../util'
 import { toMatchFile } from 'jest-file-snapshot'
 import sharp from 'sharp'
@@ -75,30 +74,27 @@ describe('blur', () => {
 
     describe('transform', () => {
         test('boolean', async () => {
-            const img = sharp(join(__dirname, '/__assets__/pexels-allec-gomes-5195763.jpg'))
+            const img = sharp(join(__dirname, '../../__tests__/__assets__/pexels-allec-gomes-5195763.jpg'))
 
             //@ts-ignore
-            const out = await transformImage(img, [blur({ blur: '' }, dirCtx)]).toBuffer()
             const out = await applyTransforms(img, [blur({ blur: '' }, dirCtx)]).toBuffer()
 
             expect(out).toMatchFile()
         })
 
         test('5', async () => {
-            const img = sharp(join(__dirname, '/__assets__/pexels-allec-gomes-5195763.jpg'))
+            const img = sharp(join(__dirname, '../../__tests__/__assets__/pexels-allec-gomes-5195763.jpg'))
             
             //@ts-ignore
-            const out = await transformImage(img, [blur({ blur: '5' }, dirCtx)]).toBuffer()
             const out = await applyTransforms(img, [blur({ blur: '5' }, dirCtx)]).toBuffer()
             
             expect(out).toMatchFile()
         })
         
         test('50', async () => {
-            const img = sharp(join(__dirname, '/__assets__/pexels-allec-gomes-5195763.jpg'))
+            const img = sharp(join(__dirname, '../../__tests__/__assets__/pexels-allec-gomes-5195763.jpg'))
             
             //@ts-ignore
-            const out = await transformImage(img, [blur({ blur: '50' }, dirCtx)]).toBuffer()
             const out = await applyTransforms(img, [blur({ blur: '50' }, dirCtx)]).toBuffer()
             
             expect(out).toMatchFile()
@@ -106,10 +102,9 @@ describe('blur', () => {
 
         test('500', async () => {
             jest.setTimeout(200000)// such a high blur number takes longer than 5 sec
-            const img = sharp(join(__dirname, '/__assets__/pexels-allec-gomes-5195763.jpg'))
+            const img = sharp(join(__dirname, '../../__tests__/__assets__/pexels-allec-gomes-5195763.jpg'))
     
             //@ts-ignore
-            const out = await transformImage(img, [blur({ blur: '500' }, dirCtx)]).toBuffer()
             const out = await applyTransforms(img, [blur({ blur: '500' }, dirCtx)]).toBuffer()
     
             expect(out).toMatchFile()

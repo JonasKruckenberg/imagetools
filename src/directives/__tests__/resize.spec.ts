@@ -1,6 +1,5 @@
 import { resize } from '../resize'
 import sharp from 'sharp'
-import { transformImage } from '../../util'
 import { applyTransforms } from '../../util'
 import { DirectiveContext } from '../../types'
 import { toMatchFile } from 'jest-file-snapshot'
@@ -54,60 +53,54 @@ describe('resize', () => {
 
     describe('transform',() => {
         it('width', async () => {
-            const img = sharp(join(__dirname,'/__assets__/pexels-allec-gomes-5195763.jpg'))
+            const img = sharp(join(__dirname,'../../__tests__/__assets__/pexels-allec-gomes-5195763.jpg'))
     
             // @ts-ignore
-            const out = await transformImage(img, [resize({ width: '200' }, dirCtx)]).toBuffer()
             const out = await applyTransforms(img, [resize({ width: '200' }, dirCtx)]).toBuffer()
     
             expect(out).toMatchFile(snapshot('resize-width.jpg'))
         })
     
         it('w', async () => {
-            const img = sharp(join(__dirname,'/__assets__/pexels-allec-gomes-5195763.jpg'))
+            const img = sharp(join(__dirname,'../../__tests__/__assets__/pexels-allec-gomes-5195763.jpg'))
     
             // @ts-ignore
-            const out = await transformImage(img, [resize({ w: '200' }, dirCtx)]).toBuffer()
             const out = await applyTransforms(img, [resize({ w: '200' }, dirCtx)]).toBuffer()
     
             expect(out).toMatchFile(snapshot('resize-w.jpg'))
         })
     
         it('height', async () => {
-            const img = sharp(join(__dirname,'/__assets__/pexels-allec-gomes-5195763.jpg'))
+            const img = sharp(join(__dirname,'../../__tests__/__assets__/pexels-allec-gomes-5195763.jpg'))
     
             // @ts-ignore
-            const out = await transformImage(img, [resize({ height: '200' }, dirCtx)]).toBuffer()
             const out = await applyTransforms(img, [resize({ height: '200' }, dirCtx)]).toBuffer()
     
             expect(out).toMatchFile(snapshot('resize-height.jpg'))
         })
     
         it('h', async () => {
-            const img = sharp(join(__dirname,'/__assets__/pexels-allec-gomes-5195763.jpg'))
+            const img = sharp(join(__dirname,'../../__tests__/__assets__/pexels-allec-gomes-5195763.jpg'))
     
             // @ts-ignore
-            const out = await transformImage(img, [resize({ h: '200' }, dirCtx)]).toBuffer()
             const out = await applyTransforms(img, [resize({ h: '200' }, dirCtx)]).toBuffer()
     
             expect(out).toMatchFile(snapshot('resize-h.jpg'))
         })
     
         it('width & height', async () => {
-            const img = sharp(join(__dirname,'/__assets__/pexels-allec-gomes-5195763.jpg'))
+            const img = sharp(join(__dirname,'../../__tests__/__assets__/pexels-allec-gomes-5195763.jpg'))
     
             // @ts-ignore
-            const out = await transformImage(img, [resize({ width: '200', height: '200' }, dirCtx)]).toBuffer()
             const out = await applyTransforms(img, [resize({ width: '200', height: '200' }, dirCtx)]).toBuffer()
     
             expect(out).toMatchFile(snapshot('resize-width&height.jpg'))
         })
     
         it('w & h', async () => {
-            const img = sharp(join(__dirname,'/__assets__/pexels-allec-gomes-5195763.jpg'))
+            const img = sharp(join(__dirname,'../../__tests__/__assets__/pexels-allec-gomes-5195763.jpg'))
     
             // @ts-ignore
-            const out = await transformImage(img, [resize({ w: '200', h: '200' }, dirCtx)]).toBuffer()
             const out = await applyTransforms(img, [resize({ w: '200', h: '200' }, dirCtx)]).toBuffer()
     
             expect(out).toMatchFile(snapshot('resize-w&h.jpg'))

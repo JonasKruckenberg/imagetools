@@ -2,7 +2,6 @@ import { tint } from '../tint'
 import { join } from 'path'
 import sharp from 'sharp'
 import { DirectiveContext } from '../../types'
-import { transformImage } from '../../util'
 import { applyTransforms } from '../../util'
 import { toMatchFile } from 'jest-file-snapshot'
 
@@ -43,28 +42,25 @@ describe('tint', () => {
 
     describe('transform', () => {
         test('red', async () => {
-            const img = sharp(join(__dirname, '/__assets__/pexels-allec-gomes-5195763.jpg'))
+            const img = sharp(join(__dirname, '../../__tests__/__assets__/pexels-allec-gomes-5195763.jpg'))
 
             //@ts-ignore
-            const out = await transformImage(img, [tint({ tint: 'f00' }, dirCtx)]).toBuffer()
             const out = await applyTransforms(img, [tint({ tint: 'f00' }, dirCtx)]).toBuffer()
 
             expect(out).toMatchFile()
         })
         test('green', async () => {
-            const img = sharp(join(__dirname, '/__assets__/pexels-allec-gomes-5195763.jpg'))
+            const img = sharp(join(__dirname, '../../__tests__/__assets__/pexels-allec-gomes-5195763.jpg'))
 
             //@ts-ignore
-            const out = await transformImage(img, [tint({ tint: '0f0' }, dirCtx)]).toBuffer()
             const out = await applyTransforms(img, [tint({ tint: '0f0' }, dirCtx)]).toBuffer()
 
             expect(out).toMatchFile()
         })
         test('blue', async () => {
-            const img = sharp(join(__dirname, '/__assets__/pexels-allec-gomes-5195763.jpg'))
+            const img = sharp(join(__dirname, '../../__tests__/__assets__/pexels-allec-gomes-5195763.jpg'))
 
             //@ts-ignore
-            const out = await transformImage(img, [tint({ tint: '00f' }, dirCtx)]).toBuffer()
             const out = await applyTransforms(img, [tint({ tint: '00f' }, dirCtx)]).toBuffer()
 
             expect(out).toMatchFile()

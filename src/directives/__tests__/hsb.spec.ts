@@ -1,6 +1,5 @@
 import { hsb } from '../hsb'
 import { DirectiveContext } from '../../types'
-import { transformImage } from '../../util'
 import { applyTransforms } from '../../util'
 import { toMatchFile } from 'jest-file-snapshot'
 import { join } from 'path'
@@ -103,30 +102,27 @@ describe('hsb', () => {
 
         describe('transform', () => {
             test('45', async () => {
-                const img = sharp(join(__dirname, '/__assets__/pexels-allec-gomes-5195763.jpg'))
+                const img = sharp(join(__dirname, '../../__tests__/__assets__/pexels-allec-gomes-5195763.jpg'))
 
                 //@ts-ignore
-                const out = await transformImage(img, [hsb({ hue: '45' }, dirCtx)]).toBuffer()
                 const out = await applyTransforms(img, [hsb({ hue: '45' }, dirCtx)]).toBuffer()
 
                 expect(out).toMatchFile()
             })
 
             test('90', async () => {
-                const img = sharp(join(__dirname, '/__assets__/pexels-allec-gomes-5195763.jpg'))
+                const img = sharp(join(__dirname, '../../__tests__/__assets__/pexels-allec-gomes-5195763.jpg'))
 
                 //@ts-ignore
-                const out = await transformImage(img, [hsb({ hue: '90' }, dirCtx)]).toBuffer()
                 const out = await applyTransforms(img, [hsb({ hue: '90' }, dirCtx)]).toBuffer()
 
                 expect(out).toMatchFile()
             })
 
             test('180', async () => {
-                const img = sharp(join(__dirname, '/__assets__/pexels-allec-gomes-5195763.jpg'))
+                const img = sharp(join(__dirname, '../../__tests__/__assets__/pexels-allec-gomes-5195763.jpg'))
 
                 //@ts-ignore
-                const out = await transformImage(img, [hsb({ hue: '180' }, dirCtx)]).toBuffer()
                 const out = await applyTransforms(img, [hsb({ hue: '180' }, dirCtx)]).toBuffer()
 
                 expect(out).toMatchFile()
@@ -156,20 +152,18 @@ describe('hsb', () => {
 
         describe('transform', () => {
             test('0.5', async () => {
-                const img = sharp(join(__dirname, '/__assets__/pexels-allec-gomes-5195763.jpg'))
+                const img = sharp(join(__dirname, '../../__tests__/__assets__/pexels-allec-gomes-5195763.jpg'))
 
                 //@ts-ignore
-                const out = await transformImage(img, [hsb({ saturation: '0.5' }, dirCtx)]).toBuffer()
                 const out = await applyTransforms(img, [hsb({ saturation: '0.5' }, dirCtx)]).toBuffer()
 
                 expect(out).toMatchFile()
             })
 
             test('1.5', async () => {
-                const img = sharp(join(__dirname, '/__assets__/pexels-allec-gomes-5195763.jpg'))
+                const img = sharp(join(__dirname, '../../__tests__/__assets__/pexels-allec-gomes-5195763.jpg'))
 
                 //@ts-ignore
-                const out = await transformImage(img, [hsb({ saturation: '1.5' }, dirCtx)]).toBuffer()
                 const out = await applyTransforms(img, [hsb({ saturation: '1.5' }, dirCtx)]).toBuffer()
 
                 expect(out).toMatchFile()
@@ -199,20 +193,18 @@ describe('hsb', () => {
 
         describe('transform', () => {
             test('0.5', async () => {
-                const img = sharp(join(__dirname, '/__assets__/pexels-allec-gomes-5195763.jpg'))
+                const img = sharp(join(__dirname, '../../__tests__/__assets__/pexels-allec-gomes-5195763.jpg'))
 
                 //@ts-ignore
-                const out = await transformImage(img, [hsb({ brightness: '0.5' }, dirCtx)]).toBuffer()
                 const out = await applyTransforms(img, [hsb({ brightness: '0.5' }, dirCtx)]).toBuffer()
 
                 expect(out).toMatchFile()
             })
 
             test('1.5', async () => {
-                const img = sharp(join(__dirname, '/__assets__/pexels-allec-gomes-5195763.jpg'))
+                const img = sharp(join(__dirname, '../../__tests__/__assets__/pexels-allec-gomes-5195763.jpg'))
 
                 //@ts-ignore
-                const out = await transformImage(img, [hsb({ brightness: '1.5' }, dirCtx)]).toBuffer()
                 const out = await applyTransforms(img, [hsb({ brightness: '1.5' }, dirCtx)]).toBuffer()
 
                 expect(out).toMatchFile()
