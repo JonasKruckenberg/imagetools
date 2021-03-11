@@ -17,6 +17,7 @@ All of the image transformations are powered by [sharp](https://sharp.pixelplumb
 - **Resize Images :framed_picture:**
 - **Easy Srcset generation :link:**
 - **Fast in development mode :zap:**
+- **Removes Image Metadata :lock:**
 - **Extensible :jigsaw:**
 - **Caches transformed images to speed up CI :green_heart:**
 

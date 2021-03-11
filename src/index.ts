@@ -104,6 +104,8 @@ export function imagetools(userOptions: Partial<PluginOptions> = {}): Plugin {
                         metadata = Object.assign({}, await image.metadata(), metadata)
                         // delete the xmp buffer to not leak private metadata
                         delete metadata.xmp
+                        delete metadata.exif
+                        delete metadata.iptc
 
                         // if caching is enabled cache the result for future builds
                         if (pluginOptions.cache) await cachePut(pluginOptions.cache, cacheId, data, { metadata })
