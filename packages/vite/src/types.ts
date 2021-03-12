@@ -1,4 +1,4 @@
-import type { Sharp } from 'sharp'
+import { Directive } from "imagetools-core/dist/types";
 
 export interface PluginOptions {
     /** 
@@ -23,14 +23,14 @@ export interface PluginOptions {
      * This list will be merged with the builtin directives before applying them to the input image.
      * @default []
      */
-    customDirectives: Directive[]
+    directives: Directive[]
 
     /**
      * You can use this option to extend the builtin list of output formats.
      * This list will be merged with the builtin output formats before determining the format to use.
      * @default []
      */
-    customOutputFormats: OutputFormat[]
+    // outputFormats: OutputFormat[]
 
     /**
      * By default vite-imagetools only generates output metadata during development mode
@@ -45,35 +45,4 @@ export interface PluginOptions {
      * @default false
      */
     silent: boolean
-}
-
-/**
- * A Directive is a function that takes in the parsed parameters and returns a function that applies some transformation to the image.
- * You can also return null to indicate that you don't want to handle this specific image (i.e. this directive is not applicable).
- */
-export type Directive<A = {}> = (cfg: Partial<DirectiveOptions & A>, ctx: DirectiveContext) => ImageTransformation | null
-
-export type MetaDirective<A = {},T = any> = (cfg: Partial<DirectiveOptions & A>, ctx: DirectiveContext) => T | null
-
-/**
- * A function that takes an image applies some transformations and returns the image.
- */
-export type ImageTransformation = (image: Sharp) => Sharp
-
-export type OutputFormat = (src:URL, outputMetadatas: Record<string, any>[]) => any
-
-export type DirectiveOptions = Record<string, any>
-
-
-export interface DirectiveContext {
-    /**
-     * Use this function to indicate that you used some directive.
-     * This is used to warn the user about unused directives.
-     */
-    useParam: (param: string) => void
-    /**
-     * Add a key value pair to the output metadata.
-     * The resulting metadata object will be available when importing an image with the `?metadata` directive
-     */
-    setMetadata: (key: string, value: any) => void
 }
