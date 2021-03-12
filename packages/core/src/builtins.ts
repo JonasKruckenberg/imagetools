@@ -1,0 +1,16 @@
+import { blur } from './directives/blur'
+import { flatten } from './directives/flatten'
+import { flip } from './directives/flip'
+import { flop } from './directives/flop'
+import { format } from './directives/format'
+import { grayscale } from './directives/grayscale'
+import { hsb } from './directives/hsb'
+import { invert } from './directives/invert'
+import { median } from './directives/median'
+import { normalize } from './directives/normalize'
+import { resize } from './directives/resize'
+import { rotate } from './directives/rotate'
+import { tint } from './directives/tint'
+import { Directive } from './types'
+
+export const builtins: Directive[] = [blur, flatten, flip, flop, format, grayscale, hsb, invert, median, normalize, resize, rotate, tint]
