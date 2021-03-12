@@ -7,8 +7,6 @@ import { DirectiveContext } from '../../types'
 
 expect.extend({ toMatchFile })
 
-const snapshot = (name: string) => join(__dirname, '__file_snapshots__', name)
-
 describe('flatten', () => {
     let dirCtx: DirectiveContext
     beforeEach(() => {
@@ -64,7 +62,7 @@ describe('flatten', () => {
             //@ts-ignore
             const out = await applyTransforms(img, [flatten({ flatten: 'true' }, dirCtx)]).toBuffer()
 
-            expect(out).toMatchFile(snapshot('flatten-boolean.jpg'))
+            expect(out).toMatchFile()
         })
 
         test('w/ background', async () => {
@@ -73,7 +71,7 @@ describe('flatten', () => {
             //@ts-ignore
             const out = await applyTransforms(img, [flatten({ flatten: 'true', background: 'fff' }, dirCtx)]).toBuffer()
 
-            expect(out).toMatchFile(snapshot('flatten-boolean-bg.jpg'))
+            expect(out).toMatchFile()
         })
     })
 })

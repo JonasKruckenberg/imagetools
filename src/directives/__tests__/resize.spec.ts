@@ -7,8 +7,6 @@ import { join } from 'path'
 
 expect.extend({ toMatchFile })
 
-const snapshot = (name: string) => join(__dirname, '__file_snapshots__', name)
-
 describe('resize', () => {
     let dirCtx: DirectiveContext
     beforeEach(() => {
@@ -58,7 +56,7 @@ describe('resize', () => {
             // @ts-ignore
             const out = await applyTransforms(img, [resize({ width: '200' }, dirCtx)]).toBuffer()
     
-            expect(out).toMatchFile(snapshot('resize-width.jpg'))
+            expect(out).toMatchFile()
         })
     
         it('w', async () => {
@@ -67,7 +65,7 @@ describe('resize', () => {
             // @ts-ignore
             const out = await applyTransforms(img, [resize({ w: '200' }, dirCtx)]).toBuffer()
     
-            expect(out).toMatchFile(snapshot('resize-w.jpg'))
+            expect(out).toMatchFile()
         })
     
         it('height', async () => {
@@ -76,7 +74,7 @@ describe('resize', () => {
             // @ts-ignore
             const out = await applyTransforms(img, [resize({ height: '200' }, dirCtx)]).toBuffer()
     
-            expect(out).toMatchFile(snapshot('resize-height.jpg'))
+            expect(out).toMatchFile()
         })
     
         it('h', async () => {
@@ -85,7 +83,7 @@ describe('resize', () => {
             // @ts-ignore
             const out = await applyTransforms(img, [resize({ h: '200' }, dirCtx)]).toBuffer()
     
-            expect(out).toMatchFile(snapshot('resize-h.jpg'))
+            expect(out).toMatchFile()
         })
     
         it('width & height', async () => {
@@ -94,7 +92,7 @@ describe('resize', () => {
             // @ts-ignore
             const out = await applyTransforms(img, [resize({ width: '200', height: '200' }, dirCtx)]).toBuffer()
     
-            expect(out).toMatchFile(snapshot('resize-width&height.jpg'))
+            expect(out).toMatchFile()
         })
     
         it('w & h', async () => {
@@ -103,7 +101,7 @@ describe('resize', () => {
             // @ts-ignore
             const out = await applyTransforms(img, [resize({ w: '200', h: '200' }, dirCtx)]).toBuffer()
     
-            expect(out).toMatchFile(snapshot('resize-w&h.jpg'))
+            expect(out).toMatchFile()
         })
     })
 })
