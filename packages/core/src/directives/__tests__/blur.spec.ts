@@ -90,13 +90,5 @@ describe('blur', () => {
 
             expect(data).toMatchFile()
         })
-
-        test('500', async () => {
-            jest.setTimeout(10000) // such a large blur takes for ever
-            //@ts-ignore
-            const { data, info } = await applyTransforms([blur({ blur: '500' }, dirCtx)], img)
-
-            expect(data).toMatchFile()
-        })
     })
 })
