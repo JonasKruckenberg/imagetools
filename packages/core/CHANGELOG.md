@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-next.3](https://github.com/JonasKruckenberg/vite-imagetools/compare/imagetools-core@0.1.0-next.2...imagetools-core@0.1.0-next.3) (2021-03-15)
+
+
+### Bug Fixes
+
+* fix imagetools core ([5a09e00](https://github.com/JonasKruckenberg/vite-imagetools/commit/5a09e00a518d154773599eaa0a9879352c3b923e))
+
+
+
+
+
 # [0.1.0-next.2](https://github.com/JonasKruckenberg/vite-imagetools/compare/imagetools-core@0.1.0-next.1...imagetools-core@0.1.0-next.2) (2021-03-15)
 
 **Note:** Version bump only for package imagetools-core
