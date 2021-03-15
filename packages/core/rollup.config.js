@@ -20,7 +20,10 @@ export default {
   ],
   plugins: [
     typescript({
-      typescript: require('typescript')
+      typescript: require('typescript'),
+      tsconfigOverride: {
+        exclude: ['src/**/__tests__/**']
+      }
     })
   ]
 }
