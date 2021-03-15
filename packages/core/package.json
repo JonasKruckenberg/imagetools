@@ -1,12 +1,25 @@
 {
   "name": "imagetools-core",
   "version": "0.1.0-next.5",
-  "license": "MIT",
   "main": "dist/index.cjs",
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
   "files": [
     "dist"
+  ],
+  "homepage": "https://github.com/JonasKruckenberg/vite-imagetools/tree/next/packages/core",
+  "author": "jkruckenberg <iterpre@protonmail.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/JonasKruckenberg/vite-imagetools.git"
+  },
+  "keywords": [
+    "resize-images",
+    "responsive-images",
+    "sharp",
+    "image",
+    "imagetools"
   ],
   "scripts": {
     "dev": "rollup -cw",
