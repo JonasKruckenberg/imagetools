@@ -1,6 +1,6 @@
 import { invert } from '../invert'
 import { DirectiveContext } from '../../types'
-import { applyTransforms } from '../../apply-transforms'
+import { applyTransforms } from '../../index'
 import sharp, { Sharp } from 'sharp'
 import { join } from 'path'
 import { toMatchFile } from 'jest-file-snapshot'
@@ -10,7 +10,7 @@ expect.extend({ toMatchFile })
 describe('invert', () => {
     let dirCtx: DirectiveContext
     beforeAll(() => {
-        dirCtx = { useParam: jest.fn, addMetadata: jest.fn, warn: jest.fn, error: jest.fn }
+        dirCtx = { useParam: jest.fn, addMetadata: jest.fn, warn: jest.fn }
     })
 
     test('keyword "invert"', () => {
@@ -54,16 +54,16 @@ describe('invert', () => {
 
         test('empty', async () => {
             //@ts-ignore
-            const out = await applyTransforms([invert({ invert: '' }, dirCtx)], img).toBuffer()
+            const { data, info } = await applyTransforms([invert({ invert: '' }, dirCtx)], img)
 
-            expect(out).toMatchFile()
+            expect(data).toMatchFile()
         })
 
         test('true', async () => {
             //@ts-ignore
-            const out = await applyTransforms([invert({ invert: 'true' }, dirCtx)], img).toBuffer()
+            const { data, info } = await applyTransforms([invert({ invert: 'true' }, dirCtx)], img)
 
-            expect(out).toMatchFile()
+            expect(data).toMatchFile()
         })
     })
 })

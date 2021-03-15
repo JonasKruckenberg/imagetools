@@ -1,6 +1,6 @@
 import { median } from '../median'
 import { DirectiveContext } from '../../types'
-import { applyTransforms } from '../../apply-transforms'
+import { applyTransforms } from '../../index'
 import sharp, { Sharp } from 'sharp'
 import { join } from 'path'
 import { toMatchFile } from 'jest-file-snapshot'
@@ -10,7 +10,7 @@ expect.extend({ toMatchFile })
 describe('median', () => {
     let dirCtx: DirectiveContext
     beforeAll(() => {
-        dirCtx = { useParam: jest.fn, addMetadata: jest.fn, warn: jest.fn, error: jest.fn }
+        dirCtx = { useParam: jest.fn, addMetadata: jest.fn, warn: jest.fn }
     })
 
     test('keyword "median"', () => {
@@ -59,16 +59,16 @@ describe('median', () => {
 
         test('3', async () => {
             //@ts-ignore
-            const out = await applyTransforms([median({ median: '3' }, dirCtx)], img).toBuffer()
+            const { data, info } = await applyTransforms([median({ median: '3' }, dirCtx)], img)
 
-            expect(out).toMatchFile()
+            expect(data).toMatchFile()
         })
 
         test('5', async () => {
             //@ts-ignore
-            const out = await applyTransforms([median({ median: '5' }, dirCtx)], img).toBuffer()
+            const { data, info } = await applyTransforms([median({ median: '5' }, dirCtx)], img)
 
-            expect(out).toMatchFile()
+            expect(data).toMatchFile()
         })
     })
 })

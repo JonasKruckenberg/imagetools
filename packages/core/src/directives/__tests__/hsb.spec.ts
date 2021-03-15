@@ -1,6 +1,6 @@
 import { hsb } from '../hsb'
 import { DirectiveContext } from '../../types'
-import { applyTransforms } from '../../apply-transforms'
+import { applyTransforms } from '../../index'
 import sharp, { Sharp } from 'sharp'
 import { join } from 'path'
 import { toMatchFile } from 'jest-file-snapshot'
@@ -10,7 +10,7 @@ expect.extend({ toMatchFile })
 describe('hue', () => {
     let dirCtx: DirectiveContext
     beforeAll(() => {
-        dirCtx = { useParam: jest.fn, addMetadata: jest.fn, warn: jest.fn, error: jest.fn }
+        dirCtx = { useParam: jest.fn, addMetadata: jest.fn, warn: jest.fn }
     })
 
     test('keyword "hue"', () => {
@@ -71,30 +71,30 @@ describe('hue', () => {
 
         test('45', async () => {
             //@ts-ignore
-            const out = await applyTransforms([hsb({ hue: '45' }, dirCtx)], img).toBuffer()
+            const { data, info } = await applyTransforms([hsb({ hue: '45' }, dirCtx)], img)
 
-            expect(out).toMatchFile()
+            expect(data).toMatchFile()
         })
 
         test('90', async () => {
             //@ts-ignore
-            const out = await applyTransforms([hsb({ hue: '90' }, dirCtx)], img).toBuffer()
+            const { data, info } = await applyTransforms([hsb({ hue: '90' }, dirCtx)], img)
 
-            expect(out).toMatchFile()
+            expect(data).toMatchFile()
         })
 
         test('-90', async () => {
             //@ts-ignore
-            const out = await applyTransforms([hsb({ hue: '-90' }, dirCtx)], img).toBuffer()
+            const { data, info } = await applyTransforms([hsb({ hue: '-90' }, dirCtx)], img)
 
-            expect(out).toMatchFile()
+            expect(data).toMatchFile()
         })
 
         test('180', async () => {
             //@ts-ignore
-            const out = await applyTransforms([hsb({ hue: '180' }, dirCtx)], img).toBuffer()
+            const { data, info } = await applyTransforms([hsb({ hue: '180' }, dirCtx)], img)
 
-            expect(out).toMatchFile()
+            expect(data).toMatchFile()
         })
     })
 })
@@ -102,7 +102,7 @@ describe('hue', () => {
 describe('saturation', () => {
     let dirCtx: DirectiveContext
     beforeAll(() => {
-        dirCtx = { useParam: jest.fn, addMetadata: jest.fn, warn: jest.fn, error: jest.fn }
+        dirCtx = { useParam: jest.fn, addMetadata: jest.fn, warn: jest.fn }
     })
 
     test('keyword "saturation"', () => {
@@ -151,23 +151,23 @@ describe('saturation', () => {
 
         test('0.5', async () => {
             //@ts-ignore
-            const out = await applyTransforms([hsb({ saturation: '0.5' }, dirCtx)], img).toBuffer()
+            const { data, info } = await applyTransforms([hsb({ saturation: '0.5' }, dirCtx)], img)
 
-            expect(out).toMatchFile()
+            expect(data).toMatchFile()
         })
 
         test('1', async () => {
             //@ts-ignore
-            const out = await applyTransforms([hsb({ saturation: '1' }, dirCtx)], img).toBuffer()
+            const { data, info } = await applyTransforms([hsb({ saturation: '1' }, dirCtx)], img)
 
-            expect(out).toMatchFile()
+            expect(data).toMatchFile()
         })
 
         test('1.5', async () => {
             //@ts-ignore
-            const out = await applyTransforms([hsb({ saturation: '1.5' }, dirCtx)], img).toBuffer()
+            const { data, info } = await applyTransforms([hsb({ saturation: '1.5' }, dirCtx)], img)
 
-            expect(out).toMatchFile()
+            expect(data).toMatchFile()
         })
     })
 })
@@ -175,7 +175,7 @@ describe('saturation', () => {
 describe('brightness', () => {
     let dirCtx: DirectiveContext
     beforeAll(() => {
-        dirCtx = { useParam: jest.fn, addMetadata: jest.fn, warn: jest.fn, error: jest.fn }
+        dirCtx = { useParam: jest.fn, addMetadata: jest.fn, warn: jest.fn }
     })
 
     test('keyword "brightness"', () => {
@@ -224,23 +224,23 @@ describe('brightness', () => {
 
         test('0.5', async () => {
             //@ts-ignore
-            const out = await applyTransforms([hsb({ brightness: '0.5' }, dirCtx)], img).toBuffer()
+            const { data, info } = await applyTransforms([hsb({ brightness: '0.5' }, dirCtx)], img)
 
-            expect(out).toMatchFile()
+            expect(data).toMatchFile()
         })
 
         test('1', async () => {
             //@ts-ignore
-            const out = await applyTransforms([hsb({ brightness: '1' }, dirCtx)], img).toBuffer()
+            const { data, info } = await applyTransforms([hsb({ brightness: '1' }, dirCtx)], img)
 
-            expect(out).toMatchFile()
+            expect(data).toMatchFile()
         })
 
         test('1.5', async () => {
             //@ts-ignore
-            const out = await applyTransforms([hsb({ brightness: '1.5' }, dirCtx)], img).toBuffer()
+            const { data, info } = await applyTransforms([hsb({ brightness: '1.5' }, dirCtx)], img)
 
-            expect(out).toMatchFile()
+            expect(data).toMatchFile()
         })
     })
 })

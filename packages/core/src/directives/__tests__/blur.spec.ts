@@ -1,6 +1,6 @@
 import { blur } from '../blur'
 import { DirectiveContext } from "../../types"
-import { applyTransforms } from '../../apply-transforms'
+import { applyTransforms } from '../../index'
 import sharp, { Sharp } from 'sharp'
 import { join } from 'path'
 import { toMatchFile } from 'jest-file-snapshot'
@@ -10,7 +10,7 @@ expect.extend({ toMatchFile })
 describe('blur', () => {
     let dirCtx: DirectiveContext
     beforeAll(() => {
-        dirCtx = { useParam: jest.fn, addMetadata: jest.fn, warn: jest.fn, error: jest.fn }
+        dirCtx = { useParam: jest.fn, addMetadata: jest.fn, warn: jest.fn }
     })
 
     test('keyword "blur"', () => {
@@ -23,7 +23,6 @@ describe('blur', () => {
         const res = blur({}, dirCtx)
 
         expect(res).toBeUndefined()
-
     })
 
     describe('arguments', () => {
@@ -66,38 +65,38 @@ describe('blur', () => {
 
         test('true', async () => {
             //@ts-ignore
-            const out = await applyTransforms([blur({ blur: 'true' }, dirCtx)], img).toBuffer()
+            const { data, info } = await applyTransforms([blur({ blur: 'true' }, dirCtx)], img)
 
-            expect(out).toMatchFile()
+            expect(data).toMatchFile()
         })
 
         test('0.5', async () => {
             //@ts-ignore
-            const out = await applyTransforms([blur({ blur: '0.5' }, dirCtx)], img).toBuffer()
+            const { data, info } = await applyTransforms([blur({ blur: '0.5' }, dirCtx)], img)
 
-            expect(out).toMatchFile()
+            expect(data).toMatchFile()
         })
 
         test('5', async () => {
             //@ts-ignore
-            const out = await applyTransforms([blur({ blur: '5' }, dirCtx)], img).toBuffer()
+            const { data, info } = await applyTransforms([blur({ blur: '5' }, dirCtx)], img)
 
-            expect(out).toMatchFile()
+            expect(data).toMatchFile()
         })
 
         test('50', async () => {
             //@ts-ignore
-            const out = await applyTransforms([blur({ blur: '50' }, dirCtx)], img).toBuffer()
+            const { data, info } = await applyTransforms([blur({ blur: '50' }, dirCtx)], img)
 
-            expect(out).toMatchFile()
+            expect(data).toMatchFile()
         })
 
-        test('500',async () => {
+        test('500', async () => {
             jest.setTimeout(10000) // such a large blur takes for ever
             //@ts-ignore
-            const out = await applyTransforms([blur({ blur: '500' }, dirCtx)], img).toBuffer()
+            const { data, info } = await applyTransforms([blur({ blur: '500' }, dirCtx)], img)
 
-            expect(out).toMatchFile()
+            expect(data).toMatchFile()
         })
     })
 })

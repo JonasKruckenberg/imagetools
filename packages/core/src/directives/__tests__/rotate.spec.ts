@@ -1,6 +1,6 @@
 import { rotate } from '../rotate'
 import { DirectiveContext } from '../../types'
-import { applyTransforms } from '../../apply-transforms'
+import { applyTransforms } from '../../index'
 import sharp, { Sharp } from 'sharp'
 import { join } from 'path'
 import { toMatchFile } from 'jest-file-snapshot'
@@ -10,7 +10,7 @@ expect.extend({ toMatchFile })
 describe('rotate', () => {
     let dirCtx: DirectiveContext
     beforeAll(() => {
-        dirCtx = { useParam: jest.fn, addMetadata: jest.fn, warn: jest.fn, error: jest.fn }
+        dirCtx = { useParam: jest.fn, addMetadata: jest.fn, warn: jest.fn }
     })
 
     test('keyword "rotate"', () => {
@@ -59,23 +59,23 @@ describe('rotate', () => {
 
         test('90', async () => {
             //@ts-ignore
-            const out = await applyTransforms([rotate({ rotate: '90' }, dirCtx)], img).toBuffer()
+            const { data, info } = await applyTransforms([rotate({ rotate: '90' }, dirCtx)], img)
 
-            expect(out).toMatchFile()
+            expect(data).toMatchFile()
         })
 
         test('180', async () => {
             //@ts-ignore
-            const out = await applyTransforms([rotate({ rotate: '180' }, dirCtx)], img).toBuffer()
+            const { data, info } = await applyTransforms([rotate({ rotate: '180' }, dirCtx)], img)
 
-            expect(out).toMatchFile()
+            expect(data).toMatchFile()
         })
 
         test('w/ background', async () => {
             //@ts-ignore
-            const out = await applyTransforms([rotate({ rotate: '45', background:'0f0' }, dirCtx)], img).toBuffer()
+            const { data, info } = await applyTransforms([rotate({ rotate: '45', background: '0f0' }, dirCtx)], img)
 
-            expect(out).toMatchFile()
+            expect(data).toMatchFile()
         })
     })
 })

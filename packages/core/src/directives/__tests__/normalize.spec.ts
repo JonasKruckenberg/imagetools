@@ -1,6 +1,6 @@
 import { normalize } from '../normalize'
 import { DirectiveContext } from '../../types'
-import { applyTransforms } from '../../apply-transforms'
+import { applyTransforms } from '../../index'
 import sharp, { Sharp } from 'sharp'
 import { join } from 'path'
 import { toMatchFile } from 'jest-file-snapshot'
@@ -10,7 +10,7 @@ expect.extend({ toMatchFile })
 describe('normalize', () => {
     let dirCtx: DirectiveContext
     beforeAll(() => {
-        dirCtx = { useParam: jest.fn, addMetadata: jest.fn, warn: jest.fn, error: jest.fn }
+        dirCtx = { useParam: jest.fn, addMetadata: jest.fn, warn: jest.fn }
     })
 
     test('keyword "normalize"', () => {
@@ -54,16 +54,16 @@ describe('normalize', () => {
 
         test('empty', async () => {
             //@ts-ignore
-            const out = await applyTransforms([normalize({ normalize: '' }, dirCtx)], img).toBuffer()
+            const { data, info } = await applyTransforms([normalize({ normalize: '' }, dirCtx)], img)
 
-            expect(out).toMatchFile()
+            expect(data).toMatchFile()
         })
 
         test('true', async () => {
             //@ts-ignore
-            const out = await applyTransforms([normalize({ normalize: 'true' }, dirCtx)], img).toBuffer()
+            const { data, info } = await applyTransforms([normalize({ normalize: 'true' }, dirCtx)], img)
 
-            expect(out).toMatchFile()
+            expect(data).toMatchFile()
         })
     })
 })

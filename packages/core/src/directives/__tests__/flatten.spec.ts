@@ -1,6 +1,6 @@
 import { flatten } from '../flatten'
 import { DirectiveContext } from "../../types"
-import { applyTransforms } from '../../apply-transforms'
+import { applyTransforms } from '../../index'
 import sharp, { Sharp } from 'sharp'
 import { join } from 'path'
 import { toMatchFile } from 'jest-file-snapshot'
@@ -10,7 +10,7 @@ expect.extend({ toMatchFile })
 describe('flatten', () => {
     let dirCtx: DirectiveContext
     beforeAll(() => {
-        dirCtx = { useParam: jest.fn, addMetadata: jest.fn, warn: jest.fn, error: jest.fn }
+        dirCtx = { useParam: jest.fn, addMetadata: jest.fn, warn: jest.fn }
     })
 
     test('keyword "flatten"', () => {
@@ -60,23 +60,23 @@ describe('flatten', () => {
 
         test('empty', async () => {
             //@ts-ignore
-            const out = await applyTransforms([flatten({ flatten: '' }, dirCtx)], img).toBuffer()
+            const { data, info } = await applyTransforms([flatten({ flatten: '' }, dirCtx)], img)
 
-            expect(out).toMatchFile()
+            expect(data).toMatchFile()
         })
 
         test('true', async () => {
             //@ts-ignore
-            const out = await applyTransforms([flatten({ flatten: 'true' }, dirCtx)], img).toBuffer()
-        
-            expect(out).toMatchFile()
+            const { data, info } = await applyTransforms([flatten({ flatten: 'true' }, dirCtx)], img)
+
+            expect(data).toMatchFile()
         })
 
         test('w/ background', async () => {
             //@ts-ignore
-            const out = await applyTransforms([flatten({ flatten: 'true', background: '00f' }, dirCtx)], img).toBuffer()
-        
-            expect(out).toMatchFile()
+            const { data, info } = await applyTransforms([flatten({ flatten: 'true', background: '00f' }, dirCtx)], img)
+
+            expect(data).toMatchFile()
         })
     })
 })
