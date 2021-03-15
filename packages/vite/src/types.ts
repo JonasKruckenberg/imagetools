@@ -32,14 +32,6 @@ export interface PluginOptions {
      * This list will be merged with the builtin output formats before determining the format to use.
      * @default []
      */
-
-    /**
-     * By default vite-imagetools only generates output metadata during development mode
-     * and only generates the actual images in build mode.
-     * You can set this option to `true` to override this behaviour.
-     * @default false
-     */
-    force: boolean
     extendOutputFormats?: (builtins: Record<string, OutputFormat>) => Record<string, OutputFormat>
 
     /**
