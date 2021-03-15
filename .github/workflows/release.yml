@@ -20,8 +20,8 @@ jobs:
       - run: yarn build
       - name: Configure CI Git User
         run: |
-          git config --global user.email octobot@github.com
-          git config --global user.name GitHub Actions
+          git config --global user.email iterpre@protonmail.com
+          git config --global user.name JonasKruckenberg
       - name: Release
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
