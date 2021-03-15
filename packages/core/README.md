@@ -1,1 +1,1 @@
-# core
+# imagetools-core
