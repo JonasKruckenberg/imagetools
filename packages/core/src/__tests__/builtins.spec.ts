@@ -1,4 +1,4 @@
-import * as builtins from '../builtins'
+import {builtins} from '../builtins'
 
 const expectedBuiltins = ['blur', 'flatten', 'flip', 'flop', 'format', 'grayscale', 'hsb', 'invert', 'median', 'normalize', 'resize', 'rotate', 'tint']
 
@@ -6,7 +6,7 @@ describe('builtins', () => {
     test('correct exports', () => {
 
         for (const builtin of expectedBuiltins) {
-            expect(builtins).toHaveProperty(builtin)
+            expect(builtin in builtins).toBeTruthy()
         }
     })
 
