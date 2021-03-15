@@ -18,7 +18,8 @@ jobs:
       - run: yarn
       - run: yarn test
       - run: yarn build
-      - run: echo //registry.npmjs.org/:_authToken=${NPM_TOKEN} > .npmrc
+      - name: create npmrc file
+        run: echo //registry.npmjs.org/:_authToken=${NPM_TOKEN} > .npmrc
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
       - name: Configure CI Git User
