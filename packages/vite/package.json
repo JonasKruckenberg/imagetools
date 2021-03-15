@@ -8,7 +8,7 @@
   "files": [
     "dist"
   ],
-  "homepage": "https://github.com/JonasKruckenberg/vite-imagetools",
+  "homepage": "https://github.com/JonasKruckenberg/vite-imagetools/tree/next/packages/vite",
   "author": "jkruckenberg <iterpre@protonmail.com>",
   "license": "MIT",
   "repository": {
