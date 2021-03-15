@@ -11,6 +11,5 @@ import { normalize } from './directives/normalize'
 import { resize } from './directives/resize'
 import { rotate } from './directives/rotate'
 import { tint } from './directives/tint'
-import { Directive } from './types'
 
-export const builtins: Directive[] = [blur, flatten, flip, flop, format, grayscale, hsb, invert, median, normalize, resize, rotate, tint]
+export const builtins = { blur, flatten, flip, flop, format, grayscale, hsb, invert, median, normalize, resize, rotate, tint }
