@@ -1,4 +1,6 @@
-import { Directive } from "imagetools-core/dist/types";
+import { Directive, ImageConfig } from "imagetools-core/dist/types";
+
+export type OutputFormat = (metadata: ImageConfig[]) => any
 
 export interface PluginOptions {
     /** 
@@ -23,14 +25,13 @@ export interface PluginOptions {
      * This list will be merged with the builtin directives before applying them to the input image.
      * @default []
      */
-    directives: Directive[]
+    extendDirectives?: (builtins: Record<string, Directive>) => Record<string, Directive>
 
     /**
      * You can use this option to extend the builtin list of output formats.
      * This list will be merged with the builtin output formats before determining the format to use.
      * @default []
      */
-    // outputFormats: OutputFormat[]
 
     /**
      * By default vite-imagetools only generates output metadata during development mode
@@ -39,6 +40,7 @@ export interface PluginOptions {
      * @default false
      */
     force: boolean
+    extendOutputFormats?: (builtins: Record<string, OutputFormat>) => Record<string, OutputFormat>
 
     /**
      * Settings this option to true disables all warnings produced by this plugin
