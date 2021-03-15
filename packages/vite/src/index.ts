@@ -1,69 +1,84 @@
-import * as imagetools from 'imagetools-core'
-import { get as cacheGet, put as cachePut } from 'cacache'
+// import * as imagetools from imagetools-core'
 import findCacheDir from 'find-cache-dir'
-import { basename, extname } from 'path'
-import { Plugin, ResolvedConfig } from 'vite'
-import { PluginOptions } from './types'
-import { builtins } from 'imagetools-core'
+import { basename, extname, join, relative } from 'path'
+import type { Plugin, ResolvedConfig } from 'vite'
+import { OutputFormat, PluginOptions } from './types'
+import { createFilter, dataToEsm } from '@rollup/pluginutils'
+import { builtins, parseURL, generateConfigs, generateTransforms, applyTransforms, cache, loadImageFromDisk } from 'imagetools-core'
+import { builtinOutputFormats, urlFormat } from './output-formats'
+import MagicString from 'magic-string'
 
 const defaultOptions: PluginOptions = {
     include: '**\/*.{heic,heif,avif,jpeg,jpg,png,tiff,webp,gif}?*',
     exclude: 'public\/**\/*',
     cache: findCacheDir({ name: 'vite-imagetools' }) || false,
-    directives: builtins,
-    force: false,
     silent: false
 }
 
 export default (userOptions: Partial<PluginOptions> = {}): Plugin => {
     const pluginOptions: PluginOptions = { ...defaultOptions, ...userOptions }
 
+    const filter = createFilter(pluginOptions.include, pluginOptions.exclude)
+
+    const directives = pluginOptions.extendDirectives
+        ? pluginOptions.extendDirectives(builtins)
+        : builtins
+
+    const OutputFormats = pluginOptions.extendOutputFormats
+        ? pluginOptions.extendOutputFormats(builtinOutputFormats)
+        : builtinOutputFormats
+
     let viteConfig: ResolvedConfig
 
     return {
         name: 'imagetools',
+        enforce: 'pre',
         configResolved(cfg) {
             viteConfig = cfg
         },
         async load(id) {
+            if (!filter(id)) return
+
             const src = new URL(id, 'file://')
-            const parameters = imagetools.parseURL(new URL(id, 'file://'))
+            const parameters = parseURL(new URL(id, 'file://'))
 
-            const imageConfigs = imagetools.generateConfigs(parameters)
+            const imageConfigs = generateConfigs(parameters)
 
-            const generatedImages = []
+            const generatedImages: Record<string, any>[] = []
 
             for (const config of imageConfigs) {
-                const cacheId = JSON.stringify(config)
+                const cacheId = cache.generateKey(src, config)
 
                 let outputMetadata = undefined
                 let outputData = undefined
 
                 try {
                     // restore from cache
-                    if(!pluginOptions.cache) throw new Error('no cache configured so break to transformation')
+                    if (!pluginOptions.cache) throw new Error('no cache configured so break to transformation')
 
-                    const { data, metadata } = await cacheGet(pluginOptions.cache, cacheId)
+                    const { data, metadata } = await cache.get(pluginOptions.cache, cacheId)
                     outputData = data
                     outputMetadata = metadata
 
                 } catch {
                     // generateTransforms
-                    const { transforms, metadata, warnings, parametersUsed } = imagetools.generateTransforms(config, imagetools.builtins)
+                    const { transforms, metadata, warnings, parametersUsed } = generateTransforms(config, directives)
 
                     if (!pluginOptions.silent) {
                         warnings.forEach(message => this.warn(message))
                     }
 
+                    const img = loadImageFromDisk(src.pathname)
+
                     // applyTransforms
-                    const { data, info } = await imagetools.applyTransforms(transforms, src)
+                    const { data, info } = await applyTransforms(transforms, img)
 
                     outputData = data
                     outputMetadata = { ...metadata, ...info }
 
                     // cache image
-                    if(pluginOptions.cache) {
-                        await cachePut(pluginOptions.cache, cacheId, data, { metadata: outputMetadata })
+                    if (pluginOptions.cache) {
+                        await cache.put(pluginOptions.cache, cacheId, data, outputMetadata)
                     }
                 }
 
@@ -77,22 +92,53 @@ export default (userOptions: Partial<PluginOptions> = {}): Plugin => {
                     })
 
                     outputMetadata.src = `__VITE_IMAGE_ASSET__${fileHandle}__`
-                } else if (pluginOptions.force && pluginOptions.cache) {
-                    const { path } = await cacheGet.info(pluginOptions.cache, cacheId)
-
-                    outputMetadata.src = path
+                } else if (pluginOptions.cache) {
+                    outputMetadata.src = relative(viteConfig.root,join(pluginOptions.cache, cacheId))
                 }
 
                 generatedImages.push(outputMetadata)
             }
 
-            console.log(generatedImages);
+            let outputFormat: OutputFormat = urlFormat
 
-            return null
+            for (const [key,format] of Object.entries(OutputFormats)) {
+                if(src.searchParams.has(key)) {
+                    outputFormat = format
+                    break
+                }
+            }
+
+            return dataToEsm(outputFormat(generatedImages))
         },
 
-        renderChunk() {
-            return null
+        renderChunk(code) {
+            const assetUrlQuotedRE = /__VITE_IMAGE_ASSET__([a-z\d]{8})__(?:_(.*?)__)?/g
+
+            let match
+            let s
+            while ((match = assetUrlQuotedRE.exec(code))) {
+                s = s || (s = new MagicString(code))
+                const [full, hash, postfix = ''] = match
+
+                const file = this.getFileName(hash)
+
+                const outputFilepath = viteConfig.base + file + postfix
+
+                s.overwrite(
+                    match.index,
+                    match.index + full.length,
+                    outputFilepath
+                )
+            }
+
+            if (s) {
+                return {
+                    code: s.toString(),
+                    map: viteConfig.build.sourcemap ? s.generateMap({ hires: true }) : null
+                }
+            } else {
+                return null
+            }
         }
     }
 }
