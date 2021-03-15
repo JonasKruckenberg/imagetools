@@ -1,16 +1,23 @@
 {
-  "name": "imagetools",
-  "version": "0.0.0",
-  "author": "JonasKruckenberg <iterpre@protonmail.com>",
+  "name": "it-test",
   "license": "MIT",
   "private": true,
-  "workspaces": [
-    "packages/*"
-  ],
-  "dependencies": {
-    "@changesets/cli": "^2.14.1"
+  "scripts": {
+    "release": "cross-env HUSKY_BYPASS=true lerna publish",
+    "prepare": "husky install"
   },
   "devDependencies": {
-    "typescript": "^4.2.3"
-  }
+    "@commitlint/cli": "^12.0.1",
+    "@commitlint/config-conventional": "^12.0.1",
+    "cross-env": "^7.0.3",
+    "lerna": "^4.0.0"
+  },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
+  },
+  "workspaces": [
+    "packages/*"
+  ]
 }
