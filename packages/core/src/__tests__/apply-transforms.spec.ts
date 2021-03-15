@@ -1,0 +1,27 @@
+import { applyTransforms } from '../index'
+import sharp, { Sharp } from 'sharp'
+import { join } from 'path'
+
+describe('applyTransforms', () => {
+    let img: Sharp
+    beforeEach(() => {
+        img = sharp(join(__dirname, './__assets__/pexels-allec-gomes-5195763.jpg'))
+    })
+
+    it('applies the transforms to the image', async () => {
+        const t = jest.fn(i => i)
+
+        await applyTransforms([t], img)
+
+        expect(t).toBeCalled()
+    })
+
+    it('returns the image data & info', async () => {
+        const t = jest.fn(i => i)
+
+        const res = await applyTransforms([t], img)
+
+        expect(res).toHaveProperty('data')
+        expect(res).toHaveProperty('info')
+    })
+})
