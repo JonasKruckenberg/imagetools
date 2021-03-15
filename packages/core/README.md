@@ -1,3 +1,3 @@
 # imagetools-core
 
-This is the core library
+This is the core library.
