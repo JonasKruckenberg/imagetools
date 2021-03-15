@@ -8,8 +8,8 @@ export const blur: Directive<BlurOptions> = (config, ctx) => {
     let blur: number | boolean | undefined = undefined
 
     blur = config.blur ? parseFloat(config.blur) : undefined
-    blur = config.blur === 'true'
-    blur = config.blur === ''
+    blur ||= config.blur === 'true'
+    blur ||= config.blur === ''
 
     if (!blur) return
 
