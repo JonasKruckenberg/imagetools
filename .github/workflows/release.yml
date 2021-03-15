@@ -9,13 +9,19 @@ jobs:
     steps:
       - uses: actions/checkout@v2
         with:
+          fetch-depth: "0"
           lfs: true
+      - run: git fetch --depth=1 origin +refs/tags/*:refs/tags/*
       - uses: actions/setup-node@v2
         with:
           node-version: "14"
       - run: yarn
       - run: yarn test
       - run: yarn build
+      - name: Configure CI Git User
+        run: |
+          git config --global user.email octobot@github.com
+          git config --global user.name GitHub Actions
       - name: Release
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
