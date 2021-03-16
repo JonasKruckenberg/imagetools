@@ -1,11 +1,16 @@
-import { MetaDirective } from "../types";
+import { TransformOption } from "../types";
+import { setMetadata } from "../lib/metadata";
 
 export interface QualityOptions {
     quality: string
 }
 
-export const quality: MetaDirective<QualityOptions> = ({ quality }, ctx) => {
-    if (!quality || !parseInt(quality)) return
+export const getQuality: TransformOption<QualityOptions, number> = ({ quality: _quality }, image) => {
+    const quality = _quality && parseInt(_quality)
 
-    return parseInt(quality)
+    if (!quality) return
+
+    setMetadata(image, 'quality', quality)
+
+    return quality
 }

@@ -1,4 +1,5 @@
-import { MetaDirective } from "../types"
+import { TransformOption } from "../types"
+import { setMetadata } from "../lib/metadata";
 
 export const positionValues = ['top', 'right top', 'right', 'right bottom', 'bottom', 'left bottom', 'left', 'left top',
     'north', 'northeast', 'east', 'southeast', 'south', 'southwest', 'west', 'northwest', 'center', 'centre',
@@ -12,7 +13,7 @@ export interface PositionOptions {
     position: PositionValue
 }
 
-export const position: MetaDirective<PositionOptions, PositionValue> = (config, ctx) => {
+export const getPosition: TransformOption<PositionOptions, PositionValue> = (config, image) => {
     let position: PositionValue | undefined = undefined
 
     if (config.position && positionValues.includes(config.position)) {
@@ -21,6 +22,8 @@ export const position: MetaDirective<PositionOptions, PositionValue> = (config, 
         position = Object.keys(config).find((k: any): k is PositionValue => positionShorthands.includes(k) && config[k] === '')
     }
     if (!position) return
+
+    setMetadata(image, 'position', position)
 
     return position
 }

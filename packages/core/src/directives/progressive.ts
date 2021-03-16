@@ -1,11 +1,14 @@
-import { MetaDirective } from "../types";
+import { TransformOption } from "../types";
+import { setMetadata } from "../lib/metadata";
 
 export interface ProgressiveOptions {
-    progressive: '' | 'true'
+    progressive: '' | 'true'
 }
 
-export const progressive:MetaDirective<ProgressiveOptions> = ({ progressive },ctx) => {
-    if(progressive !== '' && progressive !== 'true') return
+export const getProgressive: TransformOption<ProgressiveOptions> = ({ progressive }, image) => {
+    if (progressive !== '' && progressive !== 'true') return
+
+    setMetadata(image, 'progressive', true)
 
     return true
 }

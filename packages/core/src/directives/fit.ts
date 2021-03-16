@@ -1,4 +1,5 @@
-import { MetaDirective } from "../types"
+import { TransformOption } from "../types"
+import { setMetadata } from "../lib/metadata";
 
 export const fitValues = ['cover', 'contain', 'fill', 'inside', 'outside'] as const
 
@@ -8,7 +9,7 @@ export interface FitOptions {
     fit: FitValue
 }
 
-export const fit: MetaDirective<FitOptions, FitValue> = (config, ctx) => {
+export const getFit: TransformOption<FitOptions, FitValue> = (config, image) => {
     let fit: FitValue | undefined = undefined
 
     if (config.fit && fitValues.includes(config.fit)) {
@@ -18,6 +19,8 @@ export const fit: MetaDirective<FitOptions, FitValue> = (config, ctx) => {
     }
 
     if (!fit) return
+
+    setMetadata(image, 'fit', fit)
 
     return fit
 }
