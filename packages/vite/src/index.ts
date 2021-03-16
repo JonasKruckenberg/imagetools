@@ -1,34 +1,35 @@
-// import * as imagetools from imagetools-core'
-import findCacheDir from 'find-cache-dir'
-import { basename, extname, join, relative } from 'path'
-import type { Plugin, ResolvedConfig } from 'vite'
-import { OutputFormat, PluginOptions } from './types'
-import { createFilter, dataToEsm } from '@rollup/pluginutils'
-import { builtins, parseURL, generateConfigs, generateTransforms, applyTransforms, cache, loadImageFromDisk } from 'imagetools-core'
+import { Plugin, ResolvedConfig } from "vite";
+import { parseURL, loadImageFromDisk, builtins, resolveConfigs, applyTransforms, generateTransforms, getMetadata } from 'imagetools-core'
+import { basename, extname, join } from 'path'
+import { createFilter, dataToEsm } from "@rollup/pluginutils";
 import { builtinOutputFormats, urlFormat } from './output-formats'
 import MagicString from 'magic-string'
+import { OutputFormat, PluginOptions } from "./types";
+import findCacheDir from "find-cache-dir";
 
 const defaultOptions: PluginOptions = {
     include: '**\/*.{heic,heif,avif,jpeg,jpg,png,tiff,webp,gif}?*',
     exclude: 'public\/**\/*',
-    cache: findCacheDir({ name: 'vite-imagetools' }) || false,
+    cache: findCacheDir({ name: 'imagetools' }) || false,
     silent: false
 }
 
-export default (userOptions: Partial<PluginOptions> = {}): Plugin => {
+export default function imagetools(userOptions: Partial<PluginOptions> = {}): Plugin {
     const pluginOptions: PluginOptions = { ...defaultOptions, ...userOptions }
 
     const filter = createFilter(pluginOptions.include, pluginOptions.exclude)
 
-    const directives = pluginOptions.extendDirectives
-        ? pluginOptions.extendDirectives(builtins)
+    const directives = pluginOptions.extendDirectives 
+        ? pluginOptions.extendDirectives(builtins) 
         : builtins
 
-    const OutputFormats = pluginOptions.extendOutputFormats
-        ? pluginOptions.extendOutputFormats(builtinOutputFormats)
+    const outputFormats = pluginOptions.extendOutputFormats 
+        ? pluginOptions.extendOutputFormats(builtinOutputFormats) 
         : builtinOutputFormats
 
     let viteConfig: ResolvedConfig
+
+    const generatedImages = new Map()
 
     return {
         name: 'imagetools',
@@ -37,78 +38,67 @@ export default (userOptions: Partial<PluginOptions> = {}): Plugin => {
             viteConfig = cfg
         },
         async load(id) {
-            if (!filter(id)) return
+            if (!filter(id)) return null
 
             const src = new URL(id, 'file://')
-            const parameters = parseURL(new URL(id, 'file://'))
+            const parameters = parseURL(src)
+            const imageConfigs = resolveConfigs(parameters)
 
-            const imageConfigs = generateConfigs(parameters)
+            const img = loadImageFromDisk(src.pathname)
 
-            const generatedImages: Record<string, any>[] = []
+            const outputMetadatas = []
 
             for (const config of imageConfigs) {
-                const cacheId = cache.generateKey(src, config)
+                const id = Buffer.from(JSON.stringify(config)).toString('base64')
 
-                let outputMetadata = undefined
-                let outputData = undefined
+                const { transforms } = generateTransforms(config, directives)
+                const { image, metadata } = await applyTransforms(transforms, img)
 
-                try {
-                    // restore from cache
-                    if (!pluginOptions.cache) throw new Error('no cache configured so break to transformation')
+                generatedImages.set(id, image)
 
-                    const { data, metadata } = await cache.get(pluginOptions.cache, cacheId)
-                    outputData = data
-                    outputMetadata = metadata
-
-                } catch {
-                    // generateTransforms
-                    const { transforms, metadata, warnings, parametersUsed } = generateTransforms(config, directives)
-
-                    if (!pluginOptions.silent) {
-                        warnings.forEach(message => this.warn(message))
-                    }
-
-                    const img = loadImageFromDisk(src.pathname)
-
-                    // applyTransforms
-                    const { data, info } = await applyTransforms(transforms, img)
-
-                    outputData = data
-                    outputMetadata = { ...metadata, ...info }
-
-                    // cache image
-                    if (pluginOptions.cache) {
-                        await cache.put(pluginOptions.cache, cacheId, data, outputMetadata)
-                    }
-                }
-
-                if (viteConfig.command === 'build') {
-                    const fileName = basename(src.pathname, extname(src.pathname)) + `.${outputMetadata.format}`
+                if (!this.meta.watchMode) {
+                    const fileName = basename(src.pathname, extname(src.pathname)) + `.${metadata.format}`
 
                     const fileHandle = this.emitFile({
                         name: fileName,
-                        source: outputData,
+                        source: await image.toBuffer(),
                         type: 'asset'
                     })
 
-                    outputMetadata.src = `__VITE_IMAGE_ASSET__${fileHandle}__`
-                } else if (pluginOptions.cache) {
-                    outputMetadata.src = relative(viteConfig.root,join(pluginOptions.cache, cacheId))
+                    metadata.src = `__VITE_IMAGE_ASSET__${fileHandle}__`
+                } else {
+                    metadata.src = join('/@vite-imagetools', id)
                 }
 
-                generatedImages.push(outputMetadata)
+                outputMetadatas.push(metadata)
             }
 
             let outputFormat: OutputFormat = urlFormat
 
-            for (const [key,format] of Object.entries(OutputFormats)) {
-                if(src.searchParams.has(key)) {
+            for (const [key, format] of Object.entries(outputFormats)) {
+                if (src.searchParams.has(key)) {
                     outputFormat = format
                     break
                 }
             }
 
-            return dataToEsm(outputFormat(generatedImages))
+            return dataToEsm(outputFormat(outputMetadatas))
+        },
+
+        configureServer(server) {
+            server.middlewares.use((req, res, next) => {
+                if (req.url?.startsWith('/@vite-imagetools/')) {
+                    const [, id] = req.url.split('/@vite-imagetools/')
+
+                    const image = generatedImages.get(id)
+
+                    res.setHeader('Content-Type', `image/${getMetadata(image, 'format')}`)
+                    res.setHeader('Cache-Control', 'max-age=360000')
+                    return image.clone().pipe(res)
+                }
+
+                next()
+            })
         },
 
         renderChunk(code) {
