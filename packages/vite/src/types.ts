@@ -25,7 +25,7 @@ export interface PluginOptions {
      * This list will be merged with the builtin directives before applying them to the input image.
      * @default []
      */
-    extendDirectives?: (builtins: Record<string, Directive>) => Record<string, Directive>
+    extendDirectives?: (builtins: Directive[]) => Directive[]
 
     /**
      * You can use this option to extend the builtin list of output formats.
