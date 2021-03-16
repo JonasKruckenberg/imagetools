@@ -1,8 +1,9 @@
 import { Directive } from "../types";
-import { fit as getFit } from './fit'
-import { position as getPosition } from './position'
-import { kernel as getKernel } from './kernel'
-import { background as getBackground } from './background'
+import { getFit } from './fit'
+import { getPosition } from './position'
+import { getKernel } from './kernel'
+import { getBackground } from './background'
+import { setMetadata, getMetadata } from "../lib/metadata";
 
 export interface ResizeOptions {
     width: string
@@ -13,26 +14,42 @@ export interface ResizeOptions {
 
 export const resize: Directive<ResizeOptions> = (config, ctx) => {
 
-    const width = config.width ? parseInt(config.width) : undefined
-    const w = config.w ? parseInt(config.w) : undefined
-    const height = config.height ? parseInt(config.height) : undefined
-    const h = config.h ? parseInt(config.h) : undefined
+    const width = config.width
+        ? parseInt(config.width)
+        : config.w
+            ? parseInt(config.w)
+            : undefined
+    const height = config.height
+        ? parseInt(config.height)
+        : config.h
+            ? parseInt(config.h)
+            : undefined
 
-    if (!width && !w && !height && !h) return
-
-    const fit = getFit(config, ctx)
-    const position = getPosition(config, ctx)
-    const kernel = getKernel(config, ctx)
-    const background = getBackground(config, ctx)
+    if (!width && !height) return
 
     return function resizeTransform(image) {
+
+        if (!height) {
+            const w = getMetadata(image, 'width')
+            const h = getMetadata(image, 'height')
+            setMetadata(image, 'height', Math.round((width! / w) * h))
+            setMetadata(image, 'width', width)
+        }
+
+        if (!width) {
+            const w = getMetadata(image, 'width')
+            const h = getMetadata(image, 'height')
+            setMetadata(image, 'width', Math.round((height! / h) * w))
+            setMetadata(image, 'height', height)
+        }
+
         return image.resize({
-            width: width || w,
-            height: height || h,
-            fit,
-            position,
-            kernel,
-            background
+            width: width,
+            height: height,
+            fit: getFit(config, image),
+            position: getPosition(config, image),
+            kernel: getKernel(config, image),
+            background: getBackground(config, image)
         })
     }
 }

@@ -1,5 +1,6 @@
 import { Directive } from "../types";
-import { background as getBackground } from './background'
+import { setMetadata } from "../lib/metadata";
+import { getBackground } from './background'
 
 export interface FlattenOptions {
     flatten: '' | 'true'
@@ -8,11 +9,11 @@ export interface FlattenOptions {
 export const flatten: Directive<FlattenOptions> = (config, ctx) => {
     if (config.flatten !== '' && config.flatten !== 'true') return
 
-    const background = getBackground(config, ctx)
-
     return function flattenTransform(image) {
+        setMetadata(image, 'flatten', true)
+
         return image.flatten({
-            background
+            background: getBackground(config, image)
         })
     }
 }

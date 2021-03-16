@@ -1,4 +1,5 @@
 import { Directive } from "../types";
+import { setMetadata } from "../lib/metadata";
 
 export interface MedianOptions {
     median: string
@@ -10,6 +11,8 @@ export const median: Directive<MedianOptions> = (config, ctx) => {
     if (!median) return
 
     return function medianTransform(image) {
+        setMetadata(image, 'median', median)
+
         return image.median(median)
     }
 }

@@ -1,5 +1,7 @@
 import { Directive } from "../types";
-import { quality as getQuality } from './quality'
+import { setMetadata } from "../lib/metadata";
+import { getQuality } from './quality'
+import { getProgressive } from './progressive'
 
 export const formatValues = ['avif', 'jpg', 'jpeg', 'png', 'heif', 'heic', 'webp', 'tiff'] as const
 
@@ -19,10 +21,14 @@ export const format: Directive<FormatOptions> = (config, ctx) => {
     }
     if (!format) return
 
-    const quality = getQuality(config, ctx)
 
     return function formatTransform(image) {
+        setMetadata(image, 'format', format)
+
         //@ts-ignore
-        return image.toFormat(format, { quality })
+        return image.toFormat(format, {
+            quality: getQuality(config, image),
+            progressive: getProgressive(config, image)
+        })
     }
 }

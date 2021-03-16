@@ -1,4 +1,5 @@
 import { Directive } from "../types";
+import { setMetadata } from "../lib/metadata";
 
 export interface BlurOptions {
     blur: string
@@ -14,6 +15,8 @@ export const blur: Directive<BlurOptions> = (config, ctx) => {
     if (!blur) return
 
     return function blurTransform(image) {
+        setMetadata(image, 'blur', blur)
+        
         return image.blur(blur)
     }
 }
