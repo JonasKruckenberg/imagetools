@@ -12,4 +12,4 @@ import { resize } from './directives/resize'
 import { rotate } from './directives/rotate'
 import { tint } from './directives/tint'
 
-export const builtins = { blur, flatten, flip, flop, format, grayscale, hsb, invert, median, normalize, resize, rotate, tint }
+export const builtins = [ blur, flatten, flip, flop, format, grayscale, hsb, invert, median, normalize, resize, rotate, tint ]

@@ -10,7 +10,7 @@ expect.extend({ toMatchFile })
 describe('flip', () => {
     let dirCtx: DirectiveContext
     beforeAll(() => {
-        dirCtx = { useParam: jest.fn, addMetadata: jest.fn, warn: jest.fn }
+        dirCtx = { useParam: jest.fn, warn: jest.fn }
     })
 
     test('keyword "flip"', () => {
@@ -54,16 +54,16 @@ describe('flip', () => {
 
         test('empty', async () => {
             //@ts-ignore
-            const { data, info } = await applyTransforms([flip({ flip: '' }, dirCtx)], img)
+            const { image, metadata } = await applyTransforms([flip({ flip: '' }, dirCtx)], img)
 
-            expect(data).toMatchFile()
+            expect(await image.toBuffer()).toMatchFile()
         })
 
         test('true', async () => {
             //@ts-ignore
-            const { data, info } = await applyTransforms([flip({ flip: 'true' }, dirCtx)], img)
+            const { image, metadata } = await applyTransforms([flip({ flip: 'true' }, dirCtx)], img)
 
-            expect(data).toMatchFile()
+            expect(await image.toBuffer()).toMatchFile()
         })
     })
 })

@@ -10,7 +10,7 @@ expect.extend({ toMatchFile })
 describe('format', () => {
     let dirCtx: DirectiveContext
     beforeAll(() => {
-        dirCtx = { useParam: jest.fn, addMetadata: jest.fn, warn: jest.fn }
+        dirCtx = { useParam: jest.fn, warn: jest.fn }
     })
 
     test('keyword "format"', () => {
@@ -83,116 +83,116 @@ describe('format', () => {
 
         test('webp', async () => {
             //@ts-ignore
-            const { data, info } = await applyTransforms([format({ format: 'webp' }, dirCtx)], img)
+            const { image, metadata } = await applyTransforms([format({ format: 'webp' }, dirCtx)], img)
 
-            expect(data).toMatchFile()
+            expect(await image.toBuffer()).toMatchFile()
         })
 
         test('jpg', async () => {
             //@ts-ignore
-            const { data, info } = await applyTransforms([format({ format: 'jpg' }, dirCtx)], img)
+            const { image, metadata } = await applyTransforms([format({ format: 'jpg' }, dirCtx)], img)
 
-            expect(data).toMatchFile()
+            expect(await image.toBuffer()).toMatchFile()
         })
 
         test('jpeg', async () => {
             //@ts-ignore
-            const { data, info } = await applyTransforms([format({ format: 'jpeg' }, dirCtx)], img)
+            const { image, metadata } = await applyTransforms([format({ format: 'jpeg' }, dirCtx)], img)
 
-            expect(data).toMatchFile()
+            expect(await image.toBuffer()).toMatchFile()
         })
 
         test('png', async () => {
             //@ts-ignore
-            const { data, info } = await applyTransforms([format({ format: 'png' }, dirCtx)], img)
+            const { image, metadata } = await applyTransforms([format({ format: 'png' }, dirCtx)], img)
 
-            expect(data).toMatchFile()
+            expect(await image.toBuffer()).toMatchFile()
         })
 
         test('avif', async () => {
             //@ts-ignore
-            const { data, info } = await applyTransforms([format({ format: 'avif' }, dirCtx)], img)
+            const { image, metadata } = await applyTransforms([format({ format: 'avif' }, dirCtx)], img)
 
-            expect(data).toMatchFile()
+            expect(await image.toBuffer()).toMatchFile()
         })
 
         test('heif', async () => {
             //@ts-ignore
-            const { data, info } = await applyTransforms([format({ format: 'heif' }, dirCtx)], img)
+            const { image, metadata } = await applyTransforms([format({ format: 'heif' }, dirCtx)], img)
 
-            expect(data).toMatchFile()
+            expect(await image.toBuffer()).toMatchFile()
         })
 
         test('heic', async () => {
             //@ts-ignore
-            const { data, info } = await applyTransforms([format({ format: 'heic' }, dirCtx)], img)
+            const { image, metadata } = await applyTransforms([format({ format: 'heic' }, dirCtx)], img)
 
-            expect(data).toMatchFile()
+            expect(await image.toBuffer()).toMatchFile()
         })
 
         test('tiff', async () => {
             //@ts-ignore
-            const { data, info } = await applyTransforms([format({ format: 'tiff' }, dirCtx)], img)
+            const { image, metadata } = await applyTransforms([format({ format: 'tiff' }, dirCtx)], img)
 
-            expect(data).toMatchFile()
+            expect(await image.toBuffer()).toMatchFile()
         })
 
         test('jpeg w/ quality', async () => {
             //@ts-ignore
-            const { data, info } = await applyTransforms([format({ format: 'jpeg', quality: '10' }, dirCtx)], img)
+            const { image, metadata } = await applyTransforms([format({ format: 'jpeg', quality: '10' }, dirCtx)], img)
 
-            expect(data).toMatchFile()
+            expect(await image.toBuffer()).toMatchFile()
         })
 
         test('png w/ quality', async () => {
             console.warn('png w/ quality doesnt seem to work');
 
             //@ts-ignore
-            const { data, info } = await applyTransforms([format({ format: 'png', quality: '10' }, dirCtx)], img)
+            const { image, metadata } = await applyTransforms([format({ format: 'png', quality: '10' }, dirCtx)], img)
 
-            expect(data).toMatchFile()
+            expect(await image.toBuffer()).toMatchFile()
         })
 
         test('webp w/ quality', async () => {
             //@ts-ignore
-            const { data, info } = await applyTransforms([format({ format: 'webp', quality: '10' }, dirCtx)], img)
+            const { image, metadata } = await applyTransforms([format({ format: 'webp', quality: '10' }, dirCtx)], img)
 
-            expect(data).toMatchFile()
+            expect(await image.toBuffer()).toMatchFile()
         })
 
         test('tiff w/ quality', async () => {
             //@ts-ignore
-            const { data, info } = await applyTransforms([format({ format: 'tiff', quality: '10' }, dirCtx)], img)
+            const { image, metadata } = await applyTransforms([format({ format: 'tiff', quality: '10' }, dirCtx)], img)
 
-            expect(data).toMatchFile()
+            expect(await image.toBuffer()).toMatchFile()
         })
 
         test('avif w/ quality', async () => {
             //@ts-ignore
-            const { data, info } = await applyTransforms([format({ format: 'avif', quality: '10' }, dirCtx)], img)
+            const { image, metadata } = await applyTransforms([format({ format: 'avif', quality: '10' }, dirCtx)], img)
 
-            expect(data).toMatchFile()
+            expect(await image.toBuffer()).toMatchFile()
         })
 
         test('heif w/ quality', async () => {
             //@ts-ignore
-            const { data, info } = await applyTransforms([format({ format: 'heif', quality: '10' }, dirCtx)], img)
+            const { image, metadata } = await applyTransforms([format({ format: 'heif', quality: '10' }, dirCtx)], img)
 
-            expect(data).toMatchFile()
+            expect(await image.toBuffer()).toMatchFile()
         })
 
         test('jpeg w/ progressive', async () => {
             //@ts-ignore
-            const { data, info } = await applyTransforms([format({ format: 'jpeg', progressive: 'true' }, dirCtx)], img)
+            const { image, metadata } = await applyTransforms([format({ format: 'jpeg', progressive: 'true' }, dirCtx)], img)
 
-            expect(data).toMatchFile()
+            expect(await image.toBuffer()).toMatchFile()
         })
 
         test('png w/ progressive', async () => {
             //@ts-ignore
-            const { data, info } = await applyTransforms([format({ format: 'png', progressive: 'true' }, dirCtx)], img)
+            const { image, metadata } = await applyTransforms([format({ format: 'png', progressive: 'true' }, dirCtx)], img)
 
-            expect(data).toMatchFile()
+            expect(await image.toBuffer()).toMatchFile()
         })
     })
 })

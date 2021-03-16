@@ -10,7 +10,7 @@ expect.extend({ toMatchFile })
 describe('blur', () => {
     let dirCtx: DirectiveContext
     beforeAll(() => {
-        dirCtx = { useParam: jest.fn, addMetadata: jest.fn, warn: jest.fn }
+        dirCtx = { useParam: jest.fn, warn: jest.fn }
     })
 
     test('keyword "blur"', () => {
@@ -65,30 +65,30 @@ describe('blur', () => {
 
         test('true', async () => {
             //@ts-ignore
-            const { data, info } = await applyTransforms([blur({ blur: 'true' }, dirCtx)], img)
+            const { image, metadata } = await applyTransforms([blur({ blur: 'true' }, dirCtx)], img)
 
-            expect(data).toMatchFile()
+            expect(await image.toBuffer()).toMatchFile()
         })
 
         test('0.5', async () => {
             //@ts-ignore
-            const { data, info } = await applyTransforms([blur({ blur: '0.5' }, dirCtx)], img)
+            const { image, metadata } = await applyTransforms([blur({ blur: '0.5' }, dirCtx)], img)
 
-            expect(data).toMatchFile()
+            expect(await image.toBuffer()).toMatchFile()
         })
 
         test('5', async () => {
             //@ts-ignore
-            const { data, info } = await applyTransforms([blur({ blur: '5' }, dirCtx)], img)
+            const { image, metadata } = await applyTransforms([blur({ blur: '5' }, dirCtx)], img)
 
-            expect(data).toMatchFile()
+            expect(await image.toBuffer()).toMatchFile()
         })
 
         test('50', async () => {
             //@ts-ignore
-            const { data, info } = await applyTransforms([blur({ blur: '50' }, dirCtx)], img)
+            const { image, metadata } = await applyTransforms([blur({ blur: '50' }, dirCtx)], img)
 
-            expect(data).toMatchFile()
+            expect(await image.toBuffer()).toMatchFile()
         })
     })
 })

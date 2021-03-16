@@ -10,7 +10,7 @@ expect.extend({ toMatchFile })
 describe('grayscale', () => {
     let dirCtx: DirectiveContext
     beforeAll(() => {
-        dirCtx = { useParam: jest.fn, addMetadata: jest.fn, warn: jest.fn }
+        dirCtx = { useParam: jest.fn, warn: jest.fn }
     })
 
     test('keyword "grayscale"', () => {
@@ -54,16 +54,16 @@ describe('grayscale', () => {
 
         test('empty', async () => {
             //@ts-ignore
-            const { data, info } = await applyTransforms([grayscale({ grayscale: '' }, dirCtx)], img)
+            const { image, metadata } = await applyTransforms([grayscale({ grayscale: '' }, dirCtx)], img)
 
-            expect(data).toMatchFile()
+            expect(await image.toBuffer()).toMatchFile()
         })
 
         test('true', async () => {
             //@ts-ignore
-            const { data, info } = await applyTransforms([grayscale({ grayscale: 'true' }, dirCtx)], img)
+            const { image, metadata } = await applyTransforms([grayscale({ grayscale: 'true' }, dirCtx)], img)
 
-            expect(data).toMatchFile()
+            expect(await image.toBuffer()).toMatchFile()
         })
     })
 })

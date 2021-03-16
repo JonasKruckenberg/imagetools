@@ -10,7 +10,7 @@ expect.extend({ toMatchFile })
 describe('invert', () => {
     let dirCtx: DirectiveContext
     beforeAll(() => {
-        dirCtx = { useParam: jest.fn, addMetadata: jest.fn, warn: jest.fn }
+        dirCtx = { useParam: jest.fn, warn: jest.fn }
     })
 
     test('keyword "invert"', () => {
@@ -54,16 +54,16 @@ describe('invert', () => {
 
         test('empty', async () => {
             //@ts-ignore
-            const { data, info } = await applyTransforms([invert({ invert: '' }, dirCtx)], img)
+            const { image, metadata } = await applyTransforms([invert({ invert: '' }, dirCtx)], img)
 
-            expect(data).toMatchFile()
+            expect(await image.toBuffer()).toMatchFile()
         })
 
         test('true', async () => {
             //@ts-ignore
-            const { data, info } = await applyTransforms([invert({ invert: 'true' }, dirCtx)], img)
+            const { image, metadata } = await applyTransforms([invert({ invert: 'true' }, dirCtx)], img)
 
-            expect(data).toMatchFile()
+            expect(await image.toBuffer()).toMatchFile()
         })
     })
 })

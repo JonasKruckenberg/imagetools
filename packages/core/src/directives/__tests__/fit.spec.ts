@@ -1,20 +1,21 @@
-import { fit, FitValue } from '../fit'
-import { DirectiveContext } from "../../types"
+import { getFit, FitValue } from '../fit'
+import { join } from 'path'
+import sharp, { Sharp } from 'sharp'
 
 describe('fit', () => {
-    let dirCtx: DirectiveContext
-    beforeAll(() => {
-        dirCtx = { useParam: jest.fn, addMetadata: jest.fn, warn: jest.fn }
+    let img: Sharp
+    beforeEach(() => {
+        img = sharp(join(__dirname, '../../__tests__/__assets__/pexels-allec-gomes-5195763.jpg'))
     })
 
     test('keyword "fit"', () => {
-        const res = fit({ fit: 'cover' }, dirCtx)
+        const res = getFit({ fit: 'cover' }, img)
 
         expect(res).toEqual('cover')
     })
 
     test('missing', () => {
-        const res = fit({}, dirCtx)
+        const res = getFit({}, img)
 
         expect(res).toBeUndefined()
     })
@@ -24,7 +25,7 @@ describe('fit', () => {
             const shorts: FitValue[] = ['cover', 'contain', 'fill', 'inside', 'outside']
 
             for (const short of shorts) {
-                const res = fit({ [short]: 'invalid' }, dirCtx)
+                const res = getFit({ [short]: 'invalid' }, img)
 
                 expect(res).toBeUndefined()
             }
@@ -34,7 +35,7 @@ describe('fit', () => {
             const shorts: FitValue[] = ['cover', 'contain', 'fill', 'inside', 'outside']
 
             for (const short of shorts) {
-                const res = fit({ [short]: '' }, dirCtx)
+                const res = getFit({ [short]: '' }, img)
 
                 expect(res).toEqual(short)
             }
@@ -43,15 +44,14 @@ describe('fit', () => {
 
     describe('arguments', () => {
         test('invalid', () => {
-            //@ts-ignore
-            const res = fit({ fit: 'invalid' }, dirCtx)
+            //@ts-expect-error
+            const res = getFit({ fit: 'invalid' }, img)
 
             expect(res).toBeUndefined()
         })
 
         test('empty', () => {
-            //@ts-expect-error
-            const res = fit({ fit: '' }, dirCtx)
+            const res = getFit({ getFit: '' }, img)
 
             expect(res).toBeUndefined()
         })
@@ -60,7 +60,7 @@ describe('fit', () => {
             const args: FitValue[] = ['cover', 'contain', 'fill', 'inside', 'outside']
 
             for (const arg of args) {
-                const res = fit({ fit: arg }, dirCtx)
+                const res = getFit({ fit: arg }, img)
 
                 expect(res).toEqual(arg)
             }

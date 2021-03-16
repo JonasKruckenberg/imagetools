@@ -1,33 +1,35 @@
+import sharp, { Sharp } from 'sharp'
 import { DirectiveContext } from '../../types'
-import { background } from '../background'
+import { join } from 'path'
+import { getBackground } from '../background'
 
 describe('background', () => {
-    let dirCtx: DirectiveContext
-    beforeAll(() => {
-        dirCtx = { useParam: jest.fn, addMetadata: jest.fn, warn: jest.fn }
+    let img: Sharp
+    beforeEach(() => {
+        img = sharp(join(__dirname, '../../__tests__/__assets__/pexels-allec-gomes-5195763.jpg'))
     })
 
     test('keyword: "background"', () => {
-        const res = background({ background: 'fff' }, dirCtx)
+        const res = getBackground({ background: 'fff' }, img)
 
         expect(res).toEqual('#fff')
     })
 
     test('null if missing', () => {
-        const res = background({}, dirCtx)
+        const res = getBackground({}, img)
 
         expect(res).toBeUndefined()
     })
 
     describe('arguments', () => {
         test('empty', () => {
-            const res = background({ background: '' }, dirCtx)
+            const res = getBackground({ background: '' }, img)
 
             expect(res).toBeUndefined()
         })
 
         test('hex color', () => {
-            const res = background({ background: 'fff' }, dirCtx)
+            const res = getBackground({ background: 'fff' }, img)
 
             expect(res).toEqual('#fff')
         })

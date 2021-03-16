@@ -1,4 +1,4 @@
-import { applyTransforms } from '../index'
+import { applyTransforms } from '../lib/apply-transforms'
 import sharp, { Sharp } from 'sharp'
 import { join } from 'path'
 
@@ -21,7 +21,7 @@ describe('applyTransforms', () => {
 
         const res = await applyTransforms([t], img)
 
-        expect(res).toHaveProperty('data')
-        expect(res).toHaveProperty('info')
+        expect(res).toHaveProperty('image')
+        expect(res).toHaveProperty('metadata')
     })
 })

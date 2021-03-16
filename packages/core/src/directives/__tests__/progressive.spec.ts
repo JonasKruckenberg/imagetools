@@ -1,20 +1,21 @@
-import { DirectiveContext } from '../../types'
-import { progressive } from '../progressive'
+import sharp, { Sharp } from 'sharp'
+import { getProgressive } from '../progressive'
+import { join } from 'path'
 
 describe('progressive', () => {
-    let dirCtx: DirectiveContext
-    beforeAll(() => {
-        dirCtx = { useParam: jest.fn, addMetadata: jest.fn, warn: jest.fn }
+    let img: Sharp
+    beforeEach(() => {
+        img = sharp(join(__dirname, '../../__tests__/__assets__/pexels-allec-gomes-5195763.jpg'))
     })
 
     test('keyword "progressive"', () => {
-        const res = progressive({ progressive: 'true' }, dirCtx)
+        const res = getProgressive({ progressive: 'true' }, img)
 
         expect(res).toEqual(true)
     })
 
     test('missing', () => {
-        const res = progressive({}, dirCtx)
+        const res = getProgressive({}, img)
 
         expect(res).toBeUndefined()
     })
@@ -22,19 +23,19 @@ describe('progressive', () => {
     describe('arguments', () => {
         test('invalid', () => {
             //@ts-expect-error
-            const res = progressive({ progressive: 'invalid' }, dirCtx)
+            const res = getProgressive({ progressive: 'invalid' }, img)
 
             expect(res).toBeUndefined()
         })
 
         test('empty', () => {
-            const res = progressive({ progressive: '' }, dirCtx)
+            const res = getProgressive({ progressive: '' }, img)
 
             expect(res).toEqual(true)
         })
 
         test('true', () => {
-            const res = progressive({ progressive: 'true' }, dirCtx)
+            const res = getProgressive({ progressive: 'true' }, img)
 
             expect(res).toEqual(true)
         })

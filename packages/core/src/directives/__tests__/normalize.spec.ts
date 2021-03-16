@@ -10,7 +10,7 @@ expect.extend({ toMatchFile })
 describe('normalize', () => {
     let dirCtx: DirectiveContext
     beforeAll(() => {
-        dirCtx = { useParam: jest.fn, addMetadata: jest.fn, warn: jest.fn }
+        dirCtx = { useParam: jest.fn, warn: jest.fn }
     })
 
     test('keyword "normalize"', () => {
@@ -54,16 +54,16 @@ describe('normalize', () => {
 
         test('empty', async () => {
             //@ts-ignore
-            const { data, info } = await applyTransforms([normalize({ normalize: '' }, dirCtx)], img)
+            const { image, metadata } = await applyTransforms([normalize({ normalize: '' }, dirCtx)], img)
 
-            expect(data).toMatchFile()
+            expect(await image.toBuffer()).toMatchFile()
         })
 
         test('true', async () => {
             //@ts-ignore
-            const { data, info } = await applyTransforms([normalize({ normalize: 'true' }, dirCtx)], img)
+            const { image, metadata } = await applyTransforms([normalize({ normalize: 'true' }, dirCtx)], img)
 
-            expect(data).toMatchFile()
+            expect(await image.toBuffer()).toMatchFile()
         })
     })
 })

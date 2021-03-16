@@ -10,7 +10,7 @@ expect.extend({ toMatchFile })
 describe('width', () => {
     let dirCtx: DirectiveContext
     beforeAll(() => {
-        dirCtx = { useParam: jest.fn, addMetadata: jest.fn, warn: jest.fn }
+        dirCtx = { useParam: jest.fn, warn: jest.fn }
     })
 
     test('keyword "width"', () => {
@@ -65,16 +65,16 @@ describe('width', () => {
 
         test('100', async () => {
             //@ts-ignore
-            const { data, info } = await applyTransforms([resize({ width: '100' }, dirCtx)], img)
+            const { image, metadata } = await applyTransforms([resize({ width: '100' }, dirCtx)], img)
 
-            expect(data).toMatchFile()
+            expect(await image.toBuffer()).toMatchFile()
         })
 
         test('400', async () => {
             //@ts-ignore
-            const { data, info } = await applyTransforms([resize({ width: '400' }, dirCtx)], img)
+            const { image, metadata } = await applyTransforms([resize({ width: '400' }, dirCtx)], img)
 
-            expect(data).toMatchFile()
+            expect(await image.toBuffer()).toMatchFile()
         })
     })
 })
@@ -82,7 +82,7 @@ describe('width', () => {
 describe('height', () => {
     let dirCtx: DirectiveContext
     beforeAll(() => {
-        dirCtx = { useParam: jest.fn, addMetadata: jest.fn, warn: jest.fn }
+        dirCtx = { useParam: jest.fn, warn: jest.fn }
     })
 
     test('keyword "height"', () => {
@@ -137,16 +137,16 @@ describe('height', () => {
 
         test('100', async () => {
             //@ts-ignore
-            const { data, info } = await applyTransforms([resize({ height: '100' }, dirCtx)], img)
+            const { image, metadata } = await applyTransforms([resize({ height: '100' }, dirCtx)], img)
 
-            expect(data).toMatchFile()
+            expect(await image.toBuffer()).toMatchFile()
         })
 
         test('400', async () => {
             //@ts-ignore
-            const { data, info } = await applyTransforms([resize({ height: '400' }, dirCtx)], img)
+            const { image, metadata } = await applyTransforms([resize({ height: '400' }, dirCtx)], img)
 
-            expect(data).toMatchFile()
+            expect(await image.toBuffer()).toMatchFile()
         })
     })
 })
@@ -154,7 +154,7 @@ describe('height', () => {
 describe('width & height', () => {
     let dirCtx: DirectiveContext
     beforeAll(() => {
-        dirCtx = { useParam: jest.fn, addMetadata: jest.fn, warn: jest.fn }
+        dirCtx = { useParam: jest.fn, warn: jest.fn }
     })
 
     test('keywords "width" & "height"', () => {
@@ -189,37 +189,37 @@ describe('width & height', () => {
 
         test('basic', async () => {
             //@ts-ignore
-            const { data, info } = await applyTransforms([resize({ w: '300', h: '300' }, dirCtx)], img)
+            const { image, metadata } = await applyTransforms([resize({ w: '300', h: '300' }, dirCtx)], img)
 
-            expect(data).toMatchFile()
+            expect(await image.toBuffer()).toMatchFile()
         })
 
         test('w/ fit', async () => {
             //@ts-ignore
-            const { data, info } = await applyTransforms([resize({ w: '300', h: '300', fit: 'contain' }, dirCtx)], img)
+            const { image, metadata } = await applyTransforms([resize({ w: '300', h: '300', fit: 'contain' }, dirCtx)], img)
 
-            expect(data).toMatchFile()
+            expect(await image.toBuffer()).toMatchFile()
         })
 
         test('w/ fit & background', async () => {
             //@ts-ignore
-            const { data, info } = await applyTransforms([resize({ w: '300', h: '300', fit: 'contain', background: '0f0' }, dirCtx)], img)
+            const { image, metadata } = await applyTransforms([resize({ w: '300', h: '300', fit: 'contain', background: '0f0' }, dirCtx)], img)
 
-            expect(data).toMatchFile()
+            expect(await image.toBuffer()).toMatchFile()
         })
 
         test('w/ fit and position', async () => {
             //@ts-ignore
-            const { data, info } = await applyTransforms([resize({ w: '300', h: '300', fit: 'cover', position: 'top' }, dirCtx)], img)
+            const { image, metadata } = await applyTransforms([resize({ w: '300', h: '300', fit: 'cover', position: 'top' }, dirCtx)], img)
 
-            expect(data).toMatchFile()
+            expect(await image.toBuffer()).toMatchFile()
         })
 
         test('w/ kernel', async () => {
             //@ts-ignore
-            const { data, info } = await applyTransforms([resize({ w: '300', h: '300', kernel: 'cubic' }, dirCtx)], img)
+            const { image, metadata } = await applyTransforms([resize({ w: '300', h: '300', kernel: 'cubic' }, dirCtx)], img)
 
-            expect(data).toMatchFile()
+            expect(await image.toBuffer()).toMatchFile()
         })
     })
 })

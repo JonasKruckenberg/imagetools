@@ -10,7 +10,7 @@ expect.extend({ toMatchFile })
 describe('rotate', () => {
     let dirCtx: DirectiveContext
     beforeAll(() => {
-        dirCtx = { useParam: jest.fn, addMetadata: jest.fn, warn: jest.fn }
+        dirCtx = { useParam: jest.fn, warn: jest.fn }
     })
 
     test('keyword "rotate"', () => {
@@ -59,23 +59,23 @@ describe('rotate', () => {
 
         test('90', async () => {
             //@ts-ignore
-            const { data, info } = await applyTransforms([rotate({ rotate: '90' }, dirCtx)], img)
+            const { image, metadata } = await applyTransforms([rotate({ rotate: '90' }, dirCtx)], img)
 
-            expect(data).toMatchFile()
+            expect(await image.toBuffer()).toMatchFile()
         })
 
         test('180', async () => {
             //@ts-ignore
-            const { data, info } = await applyTransforms([rotate({ rotate: '180' }, dirCtx)], img)
+            const { image, metadata } = await applyTransforms([rotate({ rotate: '180' }, dirCtx)], img)
 
-            expect(data).toMatchFile()
+            expect(await image.toBuffer()).toMatchFile()
         })
 
         test('w/ background', async () => {
             //@ts-ignore
-            const { data, info } = await applyTransforms([rotate({ rotate: '45', background: '0f0' }, dirCtx)], img)
+            const { image, metadata } = await applyTransforms([rotate({ rotate: '45', background: '0f0' }, dirCtx)], img)
 
-            expect(data).toMatchFile()
+            expect(await image.toBuffer()).toMatchFile()
         })
     })
 })

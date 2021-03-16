@@ -10,7 +10,7 @@ expect.extend({ toMatchFile })
 describe('tint', () => {
     let dirCtx: DirectiveContext
     beforeAll(() => {
-        dirCtx = { useParam: jest.fn, addMetadata: jest.fn, warn: jest.fn }
+        dirCtx = { useParam: jest.fn, warn: jest.fn }
     })
 
     test('keyword "tint"', () => {
@@ -47,23 +47,23 @@ describe('tint', () => {
 
         test('red', async () => {
             //@ts-ignore
-            const { data, info } = await applyTransforms([tint({ tint: 'f00' }, dirCtx)], img)
+            const { image, metadata } = await applyTransforms([tint({ tint: 'f00' }, dirCtx)], img)
 
-            expect(data).toMatchFile()
+            expect(await image.toBuffer()).toMatchFile()
         })
 
         test('green', async () => {
             //@ts-ignore
-            const { data, info } = await applyTransforms([tint({ tint: '0f0' }, dirCtx)], img)
+            const { image, metadata } = await applyTransforms([tint({ tint: '0f0' }, dirCtx)], img)
 
-            expect(data).toMatchFile()
+            expect(await image.toBuffer()).toMatchFile()
         })
 
         test('blue', async () => {
             //@ts-ignore
-            const { data, info } = await applyTransforms([tint({ tint: '00f' }, dirCtx)], img)
+            const { image, metadata } = await applyTransforms([tint({ tint: '00f' }, dirCtx)], img)
 
-            expect(data).toMatchFile()
+            expect(await image.toBuffer()).toMatchFile()
         })
     })
 })

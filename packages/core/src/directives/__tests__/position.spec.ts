@@ -1,20 +1,21 @@
-import { position, PositionValue } from '../position'
-import { DirectiveContext } from '../../types'
+import { getPosition, PositionValue } from '../position'
+import sharp, { Sharp } from 'sharp'
+import { join } from 'path'
 
 describe('position', () => {
-    let dirCtx: DirectiveContext
-    beforeAll(() => {
-        dirCtx = { useParam: jest.fn, addMetadata: jest.fn, warn: jest.fn }
+    let img: Sharp
+    beforeEach(() => {
+        img = sharp(join(__dirname, '../../__tests__/__assets__/pexels-allec-gomes-5195763.jpg'))
     })
 
     test('keyword "position"', () => {
-        const res = position({ position: 'top' }, dirCtx)
+        const res = getPosition({ position: 'top' }, img)
 
         expect(res).toEqual('top')
     })
 
     test('missing', () => {
-        const res = position({}, dirCtx)
+        const res = getPosition({}, img)
 
         expect(res).toBeUndefined()
     })
@@ -26,7 +27,7 @@ describe('position', () => {
             const shorts = ['top', 'right top', 'right', 'right bottom', 'bottom', 'left bottom', 'left', 'left top']
 
             for (const s of shorts) {
-                const res = position({ [s]: '' }, dirCtx)
+                const res = getPosition({ [s]: '' }, img)
 
                 expect(res).toEqual(s)
             }
@@ -36,14 +37,14 @@ describe('position', () => {
     describe('arguments', () => {
         test('invalid', () => {
             //@ts-ignore
-            const res = position({ position: 'invalid' }, dirCtx)
+            const res = getPosition({ position: 'invalid' }, img)
 
             expect(res).toBeUndefined()
         })
 
         test('empty', () => {
             //@ts-ignore
-            const res = position({ position: '' }, dirCtx)
+            const res = getPosition({ position: '' }, img)
 
             expect(res).toBeUndefined()
         })
@@ -54,7 +55,7 @@ describe('position', () => {
                 'entropy', 'attention']
 
             for (const arg of args) {
-                const res = position({ position: arg }, dirCtx)
+                const res = getPosition({ position: arg }, img)
 
                 expect(res).toEqual(arg)
             }

@@ -1,45 +1,46 @@
-import { quality } from '../quality'
-import { DirectiveContext } from '../../types'
+import { getQuality } from '../quality'
+import sharp, { Sharp } from 'sharp'
+import { join } from 'path'
 
 describe('quality', () => {
-    let dirCtx: DirectiveContext
-    beforeAll(() => {
-        dirCtx = { useParam: jest.fn, addMetadata: jest.fn, warn: jest.fn }
+    let img: Sharp
+    beforeEach(() => {
+        img = sharp(join(__dirname, '../../__tests__/__assets__/pexels-allec-gomes-5195763.jpg'))
     })
 
     test('keyword "quality"', () => {
-        const res = quality({ quality: '3' }, dirCtx)
+        const res = getQuality({ quality: '3' }, img)
 
         expect(res).toEqual(3)
     })
 
     test('missing', () => {
-        const res = quality({}, dirCtx)
+        const res = getQuality({}, img)
 
         expect(res).toBeUndefined()
     })
 
     describe('arguments', () => {
         test('invalid', () => {
-            const res = quality({ quality: 'invalid' }, dirCtx)
+            const res = getQuality({ quality: 'invalid' }, img)
 
             expect(res).toBeUndefined()
         })
 
         test('empty', () => {
-            const res = quality({ quality: '' }, dirCtx)
+            const res = getQuality({ quality: '' }, img)
 
             expect(res).toBeUndefined()
         })
 
         test('integer', () => {
-            const res = quality({ quality: '3' }, dirCtx)
+            const res = getQuality({ quality: '3' }, img)
 
             expect(res).toEqual(3)
         })
 
         it('rounds float to int', () => {
-            const res = quality({ quality: '3.5' }, dirCtx)
+            const res = getQuality({ quality: '3.5' }, img)
 
             expect(res).toEqual(3)
         })

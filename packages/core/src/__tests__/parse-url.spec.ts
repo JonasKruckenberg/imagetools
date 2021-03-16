@@ -1,4 +1,4 @@
-import { parseURL } from '../index'
+import { parseURL } from '../lib/parse-url'
 
 describe('parseURL', () => {
     it('returns an array of entries', () => {
