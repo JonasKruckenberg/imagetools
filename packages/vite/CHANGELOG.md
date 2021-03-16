@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.3.0](https://github.com/JonasKruckenberg/vite-imagetools/compare/vite-imagetools@3.2.6...vite-imagetools@3.3.0) (2021-03-16)
+
+
+### Features
+
+* change extendDirectives signature ([b6ac8b3](https://github.com/JonasKruckenberg/vite-imagetools/commit/b6ac8b34581b84a6d6861a2b7ecc2f22f569e257))
+* rework plugin to use new core library ([e8e11cf](https://github.com/JonasKruckenberg/vite-imagetools/commit/e8e11cf7b33e920be21cde31183876e6b824b779))
+
+
+
+
+
 ## [3.2.6](https://github.com/JonasKruckenberg/vite-imagetools/compare/vite-imagetools@3.2.5...vite-imagetools@3.2.6) (2021-03-15)
 
 **Note:** Version bump only for package vite-imagetools
