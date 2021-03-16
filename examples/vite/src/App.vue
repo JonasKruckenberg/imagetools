@@ -6,9 +6,7 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
 import HelloWorld from './components/HelloWorld.vue'
-import Logo from './assets/logo.png?meta&foo=bar'
-
-console.log(Logo);
+import Logo from './assets/logo.png?webp&width=100&meta'
 
 export default defineComponent({
   name: 'App',
@@ -16,6 +14,9 @@ export default defineComponent({
     HelloWorld
   },
   setup() {
+
+    console.log(Logo);
+
     return { Logo }
   }
 })
