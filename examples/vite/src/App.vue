@@ -1,25 +1,11 @@
 <template>
-  <img alt="Vue logo" :src="Logo.src" />
-  <HelloWorld msg="Hello Vue 3 + TypeScript + Vite" />
+  <img alt="Vue logo" v-for="image of Images" :src="image.src" :width="image.width" :height="image.height"/>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue'
-import HelloWorld from './components/HelloWorld.vue'
-import Logo from './assets/logo.png?webp&width=100&meta'
+<script lang="ts" setup>
+import Images from './assets/logo.png?w=100;200;400&meta'
 
-export default defineComponent({
-  name: 'App',
-  components: {
-    HelloWorld
-  },
-  setup() {
-
-    console.log(Logo);
-
-    return { Logo }
-  }
-})
+console.log(Images);
 </script>
 
 <style>
