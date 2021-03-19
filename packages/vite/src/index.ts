@@ -1,16 +1,15 @@
 import { Plugin, ResolvedConfig } from "vite";
-import { parseURL, loadImageFromDisk, builtins, resolveConfigs, applyTransforms, generateTransforms, getMetadata } from 'imagetools-core'
+import { parseURL, loadImageFromDisk, builtins, resolveConfigs, applyTransforms, generateTransforms, getMetadata, generateImageID } from 'imagetools-core'
 import { basename, extname, join } from 'path'
 import { createFilter, dataToEsm } from "@rollup/pluginutils";
 import { builtinOutputFormats, urlFormat } from './output-formats'
 import MagicString from 'magic-string'
 import { OutputFormat, PluginOptions } from "./types";
-import findCacheDir from "find-cache-dir";
+import { createHash } from 'crypto'
 
 const defaultOptions: PluginOptions = {
     include: '**\/*.{heic,heif,avif,jpeg,jpg,png,tiff,webp,gif}?*',
     exclude: 'public\/**\/*',
-    cache: findCacheDir({ name: 'imagetools' }) || false,
     silent: false
 }
 
@@ -19,12 +18,12 @@ export default function imagetools(userOptions: Partial<PluginOptions> = {}): Pl
 
     const filter = createFilter(pluginOptions.include, pluginOptions.exclude)
 
-    const directives = pluginOptions.extendDirectives 
-        ? pluginOptions.extendDirectives(builtins) 
+    const directives = pluginOptions.extendDirectives
+        ? pluginOptions.extendDirectives(builtins)
         : builtins
 
-    const outputFormats = pluginOptions.extendOutputFormats 
-        ? pluginOptions.extendOutputFormats(builtinOutputFormats) 
+    const outputFormats = pluginOptions.extendOutputFormats
+        ? pluginOptions.extendOutputFormats(builtinOutputFormats)
         : builtinOutputFormats
 
     let viteConfig: ResolvedConfig
@@ -49,7 +48,7 @@ export default function imagetools(userOptions: Partial<PluginOptions> = {}): Pl
             const outputMetadatas = []
 
             for (const config of imageConfigs) {
-                const id = Buffer.from(JSON.stringify(config)).toString('base64')
+                const id = generateImageID({ ...config, src: src.pathname })
 
                 const { transforms } = generateTransforms(config, directives)
                 const { image, metadata } = await applyTransforms(transforms, img)
@@ -72,6 +71,8 @@ export default function imagetools(userOptions: Partial<PluginOptions> = {}): Pl
 
                 outputMetadatas.push(metadata)
             }
+
+            // console.log(outputMetadatas);
 
             let outputFormat: OutputFormat = urlFormat
 
