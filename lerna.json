@@ -8,7 +8,10 @@
   "command": {
     "publish": {
       "conventionalCommits": true,
-      "yes": true
+      "createRelease": "github",
+      "yes": true,
+      "conventionalPrerelease": true,
+      "distTag": "next"
     }
   }
 }
