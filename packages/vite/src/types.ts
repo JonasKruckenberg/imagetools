@@ -14,11 +14,6 @@ export interface PluginOptions {
      * @default 'public\/**\/*'
     */
     exclude: Array<string | RegExp> | string | RegExp
-    /** 
-     * The path to use as the cache for images, set this option to false to disable caching completely.
-     * @default 'node_modules/.cache/vite-imagetools'
-    */
-    cache: string | false
 
     /**
      * You can use this option to extend the builtin list of import directives.
