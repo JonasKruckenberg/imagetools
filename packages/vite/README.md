@@ -11,7 +11,6 @@ All of the image transformations are powered by [sharp](https://sharp.pixelplumb
 - **Fast in development mode :zap:**
 - **Removes Image Metadata :lock:**
 - **Extensible :jigsaw:**
-- **Caches transformed images :green_heart:**
 
 ## Table of Contents
 
@@ -60,7 +59,5 @@ import Image from 'example.jpg?width=300;500;700'
 This will generate 3 different images for each width.
 
 ## Options
-
-## Caching
 
 ## Extending vite-imagetools
