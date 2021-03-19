@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.3.1](https://github.com/JonasKruckenberg/vite-imagetools/compare/vite-imagetools@3.3.0...vite-imagetools@3.3.1) (2021-03-19)
+
+
+### Bug Fixes
+
+* image id generation ([7ea0839](https://github.com/JonasKruckenberg/vite-imagetools/commit/7ea0839e2e69eb652d2cee01c3f1d8148f7290f1)), closes [#34](https://github.com/JonasKruckenberg/vite-imagetools/issues/34)
+
+
+
+
+
 # [3.3.0](https://github.com/JonasKruckenberg/vite-imagetools/compare/vite-imagetools@3.2.6...vite-imagetools@3.3.0) (2021-03-16)
 
 

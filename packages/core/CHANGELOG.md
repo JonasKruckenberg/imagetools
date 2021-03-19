@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-next.8](https://github.com/JonasKruckenberg/vite-imagetools/compare/imagetools-core@0.1.0-next.7...imagetools-core@0.1.0-next.8) (2021-03-19)
+
+
+### Features
+
+* **imagetools-core:** Add image id generation utility ([9e0673d](https://github.com/JonasKruckenberg/vite-imagetools/commit/9e0673d039273283022be761fa8a1e06f5305d1c))
+
+
+
+
+
 # [0.1.0-next.7](https://github.com/JonasKruckenberg/vite-imagetools/compare/imagetools-core@0.1.0-next.6...imagetools-core@0.1.0-next.7) (2021-03-16)
 
 
