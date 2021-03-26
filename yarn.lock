@@ -823,9 +823,9 @@
   integrity sha512-wWKOClTTiizcZhXnPY4wikVAwmdYHp8q6DmC+EJUzAMsycb7HB32Kh9RN4+0gExjmPmZSAQjgURXIGATPegAvA==
 
 "@types/sharp@^0.27.1":
-  version "0.27.1"
-  resolved "https://registry.yarnpkg.com/@types/sharp/-/sharp-0.27.1.tgz#26212ceb191b3de654a898a06577869afc200c57"
-  integrity sha512-RbYmyPjDUzi3lI9Qm68I+82I+DNOe/jW5w+EC1FvpT/f2TYXDG6mmPZQQohy98ufq+u6OB6pQkqpcNMDxzVclg==
+  version "0.27.2"
+  resolved "https://registry.yarnpkg.com/@types/sharp/-/sharp-0.27.2.tgz#93bd0800bab94fdb3419f839b3d07bd3240dcda5"
+  integrity sha512-qj8MiHRbznG6z+Ptj4GRZnfFc2yr5FWXikZK3GWqw2cuAyVq/rDezItiNVTYbtyprzHghz8KLelObHrPSqC6Bw==
   dependencies:
     "@types/node" "*"
 
