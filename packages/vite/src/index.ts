@@ -1,16 +1,16 @@
 import { Plugin, ResolvedConfig } from "vite";
-import { parseURL, loadImageFromDisk, builtins, resolveConfigs, applyTransforms, generateTransforms, getMetadata, generateImageID } from 'imagetools-core'
+import { parseURL, loadImage, builtins, resolveConfigs, applyTransforms, generateTransforms, getMetadata, generateImageID } from 'imagetools-core'
 import { basename, extname, join } from 'path'
 import { createFilter, dataToEsm } from "@rollup/pluginutils";
 import { builtinOutputFormats, urlFormat } from './output-formats'
 import MagicString from 'magic-string'
 import { OutputFormat, PluginOptions } from "./types";
-import { createHash } from 'crypto'
 
 const defaultOptions: PluginOptions = {
     include: '**\/*.{heic,heif,avif,jpeg,jpg,png,tiff,webp,gif}?*',
     exclude: 'public\/**\/*',
-    silent: false
+    silent: false,
+    removeMetadata: true
 }
 
 export default function imagetools(userOptions: Partial<PluginOptions> = {}): Plugin {
@@ -43,7 +43,7 @@ export default function imagetools(userOptions: Partial<PluginOptions> = {}): Pl
             const parameters = parseURL(src)
             const imageConfigs = resolveConfigs(parameters)
 
-            const img = loadImageFromDisk(src.pathname)
+            const img = loadImage(src.pathname)
 
             const outputMetadatas = []
 
@@ -51,7 +51,7 @@ export default function imagetools(userOptions: Partial<PluginOptions> = {}): Pl
                 const id = generateImageID(src, config)
 
                 const { transforms } = generateTransforms(config, transformFactories)
-                const { image, metadata } = await applyTransforms(transforms, img)
+                const { image, metadata } = await applyTransforms(transforms, img, pluginOptions.removeMetadata)
 
                 generatedImages.set(id, image)
 
@@ -72,8 +72,6 @@ export default function imagetools(userOptions: Partial<PluginOptions> = {}): Pl
                 outputMetadatas.push(metadata)
             }
 
-            // console.log(outputMetadatas);
-
             let outputFormat: OutputFormat = urlFormat
 
             for (const [key, format] of Object.entries(outputFormats)) {
@@ -92,6 +90,10 @@ export default function imagetools(userOptions: Partial<PluginOptions> = {}): Pl
                     const [, id] = req.url.split('/@vite-imagetools/')
 
                     const image = generatedImages.get(id)
+
+                    if(pluginOptions.removeMetadata === false) {
+                        image.withMetadata()
+                    }
 
                     res.setHeader('Content-Type', `image/${getMetadata(image, 'format')}`)
                     res.setHeader('Cache-Control', 'max-age=360000')

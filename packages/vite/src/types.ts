@@ -34,4 +34,10 @@ export interface PluginOptions {
      * @default false
      */
     silent: boolean
+
+    /**
+     * Wether to remove potentially private metadata from the image, such as exif tags etc.
+     * @default true
+     */
+    removeMetadata: boolean
 }

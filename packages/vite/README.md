@@ -111,6 +111,15 @@ See the section [Custom output formats](#custom-output-formats) for details.
 Settings this option to true disables all warnings produced by this plugin.
 
 **`default`** false
+
+### removeMetadata
+
+• **removeMetadata**: *boolean*
+
+Wether to remove potentially private metadata from the image, such as exif tags etc.
+
+**`default`** true
+
 ## Contributing
 
 Feel free to dive in! [Open an issue](https://github.com/JonasKruckenberg/vite-imagetools/issues/new) or submit PRs!
