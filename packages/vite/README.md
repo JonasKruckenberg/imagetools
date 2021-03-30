@@ -1,33 +1,42 @@
-# vite-imagetools
+# vite-imagetools 
 
 A toolbox of import directives for [vitejs](https://github.com/vitejs/vite) that can transform your image at compile-time.
 All of the image transformations are powered by [sharp](https://sharp.pixelplumbing.com).
 
 ## Features
 
-- **Output modern formats :rocket:**
-- **Resize Images :framed_picture:**
-- **Easy Srcset generation :link:**
-- **Fast in development mode :zap:**
-- **Removes Image Metadata :lock:**
-- **Extensible :jigsaw:**
+- **🚀 Output modern formats**
+- **🖼 Resize Images**
+- **🔗 Easy Srcset generation**
+- **⚡️ Fast in development mode**
+- **🔒 Remove Image Metadata**
+- **🧩 Extensible**
+
+> [Read the docs to learn more!](../../docs/README.md)
 
 ## Table of Contents
 
-- [Usage](#usage)
 - [Install](#install)
+- [Usage](#usage)
 - [Options](#options)
-- [Caching](#caching)
-- [Output formats](#output-formats)
-- [Extending vite-imagetools](#extending-vite-imagetools)
 - [Contributing](#contributing)
 - [License](#license)
 
+## Install
+
+```
+npm install --save-dev vite-imagetools@next
+```
+
+```
+yarn add -D vite-imagetools@next
+```
+
 ## Usage
 
-You first have to add imagetools to your config file:
-```js
-import { imagetools } from 'vite-imagetools'
+```ts
+import { defineConfig } from "vite"
+import { imagetools } from "vite-imagetools"
 
 export default defineConfig({
   plugins: [
@@ -36,28 +45,76 @@ export default defineConfig({
 })
 ```
 
-Import directives are basically functions that will transforn your image.
-You can specify what functions to run on you image via url query parameters:
-
 ```js
-import Image from 'example.jpg?width=400'
+import Image from "example.jpg?w=400&h=300&webp"
 ```
-
-Vite-imagetools comes with a [wide variety of import deirectives](https://github.com/JonasKruckenberg/vite-imagetools/blob/8e44cb95493fdba7f92c2fa1811e95eb33956820/docs/directives.md) that you can mix and match to get exactly the image you want!
-The following example will generate an image that has a width of 500 pixels, is rotated 45 degrees and blured slightly:
-
-```js
-import Image from 'example.jpg?width=500&rotate=45&blur=10'
-```
-
-> You can even create your own import directives! Check out [Extending vite-imagetools](#extending-vite-imagetools)
-
-You can also provide multiple arguments to each directive:
-```js
-import Image from 'example.jpg?width=300;500;700'
-```
-This will generate 3 different images for each width.
 
 ## Options
 
-## Extending vite-imagetools
+### include
+
+• **include**: *string* \| *RegExp* \| (*string* \| *RegExp*)[]
+
+Which paths to include when processing images.
+
+**`default`** '**\/*.{heic,heif,avif,jpeg,jpg,png,tiff,webp,gif}?*'
+
+___
+
+### exclude
+
+• **exclude**: *string* \| *RegExp* \| (*string* \| *RegExp*)[]
+
+What paths to exclude when processing images.
+This defaults to the public dir to mirror vites behavior.
+
+**`default`** 'public\/**\/*'
+
+___
+
+### cache
+
+• **cache**: *string* \| *false*
+
+The path to use as the cache for images, set this option to false to disable caching completely.
+
+**`default`** 'node_modules/.cache/vite-imagetools'
+
+___
+
+### extendTransforms
+
+• **extendTransforms**: [*Directive*](docs/modules/types.md#transformFactory)<{}\>[]
+
+You can use this option to extend the builtin list of import directives.
+This list will be merged with the builtin directives before applying them to the input image.
+See the section [Custom import directives](#custom-import-directives) for details.
+
+**`default`** []
+
+___
+
+### extendOutputFormats
+
+• **extendOutputFormats**: [*OutputFormat*](docs/modules/types.md#outputformat)[]
+
+You can use this option to extend the builtin list of output formats.
+This list will be merged with the builtin output formats before determining the format to use.
+See the section [Custom output formats](#custom-output-formats) for details.
+
+**`default`** []
+
+### silent
+
+• **silent**: *boolean*
+
+Settings this option to true disables all warnings produced by this plugin.
+
+**`default`** false
+## Contributing
+
+Feel free to dive in! [Open an issue](https://github.com/JonasKruckenberg/vite-imagetools/issues/new) or submit PRs!
+All information to get you started hacking on imagetools is in [CONTRIBUTING.md](../../CONTRIBUTING.md)!
+
+## License
+[MIT © Jonas Kruckenberg.](./LICENSE)
