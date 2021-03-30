@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.4.0-next.0](https://github.com/JonasKruckenberg/vite-imagetools/compare/vite-imagetools@3.3.2-alpha.0...vite-imagetools@3.4.0-next.0) (2021-03-30)
+
+
+### Bug Fixes
+
+* support nodejs LTS versions ([4abccc5](https://github.com/JonasKruckenberg/vite-imagetools/commit/4abccc53700ad55d04dc0c2142b6dc8d69ebf122)), closes [#51](https://github.com/JonasKruckenberg/vite-imagetools/issues/51)
+* update cache key geneartion to match spec ([7f0a0e8](https://github.com/JonasKruckenberg/vite-imagetools/commit/7f0a0e8bf20189e12425ffaed2026120b7b5260d))
+
+
+### Features
+
+* allow metadata removal to be toggled by option ([5d0c781](https://github.com/JonasKruckenberg/vite-imagetools/commit/5d0c781c0a0511725c7d615e97b1e9b0c902009e))
+
+
+
+
+
 ## [3.3.2-alpha.0](https://github.com/JonasKruckenberg/vite-imagetools/compare/vite-imagetools@3.3.1...vite-imagetools@3.3.2-alpha.0) (2021-03-30)
 
 
