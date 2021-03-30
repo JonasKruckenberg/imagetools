@@ -10,6 +10,8 @@ export function loadImageFromBuffer(buf: Buffer) {
     return sharp(buf)
 }
 
-export function generateImageID(config:ImageConfig) {
-    return createHash('sha1').update(JSON.stringify(config)).digest('hex')
+export function generateImageID(url:URL, config:ImageConfig) {
+    const baseURL = new URL(url.origin + url.pathname)
+    
+    return createHash('sha1').update(baseURL.href).update(JSON.stringify(config)).digest('hex')
 }
