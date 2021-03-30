@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-next.9](https://github.com/JonasKruckenberg/vite-imagetools/compare/imagetools-core@0.1.0-next.8...imagetools-core@0.1.0-next.9) (2021-03-30)
+
+
+### Bug Fixes
+
+* support nodejs LTS versions ([4abccc5](https://github.com/JonasKruckenberg/vite-imagetools/commit/4abccc53700ad55d04dc0c2142b6dc8d69ebf122)), closes [#51](https://github.com/JonasKruckenberg/vite-imagetools/issues/51)
+
+
+
+
+
 # [0.1.0-next.8](https://github.com/JonasKruckenberg/vite-imagetools/compare/imagetools-core@0.1.0-next.7...imagetools-core@0.1.0-next.8) (2021-03-19)
 
 
