@@ -1,4 +1,4 @@
-import { Directive } from "../types";
+import { TransformFactory } from "../types";
 import { getFit } from './fit'
 import { getPosition } from './position'
 import { getKernel } from './kernel'
@@ -12,7 +12,7 @@ export interface ResizeOptions {
     h: string
 }
 
-export const resize: Directive<ResizeOptions> = (config, ctx) => {
+export const resize: TransformFactory<ResizeOptions> = (config, ctx) => {
 
     const width = config.width
         ? parseInt(config.width)

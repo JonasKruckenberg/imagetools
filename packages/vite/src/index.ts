@@ -18,8 +18,8 @@ export default function imagetools(userOptions: Partial<PluginOptions> = {}): Pl
 
     const filter = createFilter(pluginOptions.include, pluginOptions.exclude)
 
-    const directives = pluginOptions.extendDirectives
-        ? pluginOptions.extendDirectives(builtins)
+    const transformFactories = pluginOptions.extendTransforms
+        ? pluginOptions.extendTransforms(builtins)
         : builtins
 
     const outputFormats = pluginOptions.extendOutputFormats
@@ -50,7 +50,7 @@ export default function imagetools(userOptions: Partial<PluginOptions> = {}): Pl
             for (const config of imageConfigs) {
                 const id = generateImageID(src, config)
 
-                const { transforms } = generateTransforms(config, directives)
+                const { transforms } = generateTransforms(config, transformFactories)
                 const { image, metadata } = await applyTransforms(transforms, img)
 
                 generatedImages.set(id, image)

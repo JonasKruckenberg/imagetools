@@ -22,7 +22,7 @@ Each transform is described in the following way:
     The types should always be as strict as possible (e.g. _int_ instead of _number_, a string union instead of _string_ etc.)
 
 - **(Shorthands)**<br>
-    This is optional as most transforms do not expose shorthands. Shorthands allow you to omit the 'key' of the key-value pair and specify the value directly(e.g. `?webp` instead of `?format=webp`). This is useful if the transform is used a lot or if it is often used in conjunction with other directives.
+    This is optional as most transforms do not expose shorthands. Shorthands allow you to omit the 'key' of the key-value pair and specify the value directly(e.g. `?webp` instead of `?format=webp`). This is useful if the transform is used a lot or if it is often used in conjunction with other transforms.
     Shorthands MUST have an empty value and MUST NOT conflict with any keywords or other shorthands
 
 ### Status
@@ -100,7 +100,7 @@ is equivalent to:
 
 While `baz` would not be valid shorthand, since it is a valid argument for any transformation.
 
-Only directives that accept string union types as arguments may specify shorthands and no Shorthand may collide with the keywords of any transformation and other shorthands.
+Only transforms that accept string union types as arguments may specify shorthands and no Shorthand may collide with the keywords of any transformation and other shorthands.
 
 > As a rule of thumb: Shorthands should be used sparingly and only when the transformation is commonly used.
 

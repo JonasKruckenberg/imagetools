@@ -1,4 +1,4 @@
-import { Directive } from "../types";
+import { TransformFactory } from "../types";
 import { setMetadata } from "../lib/metadata";
 import { getQuality } from './quality'
 import { getProgressive } from './progressive'
@@ -11,7 +11,7 @@ export interface FormatOptions {
     format: FormatValue
 }
 
-export const format: Directive<FormatOptions> = (config, ctx) => {
+export const format: TransformFactory<FormatOptions> = (config, ctx) => {
     let format: FormatValue | undefined = undefined
 
     if (config.format && formatValues.includes(config.format)) {

@@ -1,4 +1,4 @@
-import { Directive, ImageConfig } from "imagetools-core/dist/types";
+import { TransformFactory, ImageConfig } from "imagetools-core/dist/types";
 
 export type OutputFormat = (metadata: ImageConfig[]) => any
 
@@ -16,11 +16,11 @@ export interface PluginOptions {
     exclude: Array<string | RegExp> | string | RegExp
 
     /**
-     * You can use this option to extend the builtin list of import directives.
-     * This list will be merged with the builtin directives before applying them to the input image.
+     * You can use this option to extend the builtin list of import transforms.
+     * This list will be merged with the builtin transforms before applying them to the input image.
      * @default []
      */
-    extendDirectives?: (builtins: Directive[]) => Directive[]
+    extendTransforms?: (builtins: TransformFactory[]) => TransformFactory[]
 
     /**
      * You can use this option to extend the builtin list of output formats.

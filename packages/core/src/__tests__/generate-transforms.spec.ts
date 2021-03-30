@@ -1,10 +1,10 @@
-import { Directive } from '../types'
+import { TransformFactory } from '../types'
 import { generateTransforms } from '../lib/generate-transforms'
 
 describe('applyTransforms', () => {
     it('returns the transformations array', () => {
         const options = { width: 300, height: 100 }
-        const dirs: Directive[] = [() => i => i]
+        const dirs: TransformFactory[] = [() => i => i]
 
         const { transforms } = generateTransforms(options, dirs)
 
@@ -14,7 +14,7 @@ describe('applyTransforms', () => {
 
     it('returns the recognized parameters', () => {
         const options = {}
-        const dirs: Directive[] = [(_, ctx) => {
+        const dirs: TransformFactory[] = [(_, ctx) => {
             ctx.useParam('foo')
             return (img) => img
         }]
@@ -24,10 +24,10 @@ describe('applyTransforms', () => {
         expect(parametersUsed.has('foo')).toBeTruthy()
     })
 
-    it('filters out directives that return undefined', () => {
+    it('filters out transforms that return undefined', () => {
         {
             const options = { width: 300, height: 100 }
-            const dirs: Directive[] = [
+            const dirs: TransformFactory[] = [
                 () => undefined,
                 () => undefined,
                 () => undefined
@@ -40,7 +40,7 @@ describe('applyTransforms', () => {
         }
         {
             const options = { width: 300, height: 100 }
-            const dirs: Directive[] = [
+            const dirs: TransformFactory[] = [
                 () => i => i,
                 () => i => i,
                 () => undefined

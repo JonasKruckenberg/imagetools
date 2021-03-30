@@ -8,7 +8,7 @@ export const cartesian = (...a: any[]) => a.reduce((a: any, b: any) => a.flatMap
 
 /**
  * This function builds up all possible combinations the given entries can be combined
- * an returns it as an array of objects that can be given to a the directives.
+ * an returns it as an array of objects that can be given to a the transforms.
  * @param entries The url parameter entries
  * @returns An array of directive options
  */

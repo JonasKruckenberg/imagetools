@@ -1,11 +1,11 @@
-import { Directive } from "../types";
+import { TransformFactory } from "../types";
 import { setMetadata } from "../lib/metadata";
 
 export interface MedianOptions {
     median: string
 }
 
-export const median: Directive<MedianOptions> = (config, ctx) => {
+export const median: TransformFactory<MedianOptions> = (config, ctx) => {
     const median = config.median ? parseInt(config.median) : undefined
 
     if (!median) return

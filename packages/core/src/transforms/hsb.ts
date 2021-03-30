@@ -1,4 +1,4 @@
-import { Directive } from "../types";
+import { TransformFactory } from "../types";
 import { setMetadata } from "../lib/metadata";
 
 export interface HSBOptions {
@@ -7,7 +7,7 @@ export interface HSBOptions {
     brightness: string
 }
 
-export const hsb: Directive<HSBOptions> = (config, ctx) => {
+export const hsb: TransformFactory<HSBOptions> = (config, ctx) => {
 
     const hue = config.hue && parseInt(config.hue)
     const saturation = config.saturation && parseFloat(config.saturation)
