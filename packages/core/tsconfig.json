@@ -1,6 +1,6 @@
 {
     "compilerOptions": {
-        "target": "esnext",
+        "target": "es2018",
         "module": "esnext",
         "moduleResolution": "node",
         "esModuleInterop": true,
@@ -8,6 +8,7 @@
         "declaration": true,
         "declarationDir": "dist",
         "strict": true,
+        "lib": ["esnext","DOM","DOM.Iterable"],
         "strictNullChecks": true
     },
     "include": [
