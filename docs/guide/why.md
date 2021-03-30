@@ -18,5 +18,4 @@ import Image from "example.jpeg?w=300&h=400"
 ```
 Will resize your image to be 300 pixels wide and 400 pixel tall, it's that easy!
 
-> Convinced? Read on!
-
+> Convinced? [Read on!](install.md)

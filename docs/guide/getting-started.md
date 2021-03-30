@@ -94,3 +94,4 @@ interface OutputMetadata {
 }
 ```
 
+> Interested in more ? Read the [spec](../spec.md) or see the [extending guide](extending.md)
