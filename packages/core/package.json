@@ -21,6 +21,9 @@
     "image",
     "imagetools"
   ],
+  "engines": {
+    "node": ">=12.0.0"
+  },
   "scripts": {
     "dev": "rollup -cw",
     "build": "rollup -c",
