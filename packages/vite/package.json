@@ -1,6 +1,6 @@
 {
   "name": "vite-imagetools",
-  "description": "Load and transform images using a toolbox of custom import directives!",
+  "description": "Load and transform images using a toolbox of import directives!",
   "version": "3.3.1",
   "main": "dist/index.cjs",
   "module": "dist/index.mjs",

@@ -1,6 +1,6 @@
 # vite-imagetools
 
-A toolbox of custom import directives for [vitejs](https://github.com/vitejs/vite) that can transform your image at compile-time.
+A toolbox of import directives for [vitejs](https://github.com/vitejs/vite) that can transform your image at compile-time.
 All of the image transformations are powered by [sharp](https://sharp.pixelplumbing.com).
 
 ## Features
