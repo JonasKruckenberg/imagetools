@@ -40,4 +40,10 @@ export interface PluginOptions {
      * @default true
      */
     removeMetadata: boolean
+
+    /**
+    * This option used to enable the plugin during development mode. This option is no longer required!
+    * @deprecated
+    */
+    force: boolean
 }
