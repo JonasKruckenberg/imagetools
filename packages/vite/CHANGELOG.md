@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.4.0-next.1](https://github.com/JonasKruckenberg/vite-imagetools/compare/vite-imagetools@3.4.0-next.0...vite-imagetools@3.4.0-next.1) (2021-03-30)
+
+**Note:** Version bump only for package vite-imagetools
+
+
+
+
+
 # [3.4.0-next.0](https://github.com/JonasKruckenberg/vite-imagetools/compare/vite-imagetools@3.3.2-alpha.0...vite-imagetools@3.4.0-next.0) (2021-03-30)
 
 
