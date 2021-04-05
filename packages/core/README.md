@@ -1,5 +1,9 @@
 # imagetools-core
 
+<!-- badges -->
+![npm (tag)](https://img.shields.io/npm/v/imagetools-core/next)
+[![standard-readme compliant](https://img.shields.io/badge/readme%20style-standard-brightgreen.svg?style=flat-square)](https://github.com/RichardLitt/standard-readme)
+
 A toolbox of import directives that can transform your image at compile-time.
 All of the image transformations are powered by [sharp](https://sharp.pixelplumbing.com).
 
