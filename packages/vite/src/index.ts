@@ -1,8 +1,7 @@
 import { Plugin, ResolvedConfig } from "vite";
-import { parseURL, loadImage, builtins, resolveConfigs, applyTransforms, generateTransforms, getMetadata, generateImageID } from 'imagetools-core'
+import { parseURL, loadImage, builtins, resolveConfigs, applyTransforms, generateTransforms, getMetadata, generateImageID, builtinOutputFormats, urlFormat } from 'imagetools-core'
 import { basename, extname, join } from 'path'
 import { createFilter, dataToEsm } from "@rollup/pluginutils";
-import { builtinOutputFormats, urlFormat } from './output-formats'
 import MagicString from 'magic-string'
 import { OutputFormat, PluginOptions } from "./types";
 
@@ -91,7 +90,7 @@ export default function imagetools(userOptions: Partial<PluginOptions> = {}): Pl
 
                     const image = generatedImages.get(id)
 
-                    if(pluginOptions.removeMetadata === false) {
+                    if (pluginOptions.removeMetadata === false) {
                         image.withMetadata()
                     }
 

@@ -17,3 +17,5 @@ export interface TransformResult {
     image: Sharp,
     metadata: Record<string,any>
 }
+
+export type OutputFormat = (metadata: ImageConfig[]) => any

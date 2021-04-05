@@ -20,6 +20,7 @@ export * from './transforms/tint'
 
 export * from './types'
 export * from './builtins'
+export * from './output-formats'
 export * from './util'
 export { parseURL } from './lib/parse-url'
 export { resolveConfigs } from './lib/resolve-configs' 

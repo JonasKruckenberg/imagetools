@@ -1,5 +1,4 @@
-import type { ImageConfig } from 'imagetools-core'
-import { OutputFormat } from './types'
+import type { ImageConfig, OutputFormat } from './types'
 
 export const urlFormat: OutputFormat = (metadatas) => {
     const urls: string[] = metadatas.map(metadata => metadata.src)
