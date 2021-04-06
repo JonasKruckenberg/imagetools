@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.4.0-next.3](https://github.com/JonasKruckenberg/imagetools/compare/vite-imagetools@3.4.0-next.2...vite-imagetools@3.4.0-next.3) (2021-04-06)
+
+
+### Bug Fixes
+
+* mark force option as deprecated ([23b0aef](https://github.com/JonasKruckenberg/imagetools/commit/23b0aef57e363aa314222cc869d2e1f85e29e118))
+
+
+### Features
+
+* add rollup integration ([2fd9ca7](https://github.com/JonasKruckenberg/imagetools/commit/2fd9ca7e1b945d023e9305f0172763fc991bfdb4))
+
+
+
+
+
 # [3.4.0-next.2](https://github.com/JonasKruckenberg/vite-imagetools/compare/vite-imagetools@3.4.0-next.1...vite-imagetools@3.4.0-next.2) (2021-04-05)
 
 **Note:** Version bump only for package vite-imagetools
