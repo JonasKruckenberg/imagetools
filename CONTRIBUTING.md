@@ -69,4 +69,4 @@ Whenever you build an something with imagetools-core, make sure to link back to 
 
 - Reexport the directives when possible
 
-vite-imagetools reexports all builtin directives, so users can create their own directives using the builtins as building blocks. You should - whenever possible - also do the same so users can profit from the extensible nature of imagetools.
+both vite-imagetools and rollup-plugin-imagetools reexport all builtin directives, so users can create their own directives using the builtins as building blocks. You should - whenever possible - also do the same so users can profit from the extensible nature of imagetools.

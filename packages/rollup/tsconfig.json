@@ -1,0 +1,17 @@
+{
+    "compilerOptions": {
+        "target": "es2019",
+        "module": "esnext",
+        "moduleResolution": "node",
+        "esModuleInterop": true,
+        "sourceMap": true,
+        "declaration": true,
+        "declarationDir": "dist",
+        "strict": true,
+        "lib": ["esnext","DOM","DOM.Iterable"],
+        "strictNullChecks": true
+    },
+    "include": [
+        "src"
+    ]
+}

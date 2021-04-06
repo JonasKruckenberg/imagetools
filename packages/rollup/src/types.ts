@@ -1,6 +1,5 @@
-import { TransformFactory, ImageConfig } from "imagetools-core/dist/types";
-
-export type OutputFormat = (metadata: ImageConfig[]) => any
+import { TransformFactory } from "imagetools-core/dist/types";
+import { OutputFormat } from '../../common/output-formats'
 
 export interface PluginOptions {
     /** 
@@ -10,8 +9,7 @@ export interface PluginOptions {
     include: Array<string | RegExp> | string | RegExp
     /** 
      * What paths to exclude when processing images.
-     * This defaults to the public dir to mirror vites behavior.
-     * @default 'public\/**\/*'
+     * @default ''
     */
     exclude: Array<string | RegExp> | string | RegExp
 
@@ -40,10 +38,4 @@ export interface PluginOptions {
      * @default true
      */
     removeMetadata: boolean
-
-    /**
-    * This option used to enable the plugin during development mode. This option is no longer required!
-    * @deprecated
-    */
-    force?: boolean
 }

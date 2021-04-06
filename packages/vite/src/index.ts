@@ -65,7 +65,7 @@ export default function imagetools(userOptions: Partial<PluginOptions> = {}): Pl
 
                     metadata.src = `__VITE_IMAGE_ASSET__${fileHandle}__`
                 } else {
-                    metadata.src = join('/@vite-imagetools', id)
+                    metadata.src = join('/@imagetools', id)
                 }
 
                 outputMetadatas.push(metadata)
@@ -85,8 +85,8 @@ export default function imagetools(userOptions: Partial<PluginOptions> = {}): Pl
 
         configureServer(server) {
             server.middlewares.use((req, res, next) => {
-                if (req.url?.startsWith('/@vite-imagetools/')) {
-                    const [, id] = req.url.split('/@vite-imagetools/')
+                if (req.url?.startsWith('/@imagetools/')) {
+                    const [, id] = req.url.split('/@imagetools/')
 
                     const image = generatedImages.get(id)
 

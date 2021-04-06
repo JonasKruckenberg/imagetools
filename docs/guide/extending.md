@@ -48,7 +48,7 @@ Let's break that down:
 import { resize, format } from "imagetools"
 ```
 
-Vite-imagetools exports all directives so you can reuse them in you own directives, as we will see shortly.
+Both vite-imagetools and rollup-plugin-imagetools exports all directives so you can reuse them in you own directives, as we will see shortly.
 
 ```ts
 function customDirective(config, ctx) {
