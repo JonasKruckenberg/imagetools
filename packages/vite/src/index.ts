@@ -1,9 +1,9 @@
 import { Plugin, ResolvedConfig } from "vite";
 import { parseURL, loadImage, builtins, resolveConfigs, applyTransforms, generateTransforms, getMetadata, generateImageID, builtinOutputFormats, urlFormat } from 'imagetools-core'
 import { basename, extname, join } from 'path'
-import { createFilter, dataToEsm } from "@rollup/pluginutils";
+import { createFilter, dataToEsm } from '@rollup/pluginutils';
 import MagicString from 'magic-string'
-import { OutputFormat, PluginOptions } from "./types";
+import { OutputFormat, PluginOptions } from './types';
 
 const defaultOptions: PluginOptions = {
     include: '**\/*.{heic,heif,avif,jpeg,jpg,png,tiff,webp,gif}?*',
@@ -104,11 +104,11 @@ export default function imagetools(userOptions: Partial<PluginOptions> = {}): Pl
         },
 
         renderChunk(code) {
-            const assetUrlQuotedRE = /__VITE_IMAGE_ASSET__([a-z\d]{8})__(?:_(.*?)__)?/g
+            const assetUrlRE = /__VITE_IMAGE_ASSET__([a-z\d]{8})__(?:_(.*?)__)?/g
 
             let match
             let s
-            while ((match = assetUrlQuotedRE.exec(code))) {
+            while ((match = assetUrlRE.exec(code))) {
                 s = s || (s = new MagicString(code))
                 const [full, hash, postfix = ''] = match
 
