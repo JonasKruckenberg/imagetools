@@ -8,11 +8,11 @@
   "files": [
     "dist"
   ],
-  "homepage": "https://github.com/JonasKruckenberg/vite-imagetools/tree/next/packages/vite",
+  "homepage": "https://github.com/JonasKruckenberg/imagetools/tree/next/packages/vite",
   "author": "jkruckenberg <iterpre@protonmail.com>",
   "repository": {
     "type": "git",
-    "url": "https://github.com/JonasKruckenberg/vite-imagetools.git"
+    "url": "https://github.com/JonasKruckenberg/imagetools.git"
   },
   "keywords": [
     "resize-images",
