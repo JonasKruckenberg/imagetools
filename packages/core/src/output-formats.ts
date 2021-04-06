@@ -7,15 +7,9 @@ export const urlFormat: OutputFormat = (metadatas) => {
 }
 
 export const srcsetFormat: OutputFormat = (metadatas: ImageConfig[]) => {
-    const sources = metadatas.reduce((prev, meta) => {
-        if (prev) {
-            return `${prev}, ${meta.src} ${meta.width}w`
-        } else {
-            return `${meta.src} ${meta.width}w`
-        }
-    }, '')
+    const sources = metadatas.map(meta => `${meta.src} ${meta.width}w`)
 
-    return sources
+    return sources.join(', ')
 }
 
 export const metadataFormat: OutputFormat = (metadatas: ImageConfig[]) => {
