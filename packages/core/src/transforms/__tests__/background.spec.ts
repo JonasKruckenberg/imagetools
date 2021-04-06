@@ -1,5 +1,4 @@
 import sharp, { Sharp } from 'sharp'
-import { DirectiveContext } from '../../types'
 import { join } from 'path'
 import { getBackground } from '../background'
 

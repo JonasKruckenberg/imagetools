@@ -1,5 +1,5 @@
 import { tint } from '../tint'
-import { DirectiveContext } from '../../types'
+import { TransformFactoryContext } from '../../types'
 import { applyTransforms } from '../../index'
 import sharp, { Sharp } from 'sharp'
 import { join } from 'path'
@@ -8,7 +8,7 @@ import { toMatchFile } from 'jest-file-snapshot'
 expect.extend({ toMatchFile })
 
 describe('tint', () => {
-    let dirCtx: DirectiveContext
+    let dirCtx: TransformFactoryContext
     beforeAll(() => {
         dirCtx = { useParam: jest.fn, warn: jest.fn }
     })

@@ -1,5 +1,5 @@
 import { blur } from '../blur'
-import { DirectiveContext } from "../../types"
+import { TransformFactoryContext } from "../../types"
 import { applyTransforms } from '../../index'
 import sharp, { Sharp } from 'sharp'
 import { join } from 'path'
@@ -8,7 +8,7 @@ import { toMatchFile } from 'jest-file-snapshot'
 expect.extend({ toMatchFile })
 
 describe('blur', () => {
-    let dirCtx: DirectiveContext
+    let dirCtx: TransformFactoryContext
     beforeAll(() => {
         dirCtx = { useParam: jest.fn, warn: jest.fn }
     })

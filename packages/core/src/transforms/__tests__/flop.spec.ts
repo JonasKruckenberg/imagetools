@@ -1,4 +1,4 @@
-import { DirectiveContext } from '../../types'
+import { TransformFactoryContext } from '../../types'
 import { flop } from '../flop'
 import { applyTransforms } from '../../index'
 import sharp, { Sharp } from 'sharp'
@@ -8,7 +8,7 @@ import { toMatchFile } from 'jest-file-snapshot'
 expect.extend({ toMatchFile })
 
 describe('flop', () => {
-    let dirCtx: DirectiveContext
+    let dirCtx: TransformFactoryContext
     beforeAll(() => {
         dirCtx = { useParam: jest.fn, warn: jest.fn }
     })
