@@ -76,16 +76,6 @@ This defaults to the public dir to mirror vites behavior.
 
 ___
 
-### cache
-
-• **cache**: *string* \| *false*
-
-The path to use as the cache for images, set this option to false to disable caching completely.
-
-**`default`** 'node_modules/.cache/vite-imagetools'
-
-___
-
 ### extendTransforms
 
 • **extendTransforms**: [*Directive*](docs/modules/types.md#transformFactory)<{}\>[]
@@ -126,7 +116,7 @@ Wether to remove potentially private metadata from the image, such as exif tags 
 
 ## Contributing
 
-Feel free to dive in! [Open an issue](https://github.com/JonasKruckenberg/vite-imagetools/issues/new) or submit PRs!
+Feel free to dive in! [Open an issue](https://github.com/JonasKruckenberg/imagetools/issues/new) or submit PRs!
 All information to get you started hacking on imagetools is in [CONTRIBUTING.md](../../CONTRIBUTING.md)!
 
 ## License

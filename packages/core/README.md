@@ -68,7 +68,7 @@ const configs = resolveConfigs(parameters)
 
 ## Contributing
 
-Feel free to dive in! [Open an issue](https://github.com/JonasKruckenberg/vite-imagetools/issues/new) or submit PRs!
+Feel free to dive in! [Open an issue](https://github.com/JonasKruckenberg/imagetools/issues/new) or submit PRs!
 All information to get you started hacking on imagetools is in [CONTRIBUTING.md](../../CONTRIBUTING.md)!
 
 ## License
