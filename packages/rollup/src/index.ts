@@ -1,7 +1,8 @@
 import { Plugin } from 'rollup'
 import { applyTransforms, builtins, generateTransforms, loadImage, parseURL, resolveConfigs, builtinOutputFormats, urlFormat, OutputFormat } from 'imagetools-core'
-import { createFilter, dataToEsm } from "@rollup/pluginutils";
-import { PluginOptions } from "./types";
+import { createFilter, dataToEsm } from '@rollup/pluginutils'
+import { PluginOptions } from './types'
+import MagicString from 'magic-string'
 import { basename, extname, join } from 'path'
 
 const defaultOptions: PluginOptions = {
@@ -57,7 +58,7 @@ export function imagetools(userOptions: Partial<PluginOptions> = {}): Plugin {
                     type: 'asset'
                 })
 
-                metadata.src = `__VITE_IMAGE_ASSET__${fileHandle}__`
+                metadata.src = `__ROLLUP_IMAGE_ASSET__${fileHandle}__`
 
                 outputMetadatas.push(metadata)
             }
@@ -70,8 +71,37 @@ export function imagetools(userOptions: Partial<PluginOptions> = {}): Plugin {
                     break
                 }
             }
-
+        
             return dataToEsm(outputFormat(outputMetadatas))
+        },
+        renderChunk(code) {
+            const assetUrlRE = /__ROLLUP_IMAGE_ASSET__([a-z\d]{8})__(?:_(.*?)__)?/g
+
+            let match
+            let s
+            while ((match = assetUrlRE.exec(code))) {
+                s = s || (s = new MagicString(code))
+                const [full, hash, postfix = ''] = match
+
+                const file = this.getFileName(hash)
+
+                const outputFilepath = file + postfix
+
+                s.overwrite(
+                    match.index,
+                    match.index + full.length,
+                    outputFilepath
+                )
+            }
+
+            if (s) {
+                return {
+                    code: s.toString(),
+                    map: s.generateMap({ hires: true })
+                }
+            } else {
+                return null
+            }
         }
     }
 }
