@@ -3,7 +3,7 @@ import { applyTransforms, builtins, generateTransforms, loadImage, parseURL, res
 import { createFilter, dataToEsm } from '@rollup/pluginutils'
 import { PluginOptions } from './types'
 import MagicString from 'magic-string'
-import { basename, extname, join } from 'path'
+import { basename, extname, resolve } from 'path'
 
 const defaultOptions: PluginOptions = {
     include: '**/*.{heic,heif,avif,jpeg,jpg,png,tiff,webp,gif}?*',
@@ -28,7 +28,7 @@ export function imagetools(userOptions: Partial<PluginOptions> = {}): Plugin {
     return {
         name: 'imagetools',
         resolveId(source) {
-            const id = join(process.cwd(), source)
+            const id = resolve(process.cwd(), source)
 
             if (!filter(id)) return null
             return id
