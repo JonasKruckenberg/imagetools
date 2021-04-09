@@ -17,9 +17,9 @@ A toolbox of easy-to-use import directives that transform and optimize your imag
 
 | Package                                        | Version (click for changelogs)
 |------------------------------------------------|:------------------------------------
-| [imagetools-core](packages/imagetools-core)    | [![imagetools-core version](https://img.shields.io/npm/v/imagetools-core/next?label=%20)](packages/imagetools-core/CHANGELOG.md)
-| [vite-imagetools](packages/vite)               | [![vite-imagetools version](https://img.shields.io/npm/v/vite-imagetools/next?label=%20)](packages/vite-imagetools/CHANGELOG.md)
-| [rollup-plugin-imagetools](packages/rollup)               | [![rollup-plugin-imagetools version](https://img.shields.io/npm/v/rollup-plugin-imagetools/next?label=%20)](packages/rollup-plugin-imagetools/CHANGELOG.md)
+| [imagetools-core](packages/core)    | [![imagetools-core version](https://img.shields.io/npm/v/imagetools-core/next?label=%20)](packages/core/CHANGELOG.md)
+| [vite-imagetools](packages/vite)               | [![vite-imagetools version](https://img.shields.io/npm/v/vite-imagetools/next?label=%20)](packages/vite/CHANGELOG.md)
+| [rollup-plugin-imagetools](packages/rollup)               | [![rollup-plugin-imagetools version](https://img.shields.io/npm/v/rollup-plugin-imagetools/next?label=%20)](packages/rollup/CHANGELOG.md)
 
 ## Contributing
 
