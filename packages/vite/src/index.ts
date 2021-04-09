@@ -80,7 +80,11 @@ export default function imagetools(userOptions: Partial<PluginOptions> = {}): Pl
                 }
             }
 
-            return dataToEsm(outputFormat(outputMetadatas))
+            return dataToEsm(outputFormat(outputMetadatas), {
+                namedExports: viteConfig.json?.namedExports ?? true,
+                compact: !!viteConfig.build.minify ?? false,
+                preferConst: true
+            })
         },
 
         configureServer(server) {
