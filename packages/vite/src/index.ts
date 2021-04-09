@@ -12,7 +12,7 @@ const defaultOptions: PluginOptions = {
     removeMetadata: true
 }
 
-export default function imagetools(userOptions: Partial<PluginOptions> = {}): Plugin {
+export function imagetools(userOptions: Partial<PluginOptions> = {}): Plugin {
     const pluginOptions: PluginOptions = { ...defaultOptions, ...userOptions }
 
     const filter = createFilter(pluginOptions.include, pluginOptions.exclude)
