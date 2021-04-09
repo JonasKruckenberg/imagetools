@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.4.0-next.4](https://github.com/JonasKruckenberg/imagetools/compare/vite-imagetools@3.4.0-next.3...vite-imagetools@3.4.0-next.4) (2021-04-09)
+
+
+### Features
+
+* respect vite configuration when generating output code ([e4a9c66](https://github.com/JonasKruckenberg/imagetools/commit/e4a9c66f16ff9994ea75b3140e387d4a165bfb9f)), closes [#55](https://github.com/JonasKruckenberg/imagetools/issues/55)
+
+
+
+
+
 # [3.4.0-next.3](https://github.com/JonasKruckenberg/imagetools/compare/vite-imagetools@3.4.0-next.2...vite-imagetools@3.4.0-next.3) (2021-04-06)
 
 
