@@ -209,7 +209,6 @@ describe('vite-imagetools', () => {
 
     test('relative import', async () => {
         const bundle = await build({
-
             logLevel: 'warn',
             build: { write: false },
             plugins: [
@@ -229,7 +228,6 @@ describe('vite-imagetools', () => {
         const imagePath = join(process.cwd(), 'pexels-allec-gomes-5195763.png')
 
         const bundle = await build({
-
             logLevel: 'warn',
             build: { write: false },
             plugins: [
@@ -245,25 +243,35 @@ describe('vite-imagetools', () => {
         expect(source).toMatchImageSnapshot()
     })
 
-    test('non existent file', () => {
-        // const p = rollup({
-        //     plugins: [
-        //         testEntry(`import Image from "./invalid.png?w=300"`),
-        //         imagetools()
-        //     ]
-        // })
+    test('non existent file', async () => {
+        const p = build({
+            logLevel: 'warn',
+            build: { write: false },
+            plugins: [
+                testEntry(`
+                    import Image from "./invalid.png?w=300"
+                    export default Image
+                `),
+                imagetools()
+            ]
+        })
 
-        // expect(p).rejects.toBeDefined()
+        await expect(p).rejects.toBeDefined()
     })
 
-    test('no directives', () => {
-        // const p = rollup({
-        //     plugins: [
-        //         testEntry(`import Image from "./pexels-allec-gomes-5195763.png"`),
-        //         imagetools()
-        //     ]
-        // })
+    test('no directives', async () => {
+        const p = build({
+            logLevel: 'warn',
+            build: { write: false },
+            plugins: [
+                testEntry(`
+                import Image from "./pexels-allec-gomes-5195763.png"
+                    export default Image
+                `),
+                imagetools()
+            ]
+        })
 
-        // expect(p).rejects.toBeDefined()
+        await expect(p).resolves.toBeDefined()
     })
 })

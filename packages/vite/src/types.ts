@@ -1,4 +1,4 @@
-import { TransformFactory, ImageConfig } from "imagetools-core/dist/types";
+import { TransformFactory, ImageConfig } from "imagetools-core";
 
 export type OutputFormat = (metadata: ImageConfig[]) => any
 

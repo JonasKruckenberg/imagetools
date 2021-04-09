@@ -1,5 +1,4 @@
-import { TransformFactory } from "imagetools-core/dist/types";
-import { OutputFormat } from '../../common/output-formats'
+import { TransformFactory, OutputFormat } from "imagetools-core";
 
 export interface PluginOptions {
     /** 
