@@ -2,9 +2,9 @@ import { build } from 'vite'
 import { imagetools } from '../index'
 import { join } from 'path'
 import { getSource, testEntry } from './util'
-import { toMatchFile } from 'jest-file-snapshot'
+import { toMatchImageSnapshot } from 'jest-image-snapshot'
 
-expect.extend({ toMatchFile })
+expect.extend({ toMatchImageSnapshot })
 process.chdir(join(__dirname, 'fixtures'))
 
 describe('vite-imagetools', () => {
@@ -16,61 +16,61 @@ describe('vite-imagetools', () => {
                     build: { write: false },
                     plugins: [
                         testEntry(`
-                            import Image from "./pexels-allec-gomes-5195763.jpg?w=300"
+                            import Image from "./pexels-allec-gomes-5195763.png?w=300"
                             export default Image
                         `),
                         imagetools({
-                            include: '**/*.jpg?*'
+                            include: '**/*.png?*'
                         })
                     ]
                 })
 
-                expect(p).resolves.toBeDefined()
+                await expect(p).resolves.toBeDefined()
             })
 
-            it('accepts a regex', () => {
+            it('accepts a regex', async () => {
                 const p = build({
                     logLevel: 'warn',
                     build: { write: false },
                     plugins: [
                         testEntry(`
-                            import Image from "./pexels-allec-gomes-5195763.jpg?w=300"
+                            import Image from "./pexels-allec-gomes-5195763.png?w=300"
                             export default Image
                         `),
                         imagetools({
-                            include: /\w+\.jpg/
+                            include: /\w+\.png/
                         })
                     ]
                 })
 
-                expect(p).resolves.toBeDefined()
+                await expect(p).resolves.toBeDefined()
             })
 
-            it('accepts an array', () => {
+            it('accepts an array', async () => {
                 const p = build({
                     logLevel: 'warn',
                     build: { write: false },
                     plugins: [
                         testEntry(`
-                            import Image from "./pexels-allec-gomes-5195763.jpg?w=300"
+                            import Image from "./pexels-allec-gomes-5195763.png?w=300"
                             export default Image
                         `),
                         imagetools({
-                            include: ['**/*.jpg?*', /\w+\.jpg/]
+                            include: ['**/*.png?*', /\w+\.png/]
                         })
                     ]
                 })
 
-                expect(p).resolves.toBeDefined()
+                await expect(p).resolves.toBeDefined()
             })
 
-            it('errors on invalid input', () => {
+            it('errors on invalid input', async () => {
                 const p = build({
                     logLevel: 'silent',
                     build: { write: false },
                     plugins: [
                         testEntry(`
-                            import Image from "./pexels-allec-gomes-5195763.jpg?w=300"
+                            import Image from "./pexels-allec-gomes-5195763.png?w=300"
                             export default Image
                         `),
                         imagetools({
@@ -80,16 +80,16 @@ describe('vite-imagetools', () => {
                     ]
                 })
 
-                expect(p).rejects.toBeDefined()
+                await expect(p).rejects.toBeDefined()
             })
 
-            it('does nothing non matching import', () => {
+            it('does nothing non matching import', async () => {
                 const p = build({
                     logLevel: 'warn',
                     build: { write: false },
                     plugins: [
                         testEntry(`
-                            import Image from "./pexels-allec-gomes-5195763.jpg?w=300"
+                            import Image from "./pexels-allec-gomes-5195763.png?w=300"
                             export default Image
                         `),
                         imagetools({
@@ -98,7 +98,7 @@ describe('vite-imagetools', () => {
                     ]
                 })
 
-                expect(p).resolves.toBeDefined()
+                await expect(p).resolves.toBeDefined()
             })
         })
 
@@ -109,61 +109,61 @@ describe('vite-imagetools', () => {
                     build: { write: false },
                     plugins: [
                         testEntry(`
-                            import Image from "./pexels-allec-gomes-5195763.jpg?w=300"
+                            import Image from "./pexels-allec-gomes-5195763.png?w=300"
                             export default Image
                         `),
                         imagetools({
-                            exclude: '**/*.png'
+                            exclude: '**/*.jpg'
                         })
                     ]
                 })
 
-                expect(p).resolves.toBeDefined()
+                await expect(p).resolves.toBeDefined()
             })
 
-            it('accepts a regex', () => {
+            it('accepts a regex', async () => {
                 const p = build({
                     logLevel: 'warn',
                     build: { write: false },
                     plugins: [
                         testEntry(`
-                            import Image from "./pexels-allec-gomes-5195763.jpg?w=300"
+                            import Image from "./pexels-allec-gomes-5195763.png?w=300"
                             export default Image
                         `),
                         imagetools({
-                            exclude: /\w+\.png/
+                            exclude: /\w+\.jpg/
                         })
                     ]
                 })
 
-                expect(p).resolves.toBeDefined()
+                await expect(p).resolves.toBeDefined()
             })
 
-            it('accepts an array', () => {
+            it('accepts an array', async () => {
                 const p = build({
                     logLevel: 'warn',
                     build: { write: false },
                     plugins: [
                         testEntry(`
-                            import Image from "./pexels-allec-gomes-5195763.jpg?w=300"
+                            import Image from "./pexels-allec-gomes-5195763.png?w=300"
                             export default Image
                         `),
                         imagetools({
-                            exclude: ['**/*.png?*', /\w+\.png/]
+                            exclude: ['**/*.jpg?*', /\w+\.jpg/]
                         })
                     ]
                 })
 
-                expect(p).resolves.toBeDefined()
+                await expect(p).resolves.toBeDefined()
             })
 
-            it('errors on invalid input', () => {
+            it('errors on invalid input', async () => {
                 const p = build({
                     logLevel: 'silent',
                     build: { write: false },
                     plugins: [
                         testEntry(`
-                            import Image from "./pexels-allec-gomes-5195763.jpg?w=300"
+                            import Image from "./pexels-allec-gomes-5195763.png?w=300"
                             export default Image
                         `),
                         imagetools({
@@ -173,16 +173,16 @@ describe('vite-imagetools', () => {
                     ]
                 })
 
-                expect(p).rejects.toBeDefined()
+                await expect(p).rejects.toBeDefined()
             })
 
-            it('resolves normal on non matching input', () => {
+            it('resolves normal on non matching input', async () => {
                 const p = build({
                     logLevel: 'warn',
                     build: { write: false },
                     plugins: [
                         testEntry(`
-                            import Image from "./pexels-allec-gomes-5195763.jpg?w=300"
+                            import Image from "./pexels-allec-gomes-5195763.png?w=300"
                             export default Image
                         `),
                         imagetools({
@@ -191,7 +191,7 @@ describe('vite-imagetools', () => {
                     ]
                 })
 
-                expect(p).resolves.toBeDefined()
+                await expect(p).resolves.toBeDefined()
             })
         })
 
@@ -209,11 +209,12 @@ describe('vite-imagetools', () => {
 
     test('relative import', async () => {
         const bundle = await build({
+
             logLevel: 'warn',
             build: { write: false },
             plugins: [
                 testEntry(`
-                    import Image from "./pexels-allec-gomes-5195763.jpg?w=300"
+                    import Image from "./pexels-allec-gomes-5195763.png?w=300"
                     export default Image
                 `),
                 imagetools()
@@ -221,13 +222,14 @@ describe('vite-imagetools', () => {
         })
 
         const { source } = await getSource(bundle)
-        expect(source).toMatchFile()
+        expect(source).toMatchImageSnapshot()
     })
 
     test('absolute import', async () => {
-        const imagePath = join(process.cwd(), 'pexels-allec-gomes-5195763.jpg')
+        const imagePath = join(process.cwd(), 'pexels-allec-gomes-5195763.png')
 
         const bundle = await build({
+
             logLevel: 'warn',
             build: { write: false },
             plugins: [
@@ -240,13 +242,13 @@ describe('vite-imagetools', () => {
         })
 
         const { source } = await getSource(bundle)
-        expect(source).toMatchFile()
+        expect(source).toMatchImageSnapshot()
     })
 
     test('non existent file', () => {
         // const p = rollup({
         //     plugins: [
-        //         testEntry(`import Image from "./invalid.jpg?w=300"`),
+        //         testEntry(`import Image from "./invalid.png?w=300"`),
         //         imagetools()
         //     ]
         // })
@@ -257,7 +259,7 @@ describe('vite-imagetools', () => {
     test('no directives', () => {
         // const p = rollup({
         //     plugins: [
-        //         testEntry(`import Image from "./pexels-allec-gomes-5195763.jpg"`),
+        //         testEntry(`import Image from "./pexels-allec-gomes-5195763.png"`),
         //         imagetools()
         //     ]
         // })

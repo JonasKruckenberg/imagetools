@@ -7,7 +7,6 @@ export default {
       dir: 'dist',
       format: 'cjs',
       sourcemap: true,
-      exports: 'default',
       entryFileNames: '[name].cjs',
       chunkFileNames: '[name].cjs'
     },
