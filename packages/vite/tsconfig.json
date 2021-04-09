@@ -1,16 +1,19 @@
 {
     "compilerOptions": {
         "target": "es2019",
-        "module": "esnext",
         "moduleResolution": "node",
         "esModuleInterop": true,
-        "sourceMap": true,
+        "baseUrl": ".",
+        "paths": {
+            "imagetools-core": ["../core/src"]
+        },
+
+        "composite": true,
         "declaration": true,
-        "declarationDir": "dist",
-        "strict": true,
-        "strictNullChecks": true
+        "declarationMap": true,
+        "sourceMap": true
     },
-    "include": [
-        "src"
-    ]
+    "references": [
+        { "path": "../core" }
+      ]
 }

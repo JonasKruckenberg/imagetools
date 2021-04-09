@@ -23,6 +23,9 @@ export default {
     typescript({
       typescript: require('typescript'),
       tsconfigOverride: {
+        compilerOptions: {
+          paths: null
+        },
         exclude: ['src/**/__tests__/**']
       }
     })

@@ -27,7 +27,7 @@
   "scripts": {
     "dev": "rollup -cw",
     "build": "rollup -c",
-    "test": "jest --config=jest.config.js",
+    "test": "jest",
     "coverage": "jest --collectCoverage"
   },
   "devDependencies": {
