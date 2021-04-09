@@ -3,6 +3,7 @@ module.exports = {
   testEnvironment: 'node',
   testMatch: [ "**/?(*.)+(spec|test).[jt]s?(x)" ],
   collectCoverageFrom: [
-    "src/**/*.ts"
+    "src/**/*.ts",
+    "!**/__tests__/**"
   ]
 };

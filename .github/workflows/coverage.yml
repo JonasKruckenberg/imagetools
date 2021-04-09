@@ -1,0 +1,40 @@
+name: Generate Coverage
+on:
+  push:
+    branches:
+      - master
+      - next
+
+jobs:
+  coverage:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: 14.x
+          lfs: true
+      - run: yarn
+      - name: Generate coverage report
+        run: yarn coverage
+      - name: Upload imagetools-core Report
+        uses: codecov/codecov-action@v1
+        with:
+           token: ${{ secrets.CODECOV_TOKEN }}
+           flags: imagetools-core
+           files: 'packages/core/coverage/coverage-final.json'
+
+      - name: Upload vite-imagetools Report
+        uses: codecov/codecov-action@v1
+        with:
+           token: ${{ secrets.CODECOV_TOKEN }}
+           flags: vite-imagetools
+           files: 'packages/vite/coverage/coverage-final.json'
+
+      - name: Upload rollup-plugin-imagetools Report
+        uses: codecov/codecov-action@v1
+        with:
+           token: ${{ secrets.CODECOV_TOKEN }}
+           flags: rollup-plugin-imagetools
+           files: 'packages/rollup/coverage/coverage-final.json'

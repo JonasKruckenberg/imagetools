@@ -7,6 +7,7 @@ module.exports = {
   testMatch: [ "**/?(*.)+(spec|test).[jt]s?(x)" ],
   moduleNameMapper: pathsToModuleNameMapper(compilerOptions.paths, { prefix: '<rootDir>/' }),
   collectCoverageFrom: [
-    "src/**/*.ts"
+    "src/**/*.ts",
+    "!**/__tests__/**"
   ]
 };
