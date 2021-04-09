@@ -22,7 +22,7 @@ describe('rollup-plugin-imagetools', () => {
 
                 expect(p).resolves.toBeDefined()
             })
-            
+
             it('accepts a regex', () => {
                 const p = rollup({
                     plugins: [
@@ -41,7 +41,7 @@ describe('rollup-plugin-imagetools', () => {
                     plugins: [
                         testEntry(`import Image from "./pexels-allec-gomes-5195763.jpg?w=300"`),
                         imagetools({
-                            include: ['**/*.jpg?*',/\w+\.jpg/]
+                            include: ['**/*.jpg?*', /\w+\.jpg/]
                         })
                     ]
                 })
@@ -110,7 +110,7 @@ describe('rollup-plugin-imagetools', () => {
                     plugins: [
                         testEntry(`import Image from "./pexels-allec-gomes-5195763.jpg?w=300"`),
                         imagetools({
-                            exclude: ['**/*.png?*',/\w+\.png/]
+                            exclude: ['**/*.png?*', /\w+\.png/]
                         })
                     ]
                 })
@@ -158,29 +158,56 @@ describe('rollup-plugin-imagetools', () => {
         })
     })
 
-    test('relative import', () => {
-        // should work
+    test('relative import', async () => {
+        const bundle = await rollup({
+            plugins: [
+                testEntry(`
+                    import Image from "./pexels-allec-gomes-5195763.jpg?w=300"
+                    export default Image
+                `),
+                imagetools()
+            ]
+        })
+
+        const source = await getSource(bundle)
+        expect(source).toMatchFile()
     })
-    test('absolute import', () => {
-        // should work
-    })
-    test('html import', () => {
-        // should work
-    })
-    test('css import', () => {
-        // should work
+    test('absolute import', async () => {
+        const imagePath = join(process.cwd(), 'pexels-allec-gomes-5195763.jpg')
+
+        const bundle = await rollup({
+            plugins: [
+                testEntry(`
+                    import Image from "${imagePath}?w=300"
+                    export default Image
+                `),
+                imagetools()
+            ]
+        })
+
+        const source = await getSource(bundle)
+        expect(source).toMatchFile()
     })
 
     test('non existent file', () => {
-        // should error
+        const p = rollup({
+            plugins: [
+                testEntry(`import Image from "./invalid.jpg?w=300"`),
+                imagetools()
+            ]
+        })
+
+        expect(p).rejects.toBeDefined()
     })
+
     test('no directives', () => {
-        // should do nothing
-    })
-    test('invalid directive', () => {
-        // should warn
-    })
-    test('inavlid output format', () => {
-        // should warn
+        const p = rollup({
+            plugins: [
+                testEntry(`import Image from "./pexels-allec-gomes-5195763.jpg"`),
+                imagetools()
+            ]
+        })
+
+        expect(p).rejects.toBeDefined()
     })
 })
