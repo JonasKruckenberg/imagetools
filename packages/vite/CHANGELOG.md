@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.4.0-next.6](https://github.com/JonasKruckenberg/imagetools/compare/vite-imagetools@3.4.0-next.5...vite-imagetools@3.4.0-next.6) (2021-04-11)
+
+
+### Bug Fixes
+
+* import types from the right file ([92fbe14](https://github.com/JonasKruckenberg/imagetools/commit/92fbe14168c1198a6c8d0e42ce1483cfad927294))
+* switch from default to named export ([b2f0ca7](https://github.com/JonasKruckenberg/imagetools/commit/b2f0ca7c2a7b50f2e28566cd397e5b3f0b0f55f7))
+
+
+
+
+
 # [3.4.0-next.5](https://github.com/JonasKruckenberg/imagetools/compare/vite-imagetools@3.4.0-next.4...vite-imagetools@3.4.0-next.5) (2021-04-11)
 
 
