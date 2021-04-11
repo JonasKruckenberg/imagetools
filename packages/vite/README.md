@@ -3,6 +3,7 @@
 <!-- badges -->
 ![npm (next)](https://img.shields.io/npm/v/vite-imagetools/next)
 [![standard-readme compliant](https://img.shields.io/badge/readme%20style-standard-brightgreen.svg?style=flat-square)](https://github.com/RichardLitt/standard-readme)
+[![codecov](https://codecov.io/gh/JonasKruckenberg/imagetools/branch/next/graph/badge.svg?token=bJrFBmuczA&flag=vite-imagetools)](https://codecov.io/gh/JonasKruckenberg/imagetools/)
 
 A toolbox of import directives for [vitejs](https://github.com/vitejs/vite) that can transform your image at compile-time.
 All of the image transformations are powered by [sharp](https://sharp.pixelplumbing.com).
