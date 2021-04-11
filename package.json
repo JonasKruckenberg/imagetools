@@ -4,9 +4,9 @@
   "private": true,
   "scripts": {
     "release": "lerna publish",
-    "test": "lerna run test --stream",
     "build": "lerna run build --stream",
-    "coverage": "lerna run coverage --stream"
+    "test": "lerna run test --parallel",
+    "coverage": "lerna run coverage --parallel"
   },
   "devDependencies": {
     "@commitlint/cli": "^12.0.1",
