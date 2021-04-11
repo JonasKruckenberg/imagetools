@@ -1,18 +1,12 @@
 {
+    "extends": "../../tsconfig.base.json",
     "compilerOptions": {
-        "target": "es2019",
-        "module": "esnext",
-        "moduleResolution": "node",
-        "esModuleInterop": true,
-        "declarationDir": "dist",
-        "strict": true,
-        "lib": ["esnext","DOM","DOM.Iterable"],
-        "strictNullChecks": true,
-
-        // monorepo
         "composite": true,
         "declaration": true,
-        "declarationMap": true,
-        "sourceMap": true
-    }
+        "outDir": "./dist",
+        "rootDir": "./src"
+    },
+    "include": [
+        "src/**/*"
+    ]
 }

@@ -1,19 +1,15 @@
 {
+    "extends": "../../tsconfig.base.json",
     "compilerOptions": {
-        "target": "es2019",
-        "moduleResolution": "node",
-        "esModuleInterop": true,
-        "baseUrl": ".",
-        "paths": {
-            "imagetools-core": ["../core/src"]
-        },
-
         "composite": true,
         "declaration": true,
-        "declarationMap": true,
-        "sourceMap": true
+        "outDir": "./dist",
+        "rootDir": "./src"
     },
     "references": [
-        { "path": "../core" }
-      ]
+        { "path": "../core/tsconfig.json" }
+    ],
+    "include": [
+        "src/**/*"
+    ]
 }

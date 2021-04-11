@@ -1,24 +1,15 @@
 {
+    "extends": "../../tsconfig.base.json",
     "compilerOptions": {
-        "target": "es2019",
-        "module": "esnext",
-        "moduleResolution": "node",
-        "esModuleInterop": true,
-        "declarationDir": "dist",
-        "strict": true,
-        "lib": ["esnext","DOM","DOM.Iterable"],
-        "strictNullChecks": true,
-        "baseUrl": ".",
-        "paths": {
-            "imagetools-core": ["../core/src"]
-        },
-
         "composite": true,
         "declaration": true,
-        "declarationMap": true,
-        "sourceMap": true
+        "outDir": "./dist",
+        "rootDir": "./src"
     },
     "references": [
-        { "path": "../core" }
-      ]
+        { "path": "../core/tsconfig.json" }
+    ],
+    "include": [
+        "src/**/*.ts"
+    ]
 }
