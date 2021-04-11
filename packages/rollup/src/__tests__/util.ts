@@ -1,4 +1,5 @@
 import { OutputAsset, Plugin, RollupBuild } from "rollup";
+import pm from 'picomatch'
 
 export function testEntry(value: string): Plugin {
     return {
@@ -18,10 +19,9 @@ export function testEntry(value: string): Plugin {
     }
 }
 
-export async function getSource(bundle: RollupBuild) {
+export async function getFiles(bundle: RollupBuild, pattern: string) {
+    const isMatch = pm(pattern)
     const { output } = await bundle.generate({ format: 'esm', dir: 'output' })
 
-    const files = output.filter((e): e is OutputAsset => e.type === 'asset')
-
-    return files[0].source
+    return output.filter(entry => isMatch(entry.fileName))
 }

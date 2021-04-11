@@ -1,8 +1,9 @@
-import { rollup } from 'rollup'
+import { OutputAsset, OutputChunk, rollup } from 'rollup'
 import { imagetools } from '../index'
 import { join } from 'path'
-import { testEntry, getSource } from './util'
+import { testEntry, getFiles } from './util'
 import { toMatchImageSnapshot } from 'jest-image-snapshot'
+import { JSDOM } from 'jsdom'
 
 expect.extend({ toMatchImageSnapshot })
 process.chdir(join(__dirname, 'fixtures'))
@@ -169,8 +170,8 @@ describe('rollup-plugin-imagetools', () => {
             ]
         })
 
-        const source = await getSource(bundle)        
-        expect(source).toMatchImageSnapshot()
+        const files = await getFiles(bundle, '**.png') as OutputAsset[]
+        expect(files[0].source).toMatchImageSnapshot()
     })
 
     test('absolute path', async () => {
@@ -186,8 +187,8 @@ describe('rollup-plugin-imagetools', () => {
             ]
         })
 
-        const source = await getSource(bundle)
-        expect(source).toMatchImageSnapshot()
+        const files = await getFiles(bundle, '**.png') as OutputAsset[]
+        expect(files[0].source).toMatchImageSnapshot()
     })
 
     test('non existent file', async () => {
@@ -210,5 +211,53 @@ describe('rollup-plugin-imagetools', () => {
         })
 
         await expect(p).rejects.toBeDefined()
+    })
+
+    test('metadata import', async () => {
+        const bundle = await rollup({
+            plugins: [
+                testEntry(`
+                    import Image from "./pexels-allec-gomes-5195763.png?metadata"
+                    window.__IMAGE__ = Image
+                `),
+                imagetools()
+            ]
+        })
+
+        const files = await getFiles(bundle, '**.js') as OutputChunk[]        
+        const { window } = new JSDOM(``, { runScripts: "outside-only" });
+        window.eval(files[0].code)
+        
+        expect(window.__IMAGE__).toHaveProperty('width')
+        expect(window.__IMAGE__).toHaveProperty('height')
+        expect(window.__IMAGE__).toHaveProperty('format')
+        expect(window.__IMAGE__).toHaveProperty('src')
+        expect(window.__IMAGE__).toHaveProperty('space')
+        expect(window.__IMAGE__).toHaveProperty('channels')
+        expect(window.__IMAGE__).toHaveProperty('depth')
+        expect(window.__IMAGE__).toHaveProperty('density')
+        expect(window.__IMAGE__).toHaveProperty('isProgressive')
+        expect(window.__IMAGE__).toHaveProperty('hasProfile')
+        expect(window.__IMAGE__).toHaveProperty('hasAlpha')
+    })
+
+    test('destructured metadata import', async () => {
+        const bundle = await rollup({
+            plugins: [
+                testEntry(`
+                    import { width, height, format } from "./pexels-allec-gomes-5195763.png?metadata"
+                    window.__IMAGE__ = { width, height, format }
+                `),
+                imagetools()
+            ]
+        })
+
+        const files = await getFiles(bundle, '**.js') as OutputChunk[]
+        const { window } = new JSDOM(``, { runScripts: "outside-only" });
+        window.eval(files[0].code)
+
+        expect(window.__IMAGE__).toHaveProperty('width')
+        expect(window.__IMAGE__).toHaveProperty('height')
+        expect(window.__IMAGE__).toHaveProperty('format')
     })
 })
