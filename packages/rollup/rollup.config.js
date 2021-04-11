@@ -1,32 +1,25 @@
 import typescript from 'rollup-plugin-typescript2'
+import pkg from './package.json'
+import { builtinModules as builtins } from 'module';
+
+const deps = Object.keys(pkg.dependencies || {})
 
 export default {
   input: 'src/index.ts',
+  external: [...builtins, ...deps],
   output: [
     {
-      dir: 'dist',
+      file: pkg.main,
       format: 'cjs',
-      sourcemap: true,
-      entryFileNames: '[name].cjs',
-      chunkFileNames: '[name].cjs'
+      sourcemap: true
     },
     {
-      dir: 'dist',
+      file: pkg.module,
       format: 'esm',
-      sourcemap: true,
-      entryFileNames: '[name].mjs',
-      chunkFileNames: '[name].mjs'
+      sourcemap: true
     }
   ],
   plugins: [
-    typescript({
-      typescript: require('typescript'),
-      tsconfigOverride: {
-        compilerOptions: {
-          paths: null
-        },
-        exclude: ['src/**/__tests__/**']
-      }
-    })
+    typescript()
   ]
 }
