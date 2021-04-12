@@ -10,8 +10,7 @@
       "conventionalCommits": true,
       "createRelease": "github",
       "yes": true,
-      "conventionalPrerelease": true,
-      "distTag": "next"
+      "conventionalGraduate": true
     }
   }
 }
