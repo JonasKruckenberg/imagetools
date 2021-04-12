@@ -9,8 +9,7 @@
     "publish": {
       "conventionalCommits": true,
       "createRelease": "github",
-      "yes": true,
-      "conventionalGraduate": true
+      "yes": true
     }
   }
 }
