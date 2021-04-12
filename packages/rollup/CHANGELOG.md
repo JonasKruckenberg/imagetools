@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0](https://github.com/JonasKruckenberg/imagetools/compare/rollup-plugin-imagetools@0.0.0...rollup-plugin-imagetools@2.0.0) (2021-04-12)
+
+**Note:** Version bump only for package rollup-plugin-imagetools
+
+
+
+
+
 # 0.0.0 (2021-04-12)
 
 **Note:** Version bump only for package rollup-plugin-imagetools
