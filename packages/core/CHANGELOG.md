@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 0.1.0 (2021-04-12)
+
+**Note:** Version bump only for package imagetools-core
+
+
+
+
+
 # [0.1.0-next.16](https://github.com/JonasKruckenberg/imagetools/compare/imagetools-core@0.1.0-next.15...imagetools-core@0.1.0-next.16) (2021-04-11)
 
 **Note:** Version bump only for package imagetools-core
