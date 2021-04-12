@@ -1,4 +1,6 @@
 node_modules
 dist
-.DS_Store
+.DS_STORE
 coverage
+yarn-error.log
+**/debug

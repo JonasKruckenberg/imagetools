@@ -1,5 +1,3 @@
-# Import Directives
-
 ## Table of Contents
 
 - [Background](#background)
@@ -348,5 +346,4 @@ If the image has han alpha channel it will be untouched.
 import Image from 'example.jpg?tint=#ffaa22'
 import Image from 'example.jpg?tint=rgba(10,33,127)'
 ```
-
 

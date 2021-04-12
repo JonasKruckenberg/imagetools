@@ -1,0 +1,17 @@
+{
+  "packages": [
+    "packages/*"
+  ],
+  "version": "independent",
+  "npmClient": "yarn",
+  "useWorkspaces": true,
+  "command": {
+    "publish": {
+      "conventionalCommits": true,
+      "createRelease": "github",
+      "yes": true,
+      "conventionalPrerelease": true,
+      "distTag": "next"
+    }
+  }
+}

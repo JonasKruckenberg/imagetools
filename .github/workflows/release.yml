@@ -2,21 +2,52 @@ name: Release
 on:
   push:
     branches: ["main", "next"]
+
 jobs:
-  release:
+  test:
     runs-on: ubuntu-latest
+    strategy:
+        matrix:
+          node-version: [12.x, 14.x, 15.x]
+
     steps:
       - uses: actions/checkout@v2
         with:
+          fetch-depth: "0"
           lfs: true
-      - uses: actions/setup-node@v1
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: Install deps
+        run: yarn
+      - name: Run unit tests
+        run: yarn test
+
+  release:
+    runs-on: ubuntu-latest
+    needs: test
+
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: "0"
+          lfs: true
+      - run: git fetch --depth=1 origin +refs/tags/*:refs/tags/*
+      - uses: actions/setup-node@v2
         with:
           node-version: "14"
       - run: yarn
-      - run: yarn test
       - run: yarn build
+      - name: create npmrc file
+        run: echo //registry.npmjs.org/:_authToken=${NPM_TOKEN} > .npmrc
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+      - name: Configure CI Git User
+        run: |
+          git config --global user.email iterpre@protonmail.com
+          git config --global user.name JonasKruckenberg
       - name: Release
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-        run: npx semantic-release
+        run: yarn release --no-verify-access
