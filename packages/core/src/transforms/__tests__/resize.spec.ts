@@ -223,3 +223,105 @@ describe('width & height', () => {
         })
     })
 })
+
+describe('aspect', () => {
+    let dirCtx: TransformFactoryContext
+    beforeAll(() => {
+        dirCtx = { useParam: jest.fn, warn: jest.fn }
+    })
+
+    test('keyword "aspect"', () => {
+        const res = resize({ aspect: '16:9' }, dirCtx)
+
+        expect(res).toBeInstanceOf(Function)
+    })
+
+    test('missing', () => {
+        const res = resize({}, dirCtx)
+
+        expect(res).toBeUndefined()
+    })
+
+    describe('arguments', () => {
+        test('invalid', () => {
+            const res = resize({ aspect: 'invalid' }, dirCtx)
+
+            expect(res).toBeUndefined()
+        })
+
+        test('empty', () => {
+            const res = resize({ aspect: '' }, dirCtx)
+
+            expect(res).toBeUndefined()
+        })
+
+        test('colon delimited aspect ratio', () => {
+            const res = resize({ height: '16:9' }, dirCtx)
+
+            expect(res).toBeInstanceOf(Function)
+        })
+    })
+
+    describe('transform', () => {
+        let img: Sharp
+        beforeEach(() => {
+            img = sharp(join(__dirname, '../../__tests__/__assets__/pexels-allec-gomes-5195763.jpg'))
+        })
+
+        test('basic', async () => {
+            //@ts-ignore
+            const { image, metadata } = await applyTransforms([resize({ aspect: '4:3' }, dirCtx)], img)
+
+            expect(await image.toBuffer()).toMatchFile()
+        })
+
+        test('w/ fit', async () => {
+            //@ts-ignore
+            const { image, metadata } = await applyTransforms([resize({ aspect: '4:3', fit: 'contain' }, dirCtx)], img)
+
+            expect(await image.toBuffer()).toMatchFile()
+        })
+
+        test('w/ fit & background', async () => {
+            //@ts-ignore
+            const { image, metadata } = await applyTransforms([resize({ aspect: '4:3', fit: 'contain', background: '0f0' }, dirCtx)], img)
+
+            expect(await image.toBuffer()).toMatchFile()
+        })
+
+        test('w/ fit and position', async () => {
+            //@ts-ignore
+            const { image, metadata } = await applyTransforms([resize({ aspect: '4:3', fit: 'cover', position: 'top' }, dirCtx)], img)
+
+            expect(await image.toBuffer()).toMatchFile()
+        })
+
+        test('w/ kernel', async () => {
+            //@ts-ignore
+            const { image, metadata } = await applyTransforms([resize({ aspect: '4:3', kernel: 'cubic' }, dirCtx)], img)
+
+            expect(await image.toBuffer()).toMatchFile()
+        })
+
+        test('w/ height', async () => {
+            //@ts-ignore
+            const { image, metadata } = await applyTransforms([resize({ aspect: '4:3', height: '75' }, dirCtx)], img)
+
+            expect(await image.toBuffer()).toMatchFile()
+        })
+
+        test('w/ width', async () => {
+            //@ts-ignore
+            const { image, metadata } = await applyTransforms([resize({ aspect: '4:3', width: '300' }, dirCtx)], img)
+
+            expect(await image.toBuffer()).toMatchFile()
+        })
+
+        test('w/ width & height', async () => {
+            //@ts-ignore
+            const { image, metadata } = await applyTransforms([resize({ aspect: '4:3', height: '300', width: '300' }, dirCtx)], img)
+
+            expect(await image.toBuffer()).toMatchFile()
+        })
+    })
+})
