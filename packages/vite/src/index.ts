@@ -94,6 +94,8 @@ export function imagetools(userOptions: Partial<PluginOptions> = {}): Plugin {
 
                     const image = generatedImages.get(id)
 
+                    if(!image) throw new Error(`vite-imagetools cannot find image with id "${id}" this is likely an internal error`)
+
                     if (pluginOptions.removeMetadata === false) {
                         image.withMetadata()
                     }
