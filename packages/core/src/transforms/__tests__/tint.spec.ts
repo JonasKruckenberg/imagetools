@@ -3,9 +3,9 @@ import { TransformFactoryContext } from '../../types'
 import { applyTransforms } from '../../index'
 import sharp, { Sharp } from 'sharp'
 import { join } from 'path'
-import { toMatchFile } from 'jest-file-snapshot'
+import { toMatchImageSnapshot } from 'jest-image-snapshot'
 
-expect.extend({ toMatchFile })
+expect.extend({ toMatchImageSnapshot })
 
 describe('tint', () => {
     let dirCtx: TransformFactoryContext
@@ -42,28 +42,28 @@ describe('tint', () => {
     describe('transform', () => {
         let img: Sharp
         beforeEach(() => {
-            img = sharp(join(__dirname, '../../__tests__/__assets__/pexels-allec-gomes-5195763.jpg'))
+            img = sharp(join(__dirname, '../../__tests__/__fixtures__/pexels-allec-gomes-5195763.png'))
         })
 
         test('red', async () => {
             //@ts-ignore
             const { image, metadata } = await applyTransforms([tint({ tint: 'f00' }, dirCtx)], img)
 
-            expect(await image.toBuffer()).toMatchFile()
+            expect(await image.toBuffer()).toMatchImageSnapshot()
         })
 
         test('green', async () => {
             //@ts-ignore
             const { image, metadata } = await applyTransforms([tint({ tint: '0f0' }, dirCtx)], img)
 
-            expect(await image.toBuffer()).toMatchFile()
+            expect(await image.toBuffer()).toMatchImageSnapshot()
         })
 
         test('blue', async () => {
             //@ts-ignore
             const { image, metadata } = await applyTransforms([tint({ tint: '00f' }, dirCtx)], img)
 
-            expect(await image.toBuffer()).toMatchFile()
+            expect(await image.toBuffer()).toMatchImageSnapshot()
         })
     })
 })

@@ -3,9 +3,9 @@ import { TransformFactoryContext } from '../../types'
 import { applyTransforms } from '../../index'
 import sharp, { Sharp } from 'sharp'
 import { join } from 'path'
-import { toMatchFile } from 'jest-file-snapshot'
+import { toMatchImageSnapshot } from 'jest-image-snapshot'
 
-expect.extend({ toMatchFile })
+expect.extend({ toMatchImageSnapshot })
 
 describe('width', () => {
     let dirCtx: TransformFactoryContext
@@ -60,21 +60,21 @@ describe('width', () => {
     describe('transform', () => {
         let img: Sharp
         beforeEach(() => {
-            img = sharp(join(__dirname, '../../__tests__/__assets__/pexels-allec-gomes-5195763.jpg'))
+            img = sharp(join(__dirname, '../../__tests__/__fixtures__/pexels-allec-gomes-5195763.png'))
         })
 
         test('100', async () => {
             //@ts-ignore
             const { image, metadata } = await applyTransforms([resize({ width: '100' }, dirCtx)], img)
 
-            expect(await image.toBuffer()).toMatchFile()
+            expect(await image.toBuffer()).toMatchImageSnapshot()
         })
 
         test('400', async () => {
             //@ts-ignore
             const { image, metadata } = await applyTransforms([resize({ width: '400' }, dirCtx)], img)
 
-            expect(await image.toBuffer()).toMatchFile()
+            expect(await image.toBuffer()).toMatchImageSnapshot()
         })
     })
 })
@@ -132,21 +132,21 @@ describe('height', () => {
     describe('transform', () => {
         let img: Sharp
         beforeEach(() => {
-            img = sharp(join(__dirname, '../../__tests__/__assets__/pexels-allec-gomes-5195763.jpg'))
+            img = sharp(join(__dirname, '../../__tests__/__fixtures__/pexels-allec-gomes-5195763.png'))
         })
 
         test('100', async () => {
             //@ts-ignore
             const { image, metadata } = await applyTransforms([resize({ height: '100' }, dirCtx)], img)
 
-            expect(await image.toBuffer()).toMatchFile()
+            expect(await image.toBuffer()).toMatchImageSnapshot()
         })
 
         test('400', async () => {
             //@ts-ignore
             const { image, metadata } = await applyTransforms([resize({ height: '400' }, dirCtx)], img)
 
-            expect(await image.toBuffer()).toMatchFile()
+            expect(await image.toBuffer()).toMatchImageSnapshot()
         })
     })
 })
@@ -184,42 +184,42 @@ describe('width & height', () => {
     describe('transform', () => {
         let img: Sharp
         beforeEach(() => {
-            img = sharp(join(__dirname, '../../__tests__/__assets__/pexels-allec-gomes-5195763.jpg'))
+            img = sharp(join(__dirname, '../../__tests__/__fixtures__/pexels-allec-gomes-5195763.png'))
         })
 
         test('basic', async () => {
             //@ts-ignore
             const { image, metadata } = await applyTransforms([resize({ w: '300', h: '300' }, dirCtx)], img)
 
-            expect(await image.toBuffer()).toMatchFile()
+            expect(await image.toBuffer()).toMatchImageSnapshot()
         })
 
         test('w/ fit', async () => {
             //@ts-ignore
             const { image, metadata } = await applyTransforms([resize({ w: '300', h: '300', fit: 'contain' }, dirCtx)], img)
 
-            expect(await image.toBuffer()).toMatchFile()
+            expect(await image.toBuffer()).toMatchImageSnapshot()
         })
 
         test('w/ fit & background', async () => {
             //@ts-ignore
             const { image, metadata } = await applyTransforms([resize({ w: '300', h: '300', fit: 'contain', background: '0f0' }, dirCtx)], img)
 
-            expect(await image.toBuffer()).toMatchFile()
+            expect(await image.toBuffer()).toMatchImageSnapshot()
         })
 
         test('w/ fit and position', async () => {
             //@ts-ignore
             const { image, metadata } = await applyTransforms([resize({ w: '300', h: '300', fit: 'cover', position: 'top' }, dirCtx)], img)
 
-            expect(await image.toBuffer()).toMatchFile()
+            expect(await image.toBuffer()).toMatchImageSnapshot()
         })
 
         test('w/ kernel', async () => {
             //@ts-ignore
             const { image, metadata } = await applyTransforms([resize({ w: '300', h: '300', kernel: 'cubic' }, dirCtx)], img)
 
-            expect(await image.toBuffer()).toMatchFile()
+            expect(await image.toBuffer()).toMatchImageSnapshot()
         })
     })
 })
@@ -265,63 +265,63 @@ describe('aspect', () => {
     describe('transform', () => {
         let img: Sharp
         beforeEach(() => {
-            img = sharp(join(__dirname, '../../__tests__/__assets__/pexels-allec-gomes-5195763.jpg'))
+            img = sharp(join(__dirname, '../../__tests__/__fixtures__/pexels-allec-gomes-5195763.png'))
         })
 
         test('basic', async () => {
             //@ts-ignore
             const { image, metadata } = await applyTransforms([resize({ aspect: '4:3' }, dirCtx)], img)
 
-            expect(await image.toBuffer()).toMatchFile()
+            expect(await image.toBuffer()).toMatchImageSnapshot()
         })
 
         test('w/ fit', async () => {
             //@ts-ignore
             const { image, metadata } = await applyTransforms([resize({ aspect: '4:3', fit: 'contain' }, dirCtx)], img)
 
-            expect(await image.toBuffer()).toMatchFile()
+            expect(await image.toBuffer()).toMatchImageSnapshot()
         })
 
         test('w/ fit & background', async () => {
             //@ts-ignore
             const { image, metadata } = await applyTransforms([resize({ aspect: '4:3', fit: 'contain', background: '0f0' }, dirCtx)], img)
 
-            expect(await image.toBuffer()).toMatchFile()
+            expect(await image.toBuffer()).toMatchImageSnapshot()
         })
 
         test('w/ fit and position', async () => {
             //@ts-ignore
             const { image, metadata } = await applyTransforms([resize({ aspect: '4:3', fit: 'cover', position: 'top' }, dirCtx)], img)
 
-            expect(await image.toBuffer()).toMatchFile()
+            expect(await image.toBuffer()).toMatchImageSnapshot()
         })
 
         test('w/ kernel', async () => {
             //@ts-ignore
             const { image, metadata } = await applyTransforms([resize({ aspect: '4:3', kernel: 'cubic' }, dirCtx)], img)
 
-            expect(await image.toBuffer()).toMatchFile()
+            expect(await image.toBuffer()).toMatchImageSnapshot()
         })
 
         test('w/ height', async () => {
             //@ts-ignore
             const { image, metadata } = await applyTransforms([resize({ aspect: '4:3', height: '75' }, dirCtx)], img)
 
-            expect(await image.toBuffer()).toMatchFile()
+            expect(await image.toBuffer()).toMatchImageSnapshot()
         })
 
         test('w/ width', async () => {
             //@ts-ignore
             const { image, metadata } = await applyTransforms([resize({ aspect: '4:3', width: '300' }, dirCtx)], img)
 
-            expect(await image.toBuffer()).toMatchFile()
+            expect(await image.toBuffer()).toMatchImageSnapshot()
         })
 
         test('w/ width & height', async () => {
             //@ts-ignore
             const { image, metadata } = await applyTransforms([resize({ aspect: '4:3', height: '300', width: '300' }, dirCtx)], img)
 
-            expect(await image.toBuffer()).toMatchFile()
+            expect(await image.toBuffer()).toMatchImageSnapshot()
         })
     })
 })

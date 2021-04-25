@@ -3,9 +3,9 @@ import { flip } from '../flip'
 import { applyTransforms } from '../../index'
 import sharp, { Sharp } from 'sharp'
 import { join } from 'path'
-import { toMatchFile } from 'jest-file-snapshot'
+import { toMatchImageSnapshot } from 'jest-image-snapshot'
 
-expect.extend({ toMatchFile })
+expect.extend({ toMatchImageSnapshot })
 
 describe('flip', () => {
     let dirCtx: TransformFactoryContext
@@ -49,21 +49,21 @@ describe('flip', () => {
     describe('transform', () => {
         let img: Sharp
         beforeEach(() => {
-            img = sharp(join(__dirname, '../../__tests__/__assets__/pexels-allec-gomes-5195763.jpg'))
+            img = sharp(join(__dirname, '../../__tests__/__fixtures__/pexels-allec-gomes-5195763.png'))
         })
 
         test('empty', async () => {
             //@ts-ignore
             const { image, metadata } = await applyTransforms([flip({ flip: '' }, dirCtx)], img)
 
-            expect(await image.toBuffer()).toMatchFile()
+            expect(await image.toBuffer()).toMatchImageSnapshot()
         })
 
         test('true', async () => {
             //@ts-ignore
             const { image, metadata } = await applyTransforms([flip({ flip: 'true' }, dirCtx)], img)
 
-            expect(await image.toBuffer()).toMatchFile()
+            expect(await image.toBuffer()).toMatchImageSnapshot()
         })
     })
 })

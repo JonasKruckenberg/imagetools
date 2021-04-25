@@ -5,7 +5,7 @@ import sharp, { Sharp } from 'sharp'
 describe('kernel', () => {
     let img: Sharp
     beforeEach(() => {
-        img = sharp(join(__dirname, '../../__tests__/__assets__/pexels-allec-gomes-5195763.jpg'))
+        img = sharp(join(__dirname, '../../__tests__/__fixtures__/pexels-allec-gomes-5195763.png'))
     })
 
     test('keyword "kernel"', () => {
