@@ -3,9 +3,9 @@ import { TransformFactoryContext } from '../../types'
 import { applyTransforms } from '../../index'
 import sharp, { Sharp } from 'sharp'
 import { join } from 'path'
-import { toMatchFile } from 'jest-file-snapshot'
+import { toMatchImageSnapshot } from 'jest-image-snapshot'
 
-expect.extend({ toMatchFile })
+expect.extend({ toMatchImageSnapshot })
 
 describe('rotate', () => {
     let dirCtx: TransformFactoryContext
@@ -54,28 +54,28 @@ describe('rotate', () => {
     describe('transform', () => {
         let img: Sharp
         beforeEach(() => {
-            img = sharp(join(__dirname, '../../__tests__/__assets__/pexels-allec-gomes-5195763.jpg'))
+            img = sharp(join(__dirname, '../../__tests__/__fixtures__/pexels-allec-gomes-5195763.png'))
         })
 
         test('90', async () => {
             //@ts-ignore
             const { image, metadata } = await applyTransforms([rotate({ rotate: '90' }, dirCtx)], img)
 
-            expect(await image.toBuffer()).toMatchFile()
+            expect(await image.toBuffer()).toMatchImageSnapshot()
         })
 
         test('180', async () => {
             //@ts-ignore
             const { image, metadata } = await applyTransforms([rotate({ rotate: '180' }, dirCtx)], img)
 
-            expect(await image.toBuffer()).toMatchFile()
+            expect(await image.toBuffer()).toMatchImageSnapshot()
         })
 
         test('w/ background', async () => {
             //@ts-ignore
             const { image, metadata } = await applyTransforms([rotate({ rotate: '45', background: '0f0' }, dirCtx)], img)
 
-            expect(await image.toBuffer()).toMatchFile()
+            expect(await image.toBuffer()).toMatchImageSnapshot()
         })
     })
 })

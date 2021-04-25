@@ -5,7 +5,7 @@ import { join } from 'path'
 describe('applyTransforms', () => {
     let img: Sharp
     beforeEach(() => {
-        img = sharp(join(__dirname, './__assets__/pexels-allec-gomes-5195763.jpg'))
+        img = sharp(join(__dirname, './__fixtures__/pexels-allec-gomes-5195763.png'))
     })
 
     it('applies the transforms to the image', async () => {
