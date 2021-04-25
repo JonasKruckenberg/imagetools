@@ -3,7 +3,7 @@ import { imagetools } from '../index'
 import { join } from 'path'
 import { getFiles, testEntry } from './util'
 import { toMatchImageSnapshot } from 'jest-image-snapshot'
-import { OutputAsset, OutputChunk } from 'rollup'
+import { OutputAsset, OutputChunk, RollupOutput } from 'rollup'
 import { JSDOM } from 'jsdom'
 
 expect.extend({ toMatchImageSnapshot })
@@ -220,7 +220,7 @@ describe('vite-imagetools', () => {
                 `),
                 imagetools()
             ]
-        })
+        }) as RollupOutput | RollupOutput[]
 
         const files = getFiles(bundle, '**.png') as OutputAsset[]
         expect(files[0].source).toMatchImageSnapshot()
@@ -239,7 +239,7 @@ describe('vite-imagetools', () => {
                 `),
                 imagetools()
             ]
-        })
+        }) as RollupOutput | RollupOutput[]
 
         const files = getFiles(bundle, '**.png') as OutputAsset[]
         expect(files[0].source).toMatchImageSnapshot()
@@ -288,7 +288,7 @@ describe('vite-imagetools', () => {
                 `),
                 imagetools()
             ]
-        })
+        }) as RollupOutput | RollupOutput[]
 
         const files = getFiles(bundle, '**.js') as OutputChunk[]
         const { window } = new JSDOM(``, { runScripts: "outside-only" });
@@ -318,7 +318,7 @@ describe('vite-imagetools', () => {
                 `),
                 imagetools()
             ]
-        })
+        }) as RollupOutput | RollupOutput[]
 
         const files = getFiles(bundle, '**.js') as OutputChunk[]
         const { window } = new JSDOM(``, { runScripts: "outside-only" });
