@@ -4,7 +4,6 @@ import { getPosition } from './position'
 import { getKernel } from './kernel'
 import { getBackground } from './background'
 import { setMetadata, getMetadata } from "../lib/metadata";
-import { Sharp } from "sharp";
 
 export interface ResizeOptions {
     width: string
@@ -81,6 +80,7 @@ export const resize: TransformFactory<ResizeOptions> = (config, ctx) => {
 
         setMetadata(image, 'height', finalHeight)
         setMetadata(image, 'width', finalWidth)
+        setMetadata(image, 'aspect', aspect || metaAspect)
 
         return image.resize({
             width: finalWidth,
