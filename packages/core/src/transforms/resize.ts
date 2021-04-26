@@ -11,25 +11,34 @@ export interface ResizeOptions {
     height: string
     h: string
     aspect: string
+    ar: string
 }
 
 function parseAspect(aspect?: string) {
     if (!aspect || !aspect.split) {
-        return undefined;
-    }
-
-    const [width, height] = aspect.split(':')
-
-    if (!width || !height) {
         return undefined
     }
 
-    const widthInt = parseInt(width)
-    const heightInt = parseInt(height)
+    const parts = aspect.split(':')
 
-    return widthInt && heightInt && widthInt > 0 && heightInt > 0
-        ? widthInt / heightInt
-        : undefined
+    if (parts.length === 1) {
+        /* handle decimal aspect ratios, ignore negative values */
+        const [aspect] = parts
+        const parsed = parseFloat(aspect)
+
+        return parsed > 0 ? parsed : undefined
+    } else if (parts.length === 2) {
+        /* handle aspect ratio strings */
+        const [width, height] = parts;
+        const widthInt = parseInt(width)
+        const heightInt = parseInt(height)
+
+        return widthInt && heightInt && widthInt > 0 && heightInt > 0
+            ? widthInt / heightInt
+            : undefined
+    }
+
+    return undefined;
 }
 
 export const resize: TransformFactory<ResizeOptions> = (config, ctx) => {
@@ -46,7 +55,7 @@ export const resize: TransformFactory<ResizeOptions> = (config, ctx) => {
             : undefined
     const aspect = width && height
         ? width / height
-        : parseAspect(config.aspect)
+        : parseAspect(config.aspect || config.ar)
 
     if (!width && !height && !aspect) return
 

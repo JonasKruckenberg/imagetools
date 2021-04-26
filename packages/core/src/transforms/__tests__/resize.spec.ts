@@ -236,6 +236,12 @@ describe('aspect', () => {
         expect(res).toBeInstanceOf(Function)
     })
 
+    test('keyword "ar"', () => {
+        const res = resize({ ar: '16:9' }, dirCtx)
+
+        expect(res).toBeInstanceOf(Function)
+    })
+
     test('missing', () => {
         const res = resize({}, dirCtx)
 
@@ -243,8 +249,20 @@ describe('aspect', () => {
     })
 
     describe('arguments', () => {
-        test('invalid', () => {
+        test('invalid aspect', () => {
             const res = resize({ aspect: 'invalid' }, dirCtx)
+
+            expect(res).toBeUndefined()
+        })
+
+        test('invalid ar', () => {
+            const res = resize({ ar: 'invalid' }, dirCtx)
+
+            expect(res).toBeUndefined()
+        })
+
+        test('undefined', () => {
+            const res = resize({ ar: undefined }, dirCtx)
 
             expect(res).toBeUndefined()
         })
@@ -255,8 +273,26 @@ describe('aspect', () => {
             expect(res).toBeUndefined()
         })
 
-        test('colon delimited aspect ratio', () => {
-            const res = resize({ height: '16:9' }, dirCtx)
+        test('integer', () => {
+            const res = resize({ aspect: '1' }, dirCtx)
+
+            expect(res).toBeInstanceOf(Function)
+        })
+
+        test('float', () => {
+            const res = resize({ aspect: '1.5' }, dirCtx)
+
+            expect(res).toBeInstanceOf(Function)
+        })
+
+        test('negative number', () => {
+            const res = resize({ aspect: '-1.5' }, dirCtx)
+
+            expect(res).toBeUndefined()
+        })
+
+        test('string', () => {
+            const res = resize({ aspect: '16:9' }, dirCtx)
 
             expect(res).toBeInstanceOf(Function)
         })
@@ -268,9 +304,16 @@ describe('aspect', () => {
             img = sharp(join(__dirname, '../../__tests__/__fixtures__/pexels-allec-gomes-5195763.png'))
         })
 
-        test('basic', async () => {
+        test('basic w/ string', async () => {
             //@ts-ignore
             const { image, metadata } = await applyTransforms([resize({ aspect: '4:3' }, dirCtx)], img)
+
+            expect(await image.toBuffer()).toMatchImageSnapshot()
+        })
+
+        test('basic w/ number', async () => {
+            //@ts-ignore
+            const { image, metadata } = await applyTransforms([resize({ aspect: '1.5' }, dirCtx)], img)
 
             expect(await image.toBuffer()).toMatchImageSnapshot()
         })
