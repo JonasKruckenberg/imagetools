@@ -11,6 +11,7 @@ export interface ResizeOptions {
     height: string
     h: string
     aspect: string
+    ar: string
 }
 
 function parseAspect(aspect?: string) {
@@ -54,9 +55,7 @@ export const resize: TransformFactory<ResizeOptions> = (config, ctx) => {
             : undefined
     const aspect = width && height
         ? width / height
-        : config.aspect
-            ? parseAspect(config.aspect)
-            : parseAspect(config.ar)
+        : parseAspect(config.aspect || config.ar)
 
     if (!width && !height && !aspect) return
 
