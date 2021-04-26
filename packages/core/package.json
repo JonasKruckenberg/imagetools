@@ -27,7 +27,7 @@
   "scripts": {
     "dev": "rollup -cw",
     "build": "rollup -c",
-    "test": "jest src/transforms/__tests__/resize.spec.ts",
+    "test": "jest",
     "coverage": "jest --collectCoverage"
   },
   "devDependencies": {
