@@ -110,7 +110,7 @@ describe('format', () => {
         })
 
         test('avif', async () => {
-            jest.setTimeout(7000)
+            jest.setTimeout(10000)
             //@ts-ignore
             const { image, metadata } = await applyTransforms([format({ format: 'avif' }, dirCtx)], img)
 
@@ -118,6 +118,7 @@ describe('format', () => {
         })
 
         test('heif', async () => {
+            jest.setTimeout(10000)
             //@ts-ignore
             const { image, metadata } = await applyTransforms([format({ format: 'heif' }, dirCtx)], img)
 
@@ -125,6 +126,7 @@ describe('format', () => {
         })
 
         test('heic', async () => {
+            jest.setTimeout(10000)
             //@ts-ignore
             const { image, metadata } = await applyTransforms([format({ format: 'heic' }, dirCtx)], img)
 
