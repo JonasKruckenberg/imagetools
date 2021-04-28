@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.3.0](https://github.com/JonasKruckenberg/imagetools/compare/imagetools-core@2.2.0...imagetools-core@2.3.0) (2021-04-28)
+
+
+### Bug Fixes
+
+* exclude test files from generated types ([a86d29c](https://github.com/JonasKruckenberg/imagetools/commit/a86d29c0b070b57860878fe80627d402eea82eaf))
+
+
+### Features
+
+* Add aspect ratio support to the resize directive ([#71](https://github.com/JonasKruckenberg/imagetools/issues/71)) ([8e905da](https://github.com/JonasKruckenberg/imagetools/commit/8e905da98b9878973b79dcc36c770547bb49058f))
+* Adding `ar` shorthand for aspect and support for numeric values for aspect ([#74](https://github.com/JonasKruckenberg/imagetools/issues/74)) ([e96b7e3](https://github.com/JonasKruckenberg/imagetools/commit/e96b7e322a50768e7a8b395af42035c53dcb76d8))
+
+
+
+
+
 # [2.2.0](https://github.com/JonasKruckenberg/imagetools/compare/imagetools-core@2.1.0...imagetools-core@2.2.0) (2021-04-28)
 
 
