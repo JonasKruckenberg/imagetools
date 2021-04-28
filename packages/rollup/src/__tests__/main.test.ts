@@ -156,6 +156,38 @@ describe('rollup-plugin-imagetools', () => {
         describe('removeMetadata', () => {
             test('true removes private metadata', () => { })
             test('false leaves private metadata', () => { })
+        describe('defaultDirectives', () => {
+            test('object', async () => {
+                const p = rollup({
+                    plugins: [
+                        testEntry(`
+                            import Image from "./pexels-allec-gomes-5195763.png?w=300"
+                            export default Image
+                        `),
+                        imagetools({
+                            defaultDirectives: { foo:'bar' }
+                        })
+                    ]
+                })
+
+                await expect(p).resolves.toBeDefined()
+            })
+
+            test('function', async () => {
+                const p = rollup({
+                    plugins: [
+                        testEntry(`
+                            import Image from "./pexels-allec-gomes-5195763.png?w=300"
+                            export default Image
+                        `),
+                        imagetools({
+                            defaultDirectives: () => ({ foo:'bar' })
+                        })
+                    ]
+                })
+
+                await expect(p).resolves.toBeDefined()
+            })
         })
     })
 
