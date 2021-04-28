@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.4.2](https://github.com/JonasKruckenberg/imagetools/compare/vite-imagetools@3.4.1...vite-imagetools@3.4.2) (2021-04-28)
+
+
+### Bug Fixes
+
+* exclude test files from generated types ([a86d29c](https://github.com/JonasKruckenberg/imagetools/commit/a86d29c0b070b57860878fe80627d402eea82eaf))
+* **vite-imagetools:** Add a more helpful error message when no images could be generated during dev mode ([e62b1bb](https://github.com/JonasKruckenberg/imagetools/commit/e62b1bb6b0b7a0c7c67dbcda1350864847718053))
+
+
+
+
+
 ## [3.4.1](https://github.com/JonasKruckenberg/imagetools/compare/vite-imagetools@3.4.0...vite-imagetools@3.4.1) (2021-04-28)
 
 
