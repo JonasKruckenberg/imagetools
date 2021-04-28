@@ -10,6 +10,35 @@ export interface ResizeOptions {
     w: string
     height: string
     h: string
+    aspect: string
+    ar: string
+}
+
+function parseAspect(aspect?: string) {
+    if (!aspect || !aspect.split) {
+        return undefined
+    }
+
+    const parts = aspect.split(':')
+
+    if (parts.length === 1) {
+        /* handle decimal aspect ratios, ignore negative values */
+        const [aspect] = parts
+        const parsed = parseFloat(aspect)
+
+        return parsed > 0 ? parsed : undefined
+    } else if (parts.length === 2) {
+        /* handle aspect ratio strings */
+        const [width, height] = parts;
+        const widthInt = parseInt(width)
+        const heightInt = parseInt(height)
+
+        return widthInt && heightInt && widthInt > 0 && heightInt > 0
+            ? widthInt / heightInt
+            : undefined
+    }
+
+    return undefined;
 }
 
 export const resize: TransformFactory<ResizeOptions> = (config, ctx) => {
@@ -24,28 +53,47 @@ export const resize: TransformFactory<ResizeOptions> = (config, ctx) => {
         : config.h
             ? parseInt(config.h)
             : undefined
+    const aspect = width && height
+        ? width / height
+        : parseAspect(config.aspect || config.ar)
 
-    if (!width && !height) return
+    if (!width && !height && !aspect) return
 
     return function resizeTransform(image) {
+        let finalWidth = width
+        let finalHeight = height
 
-        if (!height) {
-            const w = getMetadata(image, 'width')
-            const h = getMetadata(image, 'height')
-            setMetadata(image, 'height', Math.round((width! / w) * h))
-            setMetadata(image, 'width', width)
+        const w = getMetadata(image, 'width')
+        const h = getMetadata(image, 'height')
+
+        const metaAspect = w / h
+
+        if (width && height) {
+            /* both dimensions were provided, aspect is ignored and no calculations are needed */
+        }
+        else if (!height && !width) {
+            /* only aspect was given, need to calculate which dimension to crop */
+            const useWidth = aspect! > metaAspect
+
+            finalHeight = useWidth ? Math.round(w / aspect!) : h
+            finalWidth = useWidth ? w : Math.round(h / aspect!)
+        } else if (!height) {
+            /* only width was provided, need to calculate height */
+            finalHeight = width! / (aspect || metaAspect)
+            finalWidth = width
+        } else {
+            /* only height was provided, need to calculate width */
+            finalHeight = height
+            finalWidth = height * (aspect || metaAspect)
         }
 
-        if (!width) {
-            const w = getMetadata(image, 'width')
-            const h = getMetadata(image, 'height')
-            setMetadata(image, 'width', Math.round((height! / h) * w))
-            setMetadata(image, 'height', height)
-        }
+        setMetadata(image, 'height', finalHeight)
+        setMetadata(image, 'width', finalWidth)
+        setMetadata(image, 'aspect', aspect || metaAspect)
 
         return image.resize({
-            width: width,
-            height: height,
+            width: finalWidth,
+            height: finalHeight,
             fit: getFit(config, image),
             position: getPosition(config, image),
             kernel: getKernel(config, image),

@@ -3,9 +3,9 @@ import { TransformFactoryContext } from '../../types'
 import { applyTransforms } from '../../index'
 import sharp, { Sharp } from 'sharp'
 import { join } from 'path'
-import { toMatchFile } from 'jest-file-snapshot'
+import { toMatchImageSnapshot } from 'jest-image-snapshot'
 
-expect.extend({ toMatchFile })
+expect.extend({ toMatchImageSnapshot })
 
 describe('median', () => {
     let dirCtx: TransformFactoryContext
@@ -54,21 +54,21 @@ describe('median', () => {
     describe('transform', () => {
         let img: Sharp
         beforeEach(() => {
-            img = sharp(join(__dirname, '../../__tests__/__assets__/pexels-allec-gomes-5195763.jpg'))
+            img = sharp(join(__dirname, '../../__tests__/__fixtures__/pexels-allec-gomes-5195763.png'))
         })
 
         test('3', async () => {
             //@ts-ignore
             const { image, metadata } = await applyTransforms([median({ median: '3' }, dirCtx)], img)
 
-            expect(await image.toBuffer()).toMatchFile()
+            expect(await image.toBuffer()).toMatchImageSnapshot()
         })
 
         test('5', async () => {
             //@ts-ignore
             const { image, metadata } = await applyTransforms([median({ median: '5' }, dirCtx)], img)
 
-            expect(await image.toBuffer()).toMatchFile()
+            expect(await image.toBuffer()).toMatchImageSnapshot()
         })
     })
 })

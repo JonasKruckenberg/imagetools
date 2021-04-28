@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.2](https://github.com/JonasKruckenberg/imagetools/compare/rollup-plugin-imagetools@2.0.1...rollup-plugin-imagetools@2.0.2) (2021-04-28)
+
+
+### Bug Fixes
+
+* exclude test files from generated types ([a86d29c](https://github.com/JonasKruckenberg/imagetools/commit/a86d29c0b070b57860878fe80627d402eea82eaf))
+
+
+
+
+
+## [2.0.1](https://github.com/JonasKruckenberg/imagetools/compare/rollup-plugin-imagetools@0.0.0...rollup-plugin-imagetools@2.0.1) (2021-04-28)
+
+
+### Bug Fixes
+
+* exclude test files from generated types ([a86d29c](https://github.com/JonasKruckenberg/imagetools/commit/a86d29c0b070b57860878fe80627d402eea82eaf))
+
+
+
+
+
 # [2.0.0](https://github.com/JonasKruckenberg/imagetools/compare/rollup-plugin-imagetools@0.0.0...rollup-plugin-imagetools@2.0.0) (2021-04-12)
 
 **Note:** Version bump only for package rollup-plugin-imagetools

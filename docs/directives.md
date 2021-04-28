@@ -19,6 +19,7 @@
 - [Quality](#quality)
 - [Width](#width)
 - [Height](#height)
+- [Aspect](#aspect)
 - [Rotate](#rotate)
 - [Tint](#tint)
 
@@ -311,6 +312,29 @@ If not given the width will be scaled accordingly.
 import Image from 'example.jpg?height=200'
 import Image from 'examepl.jpg?h=200'
 import Images from 'examepl.jpg?height=200;400;700'
+```
+
+___
+
+### Aspect
+• **Keyword**: `aspect` \| `ar`<br>
+• **Type**: _string_ \| _number_<br>
+
+
+Resizes the image to be the specified aspect ratio.
+Aspect ratio can be defined with a string in the form `16:9` or a positive number representing the width divided by height (e.g., `1.5` for a `3:2` aspect ratio)
+If height and width are both provided, this will be ignored.
+If height is provided, the width will be scaled accordingly.
+If width is provided, the width will be scaled accordingly.
+If neither height nor width are provided, the image will be cropped to the given aspect ratio.
+
+
+• **Example**:  
+```js
+import Image from 'example.jpg?aspect=16:9'
+import Image from 'example.jpg?aspect=16:9&height=200'
+import Image from 'example.jpg?aspect=16:9&width=200'
+import Images from 'example.jpg?aspect=16:9&h=200;400;700'
 ```
 
 ___

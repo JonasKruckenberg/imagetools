@@ -3,9 +3,9 @@ import { TransformFactoryContext } from "../../types"
 import { applyTransforms } from '../../index'
 import sharp, { Sharp } from 'sharp'
 import { join } from 'path'
-import { toMatchFile } from 'jest-file-snapshot'
+import { toMatchImageSnapshot } from 'jest-image-snapshot'
 
-expect.extend({ toMatchFile })
+expect.extend({ toMatchImageSnapshot })
 
 describe('blur', () => {
     let dirCtx: TransformFactoryContext
@@ -60,35 +60,35 @@ describe('blur', () => {
     describe('transform', () => {
         let img: Sharp
         beforeEach(() => {
-            img = sharp(join(__dirname, '../../__tests__/__assets__/pexels-allec-gomes-5195763.jpg'))
+            img = sharp(join(__dirname, '../../__tests__/__fixtures__/pexels-allec-gomes-5195763.png'))
         })
 
         test('true', async () => {
             //@ts-ignore
             const { image, metadata } = await applyTransforms([blur({ blur: 'true' }, dirCtx)], img)
 
-            expect(await image.toBuffer()).toMatchFile()
+            expect(await image.toBuffer()).toMatchImageSnapshot()
         })
 
         test('0.5', async () => {
             //@ts-ignore
             const { image, metadata } = await applyTransforms([blur({ blur: '0.5' }, dirCtx)], img)
 
-            expect(await image.toBuffer()).toMatchFile()
+            expect(await image.toBuffer()).toMatchImageSnapshot()
         })
 
         test('5', async () => {
             //@ts-ignore
             const { image, metadata } = await applyTransforms([blur({ blur: '5' }, dirCtx)], img)
 
-            expect(await image.toBuffer()).toMatchFile()
+            expect(await image.toBuffer()).toMatchImageSnapshot()
         })
 
         test('50', async () => {
             //@ts-ignore
             const { image, metadata } = await applyTransforms([blur({ blur: '50' }, dirCtx)], img)
 
-            expect(await image.toBuffer()).toMatchFile()
+            expect(await image.toBuffer()).toMatchImageSnapshot()
         })
     })
 })

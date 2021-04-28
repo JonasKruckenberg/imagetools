@@ -78,7 +78,7 @@ describe('format', () => {
     describe('transform', () => {
         let img: Sharp
         beforeEach(() => {
-            img = sharp(join(__dirname, '../../__tests__/__assets__/pexels-allec-gomes-5195763.jpg'))
+            img = sharp(join(__dirname, '../../__tests__/__fixtures__/pexels-allec-gomes-5195763.png'))
         })
 
         test('webp', async () => {
@@ -110,6 +110,7 @@ describe('format', () => {
         })
 
         test('avif', async () => {
+            jest.setTimeout(10000)
             //@ts-ignore
             const { image, metadata } = await applyTransforms([format({ format: 'avif' }, dirCtx)], img)
 
@@ -117,6 +118,7 @@ describe('format', () => {
         })
 
         test('heif', async () => {
+            jest.setTimeout(10000)
             //@ts-ignore
             const { image, metadata } = await applyTransforms([format({ format: 'heif' }, dirCtx)], img)
 
@@ -124,6 +126,7 @@ describe('format', () => {
         })
 
         test('heic', async () => {
+            jest.setTimeout(10000)
             //@ts-ignore
             const { image, metadata } = await applyTransforms([format({ format: 'heic' }, dirCtx)], img)
 

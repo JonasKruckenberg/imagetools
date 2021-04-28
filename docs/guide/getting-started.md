@@ -64,7 +64,7 @@ Normally you get a single url poiting to the transformed image, or an array of t
 This is why the special `metadata` (`meta`) directive exists. Instead of returning the url it returns an object holding the image metadata:
 
 ```js
-import { width, height, format, src } from "example.jpg?width=300&webp"
+import { width, height, format, src } from "example.jpg?width=300&webp&metadata"
 
 width // is 300
 height // is automatically generated
