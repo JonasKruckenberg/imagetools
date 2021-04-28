@@ -5,9 +5,10 @@ import { getFiles, testEntry } from './util'
 import { toMatchImageSnapshot } from 'jest-image-snapshot'
 import { OutputAsset, OutputChunk, RollupOutput } from 'rollup'
 import { JSDOM } from 'jsdom'
+import sharp from 'sharp'
 
 expect.extend({ toMatchImageSnapshot })
-process.chdir(join(__dirname, 'fixtures'))
+process.chdir(join(__dirname, '__fixtures__'))
 
 describe('vite-imagetools', () => {
     describe('options', () => {
@@ -204,8 +205,91 @@ describe('vite-imagetools', () => {
         })
 
         describe('removeMetadata', () => {
-            test('true removes private metadata', () => { })
-            test('false leaves private metadata', () => { })
+            test('true removes private metadata', async () => { 
+                const bundle = await build({
+                    logLevel: 'warn',
+                    build: { write: false },
+                    plugins: [
+                        testEntry(`
+                            import Image from "./with-metadata.png?metadata"
+                            window.__IMAGE__ = Image
+                        `),
+                        imagetools({
+                            removeMetadata: true
+                        })
+                    ]
+                }) as RollupOutput | RollupOutput[]
+        
+                const files = getFiles(bundle, '**.png') as OutputAsset[]
+
+                const metadata = await sharp(files[0].source as Buffer).metadata()
+                
+                expect(metadata).not.toHaveProperty('icc')
+                expect(metadata).not.toHaveProperty('xmp')
+            })
+
+            test('false leaves private metadata', async () => { 
+                const bundle = await build({
+                    logLevel: 'warn',
+                    build: { write: false },
+                    plugins: [
+                        testEntry(`
+                            import Image from "./with-metadata.png?metadata"
+                            window.__IMAGE__ = Image
+                        `),
+                        imagetools({
+                            removeMetadata: false
+                        })
+                    ]
+                }) as RollupOutput | RollupOutput[]
+        
+                const files = getFiles(bundle, '**.png') as OutputAsset[]
+
+                const metadata = await sharp(files[0].source as Buffer).metadata()
+                
+                expect(metadata).toHaveProperty('icc')
+                expect(metadata).toHaveProperty('xmp')
+            })
+        })
+
+        describe('defaultDirectives', () => {
+            test('object', async () => {
+                const p = build({
+                    logLevel: 'warn',
+                    build: { write: false },
+                    plugins: [
+                        testEntry(`
+                            import Image from "./pexels-allec-gomes-5195763.png?w=300"
+                            export default Image
+                        `),
+
+                        imagetools({
+                            defaultDirectives: { foo:'bar' }
+                        })
+                    ]
+                })
+
+                await expect(p).resolves.toBeDefined()
+            })
+
+            test('function', async () => {
+                const p = build({
+                    logLevel: 'warn',
+                    build: { write: false },
+                    plugins: [
+                        testEntry(`
+                            import Image from "./pexels-allec-gomes-5195763.png?w=300"
+                            export default Image
+                        `),
+                        
+                        imagetools({
+                            defaultDirectives: () => ({ foo:'bar' })
+                        })
+                    ]
+                })
+
+                await expect(p).resolves.toBeDefined()
+            })
         })
     })
 
