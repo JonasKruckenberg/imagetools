@@ -11,6 +11,8 @@ export async function applyTransforms(transforms: ImageTransformation[], image: 
         delete image[METADATA].iptc
         delete image[METADATA].xmp
         delete image[METADATA].tifftagPhotoshop
+    } else {
+        image.withMetadata()
     }
 
     image = transforms.reduce((img, transform) => transform(img), image)
