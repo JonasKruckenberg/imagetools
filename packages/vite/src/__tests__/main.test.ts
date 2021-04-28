@@ -251,46 +251,6 @@ describe('vite-imagetools', () => {
                 expect(metadata).toHaveProperty('xmp')
             })
         })
-
-        describe('defaultDirectives', () => {
-            test('object', async () => {
-                const p = build({
-                    logLevel: 'warn',
-                    build: { write: false },
-                    plugins: [
-                        testEntry(`
-                            import Image from "./pexels-allec-gomes-5195763.png?w=300"
-                            export default Image
-                        `),
-
-                        imagetools({
-                            defaultDirectives: { foo:'bar' }
-                        })
-                    ]
-                })
-
-                await expect(p).resolves.toBeDefined()
-            })
-
-            test('function', async () => {
-                const p = build({
-                    logLevel: 'warn',
-                    build: { write: false },
-                    plugins: [
-                        testEntry(`
-                            import Image from "./pexels-allec-gomes-5195763.png?w=300"
-                            export default Image
-                        `),
-                        
-                        imagetools({
-                            defaultDirectives: () => ({ foo:'bar' })
-                        })
-                    ]
-                })
-
-                await expect(p).resolves.toBeDefined()
-            })
-        })
     })
 
     test('relative import', async () => {
