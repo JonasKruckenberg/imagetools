@@ -1,9 +1,9 @@
 # imagetools-core
 
 <!-- badges -->
-![npm (tag)](https://img.shields.io/npm/v/imagetools-core/next)
+![npm (tag)](https://img.shields.io/npm/v/imagetools-core)
 [![standard-readme compliant](https://img.shields.io/badge/readme%20style-standard-brightgreen.svg?style=flat-square)](https://github.com/RichardLitt/standard-readme)
-[![codecov](https://codecov.io/gh/JonasKruckenberg/imagetools/branch/next/graph/badge.svg?token=bJrFBmuczA&flag=imagetools-core)](https://codecov.io/gh/JonasKruckenberg/imagetools/)
+[![codecov](https://codecov.io/gh/JonasKruckenberg/imagetools/branch/graph/badge.svg?token=bJrFBmuczA&flag=imagetools-core)](https://codecov.io/gh/JonasKruckenberg/imagetools/)
 
 A toolbox of import directives that can transform your image at compile-time.
 All of the image transformations are powered by [sharp](https://sharp.pixelplumbing.com).
@@ -23,11 +23,11 @@ All of the image transformations are powered by [sharp](https://sharp.pixelplumb
 ## Install
 
 ```
-npm install imagetools-core@next
+npm install imagetools-core
 ```
 
 ```
-yarn add imagetools-core@next
+yarn add imagetools-core
 ```
 
 ## Usage
