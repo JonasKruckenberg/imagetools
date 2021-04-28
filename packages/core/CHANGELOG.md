@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.3.1](https://github.com/JonasKruckenberg/imagetools/compare/imagetools-core@2.3.0...imagetools-core@2.3.1) (2021-04-28)
+
+
+### Bug Fixes
+
+* include private metadata when applying the transforms ([cc46d1b](https://github.com/JonasKruckenberg/imagetools/commit/cc46d1bce74c1f7202c4d57651be29c5d2356c77))
+
+
+
+
+
 # [2.3.0](https://github.com/JonasKruckenberg/imagetools/compare/imagetools-core@2.2.0...imagetools-core@2.3.0) (2021-04-28)
 
 
