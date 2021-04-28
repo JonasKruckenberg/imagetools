@@ -45,9 +45,13 @@ export function imagetools(userOptions: Partial<PluginOptions> = {}): Plugin {
             const outputMetadatas = []
 
             for (const config of imageConfigs) {
-                const { transforms, warnings } = generateTransforms(config, transformFactories)
+                const defaultConfig = typeof pluginOptions.defaultDirectives === 'function'
+                    ? pluginOptions.defaultDirectives(id)
+                    : pluginOptions.defaultDirectives
+
+                const { transforms, warnings } = generateTransforms({ ...defaultConfig, ...config }, transformFactories)
                 warnings.forEach(warning => this.warn(warning))
-                
+
                 const { image, metadata } = await applyTransforms(transforms, img, pluginOptions.removeMetadata)
 
                 const fileName = basename(src.pathname, extname(src.pathname)) + `.${metadata.format}`
@@ -71,7 +75,7 @@ export function imagetools(userOptions: Partial<PluginOptions> = {}): Plugin {
                     break
                 }
             }
-        
+
             return dataToEsm(outputFormat(outputMetadatas))
         },
         renderChunk(code) {

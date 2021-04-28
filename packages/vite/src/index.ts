@@ -46,10 +46,14 @@ export function imagetools(userOptions: Partial<PluginOptions> = {}): Plugin {
 
             const outputMetadatas = []
 
-            for (const config of imageConfigs) {
+            for (let config of imageConfigs) {
                 const id = generateImageID(src, config)
 
-                const { transforms } = generateTransforms(config, transformFactories)
+                const defaultConfig = typeof pluginOptions.defaultDirectives === 'function'
+                    ? pluginOptions.defaultDirectives(id)
+                    : pluginOptions.defaultDirectives
+
+                const { transforms } = generateTransforms({ ...defaultConfig, ...config }, transformFactories)
                 const { image, metadata } = await applyTransforms(transforms, img, pluginOptions.removeMetadata)
 
                 generatedImages.set(id, image)
