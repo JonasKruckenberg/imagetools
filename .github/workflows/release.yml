@@ -43,6 +43,8 @@ jobs:
         run: echo //registry.npmjs.org/:_authToken=${NPM_TOKEN} > .npmrc
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+      - name: ignore changed test snapshots
+        run: git update-index --assume-unchanged **/__tests__/**/*.png
       - name: Configure CI Git User
         run: |
           git config --global user.email iterpre@protonmail.com
