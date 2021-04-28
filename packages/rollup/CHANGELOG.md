@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 2.1.0 (2021-04-28)
+
+
+### Features
+
+* Add default directives ([#81](https://github.com/JonasKruckenberg/imagetools/issues/81)) ([176fa6d](https://github.com/JonasKruckenberg/imagetools/commit/176fa6d048ad3142e60c75a8253cabd9b28e3a49))
+
+
+
+
+
 ## [2.0.3](https://github.com/JonasKruckenberg/imagetools/compare/rollup-plugin-imagetools@2.0.2...rollup-plugin-imagetools@2.0.3) (2021-04-28)
 
 **Note:** Version bump only for package rollup-plugin-imagetools
