@@ -40,7 +40,7 @@ export function imagetools(userOptions: Partial<PluginOptions> = {}): Plugin {
             const parameters = parseURL(src)
             const imageConfigs = resolveConfigs(parameters)
 
-            const img = loadImage(src.pathname)
+            const img = loadImage(decodeURIComponent(src.pathname))
 
             const outputMetadatas = []
 

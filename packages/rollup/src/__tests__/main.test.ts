@@ -230,6 +230,21 @@ describe('rollup-plugin-imagetools', () => {
         const files = await getFiles(bundle, '**.png') as OutputAsset[]
         expect(files[0].source).toMatchImageSnapshot()
     })
+    
+    test('import with space in identifier', async () => {
+        const bundle = await rollup({
+            plugins: [
+                testEntry(`
+                    import Image from "./with space.png?w=300"
+                    export default Image
+                `),
+                imagetools()
+            ]
+        })
+
+        const files = await getFiles(bundle, '**.png') as OutputAsset[]
+        expect(files[0].source).toMatchImageSnapshot()
+    })
 
     test('non existent file', async () => {
         const p = rollup({

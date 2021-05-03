@@ -289,6 +289,23 @@ describe('vite-imagetools', () => {
         expect(files[0].source).toMatchImageSnapshot()
     })
 
+    test('import with space in identifier', async () => {
+        const bundle = await build({
+            logLevel: 'warn',
+            build: { write: false },
+            plugins: [
+                testEntry(`
+                    import Image from "./with space.png?w=300"
+                    export default Image
+                `),
+                imagetools()
+            ]
+        }) as RollupOutput | RollupOutput[]
+
+        const files = getFiles(bundle, '**.png') as OutputAsset[]
+        expect(files[0].source).toMatchImageSnapshot()
+    })
+
     test('non existent file', async () => {
         const p = build({
             logLevel: 'warn',
