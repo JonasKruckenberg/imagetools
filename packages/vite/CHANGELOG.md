@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.5.1](https://github.com/JonasKruckenberg/imagetools/compare/vite-imagetools@3.5.0...vite-imagetools@3.5.1) (2021-05-03)
+
+
+### Bug Fixes
+
+* decode URI encoded paths before resolving ([36636e5](https://github.com/JonasKruckenberg/imagetools/commit/36636e57d12d846ecd3500deb30d838150a85a2c)), closes [#84](https://github.com/JonasKruckenberg/imagetools/issues/84)
+
+
+
+
+
 # [3.5.0](https://github.com/JonasKruckenberg/imagetools/compare/vite-imagetools@3.4.4...vite-imagetools@3.5.0) (2021-04-28)
 
 
