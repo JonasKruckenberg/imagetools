@@ -15,7 +15,9 @@ export async function applyTransforms(transforms: ImageTransformation[], image: 
         image.withMetadata()
     }
 
-    image = transforms.reduce((img, transform) => transform(img), image)
+    for (const transform of transforms) {
+        image = await transform(image)
+    }
 
     return {
         image,
