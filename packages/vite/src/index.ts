@@ -1,5 +1,5 @@
 import { Plugin, ResolvedConfig } from "vite";
-import { parseURL, loadImage, builtins, resolveConfigs, applyTransforms, generateTransforms, getMetadata, generateImageID, builtinOutputFormats, urlFormat } from 'imagetools-core'
+import { parseURL, loadImage, builtins, resolveConfigs, applyTransforms, generateTransforms, getMetadata, generateImageID, builtinOutputFormats, urlFormat, extractEntries } from 'imagetools-core'
 import { basename, extname, join } from 'path'
 import { createFilter, dataToEsm } from '@rollup/pluginutils';
 import MagicString from 'magic-string'
@@ -38,16 +38,16 @@ export function imagetools(userOptions: Partial<PluginOptions> = {}): Plugin {
         async load(id) {
             if (!filter(id)) return null
 
-            const src = new URL(id, 'file://')
-            const parameters = parseURL(src)
+            const srcURL = parseURL(id)
+            const parameters = extractEntries(srcURL)
             const imageConfigs = resolveConfigs(parameters)
 
-            const img = loadImage(decodeURIComponent(src.pathname))
+            const img = loadImage(decodeURIComponent(srcURL.pathname))
 
             const outputMetadatas = []
 
             for (let config of imageConfigs) {
-                const id = generateImageID(src, config)
+                const id = generateImageID(srcURL, config)
 
                 const defaultConfig = typeof pluginOptions.defaultDirectives === 'function'
                     ? pluginOptions.defaultDirectives(id)
@@ -59,7 +59,7 @@ export function imagetools(userOptions: Partial<PluginOptions> = {}): Plugin {
                 generatedImages.set(id, image)
 
                 if (!this.meta.watchMode) {
-                    const fileName = basename(src.pathname, extname(src.pathname)) + `.${metadata.format}`
+                    const fileName = basename(srcURL.pathname, extname(srcURL.pathname)) + `.${metadata.format}`
 
                     const fileHandle = this.emitFile({
                         name: fileName,
@@ -78,7 +78,7 @@ export function imagetools(userOptions: Partial<PluginOptions> = {}): Plugin {
             let outputFormat: OutputFormat = urlFormat
 
             for (const [key, format] of Object.entries(outputFormats)) {
-                if (src.searchParams.has(key)) {
+                if (srcURL.searchParams.has(key)) {
                     outputFormat = format
                     break
                 }
@@ -98,7 +98,7 @@ export function imagetools(userOptions: Partial<PluginOptions> = {}): Plugin {
 
                     const image = generatedImages.get(id)
 
-                    if(!image) throw new Error(`vite-imagetools cannot find image with id "${id}" this is likely an internal error`)
+                    if (!image) throw new Error(`vite-imagetools cannot find image with id "${id}" this is likely an internal error`)
 
                     if (pluginOptions.removeMetadata === false) {
                         image.withMetadata()

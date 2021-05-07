@@ -1,5 +1,5 @@
 import { Plugin } from 'rollup'
-import { applyTransforms, builtins, generateTransforms, loadImage, parseURL, resolveConfigs, builtinOutputFormats, urlFormat, OutputFormat } from 'imagetools-core'
+import { applyTransforms, builtins, generateTransforms, loadImage, parseURL, resolveConfigs, builtinOutputFormats, urlFormat, OutputFormat, extractEntries } from 'imagetools-core'
 import { createFilter, dataToEsm } from '@rollup/pluginutils'
 import { PluginOptions } from './types'
 import MagicString from 'magic-string'
@@ -36,11 +36,11 @@ export function imagetools(userOptions: Partial<PluginOptions> = {}): Plugin {
         async load(id) {
             if (!filter(id)) return null
 
-            const src = new URL(id, 'file://')
-            const parameters = parseURL(src)
+            const srcURL = parseURL(id)
+            const parameters = extractEntries(srcURL)
             const imageConfigs = resolveConfigs(parameters)
 
-            const img = loadImage(decodeURIComponent(src.pathname))
+            const img = loadImage(decodeURIComponent(srcURL.pathname))
 
             const outputMetadatas = []
 
@@ -54,7 +54,7 @@ export function imagetools(userOptions: Partial<PluginOptions> = {}): Plugin {
 
                 const { image, metadata } = await applyTransforms(transforms, img, pluginOptions.removeMetadata)
 
-                const fileName = basename(src.pathname, extname(src.pathname)) + `.${metadata.format}`
+                const fileName = basename(srcURL.pathname, extname(srcURL.pathname)) + `.${metadata.format}`
 
                 const fileHandle = this.emitFile({
                     name: fileName,
@@ -70,7 +70,7 @@ export function imagetools(userOptions: Partial<PluginOptions> = {}): Plugin {
             let outputFormat: OutputFormat = urlFormat
 
             for (const [key, format] of Object.entries(outputFormats)) {
-                if (src.searchParams.has(key)) {
+                if (srcURL.searchParams.has(key)) {
                     outputFormat = format
                     break
                 }
