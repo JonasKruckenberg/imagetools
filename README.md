@@ -24,7 +24,7 @@ A toolbox of easy-to-use import directives that transform and optimize your imag
 ## Contributing
 
 Feel free to dive in! [Open an issue](https://github.com/JonasKruckenberg/vite-imagetools/issues/new) or submit PRs!
-All information to get you started hacking on imagetools is in [CONTRIBUTING.md](../../CONTRIBUTING.md)!
+All information to get you started hacking on imagetools is in [CONTRIBUTING.md](./CONTRIBUTING.md)!
 
 ## Sponsoring
 
