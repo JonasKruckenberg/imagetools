@@ -73,7 +73,7 @@ describe('rotate', () => {
 
         test('w/ background', async () => {
             //@ts-ignore
-            const { image, metadata } = await applyTransforms([rotate({ rotate: '45', background: '0f0' }, dirCtx)], img)
+            const { image, metadata } = await applyTransforms([rotate({ rotate: '45', background: '#0f0' }, dirCtx)], img)
 
             expect(await image.toBuffer()).toMatchImageSnapshot()
         })

@@ -74,7 +74,7 @@ describe('flatten', () => {
 
         test('w/ background', async () => {
             //@ts-ignore
-            const { image, metadata } = await applyTransforms([flatten({ flatten: 'true', background: '00f' }, dirCtx)], img)
+            const { image, metadata } = await applyTransforms([flatten({ flatten: 'true', background: '#00f' }, dirCtx)], img)
 
             expect(await image.toBuffer()).toMatchImageSnapshot()
         })

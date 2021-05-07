@@ -203,7 +203,7 @@ describe('width & height', () => {
 
         test('w/ fit & background', async () => {
             //@ts-ignore
-            const { image, metadata } = await applyTransforms([resize({ w: '300', h: '300', fit: 'contain', background: '0f0' }, dirCtx)], img)
+            const { image, metadata } = await applyTransforms([resize({ w: '300', h: '300', fit: 'contain', background: '#0f0' }, dirCtx)], img)
 
             expect(await image.toBuffer()).toMatchImageSnapshot()
         })
@@ -327,7 +327,7 @@ describe('aspect', () => {
 
         test('w/ fit & background', async () => {
             //@ts-ignore
-            const { image, metadata } = await applyTransforms([resize({ aspect: '4:3', fit: 'contain', background: '0f0' }, dirCtx)], img)
+            const { image, metadata } = await applyTransforms([resize({ aspect: '4:3', fit: 'contain', background: '#0f0' }, dirCtx)], img)
 
             expect(await image.toBuffer()).toMatchImageSnapshot()
         })
