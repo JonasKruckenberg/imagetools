@@ -5,6 +5,9 @@ Hey! Thanks for considering to contribute to this project! We have some tips and
 ## Project Setup
 
 This repository is a monorepo using yarn workspaces and lerna.<br>
+Since we use `git-lfs` to store the image snapshots, you need to have it installed in order to clone this repository.
+You can download it here: https://git-lfs.github.com.
+
 The folder structure is a following:
 
 ```
@@ -28,11 +31,11 @@ Running `yarn test`from the top level runs all tests for all packages, if your o
 
 ## Pull Request Guidelines
 
-- All pull requests should be made against the `main` branch. (Not yet applicable)
+- All pull requests should be made against the `main` branch.
 
 - Make sure tests pass!
 
-- Commit messages follow the [conventional commits style](). This helps generating changelogs and ensuring proper versioning.
+- Commit messages follow the [conventional commits style](https://www.conventionalcommits.org). This helps generating changelogs and ensuring proper versioning.
 
 - When adding transforms,
 
@@ -69,4 +72,4 @@ Whenever you build an something with imagetools-core, make sure to link back to 
 
 - Reexport the directives when possible
 
-both vite-imagetools and rollup-plugin-imagetools reexport all builtin directives, so users can create their own directives using the builtins as building blocks. You should - whenever possible - also do the same so users can profit from the extensible nature of imagetools.
+Both vite-imagetools and rollup-plugin-imagetools reexport all builtin directives, so users can create their own directives using the builtins as building blocks. You should - whenever possible - also do the same so users can profit from the extensible nature of imagetools.
