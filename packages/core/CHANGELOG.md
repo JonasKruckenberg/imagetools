@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.5.0](https://github.com/JonasKruckenberg/imagetools/compare/imagetools-core@2.3.3...imagetools-core@2.5.0) (2021-05-07)
+
+
+### Features
+
+* Allow ImageTransform functions to be async ([da3e726](https://github.com/JonasKruckenberg/imagetools/commit/da3e7264d8ae3276dfe76d3394e8764c783d9d50)), closes [#88](https://github.com/JonasKruckenberg/imagetools/issues/88)
+
+
+
+
+
 ## [2.3.3](https://github.com/JonasKruckenberg/imagetools/compare/imagetools-core@2.3.2...imagetools-core@2.3.3) (2021-05-03)
 
 **Note:** Version bump only for package imagetools-core
