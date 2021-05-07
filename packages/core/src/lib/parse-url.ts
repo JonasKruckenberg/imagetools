@@ -1,5 +1,5 @@
 export function parseURL(rawURL: string) {
-    return new URL(rawURL.replaceAll('#', '%23'), 'file://')
+    return new URL(rawURL.replace(/#/g, '%23'), 'file://')
 }
 
 export function extractEntries(url: URL) {
