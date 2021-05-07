@@ -2,6 +2,10 @@
 
 Hey! Thanks for considering to contribute to this project! We have some tips and tricks to get you started:
 
+## Roadmap
+We have a [project roadmap](https://github.com/JonasKruckenberg/imagetools/projects/1)! This includes all features that are being worked or those that are planned. If you feel like contributing, have a look!
+Feedback to all planned features is also highly welcome!
+
 ## Project Setup
 
 This repository is a monorepo using yarn workspaces and lerna.<br>
