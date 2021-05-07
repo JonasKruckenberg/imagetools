@@ -1,6 +1,6 @@
 {
   "name": "rollup-plugin-imagetools",
-  "version": "2.1.2",
+  "version": "2.1.3",
   "main": "dist/index.cjs",
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
@@ -29,7 +29,7 @@
   },
   "dependencies": {
     "@rollup/pluginutils": "^4.1.0",
-    "imagetools-core": "^2.3.3",
+    "imagetools-core": "^2.4.0",
     "magic-string": "^0.25.7"
   },
   "devDependencies": {

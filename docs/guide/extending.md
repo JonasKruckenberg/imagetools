@@ -12,10 +12,6 @@ The signature is as follows:
 type TransformFactory<A = {}> = (metadata: Partial<ImageConfig & A>, ctx: TransformFactoryContext) => ImageTransformation | undefined
 ```
 
-## Directive Context
-
-
-
 ## Example
 
 Say you're using the following import statement very often
@@ -82,6 +78,20 @@ Lastly we return the transformation function that will apply both the resize and
 We must also always return the transformed image.
 
 > NOTE: The image object provided to the transform function is a sharp instance, so you have access to all it's methods as well.
+
+### Asyn ImageTransform functions
+
+![vite-imagetools v2.4.0 and newer](https://img.shields.io/badge/imagetools--core-^2.4.0-brightgreen) ![vite-imagetools v3.5.3 and newer](https://img.shields.io/badge/vite--imagetools-^3.5.3-brightgreen) ![rollup-plugin-imagetools v2.1.3](https://img.shields.io/badge/rollup--plugin--imagetools-^2.1.3-brightgreen)
+
+Sometimes a transformation needs to perform some asynchronous action. To accommodate this, ImageTransform functions can return a promise that resolved with the sharp instance once the transformation is done.
+
+```ts
+function customDirective(): ImageTransform {
+    return async (image) => {
+        return longAsyncTask(image)
+    }
+}
+```
 
 ## Custom Output Formats
 
