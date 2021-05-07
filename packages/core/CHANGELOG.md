@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.7.0](https://github.com/JonasKruckenberg/imagetools/compare/imagetools-core@2.6.0...imagetools-core@2.7.0) (2021-05-07)
+
+
+### Bug Fixes
+
+* Refactor & resize directive ([5b2fca0](https://github.com/JonasKruckenberg/imagetools/commit/5b2fca0b3ef02ddf7cb9667648de68df9316c448)), closes [#91](https://github.com/JonasKruckenberg/imagetools/issues/91)
+* update background directive ([d01b446](https://github.com/JonasKruckenberg/imagetools/commit/d01b44672b1ffadc41bf2497a82d63244176d1cf))
+* use replace with regex for older node versions ([8e86de1](https://github.com/JonasKruckenberg/imagetools/commit/8e86de17658fbcdf8fb9b07f683f2dfc29e09ca3))
+
+
+### Features
+
+* Allow # symbols in src urls ([b5beedd](https://github.com/JonasKruckenberg/imagetools/commit/b5beedd3707167aad9302737d1012f35a3f19776))
+* Allow ImageTransform functions to be async ([da3e726](https://github.com/JonasKruckenberg/imagetools/commit/da3e7264d8ae3276dfe76d3394e8764c783d9d50)), closes [#88](https://github.com/JonasKruckenberg/imagetools/issues/88)
+
+
+
+
+
 # [2.6.0](https://github.com/JonasKruckenberg/imagetools/compare/imagetools-core@2.5.0...imagetools-core@2.6.0) (2021-05-07)
 
 
