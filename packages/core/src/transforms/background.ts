@@ -8,7 +8,7 @@ export interface BackgroundOptions {
 export const getBackground: TransformOption<BackgroundOptions, string> = ({ background }, image) => {
     if (typeof background !== 'string' || !background.length) return
 
-    setMetadata(image, 'background', '#' + background)
+    setMetadata(image, 'background', background)
 
-    return '#' + background
+    return background
 }
