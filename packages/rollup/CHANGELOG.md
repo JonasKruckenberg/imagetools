@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.2.0](https://github.com/JonasKruckenberg/imagetools/compare/rollup-plugin-imagetools@2.1.4...rollup-plugin-imagetools@2.2.0) (2021-05-07)
+
+
+### Features
+
+* Allow # symbols in src urls ([b5beedd](https://github.com/JonasKruckenberg/imagetools/commit/b5beedd3707167aad9302737d1012f35a3f19776))
+
+
+
+
+
 ## [2.1.4](https://github.com/JonasKruckenberg/imagetools/compare/rollup-plugin-imagetools@2.1.2...rollup-plugin-imagetools@2.1.4) (2021-05-07)
 
 **Note:** Version bump only for package rollup-plugin-imagetools
