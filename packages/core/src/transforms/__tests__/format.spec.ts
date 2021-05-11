@@ -4,8 +4,9 @@ import { applyTransforms } from '../../index'
 import sharp, { Sharp } from 'sharp'
 import { join } from 'path'
 import { toMatchFile } from 'jest-file-snapshot'
+import { toMatchImageSnapshot } from 'jest-image-snapshot'
 
-expect.extend({ toMatchFile })
+expect.extend({ toMatchFile, toMatchImageSnapshot })
 
 describe('format', () => {
     let dirCtx: TransformFactoryContext
@@ -106,7 +107,7 @@ describe('format', () => {
             //@ts-ignore
             const { image, metadata } = await applyTransforms([format({ format: 'png' }, dirCtx)], img)
 
-            expect(await image.toBuffer()).toMatchFile()
+            expect(await image.toBuffer()).toMatchImageSnapshot()
         })
 
         test('avif', async () => {
@@ -148,12 +149,10 @@ describe('format', () => {
         })
 
         test('png w/ quality', async () => {
-            console.warn('png w/ quality doesnt seem to work');
-
             //@ts-ignore
             const { image, metadata } = await applyTransforms([format({ format: 'png', quality: '10' }, dirCtx)], img)
 
-            expect(await image.toBuffer()).toMatchFile()
+            expect(await image.toBuffer()).toMatchImageSnapshot()
         })
 
         test('webp w/ quality', async () => {
@@ -195,7 +194,7 @@ describe('format', () => {
             //@ts-ignore
             const { image, metadata } = await applyTransforms([format({ format: 'png', progressive: 'true' }, dirCtx)], img)
 
-            expect(await image.toBuffer()).toMatchFile()
+            expect(await image.toBuffer()).toMatchImageSnapshot()
         })
     })
 })
