@@ -41,6 +41,6 @@
     "typescript": "^4.2.3"
   },
   "dependencies": {
-    "sharp": "0.28.0"
+    "sharp": "^0.27.2"
   }
 }
