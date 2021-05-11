@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.7.2](https://github.com/JonasKruckenberg/imagetools/compare/imagetools-core@2.7.1...imagetools-core@2.7.2) (2021-05-11)
+
+
+### Reverts
+
+* Revert to older sharp version ([9a6ce0a](https://github.com/JonasKruckenberg/imagetools/commit/9a6ce0a9ee00150944aebeb12badf356a2f71279))
+
+
+
+
+
 ## [2.7.1](https://github.com/JonasKruckenberg/imagetools/compare/imagetools-core@2.7.0...imagetools-core@2.7.1) (2021-05-11)
 
 
