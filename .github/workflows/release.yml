@@ -22,6 +22,11 @@ jobs:
         run: yarn
       - name: Run unit tests
         run: yarn test
+      - uses: actions/upload-artifact@v2
+        if: failure()
+        with:
+          name: image-diffs
+          path: packages/**/__image_snapshots__/__diff_output__/
 
   release:
     runs-on: ubuntu-latest
