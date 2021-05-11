@@ -5,12 +5,21 @@
   "version": "independent",
   "npmClient": "yarn",
   "useWorkspaces": true,
-  "ignoreChanges": ["**/__fixtures__/**", "**/__tests__/**", "examples/**", ".github/**", "docs/**"],
+  "ignoreChanges": [
+    "**/__fixtures__/**", 
+    "**/__tests__/**", 
+    "examples/**", 
+    ".github/**",
+    "docs/**",
+    "**/CHANGELOG.md",
+    "**/package.json"
+  ],
   "command": {
     "publish": {
       "conventionalCommits": true,
       "createRelease": "github",
-      "yes": true
+      "yes": true,
+      "message": "chore(release): publish %s [skip ci]"
     }
   }
 }
