@@ -1,0 +1,13 @@
+{
+  "name": "simple",
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "serve": "vite preview"
+  },
+  "devDependencies": {
+    "vite": "^2.3.0",
+    "vite-imagetools": "^3.6.2"
+  }
+}
