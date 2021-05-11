@@ -20,6 +20,7 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - name: Install deps
         run: yarn
+      - run: npx envinfo --binaries --system
       - name: Run unit tests
         run: yarn test
       - uses: actions/upload-artifact@v2
