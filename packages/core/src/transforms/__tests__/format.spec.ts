@@ -152,7 +152,10 @@ describe('format', () => {
             //@ts-ignore
             const { image, metadata } = await applyTransforms([format({ format: 'png', quality: '10' }, dirCtx)], img)
 
-            expect(await image.toBuffer()).toMatchImageSnapshot()
+            expect(await image.toBuffer()).toMatchImageSnapshot({
+                failureThreshold: 0.05,
+                failureThresholdType: 'percent'
+            })
         })
 
         test('webp w/ quality', async () => {
