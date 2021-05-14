@@ -14,7 +14,6 @@
     "@types/picomatch": "^2.2.1",
     "cross-env": "^7.0.3",
     "lerna": "^4.0.0",
-    "picomatch": "^2.2.3"
   },
   "commitlint": {
     "extends": [
