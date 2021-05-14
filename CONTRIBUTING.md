@@ -8,7 +8,7 @@ Feedback to all planned features is also highly welcome!
 
 ## Project Setup
 
-This repository is a monorepo using yarn workspaces and lerna.<br>
+This repository is a monorepo using yarn workspaces and [changesets](https://github.com/atlassian/changesets).<br>
 Since we use `git-lfs` to store the image snapshots, you need to have it installed in order to clone this repository.
 You can download it here: https://git-lfs.github.com.
 
@@ -39,7 +39,9 @@ Running `yarn test`from the top level runs all tests for all packages, if your o
 
 - Make sure tests pass!
 
-- Commit messages follow the [conventional commits style](https://www.conventionalcommits.org). This helps generating changelogs and ensuring proper versioning.
+- Commit messages SHOULD follow the [conventional commits style](https://www.conventionalcommits.org). This helps generating changelogs and ensuring proper versioning.
+
+- PRs that should result in a new release to npm MUST include a changeset, see [adding a changeset](https://github.com/atlassian/changesets/blob/main/docs/adding-a-changeset.md) for details.
 
 - When adding transforms,
 
