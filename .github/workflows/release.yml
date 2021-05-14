@@ -14,14 +14,18 @@ jobs:
       - uses: actions/checkout@v2
         with:
           lfs: true
+          
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v2
         with:
           node-version: ${{ matrix.node-version }}
+
       - name: Install deps
         run: yarn
+
       - name: Run unit tests
         run: yarn test
+
       - uses: actions/upload-artifact@v2
         if: failure()
         with:
@@ -29,29 +33,31 @@ jobs:
           path: packages/**/__image_snapshots__/__diff_output__/
 
   release:
+    name: Release
     runs-on: ubuntu-latest
     needs: test
-
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout Repo
+        uses: actions/checkout@master
         with:
-          fetch-depth: "0"
+          # This makes Actions fetch all Git history so that Changesets can generate changelogs with the correct commits
+          fetch-depth: 0
           lfs: true
-      - run: git fetch --depth=1 origin +refs/tags/*:refs/tags/*
-      - uses: actions/setup-node@v2
+
+      - name: Setup Node.js 14.x
+        uses: actions/setup-node@v2
         with:
           node-version: "14"
-      - run: yarn
-      - run: yarn build
-      - name: create npmrc file
-        run: echo //registry.npmjs.org/:_authToken=${NPM_TOKEN} > .npmrc
+
+      - name: Install Dependencies
+        run: yarn
+
+      - name: Create Release Pull Request or Publish to npm
+        id: changesets
+        uses: changesets/action@master
+        with:
+          # This expects you to have a script called release which does a build for your packages and calls changeset publish
+          publish: yarn build && yarn changeset publish
         env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-      - name: Configure CI Git User
-        run: |
-          git config --global user.email iterpre@protonmail.com
-          git config --global user.name JonasKruckenberg
-      - name: Release
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: yarn release --no-verify-access
