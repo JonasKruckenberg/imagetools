@@ -3,6 +3,7 @@
   "license": "MIT",
   "private": true,
   "scripts": {
+    "release": "yarn build && yarn changeset publish",
     "build": "yarn workspaces run build",
     "test": "yarn workspaces run test",
     "coverage": "yarn workspaces run coverage"
