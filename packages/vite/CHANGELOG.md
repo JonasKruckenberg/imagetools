@@ -1,5 +1,11 @@
 # Change Log
 
+## 3.6.8
+
+### Patch Changes
+
+- d1a3058: chore(deps-dev): bump vite from 2.3.2 to 2.3.4
+
 ## 3.6.7
 
 ### Patch Changes
