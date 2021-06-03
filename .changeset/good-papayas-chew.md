@@ -1,6 +1,6 @@
 ---
-"imagetools-core": patch,
-"vite-imagetools": patch,
+"imagetools-core": patch
+"vite-imagetools": patch
 "rollup-plugin-imagetools": patch
 ---
 
