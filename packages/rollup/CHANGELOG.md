@@ -1,5 +1,13 @@
 # Change Log
 
+## 2.2.8
+
+### Patch Changes
+
+- 2f60cf2: chore(deps-dev): bump rollup from 2.49.0 to 2.50.6
+- Updated dependencies [0ceabff]
+  - imagetools-core@2.7.6
+
 ## 2.2.7
 
 ### Patch Changes
