@@ -1,22 +1,17 @@
-import { TransformFactory } from "../types";
+import { ImageTransformFactory } from "../types";
 import { setMetadata } from "../lib/metadata";
 import { getBackground } from './background'
 
-export interface RotateOptions {
-    rotate: string
-}
-
-export const rotate: TransformFactory<RotateOptions> = (config, ctx) => {
-    const rotate = config.rotate && parseInt(config.rotate)
+export const rotate: ImageTransformFactory<'rotate'> = ({ rotate, ...rest }) => {
+    let _rotate = parseInt(rotate || '')
 
     if (!rotate) return
 
+    const background = getBackground(rest)
 
     return function rotateTransform(image) {
-        setMetadata(image, 'rotate', rotate)
+        setMetadata(image, 'rotate', _rotate)
  
-        return image.rotate(rotate, {
-            background: getBackground(config, image)
-        })
+        return image.rotate(_rotate, { background })
     }
 }

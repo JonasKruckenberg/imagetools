@@ -1,4 +1,4 @@
-import { TransformFactory } from "../types";
+import { ImageTransformFactory } from "../types";
 import { setMetadata } from "../lib/metadata";
 import { getQuality } from './quality'
 import { getProgressive } from './progressive'
@@ -7,28 +7,20 @@ export const formatValues = ['avif', 'jpg', 'jpeg', 'png', 'heif', 'heic', 'webp
 
 export type FormatValue = typeof formatValues[number]
 
-export interface FormatOptions {
-    format: FormatValue
-}
+export const format: ImageTransformFactory<'format'> = ({ format, ...rest }) => {
+    format ||= Object.keys(rest).find((k): k is FormatValue => formatValues.includes(k as FormatValue))
 
-export const format: TransformFactory<FormatOptions> = (config, ctx) => {
-    let format: FormatValue | undefined = undefined
-
-    if (config.format && formatValues.includes(config.format)) {
-        format = config.format
-    } else {
-        format = Object.keys(config).find((k: any): k is FormatValue => formatValues.includes(k) && config[k] === '')
-    }
     if (!format) return
 
+    const quality = getQuality(rest)
+    const progressive = getProgressive(rest)
 
     return function formatTransform(image) {
         setMetadata(image, 'format', format)
+        setMetadata(image, 'quality', quality)
+        setMetadata(image, 'progressive', progressive)
 
         //@ts-ignore
-        return image.toFormat(format, {
-            quality: getQuality(config, image),
-            progressive: getProgressive(config, image)
-        })
+        return image.toFormat(format, { quality, progressive })
     }
 }

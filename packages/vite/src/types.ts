@@ -1,6 +1,4 @@
-import { TransformFactory, ImageConfig } from "imagetools-core";
-
-export type OutputFormat = (metadata: ImageConfig[]) => any
+import { TransformFactory } from "imagetools-core";
 
 export interface PluginOptions {
     /** 
@@ -19,7 +17,7 @@ export interface PluginOptions {
      * This option allows you to specify directives that should be applied _by default_ to every image.
      * You can also provide a function, in which case the function gets passed the asset ID and should return an object of directives
      */
-    defaultDirectives?: Record<string, string> | ((id: string) => Record<string, string>)
+    defaultDirectives?: Record<string, string>
 
     /**
      * You can use this option to extend the builtin list of import transforms.
@@ -27,13 +25,6 @@ export interface PluginOptions {
      * @default []
      */
     extendTransforms?: (builtins: TransformFactory[]) => TransformFactory[]
-
-    /**
-     * You can use this option to extend the builtin list of output formats.
-     * This list will be merged with the builtin output formats before determining the format to use.
-     * @default []
-     */
-    extendOutputFormats?: (builtins: Record<string, OutputFormat>) => Record<string, OutputFormat>
 
     /**
      * Settings this option to true disables all warnings produced by this plugin

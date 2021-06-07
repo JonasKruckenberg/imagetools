@@ -1,18 +1,14 @@
-import { TransformFactory } from "../types";
+import { ImageTransformFactory } from "../types";
 import { setMetadata } from "../lib/metadata";
 
-export interface MedianOptions {
-    median: string
-}
-
-export const median: TransformFactory<MedianOptions> = (config, ctx) => {
-    const median = config.median ? parseInt(config.median) : undefined
+export const median: ImageTransformFactory<'median'> = ({ median }) => {
+    let _median = parseInt(median || '')
 
     if (!median) return
 
     return function medianTransform(image) {
-        setMetadata(image, 'median', median)
+        setMetadata(image, 'median', _median)
 
-        return image.median(median)
+        return image.median(_median)
     }
 }

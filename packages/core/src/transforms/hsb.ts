@@ -1,17 +1,11 @@
-import { TransformFactory } from "../types";
+import { ImageTransformFactory } from "../types";
 import { setMetadata } from "../lib/metadata";
 
-export interface HSBOptions {
-    hue: string
-    saturation: string
-    brightness: string
-}
+export const hsb: ImageTransformFactory<'hue' | 'saturation' | 'brightness'> = (target) => {
 
-export const hsb: TransformFactory<HSBOptions> = (config, ctx) => {
-
-    const hue = config.hue && parseInt(config.hue)
-    const saturation = config.saturation && parseFloat(config.saturation)
-    const brightness = config.brightness && parseFloat(config.brightness)
+    const hue = target.hue && parseInt(target.hue)
+    const saturation = target.saturation && parseFloat(target.saturation)
+    const brightness = target.brightness && parseFloat(target.brightness)
 
     if (!hue && !saturation && !brightness) return
 

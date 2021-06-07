@@ -1,11 +1,7 @@
-import { TransformFactory } from "../types";
+import { ImageTransformFactory } from "../types";
 import { setMetadata } from "../lib/metadata";
 
-export interface InvertOptions {
-    invert: '' | 'true'
-}
-
-export const invert: TransformFactory<InvertOptions> = ({ invert }, ctx) => {
+export const invert: ImageTransformFactory<'invert'> = ({ invert }) => {
     if (invert !== '' && invert !== 'true') return
 
     return function invertTransform(image) {

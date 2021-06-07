@@ -1,11 +1,7 @@
-import { TransformFactory } from "../types";
+import { ImageTransformFactory } from "../types";
 import { setMetadata } from "../lib/metadata";
 
-export interface TintOptions {
-    tint: string
-}
-
-export const tint: TransformFactory<TintOptions> = ({ tint }, ctx) => {
+export const tint: ImageTransformFactory<'tint'> = ({ tint }) => {
     if (typeof tint !== 'string' || !tint.length) return
 
     return function tintTransform(image) {

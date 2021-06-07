@@ -1,3 +1,4 @@
+import { DefaultTarget } from "../types"
 
 /**
  * This function calculates the cartesian product of two or more array and is straight from stackoverflow ;)
@@ -12,7 +13,7 @@ export const cartesian = (...a: any[]) => a.reduce((a: any, b: any) => a.flatMap
  * @param entries The url parameter entries
  * @returns An array of directive options
  */
-export function resolveConfigs(entries: Array<[string, string[]]>) {
+export function resolveTargets(entries: Array<[string, string[]]>, defaultTarget: DefaultTarget): Record<string,any>[] {
 
     // create a new array of entries for each argument
     const singleArgumentEntries = entries
@@ -23,5 +24,6 @@ export function resolveConfigs(entries: Array<[string, string[]]>) {
         .reduce((prev, cur) => prev.length ? cartesian(prev, cur) : cur, [])
 
     // // and return as an array of objects
-    return combinations.map((options) => Object.fromEntries(options))
+    return combinations
+        .map((options) => ({ ...defaultTarget, ...Object.fromEntries(options) }))
 }

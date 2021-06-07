@@ -1,26 +1,11 @@
+import { PluginContext } from "rollup"
 import { Sharp } from "sharp"
-import { ImageTransformation, TransformResult } from "../types"
-import { METADATA } from "./metadata"
+import { ImageTransform } from "../types"
 
-export async function applyTransforms(transforms: ImageTransformation[], image: Sharp, removeMetadata: boolean = true): Promise<TransformResult> {
-    image[METADATA] = await image.metadata()
-
-    if(removeMetadata) {
-        // delete the private metadata
-        delete image[METADATA].exif
-        delete image[METADATA].iptc
-        delete image[METADATA].xmp
-        delete image[METADATA].tifftagPhotoshop
-    } else {
-        image.withMetadata()
-    }
-
+export async function applyTransforms(this: PluginContext, transforms: ImageTransform[], image: Sharp) {
     for (const transform of transforms) {
-        image = await transform(image)
-    }
-
-    return {
-        image,
-        metadata: image[METADATA]
+        const result = await transform.call(this, image)
+        if (Array.isArray(result)) return result
+        if (result) image = result
     }
 }

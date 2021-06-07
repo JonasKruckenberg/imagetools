@@ -1,26 +1,13 @@
-import { TransformOption } from "../types"
-import { setMetadata } from "../lib/metadata";
+import { GetParam } from "../types"
 
 export const fitValues = ['cover', 'contain', 'fill', 'inside', 'outside'] as const
 
 export type FitValue = typeof fitValues[number]
 
-export interface FitOptions {
-    fit: FitValue
-}
+export const getFit: GetParam<'fit' | FitValue, FitValue> = ({ fit, ...rest }) => {
+    fit ||= Object.keys(rest).find((k): k is FitValue => fitValues.includes(k as FitValue))
 
-export const getFit: TransformOption<FitOptions, FitValue> = (config, image) => {
-    let fit: FitValue | undefined = undefined
+    if(!fit || !fitValues.includes(fit as FitValue)) return
 
-    if (config.fit && fitValues.includes(config.fit)) {
-        fit = config.fit
-    } else {
-        fit = Object.keys(config).find((k: any): k is FitValue => fitValues.includes(k) && config[k] === '')
-    }
-
-    if (!fit) return
-
-    setMetadata(image, 'fit', fit)
-
-    return fit
+    return fit as FitValue
 }

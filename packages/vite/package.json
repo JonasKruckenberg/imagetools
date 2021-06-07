@@ -34,7 +34,8 @@
   "dependencies": {
     "@rollup/pluginutils": "^4.1.0",
     "imagetools-core": "^2.7.5",
-    "magic-string": "^0.25.7"
+    "magic-string": "^0.25.7",
+    "vite": "^2.3.4"
   },
   "devDependencies": {
     "@types/jest": "^26.0.23",

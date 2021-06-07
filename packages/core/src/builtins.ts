@@ -7,9 +7,12 @@ import { grayscale } from './transforms/grayscale'
 import { hsb } from './transforms/hsb'
 import { invert } from './transforms/invert'
 import { median } from './transforms/median'
+import { metadataOutput } from './transforms/metadata'
+import { srcsetOutput } from './transforms/srcset'
 import { normalize } from './transforms/normalize'
 import { resize } from './transforms/resize'
 import { rotate } from './transforms/rotate'
 import { tint } from './transforms/tint'
+import { urlOutput } from './transforms/url'
 
-export const builtins = [ blur, flatten, flip, flop, format, grayscale, hsb, invert, median, normalize, resize, rotate, tint ]
+export const builtinTransformFactories = [blur, flatten, flip, flop, format, grayscale, hsb, invert, median, normalize, resize, rotate, tint, metadataOutput, srcsetOutput, urlOutput]

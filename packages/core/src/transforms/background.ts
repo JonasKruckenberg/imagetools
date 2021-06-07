@@ -1,14 +1,7 @@
-import { TransformOption } from "../types";
-import { setMetadata } from "../lib/metadata";
+import { GetParam } from "../types";
 
-export interface BackgroundOptions {
-    background: string
-}
-
-export const getBackground: TransformOption<BackgroundOptions, string> = ({ background }, image) => {
+export const getBackground: GetParam<'background', string> = ({ background }) => {
     if (typeof background !== 'string' || !background.length) return
-
-    setMetadata(image, 'background', background)
 
     return background
 }

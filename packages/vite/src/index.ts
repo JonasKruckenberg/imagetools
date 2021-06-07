@@ -1,9 +1,9 @@
 import { Plugin, ResolvedConfig } from "vite";
-import { parseURL, loadImage, builtins, resolveConfigs, applyTransforms, generateTransforms, getMetadata, generateImageID, builtinOutputFormats, urlFormat, extractEntries } from 'imagetools-core'
-import { basename, extname, join } from 'path'
+import { parseURL, loadImage, builtinTransformFactories, resolveTargets, applyTransforms, buildTransforms, extractEntries, initializeMetadata, AFTER_EMIT, generateImageID, getMetadata } from 'imagetools-core'
 import { createFilter, dataToEsm } from '@rollup/pluginutils';
 import MagicString from 'magic-string'
-import { OutputFormat, PluginOptions } from './types';
+import { PluginOptions } from './types';
+import { createEmitFile } from './emit-file'
 
 const defaultOptions: PluginOptions = {
     include: '**\/*.{heic,heif,avif,jpeg,jpg,png,tiff,webp,gif}?*',
@@ -18,16 +18,14 @@ export function imagetools(userOptions: Partial<PluginOptions> = {}): Plugin {
     const filter = createFilter(pluginOptions.include, pluginOptions.exclude)
 
     const transformFactories = pluginOptions.extendTransforms
-        ? pluginOptions.extendTransforms(builtins)
-        : builtins
+        ? pluginOptions.extendTransforms(builtinTransformFactories)
+        : builtinTransformFactories
 
-    const outputFormats = pluginOptions.extendOutputFormats
-        ? pluginOptions.extendOutputFormats(builtinOutputFormats)
-        : builtinOutputFormats
+    const imageTransformFactories = transformFactories.filter(f => !f[AFTER_EMIT])
+    const outputTransformFactories = transformFactories.filter(f => f[AFTER_EMIT])
 
     let viteConfig: ResolvedConfig
-
-    const generatedImages = new Map()
+    const cache = new Map<string, any>()
 
     return {
         name: 'imagetools',
@@ -40,70 +38,43 @@ export function imagetools(userOptions: Partial<PluginOptions> = {}): Plugin {
 
             const srcURL = parseURL(id)
             const parameters = extractEntries(srcURL)
-            const imageConfigs = resolveConfigs(parameters)
+            const targets = resolveTargets(parameters, pluginOptions.defaultDirectives || {})
 
-            const img = loadImage(decodeURIComponent(srcURL.pathname))
+            const img = await initializeMetadata(
+                loadImage(decodeURIComponent(srcURL.pathname)),
+                srcURL,
+                pluginOptions.removeMetadata
+            )
 
-            const outputMetadatas = []
+            const outputs: unknown[] = []
 
-            for (let config of imageConfigs) {
-                const id = generateImageID(srcURL, config)
+            for (const target of targets) {
+                const cacheId = generateImageID(srcURL, target)
+                const transforms = buildTransforms.call(this, [...imageTransformFactories, createEmitFile(cacheId), ...outputTransformFactories], target)
 
-                const defaultConfig = typeof pluginOptions.defaultDirectives === 'function'
-                    ? pluginOptions.defaultDirectives(id)
-                    : pluginOptions.defaultDirectives
-
-                const { transforms } = generateTransforms({ ...defaultConfig, ...config }, transformFactories)
-                const { image, metadata } = await applyTransforms(transforms, img, pluginOptions.removeMetadata)
-
-                generatedImages.set(id, image)
-
-                if (!this.meta.watchMode) {
-                    const fileName = basename(srcURL.pathname, extname(srcURL.pathname)) + `.${metadata.format}`
-
-                    const fileHandle = this.emitFile({
-                        name: fileName,
-                        source: await image.toBuffer(),
-                        type: 'asset'
-                    })
-
-                    metadata.src = `__VITE_IMAGE_ASSET__${fileHandle}__`
-                } else {
-                    metadata.src = join('/@imagetools', id)
-                }
-
-                outputMetadatas.push(metadata)
+                const [output, image] = await applyTransforms.call(this, transforms, img) || []
+                outputs.push(output)
+                cache.set(cacheId, image)
             }
 
-            let outputFormat: OutputFormat = urlFormat
-
-            for (const [key, format] of Object.entries(outputFormats)) {
-                if (srcURL.searchParams.has(key)) {
-                    outputFormat = format
-                    break
-                }
+            return {
+                //@ts-ignore
+                code: dataToEsm(outputs.length > 1 ? outputs : outputs[0], {
+                    namedExports: viteConfig.json?.namedExports ?? true,
+                    compact: !!viteConfig.build.minify ?? false,
+                    preferConst: true
+                }),
+                meta: { imagetools: outputs }
             }
-
-            return dataToEsm(outputFormat(outputMetadatas), {
-                namedExports: viteConfig.json?.namedExports ?? true,
-                compact: !!viteConfig.build.minify ?? false,
-                preferConst: true
-            })
         },
 
         configureServer(server) {
-            server.middlewares.use((req, res, next) => {
-                if (req.url?.startsWith('/@imagetools/')) {
-                    const [, id] = req.url.split('/@imagetools/')
-
-                    const image = generatedImages.get(id)
-
-                    if (!image) throw new Error(`vite-imagetools cannot find image with id "${id}" this is likely an internal error`)
-
-                    if (pluginOptions.removeMetadata === false) {
-                        image.withMetadata()
-                    }
-
+            server.middlewares.use(async (req, res, next) => {
+                console.log(req.url);
+                
+                if (req.url?.startsWith('/@imagetools:')) {
+                    const [, id] = req.url.split('/@imagetools:')
+                    const image = cache.get(id)
                     res.setHeader('Content-Type', `image/${getMetadata(image, 'format')}`)
                     res.setHeader('Cache-Control', 'max-age=360000')
                     return image.clone().pipe(res)

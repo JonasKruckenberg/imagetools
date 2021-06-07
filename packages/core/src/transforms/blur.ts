@@ -1,22 +1,14 @@
-import { TransformFactory } from "../types";
+import { ImageTransformFactory } from "../types";
 import { setMetadata } from "../lib/metadata";
 
-export interface BlurOptions {
-    blur: string
-}
+export const blur: ImageTransformFactory<'blur'> = ({ blur }) => {
+    let _blur = parseFloat(blur || '') || blur === 'true' || blur === ''
 
-export const blur: TransformFactory<BlurOptions> = (config, ctx) => {
-    let blur: number | boolean | undefined = undefined
-
-    blur = config.blur ? parseFloat(config.blur) : undefined
-    blur ||= config.blur === 'true'
-    blur ||= config.blur === ''
-
-    if (!blur) return
+    if (!_blur) return
 
     return function blurTransform(image) {
-        setMetadata(image, 'blur', blur)
+        setMetadata(image, 'blur', _blur)
         
-        return image.blur(blur)
+        return image.blur(_blur)
     }
 }

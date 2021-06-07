@@ -1,5 +1,4 @@
-import { TransformOption } from "../types"
-import { setMetadata } from "../lib/metadata";
+import { GetParam } from "../types"
 
 export const positionValues = ['top', 'right top', 'right', 'right bottom', 'bottom', 'left bottom', 'left', 'left top',
     'north', 'northeast', 'east', 'southeast', 'south', 'southwest', 'west', 'northwest', 'center', 'centre',
@@ -9,21 +8,10 @@ export const positionShorthands = ['top', 'right top', 'right', 'right bottom', 
 
 export type PositionValue = typeof positionValues[number]
 
-export interface PositionOptions {
-    position: PositionValue
-}
+export const getPosition: GetParam<'position' | PositionValue, PositionValue> = ({ position, ...rest }) => {
+    position ||= Object.keys(rest).find((k): k is PositionValue => positionShorthands.includes(k as PositionValue))
 
-export const getPosition: TransformOption<PositionOptions, PositionValue> = (config, image) => {
-    let position: PositionValue | undefined = undefined
+    if (!position || !positionValues.includes(position as PositionValue)) return
 
-    if (config.position && positionValues.includes(config.position)) {
-        position = config.position
-    } else {
-        position = Object.keys(config).find((k: any): k is PositionValue => positionShorthands.includes(k) && config[k] === '')
-    }
-    if (!position) return
-
-    setMetadata(image, 'position', position)
-
-    return position
+    return position as PositionValue
 }
