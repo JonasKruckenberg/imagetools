@@ -10,7 +10,7 @@ Serving images that are too large will not only [hurt your seo](https://develope
 ## The solution
 
 Optimizing your images by hand is a tedious and error-prone process: Opening the image in photoshop, naming and exporting each image individually and the reference everything correctly in the html.
-This is where imagetools comes to the rescue: Simply reference your image in code, specify the needed transformations and imagetools will take care of the rest!
+This is where imagetools comes to the rescue: simply reference your image in code, specify the needed transformations and imagetools will take care of the rest!
 
 And the best part? The syntax is super intuitive and extensible:
 ```js
