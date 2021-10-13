@@ -1,7 +1,7 @@
 import type { ImageConfig, OutputFormat } from './types'
 
 export const urlFormat: OutputFormat = () => (metadatas) => {
-  const urls: string[] = metadatas.map((metadata) => metadata.src)
+  const urls: string[] = metadatas.map((metadata) => metadata.src as string)
 
   return urls.length == 1 ? urls[0] : urls
 }
@@ -14,7 +14,7 @@ export const srcsetFormat: OutputFormat = () => (metadatas: ImageConfig[]) => {
 
 export const metadataFormat: OutputFormat = (whitelist?: string[]) => (metadatas: ImageConfig[]) => {
   if (whitelist) {
-    metadatas = metadatas.map((cfg) => Object.fromEntries(Object.entries(cfg).filter(([k]) => whitelist!.includes(k))))
+    metadatas = metadatas.map((cfg) => Object.fromEntries(Object.entries(cfg).filter(([k]) => whitelist.includes(k))))
   }
 
   return metadatas.length === 1 ? metadatas[0] : metadatas

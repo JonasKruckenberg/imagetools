@@ -64,15 +64,15 @@ describe('width', () => {
     })
 
     test('100', async () => {
-      //@ts-ignore
-      const { image, metadata } = await applyTransforms([resize({ width: '100' }, dirCtx)], img)
+      //@ts-expect-error we know this is safe
+      const { image } = await applyTransforms([resize({ width: '100' }, dirCtx)], img)
 
       expect(await image.toBuffer()).toMatchImageSnapshot()
     })
 
     test('400', async () => {
-      //@ts-ignore
-      const { image, metadata } = await applyTransforms([resize({ width: '400' }, dirCtx)], img)
+      //@ts-expect-error we know this is safe
+      const { image } = await applyTransforms([resize({ width: '400' }, dirCtx)], img)
 
       expect(await image.toBuffer()).toMatchImageSnapshot()
     })
@@ -136,15 +136,15 @@ describe('height', () => {
     })
 
     test('100', async () => {
-      //@ts-ignore
-      const { image, metadata } = await applyTransforms([resize({ height: '100' }, dirCtx)], img)
+      //@ts-expect-error we know this is safe
+      const { image } = await applyTransforms([resize({ height: '100' }, dirCtx)], img)
 
       expect(await image.toBuffer()).toMatchImageSnapshot()
     })
 
     test('400', async () => {
-      //@ts-ignore
-      const { image, metadata } = await applyTransforms([resize({ height: '400' }, dirCtx)], img)
+      //@ts-expect-error we know this is safe
+      const { image } = await applyTransforms([resize({ height: '400' }, dirCtx)], img)
 
       expect(await image.toBuffer()).toMatchImageSnapshot()
     })
@@ -188,22 +188,22 @@ describe('width & height', () => {
     })
 
     test('basic', async () => {
-      //@ts-ignore
-      const { image, metadata } = await applyTransforms([resize({ w: '300', h: '300' }, dirCtx)], img)
+      //@ts-expect-error we know this is safe
+      const { image } = await applyTransforms([resize({ w: '300', h: '300' }, dirCtx)], img)
 
       expect(await image.toBuffer()).toMatchImageSnapshot()
     })
 
     test('w/ fit', async () => {
-      //@ts-ignore
-      const { image, metadata } = await applyTransforms([resize({ w: '300', h: '300', fit: 'contain' }, dirCtx)], img)
+      //@ts-expect-error we know this is safe
+      const { image } = await applyTransforms([resize({ w: '300', h: '300', fit: 'contain' }, dirCtx)], img)
 
       expect(await image.toBuffer()).toMatchImageSnapshot()
     })
 
     test('w/ fit & background', async () => {
-      //@ts-ignore
-      const { image, metadata } = await applyTransforms(
+      const { image } = await applyTransforms(
+        //@ts-expect-error we know this is safe
         [resize({ w: '300', h: '300', fit: 'contain', background: '#0f0' }, dirCtx)],
         img
       )
@@ -212,8 +212,8 @@ describe('width & height', () => {
     })
 
     test('w/ fit and position', async () => {
-      //@ts-ignore
-      const { image, metadata } = await applyTransforms(
+      const { image } = await applyTransforms(
+        //@ts-expect-error we know this is safe
         [resize({ w: '300', h: '300', fit: 'cover', position: 'top' }, dirCtx)],
         img
       )
@@ -222,8 +222,8 @@ describe('width & height', () => {
     })
 
     test('w/ kernel', async () => {
-      //@ts-ignore
-      const { image, metadata } = await applyTransforms([resize({ w: '300', h: '300', kernel: 'cubic' }, dirCtx)], img)
+      //@ts-expect-error we know this is safe
+      const { image } = await applyTransforms([resize({ w: '300', h: '300', kernel: 'cubic' }, dirCtx)], img)
 
       expect(await image.toBuffer()).toMatchImageSnapshot()
     })
@@ -311,29 +311,29 @@ describe('aspect', () => {
     })
 
     test('basic w/ string', async () => {
-      //@ts-ignore
-      const { image, metadata } = await applyTransforms([resize({ aspect: '4:3' }, dirCtx)], img)
+      //@ts-expect-error we know this is safe
+      const { image } = await applyTransforms([resize({ aspect: '4:3' }, dirCtx)], img)
 
       expect(await image.toBuffer()).toMatchImageSnapshot()
     })
 
     test('basic w/ number', async () => {
-      //@ts-ignore
-      const { image, metadata } = await applyTransforms([resize({ aspect: '1.5' }, dirCtx)], img)
+      //@ts-expect-error we know this is safe
+      const { image } = await applyTransforms([resize({ aspect: '1.5' }, dirCtx)], img)
 
       expect(await image.toBuffer()).toMatchImageSnapshot()
     })
 
     test('w/ fit', async () => {
-      //@ts-ignore
-      const { image, metadata } = await applyTransforms([resize({ aspect: '4:3', fit: 'contain' }, dirCtx)], img)
+      //@ts-expect-error we know this is safe
+      const { image } = await applyTransforms([resize({ aspect: '4:3', fit: 'contain' }, dirCtx)], img)
 
       expect(await image.toBuffer()).toMatchImageSnapshot()
     })
 
     test('w/ fit & background', async () => {
-      //@ts-ignore
-      const { image, metadata } = await applyTransforms(
+      const { image } = await applyTransforms(
+        //@ts-expect-error we know this is safe
         [resize({ aspect: '4:3', fit: 'contain', background: '#0f0' }, dirCtx)],
         img
       )
@@ -342,8 +342,8 @@ describe('aspect', () => {
     })
 
     test('w/ fit and position', async () => {
-      //@ts-ignore
-      const { image, metadata } = await applyTransforms(
+      const { image } = await applyTransforms(
+        //@ts-expect-error we know this is safe
         [resize({ aspect: '4:3', fit: 'cover', position: 'top' }, dirCtx)],
         img
       )
@@ -352,29 +352,29 @@ describe('aspect', () => {
     })
 
     test('w/ kernel', async () => {
-      //@ts-ignore
-      const { image, metadata } = await applyTransforms([resize({ aspect: '4:3', kernel: 'cubic' }, dirCtx)], img)
+      //@ts-expect-error we know this is safe
+      const { image } = await applyTransforms([resize({ aspect: '4:3', kernel: 'cubic' }, dirCtx)], img)
 
       expect(await image.toBuffer()).toMatchImageSnapshot()
     })
 
     test('w/ height', async () => {
-      //@ts-ignore
-      const { image, metadata } = await applyTransforms([resize({ aspect: '4:3', height: '75' }, dirCtx)], img)
+     //@ts-expect-error we know this is safe
+      const { image } = await applyTransforms([resize({ aspect: '4:3', height: '75' }, dirCtx)], img)
 
       expect(await image.toBuffer()).toMatchImageSnapshot()
     })
 
     test('w/ width', async () => {
-      //@ts-ignore
-      const { image, metadata } = await applyTransforms([resize({ aspect: '4:3', width: '300' }, dirCtx)], img)
+      //@ts-expect-error we know this is safe
+      const { image } = await applyTransforms([resize({ aspect: '4:3', width: '300' }, dirCtx)], img)
 
       expect(await image.toBuffer()).toMatchImageSnapshot()
     })
 
     test('w/ width & height', async () => {
-      //@ts-ignore
-      const { image, metadata } = await applyTransforms(
+      const { image } = await applyTransforms(
+        //@ts-expect-error we know this is safe
         [resize({ aspect: '4:3', height: '300', width: '300' }, dirCtx)],
         img
       )
