@@ -72,6 +72,7 @@ export function imagetools(userOptions: Partial<PluginOptions> = {}): Plugin {
         })
 
         metadata.src = `__ROLLUP_IMAGE_ASSET__${fileHandle}__`
+        metadata.image = image
 
         outputMetadatas.push(metadata)
       }

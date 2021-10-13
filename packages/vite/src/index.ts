@@ -83,6 +83,8 @@ export function imagetools(userOptions: Partial<PluginOptions> = {}): Plugin {
           metadata.src = join('/@imagetools', id)
         }
 
+        metadata.image = image
+
         outputMetadatas.push(metadata)
       }
 
