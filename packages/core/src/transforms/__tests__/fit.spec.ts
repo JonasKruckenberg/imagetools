@@ -3,67 +3,67 @@ import { join } from 'path'
 import sharp, { Sharp } from 'sharp'
 
 describe('fit', () => {
-    let img: Sharp
-    beforeEach(() => {
-        img = sharp(join(__dirname, '../../__tests__/__fixtures__/pexels-allec-gomes-5195763.png'))
-    })
+  let img: Sharp
+  beforeEach(() => {
+    img = sharp(join(__dirname, '../../__tests__/__fixtures__/pexels-allec-gomes-5195763.png'))
+  })
 
-    test('keyword "fit"', () => {
-        const res = getFit({ fit: 'cover' }, img)
+  test('keyword "fit"', () => {
+    const res = getFit({ fit: 'cover' }, img)
 
-        expect(res).toEqual('cover')
-    })
+    expect(res).toEqual('cover')
+  })
 
-    test('missing', () => {
-        const res = getFit({}, img)
+  test('missing', () => {
+    const res = getFit({}, img)
+
+    expect(res).toBeUndefined()
+  })
+
+  describe('shorthands', () => {
+    test('invalid', () => {
+      const shorts: FitValue[] = ['cover', 'contain', 'fill', 'inside', 'outside']
+
+      for (const short of shorts) {
+        const res = getFit({ [short]: 'invalid' }, img)
 
         expect(res).toBeUndefined()
+      }
     })
 
-    describe('shorthands', () => {
-        test('invalid', () => {
-            const shorts: FitValue[] = ['cover', 'contain', 'fill', 'inside', 'outside']
+    test('valid', () => {
+      const shorts: FitValue[] = ['cover', 'contain', 'fill', 'inside', 'outside']
 
-            for (const short of shorts) {
-                const res = getFit({ [short]: 'invalid' }, img)
+      for (const short of shorts) {
+        const res = getFit({ [short]: '' }, img)
 
-                expect(res).toBeUndefined()
-            }
-        })
+        expect(res).toEqual(short)
+      }
+    })
+  })
 
-        test('valid', () => {
-            const shorts: FitValue[] = ['cover', 'contain', 'fill', 'inside', 'outside']
+  describe('arguments', () => {
+    test('invalid', () => {
+      //@ts-expect-error
+      const res = getFit({ fit: 'invalid' }, img)
 
-            for (const short of shorts) {
-                const res = getFit({ [short]: '' }, img)
-
-                expect(res).toEqual(short)
-            }
-        })
+      expect(res).toBeUndefined()
     })
 
-    describe('arguments', () => {
-        test('invalid', () => {
-            //@ts-expect-error
-            const res = getFit({ fit: 'invalid' }, img)
+    test('empty', () => {
+      const res = getFit({ getFit: '' }, img)
 
-            expect(res).toBeUndefined()
-        })
-
-        test('empty', () => {
-            const res = getFit({ getFit: '' }, img)
-
-            expect(res).toBeUndefined()
-        })
-
-        test('valid', () => {
-            const args: FitValue[] = ['cover', 'contain', 'fill', 'inside', 'outside']
-
-            for (const arg of args) {
-                const res = getFit({ fit: arg }, img)
-
-                expect(res).toEqual(arg)
-            }
-        })
+      expect(res).toBeUndefined()
     })
+
+    test('valid', () => {
+      const args: FitValue[] = ['cover', 'contain', 'fill', 'inside', 'outside']
+
+      for (const arg of args) {
+        const res = getFit({ fit: arg }, img)
+
+        expect(res).toEqual(arg)
+      }
+    })
+  })
 })

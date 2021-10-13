@@ -1,6 +1,6 @@
 import typescript from 'rollup-plugin-typescript2'
 import pkg from './package.json'
-import { builtinModules as builtins } from 'module';
+import { builtinModules as builtins } from 'module'
 
 const deps = Object.keys(pkg.dependencies || {})
 
@@ -19,7 +19,5 @@ export default {
       sourcemap: true
     }
   ],
-  plugins: [
-    typescript()
-  ]
+  plugins: [typescript()]
 }

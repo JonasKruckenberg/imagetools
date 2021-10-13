@@ -1,19 +1,12 @@
 {
-    "compilerOptions": {
-        "target": "es2019",
-        "module": "esnext",
-        "moduleResolution": "node",
-        "esModuleInterop": true,
-        "strict": true,
-        "strictNullChecks": true,
-        "lib": [
-            "esnext",
-            "DOM",
-            "DOM.Iterable"
-        ],
-    },
-    "exclude": [
-        "node_modules",
-        "dist"
-    ]
+  "compilerOptions": {
+    "target": "es2019",
+    "module": "esnext",
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "strict": true,
+    "strictNullChecks": true,
+    "lib": ["esnext", "DOM", "DOM.Iterable"]
+  },
+  "exclude": ["node_modules", "dist"]
 }

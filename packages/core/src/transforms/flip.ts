@@ -1,16 +1,16 @@
-import { TransformFactory } from "../types";
-import { setMetadata } from "../lib/metadata";
+import { TransformFactory } from '../types'
+import { setMetadata } from '../lib/metadata'
 
 export interface FlipOptions {
-    flip: '' | 'true'
+  flip: '' | 'true'
 }
 
 export const flip: TransformFactory<FlipOptions> = ({ flip }, ctx) => {
-    if (flip !== '' && flip !== 'true') return
+  if (flip !== '' && flip !== 'true') return
 
-    return function flipTransform(image) {
-        setMetadata(image, 'flip', true)
+  return function flipTransform(image) {
+    setMetadata(image, 'flip', true)
 
-        return image.flip()
-    }
+    return image.flip()
+  }
 }

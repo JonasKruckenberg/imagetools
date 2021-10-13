@@ -7,17 +7,14 @@ const paths = {
 module.exports = {
   preset: 'ts-jest',
   testEnvironment: 'node',
-  testMatch: ["**/?(*.)+(spec|test).[jt]s?(x)"],
+  testMatch: ['**/?(*.)+(spec|test).[jt]s?(x)'],
   globals: {
     'ts-jest': {
       tsconfig: {
         paths
-      },
-    },
+      }
+    }
   },
   moduleNameMapper: pathsToModuleNameMapper(paths, { prefix: '<rootDir>/' }),
-  collectCoverageFrom: [
-    "src/**/*.ts",
-    "!**/__tests__/**"
-  ]
-};
+  collectCoverageFrom: ['src/**/*.ts', '!**/__tests__/**']
+}
