@@ -37,7 +37,7 @@
     "@types/jest-image-snapshot": "^4.3.0",
     "@types/jsdom": "^16.2.10",
     "@types/picomatch": "^2.2.4",
-    "jest": "^26.6.3",
+    "jest": "^27.2.5",
     "jest-image-snapshot": "^4.5.0",
     "jsdom": "^16.5.3",
     "picomatch": "^2.2.3",
