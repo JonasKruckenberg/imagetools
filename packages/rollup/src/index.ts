@@ -1,111 +1,120 @@
 import { Plugin } from 'rollup'
-import { applyTransforms, builtins, generateTransforms, loadImage, parseURL, resolveConfigs, builtinOutputFormats, urlFormat, OutputFormat, extractEntries } from 'imagetools-core'
+import {
+  applyTransforms,
+  builtins,
+  generateTransforms,
+  loadImage,
+  parseURL,
+  resolveConfigs,
+  builtinOutputFormats,
+  urlFormat,
+  extractEntries
+} from 'imagetools-core'
 import { createFilter, dataToEsm } from '@rollup/pluginutils'
 import { PluginOptions } from './types'
 import MagicString from 'magic-string'
 import { basename, extname, resolve, dirname } from 'path'
 
 const defaultOptions: PluginOptions = {
-    include: '**/*.{heic,heif,avif,jpeg,jpg,png,tiff,webp,gif}?*',
-    exclude: '',
-    silent: false,
-    removeMetadata: true
+  include: '**/*.{heic,heif,avif,jpeg,jpg,png,tiff,webp,gif}?*',
+  exclude: '',
+  silent: false,
+  removeMetadata: true
 }
 
 export function imagetools(userOptions: Partial<PluginOptions> = {}): Plugin {
-    const pluginOptions: PluginOptions = { ...defaultOptions, ...userOptions }
+  const pluginOptions: PluginOptions = { ...defaultOptions, ...userOptions }
 
-    const filter = createFilter(pluginOptions.include, pluginOptions.exclude)
+  const filter = createFilter(pluginOptions.include, pluginOptions.exclude)
 
-    const transformFactories = pluginOptions.extendTransforms
-        ? pluginOptions.extendTransforms(builtins)
-        : builtins
+  const transformFactories = pluginOptions.extendTransforms ? pluginOptions.extendTransforms(builtins) : builtins
 
-    const outputFormats = pluginOptions.extendOutputFormats
-        ? pluginOptions.extendOutputFormats(builtinOutputFormats)
-        : builtinOutputFormats
+  const outputFormats = pluginOptions.extendOutputFormats
+    ? pluginOptions.extendOutputFormats(builtinOutputFormats)
+    : builtinOutputFormats
 
-    return {
-        name: 'imagetools',
-        resolveId(source, importer = '') {
-            const id = resolve(dirname(importer), source)
+  return {
+    name: 'imagetools',
+    resolveId(source, importer = '') {
+      const id = resolve(dirname(importer), source)
 
-            if (!filter(id)) return null
-            return id
-        },
-        async load(id) {
-            if (!filter(id)) return null
+      if (!filter(id)) return null
+      return id
+    },
+    async load(id) {
+      if (!filter(id)) return null
 
-            const srcURL = parseURL(id)
-            const parameters = extractEntries(srcURL)
-            const imageConfigs = resolveConfigs(parameters)
+      const srcURL = parseURL(id)
+      const parameters = extractEntries(srcURL)
+      const imageConfigs = resolveConfigs(parameters, outputFormats)
 
-            const img = loadImage(decodeURIComponent(srcURL.pathname))
+      const img = loadImage(decodeURIComponent(srcURL.pathname))
 
-            const outputMetadatas = []
+      const outputMetadatas = []
 
-            for (const config of imageConfigs) {
-                const defaultConfig = typeof pluginOptions.defaultDirectives === 'function'
-                    ? pluginOptions.defaultDirectives(id)
-                    : pluginOptions.defaultDirectives
+      for (const config of imageConfigs) {
+        const defaultConfig =
+          typeof pluginOptions.defaultDirectives === 'function'
+            ? pluginOptions.defaultDirectives(id)
+            : pluginOptions.defaultDirectives
 
-                const { transforms, warnings } = generateTransforms({ ...defaultConfig, ...config }, transformFactories)
-                warnings.forEach(warning => this.warn(warning))
+        const { transforms, warnings } = generateTransforms({ ...defaultConfig, ...config }, transformFactories)
+        warnings.forEach((warning) => this.warn(warning))
 
-                const { image, metadata } = await applyTransforms(transforms, img, pluginOptions.removeMetadata)
+        const { image, metadata } = await applyTransforms(transforms, img, pluginOptions.removeMetadata)
 
-                const fileName = basename(srcURL.pathname, extname(srcURL.pathname)) + `.${metadata.format}`
+        const fileName = basename(srcURL.pathname, extname(srcURL.pathname)) + `.${metadata.format}`
 
-                const fileHandle = this.emitFile({
-                    name: fileName,
-                    source: await image.toBuffer(),
-                    type: 'asset'
-                })
+        const fileHandle = this.emitFile({
+          name: fileName,
+          source: await image.toBuffer(),
+          type: 'asset'
+        })
 
-                metadata.src = `__ROLLUP_IMAGE_ASSET__${fileHandle}__`
+        metadata.src = `__ROLLUP_IMAGE_ASSET__${fileHandle}__`
 
-                outputMetadatas.push(metadata)
-            }
+        outputMetadatas.push(metadata)
+      }
 
-            let outputFormat: OutputFormat = urlFormat
+      let outputFormat = urlFormat()
 
-            for (const [key, format] of Object.entries(outputFormats)) {
-                if (srcURL.searchParams.has(key)) {
-                    outputFormat = format
-                    break
-                }
-            }
-
-            return dataToEsm(outputFormat(outputMetadatas))
-        },
-        renderChunk(code) {
-            const assetUrlRE = /__ROLLUP_IMAGE_ASSET__([a-z\d]{8})__(?:_(.*?)__)?/g
-
-            let match
-            let s
-            while ((match = assetUrlRE.exec(code))) {
-                s = s || (s = new MagicString(code))
-                const [full, hash, postfix = ''] = match
-
-                const file = this.getFileName(hash)
-
-                const outputFilepath = file + postfix
-
-                s.overwrite(
-                    match.index,
-                    match.index + full.length,
-                    outputFilepath
-                )
-            }
-
-            if (s) {
-                return {
-                    code: s.toString(),
-                    map: s.generateMap({ hires: true })
-                }
-            } else {
-                return null
-            }
+      for (const [key, format] of Object.entries(outputFormats)) {
+        if (srcURL.searchParams.has(key)) {
+          const params = srcURL.searchParams
+            .get(key)
+            ?.split(';')
+            .filter((v) => !!v)
+          outputFormat = format(params?.length ? params : undefined)
+          break
         }
+      }
+
+      return dataToEsm(outputFormat(outputMetadatas))
+    },
+    renderChunk(code) {
+      const assetUrlRE = /__ROLLUP_IMAGE_ASSET__([a-z\d]{8})__(?:_(.*?)__)?/g
+
+      let match
+      let s
+      while ((match = assetUrlRE.exec(code))) {
+        s = s || (s = new MagicString(code))
+        const [full, hash, postfix = ''] = match
+
+        const file = this.getFileName(hash)
+
+        const outputFilepath = file + postfix
+
+        s.overwrite(match.index, match.index + full.length, outputFilepath)
+      }
+
+      if (s) {
+        return {
+          code: s.toString(),
+          map: s.generateMap({ hires: true })
+        }
+      } else {
+        return null
+      }
     }
+  }
 }
