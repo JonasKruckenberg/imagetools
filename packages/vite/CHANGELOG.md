@@ -1,5 +1,15 @@
 # Change Log
 
+## 3.8.0
+
+### Minor Changes
+
+- dc60a68: Add `image` property on the metadata object.
+
+### Patch Changes
+
+- dc60a68: Update vite to `2.6.7` and rollup to `2.58.0`
+
 ## 3.7.0
 
 ### Minor Changes
