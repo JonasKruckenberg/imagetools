@@ -1,5 +1,16 @@
 # Change Log
 
+## 3.7.0
+
+### Minor Changes
+
+- c70b97e: Add metadata whitelist
+
+### Patch Changes
+
+- Updated dependencies [c70b97e]
+  - imagetools-core@2.8.0
+
 ## 3.6.8
 
 ### Patch Changes
