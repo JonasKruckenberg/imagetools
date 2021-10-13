@@ -1,5 +1,11 @@
 # Change Log
 
+## 2.8.0
+
+### Minor Changes
+
+- c70b97e: Add metadata whitelist
+
 ## 2.7.6
 
 ### Patch Changes
