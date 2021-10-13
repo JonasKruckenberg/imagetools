@@ -206,7 +206,7 @@ Status: `📦 stable`<br> Keywords: `brightness`<br> Type: _float_
 
 ### metadata
 
-Status: `📦 stable`<br> Keywords: `metadata` | `meta`<br> Type: _boolean_
+Status: `📦 stable`<br> Keywords: `metadata` | `meta`<br> Type: _boolean_ | _string[]_
 
 ### srcset
 
