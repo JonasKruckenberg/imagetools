@@ -1,20 +1,20 @@
 name: Release
 on:
   push:
-    branches: ["main", "next"]
+    branches: ['main', 'next']
 
 jobs:
   test:
     runs-on: ubuntu-latest
     strategy:
-        matrix:
-          node-version: [12.x, 14.x, 15.x]
+      matrix:
+        node-version: [12.x, 14.x, 15.x]
 
     steps:
       - uses: actions/checkout@v2
         with:
           lfs: true
-          
+
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v2
         with:
@@ -47,7 +47,7 @@ jobs:
       - name: Setup Node.js 14.x
         uses: actions/setup-node@v2
         with:
-          node-version: "14"
+          node-version: '14'
 
       - name: Install Dependencies
         run: yarn

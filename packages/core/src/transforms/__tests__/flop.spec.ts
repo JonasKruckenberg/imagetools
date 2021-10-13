@@ -8,62 +8,62 @@ import { toMatchImageSnapshot } from 'jest-image-snapshot'
 expect.extend({ toMatchImageSnapshot })
 
 describe('flop', () => {
-    let dirCtx: TransformFactoryContext
-    beforeAll(() => {
-        dirCtx = { useParam: jest.fn, warn: jest.fn }
+  let dirCtx: TransformFactoryContext
+  beforeAll(() => {
+    dirCtx = { useParam: jest.fn, warn: jest.fn }
+  })
+
+  test('keyword "flop"', () => {
+    const res = flop({ flop: 'true' }, dirCtx)
+
+    expect(res).toBeInstanceOf(Function)
+  })
+
+  test('missing', () => {
+    const res = flop({}, dirCtx)
+
+    expect(res).toBeUndefined()
+  })
+
+  describe('arguments', () => {
+    test('invalid', () => {
+      //@ts-expect-error
+      const res = flop({ flop: 'invalid' }, dirCtx)
+
+      expect(res).toBeUndefined()
     })
 
-    test('keyword "flop"', () => {
-        const res = flop({ flop: 'true' }, dirCtx)
+    test('empty', () => {
+      const res = flop({ flop: '' }, dirCtx)
 
-        expect(res).toBeInstanceOf(Function)
+      expect(res).toBeInstanceOf(Function)
     })
 
-    test('missing', () => {
-        const res = flop({}, dirCtx)
+    test('true', () => {
+      const res = flop({ flop: 'true' }, dirCtx)
 
-        expect(res).toBeUndefined()
+      expect(res).toBeInstanceOf(Function)
+    })
+  })
+
+  describe('transform', () => {
+    let img: Sharp
+    beforeEach(() => {
+      img = sharp(join(__dirname, '../../__tests__/__fixtures__/pexels-allec-gomes-5195763.png'))
     })
 
-    describe('arguments', () => {
-        test('invalid', () => {
-            //@ts-expect-error
-            const res = flop({ flop: 'invalid' }, dirCtx)
+    test('empty', async () => {
+      //@ts-ignore
+      const { image, metadata } = await applyTransforms([flop({ flop: '' }, dirCtx)], img)
 
-            expect(res).toBeUndefined()
-        })
-
-        test('empty', () => {
-            const res = flop({ flop: '' }, dirCtx)
-
-            expect(res).toBeInstanceOf(Function)
-        })
-
-        test('true', () => {
-            const res = flop({ flop: 'true' }, dirCtx)
-
-            expect(res).toBeInstanceOf(Function)
-        })
+      expect(await image.toBuffer()).toMatchImageSnapshot()
     })
 
-    describe('transform', () => {
-        let img: Sharp
-        beforeEach(() => {
-            img = sharp(join(__dirname, '../../__tests__/__fixtures__/pexels-allec-gomes-5195763.png'))
-        })
+    test('true', async () => {
+      //@ts-ignore
+      const { image, metadata } = await applyTransforms([flop({ flop: 'true' }, dirCtx)], img)
 
-        test('empty', async () => {
-            //@ts-ignore
-            const { image, metadata } = await applyTransforms([flop({ flop: '' }, dirCtx)], img)
-
-            expect(await image.toBuffer()).toMatchImageSnapshot()
-        })
-
-        test('true', async () => {
-            //@ts-ignore
-            const { image, metadata } = await applyTransforms([flop({ flop: 'true' }, dirCtx)], img)
-
-            expect(await image.toBuffer()).toMatchImageSnapshot()
-        })
+      expect(await image.toBuffer()).toMatchImageSnapshot()
     })
+  })
 })

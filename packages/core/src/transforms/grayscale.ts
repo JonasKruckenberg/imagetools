@@ -1,16 +1,16 @@
-import { TransformFactory } from "../types";
-import { setMetadata } from "../lib/metadata";
+import { TransformFactory } from '../types'
+import { setMetadata } from '../lib/metadata'
 
 export interface GrayscaleOptions {
-    grayscale: '' | 'true'
+  grayscale: '' | 'true'
 }
 
-export const grayscale: TransformFactory<GrayscaleOptions> = ({ grayscale }, ctx) => {
-    if (grayscale !== '' && grayscale !== 'true') return
+export const grayscale: TransformFactory<GrayscaleOptions> = ({ grayscale }) => {
+  if (grayscale !== '' && grayscale !== 'true') return
 
-    return function grayscaleTransform(image) {
-        setMetadata(image, 'grayscale', true)
+  return function grayscaleTransform(image) {
+    setMetadata(image, 'grayscale', true)
 
-        return image.grayscale()
-    }
+    return image.grayscale()
+  }
 }
