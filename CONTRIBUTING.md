@@ -64,7 +64,7 @@ started:
 - Read the specification
 
 The user facing api has been designed to be interchangeable, so users can easily switch their existing project using an
-image processing server to use imagetools or vice-versa! That's why [the specificatio](docs/spec.md) clearly states what
+image processing server to use imagetools or vice-versa! That's why [the specification](docs/spec.md) clearly states what
 transformations and behaviour an Implementation must support to be compatible. You should reference this document to
 make sure your Integration is compatible with all others.
 
