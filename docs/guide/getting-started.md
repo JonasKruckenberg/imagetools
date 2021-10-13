@@ -63,10 +63,8 @@ Is equivalent to writing:
 
 ## Metadata
 
-Normally you get a single url poiting to the transformed image, or an array of those. There are situations however,
-where you'd like to have more information about the image, e.g. the images width and height or format. This is why the
-special `metadata` (`meta`) directive exists. Instead of returning the url it returns an object holding the image
-metadata:
+Normally you get a single url pointing to the transformed image, or an array of those. There are situations however, where you'd like to have more information about the image, e.g. the images width and height or format.
+This is why the special `metadata` (`meta`) directive exists. Instead of returning the url it returns an object holding the image metadata:
 
 ```js
 import { width, height, format, src } from 'example.jpg?width=300&webp&metadata'
