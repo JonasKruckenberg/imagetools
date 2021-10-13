@@ -1,7 +1,9 @@
 const { pathsToModuleNameMapper } = require('ts-jest/utils')
 
 const paths = {
-  'imagetools-core': ['../core/src']
+  "imagetools-core": ["./packages/core/src"],
+  "vite-imagetools": ["./packages/vite/src"],
+  "rollup-plugin-imagetools": ["./packages/rollup/src"]
 }
 
 module.exports = {
@@ -15,6 +17,6 @@ module.exports = {
       }
     }
   },
-  moduleNameMapper: pathsToModuleNameMapper(paths, { prefix: '<rootDir>/' }),
+  moduleNameMapper: pathsToModuleNameMapper(paths, { prefix: '<rootDir>/../../' }),
   collectCoverageFrom: ['src/**/*.ts', '!**/__tests__/**']
 }
