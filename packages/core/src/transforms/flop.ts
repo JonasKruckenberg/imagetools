@@ -1,16 +1,16 @@
-import { TransformFactory } from "../types";
-import { setMetadata } from "../lib/metadata";
+import { TransformFactory } from '../types'
+import { setMetadata } from '../lib/metadata'
 
 export interface FlopOptions {
-    flop: '' | 'true'
+  flop: '' | 'true'
 }
 
 export const flop: TransformFactory<FlopOptions> = ({ flop }, ctx) => {
-    if (flop !== '' && flop !== 'true') return
+  if (flop !== '' && flop !== 'true') return
 
-    return function flopTransform(image) {
-        setMetadata(image, 'flop', true)
+  return function flopTransform(image) {
+    setMetadata(image, 'flop', true)
 
-        return image.flop()
-    }
+    return image.flop()
+  }
 }

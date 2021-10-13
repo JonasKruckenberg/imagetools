@@ -6,11 +6,19 @@
     "release": "yarn build && yarn changeset publish",
     "build": "yarn workspaces run build",
     "test": "yarn workspaces run test",
-    "coverage": "yarn workspaces run coverage"
+    "coverage": "yarn workspaces run coverage",
+    "lint": "eslint .",
+    "format": "yarn prettier --write ."
   },
   "devDependencies": {
+    "@changesets/cli": "^2.16.0",
+    "@typescript-eslint/eslint-plugin": "^5.0.0",
+    "@typescript-eslint/parser": "^5.0.0",
     "cross-env": "^7.0.3",
-    "@changesets/cli": "^2.16.0"
+    "eslint": "^8.0.0",
+    "eslint-config-prettier": "^8.3.0",
+    "prettier": "^2.4.1",
+    "typescript": "^4.4.4"
   },
   "commitlint": {
     "extends": [

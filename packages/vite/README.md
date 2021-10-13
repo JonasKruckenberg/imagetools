@@ -1,12 +1,13 @@
-# vite-imagetools 
+# vite-imagetools
 
 <!-- badges -->
+
 ![npm (latest)](https://img.shields.io/npm/v/vite-imagetools)
 [![standard-readme compliant](https://img.shields.io/badge/readme%20style-standard-brightgreen.svg?style=flat-square)](https://github.com/RichardLitt/standard-readme)
 [![codecov](https://codecov.io/gh/JonasKruckenberg/imagetools/branch/graph/badge.svg?token=bJrFBmuczA&flag=vite-imagetools)](https://codecov.io/gh/JonasKruckenberg/imagetools/)
 
-A toolbox of import directives for [vitejs](https://github.com/vitejs/vite) that can transform your image at compile-time.
-All of the image transformations are powered by [sharp](https://sharp.pixelplumbing.com).
+A toolbox of import directives for [vitejs](https://github.com/vitejs/vite) that can transform your image at
+compile-time. All of the image transformations are powered by [sharp](https://sharp.pixelplumbing.com).
 
 ## Features
 
@@ -40,68 +41,65 @@ yarn add -D vite-imagetools
 ## Usage
 
 ```ts
-import { defineConfig } from "vite"
-import { imagetools } from "vite-imagetools"
+import { defineConfig } from 'vite'
+import { imagetools } from 'vite-imagetools'
 
 export default defineConfig({
-  plugins: [
-    imagetools()
-  ]
+  plugins: [imagetools()]
 })
 ```
 
 ```js
-import Image from "example.jpg?w=400&h=300&webp"
+import Image from 'example.jpg?w=400&h=300&webp'
 ```
 
 ## Options
 
 ### include
 
-• **include**: *string* \| *RegExp* \| (*string* \| *RegExp*)[]
+• **include**: _string_ \| _RegExp_ \| (_string_ \| _RegExp_)[]
 
 Which paths to include when processing images.
 
-**`default`** '**\/*.{heic,heif,avif,jpeg,jpg,png,tiff,webp,gif}?*'
+**`default`** '\*_\/_.{heic,heif,avif,jpeg,jpg,png,tiff,webp,gif}?\*'
 
-___
+---
 
 ### exclude
 
-• **exclude**: *string* \| *RegExp* \| (*string* \| *RegExp*)[]
+• **exclude**: _string_ \| _RegExp_ \| (_string_ \| _RegExp_)[]
 
-What paths to exclude when processing images.
-This defaults to the public dir to mirror vites behavior.
+What paths to exclude when processing images. This defaults to the public dir to mirror vites behavior.
 
-**`default`** 'public\/**\/*'
+**`default`** 'public\/\*_\/_'
 
-___
+---
 
 ### extendTransforms
 
-• **extendTransforms**: [*Directive*](docs/modules/types.md#transformFactory)<{}\>[]
+• **extendTransforms**: [_Directive_](docs/modules/types.md#transformFactory)<{}\>[]
 
-You can use this option to extend the builtin list of import directives.
-This list will be merged with the builtin directives before applying them to the input image.
-See the section [Custom import directives](#custom-import-directives) for details.
+You can use this option to extend the builtin list of import directives. This list will be merged with the builtin
+directives before applying them to the input image. See the section
+[Custom import directives](#custom-import-directives) for details.
 
 **`default`** []
 
-___
+---
 
 ### extendOutputFormats
 
-• **extendOutputFormats**: [*OutputFormat*](docs/modules/types.md#outputformat)[]
+• **extendOutputFormats**: [_OutputFormat_](docs/modules/types.md#outputformat)[]
 
-You can use this option to extend the builtin list of output formats.
-This list will be merged with the builtin output formats before determining the format to use.
-See the section [Custom output formats](#custom-output-formats) for details.
+You can use this option to extend the builtin list of output formats. This list will be merged with the builtin output
+formats before determining the format to use. See the section [Custom output formats](#custom-output-formats) for
+details.
 
 **`default`** []
 
 ### silent
 
-• **silent**: *boolean*
+• **silent**: _boolean_
 
 Settings this option to true disables all warnings produced by this plugin.
 
@@ -109,7 +107,7 @@ Settings this option to true disables all warnings produced by this plugin.
 
 ### removeMetadata
 
-• **removeMetadata**: *boolean*
+• **removeMetadata**: _boolean_
 
 Wether to remove potentially private metadata from the image, such as exif tags etc.
 
@@ -117,8 +115,9 @@ Wether to remove potentially private metadata from the image, such as exif tags 
 
 ## Contributing
 
-Feel free to dive in! [Open an issue](https://github.com/JonasKruckenberg/imagetools/issues/new) or submit PRs!
-All information to get you started hacking on imagetools is in [CONTRIBUTING.md](../../CONTRIBUTING.md)!
+Feel free to dive in! [Open an issue](https://github.com/JonasKruckenberg/imagetools/issues/new) or submit PRs! All
+information to get you started hacking on imagetools is in [CONTRIBUTING.md](../../CONTRIBUTING.md)!
 
 ## License
+
 [MIT © Jonas Kruckenberg.](./LICENSE)

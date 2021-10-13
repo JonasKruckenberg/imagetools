@@ -12,4 +12,18 @@ import { resize } from './transforms/resize'
 import { rotate } from './transforms/rotate'
 import { tint } from './transforms/tint'
 
-export const builtins = [ blur, flatten, flip, flop, format, grayscale, hsb, invert, median, normalize, resize, rotate, tint ]
+export const builtins = [
+  blur,
+  flatten,
+  flip,
+  flop,
+  format,
+  grayscale,
+  hsb,
+  invert,
+  median,
+  normalize,
+  resize,
+  rotate,
+  tint
+]
