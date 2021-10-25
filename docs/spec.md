@@ -152,7 +152,7 @@ Status: `📦 stable`<br> Keywords: `height` \| `h`<br> Type: _int_
 ### format
 
 Status: `📦 stable`<br> Keywords: `format`<br> Type: _avif_ \| _png_ \| _jpg_ \| _jpeg_ \| _heif_ \| _heic_ \| _tiff_ \|
-_gif_
+_gif_ \| _webp_
 
 ### rotate
 
@@ -160,7 +160,7 @@ Status: `📦 stable`<br> Keywords: `rotate`<br> Type: _int_
 
 ### blur
 
-Status: `📦 stable`<br> Keywords: `rotate`<br> Type: _float_
+Status: `📦 stable`<br> Keywords: `blur`<br> Type: _float_
 
 ### background
 
