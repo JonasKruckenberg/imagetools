@@ -11,13 +11,13 @@
 
 Each transform is described in the following way:
 
-- **Status**<br> Wether this directive is considered stable or not. See [Status](#status) for details.
+- **Status**<br> Whether this directive is considered stable or not. See [Status](#status) for details.
 
 - **Keywords**<br> All the keywords that trigger this transform (The keys of the key-value pairs). A single transform
   might be triggered by multiple keywords (e.g. `width` and `w`). URLs may never contain two keywords for the same
   transform.
 
-- **Type**<br> The argument type this transform takes (What value the value of the key-value pair may have). A format
+- **Type**<br> The argument type this transform takes (What types of value the 'value' of the key-value pair may have). A format
   may take multiple types, such as union types. The types should always be as strict as possible (e.g. _int_ instead of
   _number_, a string union instead of _string_ etc.)
 
@@ -44,7 +44,7 @@ Each transform has an associated status, that indicates how stable the specifica
 
 ## Syntax
 
-Transforms are specified as URL query parameters, where the key of the key-value pair corresponds to a transforms
+Transforms are specified as URL query parameters, where the key of the key-value pair corresponds to a transform's
 keyword. The value of the key-value pair will be passed to the transform as the argument. Since transforms have to be
 pure functions, meaning they produce the same image given the same argument the order of keywords MUST NOT matter.
 
@@ -53,7 +53,7 @@ pure functions, meaning they produce the same image given the same argument the 
 ```
 
 Since the internal representation of the key-value pairs will likely be an object, duplicate keywords are NOT allowed
-and SHOULD be rejected with an error. Implementations were rejecting a request is not desirable, such as image
+and SHOULD be rejected with an error. Implementations where rejecting a request is not desirable, such as image
 processing servers, MUST NOT cache the invalid image (see [Caching](#caching)) and SHOULD consider alternative ways of
 warning (server logs etc.).
 
@@ -75,7 +75,7 @@ Example:
 url?w=1;2;3&h=1;2;3
 ```
 
-wille result in the following image configuration objects:
+will result in the following image configuration objects:
 
 ```
 { w: 1, h: 1},
@@ -91,7 +91,7 @@ wille result in the following image configuration objects:
 
 ### Shorthand
 
-As space is always at a premium and legibility quickly becomes and issue when dealing with multiple transformations, the
+As space is always at a premium and legibility quickly becomes an issue when dealing with multiple transformations, the
 transformations most commonly used MAY expose _Sharthands_. _Shorthands_ are treated the same way boolean
 transformations are: A keyword either by itself or followed with the argument `"true"`.
 
@@ -135,7 +135,7 @@ single url might generate multiple images however, the steps to generate a cache
 
 1. Generate image configuration objects as outlined in [Argumentlist](#argumentlist)
 2. For each image configuration object:
-   1. JSON stringify the object and concatenate it with th base of the original URL (i.e. the whole URL but without the
+   1. JSON stringify the object and concatenate it with the base of the original URL (i.e. the whole URL but without the
       query parameters)
    2. Take the hexadecimal representation of the SHA1 hashed string as the cache key for the generated image.
 
@@ -214,7 +214,7 @@ Status: `🧪 experimental` Keywords: `srcset` Type: _boolean_
 
 ## Security Considerations
 
-1. Transforming user-provided is dangerous
+1. Transforming user-provided images is dangerous
 2. Strip image metadata unless explicitly requested
 3. Limit the number of Arguments per Argumentlist & Number of Argumentlists
 4. Consider limits for numeric arguments
