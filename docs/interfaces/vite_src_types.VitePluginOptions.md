@@ -1,59 +1,26 @@
-# vite-imagetools
+[imagetools](../README.md) / [Modules](../modules.md) / [vite/src/types](../modules/vite_src_types.md) / VitePluginOptions
 
-<!-- badges -->
+# Interface: VitePluginOptions
 
-![npm (latest)](https://img.shields.io/npm/v/vite-imagetools)
-[![standard-readme compliant](https://img.shields.io/badge/readme%20style-standard-brightgreen.svg?style=flat-square)](https://github.com/RichardLitt/standard-readme)
-[![codecov](https://codecov.io/gh/JonasKruckenberg/imagetools/branch/graph/badge.svg?token=bJrFBmuczA&flag=vite-imagetools)](https://codecov.io/gh/JonasKruckenberg/imagetools/)
+[vite/src/types](../modules/vite_src_types.md).VitePluginOptions
 
-A toolbox of import directives for [vitejs](https://github.com/vitejs/vite) that can transform your image at
-compile-time. All of the image transformations are powered by [sharp](https://sharp.pixelplumbing.com).
+## Table of contents
 
-## Features
+### Properties
 
-- **🚀 Output modern formats**
-- **🖼 Resize Images**
-- **🔗 Easy Srcset generation**
-- **⚡️ Fast in development mode**
-- **🔒 Remove Image Metadata**
-- **🧩 Extensible**
+- [defaultDirectives](vite_src_types.VitePluginOptions.md#defaultdirectives)
+- [exclude](vite_src_types.VitePluginOptions.md#exclude)
+- [force](vite_src_types.VitePluginOptions.md#force)
+- [include](vite_src_types.VitePluginOptions.md#include)
+- [removeMetadata](vite_src_types.VitePluginOptions.md#removemetadata)
+- [silent](vite_src_types.VitePluginOptions.md#silent)
 
-> [Read the docs to learn more!](../../docs/README.md)
+### Methods
 
-## Table of Contents
+- [extendOutputFormats](vite_src_types.VitePluginOptions.md#extendoutputformats)
+- [extendTransforms](vite_src_types.VitePluginOptions.md#extendtransforms)
 
-- [Install](#install)
-- [Usage](#usage)
-- [Options](#options)
-- [Contributing](#contributing)
-- [License](#license)
-
-## Install
-
-```
-npm install --save-dev vite-imagetools
-```
-
-```
-yarn add -D vite-imagetools
-```
-
-## Usage
-
-```ts
-import { defineConfig } from 'vite'
-import { imagetools } from 'vite-imagetools'
-
-export default defineConfig({
-  plugins: [imagetools()]
-})
-```
-
-```js
-import Image from 'example.jpg?w=400&h=300&webp'
-```
-
-## Options
+## Properties
 
 ### defaultDirectives
 
@@ -83,6 +50,19 @@ This defaults to the public dir to mirror vites behavior.
 
 ___
 
+### force
+
+• `Optional` **force**: `boolean`
+
+This option used to enable the plugin during development mode. This option is no longer required!
+
+**`deprecated`**
+
+#### Defined in
+
+[vite/src/types.ts:52](https://github.com/JonasKruckenberg/imagetools/blob/4253c96/packages/vite/src/types.ts#L52)
+
+___
 
 ### include
 
@@ -124,9 +104,11 @@ Settings this option to true disables all warnings produced by this plugin
 
 [vite/src/types.ts:40](https://github.com/JonasKruckenberg/imagetools/blob/4253c96/packages/vite/src/types.ts#L40)
 
+## Methods
+
 ### extendOutputFormats
 
-▸ `Optional` **extendOutputFormats**(`builtins`): `Record`<`string`, [`OutputFormat`](../../docs/modules/core_src.md#outputformat)\>
+▸ `Optional` **extendOutputFormats**(`builtins`): `Record`<`string`, [`OutputFormat`](../modules/core_src.md#outputformat)\>
 
 You can use this option to extend the builtin list of output formats.
 This list will be merged with the builtin output formats before determining the format to use.
@@ -137,11 +119,11 @@ This list will be merged with the builtin output formats before determining the 
 
 | Name | Type |
 | :------ | :------ |
-| `builtins` | `Record`<`string`, [`OutputFormat`](../../docs/modules/core_src.md#outputformat)\> |
+| `builtins` | `Record`<`string`, [`OutputFormat`](../modules/core_src.md#outputformat)\> |
 
 #### Returns
 
-`Record`<`string`, [`OutputFormat`](../../docs/modules/core_src.md#outputformat)\>
+`Record`<`string`, [`OutputFormat`](../modules/core_src.md#outputformat)\>
 
 #### Defined in
 
@@ -151,7 +133,7 @@ ___
 
 ### extendTransforms
 
-▸ `Optional` **extendTransforms**(`builtins`): [`TransformFactory`](../../docs/modules/core_src.md#transformfactory)<`Record`<`string`, `unknown`\>\>[]
+▸ `Optional` **extendTransforms**(`builtins`): [`TransformFactory`](../modules/core_src.md#transformfactory)<`Record`<`string`, `unknown`\>\>[]
 
 You can use this option to extend the builtin list of import transforms.
 This list will be merged with the builtin transforms before applying them to the input image.
@@ -162,18 +144,12 @@ This list will be merged with the builtin transforms before applying them to the
 
 | Name | Type |
 | :------ | :------ |
-| `builtins` | [`TransformFactory`](../../docs/modules/core_src.md#transformfactory)<`Record`<`string`, `unknown`\>\>[] |
+| `builtins` | [`TransformFactory`](../modules/core_src.md#transformfactory)<`Record`<`string`, `unknown`\>\>[] |
 
 #### Returns
 
-[`TransformFactory`](../../docs/modules/core_src.md#transformfactory)<`Record`<`string`, `unknown`\>\>[]
+[`TransformFactory`](../modules/core_src.md#transformfactory)<`Record`<`string`, `unknown`\>\>[]
 
+#### Defined in
 
-## Contributing
-
-Feel free to dive in! [Open an issue](https://github.com/JonasKruckenberg/imagetools/issues/new) or submit PRs! All
-information to get you started hacking on imagetools is in [CONTRIBUTING.md](../../CONTRIBUTING.md)!
-
-## License
-
-[MIT © Jonas Kruckenberg.](./LICENSE)
+[vite/src/types.ts:27](https://github.com/JonasKruckenberg/imagetools/blob/4253c96/packages/vite/src/types.ts#L27)
