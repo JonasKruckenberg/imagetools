@@ -20,7 +20,7 @@ describe('extractEntries', () => {
   it('returns an array of entries', () => {
     const src = new URL('/example.jpg?foo=bar', 'file://')
 
-    const entries = extractEntries(src)
+    const entries = extractEntries(src.searchParams)
 
     expect(entries).toBeInstanceOf(Array)
   })
@@ -28,7 +28,7 @@ describe('extractEntries', () => {
   it('returns a valid array of entries', () => {
     const src = new URL('/example.jpg?foo=bar&hello=world&width=300', 'file://')
 
-    const entries = extractEntries(src)
+    const entries = extractEntries(src.searchParams)
     // this will throw and fail the test if entries is not a valid array of entries
     const asObject = Object.fromEntries(entries)
 
@@ -40,7 +40,7 @@ describe('extractEntries', () => {
   it('splits the arguments at the ";" char', () => {
     const src = new URL('/test.jpg?width=300;400;500', 'file:///')
 
-    const entries = extractEntries(src)
+    const entries = extractEntries(src.searchParams)
     const asObject = Object.fromEntries(entries)
 
     expect(asObject).toHaveProperty('width', ['300', '400', '500'])
