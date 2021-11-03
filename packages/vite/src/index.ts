@@ -49,7 +49,16 @@ export function imagetools(userOptions: Partial<VitePluginOptions> = {}): Plugin
       if (!filter(id)) return null
 
       const srcURL = parseURL(id)
-      const parameters = extractEntries(srcURL)
+
+      let directives = srcURL.searchParams
+
+      if(typeof pluginOptions.defaultDirectives === "function") {
+        directives = pluginOptions.defaultDirectives(srcURL)
+      } else if (pluginOptions.defaultDirectives) {
+        directives = new URLSearchParams([...srcURL.searchParams, ...pluginOptions.defaultDirectives])
+      }
+
+      const parameters = extractEntries(directives)
       const imageConfigs = resolveConfigs(parameters, outputFormats)
 
       const img = loadImage(decodeURIComponent(srcURL.pathname))
@@ -59,12 +68,7 @@ export function imagetools(userOptions: Partial<VitePluginOptions> = {}): Plugin
       for (const config of imageConfigs) {
         const id = generateImageID(srcURL, config)
 
-        const defaultConfig =
-          typeof pluginOptions.defaultDirectives === 'function'
-            ? pluginOptions.defaultDirectives(id)
-            : pluginOptions.defaultDirectives
-
-        const { transforms } = generateTransforms({ ...defaultConfig, ...config }, transformFactories)
+        const { transforms } = generateTransforms(config, transformFactories)
         const { image, metadata } = await applyTransforms(transforms, img, pluginOptions.removeMetadata)
 
         generatedImages.set(id, image)
