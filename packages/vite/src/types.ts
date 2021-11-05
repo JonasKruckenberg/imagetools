@@ -33,6 +33,10 @@ export interface PluginOptions {
    */
   extendOutputFormats?: (builtins: Record<string, OutputFormat>) => Record<string, OutputFormat>
 
+  /**
+   * You can use this option to override the resolution of configs based on the url parameters
+   * @default undefined
+   */
   resolveConfigs?: typeof resolveConfigs
 
   /**

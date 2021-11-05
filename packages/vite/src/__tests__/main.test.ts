@@ -199,9 +199,12 @@ describe('vite-imagetools', () => {
     })
 
     describe('silent', () => {
-      test('false by default', () => {})
-      test('true disables all warnings', () => {})
-      test('false enables warnings', () => {})
+      test('false by default', () => {
+      })
+      test('true disables all warnings', () => {
+      })
+      test('false enables warnings', () => {
+      })
     })
 
     describe('removeMetadata', () => {
@@ -249,6 +252,32 @@ describe('vite-imagetools', () => {
 
         expect(metadata).toHaveProperty('icc')
         expect(metadata).toHaveProperty('xmp')
+      })
+    })
+
+    describe('resolveConfigs', () => {
+      test('can be used to generate multiple images (presets)', async () => {
+        const bundle = (await build({
+          logLevel: 'warn',
+          build: { write: false },
+          plugins: [
+            testEntry(`
+                            import Image from "./with-metadata.png?metadata"
+                            window.__IMAGE__ = Image
+                        `),
+            imagetools({
+              resolveConfigs() {
+                return [
+                  { width: '300' },
+                  { width: '500' }
+                ]
+              }
+            })
+          ]
+        })) as RollupOutput | RollupOutput[]
+
+        const files = getFiles(bundle, '**.png') as OutputAsset[]
+        expect(files).toHaveLength(2)
       })
     })
   })
