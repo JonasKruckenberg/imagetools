@@ -1,58 +1,25 @@
-# rollup-plugin-imagetools
+[imagetools](../README.md) / [Modules](../modules.md) / [rollup/src/types](../modules/rollup_src_types.md) / RollupPluginOptions
 
-<!-- badges -->
+# Interface: RollupPluginOptions
 
-![npm (latest)](https://img.shields.io/npm/v/rollup-plugin-imagetools)
-[![standard-readme compliant](https://img.shields.io/badge/readme%20style-standard-brightgreen.svg?style=flat-square)](https://github.com/RichardLitt/standard-readme)
-[![codecov](https://codecov.io/gh/JonasKruckenberg/imagetools/branch/graph/badge.svg?token=bJrFBmuczA&flag=rollup-plugin-imagetools)](https://codecov.io/gh/JonasKruckenberg/imagetools/)
+[rollup/src/types](../modules/rollup_src_types.md).RollupPluginOptions
 
-A toolbox of import directives for [rollup](https://rollupjs.org) that import and transform your image at compile-time.
-All of the image transformations are powered by [sharp](https://sharp.pixelplumbing.com).
+## Table of contents
 
-## Features
+### Properties
 
-- **🚀 Output modern formats**
-- **🖼 Resize Images**
-- **🔗 Easy Srcset generation**
-- **⚡️ Fast in development mode**
-- **🔒 Remove Image Metadata**
-- **🧩 Extensible**
+- [defaultDirectives](rollup_src_types.RollupPluginOptions.md#defaultdirectives)
+- [exclude](rollup_src_types.RollupPluginOptions.md#exclude)
+- [include](rollup_src_types.RollupPluginOptions.md#include)
+- [removeMetadata](rollup_src_types.RollupPluginOptions.md#removemetadata)
+- [silent](rollup_src_types.RollupPluginOptions.md#silent)
 
-> [Read the docs to learn more!](../../docs/README.md)
+### Methods
 
-## Table of Contents
+- [extendOutputFormats](rollup_src_types.RollupPluginOptions.md#extendoutputformats)
+- [extendTransforms](rollup_src_types.RollupPluginOptions.md#extendtransforms)
 
-- [Install](#install)
-- [Usage](#usage)
-- [Options](#options)
-- [Contributing](#contributing)
-- [License](#license)
-
-## Install
-
-```
-npm install --save-dev rollup-plugin-imagetools
-```
-
-```
-yarn add -D rollup-plugin-imagetools
-```
-
-## Usage
-
-```js
-import { imagetools } from 'rollup-plugin-imagetools'
-
-export default {
-  plugins: [imagetools()]
-}
-```
-
-```js
-import Image from 'example.jpg?w=400&h=300&webp'
-```
-
-## Options
+## Properties
 
 ### defaultDirectives
 
@@ -121,9 +88,11 @@ Settings this option to true disables all warnings produced by this plugin
 
 [rollup/src/types.ts:39](https://github.com/JonasKruckenberg/imagetools/blob/4253c96/packages/rollup/src/types.ts#L39)
 
+## Methods
+
 ### extendOutputFormats
 
-▸ `Optional` **extendOutputFormats**(`builtins`): `Record`<`string`, [`OutputFormat`](../../docs/modules/core_src.md#outputformat)\>
+▸ `Optional` **extendOutputFormats**(`builtins`): `Record`<`string`, [`OutputFormat`](../modules/core_src.md#outputformat)\>
 
 You can use this option to extend the builtin list of output formats.
 This list will be merged with the builtin output formats before determining the format to use.
@@ -134,11 +103,11 @@ This list will be merged with the builtin output formats before determining the 
 
 | Name | Type |
 | :------ | :------ |
-| `builtins` | `Record`<`string`, [`OutputFormat`](../../docs/modules/core_src.md#outputformat)\> |
+| `builtins` | `Record`<`string`, [`OutputFormat`](../modules/core_src.md#outputformat)\> |
 
 #### Returns
 
-`Record`<`string`, [`OutputFormat`](../../docs/modules/core_src.md#outputformat)\>
+`Record`<`string`, [`OutputFormat`](../modules/core_src.md#outputformat)\>
 
 #### Defined in
 
@@ -148,7 +117,7 @@ ___
 
 ### extendTransforms
 
-▸ `Optional` **extendTransforms**(`builtins`): [`TransformFactory`](../../docs/modules/core_src.md#transformfactory)<`Record`<`string`, `unknown`\>\>[]
+▸ `Optional` **extendTransforms**(`builtins`): [`TransformFactory`](../modules/core_src.md#transformfactory)<`Record`<`string`, `unknown`\>\>[]
 
 You can use this option to extend the builtin list of import transforms.
 This list will be merged with the builtin transforms before applying them to the input image.
@@ -159,17 +128,12 @@ This list will be merged with the builtin transforms before applying them to the
 
 | Name | Type |
 | :------ | :------ |
-| `builtins` | [`TransformFactory`](../../docs/modules/core_src.md#transformfactory)<`Record`<`string`, `unknown`\>\>[] |
+| `builtins` | [`TransformFactory`](../modules/core_src.md#transformfactory)<`Record`<`string`, `unknown`\>\>[] |
 
 #### Returns
 
-[`TransformFactory`](../../docs/modules/core_src.md#transformfactory)<`Record`<`string`, `unknown`\>\>[]
+[`TransformFactory`](../modules/core_src.md#transformfactory)<`Record`<`string`, `unknown`\>\>[]
 
-## Contributing
+#### Defined in
 
-Feel free to dive in! [Open an issue](https://github.com/JonasKruckenberg/imagetools/issues/new) or submit PRs! All
-information to get you started hacking on imagetools is in [CONTRIBUTING.md](../../CONTRIBUTING.md)!
-
-## License
-
-[MIT © Jonas Kruckenberg.](./LICENSE)
+[rollup/src/types.ts:26](https://github.com/JonasKruckenberg/imagetools/blob/4253c96/packages/rollup/src/types.ts#L26)
