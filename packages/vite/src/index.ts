@@ -65,7 +65,7 @@ export function imagetools(userOptions: Partial<PluginOptions> = {}): Plugin {
             : pluginOptions.defaultDirectives
 
         const { transforms } = generateTransforms({ ...defaultConfig, ...config }, transformFactories)
-        const { image, metadata } = await applyTransforms(transforms, img, pluginOptions.removeMetadata)
+        const { image, metadata } = await applyTransforms(transforms, img.clone(), pluginOptions.removeMetadata)
 
         generatedImages.set(id, image)
 
