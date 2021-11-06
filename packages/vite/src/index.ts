@@ -50,7 +50,7 @@ export function imagetools(userOptions: Partial<VitePluginOptions> = {}): Plugin
 
       const srcURL = parseURL(id)
       const parameters = extractEntries(srcURL)
-      const imageConfigs = resolveConfigs(parameters, outputFormats)
+      const imageConfigs = pluginOptions.resolveConfigs?.(parameters, outputFormats) || resolveConfigs(parameters, outputFormats)
 
       const img = loadImage(decodeURIComponent(srcURL.pathname))
 

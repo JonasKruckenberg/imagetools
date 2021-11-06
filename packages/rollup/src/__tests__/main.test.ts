@@ -1,4 +1,4 @@
-import { OutputAsset, OutputChunk, rollup } from 'rollup'
+import { OutputAsset, OutputChunk, rollup, RollupOutput } from 'rollup'
 import { imagetools } from '../index'
 import { join } from 'path'
 import { testEntry, getFiles } from './util'
@@ -196,6 +196,31 @@ describe('rollup-plugin-imagetools', () => {
         expect(metadata).toHaveProperty('icc')
         expect(metadata).toHaveProperty('xmp')
       })
+
+      describe('resolveConfigs', () => {
+        test('can be used to generate multiple images (presets)', async () => {
+          const bundle = await rollup({
+            plugins: [
+              testEntry(`
+                            import Image from "./with-metadata.png?w=300"
+                            export default Image
+                        `),
+              imagetools({
+                resolveConfigs() {
+                  return [
+                    { width: '300' },
+                    { width: '500' }
+                  ]
+                }
+              })
+            ]
+          })
+
+          const files = (await getFiles(bundle, '**.png')) as OutputAsset[]
+          expect(files).toHaveLength(2)
+        })
+      })
+
     })
   })
 
