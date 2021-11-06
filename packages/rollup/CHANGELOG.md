@@ -1,5 +1,11 @@
 # Change Log
 
+## 2.5.0
+
+### Minor Changes
+
+- 73955f4: feat: allow override of resolveConfigs
+
 ## 2.4.0
 
 ### Minor Changes
