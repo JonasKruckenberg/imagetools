@@ -1,7 +1,6 @@
 ---
-'imagetools-core': patch
-'rollup-plugin-imagetools': patch
-'vite-imagetools': patch
+'rollup-plugin-imagetools': minor
+'vite-imagetools': minor
 ---
 
 feat: allow override of resolveConfigs
