@@ -118,6 +118,9 @@ Sometimes it's useful to be able to override the resolution of image configs at 
 to implement presets using shortnames that generate multiple images. This resolution is done before the config
 is passed to the directives. To implement a custom scheme, pass a function as `resolveConfigs` plugin options.
 
+The function should return a new config array. If a plugin needs to modify the config that would have been used,
+it can call the default `resolveConfigs` function which is part of the public API.
+
 Below is an example custom `resolveConfigs` to implement site preset widths which are always webp format.
 
 ```ts
