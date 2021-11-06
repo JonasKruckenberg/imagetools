@@ -15,17 +15,17 @@ import {
 import { basename, extname, join } from 'path'
 import { createFilter, dataToEsm } from '@rollup/pluginutils'
 import MagicString from 'magic-string'
-import { PluginOptions } from './types'
+import { VitePluginOptions } from './types'
 
-const defaultOptions: PluginOptions = {
+const defaultOptions: VitePluginOptions = {
   include: '**/*.{heic,heif,avif,jpeg,jpg,png,tiff,webp,gif}?*',
   exclude: 'public/**/*',
   silent: false,
   removeMetadata: true
 }
 
-export function imagetools(userOptions: Partial<PluginOptions> = {}): Plugin {
-  const pluginOptions: PluginOptions = { ...defaultOptions, ...userOptions }
+export function imagetools(userOptions: Partial<VitePluginOptions> = {}): Plugin {
+  const pluginOptions: VitePluginOptions = { ...defaultOptions, ...userOptions }
 
   const filter = createFilter(pluginOptions.include, pluginOptions.exclude)
 

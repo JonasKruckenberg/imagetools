@@ -12,7 +12,7 @@ is also highly welcome!
 
 This repository is a monorepo using yarn workspaces and [changesets](https://github.com/atlassian/changesets).<br> Since
 we use `git-lfs` to store the image snapshots, you need to have it installed in order to clone this repository. You can
-download it here: https://git-lfs.github.com.
+download it here: https://git-lfs.github.com. This is only needed for running tests.
 
 The folder structure is a following:
 
@@ -34,7 +34,7 @@ The folder structure is a following:
 ## Running Tests
 
 Running `yarn test`from the top level runs all tests for all packages, if your only interested in running tests for a
-single package cd into that directory and run `yarn test` there.
+single package cd into that directory and run `yarn test` there. You will need git-lfs to clone the repo with all test fixtures (see [project setup](#project-setup) for instructions on how to install git-lfs)
 
 ## Pull Request Guidelines
 

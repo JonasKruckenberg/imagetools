@@ -1,6 +1,6 @@
 import { TransformFactory, OutputFormat } from 'imagetools-core'
 
-export interface PluginOptions {
+export interface RollupPluginOptions {
   /**
    * Which paths to include when processing images.
    * @default '**\/*.{heic,heif,avif,jpeg,jpg,png,tiff,webp,gif}?*'
