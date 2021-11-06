@@ -1,5 +1,15 @@
 # Change Log
 
+## 3.9.0
+
+### Minor Changes
+
+- 73955f4: feat: allow override of resolveConfigs
+
+### Patch Changes
+
+- 76e9a4d: fix: clone sharp image in vite plugin to avoid reuse issue
+
 ## 3.8.0
 
 ### Minor Changes
