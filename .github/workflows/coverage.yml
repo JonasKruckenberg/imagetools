@@ -1,9 +1,5 @@
 name: Generate Coverage
-on:
-  push:
-    branches:
-      - main
-      - next
+on: [push, pull_request]
 
 jobs:
   coverage:
