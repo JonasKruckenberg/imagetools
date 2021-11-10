@@ -26,4 +26,4 @@
 
 #### Defined in
 
-[rollup/src/index.ts:25](https://github.com/JonasKruckenberg/imagetools/blob/4253c96/packages/rollup/src/index.ts#L25)
+[rollup/src/index.ts:25](https://github.com/JonasKruckenberg/imagetools/blob/edbc774/packages/rollup/src/index.ts#L25)
