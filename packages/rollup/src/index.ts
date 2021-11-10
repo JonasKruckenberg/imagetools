@@ -55,7 +55,7 @@ export function imagetools(userOptions: Partial<RollupPluginOptions> = {}): Plug
       }
 
       const parameters = extractEntries(directives)
-      const imageConfigs = resolveConfigs(parameters, outputFormats)
+      const imageConfigs = pluginOptions.resolveConfigs?.(parameters, outputFormats) ?? resolveConfigs(parameters, outputFormats)
 
       const img = loadImage(decodeURIComponent(srcURL.pathname))
 
