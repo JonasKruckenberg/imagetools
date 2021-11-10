@@ -4,7 +4,7 @@
   "version": "3.9.0",
   "main": "dist/index.cjs",
   "module": "dist/index.mjs",
-  "types": "dist/index.d.ts",
+  "types": "dist/vite/src/index.d.ts",
   "files": [
     "dist"
   ],
