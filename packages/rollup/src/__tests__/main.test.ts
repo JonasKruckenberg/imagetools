@@ -222,6 +222,47 @@ describe('rollup-plugin-imagetools', () => {
       })
 
     })
+
+
+    describe('defaultDirectives', () => {
+      test('const', async () => {
+        const bundle = await rollup({
+          plugins: [
+            testEntry(`
+                          import Image from "./with-metadata.png?metadata"
+                          export default Image
+                      `),
+            imagetools({
+              defaultDirectives: new URLSearchParams('width=300;500')
+            })
+          ]
+        })
+
+        const files = (await getFiles(bundle, '**.png')) as OutputAsset[]
+        expect(files).toHaveLength(2)
+      })
+      test('function', async () => {
+        const bundle = await rollup({
+          plugins: [
+            testEntry(`
+                          import Image from "./with-metadata.png?mypreset"
+                          export default Image
+                      `),
+            imagetools({
+              defaultDirectives: (id) => {
+                if (id.searchParams.has('mypreset')) {
+                  return new URLSearchParams('width=300;500')
+                }
+                return new URLSearchParams()
+              }
+            })
+          ]
+        })
+
+        const files = (await getFiles(bundle, '**.png')) as OutputAsset[]
+        expect(files).toHaveLength(2)
+      })
+    })
   })
 
   test('relative path', async () => {
