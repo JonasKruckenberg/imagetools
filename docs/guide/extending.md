@@ -111,3 +111,66 @@ function customDirective(): ImageTransform {
 ## Custom Output Formats
 
 _TODO_
+
+## Custom config resolution
+
+Sometimes it's useful to be able to override the resolution of image configs at a low level, for example
+to implement presets using shortnames that generate multiple images. This resolution is done before the config
+is passed to the directives. To implement a custom scheme, pass a function as `resolveConfigs` plugin options.
+
+The function should return a new config array. If a plugin needs to modify the config that would have been used,
+it can call the default `resolveConfigs` function which is part of the public API.
+
+Below is an example custom `resolveConfigs` to implement site preset widths which are always webp format.
+
+```ts
+const defaultPresets = {
+  default: {widths: [300, 800, 1200]}
+}
+
+export function resolveConfigsWithPresets(pluginConfig) {
+    // use provided presets or use defaults above 
+    const presets = pluginConfig?.presets || defaultPresets
+
+    // this is the custom resolveConfigs function 
+    return function (config) {
+        // look for 'mysite' in the import name
+        const mysite_config = config.find(([key]) => key === "mysite")
+        if (mysite_config) {
+            // get the preset if specified
+            const [, [value]] = mysite_config
+            // see if there is a custom preset specified, eg: mysite=mypreset, or use default
+            const preset_name = value.trim().length ? value.trim() : "default"
+            // fall back to default preset if one given doesn't exist
+            const preset = presets[preset_name] || defaultPresets.default
+
+            // map preset widths to 
+            const widths = preset.widths
+            return widths.map((width, index) => ({
+                width,
+                webp: ""
+            }));
+        }
+        // else return undefined and default resolveConfigs will be called
+    }
+}
+```
+
+```
+// vite.config.js, etc
+...
+    plugins: [
+      react(),
+      imagetools({
+        resolveConfigs: resolveConfigsWithPresets({ 
+            mypreset: {widths: [100,200,300]} 
+        })
+      })
+    ]
+...
+```
+
+```
+// page.tsx, etc
+import img_urls from "./myimage.png?mypreset"
+```

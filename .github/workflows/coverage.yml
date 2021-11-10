@@ -1,9 +1,5 @@
 name: Generate Coverage
-on:
-  push:
-    branches:
-      - master
-      - next
+on: [push, pull_request]
 
 jobs:
   coverage:
@@ -15,26 +11,26 @@ jobs:
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v1
         with:
-          node-version: 14.x
+          node-version: 16.x
       - run: yarn
       - name: Generate coverage report
         run: yarn coverage
       - name: Upload imagetools-core Report
-        uses: codecov/codecov-action@v1
+        uses: codecov/codecov-action@v2
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
           flags: imagetools-core
           files: 'packages/core/coverage/coverage-final.json'
 
       - name: Upload vite-imagetools Report
-        uses: codecov/codecov-action@v1
+        uses: codecov/codecov-action@v2
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
           flags: vite-imagetools
           files: 'packages/vite/coverage/coverage-final.json'
 
       - name: Upload rollup-plugin-imagetools Report
-        uses: codecov/codecov-action@v1
+        uses: codecov/codecov-action@v2
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
           flags: rollup-plugin-imagetools
