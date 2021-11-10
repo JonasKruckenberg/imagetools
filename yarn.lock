@@ -913,10 +913,10 @@
   resolved "https://registry.yarnpkg.com/@types/semver/-/semver-6.2.2.tgz#5c27df09ca39e3c9beb4fae6b95f4d71426df0a9"
   integrity sha512-RxAwYt4rGwK5GyoRwuP0jT6ZHAVTdz2EqgsHmX0PYNjGsko+OeT4WFXXTs/lM3teJUJodM+SNtAL5/pXIJ61IQ==
 
-"@types/sharp@^0.28.1":
-  version "0.28.3"
-  resolved "https://registry.yarnpkg.com/@types/sharp/-/sharp-0.28.3.tgz#0e57ede34d3e334632ab7a68a6af070aa0f51ceb"
-  integrity sha512-y3mxUj3jukIWgdu9CrSTSCo5HruTzDxdjn5SqdIEALdTszkcot9r8HX/7q9FMx3YjuXifTD0OI+d4wA6Pogqmw==
+"@types/sharp@^0.29.3":
+  version "0.29.3"
+  resolved "https://registry.yarnpkg.com/@types/sharp/-/sharp-0.29.3.tgz#54ceb81b68bb99a0e62db2b52f4fb0bea84878ac"
+  integrity sha512-83Xp05eK2hvfNnmKLr2Fz0C2A0jrr2TnSLqKRbkLTYuAu+Erj6mKQLoEMGafE73Om8p3q3ryZxtHFM/7hy4Adg==
   dependencies:
     "@types/node" "*"
 
