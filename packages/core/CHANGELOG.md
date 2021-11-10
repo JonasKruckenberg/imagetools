@@ -1,5 +1,12 @@
 # Change Log
 
+## 3.0.0
+
+### Major Changes
+
+- f6cec96: change `defaultDirectives` from `Record<string,string>` to `URLSearchParams`, to align with in-code interface
+  and to allow for multiple entries of _key_ with multiple _values_
+
 ## 2.8.0
 
 ### Minor Changes

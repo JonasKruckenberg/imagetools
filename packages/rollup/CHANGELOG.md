@@ -1,5 +1,20 @@
 # Change Log
 
+## 3.0.0
+
+### Major Changes
+
+- f6cec96: change `defaultDirectives` from `Record<string,string>` to `URLSearchParams`, to align with in-code interface
+  and to allow for multiple entries of _key_ with multiple _values_
+
+### Patch Changes
+
+- 1655877: Fix path to typings
+- f85ffe8: Bump @rollup/pluginutils
+- 0f218f0: Bump rollup
+- Updated dependencies [f6cec96]
+  - imagetools-core@3.0.0
+
 ## 2.5.0
 
 ### Minor Changes
