@@ -32,7 +32,7 @@
     "coverage": "jest --collectCoverage"
   },
   "devDependencies": {
-    "@types/jest": "^26.0.23",
+    "@types/jest": "^27.0.2",
     "@types/sharp": "^0.28.1",
     "jest": "^26.6.3",
     "jest-file-snapshot": "^0.5.0",
