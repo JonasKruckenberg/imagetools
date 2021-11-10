@@ -13,6 +13,7 @@
 - [force](vite_src_types.VitePluginOptions.md#force)
 - [include](vite_src_types.VitePluginOptions.md#include)
 - [removeMetadata](vite_src_types.VitePluginOptions.md#removemetadata)
+- [resolveConfigs](vite_src_types.VitePluginOptions.md#resolveconfigs)
 - [silent](vite_src_types.VitePluginOptions.md#silent)
 
 ### Methods
@@ -24,14 +25,14 @@
 
 ### defaultDirectives
 
-• `Optional` **defaultDirectives**: `Record`<`string`, `string`\> \| (`id`: `string`) => `Record`<`string`, `string`\>
+• `Optional` **defaultDirectives**: `URLSearchParams` \| (`url`: `URL`) => `URLSearchParams`
 
 This option allows you to specify directives that should be applied _by default_ to every image.
 You can also provide a function, in which case the function gets passed the asset ID and should return an object of directives
 
 #### Defined in
 
-[vite/src/types.ts:20](https://github.com/JonasKruckenberg/imagetools/blob/4253c96/packages/vite/src/types.ts#L20)
+[vite/src/types.ts:20](https://github.com/JonasKruckenberg/imagetools/blob/edbc774/packages/vite/src/types.ts#L20)
 
 ___
 
@@ -46,7 +47,7 @@ This defaults to the public dir to mirror vites behavior.
 
 #### Defined in
 
-[vite/src/types.ts:14](https://github.com/JonasKruckenberg/imagetools/blob/4253c96/packages/vite/src/types.ts#L14)
+[vite/src/types.ts:14](https://github.com/JonasKruckenberg/imagetools/blob/edbc774/packages/vite/src/types.ts#L14)
 
 ___
 
@@ -60,7 +61,7 @@ This option used to enable the plugin during development mode. This option is no
 
 #### Defined in
 
-[vite/src/types.ts:52](https://github.com/JonasKruckenberg/imagetools/blob/4253c96/packages/vite/src/types.ts#L52)
+[vite/src/types.ts:58](https://github.com/JonasKruckenberg/imagetools/blob/edbc774/packages/vite/src/types.ts#L58)
 
 ___
 
@@ -74,7 +75,7 @@ Which paths to include when processing images.
 
 #### Defined in
 
-[vite/src/types.ts:8](https://github.com/JonasKruckenberg/imagetools/blob/4253c96/packages/vite/src/types.ts#L8)
+[vite/src/types.ts:8](https://github.com/JonasKruckenberg/imagetools/blob/edbc774/packages/vite/src/types.ts#L8)
 
 ___
 
@@ -88,7 +89,37 @@ Wether to remove potentially private metadata from the image, such as exif tags 
 
 #### Defined in
 
-[vite/src/types.ts:46](https://github.com/JonasKruckenberg/imagetools/blob/4253c96/packages/vite/src/types.ts#L46)
+[vite/src/types.ts:52](https://github.com/JonasKruckenberg/imagetools/blob/edbc774/packages/vite/src/types.ts#L52)
+
+___
+
+### resolveConfigs
+
+• `Optional` **resolveConfigs**: (`entries`: [`string`, `string`[]][], `outputFormats`: `Record`<`string`, [`OutputFormat`](../modules/core_src.md#outputformat)\>) => `Record`<`string`, `string` \| `string`[]\>[]
+
+#### Type declaration
+
+▸ (`entries`, `outputFormats`): `Record`<`string`, `string` \| `string`[]\>[]
+
+This function builds up all possible combinations the given entries can be combined
+an returns it as an array of objects that can be given to a the transforms.
+
+##### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `entries` | [`string`, `string`[]][] | The url parameter entries |
+| `outputFormats` | `Record`<`string`, [`OutputFormat`](../modules/core_src.md#outputformat)\> | - |
+
+##### Returns
+
+`Record`<`string`, `string` \| `string`[]\>[]
+
+An array of directive options
+
+#### Defined in
+
+[vite/src/types.ts:40](https://github.com/JonasKruckenberg/imagetools/blob/edbc774/packages/vite/src/types.ts#L40)
 
 ___
 
@@ -102,7 +133,7 @@ Settings this option to true disables all warnings produced by this plugin
 
 #### Defined in
 
-[vite/src/types.ts:40](https://github.com/JonasKruckenberg/imagetools/blob/4253c96/packages/vite/src/types.ts#L40)
+[vite/src/types.ts:46](https://github.com/JonasKruckenberg/imagetools/blob/edbc774/packages/vite/src/types.ts#L46)
 
 ## Methods
 
@@ -127,7 +158,7 @@ This list will be merged with the builtin output formats before determining the 
 
 #### Defined in
 
-[vite/src/types.ts:34](https://github.com/JonasKruckenberg/imagetools/blob/4253c96/packages/vite/src/types.ts#L34)
+[vite/src/types.ts:34](https://github.com/JonasKruckenberg/imagetools/blob/edbc774/packages/vite/src/types.ts#L34)
 
 ___
 
@@ -152,4 +183,4 @@ This list will be merged with the builtin transforms before applying them to the
 
 #### Defined in
 
-[vite/src/types.ts:27](https://github.com/JonasKruckenberg/imagetools/blob/4253c96/packages/vite/src/types.ts#L27)
+[vite/src/types.ts:27](https://github.com/JonasKruckenberg/imagetools/blob/edbc774/packages/vite/src/types.ts#L27)

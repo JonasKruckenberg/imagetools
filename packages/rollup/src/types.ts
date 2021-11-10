@@ -16,7 +16,7 @@ export interface RollupPluginOptions {
    * This option allows you to specify directives that should be applied _by default_ to every image.
    * You can also provide a function, in which case the function gets passed the asset ID and should return an object of directives
    */
-  defaultDirectives?: Record<string, string> | ((id: string) => Record<string, string>)
+  defaultDirectives?: URLSearchParams | ((url: URL) => URLSearchParams)
 
   /**
    * You can use this option to extend the builtin list of import transforms.

@@ -18,4 +18,4 @@
 
 #### Defined in
 
-[core/src/transforms/kernel.ts:9](https://github.com/JonasKruckenberg/imagetools/blob/4253c96/packages/core/src/transforms/kernel.ts#L9)
+[core/src/transforms/kernel.ts:9](https://github.com/JonasKruckenberg/imagetools/blob/edbc774/packages/core/src/transforms/kernel.ts#L9)

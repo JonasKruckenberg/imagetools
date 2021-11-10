@@ -18,4 +18,4 @@
 
 #### Defined in
 
-[core/src/transforms/flatten.ts:6](https://github.com/JonasKruckenberg/imagetools/blob/4253c96/packages/core/src/transforms/flatten.ts#L6)
+[core/src/transforms/flatten.ts:6](https://github.com/JonasKruckenberg/imagetools/blob/edbc774/packages/core/src/transforms/flatten.ts#L6)

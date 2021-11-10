@@ -56,14 +56,14 @@ import Image from 'example.jpg?w=400&h=300&webp'
 
 ### defaultDirectives
 
-• `Optional` **defaultDirectives**: `Record`<`string`, `string`\> \| (`id`: `string`) => `Record`<`string`, `string`\>
+• `Optional` **defaultDirectives**: `URLSearchParams` \| (`url`: `URL`) => `URLSearchParams`
 
 This option allows you to specify directives that should be applied _by default_ to every image.
 You can also provide a function, in which case the function gets passed the asset ID and should return an object of directives
 
 #### Defined in
 
-[rollup/src/types.ts:19](https://github.com/JonasKruckenberg/imagetools/blob/4253c96/packages/rollup/src/types.ts#L19)
+[rollup/src/types.ts:19](https://github.com/JonasKruckenberg/imagetools/blob/edbc774/packages/rollup/src/types.ts#L19)
 
 ___
 
@@ -164,6 +164,36 @@ This list will be merged with the builtin transforms before applying them to the
 #### Returns
 
 [`TransformFactory`](../../docs/modules/core_src.md#transformfactory)<`Record`<`string`, `unknown`\>\>[]
+
+___
+
+### resolveConfigs
+
+• `Optional` **resolveConfigs**: (`entries`: [`string`, `string`[]][], `outputFormats`: `Record`<`string`, [`OutputFormat`](../modules/core_src.md#outputformat)\>) => `Record`<`string`, `string` \| `string`[]\>[]
+
+#### Type declaration
+
+▸ (`entries`, `outputFormats`): `Record`<`string`, `string` \| `string`[]\>[]
+
+This function builds up all possible combinations the given entries can be combined
+an returns it as an array of objects that can be given to a the transforms.
+
+##### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `entries` | [`string`, `string`[]][] | The url parameter entries |
+| `outputFormats` | `Record`<`string`, [`OutputFormat`](../modules/core_src.md#outputformat)\> | - |
+
+##### Returns
+
+`Record`<`string`, `string` \| `string`[]\>[]
+
+An array of directive options
+
+#### Defined in
+
+[rollup/src/types.ts:39](https://github.com/JonasKruckenberg/imagetools/blob/edbc774/packages/rollup/src/types.ts#L39)
 
 ## Contributing
 

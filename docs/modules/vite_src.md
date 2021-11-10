@@ -26,4 +26,4 @@
 
 #### Defined in
 
-[vite/src/index.ts:27](https://github.com/JonasKruckenberg/imagetools/blob/4253c96/packages/vite/src/index.ts#L27)
+[vite/src/index.ts:27](https://github.com/JonasKruckenberg/imagetools/blob/edbc774/packages/vite/src/index.ts#L27)

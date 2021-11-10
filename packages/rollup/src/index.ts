@@ -45,20 +45,24 @@ export function imagetools(userOptions: Partial<RollupPluginOptions> = {}): Plug
       if (!filter(id)) return null
 
       const srcURL = parseURL(id)
-      const parameters = extractEntries(srcURL)
-      const imageConfigs = pluginOptions.resolveConfigs?.(parameters, outputFormats) || resolveConfigs(parameters, outputFormats)
+
+      let directives = srcURL.searchParams
+
+      if(typeof pluginOptions.defaultDirectives === "function") {
+        directives = pluginOptions.defaultDirectives(srcURL)
+      } else if (pluginOptions.defaultDirectives) {
+        directives = new URLSearchParams([...srcURL.searchParams, ...pluginOptions.defaultDirectives])
+      }
+
+      const parameters = extractEntries(directives)
+      const imageConfigs = pluginOptions.resolveConfigs?.(parameters, outputFormats) ?? resolveConfigs(parameters, outputFormats)
 
       const img = loadImage(decodeURIComponent(srcURL.pathname))
 
       const outputMetadatas = []
 
       for (const config of imageConfigs) {
-        const defaultConfig =
-          typeof pluginOptions.defaultDirectives === 'function'
-            ? pluginOptions.defaultDirectives(id)
-            : pluginOptions.defaultDirectives
-
-        const { transforms, warnings } = generateTransforms({ ...defaultConfig, ...config }, transformFactories)
+        const { transforms, warnings } = generateTransforms(config, transformFactories)
         warnings.forEach((warning) => this.warn(warning))
 
         const { image, metadata } = await applyTransforms(transforms, img, pluginOptions.removeMetadata)

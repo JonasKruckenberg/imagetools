@@ -8,7 +8,8 @@
     "test": "yarn workspaces run test",
     "coverage": "yarn workspaces run coverage",
     "lint": "eslint .",
-    "format": "yarn prettier --write ."
+    "format": "yarn prettier --write .",
+    "docs": "yarn typedoc"
   },
   "devDependencies": {
     "@changesets/cli": "^2.18.0",

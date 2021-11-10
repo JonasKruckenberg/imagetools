@@ -280,6 +280,51 @@ describe('vite-imagetools', () => {
         expect(files).toHaveLength(2)
       })
     })
+
+    describe('defaultDirectives', () => {
+      test('const', async () => {
+        const bundle = (await build({
+          logLevel: 'warn',
+          build: { write: false },
+          plugins: [
+            testEntry(`
+                            import Image from "./with-metadata.png?metadata"
+                            window.__IMAGE__ = Image
+                        `),
+            imagetools({
+              defaultDirectives: new URLSearchParams('width=300;500')
+            })
+          ]
+        })) as RollupOutput | RollupOutput[]        
+
+        const files = getFiles(bundle, '**.png') as OutputAsset[]
+        expect(files).toHaveLength(2)
+      })
+
+      test('function', async () => {
+        const bundle = (await build({
+          logLevel: 'warn',
+          build: { write: false },
+          plugins: [
+            testEntry(`
+                            import Image from "./with-metadata.png?mypreset"
+                            window.__IMAGE__ = Image
+                        `),
+            imagetools({
+              defaultDirectives: (id) => {
+                if (id.searchParams.has('mypreset')) {
+                  return new URLSearchParams('width=300;500')
+                }
+                return new URLSearchParams()
+              }
+            })
+          ]
+        })) as RollupOutput | RollupOutput[]        
+
+        const files = getFiles(bundle, '**.png') as OutputAsset[]
+        expect(files).toHaveLength(2)
+      })
+    })
   })
 
   test('relative import', async () => {
