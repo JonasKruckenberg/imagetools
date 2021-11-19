@@ -1,5 +1,14 @@
 # Change Log
 
+## 4.0.1
+
+### Patch Changes
+
+- e6ed3a8: re-add cloned image fix that got lost during merging
+- e58e2cb: Remove `icc` metadata when `removeMetadata` is set to true.
+- Updated dependencies [e58e2cb]
+  - imagetools-core@3.0.1
+
 ## 4.0.0
 
 ### Major Changes
