@@ -69,7 +69,7 @@ export function imagetools(userOptions: Partial<VitePluginOptions> = {}): Plugin
         const id = generateImageID(srcURL, config)
 
         const { transforms } = generateTransforms(config, transformFactories)
-        const { image, metadata } = await applyTransforms(transforms, img, pluginOptions.removeMetadata)
+        const { image, metadata } = await applyTransforms(transforms, img.clone(), pluginOptions.removeMetadata)
 
         generatedImages.set(id, image)
 
