@@ -15,6 +15,7 @@ export async function applyTransforms(
     delete image[METADATA].iptc
     delete image[METADATA].xmp
     delete image[METADATA].tifftagPhotoshop
+    delete image[METADATA].icc
   } else {
     image.withMetadata()
   }
