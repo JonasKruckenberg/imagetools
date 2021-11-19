@@ -1,5 +1,11 @@
 # Change Log
 
+## 3.0.1
+
+### Patch Changes
+
+- e58e2cb: Remove `icc` metadata when `removeMetadata` is set to true.
+
 ## 3.0.0
 
 ### Major Changes

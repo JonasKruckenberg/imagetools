@@ -1,5 +1,13 @@
 # Change Log
 
+## 3.0.1
+
+### Patch Changes
+
+- e58e2cb: Remove `icc` metadata when `removeMetadata` is set to true.
+- Updated dependencies [e58e2cb]
+  - imagetools-core@3.0.1
+
 ## 3.0.0
 
 ### Major Changes
