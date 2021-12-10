@@ -134,8 +134,8 @@ Convert the image into the given format.
 
 ```js
 import Image from 'example.jpg?format=webp'
-import Image from 'examepl.jpg?png'
-import Images from 'examepl.jpg?format=webp;avif;heic'
+import Image from 'example.jpg?png'
+import Images from 'example.jpg?format=webp;avif;heic'
 ```
 
 ---
@@ -266,8 +266,8 @@ The argument must be a number between 0 and 100.
 
 ```js
 import Image from 'example.jpg?format=webp&quality=100'
-import Image from 'examepl.jpg?png&quality=200'
-import Images from 'examepl.jpg?avif&quality=10,50,75'
+import Image from 'example.jpg?png&quality=200'
+import Images from 'example.jpg?avif&quality=10,50,75'
 ```
 
 ---
@@ -282,8 +282,8 @@ Resizes the image to be the specified amount of pixels wide. If not given the he
 
 ```js
 import Image from 'example.jpg?width=200'
-import Image from 'examepl.jpg?w=200'
-import Images from 'examepl.jpg?width=200;400;700'
+import Image from 'example.jpg?w=200'
+import Images from 'example.jpg?width=200;400;700'
 ```
 
 ---
@@ -298,8 +298,8 @@ Resizes the image to be the specified amount of pixels tall. If not given the wi
 
 ```js
 import Image from 'example.jpg?height=200'
-import Image from 'examepl.jpg?h=200'
-import Images from 'examepl.jpg?height=200;400;700'
+import Image from 'example.jpg?h=200'
+import Images from 'example.jpg?height=200;400;700'
 ```
 
 ---
