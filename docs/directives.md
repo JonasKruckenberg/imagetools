@@ -83,7 +83,7 @@ import Image from 'example.jpg?fit=cover'
 
 • **Keyword**: `flatten`<br> • **Type**: _boolean_<br>
 
-This directive will remove the aplha channel of the image, reducing filesize. Transparent pixels will be merged with the
+This directive will remove the alpha channel of the image, reducing filesize. Transparent pixels will be merged with the
 color set by the [background directive](#background).
 
 ---
@@ -92,7 +92,7 @@ color set by the [background directive](#background).
 
 • **Keyword**: `flip`<br> • **Type**: _boolean_<br>
 
-Flip the image image about the vertical axis. This step is always performed **after** any rotation.
+Flip the image about the vertical axis. This step is always performed **after** any rotation.
 
 • **Example**:
 
@@ -107,7 +107,7 @@ import Image from 'exmaple.jpg?flip=true'
 
 • **Keyword**: `flop`<br> • **Type**: _boolean_<br>
 
-Flop the image image about the horizontal axis. This step is always performed **after** any rotation.
+Flop the image about the horizontal axis. This step is always performed **after** any rotation.
 
 • **Example**:
 
@@ -227,7 +227,7 @@ import Image from 'example.jpg?median=50'
 
 • **Keyword**: `normalize`<br> • **Type**: _boolean_<br>
 
-'Normalizes' the image by stretching its luminance to cover the full dynamic range. This Eenhances the output image
+'Normalizes' the image by stretching its luminance to cover the full dynamic range. This Enhances the output image
 contrast.
 
 • **Example**:
@@ -348,7 +348,7 @@ import Images from 'example.jpg`rotate=90;180;270'
 
 • **Keyword**: `tint`<br> • **Type**: _string_<br>
 
-Tints the image using the provided chroma while preserving the image luminance. If the image has han alpha channel it
+Tints the image using the provided chroma while preserving the image luminance. If the image has an alpha channel it
 will be untouched.
 
 • **Example**:
