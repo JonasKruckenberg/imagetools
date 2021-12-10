@@ -3590,10 +3590,10 @@ jsdom@^16.4.0:
     ws "^7.4.5"
     xml-name-validator "^3.0.0"
 
-jsdom@^18.0.1:
-  version "18.0.1"
-  resolved "https://registry.yarnpkg.com/jsdom/-/jsdom-18.0.1.tgz#7317c91be425f31ff25814ad427eed8a2a310b61"
-  integrity sha512-mgVzrYP4IJiJKVqXkAdBn+jg+nQgPusBxTJulz3m1Y/1RIrkk8aDoNaQE5BNbHwe72WwiwE7k3Av2THXDpvzPQ==
+jsdom@^19.0.0:
+  version "19.0.0"
+  resolved "https://registry.yarnpkg.com/jsdom/-/jsdom-19.0.0.tgz#93e67c149fe26816d38a849ea30ac93677e16b6a"
+  integrity sha512-RYAyjCbxy/vri/CfnjUWJQQtZ3LKlLnDqj+9XLNnJPgEGeirZs3hllKR20re8LUZ6o1b1X4Jat+Qd26zmP41+A==
   dependencies:
     abab "^2.0.5"
     acorn "^8.5.0"
@@ -5413,10 +5413,10 @@ typedoc-plugin-markdown@^3.11.7:
   dependencies:
     handlebars "^4.7.7"
 
-typedoc@^0.22.8:
-  version "0.22.8"
-  resolved "https://registry.yarnpkg.com/typedoc/-/typedoc-0.22.8.tgz#cd488290bd31d2cd4099004e1104807895d4eb17"
-  integrity sha512-92S+YzyhospdXN5rnkYUTgirdTYqNWY7NP9vco+IqQQoiSXzVSUsawVro+tMyEEsWUS7EMaJ2YOjB9uE0CBi6A==
+typedoc@^0.22.10:
+  version "0.22.10"
+  resolved "https://registry.yarnpkg.com/typedoc/-/typedoc-0.22.10.tgz#221e1a2b17bcb71817ef027dc4c4969d572e7620"
+  integrity sha512-hQYZ4WtoMZ61wDC6w10kxA42+jclWngdmztNZsDvIz7BMJg7F2xnT+uYsUa7OluyKossdFj9E9Ye4QOZKTy8SA==
   dependencies:
     glob "^7.2.0"
     lunr "^2.3.9"
