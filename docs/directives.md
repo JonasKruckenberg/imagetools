@@ -311,7 +311,7 @@ import Images from 'examepl.jpg?height=200;400;700'
 Resizes the image to be the specified aspect ratio. Aspect ratio can be defined with a string in the form `16:9` or a
 positive number representing the width divided by height (e.g., `1.5` for a `3:2` aspect ratio) If height and width are
 both provided, this will be ignored. If height is provided, the width will be scaled accordingly. If width is provided,
-the width will be scaled accordingly. If neither height nor width is provided, the image will be cropped to the given
+the height will be scaled accordingly. If neither height nor width are provided, the image will be cropped to the given
 aspect ratio.
 
 • **Example**:
