@@ -1,5 +1,11 @@
 # Change Log
 
+## 3.0.2
+
+### Patch Changes
+
+- eb449f1: chore(deps-dev): bump rollup from 2.59.0 to 2.61.0
+
 ## 3.0.1
 
 ### Patch Changes
