@@ -1,5 +1,11 @@
 # Change Log
 
+## 4.0.2
+
+### Patch Changes
+
+- 922975e: chore(deps-dev): bump vite from 2.6.14 to 2.7.1
+
 ## 4.0.1
 
 ### Patch Changes
