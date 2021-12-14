@@ -28,7 +28,7 @@
     "coverage": "jest --collectCoverage"
   },
   "dependencies": {
-    "@rollup/pluginutils": "^4.1.1",
+    "@rollup/pluginutils": "^4.1.2",
     "imagetools-core": "^3.0.1",
     "magic-string": "^0.25.7"
   },
