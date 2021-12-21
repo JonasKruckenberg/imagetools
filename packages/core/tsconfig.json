@@ -3,6 +3,10 @@
   "compilerOptions": {
     "declaration": true,
     "outDir": "./dist",
+    "paths": {
+      "imagetools-core": ["../core/dist"],
+      "vite-imagetools": ["../vite/dist"],
+      "rollup-plugin-imagetools": ["../rollup/dist"]
+    }
   }
 }
-
