@@ -9,12 +9,14 @@ export default {
   external: [...builtins, ...deps],
   output: [
     {
-      file: pkg.main,
+      dir: './dist',
+      entryFileNames: '[name].cjs',
       format: 'cjs',
       sourcemap: true
     },
     {
-      file: pkg.module,
+      dir: './dist',
+      entryFileNames: '[name].mjs',
       format: 'esm',
       sourcemap: true
     }

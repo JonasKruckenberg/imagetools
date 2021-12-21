@@ -3,7 +3,7 @@
   "version": "3.0.3",
   "main": "dist/index.cjs",
   "module": "dist/index.mjs",
-  "types": "dist/rollup/src/index.d.ts",
+  "types": "dist/types.d.ts",
   "license": "MIT",
   "files": [
     "dist"
