@@ -1,5 +1,13 @@
 # Change Log
 
+## 3.0.4
+
+### Patch Changes
+
+- 64356e6: chore(deps-dev): bump sharp from 2.8.2 to 2.9.3
+- Updated dependencies [64356e6]
+  - imagetools-core@3.0.2
+
 ## 3.0.3
 
 ### Patch Changes
