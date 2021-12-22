@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { format } from '../format'
 import { TransformFactoryContext } from '../../types'
 import { applyTransforms } from '../../index'
@@ -83,64 +82,74 @@ describe('format', () => {
     })
 
     test('webp', async () => {
-      const { image, metadata } = await applyTransforms([format({ format: 'webp' }, dirCtx)!], img)
+      //@ts-ignore
+      const { image, metadata } = await applyTransforms([format({ format: 'webp' }, dirCtx)], img)
 
       expect(await image.toBuffer()).toMatchFile()
     })
 
     test('jpg', async () => {
-      const { image, metadata } = await applyTransforms([format({ format: 'jpg' }, dirCtx)!], img)
+      //@ts-ignore
+      const { image, metadata } = await applyTransforms([format({ format: 'jpg' }, dirCtx)], img)
 
       expect(await image.toBuffer()).toMatchFile()
     })
 
     test('jpeg', async () => {
-      const { image, metadata } = await applyTransforms([format({ format: 'jpeg' }, dirCtx)!], img)
+      //@ts-ignore
+      const { image, metadata } = await applyTransforms([format({ format: 'jpeg' }, dirCtx)], img)
 
       expect(await image.toBuffer()).toMatchFile()
     })
 
     test('png', async () => {
-      const { image, metadata } = await applyTransforms([format({ format: 'png' }, dirCtx)!], img)
+      //@ts-ignore
+      const { image, metadata } = await applyTransforms([format({ format: 'png' }, dirCtx)], img)
 
       expect(await image.toBuffer()).toMatchImageSnapshot()
     })
 
     test('avif', async () => {
       jest.setTimeout(10000)
-      const { image, metadata } = await applyTransforms([format({ format: 'avif' }, dirCtx)!], img)
+      //@ts-ignore
+      const { image, metadata } = await applyTransforms([format({ format: 'avif' }, dirCtx)], img)
 
-      expect(metadata).toHaveProperty('format', 'avif')
+      expect(await image.toBuffer()).toMatchFile()
     })
 
     test('heif', async () => {
       jest.setTimeout(10000)
-      const { image, metadata } = await applyTransforms([format({ format: 'heif' }, dirCtx)!], img)
+      //@ts-ignore
+      const { image, metadata } = await applyTransforms([format({ format: 'heif' }, dirCtx)], img)
 
-      expect(metadata).toHaveProperty('format', 'heif')
+      expect(await image.toBuffer()).toMatchFile()
     })
 
     test('heic', async () => {
       jest.setTimeout(10000)
-      const { image, metadata } = await applyTransforms([format({ format: 'heic' }, dirCtx)!], img)
+      //@ts-ignore
+      const { image, metadata } = await applyTransforms([format({ format: 'heic' }, dirCtx)], img)
 
-      expect(metadata).toHaveProperty('format', 'heic')
+      expect(await image.toBuffer()).toMatchFile()
     })
 
     test('tiff', async () => {
-      const { image, metadata } = await applyTransforms([format({ format: 'tiff' }, dirCtx)!], img)
+      //@ts-ignore
+      const { image, metadata } = await applyTransforms([format({ format: 'tiff' }, dirCtx)], img)
 
       expect(await image.toBuffer()).toMatchFile()
     })
 
     test('jpeg w/ quality', async () => {
-      const { image, metadata } = await applyTransforms([format({ format: 'jpeg', quality: '10' }, dirCtx)!], img)
+      //@ts-ignore
+      const { image, metadata } = await applyTransforms([format({ format: 'jpeg', quality: '10' }, dirCtx)], img)
 
       expect(await image.toBuffer()).toMatchFile()
     })
 
     test('png w/ quality', async () => {
-      const { image, metadata } = await applyTransforms([format({ format: 'png', quality: '10' }, dirCtx)!], img)
+      //@ts-ignore
+      const { image, metadata } = await applyTransforms([format({ format: 'png', quality: '10' }, dirCtx)], img)
 
       expect(await image.toBuffer()).toMatchImageSnapshot({
         failureThreshold: 0.05,
@@ -149,37 +158,43 @@ describe('format', () => {
     })
 
     test('webp w/ quality', async () => {
-      const { image, metadata } = await applyTransforms([format({ format: 'webp', quality: '10' }, dirCtx)!], img)
+      //@ts-ignore
+      const { image, metadata } = await applyTransforms([format({ format: 'webp', quality: '10' }, dirCtx)], img)
 
       expect(await image.toBuffer()).toMatchFile()
     })
 
     test('tiff w/ quality', async () => {
-      const { image, metadata } = await applyTransforms([format({ format: 'tiff', quality: '10' }, dirCtx)!], img)
+      //@ts-ignore
+      const { image, metadata } = await applyTransforms([format({ format: 'tiff', quality: '10' }, dirCtx)], img)
 
       expect(await image.toBuffer()).toMatchFile()
     })
 
     test('avif w/ quality', async () => {
-      const { image, metadata } = await applyTransforms([format({ format: 'avif', quality: '10' }, dirCtx)!], img)
+      //@ts-ignore
+      const { image, metadata } = await applyTransforms([format({ format: 'avif', quality: '10' }, dirCtx)], img)
 
-      expect(metadata).toHaveProperty('format', 'avif')
+      expect(await image.toBuffer()).toMatchFile()
     })
 
     test('heif w/ quality', async () => {
-      const { image, metadata } = await applyTransforms([format({ format: 'heif', quality: '10' }, dirCtx)!], img)
+      //@ts-ignore
+      const { image, metadata } = await applyTransforms([format({ format: 'heif', quality: '10' }, dirCtx)], img)
 
-      expect(metadata).toHaveProperty('format', 'heif')
+      expect(await image.toBuffer()).toMatchFile()
     })
 
     test('jpeg w/ progressive', async () => {
-      const { image, metadata } = await applyTransforms([format({ format: 'jpeg', progressive: 'true' }, dirCtx)!], img)
+      //@ts-ignore
+      const { image, metadata } = await applyTransforms([format({ format: 'jpeg', progressive: 'true' }, dirCtx)], img)
 
       expect(await image.toBuffer()).toMatchFile()
     })
 
     test('png w/ progressive', async () => {
-      const { image, metadata } = await applyTransforms([format({ format: 'png', progressive: 'true' }, dirCtx)!], img)
+      //@ts-ignore
+      const { image, metadata } = await applyTransforms([format({ format: 'png', progressive: 'true' }, dirCtx)], img)
 
       expect(await image.toBuffer()).toMatchImageSnapshot()
     })
