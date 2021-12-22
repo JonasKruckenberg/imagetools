@@ -106,21 +106,21 @@ describe('format', () => {
       expect(await image.toBuffer()).toMatchImageSnapshot()
     })
 
-    test('avif', async () => {
+    test.skip('avif', async () => {
       jest.setTimeout(10000)
       const { image, metadata } = await applyTransforms([format({ format: 'avif' }, dirCtx)!], img)
 
       expect(await image.toBuffer()).toMatchFile()
     })
 
-    test('heif', async () => {
+    test.skip('heif', async () => {
       jest.setTimeout(10000)
       const { image, metadata } = await applyTransforms([format({ format: 'heif' }, dirCtx)!], img)
 
       expect(await image.toBuffer()).toMatchFile()
     })
 
-    test('heic', async () => {
+    test.skip('heic', async () => {
       jest.setTimeout(10000)
       const { image, metadata } = await applyTransforms([format({ format: 'heic' }, dirCtx)!], img)
 
@@ -160,13 +160,13 @@ describe('format', () => {
       expect(await image.toBuffer()).toMatchFile()
     })
 
-    test('avif w/ quality', async () => {
+    test.skip('avif w/ quality', async () => {
       const { image, metadata } = await applyTransforms([format({ format: 'avif', quality: '10' }, dirCtx)!], img)
 
       expect(await image.toBuffer()).toMatchFile()
     })
 
-    test('heif w/ quality', async () => {
+    test.skip('heif w/ quality', async () => {
       const { image, metadata } = await applyTransforms([format({ format: 'heif', quality: '10' }, dirCtx)!], img)
 
       expect(await image.toBuffer()).toMatchFile()
