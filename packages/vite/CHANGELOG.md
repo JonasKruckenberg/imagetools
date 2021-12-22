@@ -1,5 +1,14 @@
 # Change Log
 
+## 4.0.3
+
+### Patch Changes
+
+- 725e27b: chore(deps-dev): bump vite from 2.7.2 to 2.7.3
+- 64356e6: chore(deps-dev): bump sharp from 2.8.2 to 2.9.3
+- Updated dependencies [64356e6]
+  - imagetools-core@3.0.2
+
 ## 4.0.2
 
 ### Patch Changes

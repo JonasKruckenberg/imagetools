@@ -1,5 +1,11 @@
 # Change Log
 
+## 3.0.2
+
+### Patch Changes
+
+- 64356e6: chore(deps-dev): bump sharp from 2.8.2 to 2.9.3
+
 ## 3.0.1
 
 ### Patch Changes
