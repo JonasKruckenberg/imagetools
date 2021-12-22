@@ -160,7 +160,7 @@ describe('format', () => {
       expect(await image.toBuffer()).toMatchFile()
     })
 
-    test.skip('avif w/ quality', async () => {
+    test('avif w/ quality', async () => {
       const { image, metadata } = await applyTransforms([format({ format: 'avif', quality: '10' }, dirCtx)!], img)
 
       expect(metadata).toHaveProperty('format', 'avif')
