@@ -106,25 +106,25 @@ describe('format', () => {
       expect(await image.toBuffer()).toMatchImageSnapshot()
     })
 
-    test.skip('avif', async () => {
+    test('avif', async () => {
       jest.setTimeout(10000)
       const { image, metadata } = await applyTransforms([format({ format: 'avif' }, dirCtx)!], img)
 
-      expect(await image.toBuffer()).toMatchFile()
+      expect(metadata).toHaveProperty('format', 'avif')
     })
 
-    test.skip('heif', async () => {
+    test('heif', async () => {
       jest.setTimeout(10000)
       const { image, metadata } = await applyTransforms([format({ format: 'heif' }, dirCtx)!], img)
 
-      expect(await image.toBuffer()).toMatchFile()
+      expect(metadata).toHaveProperty('format', 'heif')
     })
 
-    test.skip('heic', async () => {
+    test('heic', async () => {
       jest.setTimeout(10000)
       const { image, metadata } = await applyTransforms([format({ format: 'heic' }, dirCtx)!], img)
 
-      expect(await image.toBuffer()).toMatchFile()
+      expect(metadata).toHaveProperty('format', 'heic')
     })
 
     test('tiff', async () => {
@@ -163,13 +163,13 @@ describe('format', () => {
     test.skip('avif w/ quality', async () => {
       const { image, metadata } = await applyTransforms([format({ format: 'avif', quality: '10' }, dirCtx)!], img)
 
-      expect(await image.toBuffer()).toMatchFile()
+      expect(metadata).toHaveProperty('format', 'avif')
     })
 
-    test.skip('heif w/ quality', async () => {
+    test('heif w/ quality', async () => {
       const { image, metadata } = await applyTransforms([format({ format: 'heif', quality: '10' }, dirCtx)!], img)
 
-      expect(await image.toBuffer()).toMatchFile()
+      expect(metadata).toHaveProperty('format', 'heif')
     })
 
     test('jpeg w/ progressive', async () => {
