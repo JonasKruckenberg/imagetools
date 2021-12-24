@@ -8,5 +8,6 @@
       "vite-imagetools": ["../vite/dist"],
       "rollup-plugin-imagetools": ["../rollup/dist"]
     }
-  }
+  },
+  "exclude": ["node_modules", "dist"]
 }

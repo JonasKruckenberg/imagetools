@@ -12,6 +12,5 @@
     "module": "ESNext",
     "moduleResolution": "Node",
     "isolatedModules": true
-  },
-  "exclude": ["node_modules", "dist"]
+  }
 }

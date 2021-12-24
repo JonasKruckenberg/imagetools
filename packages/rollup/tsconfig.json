@@ -3,12 +3,12 @@
   "compilerOptions": {
     "declaration": true,
     "outDir": "./dist",
-    "declarationDir": "./dist",
     "paths": {
       "imagetools-core": ["../core/dist"],
       "vite-imagetools": ["../vite/dist"],
       "rollup-plugin-imagetools": ["../rollup/dist"]
     }
-  }
+  },
+  "exclude": ["node_modules", "dist"]
 }
 
