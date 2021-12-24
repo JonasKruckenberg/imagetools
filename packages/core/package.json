@@ -3,7 +3,7 @@
   "version": "3.0.1",
   "main": "dist/index.cjs",
   "module": "dist/index.mjs",
-  "types": "dist/types.d.ts",
+  "types": "dist/index.d.ts",
   "files": [
     "dist"
   ],
