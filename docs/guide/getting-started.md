@@ -81,7 +81,7 @@ and might even expose more. There are a few keys however that are **always** pre
 ```ts
 interface OutputMetadata {
   src: string // URL of the generated image
-  width: number // Width of the iage
+  width: number // Width of the image
   height: number // Height of the image
   format: string // Format of the generated image
 
