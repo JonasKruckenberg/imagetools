@@ -15,16 +15,17 @@ jobs:
         with:
           lfs: true
 
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v2
+      - name: Cache pnpm modules
+        uses: actions/cache@v2
         with:
-          node-version: ${{ matrix.node-version }}
-
-      - name: Install deps
-        run: yarn
-
-      - name: Run unit tests
-        run: yarn test
+          path: ~/.pnpm-store
+          key: ${{ runner.os }}-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-
+      - uses: pnpm/action-setup@v2.0.1
+        with:
+          version: 6
+          run_install: true
 
       - uses: actions/upload-artifact@v2
         if: failure()
@@ -44,19 +45,23 @@ jobs:
           fetch-depth: 0
           lfs: true
 
-      - name: Setup Node.js 14.x
-        uses: actions/setup-node@v2
+      - name: Cache pnpm modules
+        uses: actions/cache@v2
         with:
-          node-version: '14'
-
-      - name: Install Dependencies
-        run: yarn
+          path: ~/.pnpm-store
+          key: ${{ runner.os }}-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-
+      - uses: pnpm/action-setup@v2.0.1
+        with:
+          version: 6
+          run_install: true
 
       - name: Create Release Pull Request or Publish to npm
         id: changesets
         uses: changesets/action@master
         with:
-          publish: yarn release
+          publish: pnpm run release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
