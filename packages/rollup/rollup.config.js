@@ -1,4 +1,4 @@
-import typescript from 'rollup-plugin-typescript2'
+import typescript from '@rollup/plugin-typescript'
 import pkg from './package.json'
 import { builtinModules as builtins } from 'module'
 
@@ -9,12 +9,14 @@ export default {
   external: [...builtins, ...deps],
   output: [
     {
-      file: pkg.main,
+      dir: './dist',
+      entryFileNames: '[name].cjs',
       format: 'cjs',
       sourcemap: true
     },
     {
-      file: pkg.module,
+      dir: './dist',
+      entryFileNames: '[name].mjs',
       format: 'esm',
       sourcemap: true
     }
