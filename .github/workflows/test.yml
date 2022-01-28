@@ -1,0 +1,29 @@
+name: Unit tests
+on: pull_request
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [12.x, 14.x, 16.x]
+
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          lfs: true
+      - name: Cache pnpm modules
+        uses: actions/cache@v2
+        with:
+          path: ~/.pnpm-store
+          key: ${{ runner.os }}-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-
+      - uses: pnpm/action-setup@v2.0.1
+        with:
+          version: 6
+          run_install: true
+      - name: Build packages
+        run: pnpm run build
+      - name: Run unit tests
+        run: pnpm run test

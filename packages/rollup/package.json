@@ -3,7 +3,7 @@
   "version": "3.0.4",
   "main": "dist/index.cjs",
   "module": "dist/index.mjs",
-  "types": "dist/rollup/src/index.d.ts",
+  "types": "dist/index.d.ts",
   "license": "MIT",
   "files": [
     "dist"
@@ -29,21 +29,22 @@
   },
   "dependencies": {
     "@rollup/pluginutils": "^4.1.2",
-    "imagetools-core": "^3.0.2",
+    "imagetools-core": "workspace:^3.0.2",
     "magic-string": "^0.25.7"
   },
   "devDependencies": {
-    "@types/jest": "^26.0.23",
+    "@rollup/plugin-typescript": "^8.3.0",
+    "@types/jest": "^26.0.24",
     "@types/jest-image-snapshot": "^4.3.1",
-    "@types/jsdom": "^16.2.13",
+    "@types/jsdom": "^16.2.14",
     "@types/picomatch": "^2.3.0",
     "jest": "^26.6.3",
     "jest-image-snapshot": "^4.5.1",
     "jsdom": "^19.0.0",
-    "picomatch": "^2.2.3",
-    "rollup": "^2.61.1",
-    "rollup-plugin-typescript2": "^0.31.1",
+    "picomatch": "^2.3.1",
+    "rollup": "^2.66.1",
     "ts-jest": "^26.5.6",
-    "typescript": "^4.5.4"
+    "tslib": "^2.3.1",
+    "typescript": "^4.5.5"
   }
 }

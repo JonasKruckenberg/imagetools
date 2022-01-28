@@ -1,0 +1,29 @@
+name: Lint
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    paths:
+      - '.github/workflows/lint.yml'
+      - 'packages/**'
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Cache pnpm modules
+        uses: actions/cache@v2
+        with:
+          path: ~/.pnpm-store
+          key: ${{ runner.os }}-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-
+      - uses: pnpm/action-setup@v2.0.1
+        with:
+          version: 6
+          run_install: true
+      - name: lint
+        run: pnpm run lint
