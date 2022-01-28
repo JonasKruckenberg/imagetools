@@ -23,5 +23,7 @@ jobs:
         with:
           version: 6
           run_install: true
+      - name: Build packages
+        run: pnpm run build
       - name: Run unit tests
         run: pnpm run test
