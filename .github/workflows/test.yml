@@ -9,6 +9,9 @@ jobs:
         node-version: [12.x, 14.x, 16.x]
 
     steps:
+      - uses: actions/checkout@v2
+        with:
+          lfs: true
       - name: Cache pnpm modules
         uses: actions/cache@v2
         with:
