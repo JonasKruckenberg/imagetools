@@ -3,10 +3,10 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "release": "yarn build && yarn changeset publish",
-    "build": "yarn workspaces run build",
-    "test": "yarn workspaces run test",
-    "coverage": "yarn workspaces run coverage",
+    "release": "pnpm run build && pnpm run changeset publish",
+    "build": "pnpm run --recursive build",
+    "test": "pnpm run --recursive test",
+    "coverage": "pnpm run --recursive coverage",
     "lint": "eslint .",
     "format": "yarn prettier --write .",
     "docs": "yarn typedoc"
