@@ -34,6 +34,7 @@ importers:
 
   packages/core:
     specifiers:
+      '@changesets/cli': ^2.20.0
       '@rollup/plugin-typescript': ^8.3.0
       '@types/jest': ^26.0.24
       '@types/sharp': ^0.28.6
@@ -48,6 +49,7 @@ importers:
     dependencies:
       sharp: 0.29.3
     devDependencies:
+      '@changesets/cli': 2.20.0
       '@rollup/plugin-typescript': 8.3.0_a652e97aea7ea04fb4c9edbfa5b475e6
       '@types/jest': 26.0.24
       '@types/sharp': 0.28.6

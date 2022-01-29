@@ -32,6 +32,7 @@
     "coverage": "jest --collectCoverage"
   },
   "devDependencies": {
+    "@changesets/cli": "^2.20.0",
     "@rollup/plugin-typescript": "^8.3.0",
     "@types/jest": "^26.0.24",
     "@types/sharp": "^0.28.6",

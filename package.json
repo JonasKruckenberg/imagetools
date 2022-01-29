@@ -3,7 +3,7 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "release": "pnpm run build && pnpm run changeset publish",
+    "release": "pnpm run build && pnpm changeset publish",
     "build": "pnpm run --recursive build",
     "test": "pnpm run --recursive test",
     "coverage": "pnpm run --recursive coverage",
