@@ -27,6 +27,11 @@ jobs:
           version: 6
           run_install: true
 
+      - name: Build packages
+        run: pnpm run build
+      - name: Run unit tests
+        run: pnpm run test
+
       - uses: actions/upload-artifact@v2
         if: failure()
         with:
