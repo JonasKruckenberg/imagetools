@@ -61,7 +61,7 @@ jobs:
         id: changesets
         uses: changesets/action@master
         with:
-          publish: pnpm run release
+          publish: pnpm -w run release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
