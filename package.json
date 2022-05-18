@@ -30,5 +30,8 @@
     "extends": [
       "@commitlint/config-conventional"
     ]
+  },
+  "engines": {
+    "pnpm": "^7.0.0"
   }
 }
