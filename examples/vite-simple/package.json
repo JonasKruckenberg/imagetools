@@ -8,6 +8,6 @@
   },
   "devDependencies": {
     "vite": "^2.3.0",
-    "vite-imagetools": "^3.6.2"
+    "vite-imagetools": "workspace:^4.0.3"
   }
 }
