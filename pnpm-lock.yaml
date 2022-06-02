@@ -74,7 +74,7 @@ importers:
       jest: ^26.6.3
       jest-image-snapshot: ^4.5.1
       jsdom: ^19.0.0
-      magic-string: ^0.25.7
+      magic-string: ^0.26.0
       picomatch: ^2.3.1
       rollup: ^2.66.1
       sharp: ^0.30.0
@@ -84,7 +84,7 @@ importers:
     dependencies:
       '@rollup/pluginutils': 4.1.2
       imagetools-core: link:../core
-      magic-string: 0.25.7
+      magic-string: 0.26.2
     devDependencies:
       '@rollup/plugin-typescript': 8.3.0_uzjos6xkp2qe7ngj5w72lndv4y
       '@types/jest': 26.0.24
@@ -115,7 +115,7 @@ importers:
       jest: ^26.6.3
       jest-image-snapshot: ^4.5.1
       jsdom: ^19.0.0
-      magic-string: ^0.25.7
+      magic-string: ^0.26.0
       picomatch: ^2.3.1
       rollup: ^2.66.1
       sharp: ^0.30.0
@@ -126,7 +126,7 @@ importers:
     dependencies:
       '@rollup/pluginutils': 4.1.2
       imagetools-core: link:../core
-      magic-string: 0.25.7
+      magic-string: 0.26.2
     devDependencies:
       '@rollup/plugin-typescript': 8.3.0_uzjos6xkp2qe7ngj5w72lndv4y
       '@types/jest': 26.0.24
@@ -4025,8 +4025,9 @@ packages:
     resolution: {integrity: sha512-zTU3DaZaF3Rt9rhN3uBMGQD3dD2/vFQqnvZCDv4dl5iOzq2IZQqTxu90r4E5J+nP70J3ilqVCrbho2eWaeW8Ow==}
     dev: true
 
-  /magic-string/0.25.7:
-    resolution: {integrity: sha512-4CrMT5DOHTDk4HYDlzmwu4FVCcIYI8gauveasrdCu2IKIFOJ3f0v/8MDGJCDL9oD2ppz/Av1b0Nj345H9M+XIA==}
+  /magic-string/0.26.2:
+    resolution: {integrity: sha512-NzzlXpclt5zAbmo6h6jNc8zl2gNRGHvmsZW4IvZhTC4W7k4OlLP+S5YLussa/r3ixNT66KOQfNORlXHSOy/X4A==}
+    engines: {node: '>=12'}
     dependencies:
       sourcemap-codec: 1.4.8
     dev: false
