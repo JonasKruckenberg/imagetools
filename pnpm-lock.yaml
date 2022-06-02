@@ -37,10 +37,10 @@ importers:
       '@rollup/plugin-typescript': ^8.3.0
       '@types/jest': ^28.0.0
       '@types/jest-image-snapshot': ^4.3.1
-      jest: ^28.0.0
       '@types/sharp': ^0.30.0
+      jest: ^28.0.0
       jest-file-snapshot: ^0.5.0
-      jest-image-snapshot: ^4.5.1
+      jest-image-snapshot: ^5.0.0
       rollup: ^2.66.1
       sharp: ^0.30.0
       ts-jest: ^28.0.0
@@ -52,10 +52,10 @@ importers:
       '@rollup/plugin-typescript': 8.3.0_uzjos6xkp2qe7ngj5w72lndv4y
       '@types/jest': 28.1.0
       '@types/jest-image-snapshot': 4.3.1
-      jest: 28.1.0
       '@types/sharp': 0.30.2
+      jest: 28.1.0
       jest-file-snapshot: 0.5.0
-      jest-image-snapshot: 4.5.1_jest@28.1.0
+      jest-image-snapshot: 5.1.0_jest@28.1.0
       rollup: 2.66.1
       ts-jest: 28.0.3_tr4wbqzirca7utyjvc4h7vazyq
       tslib: 2.3.1
@@ -72,7 +72,7 @@ importers:
       '@types/sharp': ^0.30.0
       imagetools-core: workspace:^3.0.2
       jest: ^28.0.0
-      jest-image-snapshot: ^4.5.1
+      jest-image-snapshot: ^5.0.0
       jsdom: ^19.0.0
       magic-string: ^0.26.0
       picomatch: ^2.3.1
@@ -91,9 +91,9 @@ importers:
       '@types/jest-image-snapshot': 4.3.1
       '@types/jsdom': 16.2.14
       '@types/picomatch': 2.3.0
-      jest: 28.1.0
-      jest-image-snapshot: 4.5.1_jest@28.1.0
       '@types/sharp': 0.30.2
+      jest: 28.1.0
+      jest-image-snapshot: 5.1.0_jest@28.1.0
       jsdom: 19.0.0
       picomatch: 2.3.1
       rollup: 2.66.1
@@ -113,7 +113,7 @@ importers:
       '@types/sharp': ^0.30.0
       imagetools-core: workspace:^3.0.2
       jest: ^28.0.0
-      jest-image-snapshot: ^4.5.1
+      jest-image-snapshot: ^5.0.0
       jsdom: ^19.0.0
       magic-string: ^0.26.0
       picomatch: ^2.3.1
@@ -133,9 +133,9 @@ importers:
       '@types/jest-image-snapshot': 4.3.1
       '@types/jsdom': 16.2.14
       '@types/picomatch': 2.3.0
-      jest: 28.1.0
-      jest-image-snapshot: 4.5.1_jest@28.1.0
       '@types/sharp': 0.30.2
+      jest: 28.1.0
+      jest-image-snapshot: 5.1.0_jest@28.1.0
       jsdom: 19.0.0
       picomatch: 2.3.1
       rollup: 2.66.1
@@ -1396,7 +1396,7 @@ packages:
     engines: {node: '>=8'}
 
   /ansi-styles/2.2.1:
-    resolution: {integrity: sha1-tDLdM1i2NM914eRmQ2gkBTPB3b4=}
+    resolution: {integrity: sha512-kmCevFghRiWM7HB5zTPULl4r9bVFSWjz62MhqizDGUrq2NWuNMQyuv4tHHoKJHs69M/MF64lEcHdYIocrdWQYA==}
     engines: {node: '>=0.10.0'}
     dev: true
 
@@ -1641,7 +1641,7 @@ packages:
     dev: true
 
   /chalk/1.1.3:
-    resolution: {integrity: sha1-qBFcVeSnAv5NFQq9OHKCKn4J/Jg=}
+    resolution: {integrity: sha512-U3lRVLMSlsCfjqYPbLyVv11M9CPW4I728d6TCKMAOJueEeB9/8o+eSsMnxPJD+Q+K909sdESg7C+tIkoH6on1A==}
     engines: {node: '>=0.10.0'}
     dependencies:
       ansi-styles: 2.2.1
@@ -2560,7 +2560,7 @@ packages:
     dev: true
 
   /get-stdin/5.0.1:
-    resolution: {integrity: sha1-Ei4WFZHiH/TFJTAwVpPyDmOTo5g=}
+    resolution: {integrity: sha512-jZV7n6jGE3Gt7fgSTJoz91Ak5MuTLwMwkoYdjxuJ/AmjIsE1UC03y/IWkZCQGEvVNS9qoRNwy5BCqxImv0FVeA==}
     engines: {node: '>=0.12.0'}
     dev: true
 
@@ -2622,7 +2622,7 @@ packages:
     dev: true
 
   /glur/1.1.2:
-    resolution: {integrity: sha1-8g6jbbEDv8KSNDkh8fkeg8NGdok=}
+    resolution: {integrity: sha512-l+8esYHTKOx2G/Aao4lEQ0bnHWg4fWtJbVoZZT9Knxi01pB8C80BR85nONLFwkkQoFRCmXY+BUcGZN3yZ2QsRA==}
     dev: true
 
   /graceful-fs/4.2.9:
@@ -2652,7 +2652,7 @@ packages:
     dev: true
 
   /has-ansi/2.0.0:
-    resolution: {integrity: sha1-NPUEnOHs3ysGSa8+8k5F7TVBbZE=}
+    resolution: {integrity: sha512-C8vBJ8DwUCx19vhm7urhTuUsr4/IyP6l4VzNQDv+ryHQObW3TTTp9yB68WpYgRe2bbaGuZ/se74IqFeVnMnLZg==}
     engines: {node: '>=0.10.0'}
     dependencies:
       ansi-regex: 2.1.1
@@ -3164,11 +3164,11 @@ packages:
       fsevents: 2.3.2
     dev: true
 
-  /jest-image-snapshot/4.5.1_jest@28.1.0:
-    resolution: {integrity: sha512-0YkgupgkkCx0wIZkxvqs/oNiUT0X0d2WTpUhaAp+Dy6CpqBUZMRTIZo4KR1f+dqmx6WXrLCvecjnHLIsLkI+gQ==}
-    engines: {node: '>= 10.14.2'}
+  /jest-image-snapshot/5.1.0_jest@28.1.0:
+    resolution: {integrity: sha512-GpTaiJehsVeMRvszSuMkRK0ODSHxr31zalk3qoHVqHKGztgYlJ+Y6AheWHU6azODuoVpMQH52zY/sxri9d/GaA==}
+    engines: {node: ^12.13.0 || ^14.15.0 || ^16.10.0 || >=17.0.0}
     peerDependencies:
-      jest: '>=20 <=27'
+      jest: '>=20 <=28'
     dependencies:
       chalk: 1.1.3
       get-stdin: 5.0.1
