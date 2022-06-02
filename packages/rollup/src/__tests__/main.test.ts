@@ -1,4 +1,4 @@
-import { OutputAsset, OutputChunk, rollup, RollupOutput } from 'rollup'
+import { OutputAsset, OutputChunk, rollup } from 'rollup'
 import { imagetools } from '../index'
 import { join } from 'path'
 import { testEntry, getFiles } from './util'
