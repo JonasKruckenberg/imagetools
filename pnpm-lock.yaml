@@ -37,7 +37,7 @@ importers:
       '@rollup/plugin-typescript': ^8.3.0
       '@types/jest': ^26.0.24
       '@types/jest-image-snapshot': ^4.3.1
-      '@types/sharp': ^0.28.6
+      '@types/sharp': ^0.30.0
       jest: ^26.6.3
       jest-file-snapshot: ^0.5.0
       jest-image-snapshot: ^4.5.1
@@ -52,7 +52,7 @@ importers:
       '@rollup/plugin-typescript': 8.3.0_uzjos6xkp2qe7ngj5w72lndv4y
       '@types/jest': 26.0.24
       '@types/jest-image-snapshot': 4.3.1
-      '@types/sharp': 0.28.6
+      '@types/sharp': 0.30.2
       jest: 26.6.3
       jest-file-snapshot: 0.5.0
       jest-image-snapshot: 4.5.1_jest@26.6.3
@@ -69,7 +69,7 @@ importers:
       '@types/jest-image-snapshot': ^4.3.1
       '@types/jsdom': ^16.2.14
       '@types/picomatch': ^2.3.0
-      '@types/sharp': ^0.28.6
+      '@types/sharp': ^0.30.0
       imagetools-core: workspace:^3.0.2
       jest: ^26.6.3
       jest-image-snapshot: ^4.5.1
@@ -91,7 +91,7 @@ importers:
       '@types/jest-image-snapshot': 4.3.1
       '@types/jsdom': 16.2.14
       '@types/picomatch': 2.3.0
-      '@types/sharp': 0.28.6
+      '@types/sharp': 0.30.2
       jest: 26.6.3
       jest-image-snapshot: 4.5.1_jest@26.6.3
       jsdom: 19.0.0
@@ -110,7 +110,7 @@ importers:
       '@types/jest-image-snapshot': ^4.3.1
       '@types/jsdom': ^16.2.14
       '@types/picomatch': ^2.3.0
-      '@types/sharp': ^0.28.6
+      '@types/sharp': ^0.30.0
       imagetools-core: workspace:^3.0.2
       jest: ^26.6.3
       jest-image-snapshot: ^4.5.1
@@ -133,7 +133,7 @@ importers:
       '@types/jest-image-snapshot': 4.3.1
       '@types/jsdom': 16.2.14
       '@types/picomatch': 2.3.0
-      '@types/sharp': 0.28.6
+      '@types/sharp': 0.30.2
       jest: 26.6.3
       jest-image-snapshot: 4.5.1_jest@26.6.3
       jsdom: 19.0.0
@@ -1107,8 +1107,8 @@ packages:
     resolution: {integrity: sha512-KQf+QAMWKMrtBMsB8/24w53tEsxllMj6TuA80TT/5igJalLI/zm0L3oXRbIAl4Ohfc85gyHX/jhMwsVkmhLU4A==}
     dev: true
 
-  /@types/sharp/0.28.6:
-    resolution: {integrity: sha512-AjKjo5vk5mkcTrWL0U1zFUdCp/uqLebvbe7ezAJx0tgp6ST9JmfsYK1q1lpjfPM5S1YQ1wr5uboPSu2S8UO9yw==}
+  /@types/sharp/0.30.2:
+    resolution: {integrity: sha512-uLCBwjDg/BTcQit0dpNGvkIjvH3wsb8zpaJePCjvONBBSfaKHoxXBIuq1MT8DMQEfk2fKYnpC9QExCgFhkGkMQ==}
     dependencies:
       '@types/node': 17.0.13
     dev: true
