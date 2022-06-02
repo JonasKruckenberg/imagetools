@@ -1,4 +1,4 @@
-const { pathsToModuleNameMapper } = require('ts-jest/utils')
+const { pathsToModuleNameMapper } = require('ts-jest')
 
 const paths = {
   "imagetools-core": ["./packages/core/src"],
