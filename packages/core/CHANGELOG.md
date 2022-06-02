@@ -1,5 +1,11 @@
 # Change Log
 
+## 3.0.3
+
+### Patch Changes
+
+- 7a75a6f: Security: Update Sharp to version 0.30
+
 ## 3.0.2
 
 ### Patch Changes
