@@ -207,10 +207,7 @@ describe('rollup-plugin-imagetools', () => {
                         `),
               imagetools({
                 resolveConfigs() {
-                  return [
-                    { width: '300' },
-                    { width: '500' }
-                  ]
+                  return [{ width: '300' }, { width: '500' }]
                 }
               })
             ]
@@ -220,9 +217,7 @@ describe('rollup-plugin-imagetools', () => {
           expect(files).toHaveLength(2)
         })
       })
-
     })
-
 
     describe('defaultDirectives', () => {
       test('const', async () => {
@@ -261,6 +256,40 @@ describe('rollup-plugin-imagetools', () => {
 
         const files = (await getFiles(bundle, '**.png')) as OutputAsset[]
         expect(files).toHaveLength(2)
+      })
+      test('function with with metadata import', async () => {
+        const bundle = await rollup({
+          plugins: [
+            testEntry(`
+                        import Image from "./pexels-allec-gomes-5195763.png?mypreset"
+                        window.__IMAGE__ = Image
+                    `),
+            imagetools({
+              defaultDirectives: (id) => {
+                if (id.searchParams.has('mypreset')) {
+                  return new URLSearchParams('metadata')
+                }
+                return new URLSearchParams()
+              }
+            })
+          ]
+        })
+
+        const files = (await getFiles(bundle, '**.js')) as OutputChunk[]
+        const { window } = new JSDOM(``, { runScripts: 'outside-only' })
+        window.eval(files[0].code)
+
+        expect(window.__IMAGE__).toHaveProperty('width')
+        expect(window.__IMAGE__).toHaveProperty('height')
+        expect(window.__IMAGE__).toHaveProperty('format')
+        expect(window.__IMAGE__).toHaveProperty('src')
+        expect(window.__IMAGE__).toHaveProperty('space')
+        expect(window.__IMAGE__).toHaveProperty('channels')
+        expect(window.__IMAGE__).toHaveProperty('depth')
+        expect(window.__IMAGE__).toHaveProperty('density')
+        expect(window.__IMAGE__).toHaveProperty('isProgressive')
+        expect(window.__IMAGE__).toHaveProperty('hasProfile')
+        expect(window.__IMAGE__).toHaveProperty('hasAlpha')
       })
     })
   })
