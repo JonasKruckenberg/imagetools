@@ -43,7 +43,7 @@ importers:
       jest-image-snapshot: ^5.0.0
       rollup: ^2.66.1
       sharp: ^0.30.0
-      ts-jest: ^28.0.0
+      ts-jest: ^28.0.8
       tslib: ^2.3.1
       typescript: ^4.5.5
     dependencies:
@@ -57,7 +57,7 @@ importers:
       jest-file-snapshot: 0.5.0
       jest-image-snapshot: 5.1.0_jest@28.1.0
       rollup: 2.66.1
-      ts-jest: 28.0.3_y6ripcvvmpvktjm2zfgno7nqoe
+      ts-jest: 28.0.8_3idyv6jqzrc23kpntvtlm4rwnq
       tslib: 2.4.0
       typescript: 4.7.2
 
@@ -78,7 +78,7 @@ importers:
       picomatch: ^2.3.1
       rollup: ^2.66.1
       sharp: ^0.30.0
-      ts-jest: ^28.0.0
+      ts-jest: ^28.0.8
       tslib: ^2.3.1
       typescript: ^4.5.5
     dependencies:
@@ -98,7 +98,7 @@ importers:
       picomatch: 2.3.1
       rollup: 2.66.1
       sharp: 0.30.6
-      ts-jest: 28.0.3_y6ripcvvmpvktjm2zfgno7nqoe
+      ts-jest: 28.0.8_3idyv6jqzrc23kpntvtlm4rwnq
       tslib: 2.4.0
       typescript: 4.7.2
 
@@ -119,7 +119,7 @@ importers:
       picomatch: ^2.3.1
       rollup: ^2.66.1
       sharp: ^0.30.0
-      ts-jest: ^28.0.0
+      ts-jest: ^28.0.8
       tslib: ^2.3.1
       typescript: ^4.5.5
       vite: ^2.7.13
@@ -140,7 +140,7 @@ importers:
       picomatch: 2.3.1
       rollup: 2.66.1
       sharp: 0.30.6
-      ts-jest: 28.0.3_y6ripcvvmpvktjm2zfgno7nqoe
+      ts-jest: 28.0.8_3idyv6jqzrc23kpntvtlm4rwnq
       tslib: 2.4.0
       typescript: 4.7.2
       vite: 2.7.13
@@ -2689,7 +2689,7 @@ packages:
       source-map: 0.6.1
       wordwrap: 1.0.0
     optionalDependencies:
-      uglify-js: 3.15.5
+      uglify-js: 3.17.0
     dev: true
 
   /hard-rejection/2.1.0:
@@ -4766,13 +4766,13 @@ packages:
       escape-string-regexp: 1.0.5
     dev: true
 
-  /ts-jest/28.0.3_y6ripcvvmpvktjm2zfgno7nqoe:
-    resolution: {integrity: sha512-HzgbEDQ2KgVtDmpXToqAcKTyGHdHsG23i/iUjfxji92G5eT09S1m9UHZd7csF0Bfgh9txM4JzwHnv7r1waFPlw==}
+  /ts-jest/28.0.8_3idyv6jqzrc23kpntvtlm4rwnq:
+    resolution: {integrity: sha512-5FaG0lXmRPzApix8oFG8RKjAz4ehtm8yMKOTy5HX3fY6W8kmvOrmcY0hKDElW52FJov+clhUbrKAqofnj4mXTg==}
     engines: {node: ^12.13.0 || ^14.15.0 || ^16.10.0 || >=17.0.0}
     hasBin: true
     peerDependencies:
       '@babel/core': '>=7.0.0-beta.0 <8'
-      '@types/jest': ^27.0.0
+      '@jest/types': ^28.0.0
       babel-jest: ^28.0.0
       esbuild: '*'
       jest: ^28.0.0
@@ -4780,14 +4780,13 @@ packages:
     peerDependenciesMeta:
       '@babel/core':
         optional: true
-      '@types/jest':
+      '@jest/types':
         optional: true
       babel-jest:
         optional: true
       esbuild:
         optional: true
     dependencies:
-      '@types/jest': 28.1.0
       bs-logger: 0.2.6
       fast-json-stable-stringify: 2.1.0
       jest: 28.1.0
@@ -4797,7 +4796,7 @@ packages:
       make-error: 1.3.6
       semver: 7.3.7
       typescript: 4.7.2
-      yargs-parser: 20.2.9
+      yargs-parser: 21.1.1
     dev: true
 
   /tslib/1.14.1:
@@ -4910,8 +4909,8 @@ packages:
     hasBin: true
     dev: true
 
-  /uglify-js/3.15.5:
-    resolution: {integrity: sha512-hNM5q5GbBRB5xB+PMqVRcgYe4c8jbyZ1pzZhS6jbq54/4F2gFK869ZheiE5A8/t+W5jtTNpWef/5Q9zk639FNQ==}
+  /uglify-js/3.17.0:
+    resolution: {integrity: sha512-aTeNPVmgIMPpm1cxXr2Q/nEbvkmV8yq66F3om7X3P/cvOXQ0TMQ64Wk63iyT1gPlmdmGzjGpyLh1f3y8MZWXGg==}
     engines: {node: '>=0.8.0'}
     hasBin: true
     requiresBuild: true
@@ -5158,13 +5157,8 @@ packages:
       decamelize: 1.2.0
     dev: true
 
-  /yargs-parser/20.2.9:
-    resolution: {integrity: sha512-y11nGElTIV+CT3Zv9t7VKl+Q3hTQoT9a1Qzezhhl6Rp21gJ/IVTW7Z3y9EWXhuUBC2Shnf+DX0antecpAwSP8w==}
-    engines: {node: '>=10'}
-    dev: true
-
-  /yargs-parser/21.0.1:
-    resolution: {integrity: sha512-9BK1jFpLzJROCI5TzwZL/TU4gqjK5xiHV/RfWLOahrjAko/e4DJkRDZQXfvqAsiZzzYhgAzbgz6lg48jcm4GLg==}
+  /yargs-parser/21.1.1:
+    resolution: {integrity: sha512-tVpsJW7DdjecAiFpbIB1e3qxIQsE6NoPc5/eTdrbbIC4h0LVsWhnoa3g+m2HclBIujHzsxZ4VJVA+GUuc2/LBw==}
     engines: {node: '>=12'}
     dev: true
 
@@ -5195,7 +5189,7 @@ packages:
       require-directory: 2.1.1
       string-width: 4.2.3
       y18n: 5.0.8
-      yargs-parser: 21.0.1
+      yargs-parser: 21.1.1
     dev: true
 
   /yocto-queue/0.1.0:
