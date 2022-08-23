@@ -9,6 +9,7 @@ import {
   getMetadata,
   generateImageID,
   builtinOutputFormats,
+  mime,
   urlFormat,
   extractEntries
 } from 'imagetools-core'
@@ -62,6 +63,7 @@ export function imagetools(userOptions: Partial<VitePluginOptions> = {}): Plugin
       const imageConfigs = pluginOptions.resolveConfigs?.(parameters, outputFormats) ?? resolveConfigs(parameters, outputFormats)
 
       const img = loadImage(decodeURIComponent(srcURL.pathname))
+      const srcExt = extname(srcURL.pathname);
 
       const outputMetadatas = []
 
@@ -74,7 +76,7 @@ export function imagetools(userOptions: Partial<VitePluginOptions> = {}): Plugin
         generatedImages.set(id, image)
 
         if (!this.meta.watchMode) {
-          const fileName = basename(srcURL.pathname, extname(srcURL.pathname)) + `.${metadata.format}`
+          const fileName = basename(srcURL.pathname, srcExt) + `.${metadata.format}`
 
           const fileHandle = this.emitFile({
             name: fileName,
@@ -87,6 +89,7 @@ export function imagetools(userOptions: Partial<VitePluginOptions> = {}): Plugin
           metadata.src = join('/@imagetools', id)
         }
 
+        metadata.mime = mime.get(metadata.format as string ?? srcExt)
         metadata.image = image
 
         outputMetadatas.push(metadata)

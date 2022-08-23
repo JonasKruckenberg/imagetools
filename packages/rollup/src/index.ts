@@ -4,6 +4,7 @@ import {
   builtins,
   generateTransforms,
   loadImage,
+  mime,
   parseURL,
   resolveConfigs,
   builtinOutputFormats,
@@ -58,6 +59,7 @@ export function imagetools(userOptions: Partial<RollupPluginOptions> = {}): Plug
       const imageConfigs = pluginOptions.resolveConfigs?.(parameters, outputFormats) ?? resolveConfigs(parameters, outputFormats)
 
       const img = loadImage(decodeURIComponent(srcURL.pathname))
+      const srcExt = extname(srcURL.pathname);
 
       const outputMetadatas = []
 
@@ -67,7 +69,7 @@ export function imagetools(userOptions: Partial<RollupPluginOptions> = {}): Plug
 
         const { image, metadata } = await applyTransforms(transforms, img, pluginOptions.removeMetadata)
 
-        const fileName = basename(srcURL.pathname, extname(srcURL.pathname)) + `.${metadata.format}`
+        const fileName = basename(srcURL.pathname, srcExt) + `.${metadata.format}`
 
         const fileHandle = this.emitFile({
           name: fileName,
@@ -76,6 +78,7 @@ export function imagetools(userOptions: Partial<RollupPluginOptions> = {}): Plug
         })
 
         metadata.src = `__ROLLUP_IMAGE_ASSET__${fileHandle}__`
+        metadata.mime = mime.get(metadata.format as string ?? srcExt)
         metadata.image = image
 
         outputMetadatas.push(metadata)

@@ -354,6 +354,7 @@ describe('rollup-plugin-imagetools', () => {
     expect(window.__IMAGE__).toHaveProperty('isProgressive')
     expect(window.__IMAGE__).toHaveProperty('hasProfile')
     expect(window.__IMAGE__).toHaveProperty('hasAlpha')
+    expect(window.__IMAGE__).toHaveProperty('mime')
   })
 
   test('destructured metadata import', async () => {
