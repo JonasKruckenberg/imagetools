@@ -3,4 +3,4 @@
 'vite-imagetools': minor
 ---
 
-fixes the conditional reveal of metadata when using `defaultDirectives`
+fixes the conditional reveal of metadata when using `defaultDirectives`.
