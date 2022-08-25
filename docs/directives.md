@@ -23,6 +23,14 @@
 - [Rotate](#rotate)
 - [Tint](#tint)
 
+### Output Directives
+
+- [url](#url)
+- [srcset](#srcset)
+- [metadata](#metadata)
+
+## Directives
+
 ### Background
 
 • **Keyword**: `background`<br> • **Type**: _string_<br>
@@ -327,7 +335,7 @@ import Images from 'example.jpg?aspect=16:9&h=200;400;700'
 
 ### Rotate
 
-• **Keyword**: `rotate`<br> • **Type**: _integer^_<br>
+• **Keyword**: `rotate`<br> • **Type**: _integer_<br>
 
 Rotate the image by the specified number of degrees.
 
@@ -356,4 +364,54 @@ will be untouched.
 ```js
 import Image from 'example.jpg?tint=#ffaa22'
 import Image from 'example.jpg?tint=rgba(10,33,127)'
+```
+
+---
+
+### URL
+
+• **Keyword**: `url`<br> • **Type**: _boolean_<br>
+
+Returns a URL to the generated image. This is the default when your directives produce only one output image.
+
+• **Example**:
+
+```js
+import Image from 'example.jpg?w=500' // the type of Image is a string and it's a URL to the transformed image
+```
+
+---
+
+### Srcset
+
+• **Keyword**: `url`<br> • **Type**: _boolean_<br>
+
+Returns a srcset string of the generated images to be used in a `<picture>` tag. This only takes the image width into consideration.
+
+• **Example**:
+
+```js
+import avif from 'example.jpg?w=500;900;1200&avif&srcset'
+import webp from 'example.jpg?w=500;900;1200&webp&srcset'
+import fallback from 'example.jpg?w=700'
+
+const html = `<picture>
+    <source srcset="${avif}" type="image/avif" />
+    <source srcset="${webp}" type="image/webp" />
+    <img src="${fallback}" />
+</picture>
+`
+```
+
+### Metadata
+
+• **Keyword**: `metadata` | `meta`<br> • **Type**: _boolean_ | _string[]_<br>
+
+Returns all information collected about the image as a JavaScript object. The directive optionally takes a list of arguments that act as a *whitelist* for the metadata object. You can use it to only import specific image attributes, keeping your bundle size small.
+
+• **Example**:
+
+```js
+import Image from 'example.jpg?w=500;900;1200&avif&metadata'
+import { height, format } from 'example.jpg?w=700&gif&meta=height;format'
 ```
