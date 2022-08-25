@@ -257,7 +257,8 @@ describe('rollup-plugin-imagetools', () => {
         const files = (await getFiles(bundle, '**.png')) as OutputAsset[]
         expect(files).toHaveLength(2)
       })
-      test('function with with metadata import', async () => {
+
+      test('function with metadata import', async () => {
         const bundle = await rollup({
           plugins: [
             testEntry(`
