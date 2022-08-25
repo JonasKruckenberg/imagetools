@@ -14,7 +14,7 @@ importers:
       prettier: ^2.5.1
       rollup: ^2.66.1
       tslib: ^2.3.1
-      typedoc: ^0.22.11
+      typedoc: ^0.23.0
       typedoc-plugin-markdown: ^3.11.12
       typescript: ^4.5.5
     devDependencies:
@@ -28,8 +28,8 @@ importers:
       prettier: 2.6.2
       rollup: 2.66.1
       tslib: 2.4.0
-      typedoc: 0.22.17_typescript@4.7.2
-      typedoc-plugin-markdown: 3.12.1_typedoc@0.22.17
+      typedoc: 0.23.10_typescript@4.7.2
+      typedoc-plugin-markdown: 3.12.1_typedoc@0.23.10
       typescript: 4.7.2
 
   examples/vite-simple:
@@ -2641,17 +2641,6 @@ packages:
       path-is-absolute: 1.0.1
     dev: true
 
-  /glob/8.0.3:
-    resolution: {integrity: sha512-ull455NHSHI/Y1FqGaaYFaLGkNMMJbavMrEGFXG/PGrg6y7sutWHUHrz6gy6WEBH6akM1M414dWKCNs+IhKdiQ==}
-    engines: {node: '>=12'}
-    dependencies:
-      fs.realpath: 1.0.0
-      inflight: 1.0.6
-      inherits: 2.0.4
-      minimatch: 5.1.0
-      once: 1.4.0
-    dev: true
-
   /globals/11.12.0:
     resolution: {integrity: sha512-WOBp/EEGUiIsJSp7wcv/y6MO+lV9UoncWqxuFfm8eBwzWNgyfBd6Gz+IeKQ9jCmyhoH99g15M3T+QaVHFjizVA==}
     engines: {node: '>=4'}
@@ -3703,8 +3692,8 @@ packages:
     engines: {node: '>=8'}
     dev: true
 
-  /marked/4.0.16:
-    resolution: {integrity: sha512-wahonIQ5Jnyatt2fn8KqF/nIqZM8mh3oRu2+l5EANGMhu6RFjiSG52QNE2eWzFMI94HqYSgN184NurgNG6CztA==}
+  /marked/4.0.19:
+    resolution: {integrity: sha512-rgQF/OxOiLcvgUAj1Q1tAf4Bgxn5h5JZTp04Fx4XUkVhs7B+7YA9JEWJhJpoO8eJt8MkZMwqLCNeNqj1bCREZQ==}
     engines: {node: '>= 12'}
     hasBin: true
     dev: true
@@ -4890,25 +4879,24 @@ packages:
     engines: {node: '>=8'}
     dev: true
 
-  /typedoc-plugin-markdown/3.12.1_typedoc@0.22.17:
+  /typedoc-plugin-markdown/3.12.1_typedoc@0.23.10:
     resolution: {integrity: sha512-gMntJq7+JlGJZ5sVjrkzO/rG2dsmNBbWk5ZkcKvYu6QOeBwGcK5tzEyS0aqnFTJj9GCHCB+brAnTuKtAyotNwA==}
     peerDependencies:
       typedoc: '>=0.22.0'
     dependencies:
       handlebars: 4.7.7
-      typedoc: 0.22.17_typescript@4.7.2
+      typedoc: 0.23.10_typescript@4.7.2
     dev: true
 
-  /typedoc/0.22.17_typescript@4.7.2:
-    resolution: {integrity: sha512-h6+uXHVVCPDaANzjwzdsj9aePBjZiBTpiMpBBeyh1zcN2odVsDCNajz8zyKnixF93HJeGpl34j/70yoEE5BfNg==}
-    engines: {node: '>= 12.10.0'}
+  /typedoc/0.23.10_typescript@4.7.2:
+    resolution: {integrity: sha512-03EUiu/ZuScUBMnY6p0lY+HTH8SwhzvRE3gImoemdPDWXPXlks83UGTx++lyquWeB1MTwm9D9Ca8RIjkK3AFfQ==}
+    engines: {node: '>= 14.14'}
     hasBin: true
     peerDependencies:
-      typescript: 4.0.x || 4.1.x || 4.2.x || 4.3.x || 4.4.x || 4.5.x || 4.6.x || 4.7.x
+      typescript: 4.6.x || 4.7.x
     dependencies:
-      glob: 8.0.3
       lunr: 2.3.9
-      marked: 4.0.16
+      marked: 4.0.19
       minimatch: 5.1.0
       shiki: 0.10.1
       typescript: 4.7.2
