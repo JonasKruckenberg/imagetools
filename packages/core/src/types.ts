@@ -21,4 +21,25 @@ export interface TransformResult {
   metadata: Record<string, unknown>
 }
 
+/**
+ * The JS object returned by the image import.
+ */
 export type OutputFormat = (args?: string[]) => (metadata: ImageConfig[]) => unknown
+
+/**
+ * The source output format.
+ * Can be used to dynamically construct a sourceset string when you need to
+ * choose between width descriptor, pixel density descriptor, or no descriptor.
+ */
+export interface Source {
+  src: string;
+  w: number;
+}
+
+/**
+ * The picture output format.
+ */
+export interface Picture {
+  sources: Record<string, Source[]>;
+  fallback: string;
+}
