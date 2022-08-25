@@ -95,10 +95,6 @@ This defaults to the public dir to mirror vites behavior.
 
 **`default`** 'public\/**\/*'
 
-#### Defined in
-
-[vite/src/types.ts:14](https://github.com/JonasKruckenberg/imagetools/blob/4253c96/packages/vite/src/types.ts#L14)
-
 ___
 
 
