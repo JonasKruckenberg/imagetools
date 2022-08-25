@@ -199,12 +199,9 @@ describe('vite-imagetools', () => {
     })
 
     describe('silent', () => {
-      test('false by default', () => {
-      })
-      test('true disables all warnings', () => {
-      })
-      test('false enables warnings', () => {
-      })
+      test('false by default', () => {})
+      test('true disables all warnings', () => {})
+      test('false enables warnings', () => {})
     })
 
     describe('removeMetadata', () => {
@@ -267,10 +264,7 @@ describe('vite-imagetools', () => {
                         `),
             imagetools({
               resolveConfigs() {
-                return [
-                  { width: '300' },
-                  { width: '500' }
-                ]
+                return [{ width: '300' }, { width: '500' }]
               }
             })
           ]
@@ -295,7 +289,7 @@ describe('vite-imagetools', () => {
               defaultDirectives: new URLSearchParams('width=300;500')
             })
           ]
-        })) as RollupOutput | RollupOutput[]        
+        })) as RollupOutput | RollupOutput[]
 
         const files = getFiles(bundle, '**.png') as OutputAsset[]
         expect(files).toHaveLength(2)
@@ -319,10 +313,47 @@ describe('vite-imagetools', () => {
               }
             })
           ]
-        })) as RollupOutput | RollupOutput[]        
+        })) as RollupOutput | RollupOutput[]
 
         const files = getFiles(bundle, '**.png') as OutputAsset[]
         expect(files).toHaveLength(2)
+      })
+
+      test('function with with metadata import', async () => {
+        const bundle = (await build({
+          logLevel: 'warn',
+          build: { write: false },
+          plugins: [
+            testEntry(`
+                            import Image from "./with-metadata.png?mypreset"
+                            window.__IMAGE__ = Image
+                        `),
+            imagetools({
+              defaultDirectives: (id) => {
+                if (id.searchParams.has('mypreset')) {
+                  return new URLSearchParams('metadata')
+                }
+                return new URLSearchParams()
+              }
+            })
+          ]
+        })) as RollupOutput | RollupOutput[]
+
+        const files = getFiles(bundle, '**.js') as OutputChunk[]
+        const { window } = new JSDOM(``, { runScripts: 'outside-only' })
+        window.eval(files[0].code)
+
+        expect(window.__IMAGE__).toHaveProperty('width')
+        expect(window.__IMAGE__).toHaveProperty('height')
+        expect(window.__IMAGE__).toHaveProperty('format')
+        expect(window.__IMAGE__).toHaveProperty('src')
+        expect(window.__IMAGE__).toHaveProperty('space')
+        expect(window.__IMAGE__).toHaveProperty('channels')
+        expect(window.__IMAGE__).toHaveProperty('depth')
+        expect(window.__IMAGE__).toHaveProperty('density')
+        expect(window.__IMAGE__).toHaveProperty('isProgressive')
+        expect(window.__IMAGE__).toHaveProperty('hasProfile')
+        expect(window.__IMAGE__).toHaveProperty('hasAlpha')
       })
     })
   })
