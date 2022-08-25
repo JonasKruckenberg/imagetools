@@ -4,10 +4,6 @@
 
 ## Table of contents
 
-### References
-
-- [resolveConfigs](core_src.md#resolveconfigs)
-
 ### Interfaces
 
 - [BackgroundOptions](../interfaces/core_src.BackgroundOptions.md)
@@ -32,7 +28,7 @@
 - [TransformFactoryContext](../interfaces/core_src.TransformFactoryContext.md)
 - [TransformResult](../interfaces/core_src.TransformResult.md)
 
-### Type aliases
+### Type Aliases
 
 - [FitValue](core_src.md#fitvalue)
 - [FormatValue](core_src.md#formatvalue)
@@ -81,19 +77,14 @@
 - [normalize](core_src.md#normalize)
 - [parseURL](core_src.md#parseurl)
 - [resize](core_src.md#resize)
+- [resolveConfigs](core_src.md#resolveconfigs)
 - [rotate](core_src.md#rotate)
 - [setMetadata](core_src.md#setmetadata)
 - [srcsetFormat](core_src.md#srcsetformat)
 - [tint](core_src.md#tint)
 - [urlFormat](core_src.md#urlformat)
 
-## References
-
-### resolveConfigs
-
-Renames and re-exports [__type](../interfaces/vite_src_types.VitePluginOptions.md#__type)
-
-## Type aliases
+## Type Aliases
 
 ### FitValue
 
@@ -101,7 +92,7 @@ Renames and re-exports [__type](../interfaces/vite_src_types.VitePluginOptions.m
 
 #### Defined in
 
-[core/src/transforms/fit.ts:6](https://github.com/JonasKruckenberg/imagetools/blob/edbc774/packages/core/src/transforms/fit.ts#L6)
+[core/src/transforms/fit.ts:6](https://github.com/JonasKruckenberg/imagetools/blob/2fb948c/packages/core/src/transforms/fit.ts#L6)
 
 ___
 
@@ -111,7 +102,7 @@ ___
 
 #### Defined in
 
-[core/src/transforms/format.ts:8](https://github.com/JonasKruckenberg/imagetools/blob/edbc774/packages/core/src/transforms/format.ts#L8)
+[core/src/transforms/format.ts:8](https://github.com/JonasKruckenberg/imagetools/blob/2fb948c/packages/core/src/transforms/format.ts#L8)
 
 ___
 
@@ -121,7 +112,7 @@ ___
 
 #### Defined in
 
-[core/src/types.ts:3](https://github.com/JonasKruckenberg/imagetools/blob/edbc774/packages/core/src/types.ts#L3)
+[core/src/types.ts:3](https://github.com/JonasKruckenberg/imagetools/blob/2fb948c/packages/core/src/types.ts#L3)
 
 ___
 
@@ -145,7 +136,7 @@ ___
 
 #### Defined in
 
-[core/src/types.ts:17](https://github.com/JonasKruckenberg/imagetools/blob/edbc774/packages/core/src/types.ts#L17)
+[core/src/types.ts:17](https://github.com/JonasKruckenberg/imagetools/blob/2fb948c/packages/core/src/types.ts#L17)
 
 ___
 
@@ -155,7 +146,7 @@ ___
 
 #### Defined in
 
-[core/src/transforms/kernel.ts:6](https://github.com/JonasKruckenberg/imagetools/blob/edbc774/packages/core/src/transforms/kernel.ts#L6)
+[core/src/transforms/kernel.ts:6](https://github.com/JonasKruckenberg/imagetools/blob/2fb948c/packages/core/src/transforms/kernel.ts#L6)
 
 ___
 
@@ -191,7 +182,7 @@ ___
 
 #### Defined in
 
-[core/src/types.ts:24](https://github.com/JonasKruckenberg/imagetools/blob/edbc774/packages/core/src/types.ts#L24)
+[core/src/types.ts:24](https://github.com/JonasKruckenberg/imagetools/blob/2fb948c/packages/core/src/types.ts#L24)
 
 ___
 
@@ -201,7 +192,7 @@ ___
 
 #### Defined in
 
-[core/src/transforms/position.ts:38](https://github.com/JonasKruckenberg/imagetools/blob/edbc774/packages/core/src/transforms/position.ts#L38)
+[core/src/transforms/position.ts:38](https://github.com/JonasKruckenberg/imagetools/blob/2fb948c/packages/core/src/transforms/position.ts#L38)
 
 ___
 
@@ -232,7 +223,7 @@ ___
 
 #### Defined in
 
-[core/src/types.ts:10](https://github.com/JonasKruckenberg/imagetools/blob/edbc774/packages/core/src/types.ts#L10)
+[core/src/types.ts:10](https://github.com/JonasKruckenberg/imagetools/blob/2fb948c/packages/core/src/types.ts#L10)
 
 ___
 
@@ -264,13 +255,13 @@ ___
 
 #### Defined in
 
-[core/src/types.ts:15](https://github.com/JonasKruckenberg/imagetools/blob/edbc774/packages/core/src/types.ts#L15)
+[core/src/types.ts:15](https://github.com/JonasKruckenberg/imagetools/blob/2fb948c/packages/core/src/types.ts#L15)
 
 ## Variables
 
 ### builtinOutputFormats
 
-• **builtinOutputFormats**: `Object`
+• `Const` **builtinOutputFormats**: `Object`
 
 #### Type declaration
 
@@ -283,67 +274,67 @@ ___
 
 #### Defined in
 
-[core/src/output-formats.ts:25](https://github.com/JonasKruckenberg/imagetools/blob/edbc774/packages/core/src/output-formats.ts#L25)
+[core/src/output-formats.ts:25](https://github.com/JonasKruckenberg/imagetools/blob/2fb948c/packages/core/src/output-formats.ts#L25)
 
 ___
 
 ### builtins
 
-• **builtins**: ([`TransformFactory`](core_src.md#transformfactory)<[`BlurOptions`](../interfaces/core_src.BlurOptions.md)\> \| [`TransformFactory`](core_src.md#transformfactory)<[`FlattenOptions`](../interfaces/core_src.FlattenOptions.md)\> \| [`TransformFactory`](core_src.md#transformfactory)<[`FlipOptions`](../interfaces/core_src.FlipOptions.md)\> \| [`TransformFactory`](core_src.md#transformfactory)<[`FlopOptions`](../interfaces/core_src.FlopOptions.md)\> \| [`TransformFactory`](core_src.md#transformfactory)<[`FormatOptions`](../interfaces/core_src.FormatOptions.md)\> \| [`TransformFactory`](core_src.md#transformfactory)<[`GrayscaleOptions`](../interfaces/core_src.GrayscaleOptions.md)\> \| [`TransformFactory`](core_src.md#transformfactory)<[`HSBOptions`](../interfaces/core_src.HSBOptions.md)\> \| [`TransformFactory`](core_src.md#transformfactory)<[`InvertOptions`](../interfaces/core_src.InvertOptions.md)\> \| [`TransformFactory`](core_src.md#transformfactory)<[`MedianOptions`](../interfaces/core_src.MedianOptions.md)\> \| [`TransformFactory`](core_src.md#transformfactory)<[`NormalizeOptions`](../interfaces/core_src.NormalizeOptions.md)\> \| [`TransformFactory`](core_src.md#transformfactory)<[`ResizeOptions`](../interfaces/core_src.ResizeOptions.md)\> \| [`TransformFactory`](core_src.md#transformfactory)<[`RotateOptions`](../interfaces/core_src.RotateOptions.md)\> \| [`TransformFactory`](core_src.md#transformfactory)<[`TintOptions`](../interfaces/core_src.TintOptions.md)\>)[]
+• `Const` **builtins**: ([`TransformFactory`](core_src.md#transformfactory)<[`BlurOptions`](../interfaces/core_src.BlurOptions.md)\> \| [`TransformFactory`](core_src.md#transformfactory)<[`FlattenOptions`](../interfaces/core_src.FlattenOptions.md)\> \| [`TransformFactory`](core_src.md#transformfactory)<[`FlipOptions`](../interfaces/core_src.FlipOptions.md)\> \| [`TransformFactory`](core_src.md#transformfactory)<[`FlopOptions`](../interfaces/core_src.FlopOptions.md)\> \| [`TransformFactory`](core_src.md#transformfactory)<[`FormatOptions`](../interfaces/core_src.FormatOptions.md)\> \| [`TransformFactory`](core_src.md#transformfactory)<[`GrayscaleOptions`](../interfaces/core_src.GrayscaleOptions.md)\> \| [`TransformFactory`](core_src.md#transformfactory)<[`HSBOptions`](../interfaces/core_src.HSBOptions.md)\> \| [`TransformFactory`](core_src.md#transformfactory)<[`InvertOptions`](../interfaces/core_src.InvertOptions.md)\> \| [`TransformFactory`](core_src.md#transformfactory)<[`MedianOptions`](../interfaces/core_src.MedianOptions.md)\> \| [`TransformFactory`](core_src.md#transformfactory)<[`NormalizeOptions`](../interfaces/core_src.NormalizeOptions.md)\> \| [`TransformFactory`](core_src.md#transformfactory)<[`ResizeOptions`](../interfaces/core_src.ResizeOptions.md)\> \| [`TransformFactory`](core_src.md#transformfactory)<[`RotateOptions`](../interfaces/core_src.RotateOptions.md)\> \| [`TransformFactory`](core_src.md#transformfactory)<[`TintOptions`](../interfaces/core_src.TintOptions.md)\>)[]
 
 #### Defined in
 
-[core/src/builtins.ts:15](https://github.com/JonasKruckenberg/imagetools/blob/edbc774/packages/core/src/builtins.ts#L15)
+[core/src/builtins.ts:15](https://github.com/JonasKruckenberg/imagetools/blob/2fb948c/packages/core/src/builtins.ts#L15)
 
 ___
 
 ### fitValues
 
-• **fitValues**: readonly [``"cover"``, ``"contain"``, ``"fill"``, ``"inside"``, ``"outside"``]
+• `Const` **fitValues**: readonly [``"cover"``, ``"contain"``, ``"fill"``, ``"inside"``, ``"outside"``]
 
 #### Defined in
 
-[core/src/transforms/fit.ts:4](https://github.com/JonasKruckenberg/imagetools/blob/edbc774/packages/core/src/transforms/fit.ts#L4)
+[core/src/transforms/fit.ts:4](https://github.com/JonasKruckenberg/imagetools/blob/2fb948c/packages/core/src/transforms/fit.ts#L4)
 
 ___
 
 ### formatValues
 
-• **formatValues**: readonly [``"avif"``, ``"jpg"``, ``"jpeg"``, ``"png"``, ``"heif"``, ``"heic"``, ``"webp"``, ``"tiff"``]
+• `Const` **formatValues**: readonly [``"avif"``, ``"jpg"``, ``"jpeg"``, ``"png"``, ``"heif"``, ``"heic"``, ``"webp"``, ``"tiff"``]
 
 #### Defined in
 
-[core/src/transforms/format.ts:6](https://github.com/JonasKruckenberg/imagetools/blob/edbc774/packages/core/src/transforms/format.ts#L6)
+[core/src/transforms/format.ts:6](https://github.com/JonasKruckenberg/imagetools/blob/2fb948c/packages/core/src/transforms/format.ts#L6)
 
 ___
 
 ### kernelValues
 
-• **kernelValues**: readonly [``"nearest"``, ``"cubic"``, ``"mitchell"``, ``"lanczos2"``, ``"lanczos3"``]
+• `Const` **kernelValues**: readonly [``"nearest"``, ``"cubic"``, ``"mitchell"``, ``"lanczos2"``, ``"lanczos3"``]
 
 #### Defined in
 
-[core/src/transforms/kernel.ts:4](https://github.com/JonasKruckenberg/imagetools/blob/edbc774/packages/core/src/transforms/kernel.ts#L4)
+[core/src/transforms/kernel.ts:4](https://github.com/JonasKruckenberg/imagetools/blob/2fb948c/packages/core/src/transforms/kernel.ts#L4)
 
 ___
 
 ### positionShorthands
 
-• **positionShorthands**: `string`[]
+• `Const` **positionShorthands**: `string`[]
 
 #### Defined in
 
-[core/src/transforms/position.ts:27](https://github.com/JonasKruckenberg/imagetools/blob/edbc774/packages/core/src/transforms/position.ts#L27)
+[core/src/transforms/position.ts:27](https://github.com/JonasKruckenberg/imagetools/blob/2fb948c/packages/core/src/transforms/position.ts#L27)
 
 ___
 
 ### positionValues
 
-• **positionValues**: readonly [``"top"``, ``"right top"``, ``"right"``, ``"right bottom"``, ``"bottom"``, ``"left bottom"``, ``"left"``, ``"left top"``, ``"north"``, ``"northeast"``, ``"east"``, ``"southeast"``, ``"south"``, ``"southwest"``, ``"west"``, ``"northwest"``, ``"center"``, ``"centre"``, ``"entropy"``, ``"attention"``]
+• `Const` **positionValues**: readonly [``"top"``, ``"right top"``, ``"right"``, ``"right bottom"``, ``"bottom"``, ``"left bottom"``, ``"left"``, ``"left top"``, ``"north"``, ``"northeast"``, ``"east"``, ``"southeast"``, ``"south"``, ``"southwest"``, ``"west"``, ``"northwest"``, ``"center"``, ``"centre"``, ``"entropy"``, ``"attention"``]
 
 #### Defined in
 
-[core/src/transforms/position.ts:4](https://github.com/JonasKruckenberg/imagetools/blob/edbc774/packages/core/src/transforms/position.ts#L4)
+[core/src/transforms/position.ts:4](https://github.com/JonasKruckenberg/imagetools/blob/2fb948c/packages/core/src/transforms/position.ts#L4)
 
 ## Functions
 
@@ -365,13 +356,13 @@ ___
 
 #### Defined in
 
-[core/src/lib/apply-transforms.ts:5](https://github.com/JonasKruckenberg/imagetools/blob/edbc774/packages/core/src/lib/apply-transforms.ts#L5)
+[core/src/lib/apply-transforms.ts:5](https://github.com/JonasKruckenberg/imagetools/blob/2fb948c/packages/core/src/lib/apply-transforms.ts#L5)
 
 ___
 
 ### blur
 
-▸ `Const` **blur**(`metadata`, `ctx`): `undefined` \| [`ImageTransformation`](core_src.md#imagetransformation)
+▸ **blur**(`metadata`, `ctx`): `undefined` \| [`ImageTransformation`](core_src.md#imagetransformation)
 
 #### Parameters
 
@@ -386,7 +377,7 @@ ___
 
 #### Defined in
 
-[core/src/transforms/blur.ts:8](https://github.com/JonasKruckenberg/imagetools/blob/edbc774/packages/core/src/transforms/blur.ts#L8)
+[core/src/transforms/blur.ts:8](https://github.com/JonasKruckenberg/imagetools/blob/2fb948c/packages/core/src/transforms/blur.ts#L8)
 
 ___
 
@@ -406,13 +397,13 @@ ___
 
 #### Defined in
 
-[core/src/lib/parse-url.ts:5](https://github.com/JonasKruckenberg/imagetools/blob/edbc774/packages/core/src/lib/parse-url.ts#L5)
+[core/src/lib/parse-url.ts:5](https://github.com/JonasKruckenberg/imagetools/blob/2fb948c/packages/core/src/lib/parse-url.ts#L5)
 
 ___
 
 ### flatten
 
-▸ `Const` **flatten**(`metadata`, `ctx`): `undefined` \| [`ImageTransformation`](core_src.md#imagetransformation)
+▸ **flatten**(`metadata`, `ctx`): `undefined` \| [`ImageTransformation`](core_src.md#imagetransformation)
 
 #### Parameters
 
@@ -427,13 +418,13 @@ ___
 
 #### Defined in
 
-[core/src/transforms/flatten.ts:9](https://github.com/JonasKruckenberg/imagetools/blob/edbc774/packages/core/src/transforms/flatten.ts#L9)
+[core/src/transforms/flatten.ts:9](https://github.com/JonasKruckenberg/imagetools/blob/2fb948c/packages/core/src/transforms/flatten.ts#L9)
 
 ___
 
 ### flip
 
-▸ `Const` **flip**(`metadata`, `ctx`): `undefined` \| [`ImageTransformation`](core_src.md#imagetransformation)
+▸ **flip**(`metadata`, `ctx`): `undefined` \| [`ImageTransformation`](core_src.md#imagetransformation)
 
 #### Parameters
 
@@ -448,13 +439,13 @@ ___
 
 #### Defined in
 
-[core/src/transforms/flip.ts:8](https://github.com/JonasKruckenberg/imagetools/blob/edbc774/packages/core/src/transforms/flip.ts#L8)
+[core/src/transforms/flip.ts:8](https://github.com/JonasKruckenberg/imagetools/blob/2fb948c/packages/core/src/transforms/flip.ts#L8)
 
 ___
 
 ### flop
 
-▸ `Const` **flop**(`metadata`, `ctx`): `undefined` \| [`ImageTransformation`](core_src.md#imagetransformation)
+▸ **flop**(`metadata`, `ctx`): `undefined` \| [`ImageTransformation`](core_src.md#imagetransformation)
 
 #### Parameters
 
@@ -469,13 +460,13 @@ ___
 
 #### Defined in
 
-[core/src/transforms/flop.ts:8](https://github.com/JonasKruckenberg/imagetools/blob/edbc774/packages/core/src/transforms/flop.ts#L8)
+[core/src/transforms/flop.ts:8](https://github.com/JonasKruckenberg/imagetools/blob/2fb948c/packages/core/src/transforms/flop.ts#L8)
 
 ___
 
 ### format
 
-▸ `Const` **format**(`metadata`, `ctx`): `undefined` \| [`ImageTransformation`](core_src.md#imagetransformation)
+▸ **format**(`metadata`, `ctx`): `undefined` \| [`ImageTransformation`](core_src.md#imagetransformation)
 
 #### Parameters
 
@@ -490,7 +481,7 @@ ___
 
 #### Defined in
 
-[core/src/transforms/format.ts:14](https://github.com/JonasKruckenberg/imagetools/blob/edbc774/packages/core/src/transforms/format.ts#L14)
+[core/src/transforms/format.ts:14](https://github.com/JonasKruckenberg/imagetools/blob/2fb948c/packages/core/src/transforms/format.ts#L14)
 
 ___
 
@@ -511,7 +502,7 @@ ___
 
 #### Defined in
 
-[core/src/util.ts:9](https://github.com/JonasKruckenberg/imagetools/blob/edbc774/packages/core/src/util.ts#L9)
+[core/src/util.ts:9](https://github.com/JonasKruckenberg/imagetools/blob/2fb948c/packages/core/src/util.ts#L9)
 
 ___
 
@@ -538,13 +529,13 @@ ___
 
 #### Defined in
 
-[core/src/lib/generate-transforms.ts:3](https://github.com/JonasKruckenberg/imagetools/blob/edbc774/packages/core/src/lib/generate-transforms.ts#L3)
+[core/src/lib/generate-transforms.ts:3](https://github.com/JonasKruckenberg/imagetools/blob/2fb948c/packages/core/src/lib/generate-transforms.ts#L3)
 
 ___
 
 ### getBackground
 
-▸ `Const` **getBackground**(`metadata`, `image`): `undefined` \| `string`
+▸ **getBackground**(`metadata`, `image`): `undefined` \| `string`
 
 #### Parameters
 
@@ -559,13 +550,13 @@ ___
 
 #### Defined in
 
-[core/src/transforms/background.ts:8](https://github.com/JonasKruckenberg/imagetools/blob/edbc774/packages/core/src/transforms/background.ts#L8)
+[core/src/transforms/background.ts:8](https://github.com/JonasKruckenberg/imagetools/blob/2fb948c/packages/core/src/transforms/background.ts#L8)
 
 ___
 
 ### getFit
 
-▸ `Const` **getFit**(`metadata`, `image`): `undefined` \| ``"cover"`` \| ``"contain"`` \| ``"fill"`` \| ``"inside"`` \| ``"outside"``
+▸ **getFit**(`metadata`, `image`): `undefined` \| ``"cover"`` \| ``"contain"`` \| ``"fill"`` \| ``"inside"`` \| ``"outside"``
 
 #### Parameters
 
@@ -580,13 +571,13 @@ ___
 
 #### Defined in
 
-[core/src/transforms/fit.ts:12](https://github.com/JonasKruckenberg/imagetools/blob/edbc774/packages/core/src/transforms/fit.ts#L12)
+[core/src/transforms/fit.ts:12](https://github.com/JonasKruckenberg/imagetools/blob/2fb948c/packages/core/src/transforms/fit.ts#L12)
 
 ___
 
 ### getKernel
 
-▸ `Const` **getKernel**(`metadata`, `image`): `undefined` \| ``"nearest"`` \| ``"cubic"`` \| ``"mitchell"`` \| ``"lanczos2"`` \| ``"lanczos3"``
+▸ **getKernel**(`metadata`, `image`): `undefined` \| ``"nearest"`` \| ``"cubic"`` \| ``"mitchell"`` \| ``"lanczos2"`` \| ``"lanczos3"``
 
 #### Parameters
 
@@ -601,7 +592,7 @@ ___
 
 #### Defined in
 
-[core/src/transforms/kernel.ts:12](https://github.com/JonasKruckenberg/imagetools/blob/edbc774/packages/core/src/transforms/kernel.ts#L12)
+[core/src/transforms/kernel.ts:12](https://github.com/JonasKruckenberg/imagetools/blob/2fb948c/packages/core/src/transforms/kernel.ts#L12)
 
 ___
 
@@ -622,13 +613,13 @@ ___
 
 #### Defined in
 
-[core/src/lib/metadata.ts:15](https://github.com/JonasKruckenberg/imagetools/blob/edbc774/packages/core/src/lib/metadata.ts#L15)
+[core/src/lib/metadata.ts:15](https://github.com/JonasKruckenberg/imagetools/blob/2fb948c/packages/core/src/lib/metadata.ts#L15)
 
 ___
 
 ### getPosition
 
-▸ `Const` **getPosition**(`metadata`, `image`): `undefined` \| ``"top"`` \| ``"right top"`` \| ``"right"`` \| ``"right bottom"`` \| ``"bottom"`` \| ``"left bottom"`` \| ``"left"`` \| ``"left top"`` \| ``"north"`` \| ``"northeast"`` \| ``"east"`` \| ``"southeast"`` \| ``"south"`` \| ``"southwest"`` \| ``"west"`` \| ``"northwest"`` \| ``"center"`` \| ``"centre"`` \| ``"entropy"`` \| ``"attention"``
+▸ **getPosition**(`metadata`, `image`): `undefined` \| ``"top"`` \| ``"right top"`` \| ``"right"`` \| ``"right bottom"`` \| ``"bottom"`` \| ``"left bottom"`` \| ``"left"`` \| ``"left top"`` \| ``"north"`` \| ``"northeast"`` \| ``"east"`` \| ``"southeast"`` \| ``"south"`` \| ``"southwest"`` \| ``"west"`` \| ``"northwest"`` \| ``"center"`` \| ``"centre"`` \| ``"entropy"`` \| ``"attention"``
 
 #### Parameters
 
@@ -643,13 +634,13 @@ ___
 
 #### Defined in
 
-[core/src/transforms/position.ts:44](https://github.com/JonasKruckenberg/imagetools/blob/edbc774/packages/core/src/transforms/position.ts#L44)
+[core/src/transforms/position.ts:44](https://github.com/JonasKruckenberg/imagetools/blob/2fb948c/packages/core/src/transforms/position.ts#L44)
 
 ___
 
 ### getProgressive
 
-▸ `Const` **getProgressive**(`metadata`, `image`): `unknown`
+▸ **getProgressive**(`metadata`, `image`): `unknown`
 
 #### Parameters
 
@@ -664,13 +655,13 @@ ___
 
 #### Defined in
 
-[core/src/transforms/progressive.ts:8](https://github.com/JonasKruckenberg/imagetools/blob/edbc774/packages/core/src/transforms/progressive.ts#L8)
+[core/src/transforms/progressive.ts:8](https://github.com/JonasKruckenberg/imagetools/blob/2fb948c/packages/core/src/transforms/progressive.ts#L8)
 
 ___
 
 ### getQuality
 
-▸ `Const` **getQuality**(`metadata`, `image`): `undefined` \| `number`
+▸ **getQuality**(`metadata`, `image`): `undefined` \| `number`
 
 #### Parameters
 
@@ -685,13 +676,13 @@ ___
 
 #### Defined in
 
-[core/src/transforms/quality.ts:8](https://github.com/JonasKruckenberg/imagetools/blob/edbc774/packages/core/src/transforms/quality.ts#L8)
+[core/src/transforms/quality.ts:8](https://github.com/JonasKruckenberg/imagetools/blob/2fb948c/packages/core/src/transforms/quality.ts#L8)
 
 ___
 
 ### grayscale
 
-▸ `Const` **grayscale**(`metadata`, `ctx`): `undefined` \| [`ImageTransformation`](core_src.md#imagetransformation)
+▸ **grayscale**(`metadata`, `ctx`): `undefined` \| [`ImageTransformation`](core_src.md#imagetransformation)
 
 #### Parameters
 
@@ -706,13 +697,13 @@ ___
 
 #### Defined in
 
-[core/src/transforms/grayscale.ts:8](https://github.com/JonasKruckenberg/imagetools/blob/edbc774/packages/core/src/transforms/grayscale.ts#L8)
+[core/src/transforms/grayscale.ts:8](https://github.com/JonasKruckenberg/imagetools/blob/2fb948c/packages/core/src/transforms/grayscale.ts#L8)
 
 ___
 
 ### hsb
 
-▸ `Const` **hsb**(`metadata`, `ctx`): `undefined` \| [`ImageTransformation`](core_src.md#imagetransformation)
+▸ **hsb**(`metadata`, `ctx`): `undefined` \| [`ImageTransformation`](core_src.md#imagetransformation)
 
 #### Parameters
 
@@ -727,13 +718,13 @@ ___
 
 #### Defined in
 
-[core/src/transforms/hsb.ts:10](https://github.com/JonasKruckenberg/imagetools/blob/edbc774/packages/core/src/transforms/hsb.ts#L10)
+[core/src/transforms/hsb.ts:10](https://github.com/JonasKruckenberg/imagetools/blob/2fb948c/packages/core/src/transforms/hsb.ts#L10)
 
 ___
 
 ### invert
 
-▸ `Const` **invert**(`metadata`, `ctx`): `undefined` \| [`ImageTransformation`](core_src.md#imagetransformation)
+▸ **invert**(`metadata`, `ctx`): `undefined` \| [`ImageTransformation`](core_src.md#imagetransformation)
 
 #### Parameters
 
@@ -748,7 +739,7 @@ ___
 
 #### Defined in
 
-[core/src/transforms/invert.ts:8](https://github.com/JonasKruckenberg/imagetools/blob/edbc774/packages/core/src/transforms/invert.ts#L8)
+[core/src/transforms/invert.ts:8](https://github.com/JonasKruckenberg/imagetools/blob/2fb948c/packages/core/src/transforms/invert.ts#L8)
 
 ___
 
@@ -768,13 +759,13 @@ ___
 
 #### Defined in
 
-[core/src/util.ts:5](https://github.com/JonasKruckenberg/imagetools/blob/edbc774/packages/core/src/util.ts#L5)
+[core/src/util.ts:5](https://github.com/JonasKruckenberg/imagetools/blob/2fb948c/packages/core/src/util.ts#L5)
 
 ___
 
 ### median
 
-▸ `Const` **median**(`metadata`, `ctx`): `undefined` \| [`ImageTransformation`](core_src.md#imagetransformation)
+▸ **median**(`metadata`, `ctx`): `undefined` \| [`ImageTransformation`](core_src.md#imagetransformation)
 
 #### Parameters
 
@@ -789,13 +780,13 @@ ___
 
 #### Defined in
 
-[core/src/transforms/median.ts:8](https://github.com/JonasKruckenberg/imagetools/blob/edbc774/packages/core/src/transforms/median.ts#L8)
+[core/src/transforms/median.ts:8](https://github.com/JonasKruckenberg/imagetools/blob/2fb948c/packages/core/src/transforms/median.ts#L8)
 
 ___
 
 ### metadataFormat
 
-▸ `Const` **metadataFormat**(`args?`): (`metadata`: [`ImageConfig`](core_src.md#imageconfig)[]) => `unknown`
+▸ **metadataFormat**(`args?`): (`metadata`: [`ImageConfig`](core_src.md#imageconfig)[]) => `unknown`
 
 #### Parameters
 
@@ -821,13 +812,13 @@ ___
 
 #### Defined in
 
-[core/src/output-formats.ts:15](https://github.com/JonasKruckenberg/imagetools/blob/edbc774/packages/core/src/output-formats.ts#L15)
+[core/src/output-formats.ts:15](https://github.com/JonasKruckenberg/imagetools/blob/2fb948c/packages/core/src/output-formats.ts#L15)
 
 ___
 
 ### normalize
 
-▸ `Const` **normalize**(`metadata`, `ctx`): `undefined` \| [`ImageTransformation`](core_src.md#imagetransformation)
+▸ **normalize**(`metadata`, `ctx`): `undefined` \| [`ImageTransformation`](core_src.md#imagetransformation)
 
 #### Parameters
 
@@ -842,7 +833,7 @@ ___
 
 #### Defined in
 
-[core/src/transforms/normalize.ts:8](https://github.com/JonasKruckenberg/imagetools/blob/edbc774/packages/core/src/transforms/normalize.ts#L8)
+[core/src/transforms/normalize.ts:8](https://github.com/JonasKruckenberg/imagetools/blob/2fb948c/packages/core/src/transforms/normalize.ts#L8)
 
 ___
 
@@ -862,13 +853,13 @@ ___
 
 #### Defined in
 
-[core/src/lib/parse-url.ts:1](https://github.com/JonasKruckenberg/imagetools/blob/edbc774/packages/core/src/lib/parse-url.ts#L1)
+[core/src/lib/parse-url.ts:1](https://github.com/JonasKruckenberg/imagetools/blob/2fb948c/packages/core/src/lib/parse-url.ts#L1)
 
 ___
 
 ### resize
 
-▸ `Const` **resize**(`metadata`, `ctx`): `undefined` \| [`ImageTransformation`](core_src.md#imagetransformation)
+▸ **resize**(`metadata`, `ctx`): `undefined` \| [`ImageTransformation`](core_src.md#imagetransformation)
 
 #### Parameters
 
@@ -883,13 +874,39 @@ ___
 
 #### Defined in
 
-[core/src/transforms/resize.ts:42](https://github.com/JonasKruckenberg/imagetools/blob/edbc774/packages/core/src/transforms/resize.ts#L42)
+[core/src/transforms/resize.ts:42](https://github.com/JonasKruckenberg/imagetools/blob/2fb948c/packages/core/src/transforms/resize.ts#L42)
+
+___
+
+### resolveConfigs
+
+▸ **resolveConfigs**(`entries`, `outputFormats`): `Record`<`string`, `string` \| `string`[]\>[]
+
+This function builds up all possible combinations the given entries can be combined
+an returns it as an array of objects that can be given to a the transforms.
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `entries` | [`string`, `string`[]][] | The url parameter entries |
+| `outputFormats` | `Record`<`string`, [`OutputFormat`](core_src.md#outputformat)\> | - |
+
+#### Returns
+
+`Record`<`string`, `string` \| `string`[]\>[]
+
+An array of directive options
+
+#### Defined in
+
+[core/src/lib/resolve-configs.ts:17](https://github.com/JonasKruckenberg/imagetools/blob/2fb948c/packages/core/src/lib/resolve-configs.ts#L17)
 
 ___
 
 ### rotate
 
-▸ `Const` **rotate**(`metadata`, `ctx`): `undefined` \| [`ImageTransformation`](core_src.md#imagetransformation)
+▸ **rotate**(`metadata`, `ctx`): `undefined` \| [`ImageTransformation`](core_src.md#imagetransformation)
 
 #### Parameters
 
@@ -904,7 +921,7 @@ ___
 
 #### Defined in
 
-[core/src/transforms/rotate.ts:9](https://github.com/JonasKruckenberg/imagetools/blob/edbc774/packages/core/src/transforms/rotate.ts#L9)
+[core/src/transforms/rotate.ts:9](https://github.com/JonasKruckenberg/imagetools/blob/2fb948c/packages/core/src/transforms/rotate.ts#L9)
 
 ___
 
@@ -926,13 +943,13 @@ ___
 
 #### Defined in
 
-[core/src/lib/metadata.ts:11](https://github.com/JonasKruckenberg/imagetools/blob/edbc774/packages/core/src/lib/metadata.ts#L11)
+[core/src/lib/metadata.ts:11](https://github.com/JonasKruckenberg/imagetools/blob/2fb948c/packages/core/src/lib/metadata.ts#L11)
 
 ___
 
 ### srcsetFormat
 
-▸ `Const` **srcsetFormat**(`args?`): (`metadata`: [`ImageConfig`](core_src.md#imageconfig)[]) => `unknown`
+▸ **srcsetFormat**(`args?`): (`metadata`: [`ImageConfig`](core_src.md#imageconfig)[]) => `unknown`
 
 #### Parameters
 
@@ -958,13 +975,13 @@ ___
 
 #### Defined in
 
-[core/src/output-formats.ts:9](https://github.com/JonasKruckenberg/imagetools/blob/edbc774/packages/core/src/output-formats.ts#L9)
+[core/src/output-formats.ts:9](https://github.com/JonasKruckenberg/imagetools/blob/2fb948c/packages/core/src/output-formats.ts#L9)
 
 ___
 
 ### tint
 
-▸ `Const` **tint**(`metadata`, `ctx`): `undefined` \| [`ImageTransformation`](core_src.md#imagetransformation)
+▸ **tint**(`metadata`, `ctx`): `undefined` \| [`ImageTransformation`](core_src.md#imagetransformation)
 
 #### Parameters
 
@@ -979,13 +996,13 @@ ___
 
 #### Defined in
 
-[core/src/transforms/tint.ts:8](https://github.com/JonasKruckenberg/imagetools/blob/edbc774/packages/core/src/transforms/tint.ts#L8)
+[core/src/transforms/tint.ts:8](https://github.com/JonasKruckenberg/imagetools/blob/2fb948c/packages/core/src/transforms/tint.ts#L8)
 
 ___
 
 ### urlFormat
 
-▸ `Const` **urlFormat**(`args?`): (`metadata`: [`ImageConfig`](core_src.md#imageconfig)[]) => `unknown`
+▸ **urlFormat**(`args?`): (`metadata`: [`ImageConfig`](core_src.md#imageconfig)[]) => `unknown`
 
 #### Parameters
 
@@ -1011,4 +1028,4 @@ ___
 
 #### Defined in
 
-[core/src/output-formats.ts:3](https://github.com/JonasKruckenberg/imagetools/blob/edbc774/packages/core/src/output-formats.ts#L3)
+[core/src/output-formats.ts:3](https://github.com/JonasKruckenberg/imagetools/blob/2fb948c/packages/core/src/output-formats.ts#L3)

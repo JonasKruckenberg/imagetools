@@ -16,5 +16,4 @@ unclear!
 ## Dive deeper
 
 - [Extend Imagetools](guide/extending.md)
-- [The Imagetools Specification](spec.md)
-- [Sharps documentation](https://sharp.pixelplumbing.com)
+- [Sharp's documentation](https://sharp.pixelplumbing.com)

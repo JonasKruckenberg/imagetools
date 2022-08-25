@@ -18,4 +18,4 @@
 
 #### Defined in
 
-[core/src/transforms/quality.ts:5](https://github.com/JonasKruckenberg/imagetools/blob/edbc774/packages/core/src/transforms/quality.ts#L5)
+[core/src/transforms/quality.ts:5](https://github.com/JonasKruckenberg/imagetools/blob/2fb948c/packages/core/src/transforms/quality.ts#L5)

@@ -18,4 +18,4 @@
 
 #### Defined in
 
-[core/src/transforms/rotate.ts:6](https://github.com/JonasKruckenberg/imagetools/blob/edbc774/packages/core/src/transforms/rotate.ts#L6)
+[core/src/transforms/rotate.ts:6](https://github.com/JonasKruckenberg/imagetools/blob/2fb948c/packages/core/src/transforms/rotate.ts#L6)
