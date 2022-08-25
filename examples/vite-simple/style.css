@@ -8,3 +8,9 @@
   color: #2c3e50;
   margin-top: 60px;
 }
+
+img {
+  width: 100vw;
+  height: 100vh;
+  object-fit: contain;
+}
