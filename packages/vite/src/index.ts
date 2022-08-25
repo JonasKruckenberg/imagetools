@@ -53,13 +53,14 @@ export function imagetools(userOptions: Partial<VitePluginOptions> = {}): Plugin
       let directives = srcURL.searchParams
 
       if(typeof pluginOptions.defaultDirectives === "function") {
-        directives = new URLSearchParams([...srcURL.searchParams, ...pluginOptions.defaultDirectives(srcURL)])
+        directives = new URLSearchParams([...pluginOptions.defaultDirectives(srcURL), ...srcURL.searchParams])
       } else if (pluginOptions.defaultDirectives) {
-        directives = new URLSearchParams([...srcURL.searchParams, ...pluginOptions.defaultDirectives])
+        directives = new URLSearchParams([...pluginOptions.defaultDirectives, ...srcURL.searchParams])
       }
 
       const parameters = extractEntries(directives)
-      const imageConfigs = pluginOptions.resolveConfigs?.(parameters, outputFormats) ?? resolveConfigs(parameters, outputFormats)
+      const imageConfigs =
+        pluginOptions.resolveConfigs?.(parameters, outputFormats) ?? resolveConfigs(parameters, outputFormats)
 
       const img = loadImage(decodeURIComponent(srcURL.pathname))
 
@@ -95,8 +96,8 @@ export function imagetools(userOptions: Partial<VitePluginOptions> = {}): Plugin
       let outputFormat = urlFormat()
 
       for (const [key, format] of Object.entries(outputFormats)) {
-        if (srcURL.searchParams.has(key)) {
-          const params = srcURL.searchParams
+        if (directives.has(key)) {
+          const params = directives
             .get(key)
             ?.split(';')
             .filter((v: string) => !!v)

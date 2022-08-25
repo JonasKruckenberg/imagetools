@@ -44,7 +44,7 @@ importers:
     specifiers:
       '@rollup/plugin-typescript': ^8.3.0
       '@types/jest': ^28.0.0
-      '@types/jest-image-snapshot': ^4.3.1
+      '@types/jest-image-snapshot': ^5.0.0
       '@types/sharp': ^0.30.0
       jest: ^28.0.0
       jest-file-snapshot: ^0.5.0
@@ -59,7 +59,7 @@ importers:
     devDependencies:
       '@rollup/plugin-typescript': 8.3.2_6qbdvrnuliyehzvxjtzrb3pjt4
       '@types/jest': 28.1.0
-      '@types/jest-image-snapshot': 4.3.1
+      '@types/jest-image-snapshot': 5.1.0
       '@types/sharp': 0.30.2
       jest: 28.1.0
       jest-file-snapshot: 0.5.0
@@ -74,7 +74,7 @@ importers:
       '@rollup/plugin-typescript': ^8.3.0
       '@rollup/pluginutils': ^4.1.2
       '@types/jest': ^28.0.0
-      '@types/jest-image-snapshot': ^4.3.1
+      '@types/jest-image-snapshot': ^5.0.0
       '@types/jsdom': ^16.2.14
       '@types/picomatch': ^2.3.0
       '@types/sharp': ^0.30.0
@@ -96,7 +96,7 @@ importers:
     devDependencies:
       '@rollup/plugin-typescript': 8.3.2_6qbdvrnuliyehzvxjtzrb3pjt4
       '@types/jest': 28.1.0
-      '@types/jest-image-snapshot': 4.3.1
+      '@types/jest-image-snapshot': 5.1.0
       '@types/jsdom': 16.2.14
       '@types/picomatch': 2.3.0
       '@types/sharp': 0.30.2
@@ -115,7 +115,7 @@ importers:
       '@rollup/plugin-typescript': ^8.3.0
       '@rollup/pluginutils': ^4.1.2
       '@types/jest': ^28.0.0
-      '@types/jest-image-snapshot': ^4.3.1
+      '@types/jest-image-snapshot': ^5.0.0
       '@types/jsdom': ^16.2.14
       '@types/picomatch': ^2.3.0
       '@types/sharp': ^0.30.0
@@ -138,7 +138,7 @@ importers:
     devDependencies:
       '@rollup/plugin-typescript': 8.3.2_6qbdvrnuliyehzvxjtzrb3pjt4
       '@types/jest': 28.1.0
-      '@types/jest-image-snapshot': 4.3.1
+      '@types/jest-image-snapshot': 5.1.0
       '@types/jsdom': 16.2.14
       '@types/picomatch': 2.3.0
       '@types/sharp': 0.30.2
@@ -1135,8 +1135,8 @@ packages:
       '@types/istanbul-lib-report': 3.0.0
     dev: true
 
-  /@types/jest-image-snapshot/4.3.1:
-    resolution: {integrity: sha512-WDdUruGF14C53axe/mNDgQP2YIhtcwXrwmmVP8eOGyfNTVD+FbxWjWR7RTU+lzEy4K6V6+z7nkVDm/auI/r3xQ==}
+  /@types/jest-image-snapshot/5.1.0:
+    resolution: {integrity: sha512-pfCz6dclA8mDxwXN/x/PuYBCPwzGuYcTfOVZvDAikC1GLXg/CwECF9UgtWse0tR42c6OaL7LPEnN7i/Dm86KkQ==}
     dependencies:
       '@types/jest': 28.1.0
       '@types/pixelmatch': 5.2.4

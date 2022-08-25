@@ -55,7 +55,8 @@ export function imagetools(userOptions: Partial<RollupPluginOptions> = {}): Plug
       }
 
       const parameters = extractEntries(directives)
-      const imageConfigs = pluginOptions.resolveConfigs?.(parameters, outputFormats) ?? resolveConfigs(parameters, outputFormats)
+      const imageConfigs =
+        pluginOptions.resolveConfigs?.(parameters, outputFormats) ?? resolveConfigs(parameters, outputFormats)
 
       const img = loadImage(decodeURIComponent(srcURL.pathname))
 
@@ -84,8 +85,8 @@ export function imagetools(userOptions: Partial<RollupPluginOptions> = {}): Plug
       let outputFormat = urlFormat()
 
       for (const [key, format] of Object.entries(outputFormats)) {
-        if (srcURL.searchParams.has(key)) {
-          const params = srcURL.searchParams
+        if (directives.has(key)) {
+          const params = directives
             .get(key)
             ?.split(';')
             .filter((v) => !!v)
