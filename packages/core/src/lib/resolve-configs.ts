@@ -1,7 +1,7 @@
 import { OutputFormat } from '..'
 
 /**
- * This function calculates the cartesian product of two or more array and is straight from stackoverflow ;)
+ * This function calculates the cartesian product of two or more arrays and is straight from stackoverflow ;)
  * Should be replaced with something more legible but works for now.
  * @internal
  */
