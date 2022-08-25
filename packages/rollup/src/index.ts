@@ -49,7 +49,7 @@ export function imagetools(userOptions: Partial<RollupPluginOptions> = {}): Plug
       let directives = srcURL.searchParams
 
       if(typeof pluginOptions.defaultDirectives === "function") {
-        directives = pluginOptions.defaultDirectives(srcURL)
+        directives = new URLSearchParams([...srcURL.searchParams, ...pluginOptions.defaultDirectives(srcURL)])
       } else if (pluginOptions.defaultDirectives) {
         directives = new URLSearchParams([...srcURL.searchParams, ...pluginOptions.defaultDirectives])
       }
