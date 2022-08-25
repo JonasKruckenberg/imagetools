@@ -60,6 +60,26 @@ import Image from 'example.jpg?w=400&h=300&webp'
 
 This option allows you to specify directives that should be applied _by default_ to every image.
 You can also provide a function, in which case the function gets passed the asset ID and should return an object of directives
+This can be used to define all sorts of shorthands or presets.
+
+```js
+import { imagetools } from 'vite-imagetools'
+
+export default {
+  plugins: [
+    imagetools({
+      defaultDirectives: (url) => {
+        if (url.searchParams.has('spotify')) {
+          return new URLSearchParams({
+            tint: 'ffaa22'
+          })
+        }
+        return new URLSearchParams()
+      }
+    })
+  ]
+}
+```
 
 #### Defined in
 
