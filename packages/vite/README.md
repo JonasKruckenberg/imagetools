@@ -63,17 +63,16 @@ This option allows you to specify directives that should be applied _by default_
 You can also provide a function, in which case the function gets passed the asset ID and should return an object of directives.
 This can be used to define all sorts of shorthands or presets.
 
-#### Example
-
+**`example`**
 ```js
 import { defineConfig } from 'vite'
 import { imagetools } from 'vite-imagetools'
 
 export default defineConfig({
-  plugins: [
-    imagetools({
+ plugins: [
+   imagetools({
       defaultDirectives: (url) => {
-        if (url.searchParams.has('spotify')) {
+       if (url.searchParams.has('spotify')) {
           return new URLSearchParams({
             tint: 'ffaa22'
           })
@@ -81,14 +80,9 @@ export default defineConfig({
         return new URLSearchParams()
       }
     })
-  ]
+   ]
 })
-
 ```
-
-#### Defined in
-
-[vite/src/types.ts:20](https://github.com/JonasKruckenberg/imagetools/blob/edbc774/packages/vite/src/types.ts#L20)
 
 ___
 
@@ -116,10 +110,6 @@ Which paths to include when processing images.
 
 **`default`** '**\/*.{heic,heif,avif,jpeg,jpg,png,tiff,webp,gif}?*'
 
-#### Defined in
-
-[vite/src/types.ts:8](https://github.com/JonasKruckenberg/imagetools/blob/4253c96/packages/vite/src/types.ts#L8)
-
 ___
 
 ### removeMetadata
@@ -130,10 +120,6 @@ Wether to remove potentially private metadata from the image, such as exif tags 
 
 **`default`** true
 
-#### Defined in
-
-[vite/src/types.ts:46](https://github.com/JonasKruckenberg/imagetools/blob/4253c96/packages/vite/src/types.ts#L46)
-
 ___
 
 ### silent
@@ -143,10 +129,6 @@ ___
 Settings this option to true disables all warnings produced by this plugin
 
 **`default`** false
-
-#### Defined in
-
-[vite/src/types.ts:40](https://github.com/JonasKruckenberg/imagetools/blob/4253c96/packages/vite/src/types.ts#L40)
 
 ### extendOutputFormats
 
@@ -166,10 +148,6 @@ This list will be merged with the builtin output formats before determining the 
 #### Returns
 
 `Record`<`string`, [`OutputFormat`](../../docs/modules/core_src.md#outputformat)\>
-
-#### Defined in
-
-[vite/src/types.ts:34](https://github.com/JonasKruckenberg/imagetools/blob/4253c96/packages/vite/src/types.ts#L34)
 
 ___
 
@@ -217,10 +195,6 @@ an returns it as an array of objects that can be given to a the transforms.
 `Record`<`string`, `string` \| `string`[]\>[]
 
 An array of directive options
-
-#### Defined in
-
-[vite/src/types.ts:40](https://github.com/JonasKruckenberg/imagetools/blob/edbc774/packages/vite/src/types.ts#L40)
 
 ## Contributing
 

@@ -27,11 +27,32 @@
 • `Optional` **defaultDirectives**: `URLSearchParams` \| (`url`: `URL`) => `URLSearchParams`
 
 This option allows you to specify directives that should be applied _by default_ to every image.
-You can also provide a function, in which case the function gets passed the asset ID and should return an object of directives
+You can also provide a function, in which case the function gets passed the asset ID and should return an object of directives.
+This can be used to define all sorts of shorthands or presets.
+
+**`example`**
+```js
+import { imagetools } from 'vite-imagetools'
+
+export default {
+ plugins: [
+   imagetools({
+      defaultDirectives: (url) => {
+       if (url.searchParams.has('spotify')) {
+          return new URLSearchParams({
+            tint: 'ffaa22'
+          })
+        }
+        return new URLSearchParams()
+      }
+    })
+   ]
+}
+```
 
 #### Defined in
 
-[rollup/src/types.ts:19](https://github.com/JonasKruckenberg/imagetools/blob/2fb948c/packages/rollup/src/types.ts#L19)
+[rollup/src/types.ts:40](https://github.com/JonasKruckenberg/imagetools/blob/a033017/packages/rollup/src/types.ts#L40)
 
 ___
 
@@ -45,7 +66,7 @@ What paths to exclude when processing images.
 
 #### Defined in
 
-[rollup/src/types.ts:13](https://github.com/JonasKruckenberg/imagetools/blob/2fb948c/packages/rollup/src/types.ts#L13)
+[rollup/src/types.ts:13](https://github.com/JonasKruckenberg/imagetools/blob/a033017/packages/rollup/src/types.ts#L13)
 
 ___
 
@@ -59,7 +80,7 @@ Which paths to include when processing images.
 
 #### Defined in
 
-[rollup/src/types.ts:8](https://github.com/JonasKruckenberg/imagetools/blob/2fb948c/packages/rollup/src/types.ts#L8)
+[rollup/src/types.ts:8](https://github.com/JonasKruckenberg/imagetools/blob/a033017/packages/rollup/src/types.ts#L8)
 
 ___
 
@@ -73,7 +94,7 @@ Wether to remove potentially private metadata from the image, such as exif tags 
 
 #### Defined in
 
-[rollup/src/types.ts:51](https://github.com/JonasKruckenberg/imagetools/blob/2fb948c/packages/rollup/src/types.ts#L51)
+[rollup/src/types.ts:72](https://github.com/JonasKruckenberg/imagetools/blob/a033017/packages/rollup/src/types.ts#L72)
 
 ___
 
@@ -103,7 +124,7 @@ An array of directive options
 
 #### Defined in
 
-[rollup/src/types.ts:39](https://github.com/JonasKruckenberg/imagetools/blob/2fb948c/packages/rollup/src/types.ts#L39)
+[rollup/src/types.ts:60](https://github.com/JonasKruckenberg/imagetools/blob/a033017/packages/rollup/src/types.ts#L60)
 
 ___
 
@@ -117,7 +138,7 @@ Settings this option to true disables all warnings produced by this plugin
 
 #### Defined in
 
-[rollup/src/types.ts:45](https://github.com/JonasKruckenberg/imagetools/blob/2fb948c/packages/rollup/src/types.ts#L45)
+[rollup/src/types.ts:66](https://github.com/JonasKruckenberg/imagetools/blob/a033017/packages/rollup/src/types.ts#L66)
 
 ## Methods
 
@@ -142,7 +163,7 @@ This list will be merged with the builtin output formats before determining the 
 
 #### Defined in
 
-[rollup/src/types.ts:33](https://github.com/JonasKruckenberg/imagetools/blob/2fb948c/packages/rollup/src/types.ts#L33)
+[rollup/src/types.ts:54](https://github.com/JonasKruckenberg/imagetools/blob/a033017/packages/rollup/src/types.ts#L54)
 
 ___
 
@@ -167,4 +188,4 @@ This list will be merged with the builtin transforms before applying them to the
 
 #### Defined in
 
-[rollup/src/types.ts:26](https://github.com/JonasKruckenberg/imagetools/blob/2fb948c/packages/rollup/src/types.ts#L26)
+[rollup/src/types.ts:47](https://github.com/JonasKruckenberg/imagetools/blob/a033017/packages/rollup/src/types.ts#L47)

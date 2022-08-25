@@ -59,17 +59,18 @@ import Image from 'example.jpg?w=400&h=300&webp'
 • `Optional` **defaultDirectives**: `URLSearchParams` \| (`url`: `URL`) => `URLSearchParams`
 
 This option allows you to specify directives that should be applied _by default_ to every image.
-You can also provide a function, in which case the function gets passed the asset ID and should return an object of directives
+You can also provide a function, in which case the function gets passed the asset ID and should return an object of directives.
 This can be used to define all sorts of shorthands or presets.
 
+**`example`**
 ```js
 import { imagetools } from 'vite-imagetools'
 
 export default {
-  plugins: [
-    imagetools({
+ plugins: [
+   imagetools({
       defaultDirectives: (url) => {
-        if (url.searchParams.has('spotify')) {
+       if (url.searchParams.has('spotify')) {
           return new URLSearchParams({
             tint: 'ffaa22'
           })
@@ -77,13 +78,9 @@ export default {
         return new URLSearchParams()
       }
     })
-  ]
+   ]
 }
 ```
-
-#### Defined in
-
-[rollup/src/types.ts:19](https://github.com/JonasKruckenberg/imagetools/blob/edbc774/packages/rollup/src/types.ts#L19)
 
 ___
 
@@ -95,10 +92,6 @@ What paths to exclude when processing images.
 
 **`default`** ''
 
-#### Defined in
-
-[rollup/src/types.ts:13](https://github.com/JonasKruckenberg/imagetools/blob/4253c96/packages/rollup/src/types.ts#L13)
-
 ___
 
 ### include
@@ -108,10 +101,6 @@ ___
 Which paths to include when processing images.
 
 **`default`** '**\/*.{heic,heif,avif,jpeg,jpg,png,tiff,webp,gif}?*'
-
-#### Defined in
-
-[rollup/src/types.ts:8](https://github.com/JonasKruckenberg/imagetools/blob/4253c96/packages/rollup/src/types.ts#L8)
 
 ___
 
@@ -123,10 +112,6 @@ Wether to remove potentially private metadata from the image, such as exif tags 
 
 **`default`** true
 
-#### Defined in
-
-[rollup/src/types.ts:45](https://github.com/JonasKruckenberg/imagetools/blob/4253c96/packages/rollup/src/types.ts#L45)
-
 ___
 
 ### silent
@@ -136,10 +121,6 @@ ___
 Settings this option to true disables all warnings produced by this plugin
 
 **`default`** false
-
-#### Defined in
-
-[rollup/src/types.ts:39](https://github.com/JonasKruckenberg/imagetools/blob/4253c96/packages/rollup/src/types.ts#L39)
 
 ### extendOutputFormats
 
@@ -159,10 +140,6 @@ This list will be merged with the builtin output formats before determining the 
 #### Returns
 
 `Record`<`string`, [`OutputFormat`](../../docs/modules/core_src.md#outputformat)\>
-
-#### Defined in
-
-[rollup/src/types.ts:33](https://github.com/JonasKruckenberg/imagetools/blob/4253c96/packages/rollup/src/types.ts#L33)
 
 ___
 
@@ -210,10 +187,6 @@ an returns it as an array of objects that can be given to a the transforms.
 `Record`<`string`, `string` \| `string`[]\>[]
 
 An array of directive options
-
-#### Defined in
-
-[rollup/src/types.ts:39](https://github.com/JonasKruckenberg/imagetools/blob/edbc774/packages/rollup/src/types.ts#L39)
 
 ## Contributing
 

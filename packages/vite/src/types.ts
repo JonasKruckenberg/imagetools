@@ -15,7 +15,29 @@ export interface VitePluginOptions {
 
   /**
    * This option allows you to specify directives that should be applied _by default_ to every image.
-   * You can also provide a function, in which case the function gets passed the asset ID and should return an object of directives
+   * You can also provide a function, in which case the function gets passed the asset ID and should return an object of directives. 
+   * This can be used to define all sorts of shorthands or presets.
+   * 
+   * @example
+   * ```js
+   * import { defineConfig } from 'vite'
+   * import { imagetools } from 'vite-imagetools'
+   *
+   * export default defineConfig({
+   *  plugins: [
+   *    imagetools({
+   *       defaultDirectives: (url) => {
+   *        if (url.searchParams.has('spotify')) {
+   *           return new URLSearchParams({
+   *             tint: 'ffaa22'
+   *           })
+   *         }
+   *         return new URLSearchParams()
+   *       }
+   *     })
+   *    ]
+   * })
+   * ```
    */
   defaultDirectives?: URLSearchParams | ((url: URL) => URLSearchParams)
 

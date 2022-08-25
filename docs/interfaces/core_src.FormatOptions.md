@@ -18,4 +18,4 @@
 
 #### Defined in
 
-[core/src/transforms/format.ts:11](https://github.com/JonasKruckenberg/imagetools/blob/2fb948c/packages/core/src/transforms/format.ts#L11)
+[core/src/transforms/format.ts:11](https://github.com/JonasKruckenberg/imagetools/blob/a033017/packages/core/src/transforms/format.ts#L11)

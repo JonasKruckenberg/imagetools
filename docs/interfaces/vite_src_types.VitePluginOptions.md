@@ -28,11 +28,33 @@
 • `Optional` **defaultDirectives**: `URLSearchParams` \| (`url`: `URL`) => `URLSearchParams`
 
 This option allows you to specify directives that should be applied _by default_ to every image.
-You can also provide a function, in which case the function gets passed the asset ID and should return an object of directives
+You can also provide a function, in which case the function gets passed the asset ID and should return an object of directives.
+This can be used to define all sorts of shorthands or presets.
+
+**`example`**
+```js
+import { defineConfig } from 'vite'
+import { imagetools } from 'vite-imagetools'
+
+export default defineConfig({
+ plugins: [
+   imagetools({
+      defaultDirectives: (url) => {
+       if (url.searchParams.has('spotify')) {
+          return new URLSearchParams({
+            tint: 'ffaa22'
+          })
+        }
+        return new URLSearchParams()
+      }
+    })
+   ]
+})
+```
 
 #### Defined in
 
-[vite/src/types.ts:20](https://github.com/JonasKruckenberg/imagetools/blob/2fb948c/packages/vite/src/types.ts#L20)
+[vite/src/types.ts:42](https://github.com/JonasKruckenberg/imagetools/blob/a033017/packages/vite/src/types.ts#L42)
 
 ___
 
@@ -47,7 +69,7 @@ This defaults to the public dir to mirror vites behavior.
 
 #### Defined in
 
-[vite/src/types.ts:14](https://github.com/JonasKruckenberg/imagetools/blob/2fb948c/packages/vite/src/types.ts#L14)
+[vite/src/types.ts:14](https://github.com/JonasKruckenberg/imagetools/blob/a033017/packages/vite/src/types.ts#L14)
 
 ___
 
@@ -61,7 +83,7 @@ This option used to enable the plugin during development mode. This option is no
 
 #### Defined in
 
-[vite/src/types.ts:58](https://github.com/JonasKruckenberg/imagetools/blob/2fb948c/packages/vite/src/types.ts#L58)
+[vite/src/types.ts:80](https://github.com/JonasKruckenberg/imagetools/blob/a033017/packages/vite/src/types.ts#L80)
 
 ___
 
@@ -75,7 +97,7 @@ Which paths to include when processing images.
 
 #### Defined in
 
-[vite/src/types.ts:8](https://github.com/JonasKruckenberg/imagetools/blob/2fb948c/packages/vite/src/types.ts#L8)
+[vite/src/types.ts:8](https://github.com/JonasKruckenberg/imagetools/blob/a033017/packages/vite/src/types.ts#L8)
 
 ___
 
@@ -89,7 +111,7 @@ Wether to remove potentially private metadata from the image, such as exif tags 
 
 #### Defined in
 
-[vite/src/types.ts:52](https://github.com/JonasKruckenberg/imagetools/blob/2fb948c/packages/vite/src/types.ts#L52)
+[vite/src/types.ts:74](https://github.com/JonasKruckenberg/imagetools/blob/a033017/packages/vite/src/types.ts#L74)
 
 ___
 
@@ -119,7 +141,7 @@ An array of directive options
 
 #### Defined in
 
-[vite/src/types.ts:40](https://github.com/JonasKruckenberg/imagetools/blob/2fb948c/packages/vite/src/types.ts#L40)
+[vite/src/types.ts:62](https://github.com/JonasKruckenberg/imagetools/blob/a033017/packages/vite/src/types.ts#L62)
 
 ___
 
@@ -133,7 +155,7 @@ Settings this option to true disables all warnings produced by this plugin
 
 #### Defined in
 
-[vite/src/types.ts:46](https://github.com/JonasKruckenberg/imagetools/blob/2fb948c/packages/vite/src/types.ts#L46)
+[vite/src/types.ts:68](https://github.com/JonasKruckenberg/imagetools/blob/a033017/packages/vite/src/types.ts#L68)
 
 ## Methods
 
@@ -158,7 +180,7 @@ This list will be merged with the builtin output formats before determining the 
 
 #### Defined in
 
-[vite/src/types.ts:34](https://github.com/JonasKruckenberg/imagetools/blob/2fb948c/packages/vite/src/types.ts#L34)
+[vite/src/types.ts:56](https://github.com/JonasKruckenberg/imagetools/blob/a033017/packages/vite/src/types.ts#L56)
 
 ___
 
@@ -183,4 +205,4 @@ This list will be merged with the builtin transforms before applying them to the
 
 #### Defined in
 
-[vite/src/types.ts:27](https://github.com/JonasKruckenberg/imagetools/blob/2fb948c/packages/vite/src/types.ts#L27)
+[vite/src/types.ts:49](https://github.com/JonasKruckenberg/imagetools/blob/a033017/packages/vite/src/types.ts#L49)
