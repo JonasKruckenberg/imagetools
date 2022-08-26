@@ -12,7 +12,7 @@ import {
   urlFormat,
   extractEntries
 } from 'imagetools-core'
-import { basename, extname, join } from 'path'
+import { basename, extname, posix } from 'path'
 import { createFilter, dataToEsm } from '@rollup/pluginutils'
 import MagicString from 'magic-string'
 import { VitePluginOptions } from './types'
@@ -85,7 +85,7 @@ export function imagetools(userOptions: Partial<VitePluginOptions> = {}): Plugin
 
           metadata.src = `__VITE_IMAGE_ASSET__${fileHandle}__`
         } else {
-          metadata.src = join('/@imagetools', id)
+          metadata.src = posix.join('/@imagetools', id)
         }
 
         metadata.image = image
