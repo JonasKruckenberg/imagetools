@@ -4,13 +4,14 @@ import { applyTransforms } from '../../index'
 import sharp, { Sharp } from 'sharp'
 import { join } from 'path'
 import { toMatchImageSnapshot } from 'jest-image-snapshot'
+import { describe, beforeEach, beforeAll, vi, expect, test } from 'vitest'
 
 expect.extend({ toMatchImageSnapshot })
 
 describe('width', () => {
   let dirCtx: TransformFactoryContext
   beforeAll(() => {
-    dirCtx = { useParam: jest.fn, warn: jest.fn }
+    dirCtx = { useParam: vi.fn, warn: vi.fn }
   })
 
   test('keyword "width"', () => {
@@ -82,7 +83,7 @@ describe('width', () => {
 describe('height', () => {
   let dirCtx: TransformFactoryContext
   beforeAll(() => {
-    dirCtx = { useParam: jest.fn, warn: jest.fn }
+    dirCtx = { useParam: vi.fn, warn: vi.fn }
   })
 
   test('keyword "height"', () => {
@@ -154,7 +155,7 @@ describe('height', () => {
 describe('width & height', () => {
   let dirCtx: TransformFactoryContext
   beforeAll(() => {
-    dirCtx = { useParam: jest.fn, warn: jest.fn }
+    dirCtx = { useParam: vi.fn, warn: vi.fn }
   })
 
   test('keywords "width" & "height"', () => {
@@ -233,7 +234,7 @@ describe('width & height', () => {
 describe('aspect', () => {
   let dirCtx: TransformFactoryContext
   beforeAll(() => {
-    dirCtx = { useParam: jest.fn, warn: jest.fn }
+    dirCtx = { useParam: vi.fn, warn: vi.fn }
   })
 
   test('keyword "aspect"', () => {

@@ -1,5 +1,6 @@
 import { TransformFactory } from '../types'
 import { generateTransforms } from '../lib/generate-transforms'
+import { describe, it, expect } from 'vitest'
 
 describe('applyTransforms', () => {
   it('returns the transformations array', () => {

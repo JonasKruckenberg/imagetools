@@ -1,6 +1,7 @@
 import { getFit, FitValue } from '../fit'
 import { join } from 'path'
 import sharp, { Sharp } from 'sharp'
+import { describe, beforeEach, test, expect } from 'vitest'
 
 describe('fit', () => {
   let img: Sharp
@@ -44,7 +45,7 @@ describe('fit', () => {
 
   describe('arguments', () => {
     test('invalid', () => {
-      //@ts-expect-error
+      //@ts-expect-error invalid args
       const res = getFit({ fit: 'invalid' }, img)
 
       expect(res).toBeUndefined()

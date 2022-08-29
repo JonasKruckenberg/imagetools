@@ -1,16 +1,18 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { median } from '../median'
 import { TransformFactoryContext } from '../../types'
 import { applyTransforms } from '../../index'
 import sharp, { Sharp } from 'sharp'
 import { join } from 'path'
 import { toMatchImageSnapshot } from 'jest-image-snapshot'
+import { describe, beforeEach, beforeAll, vi, expect, test, it } from 'vitest'
 
 expect.extend({ toMatchImageSnapshot })
 
 describe('median', () => {
   let dirCtx: TransformFactoryContext
   beforeAll(() => {
-    dirCtx = { useParam: jest.fn, warn: jest.fn }
+    dirCtx = { useParam: vi.fn, warn: vi.fn }
   })
 
   test('keyword "median"', () => {
@@ -58,15 +60,13 @@ describe('median', () => {
     })
 
     test('3', async () => {
-      //@ts-ignore
-      const { image, metadata } = await applyTransforms([median({ median: '3' }, dirCtx)], img)
+      const { image } = await applyTransforms([median({ median: '3' }, dirCtx)!], img)
 
       expect(await image.toBuffer()).toMatchImageSnapshot()
     })
 
     test('5', async () => {
-      //@ts-ignore
-      const { image, metadata } = await applyTransforms([median({ median: '5' }, dirCtx)], img)
+      const { image } = await applyTransforms([median({ median: '5' }, dirCtx)!], img)
 
       expect(await image.toBuffer()).toMatchImageSnapshot()
     })

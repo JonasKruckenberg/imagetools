@@ -1,16 +1,18 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { hsb } from '../hsb'
 import { TransformFactoryContext } from '../../types'
 import { applyTransforms } from '../../index'
 import sharp, { Sharp } from 'sharp'
 import { join } from 'path'
 import { toMatchImageSnapshot } from 'jest-image-snapshot'
+import { describe, beforeEach, beforeAll, vi, expect, test } from 'vitest'
 
 expect.extend({ toMatchImageSnapshot })
 
 describe('hue', () => {
   let dirCtx: TransformFactoryContext
   beforeAll(() => {
-    dirCtx = { useParam: jest.fn, warn: jest.fn }
+    dirCtx = { useParam: vi.fn, warn: vi.fn }
   })
 
   test('keyword "hue"', () => {
@@ -70,29 +72,25 @@ describe('hue', () => {
     })
 
     test('45', async () => {
-      //@ts-ignore
-      const { image, metadata } = await applyTransforms([hsb({ hue: '45' }, dirCtx)], img)
+      const { image } = await applyTransforms([hsb({ hue: '45' }, dirCtx)!], img)
 
       expect(await image.toBuffer()).toMatchImageSnapshot()
     })
 
     test('90', async () => {
-      //@ts-ignore
-      const { image, metadata } = await applyTransforms([hsb({ hue: '90' }, dirCtx)], img)
+      const { image } = await applyTransforms([hsb({ hue: '90' }, dirCtx)!], img)
 
       expect(await image.toBuffer()).toMatchImageSnapshot()
     })
 
     test('negative 90', async () => {
-      //@ts-ignore
-      const { image, metadata } = await applyTransforms([hsb({ hue: '-90' }, dirCtx)], img)
+      const { image } = await applyTransforms([hsb({ hue: '-90' }, dirCtx)!], img)
 
       expect(await image.toBuffer()).toMatchImageSnapshot()
     })
 
     test('180', async () => {
-      //@ts-ignore
-      const { image, metadata } = await applyTransforms([hsb({ hue: '180' }, dirCtx)], img)
+      const { image } = await applyTransforms([hsb({ hue: '180' }, dirCtx)!], img)
 
       expect(await image.toBuffer()).toMatchImageSnapshot()
     })
@@ -102,7 +100,7 @@ describe('hue', () => {
 describe('saturation', () => {
   let dirCtx: TransformFactoryContext
   beforeAll(() => {
-    dirCtx = { useParam: jest.fn, warn: jest.fn }
+    dirCtx = { useParam: vi.fn, warn: vi.fn }
   })
 
   test('keyword "saturation"', () => {
@@ -150,22 +148,19 @@ describe('saturation', () => {
     })
 
     test('0.5', async () => {
-      //@ts-ignore
-      const { image, metadata } = await applyTransforms([hsb({ saturation: '0.5' }, dirCtx)], img)
+      const { image } = await applyTransforms([hsb({ saturation: '0.5' }, dirCtx)!], img)
 
       expect(await image.toBuffer()).toMatchImageSnapshot()
     })
 
     test('1', async () => {
-      //@ts-ignore
-      const { image, metadata } = await applyTransforms([hsb({ saturation: '1' }, dirCtx)], img)
+      const { image } = await applyTransforms([hsb({ saturation: '1' }, dirCtx)!], img)
 
       expect(await image.toBuffer()).toMatchImageSnapshot()
     })
 
     test('1.5', async () => {
-      //@ts-ignore
-      const { image, metadata } = await applyTransforms([hsb({ saturation: '1.5' }, dirCtx)], img)
+      const { image } = await applyTransforms([hsb({ saturation: '1.5' }, dirCtx)!], img)
 
       expect(await image.toBuffer()).toMatchImageSnapshot()
     })
@@ -175,7 +170,7 @@ describe('saturation', () => {
 describe('brightness', () => {
   let dirCtx: TransformFactoryContext
   beforeAll(() => {
-    dirCtx = { useParam: jest.fn, warn: jest.fn }
+    dirCtx = { useParam: vi.fn, warn: vi.fn }
   })
 
   test('keyword "brightness"', () => {
@@ -223,22 +218,19 @@ describe('brightness', () => {
     })
 
     test('0.5', async () => {
-      //@ts-ignore
-      const { image, metadata } = await applyTransforms([hsb({ brightness: '0.5' }, dirCtx)], img)
+      const { image } = await applyTransforms([hsb({ brightness: '0.5' }, dirCtx)!], img)
 
       expect(await image.toBuffer()).toMatchImageSnapshot()
     })
 
     test('1', async () => {
-      //@ts-ignore
-      const { image, metadata } = await applyTransforms([hsb({ brightness: '1' }, dirCtx)], img)
+      const { image } = await applyTransforms([hsb({ brightness: '1' }, dirCtx)!], img)
 
       expect(await image.toBuffer()).toMatchImageSnapshot()
     })
 
     test('1.5', async () => {
-      //@ts-ignore
-      const { image, metadata } = await applyTransforms([hsb({ brightness: '1.5' }, dirCtx)], img)
+      const { image } = await applyTransforms([hsb({ brightness: '1.5' }, dirCtx)!], img)
 
       expect(await image.toBuffer()).toMatchImageSnapshot()
     })

@@ -1,16 +1,18 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { grayscale } from '../grayscale'
 import { TransformFactoryContext } from '../../types'
 import { applyTransforms } from '../../index'
 import sharp, { Sharp } from 'sharp'
 import { join } from 'path'
 import { toMatchImageSnapshot } from 'jest-image-snapshot'
+import { describe, beforeAll, beforeEach, test, expect, vi } from 'vitest'
 
 expect.extend({ toMatchImageSnapshot })
 
 describe('grayscale', () => {
   let dirCtx: TransformFactoryContext
   beforeAll(() => {
-    dirCtx = { useParam: jest.fn, warn: jest.fn }
+    dirCtx = { useParam: vi.fn, warn: vi.fn }
   })
 
   test('keyword "grayscale"', () => {
@@ -27,7 +29,7 @@ describe('grayscale', () => {
 
   describe('arguments', () => {
     test('invalid', () => {
-      //@ts-expect-error
+      //@ts-expect-error invalid args
       const res = grayscale({ grayscale: 'invalid' }, dirCtx)
 
       expect(res).toBeUndefined()
@@ -53,15 +55,13 @@ describe('grayscale', () => {
     })
 
     test('empty', async () => {
-      //@ts-ignore
-      const { image, metadata } = await applyTransforms([grayscale({ grayscale: '' }, dirCtx)], img)
+      const { image } = await applyTransforms([grayscale({ grayscale: '' }, dirCtx)!], img)
 
       expect(await image.toBuffer()).toMatchImageSnapshot()
     })
 
     test('true', async () => {
-      //@ts-ignore
-      const { image, metadata } = await applyTransforms([grayscale({ grayscale: 'true' }, dirCtx)], img)
+      const { image } = await applyTransforms([grayscale({ grayscale: 'true' }, dirCtx)!], img)
 
       expect(await image.toBuffer()).toMatchImageSnapshot()
     })

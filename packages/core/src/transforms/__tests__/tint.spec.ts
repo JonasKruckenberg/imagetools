@@ -1,16 +1,18 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { tint } from '../tint'
 import { TransformFactoryContext } from '../../types'
 import { applyTransforms } from '../../index'
 import sharp, { Sharp } from 'sharp'
 import { join } from 'path'
 import { toMatchImageSnapshot } from 'jest-image-snapshot'
+import { describe, beforeEach,beforeAll,  expect, test, vi } from 'vitest'
 
 expect.extend({ toMatchImageSnapshot })
 
 describe('tint', () => {
   let dirCtx: TransformFactoryContext
   beforeAll(() => {
-    dirCtx = { useParam: jest.fn, warn: jest.fn }
+    dirCtx = { useParam: vi.fn, warn: vi.fn }
   })
 
   test('keyword "tint"', () => {
@@ -46,22 +48,19 @@ describe('tint', () => {
     })
 
     test('red', async () => {
-      //@ts-ignore
-      const { image, metadata } = await applyTransforms([tint({ tint: 'f00' }, dirCtx)], img)
+      const { image } = await applyTransforms([tint({ tint: 'f00' }, dirCtx)!], img)
 
       expect(await image.toBuffer()).toMatchImageSnapshot()
     })
 
     test('green', async () => {
-      //@ts-ignore
-      const { image, metadata } = await applyTransforms([tint({ tint: '0f0' }, dirCtx)], img)
+      const { image } = await applyTransforms([tint({ tint: '0f0' }, dirCtx)!], img)
 
       expect(await image.toBuffer()).toMatchImageSnapshot()
     })
 
     test('blue', async () => {
-      //@ts-ignore
-      const { image, metadata } = await applyTransforms([tint({ tint: '00f' }, dirCtx)], img)
+      const { image } = await applyTransforms([tint({ tint: '00f' }, dirCtx)!], img)
 
       expect(await image.toBuffer()).toMatchImageSnapshot()
     })

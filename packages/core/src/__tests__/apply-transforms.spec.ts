@@ -1,6 +1,7 @@
 import { applyTransforms } from '../lib/apply-transforms'
 import sharp, { Sharp } from 'sharp'
 import { join } from 'path'
+import { describe, beforeEach, it, expect, vi } from 'vitest'
 
 describe('applyTransforms', () => {
   let img: Sharp
@@ -9,7 +10,7 @@ describe('applyTransforms', () => {
   })
 
   it('applies the transforms to the image', async () => {
-    const t = jest.fn((i) => i)
+    const t = vi.fn((i) => i)
 
     await applyTransforms([t], img)
 
@@ -17,7 +18,7 @@ describe('applyTransforms', () => {
   })
 
   it('strips metadata by default', async () => {
-    const t = jest.fn((i) => i)
+    const t = vi.fn((i) => i)
 
     const { metadata } = await applyTransforms([t], img, true)
 
@@ -30,7 +31,7 @@ describe('applyTransforms', () => {
   })
 
   it('metadata stripping can be disabled', async () => {
-    const t = jest.fn((i) => i)
+    const t = vi.fn((i) => i)
 
     const { metadata } = await applyTransforms([t], img, false)
 
@@ -40,7 +41,7 @@ describe('applyTransforms', () => {
   })
 
   it('returns the image data & info', async () => {
-    const t = jest.fn((i) => i)
+    const t = vi.fn((i) => i)
 
     const res = await applyTransforms([t], img)
 

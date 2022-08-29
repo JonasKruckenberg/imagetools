@@ -1,16 +1,18 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { flatten } from '../flatten'
 import { TransformFactoryContext } from '../../types'
 import { applyTransforms } from '../../index'
 import sharp, { Sharp } from 'sharp'
 import { join } from 'path'
 import { toMatchImageSnapshot } from 'jest-image-snapshot'
+import { describe, beforeAll, beforeEach, test, expect, vi } from 'vitest'
 
 expect.extend({ toMatchImageSnapshot })
 
 describe('flatten', () => {
   let dirCtx: TransformFactoryContext
   beforeAll(() => {
-    dirCtx = { useParam: jest.fn, warn: jest.fn }
+    dirCtx = { useParam: vi.fn, warn: vi.fn }
   })
 
   test('keyword "flatten"', () => {
@@ -27,7 +29,7 @@ describe('flatten', () => {
 
   describe('arguments', () => {
     test('invalid', () => {
-      //@ts-expect-error
+      //@ts-expect-error invalid args
       const res = flatten({ flatten: 'invalid' }, dirCtx)
 
       expect(res).toBeUndefined()
@@ -59,22 +61,19 @@ describe('flatten', () => {
     })
 
     test('empty', async () => {
-      //@ts-ignore
-      const { image, metadata } = await applyTransforms([flatten({ flatten: '' }, dirCtx)], img)
+      const { image } = await applyTransforms([flatten({ flatten: '' }, dirCtx)!], img)
 
       expect(await image.toBuffer()).toMatchImageSnapshot()
     })
 
     test('true', async () => {
-      //@ts-ignore
-      const { image, metadata } = await applyTransforms([flatten({ flatten: 'true' }, dirCtx)], img)
+      const { image } = await applyTransforms([flatten({ flatten: 'true' }, dirCtx)!], img)
 
       expect(await image.toBuffer()).toMatchImageSnapshot()
     })
 
     test('w/ background', async () => {
-      //@ts-ignore
-      const { image, metadata } = await applyTransforms([flatten({ flatten: 'true', background: '#00f' }, dirCtx)], img)
+      const { image } = await applyTransforms([flatten({ flatten: 'true', background: '#00f' }, dirCtx)!], img)
 
       expect(await image.toBuffer()).toMatchImageSnapshot()
     })

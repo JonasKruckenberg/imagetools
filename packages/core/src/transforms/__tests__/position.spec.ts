@@ -1,6 +1,7 @@
 import { getPosition, PositionValue } from '../position'
 import sharp, { Sharp } from 'sharp'
 import { join } from 'path'
+import { describe, beforeEach, expect, test } from 'vitest'
 
 describe('position', () => {
   let img: Sharp
@@ -21,6 +22,7 @@ describe('position', () => {
   })
 
   describe('shorthands', () => {
+    // eslint-disable-next-line @typescript-eslint/no-empty-function
     test('invalid', () => {})
 
     test('valid', () => {
@@ -36,14 +38,14 @@ describe('position', () => {
 
   describe('arguments', () => {
     test('invalid', () => {
-      //@ts-ignore
+      //@ts-expect-error invalid args
       const res = getPosition({ position: 'invalid' }, img)
 
       expect(res).toBeUndefined()
     })
 
     test('empty', () => {
-      //@ts-ignore
+      //@ts-expect-error invalid args
       const res = getPosition({ position: '' }, img)
 
       expect(res).toBeUndefined()

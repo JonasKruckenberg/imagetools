@@ -1,16 +1,18 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { TransformFactoryContext } from '../../types'
 import { flop } from '../flop'
 import { applyTransforms } from '../../index'
 import sharp, { Sharp } from 'sharp'
 import { join } from 'path'
 import { toMatchImageSnapshot } from 'jest-image-snapshot'
+import { describe, beforeAll, beforeEach, test, expect, vi } from 'vitest'
 
 expect.extend({ toMatchImageSnapshot })
 
 describe('flop', () => {
   let dirCtx: TransformFactoryContext
   beforeAll(() => {
-    dirCtx = { useParam: jest.fn, warn: jest.fn }
+    dirCtx = { useParam: vi.fn, warn: vi.fn }
   })
 
   test('keyword "flop"', () => {
@@ -27,7 +29,7 @@ describe('flop', () => {
 
   describe('arguments', () => {
     test('invalid', () => {
-      //@ts-expect-error
+      //@ts-expect-error invalid args
       const res = flop({ flop: 'invalid' }, dirCtx)
 
       expect(res).toBeUndefined()
@@ -53,15 +55,13 @@ describe('flop', () => {
     })
 
     test('empty', async () => {
-      //@ts-ignore
-      const { image, metadata } = await applyTransforms([flop({ flop: '' }, dirCtx)], img)
+      const { image } = await applyTransforms([flop({ flop: '' }, dirCtx)!], img)
 
       expect(await image.toBuffer()).toMatchImageSnapshot()
     })
 
     test('true', async () => {
-      //@ts-ignore
-      const { image, metadata } = await applyTransforms([flop({ flop: 'true' }, dirCtx)], img)
+      const { image } = await applyTransforms([flop({ flop: 'true' }, dirCtx)!], img)
 
       expect(await image.toBuffer()).toMatchImageSnapshot()
     })

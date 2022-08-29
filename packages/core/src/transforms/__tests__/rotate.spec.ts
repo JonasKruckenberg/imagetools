@@ -1,16 +1,18 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { rotate } from '../rotate'
 import { TransformFactoryContext } from '../../types'
 import { applyTransforms } from '../../index'
 import sharp, { Sharp } from 'sharp'
 import { join } from 'path'
 import { toMatchImageSnapshot } from 'jest-image-snapshot'
+import { describe, beforeEach, beforeAll, vi, expect, test, it } from 'vitest'
 
 expect.extend({ toMatchImageSnapshot })
 
 describe('rotate', () => {
   let dirCtx: TransformFactoryContext
   beforeAll(() => {
-    dirCtx = { useParam: jest.fn, warn: jest.fn }
+    dirCtx = { useParam: vi.fn, warn: vi.fn }
   })
 
   test('keyword "rotate"', () => {
@@ -58,22 +60,19 @@ describe('rotate', () => {
     })
 
     test('90', async () => {
-      //@ts-ignore
-      const { image, metadata } = await applyTransforms([rotate({ rotate: '90' }, dirCtx)], img)
+      const { image } = await applyTransforms([rotate({ rotate: '90' }, dirCtx)!], img)
 
       expect(await image.toBuffer()).toMatchImageSnapshot()
     })
 
     test('180', async () => {
-      //@ts-ignore
-      const { image, metadata } = await applyTransforms([rotate({ rotate: '180' }, dirCtx)], img)
+      const { image } = await applyTransforms([rotate({ rotate: '180' }, dirCtx)!], img)
 
       expect(await image.toBuffer()).toMatchImageSnapshot()
     })
 
     test('w/ background', async () => {
-      //@ts-ignore
-      const { image, metadata } = await applyTransforms([rotate({ rotate: '45', background: '#0f0' }, dirCtx)], img)
+      const { image } = await applyTransforms([rotate({ rotate: '45', background: '#0f0' }, dirCtx)!], img)
 
       expect(await image.toBuffer()).toMatchImageSnapshot()
     })
