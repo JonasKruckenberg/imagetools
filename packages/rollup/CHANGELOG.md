@@ -1,5 +1,13 @@
 # Change Log
 
+## 3.0.6
+
+### Patch Changes
+
+- 7efa2dc: Correctly merge directives when `defaultDirectives` is a function.
+- cb679f5: fixes the conditional reveal of metadata when using `defaultDirectives`.
+- 7efa2dc: Allow directives specified in URLs to override default directives
+
 ## 3.0.5
 
 ### Patch Changes
