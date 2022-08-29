@@ -34,5 +34,10 @@
   "packageManager": "pnpm@7.9.5",
   "engines": {
     "pnpm": "^7.0.0"
+  },
+  "pnpm": {
+    "peerDependencyRules": {
+      "ignoreMissing": ["jest"]
+    }
   }
 }
