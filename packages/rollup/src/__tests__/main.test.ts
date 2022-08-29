@@ -275,6 +275,7 @@ describe('rollup-plugin-imagetools', () => {
 
       test('function with metadata import', async () => {
         const bundle = await rollup({
+          input: join(__dirname, '__fixtures__/index.js'),
           plugins: [
             testEntry(`
                         import Image from "./pexels-allec-gomes-5195763.png?mypreset"

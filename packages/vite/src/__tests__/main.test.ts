@@ -336,13 +336,14 @@ describe('vite-imagetools', () => {
 
       test('function with with metadata import', async () => {
         const bundle = (await build({
+          root: join(__dirname, '__fixtures__'),
           logLevel: 'warn',
           build: { write: false },
           plugins: [
             testEntry(`
-                            import Image from "./with-metadata.png?mypreset"
-                            window.__IMAGE__ = Image
-                        `),
+                import Image from "./with-metadata.png?mypreset"
+                window.__IMAGE__ = Image
+            `),
             imagetools({
               defaultDirectives: (id) => {
                 if (id.searchParams.has('mypreset')) {
