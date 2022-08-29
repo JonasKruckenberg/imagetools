@@ -25,4 +25,4 @@ jobs:
       - name: Build packages
         run: pnpm run build
       - name: Run unit tests
-        run: pnpm run test --no-threads
+        run: pnpm run test
