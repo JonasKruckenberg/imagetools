@@ -28,23 +28,22 @@
   "scripts": {
     "dev": "rollup -cw",
     "build": "rollup -c",
-    "test": "jest",
-    "coverage": "jest --collectCoverage"
+    "test": "vitest run",
+    "coverage": "vitest run --coverage"
   },
   "devDependencies": {
     "@rollup/plugin-typescript": "^8.3.0",
     "@types/jest": "^28.0.0",
     "@types/jest-image-snapshot": "^4.3.1",
     "@types/sharp": "^0.30.0",
-    "jest": "^28.0.0",
     "jest-file-snapshot": "^0.5.0",
     "jest-image-snapshot": "^5.0.0",
     "rollup": "^2.66.1",
-    "ts-jest": "^28.0.8",
     "tslib": "^2.3.1",
     "typescript": "^4.5.5"
   },
   "dependencies": {
-    "sharp": "^0.30.0"
+    "sharp": "^0.30.0",
+    "vitest": "^0.22.1"
   }
 }

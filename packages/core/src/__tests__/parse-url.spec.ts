@@ -1,4 +1,5 @@
 import { parseURL, extractEntries } from '../lib/parse-url'
+import { describe, it, expect } from 'vitest'
 
 describe('parseURL', () => {
   it('returns an URL object', () => {

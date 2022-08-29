@@ -1,6 +1,7 @@
 import sharp, { Sharp } from 'sharp'
 import { join } from 'path'
 import { getBackground } from '../background'
+import { describe, beforeEach, test, expect } from 'vitest'
 
 describe('background', () => {
   let img: Sharp

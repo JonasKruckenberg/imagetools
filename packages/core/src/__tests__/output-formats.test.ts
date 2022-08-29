@@ -1,4 +1,5 @@
 import { urlFormat, metadataFormat, srcsetFormat } from '../output-formats'
+import { describe, test, expect } from 'vitest'
 
 describe('url format', () => {
   test('single image', () => {

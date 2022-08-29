@@ -1,16 +1,18 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { normalize } from '../normalize'
 import { TransformFactoryContext } from '../../types'
 import { applyTransforms } from '../../index'
 import sharp, { Sharp } from 'sharp'
 import { join } from 'path'
 import { toMatchImageSnapshot } from 'jest-image-snapshot'
+import { describe, beforeEach, beforeAll, expect, test, vi } from 'vitest'
 
 expect.extend({ toMatchImageSnapshot })
 
 describe('normalize', () => {
   let dirCtx: TransformFactoryContext
   beforeAll(() => {
-    dirCtx = { useParam: jest.fn, warn: jest.fn }
+    dirCtx = { useParam: vi.fn, warn: vi.fn }
   })
 
   test('keyword "normalize"', () => {
@@ -27,7 +29,7 @@ describe('normalize', () => {
 
   describe('arguments', () => {
     test('invalid', () => {
-      //@ts-expect-error
+      //@ts-expect-error  invalid args
       const res = normalize({ normalize: 'invalid' }, dirCtx)
 
       expect(res).toBeUndefined()
@@ -53,15 +55,13 @@ describe('normalize', () => {
     })
 
     test('empty', async () => {
-      //@ts-ignore
-      const { image, metadata } = await applyTransforms([normalize({ normalize: '' }, dirCtx)], img)
+      const { image } = await applyTransforms([normalize({ normalize: '' }, dirCtx)!], img)
 
       expect(await image.toBuffer()).toMatchImageSnapshot()
     })
 
     test('true', async () => {
-      //@ts-ignore
-      const { image, metadata } = await applyTransforms([normalize({ normalize: 'true' }, dirCtx)], img)
+      const { image } = await applyTransforms([normalize({ normalize: 'true' }, dirCtx)!], img)
 
       expect(await image.toBuffer()).toMatchImageSnapshot()
     })
