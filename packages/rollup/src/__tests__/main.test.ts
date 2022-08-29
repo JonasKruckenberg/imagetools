@@ -5,15 +5,16 @@ import { testEntry, getFiles } from './util'
 import { toMatchImageSnapshot } from 'jest-image-snapshot'
 import { JSDOM } from 'jsdom'
 import sharp from 'sharp'
+import { describe, test, expect, it } from 'vitest'
 
 expect.extend({ toMatchImageSnapshot })
-process.chdir(join(__dirname, '__fixtures__'))
 
 describe('rollup-plugin-imagetools', () => {
   describe('options', () => {
     describe('include', () => {
       it('accepts a string', async () => {
         const p = rollup({
+          input: join(__dirname, '__fixtures__/index.js'),
           plugins: [
             testEntry(`import Image from "./pexels-allec-gomes-5195763.png?w=300"`),
             imagetools({
@@ -27,6 +28,7 @@ describe('rollup-plugin-imagetools', () => {
 
       it('accepts a regex', async () => {
         const p = rollup({
+          input: join(__dirname, '__fixtures__/index.js'),
           plugins: [
             testEntry(`import Image from "./pexels-allec-gomes-5195763.png?w=300"`),
             imagetools({
@@ -40,6 +42,7 @@ describe('rollup-plugin-imagetools', () => {
 
       it('accepts an array', async () => {
         const p = rollup({
+          input: join(__dirname, '__fixtures__/index.js'),
           plugins: [
             testEntry(`import Image from "./pexels-allec-gomes-5195763.png?w=300"`),
             imagetools({
@@ -53,6 +56,7 @@ describe('rollup-plugin-imagetools', () => {
 
       it('errors on invalid input', async () => {
         const p = rollup({
+          input: join(__dirname, '__fixtures__/index.js'),
           plugins: [
             testEntry(`import Image from "./pexels-allec-gomes-5195763.png?w=300"`),
             imagetools({
@@ -68,6 +72,7 @@ describe('rollup-plugin-imagetools', () => {
       it('rejects on non matching import', async () => {
         // because rollup cant resolve images by itself
         const p = rollup({
+          input: join(__dirname, '__fixtures__/index.js'),
           plugins: [
             testEntry(`import Image from "./pexels-allec-gomes-5195763.png?w=300"`),
             imagetools({
@@ -83,6 +88,7 @@ describe('rollup-plugin-imagetools', () => {
     describe('exclude', () => {
       it('accepts a string', async () => {
         const p = rollup({
+          input: join(__dirname, '__fixtures__/index.js'),
           plugins: [
             testEntry(`import Image from "./pexels-allec-gomes-5195763.png?w=300"`),
             imagetools({
@@ -96,6 +102,7 @@ describe('rollup-plugin-imagetools', () => {
 
       it('accepts a regex', async () => {
         const p = rollup({
+          input: join(__dirname, '__fixtures__/index.js'),
           plugins: [
             testEntry(`import Image from "./pexels-allec-gomes-5195763.png?w=300"`),
             imagetools({
@@ -109,6 +116,7 @@ describe('rollup-plugin-imagetools', () => {
 
       it('accepts an array', async () => {
         const p = rollup({
+          input: join(__dirname, '__fixtures__/index.js'),
           plugins: [
             testEntry(`import Image from "./pexels-allec-gomes-5195763.png?w=300"`),
             imagetools({
@@ -122,6 +130,7 @@ describe('rollup-plugin-imagetools', () => {
 
       it('errors on invalid input', async () => {
         const p = rollup({
+          input: join(__dirname, '__fixtures__/index.js'),
           plugins: [
             testEntry(`import Image from "./pexels-allec-gomes-5195763.png?w=300"`),
             imagetools({
@@ -136,6 +145,7 @@ describe('rollup-plugin-imagetools', () => {
 
       it('resolves normal on non matching input', async () => {
         const p = rollup({
+          input: join(__dirname, '__fixtures__/index.js'),
           plugins: [
             testEntry(`import Image from "./pexels-allec-gomes-5195763.png?w=300"`),
             imagetools({
@@ -157,6 +167,7 @@ describe('rollup-plugin-imagetools', () => {
     describe('removeMetadata', () => {
       test('true removes private metadata', async () => {
         const bundle = await rollup({
+          input: join(__dirname, '__fixtures__/index.js'),
           plugins: [
             testEntry(`
                             import Image from "./with-metadata.png?w=300"
@@ -178,6 +189,7 @@ describe('rollup-plugin-imagetools', () => {
 
       test('false leaves private metadata', async () => {
         const bundle = await rollup({
+          input: join(__dirname, '__fixtures__/index.js'),
           plugins: [
             testEntry(`
                             import Image from "./with-metadata.png?w=300"
@@ -200,6 +212,7 @@ describe('rollup-plugin-imagetools', () => {
       describe('resolveConfigs', () => {
         test('can be used to generate multiple images (presets)', async () => {
           const bundle = await rollup({
+            input: join(__dirname, '__fixtures__/index.js'),
             plugins: [
               testEntry(`
                             import Image from "./with-metadata.png?w=300"
@@ -207,10 +220,7 @@ describe('rollup-plugin-imagetools', () => {
                         `),
               imagetools({
                 resolveConfigs() {
-                  return [
-                    { width: '300' },
-                    { width: '500' }
-                  ]
+                  return [{ width: '300' }, { width: '500' }]
                 }
               })
             ]
@@ -220,13 +230,12 @@ describe('rollup-plugin-imagetools', () => {
           expect(files).toHaveLength(2)
         })
       })
-
     })
-
 
     describe('defaultDirectives', () => {
       test('const', async () => {
         const bundle = await rollup({
+          input: join(__dirname, '__fixtures__/index.js'),
           plugins: [
             testEntry(`
                           import Image from "./with-metadata.png?metadata"
@@ -243,6 +252,7 @@ describe('rollup-plugin-imagetools', () => {
       })
       test('function', async () => {
         const bundle = await rollup({
+          input: join(__dirname, '__fixtures__/index.js'),
           plugins: [
             testEntry(`
                           import Image from "./with-metadata.png?mypreset"
@@ -267,6 +277,7 @@ describe('rollup-plugin-imagetools', () => {
 
   test('relative path', async () => {
     const bundle = await rollup({
+      input: join(__dirname, '__fixtures__/index.js'),
       plugins: [
         testEntry(`
                     import Image from "./pexels-allec-gomes-5195763.png?w=300"
@@ -281,9 +292,10 @@ describe('rollup-plugin-imagetools', () => {
   })
 
   test('absolute path', async () => {
-    const imagePath = join(process.cwd(), 'pexels-allec-gomes-5195763.png')
+    const imagePath = join(__dirname, '__fixtures__/pexels-allec-gomes-5195763.png')
 
     const bundle = await rollup({
+      input: join(__dirname, '__fixtures__/index.js'),
       plugins: [
         testEntry(`
                     import Image from "${imagePath}?w=300"
@@ -299,6 +311,7 @@ describe('rollup-plugin-imagetools', () => {
 
   test('import with space in identifier', async () => {
     const bundle = await rollup({
+      input: join(__dirname, '__fixtures__/index.js'),
       plugins: [
         testEntry(`
                     import Image from "./with space.png?w=300"
@@ -314,6 +327,7 @@ describe('rollup-plugin-imagetools', () => {
 
   test('non existent file', async () => {
     const p = rollup({
+      input: join(__dirname, '__fixtures__/index.js'),
       plugins: [testEntry(`import Image from "./invalid.png?w=300"`), imagetools()]
     })
 
@@ -322,6 +336,7 @@ describe('rollup-plugin-imagetools', () => {
 
   test('no directives', async () => {
     const p = rollup({
+      input: join(__dirname, '__fixtures__/index.js'),
       plugins: [testEntry(`import Image from "./pexels-allec-gomes-5195763.png"`), imagetools()]
     })
 
@@ -330,6 +345,7 @@ describe('rollup-plugin-imagetools', () => {
 
   test('metadata import', async () => {
     const bundle = await rollup({
+      input: join(__dirname, '__fixtures__/index.js'),
       plugins: [
         testEntry(`
                     import Image from "./pexels-allec-gomes-5195763.png?metadata"
@@ -358,6 +374,7 @@ describe('rollup-plugin-imagetools', () => {
 
   test('destructured metadata import', async () => {
     const bundle = await rollup({
+      input: join(__dirname, '__fixtures__/index.js'),
       plugins: [
         testEntry(`
                     import { width, height, format } from "./pexels-allec-gomes-5195763.png?metadata"
@@ -378,6 +395,7 @@ describe('rollup-plugin-imagetools', () => {
 
   test('metadata import with whitelist', async () => {
     const bundle = await rollup({
+      input: join(__dirname, '__fixtures__/index.js'),
       plugins: [
         testEntry(`
                     import { width, format } from "./pexels-allec-gomes-5195763.png?metadata=width;format"
