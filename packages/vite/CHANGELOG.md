@@ -1,5 +1,14 @@
 # Change Log
 
+## 4.0.5
+
+### Patch Changes
+
+- 7efa2dc: Correctly merge directives when `defaultDirectives` is a function.
+- cb679f5: fixes the conditional reveal of metadata when using `defaultDirectives`.
+- 7efa2dc: Allow directives specified in URLs to override default directives
+- b551792: Update to `vite` v3.
+
 ## 4.0.4
 
 ### Patch Changes
