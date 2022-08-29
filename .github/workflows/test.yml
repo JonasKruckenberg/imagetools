@@ -16,7 +16,6 @@ jobs:
         id: pnpm-cache
         run: |
           echo "::set-output name=pnpm_cache_dir::$(pnpm store path)"
-
       - uses: actions/cache@v3
         name: Setup pnpm cache
         with:
@@ -30,4 +29,4 @@ jobs:
       - name: Build packages
         run: pnpm run build
       - name: Run unit tests
-        run: pnpm run test
+        run: pnpm run test --no-threads

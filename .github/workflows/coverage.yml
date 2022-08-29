@@ -25,7 +25,7 @@ jobs:
       - name: Build packages
         run: pnpm run build
       - name: Generate coverage report
-        run: pnpm run coverage
+        run: pnpm run coverage --no-threads
       - name: Upload imagetools-core Report
         uses: codecov/codecov-action@v3
         with:
