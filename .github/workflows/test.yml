@@ -21,7 +21,8 @@ jobs:
             ${{ runner.os }}-
       - uses: pnpm/action-setup@v2.2.2
         with:
-          run_install: true
+          run_install:
+            args: --ignore-scripts=false --foreground-scripts --verbose sharp
       - name: Build packages
         run: pnpm run build
       - name: Run unit tests
