@@ -28,8 +28,8 @@
   "scripts": {
     "dev": "rollup -cw",
     "build": "rollup -c",
-    "test": "vitest",
-    "coverage": "jest --collectCoverage"
+    "test": "vitest run",
+    "coverage": "vitest run --coverage"
   },
   "dependencies": {
     "@rollup/pluginutils": "^4.1.2",

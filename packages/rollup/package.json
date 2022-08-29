@@ -24,7 +24,7 @@
   "scripts": {
     "dev": "rollup -cw",
     "build": "rollup -c",
-    "test": "vitest",
+    "test": "vitest run",
     "coverage": "vitest run --coverage"
   },
   "dependencies": {
