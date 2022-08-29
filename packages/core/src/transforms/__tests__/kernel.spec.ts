@@ -1,6 +1,7 @@
 import { getKernel, KernelValue } from '../kernel'
 import { join } from 'path'
 import sharp, { Sharp } from 'sharp'
+import { describe, beforeEach, expect, test } from 'vitest'
 
 describe('kernel', () => {
   let img: Sharp
@@ -22,14 +23,14 @@ describe('kernel', () => {
 
   describe('arguments', () => {
     test('invalid', () => {
-      //@ts-expect-error
+      //@ts-expect-error invalid args
       const res = getKernel({ kernel: 'invalid' }, img)
 
       expect(res).toBeUndefined()
     })
 
     test('empty', () => {
-      //@ts-expect-error
+      //@ts-expect-error invalid args
       const res = getKernel({ kernel: '' }, img)
 
       expect(res).toBeUndefined()

@@ -1,6 +1,7 @@
 import { getQuality } from '../quality'
 import sharp, { Sharp } from 'sharp'
 import { join } from 'path'
+import { describe, beforeEach, expect, test, it } from 'vitest'
 
 describe('quality', () => {
   let img: Sharp

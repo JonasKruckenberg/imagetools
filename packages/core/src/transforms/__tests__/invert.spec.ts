@@ -1,16 +1,18 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { invert } from '../invert'
 import { TransformFactoryContext } from '../../types'
 import { applyTransforms } from '../../index'
 import sharp, { Sharp } from 'sharp'
 import { join } from 'path'
 import { toMatchImageSnapshot } from 'jest-image-snapshot'
+import { describe, beforeEach, beforeAll, expect, test, vi } from 'vitest'
 
 expect.extend({ toMatchImageSnapshot })
 
 describe('invert', () => {
   let dirCtx: TransformFactoryContext
   beforeAll(() => {
-    dirCtx = { useParam: jest.fn, warn: jest.fn }
+    dirCtx = { useParam: vi.fn, warn: vi.fn }
   })
 
   test('keyword "invert"', () => {
@@ -27,7 +29,7 @@ describe('invert', () => {
 
   describe('arguments', () => {
     test('invalid', () => {
-      //@ts-expect-error
+      //@ts-expect-error invalid args
       const res = invert({ invert: 'invalid' }, dirCtx)
 
       expect(res).toBeUndefined()
@@ -53,15 +55,13 @@ describe('invert', () => {
     })
 
     test('empty', async () => {
-      //@ts-ignore
-      const { image, metadata } = await applyTransforms([invert({ invert: '' }, dirCtx)], img)
+      const { image } = await applyTransforms([invert({ invert: '' }, dirCtx)!], img)
 
       expect(await image.toBuffer()).toMatchImageSnapshot()
     })
 
     test('true', async () => {
-      //@ts-ignore
-      const { image, metadata } = await applyTransforms([invert({ invert: 'true' }, dirCtx)], img)
+      const { image } = await applyTransforms([invert({ invert: 'true' }, dirCtx)!], img)
 
       expect(await image.toBuffer()).toMatchImageSnapshot()
     })

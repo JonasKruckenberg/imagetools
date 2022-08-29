@@ -1,5 +1,6 @@
 import { resolveConfigs } from '../lib/resolve-configs'
 import { builtinOutputFormats } from '../'
+import { describe, test, it, expect } from 'vitest'
 
 describe('generateConfigs', () => {
   it('accepts and array of entries', () => {

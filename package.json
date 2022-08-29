@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "release": "pnpm run build && pnpm changeset publish",
-    "build": "pnpm run --recursive build",
+    "build": "pnpm run --recursive --filter !example-* build",
     "test": "pnpm run --recursive test",
     "coverage": "pnpm run --recursive coverage",
     "lint": "eslint .",
@@ -34,5 +34,10 @@
   "packageManager": "pnpm@7.9.5",
   "engines": {
     "pnpm": "^7.0.0"
+  },
+  "pnpm": {
+    "peerDependencyRules": {
+      "ignoreMissing": ["jest"]
+    }
   }
 }

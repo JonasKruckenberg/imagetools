@@ -1,20 +1,19 @@
 import { Plugin, RollupBuild } from 'rollup'
 import pm from 'picomatch'
+import { join, dirname, basename } from 'path'
 
-export function testEntry(value: string): Plugin {
+export function testEntry(source: string): Plugin {
+  let id: string
   return {
     name: 'test-entry',
-    options(options) {
-      options.input = 'index.js'
-      return options
+    resolveId(source) {      
+      if (basename(source) === 'index.js') {
+        id = source
+        return source
+      }
     },
-    resolveId(source) {
-      if (source === 'index.js') return 'index.js'
-      return null
-    },
-    load(id) {
-      if (id === 'index.js') return value
-      return null
+    load(_id) {
+      if (_id === id) return source
     }
   }
 }

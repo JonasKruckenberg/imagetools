@@ -6,15 +6,16 @@ import { toMatchImageSnapshot } from 'jest-image-snapshot'
 import { OutputAsset, OutputChunk, RollupOutput } from 'rollup'
 import { JSDOM } from 'jsdom'
 import sharp from 'sharp'
+import { describe, test, expect, it } from 'vitest'
 
 expect.extend({ toMatchImageSnapshot })
-process.chdir(join(__dirname, '__fixtures__'))
 
 describe('vite-imagetools', () => {
   describe('options', () => {
     describe('include', () => {
       it('accepts a string', async () => {
         const p = build({
+          root: join(__dirname, '__fixtures__'),
           logLevel: 'warn',
           build: { write: false },
           plugins: [
@@ -33,6 +34,7 @@ describe('vite-imagetools', () => {
 
       it('accepts a regex', async () => {
         const p = build({
+          root: join(__dirname, '__fixtures__'),
           logLevel: 'warn',
           build: { write: false },
           plugins: [
@@ -51,6 +53,7 @@ describe('vite-imagetools', () => {
 
       it('accepts an array', async () => {
         const p = build({
+          root: join(__dirname, '__fixtures__'),
           logLevel: 'warn',
           build: { write: false },
           plugins: [
@@ -69,6 +72,7 @@ describe('vite-imagetools', () => {
 
       it('errors on invalid input', async () => {
         const p = build({
+          root: join(__dirname, '__fixtures__'),
           logLevel: 'silent',
           build: { write: false },
           plugins: [
@@ -88,6 +92,7 @@ describe('vite-imagetools', () => {
 
       it('does nothing non matching import', async () => {
         const p = build({
+          root: join(__dirname, '__fixtures__'),
           logLevel: 'warn',
           build: { write: false },
           plugins: [
@@ -108,6 +113,7 @@ describe('vite-imagetools', () => {
     describe('exclude', () => {
       it('accepts a string', async () => {
         const p = build({
+          root: join(__dirname, '__fixtures__'),
           logLevel: 'warn',
           build: { write: false },
           plugins: [
@@ -126,6 +132,7 @@ describe('vite-imagetools', () => {
 
       it('accepts a regex', async () => {
         const p = build({
+          root: join(__dirname, '__fixtures__'),
           logLevel: 'warn',
           build: { write: false },
           plugins: [
@@ -144,6 +151,7 @@ describe('vite-imagetools', () => {
 
       it('accepts an array', async () => {
         const p = build({
+          root: join(__dirname, '__fixtures__'),
           logLevel: 'warn',
           build: { write: false },
           plugins: [
@@ -162,6 +170,7 @@ describe('vite-imagetools', () => {
 
       it('errors on invalid input', async () => {
         const p = build({
+          root: join(__dirname, '__fixtures__'),
           logLevel: 'silent',
           build: { write: false },
           plugins: [
@@ -181,6 +190,7 @@ describe('vite-imagetools', () => {
 
       it('resolves normal on non matching input', async () => {
         const p = build({
+          root: join(__dirname, '__fixtures__'),
           logLevel: 'warn',
           build: { write: false },
           plugins: [
@@ -207,6 +217,7 @@ describe('vite-imagetools', () => {
     describe('removeMetadata', () => {
       test('true removes private metadata', async () => {
         const bundle = (await build({
+          root: join(__dirname, '__fixtures__'),
           logLevel: 'warn',
           build: { write: false },
           plugins: [
@@ -230,6 +241,7 @@ describe('vite-imagetools', () => {
 
       test('false leaves private metadata', async () => {
         const bundle = (await build({
+          root: join(__dirname, '__fixtures__'),
           logLevel: 'warn',
           build: { write: false },
           plugins: [
@@ -255,6 +267,7 @@ describe('vite-imagetools', () => {
     describe('resolveConfigs', () => {
       test('can be used to generate multiple images (presets)', async () => {
         const bundle = (await build({
+          root: join(__dirname, '__fixtures__'),
           logLevel: 'warn',
           build: { write: false },
           plugins: [
@@ -278,6 +291,7 @@ describe('vite-imagetools', () => {
     describe('defaultDirectives', () => {
       test('const', async () => {
         const bundle = (await build({
+          root: join(__dirname, '__fixtures__'),
           logLevel: 'warn',
           build: { write: false },
           plugins: [
@@ -297,6 +311,7 @@ describe('vite-imagetools', () => {
 
       test('function', async () => {
         const bundle = (await build({
+          root: join(__dirname, '__fixtures__'),
           logLevel: 'warn',
           build: { write: false },
           plugins: [
@@ -321,13 +336,14 @@ describe('vite-imagetools', () => {
 
       test('function with with metadata import', async () => {
         const bundle = (await build({
+          root: join(__dirname, '__fixtures__'),
           logLevel: 'warn',
           build: { write: false },
           plugins: [
             testEntry(`
-                            import Image from "./with-metadata.png?mypreset"
-                            window.__IMAGE__ = Image
-                        `),
+                import Image from "./with-metadata.png?mypreset"
+                window.__IMAGE__ = Image
+            `),
             imagetools({
               defaultDirectives: (id) => {
                 if (id.searchParams.has('mypreset')) {
@@ -360,6 +376,7 @@ describe('vite-imagetools', () => {
 
   test('relative import', async () => {
     const bundle = (await build({
+      root: join(__dirname, '__fixtures__'),
       logLevel: 'warn',
       build: { write: false },
       plugins: [
@@ -376,9 +393,10 @@ describe('vite-imagetools', () => {
   })
 
   test('absolute import', async () => {
-    const imagePath = join(process.cwd(), 'pexels-allec-gomes-5195763.png')
+    const imagePath = join(__dirname, '__fixtures__/pexels-allec-gomes-5195763.png')
 
     const bundle = (await build({
+      root: join(__dirname, '__fixtures__'),
       logLevel: 'warn',
       build: { write: false },
       plugins: [
@@ -396,6 +414,7 @@ describe('vite-imagetools', () => {
 
   test('import with space in identifier', async () => {
     const bundle = (await build({
+      root: join(__dirname, '__fixtures__'),
       logLevel: 'warn',
       build: { write: false },
       plugins: [
@@ -413,6 +432,7 @@ describe('vite-imagetools', () => {
 
   test('non existent file', async () => {
     const p = build({
+      root: join(__dirname, '__fixtures__'),
       logLevel: 'warn',
       build: { write: false },
       plugins: [
@@ -429,6 +449,7 @@ describe('vite-imagetools', () => {
 
   test('no directives', async () => {
     const p = build({
+      root: join(__dirname, '__fixtures__'),
       logLevel: 'warn',
       build: { write: false },
       plugins: [
@@ -445,6 +466,7 @@ describe('vite-imagetools', () => {
 
   test('metadata import', async () => {
     const bundle = (await build({
+      root: join(__dirname, '__fixtures__'),
       logLevel: 'warn',
       build: { write: false },
       plugins: [
@@ -475,6 +497,7 @@ describe('vite-imagetools', () => {
 
   test('destructured metadata import', async () => {
     const bundle = (await build({
+      root: join(__dirname, '__fixtures__'),
       logLevel: 'warn',
       build: { write: false },
       plugins: [
@@ -497,6 +520,7 @@ describe('vite-imagetools', () => {
 
   test('metadata import with whitelist', async () => {
     const bundle = (await build({
+      root: join(__dirname, '__fixtures__'),
       logLevel: 'warn',
       build: { write: false },
       plugins: [
