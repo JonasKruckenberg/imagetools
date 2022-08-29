@@ -39,7 +39,7 @@
     "@types/jsdom": "^16.2.14",
     "@types/picomatch": "^2.3.0",
     "@types/sharp": "^0.30.0",
-    "@vitest/coverage-istanbul": "^0.22.1",
+    "@vitest/coverage-c8": "^0.22.1",
     "jest-image-snapshot": "^5.0.0",
     "jsdom": "^19.0.0",
     "picomatch": "^2.3.1",
