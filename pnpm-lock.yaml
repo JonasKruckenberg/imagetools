@@ -70,17 +70,17 @@ importers:
       '@types/jsdom': ^16.2.14
       '@types/picomatch': ^2.3.0
       '@types/sharp': ^0.30.0
+      '@vitest/coverage-istanbul': ^0.22.1
       imagetools-core: workspace:^
-      jest: ^28.0.0
       jest-image-snapshot: ^5.0.0
       jsdom: ^19.0.0
       magic-string: ^0.26.0
       picomatch: ^2.3.1
       rollup: ^2.66.1
       sharp: ^0.30.0
-      ts-jest: ^28.0.8
       tslib: ^2.3.1
       typescript: ^4.5.5
+      vitest: ^0.22.1
     dependencies:
       '@rollup/pluginutils': 4.2.1
       imagetools-core: link:../core
@@ -92,15 +92,15 @@ importers:
       '@types/jsdom': 16.2.14
       '@types/picomatch': 2.3.0
       '@types/sharp': 0.30.2
-      jest: 28.1.0
-      jest-image-snapshot: 5.1.0_jest@28.1.0
+      '@vitest/coverage-istanbul': 0.22.1_jsdom@19.0.0
+      jest-image-snapshot: 5.1.0
       jsdom: 19.0.0
       picomatch: 2.3.1
       rollup: 2.66.1
       sharp: 0.30.6
-      ts-jest: 28.0.8_3idyv6jqzrc23kpntvtlm4rwnq
       tslib: 2.4.0
       typescript: 4.7.2
+      vitest: 0.22.1_jsdom@19.0.0
 
   packages/vite:
     specifiers:
@@ -1363,6 +1363,29 @@ packages:
     dependencies:
       '@typescript-eslint/types': 5.27.0
       eslint-visitor-keys: 3.3.0
+    dev: true
+
+  /@vitest/coverage-istanbul/0.22.1_jsdom@19.0.0:
+    resolution: {integrity: sha512-S29NBnmu8ko3Yj69yYX0F17RvyVO+3KOKvhExNX8/a1qL3Z+4EeT03DSdXTxkpq+gyxWlaIIMduxKct/imy3Dg==}
+    dependencies:
+      istanbul-lib-coverage: 3.2.0
+      istanbul-lib-instrument: 5.2.0
+      istanbul-lib-report: 3.0.0
+      istanbul-lib-source-maps: 4.0.1
+      istanbul-reports: 3.1.5
+      test-exclude: 6.0.0
+      vitest: 0.22.1_jsdom@19.0.0
+    transitivePeerDependencies:
+      - '@edge-runtime/vm'
+      - '@vitest/browser'
+      - '@vitest/ui'
+      - happy-dom
+      - jsdom
+      - less
+      - sass
+      - stylus
+      - supports-color
+      - terser
     dev: true
 
   /abab/2.0.6:
@@ -3061,6 +3084,14 @@ packages:
 
   /istanbul-reports/3.1.4:
     resolution: {integrity: sha512-r1/DshN4KSE7xWEknZLLLLDn5CJybV3nw01VTkp6D5jzLuELlcbudfj/eSQFvrKsJuTVCGnePO7ho82Nw9zzfw==}
+    engines: {node: '>=8'}
+    dependencies:
+      html-escaper: 2.0.2
+      istanbul-lib-report: 3.0.0
+    dev: true
+
+  /istanbul-reports/3.1.5:
+    resolution: {integrity: sha512-nUsEMa9pBt/NOHqbcbeJEgqIlY/K7rVWUX6Lql2orY5e9roQOthbR3vtY4zzf2orPELg80fnxxk9zUyPlgwD1w==}
     engines: {node: '>=8'}
     dependencies:
       html-escaper: 2.0.2
@@ -4891,7 +4922,7 @@ packages:
     dev: true
 
   /to-fast-properties/2.0.0:
-    resolution: {integrity: sha1-3F5pjL0HkmW8c+A3doGk5Og/YW4=}
+    resolution: {integrity: sha512-/OaKK0xYrs3DmxRYqL/yDc+FxFUVYhDlXMhRmv3z915w2HF1tnN1omB354j8VUGO/hbRzyD6Y3sA7v7GS/ceog==}
     engines: {node: '>=4'}
     dev: true
 

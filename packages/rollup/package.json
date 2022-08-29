@@ -24,8 +24,8 @@
   "scripts": {
     "dev": "rollup -cw",
     "build": "rollup -c",
-    "test": "jest",
-    "coverage": "jest --collectCoverage"
+    "test": "vitest",
+    "coverage": "vitest run --coverage"
   },
   "dependencies": {
     "@rollup/pluginutils": "^4.1.2",
@@ -39,14 +39,14 @@
     "@types/jsdom": "^20.0.0",
     "@types/picomatch": "^2.3.0",
     "@types/sharp": "^0.30.0",
-    "jest": "^28.0.0",
+    "@vitest/coverage-istanbul": "^0.22.1",
     "jest-image-snapshot": "^5.0.0",
     "jsdom": "^20.0.0",
     "picomatch": "^2.3.1",
     "rollup": "^2.66.1",
     "sharp": "^0.30.0",
-    "ts-jest": "^28.0.8",
     "tslib": "^2.3.1",
-    "typescript": "^4.5.5"
+    "typescript": "^4.5.5",
+    "vitest": "^0.22.1"
   }
 }
