@@ -14,10 +14,18 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+      
+      - uses: pnpm/action-setup@v2.0.1
+        name: Install pnpm
+        id: pnpm-install
+        with:
+          run_install: false
+      
       - name: Get pnpm store directory
         id: pnpm-cache
         run: |
           echo "::set-output name=pnpm_cache_dir::$(pnpm store path)"
+      
       - uses: actions/cache@v3
         name: Setup pnpm cache
         with:
@@ -25,8 +33,10 @@ jobs:
           key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
           restore-keys: |
             ${{ runner.os }}-pnpm-store-
+      
       - uses: pnpm/action-setup@v2.2.2
         with:
           run_install: true
+
       - name: lint
         run: pnpm run lint
