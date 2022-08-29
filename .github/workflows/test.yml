@@ -46,3 +46,9 @@ jobs:
       
       - name: Run unit tests
         run: pnpm run test --no-threads
+
+      - uses: actions/upload-artifact@v3
+        if: failure()
+        with:
+          name: image-diffs
+          path: packages/**/__image_snapshots__/__diff_output__/
