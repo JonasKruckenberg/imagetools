@@ -76,10 +76,12 @@
 - [metadataFormat](core_src.md#metadataformat)
 - [normalize](core_src.md#normalize)
 - [parseURL](core_src.md#parseurl)
+- [pictureFormat](core_src.md#pictureformat)
 - [resize](core_src.md#resize)
 - [resolveConfigs](core_src.md#resolveconfigs)
 - [rotate](core_src.md#rotate)
 - [setMetadata](core_src.md#setmetadata)
+- [sourceFormat](core_src.md#sourceformat)
 - [srcsetFormat](core_src.md#srcsetformat)
 - [tint](core_src.md#tint)
 - [urlFormat](core_src.md#urlformat)
@@ -269,6 +271,8 @@ ___
 | :------ | :------ |
 | `meta` | [`OutputFormat`](core_src.md#outputformat) |
 | `metadata` | [`OutputFormat`](core_src.md#outputformat) |
+| `picture` | [`OutputFormat`](core_src.md#outputformat) |
+| `source` | [`OutputFormat`](core_src.md#outputformat) |
 | `srcset` | [`OutputFormat`](core_src.md#outputformat) |
 | `url` | [`OutputFormat`](core_src.md#outputformat) |
 
@@ -857,6 +861,38 @@ ___
 
 ___
 
+### pictureFormat
+
+▸ `Const` **pictureFormat**(`args?`): (`metadata`: [`ImageConfig`](core_src.md#imageconfig)[]) => `unknown`
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `args?` | `string`[] |
+
+#### Returns
+
+`fn`
+
+▸ (`metadata`): `unknown`
+
+##### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `metadata` | [`ImageConfig`](core_src.md#imageconfig)[] |
+
+##### Returns
+
+`unknown`
+
+#### Defined in
+
+[core/src/output-formats.ts](https://github.com/JonasKruckenberg/imagetools/blob/main/packages/core/src/output-formats.ts)
+
+___
+
 ### resize
 
 ▸ **resize**(`metadata`, `ctx`): `undefined` \| [`ImageTransformation`](core_src.md#imagetransformation)
@@ -944,6 +980,38 @@ ___
 #### Defined in
 
 [core/src/lib/metadata.ts:11](https://github.com/JonasKruckenberg/imagetools/blob/a033017/packages/core/src/lib/metadata.ts#L11)
+
+___
+
+### sourceFormat
+
+▸ `Const` **sourceFormat**(`args?`): (`metadata`: [`ImageConfig`](core_src.md#imageconfig)[]) => `unknown`
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `args?` | `string`[] |
+
+#### Returns
+
+`fn`
+
+▸ (`metadata`): `unknown`
+
+##### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `metadata` | [`ImageConfig`](core_src.md#imageconfig)[] |
+
+##### Returns
+
+`unknown`
+
+#### Defined in
+
+[core/src/output-formats.ts](https://github.com/JonasKruckenberg/imagetools/blob/main/packages/core/src/output-formats.ts)
 
 ___
 

@@ -1,4 +1,4 @@
-import { urlFormat, metadataFormat, srcsetFormat } from '../output-formats'
+import { urlFormat, metadataFormat, pictureFormat, sourceFormat, srcsetFormat } from '../output-formats'
 import { describe, test, expect } from 'vitest'
 
 describe('url format', () => {
@@ -47,7 +47,45 @@ describe('metadata format', () => {
   })
 })
 
-describe('srcset format', () => {
+describe('picture format', () => {
+  test('multiple image formats', () => {
+    const output = pictureFormat()([
+      { src: '/foo.avif', format: 'avif', width: 100 },
+      { src: '/foo.webp', format: 'webp', width: 100 },
+      { src: '/foo.jpg', format: 'jpg', width: 100 }
+    ])
+
+    expect(output).toStrictEqual({
+      sources: {
+        avif: [{ src: '/foo.avif', w: 100 }],
+        webp: [{ src: '/foo.webp', w: 100 }]
+      },
+      fallback: '/foo.jpg'
+    })
+  })
+
+  test('multiple image formats and sizes', () => {
+    const output = pictureFormat()([
+      { src: '/foo-100.avif', format: 'avif', width: 100 },
+      { src: '/foo-100.webp', format: 'webp', width: 100 },
+      { src: '/foo-100.jpg', format: 'jpg', width: 100 },
+      { src: '/foo-50.avif', format: 'avif', width: 50 },
+      { src: '/foo-50.webp', format: 'webp', width: 50 },
+      { src: '/foo-50.jpg', format: 'jpg', width: 50 }
+    ])
+
+    expect(output).toStrictEqual({
+      sources: {
+        avif: [{ src: '/foo-100.avif', w: 100 }, { src: '/foo-50.avif', w: 50 }],
+        webp: [{ src: '/foo-100.webp', w: 100 }, { src: '/foo-50.webp', w: 50 }],
+        jpeg: [{ src: '/foo-100.jpg', w: 100 }, { src: '/foo-50.jpg', w: 50 }]
+      },
+      fallback: '/foo-100.jpg'
+    })
+  })
+})
+
+describe('source format', () => {
   test('single image', () => {
     const output = srcsetFormat()([{ src: '/foo.jpg', width: 500 }])
 
@@ -61,5 +99,22 @@ describe('srcset format', () => {
     ])
 
     expect(output).toEqual('/foo.jpg 500w, /bar.jpg 300w')
+  })
+})
+
+describe('srcset format', () => {
+  test('single image', () => {
+    const output = sourceFormat()([{ src: '/foo.jpg', width: 500 }])
+
+    expect(output).toEqual([{ src: '/foo.jpg', w: 500 }])
+  })
+
+  test('multiple images', () => {
+    const output = sourceFormat()([
+      { src: '/foo.jpg', width: 500 },
+      { src: '/bar.jpg', width: 300 }
+    ])
+
+    expect(output).toEqual([{ src: '/foo.jpg', w: 500}, { src: '/bar.jpg', w: 300 }])
   })
 })
