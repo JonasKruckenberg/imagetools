@@ -1,5 +1,11 @@
 # Change Log
 
+## 3.1.1
+
+### Patch Changes
+
+- ea4ab8f: fix: don't include Vitest as dependency
+
 ## 3.1.0
 
 ### Minor Changes
