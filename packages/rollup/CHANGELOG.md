@@ -1,5 +1,12 @@
 # Change Log
 
+## 3.0.8
+
+### Patch Changes
+
+- Updated dependencies [ea4ab8f]
+  - imagetools-core@3.1.1
+
 ## 3.0.7
 
 ### Patch Changes
