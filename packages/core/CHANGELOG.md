@@ -1,5 +1,11 @@
 # Change Log
 
+## 3.1.0
+
+### Minor Changes
+
+- 6f93aaf: feat: add picture and source output formats
+
 ## 3.0.3
 
 ### Patch Changes
