@@ -41,5 +41,9 @@ export interface Source {
  */
 export interface Picture {
   sources: Record<string, Source[]>;
-  fallback: string;
+  fallback: {
+    src: string;
+    w: number;
+    h: number;
+  };
 }

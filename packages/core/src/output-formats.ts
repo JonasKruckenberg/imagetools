@@ -1,4 +1,4 @@
-import type { ImageConfig, OutputFormat, Source, Picture } from './types'
+import type { ImageConfig, OutputFormat, Picture, Source } from './types'
 
 export const urlFormat: OutputFormat = () => (metadatas) => {
   const urls: string[] = metadatas.map((metadata) => metadata.src as string)
@@ -33,7 +33,6 @@ export const sourceFormat: OutputFormat = () => (metadatas) => {
 
 /** fallback format should be specified last */
 export const pictureFormat: OutputFormat = () => (metadatas) => {
-  const result: Picture = { sources: {}, fallback: '' };
   const fallbackFormat = [...new Set(metadatas.map((m) => format(m)))].pop();
 
   let largestFallback;
@@ -50,6 +49,7 @@ export const pictureFormat: OutputFormat = () => (metadatas) => {
     }
   }
 
+  const sources: Record<string, Source[]> = {};
   for (let i = 0; i < metadatas.length; i++) {
     const m = metadatas[i];
     const f = format(m);
@@ -58,17 +58,24 @@ export const pictureFormat: OutputFormat = () => (metadatas) => {
     if (f === fallbackFormat && fallbackFormatCount < 2) {
       continue;
     }
-    if (result.sources[f]) {
-      result.sources[f].push(metadataToSource(m));
+    if (sources[f]) {
+      sources[f].push(metadataToSource(m));
     } else {
-      result.sources[f] = [metadataToSource(m)]
+      sources[f] = [metadataToSource(m)]
     }
   };
 
-  // the fallback should be the largest image in the fallback format
-  // we assume users should never upsize an image because that is just wasted
-  // bytes since the browser can upsize just as well
-  result.fallback = largestFallback?.src as string;
+  const result: Picture = {
+    sources,
+    // the fallback should be the largest image in the fallback format
+    // we assume users should never upsize an image because that is just wasted
+    // bytes since the browser can upsize just as well
+    fallback: {
+      src: largestFallback?.src as string,
+      w: largestFallback?.width as number,
+      h: largestFallback?.height as number
+    }
+  };
   return result;
 }
 
