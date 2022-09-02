@@ -1,6 +1,6 @@
 {
   "name": "imagetools-core",
-  "version": "3.1.1",
+  "version": "3.2.0",
   "main": "dist/index.cjs",
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
