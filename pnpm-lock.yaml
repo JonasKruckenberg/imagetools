@@ -45,7 +45,7 @@ importers:
       '@rollup/plugin-typescript': ^8.3.0
       '@types/jest-image-snapshot': ^5.0.0
       '@types/sharp': ^0.30.0
-      '@vitest/coverage-c8': ^0.22.1
+      '@vitest/coverage-c8': ^0.23.0
       jest-file-snapshot: ^0.5.0
       jest-image-snapshot: ^5.0.0
       rollup: ^2.66.1
@@ -59,7 +59,7 @@ importers:
       '@rollup/plugin-typescript': 8.3.2_6qbdvrnuliyehzvxjtzrb3pjt4
       '@types/jest-image-snapshot': 5.1.0
       '@types/sharp': 0.30.2
-      '@vitest/coverage-c8': 0.22.1
+      '@vitest/coverage-c8': 0.23.0
       jest-file-snapshot: 0.5.0
       jest-image-snapshot: 5.1.0
       rollup: 2.66.1
@@ -75,7 +75,7 @@ importers:
       '@types/jsdom': ^20.0.0
       '@types/picomatch': ^2.3.0
       '@types/sharp': ^0.30.0
-      '@vitest/coverage-c8': ^0.22.1
+      '@vitest/coverage-c8': ^0.23.0
       imagetools-core: workspace:^
       jest-image-snapshot: ^5.0.0
       jsdom: ^20.0.0
@@ -96,7 +96,7 @@ importers:
       '@types/jsdom': 20.0.0
       '@types/picomatch': 2.3.0
       '@types/sharp': 0.30.2
-      '@vitest/coverage-c8': 0.22.1_jsdom@20.0.0
+      '@vitest/coverage-c8': 0.23.0_jsdom@20.0.0
       jest-image-snapshot: 5.1.0
       jsdom: 20.0.0
       picomatch: 2.3.1
@@ -114,7 +114,7 @@ importers:
       '@types/jsdom': ^20.0.0
       '@types/picomatch': ^2.3.0
       '@types/sharp': ^0.30.0
-      '@vitest/coverage-c8': ^0.22.1
+      '@vitest/coverage-c8': ^0.23.0
       imagetools-core: workspace:^
       jest-image-snapshot: ^5.0.0
       jsdom: ^20.0.0
@@ -136,7 +136,7 @@ importers:
       '@types/jsdom': 20.0.0
       '@types/picomatch': 2.3.0
       '@types/sharp': 0.30.2
-      '@vitest/coverage-c8': 0.22.1_jsdom@20.0.0
+      '@vitest/coverage-c8': 0.23.0_jsdom@20.0.0
       jest-image-snapshot: 5.1.0
       jsdom: 20.0.0
       picomatch: 2.3.1
@@ -756,11 +756,11 @@ packages:
       eslint-visitor-keys: 3.3.0
     dev: true
 
-  /@vitest/coverage-c8/0.22.1:
-    resolution: {integrity: sha512-KOOYpO7EGpaF+nD8GD+Y05D0JtZp12NUu6DdLXvBPqSOPo2HkZ7KNBtfR0rb6gOy3NLtGiWTYTzCwhajgb2HlA==}
+  /@vitest/coverage-c8/0.23.0:
+    resolution: {integrity: sha512-8vhn1xViCNI1rx8dzncuzePZsN2eiQN8xFtsXy4sW2nZjH4UcIQlD1nwIY6Yei/RwFalay9F1sq588a/OPMjwg==}
     dependencies:
       c8: 7.12.0
-      vitest: 0.22.1
+      vitest: 0.23.0
     transitivePeerDependencies:
       - '@edge-runtime/vm'
       - '@vitest/browser'
@@ -774,11 +774,11 @@ packages:
       - terser
     dev: true
 
-  /@vitest/coverage-c8/0.22.1_jsdom@20.0.0:
-    resolution: {integrity: sha512-KOOYpO7EGpaF+nD8GD+Y05D0JtZp12NUu6DdLXvBPqSOPo2HkZ7KNBtfR0rb6gOy3NLtGiWTYTzCwhajgb2HlA==}
+  /@vitest/coverage-c8/0.23.0_jsdom@20.0.0:
+    resolution: {integrity: sha512-8vhn1xViCNI1rx8dzncuzePZsN2eiQN8xFtsXy4sW2nZjH4UcIQlD1nwIY6Yei/RwFalay9F1sq588a/OPMjwg==}
     dependencies:
       c8: 7.12.0
-      vitest: 0.22.1_jsdom@20.0.0
+      vitest: 0.23.0_jsdom@20.0.0
     transitivePeerDependencies:
       - '@edge-runtime/vm'
       - '@vitest/browser'
@@ -858,7 +858,6 @@ packages:
   /ansi-regex/5.0.1:
     resolution: {integrity: sha512-quJQXlTSUGL2LH9SUXo8VwsY4soanhgo6LNSm84E1LBcE8s3O0wpdiRzyR9z/ZZJMlMWv37qOOb9pdJlMUEKFQ==}
     engines: {node: '>=8'}
-    dev: true
 
   /ansi-styles/2.2.1:
     resolution: {integrity: sha512-kmCevFghRiWM7HB5zTPULl4r9bVFSWjz62MhqizDGUrq2NWuNMQyuv4tHHoKJHs69M/MF64lEcHdYIocrdWQYA==}
@@ -1337,7 +1336,6 @@ packages:
 
   /emoji-regex/8.0.0:
     resolution: {integrity: sha512-MSjYzcWNOA0ewAHpz0MxpYFvwg6yjy1NG3xteoqz644VCo/RPgnr1/GGt+ic3iJTzQ8Eu3TdM14SawnVUmGE6A==}
-    dev: true
 
   /end-of-stream/1.4.4:
     resolution: {integrity: sha512-+uw1inIHVPQoaVuHzRyXd21icM+cnt4CzD5rW+NC1wjOUSTOs+Te7FOv7AhN7vS9x/oIyhLP5PR1H+phQAHu5Q==}
@@ -2170,7 +2168,6 @@ packages:
   /is-fullwidth-code-point/3.0.0:
     resolution: {integrity: sha512-zymm5+u+sCsSWyD9qNaejV3DFvhCKclKdizYaJUuHA83RLjb7nSuGnddCHGv0hk+KY7BMAlsWeK4Ueg6EV6XQg==}
     engines: {node: '>=8'}
-    dev: true
 
   /is-glob/4.0.3:
     resolution: {integrity: sha512-xelSayHH36ZgE7ZWhli7pW34hNbNl8Ojv5KVmkJD4hBdD3th8Tfk9vYasLM+mXWOZhFkgZfxhLSnrwRr4elSSg==}
@@ -3275,7 +3272,7 @@ packages:
     dev: true
 
   /string-width/1.0.2:
-    resolution: {integrity: sha1-EYvfW4zcUaKn5w0hHgfisLmxB9M=}
+    resolution: {integrity: sha512-0XsVpQLnVCXHJfyEs8tC0zpTVIr5PKKsQtkT29IwupnPTjtPmQ3xT/4yCREF9hYkV/3M3kzcUTSAZT6a6h81tw==}
     engines: {node: '>=0.10.0'}
     dependencies:
       code-point-at: 1.1.0
@@ -3289,7 +3286,6 @@ packages:
       emoji-regex: 8.0.0
       is-fullwidth-code-point: 3.0.0
       strip-ansi: 6.0.1
-    dev: true
 
   /string_decoder/1.1.1:
     resolution: {integrity: sha512-n/ShnvDi6FHbbVfviro+WojiFzv+s8MPMHBczVePfUpDJLwoLT0ht1l4YwBCbi8pJAveEEdnkHyPyTP/mzRfwg==}
@@ -3312,7 +3308,6 @@ packages:
     engines: {node: '>=8'}
     dependencies:
       ansi-regex: 5.0.1
-    dev: true
 
   /strip-bom/3.0.0:
     resolution: {integrity: sha1-IzTBjpx1n3vdVv3vfprj1YjmjtM=}
@@ -3910,7 +3905,7 @@ packages:
   /wide-align/1.1.5:
     resolution: {integrity: sha512-eDMORYaPNZ4sQIuuYPDHdQvf4gyCF9rEEV/yPxGfwPkRodwEgiMUUXTx/dex+Me0wxx53S+NgUHaP7y3MGlDmg==}
     dependencies:
-      string-width: 1.0.2
+      string-width: 4.2.3
 
   /word-wrap/1.2.3:
     resolution: {integrity: sha512-Hz/mrNwitNRh/HUAtM/VT/5VH+ygD6DV7mYKZAtHOrbs8U7lvPS6xf7EJKMF0uW1KJCl0H701g3ZGus+muE5vQ==}
