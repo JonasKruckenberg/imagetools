@@ -183,7 +183,6 @@ describe('rollup-plugin-imagetools', () => {
 
         const metadata = await sharp(files[0].source as Buffer).metadata()
 
-        expect(metadata).not.toHaveProperty('icc')
         expect(metadata).not.toHaveProperty('xmp')
       })
 
@@ -205,7 +204,6 @@ describe('rollup-plugin-imagetools', () => {
 
         const metadata = await sharp(files[0].source as Buffer).metadata()
 
-        expect(metadata).toHaveProperty('icc')
         expect(metadata).toHaveProperty('xmp')
       })
 
