@@ -1,5 +1,11 @@
 # Change Log
 
+## 3.2.1
+
+### Patch Changes
+
+- ca40b8b: chore(deps): update dependency sharp to ^0.31.0
+
 ## 3.2.0
 
 ### Minor Changes

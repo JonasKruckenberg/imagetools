@@ -1,5 +1,13 @@
 # Change Log
 
+## 4.0.9
+
+### Patch Changes
+
+- ca40b8b: chore(deps): update dependency sharp to ^0.31.0
+- Updated dependencies [ca40b8b]
+  - imagetools-core@3.2.1
+
 ## 4.0.8
 
 ### Patch Changes
