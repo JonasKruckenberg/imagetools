@@ -12,7 +12,7 @@ transformations are powered by [sharp](https://sharp.pixelplumbing.com).
 - **🔒 Remove Image Metadata**
 - **🧩 Extensible**
 
-[Read the docs to learn more!](docs/README.md)
+[Read the docs to learn more!](https://github.com/JonasKruckenberg/imagetools/blob/main/docs/README.md)
 
 ## Packages
 
