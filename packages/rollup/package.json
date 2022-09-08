@@ -8,7 +8,7 @@
   "files": [
     "dist"
   ],
-  "homepage": "https://github.com/JonasKruckenberg/imagetools/tree/packages/vite",
+  "homepage": "https://github.com/JonasKruckenberg/imagetools/tree/main/packages/rollup",
   "author": "jkruckenberg <iterpre@protonmail.com>",
   "repository": {
     "type": "git",
