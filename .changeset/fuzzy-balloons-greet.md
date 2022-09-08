@@ -4,4 +4,4 @@
 "vite-imagetools": patch
 ---
 
-Update READMEs
+Update package READMEs and metadata.
