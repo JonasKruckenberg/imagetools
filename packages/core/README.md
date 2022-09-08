@@ -12,7 +12,7 @@ powered by [sharp](https://sharp.pixelplumbing.com).
 > This package holds all transforms and core utility functions needed to integrate imagetools with any builtool,<br> or
 > to create a standalone transformation server!
 
-> [Read the docs to learn more!](../../docs/README.md)
+> [Read the docs to learn more!](https://github.com/JonasKruckenberg/imagetools/blob/main/docs/README.md)
 
 ## Table of Contents
 
