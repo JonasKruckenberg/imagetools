@@ -7,7 +7,7 @@
   "files": [
     "dist"
   ],
-  "homepage": "https://github.com/JonasKruckenberg/imagetools/tree/next/packages/core",
+  "homepage": "https://github.com/JonasKruckenberg/imagetools/tree/main/packages/core",
   "author": "jkruckenberg <iterpre@protonmail.com>",
   "license": "MIT",
   "repository": {

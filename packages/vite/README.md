@@ -18,7 +18,7 @@ compile-time. All of the image transformations are powered by [sharp](https://sh
 - **🔒 Remove Image Metadata**
 - **🧩 Extensible**
 
-> [Read the docs to learn more!](../../docs/README.md)
+> [Read the docs to learn more!](https://github.com/JonasKruckenberg/imagetools/blob/main/docs/README.md)
 
 ## Table of Contents
 
