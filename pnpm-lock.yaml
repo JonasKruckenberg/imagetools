@@ -44,7 +44,7 @@ importers:
     specifiers:
       '@rollup/plugin-typescript': ^8.3.0
       '@types/jest-image-snapshot': ^5.0.0
-      '@types/sharp': ^0.30.0
+      '@types/sharp': ^0.31.0
       '@vitest/coverage-c8': ^0.23.0
       jest-file-snapshot: ^0.5.0
       jest-image-snapshot: ^5.0.0
@@ -58,7 +58,7 @@ importers:
     devDependencies:
       '@rollup/plugin-typescript': 8.3.2_6qbdvrnuliyehzvxjtzrb3pjt4
       '@types/jest-image-snapshot': 5.1.0
-      '@types/sharp': 0.30.2
+      '@types/sharp': 0.31.0
       '@vitest/coverage-c8': 0.23.0
       jest-file-snapshot: 0.5.0
       jest-image-snapshot: 5.1.0
@@ -74,7 +74,7 @@ importers:
       '@types/jest-image-snapshot': ^5.0.0
       '@types/jsdom': ^20.0.0
       '@types/picomatch': ^2.3.0
-      '@types/sharp': ^0.30.0
+      '@types/sharp': ^0.31.0
       '@vitest/coverage-c8': ^0.23.0
       imagetools-core: workspace:^
       jest-image-snapshot: ^5.0.0
@@ -95,7 +95,7 @@ importers:
       '@types/jest-image-snapshot': 5.1.0
       '@types/jsdom': 20.0.0
       '@types/picomatch': 2.3.0
-      '@types/sharp': 0.30.2
+      '@types/sharp': 0.31.0
       '@vitest/coverage-c8': 0.23.0_jsdom@20.0.0
       jest-image-snapshot: 5.1.0
       jsdom: 20.0.0
@@ -113,7 +113,7 @@ importers:
       '@types/jest-image-snapshot': ^5.0.0
       '@types/jsdom': ^20.0.0
       '@types/picomatch': ^2.3.0
-      '@types/sharp': ^0.30.0
+      '@types/sharp': ^0.31.0
       '@vitest/coverage-c8': ^0.23.0
       imagetools-core: workspace:^
       jest-image-snapshot: ^5.0.0
@@ -135,7 +135,7 @@ importers:
       '@types/jest-image-snapshot': 5.1.0
       '@types/jsdom': 20.0.0
       '@types/picomatch': 2.3.0
-      '@types/sharp': 0.30.2
+      '@types/sharp': 0.31.0
       '@vitest/coverage-c8': 0.23.0_jsdom@20.0.0
       jest-image-snapshot: 5.1.0
       jsdom: 20.0.0
@@ -610,8 +610,8 @@ packages:
     resolution: {integrity: sha512-KQf+QAMWKMrtBMsB8/24w53tEsxllMj6TuA80TT/5igJalLI/zm0L3oXRbIAl4Ohfc85gyHX/jhMwsVkmhLU4A==}
     dev: true
 
-  /@types/sharp/0.30.2:
-    resolution: {integrity: sha512-uLCBwjDg/BTcQit0dpNGvkIjvH3wsb8zpaJePCjvONBBSfaKHoxXBIuq1MT8DMQEfk2fKYnpC9QExCgFhkGkMQ==}
+  /@types/sharp/0.31.0:
+    resolution: {integrity: sha512-nwivOU101fYInCwdDcH/0/Ru6yIRXOpORx25ynEOc6/IakuCmjOAGpaO5VfUl4QkDtUC6hj+Z2eCQvgXOioknw==}
     dependencies:
       '@types/node': 17.0.38
     dev: true
