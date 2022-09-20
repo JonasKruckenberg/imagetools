@@ -31,7 +31,7 @@
       "@commitlint/config-conventional"
     ]
   },
-  "packageManager": "pnpm@7.12.0",
+  "packageManager": "pnpm@7.12.1",
   "engines": {
     "pnpm": "^7.0.0"
   },
