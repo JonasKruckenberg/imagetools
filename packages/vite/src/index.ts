@@ -14,7 +14,6 @@ import {
 } from 'imagetools-core'
 import { basename, extname, posix } from 'path'
 import { createFilter, dataToEsm } from '@rollup/pluginutils'
-import MagicString from 'magic-string'
 import { VitePluginOptions } from './types'
 
 const defaultOptions: VitePluginOptions = {
@@ -52,7 +51,7 @@ export function imagetools(userOptions: Partial<VitePluginOptions> = {}): Plugin
 
       let directives = srcURL.searchParams
 
-      if(typeof pluginOptions.defaultDirectives === "function") {
+      if (typeof pluginOptions.defaultDirectives === 'function') {
         directives = new URLSearchParams([...pluginOptions.defaultDirectives(srcURL), ...srcURL.searchParams])
       } else if (pluginOptions.defaultDirectives) {
         directives = new URLSearchParams([...pluginOptions.defaultDirectives, ...srcURL.searchParams])
@@ -83,7 +82,7 @@ export function imagetools(userOptions: Partial<VitePluginOptions> = {}): Plugin
             type: 'asset'
           })
 
-          metadata.src = `__VITE_IMAGE_ASSET__${fileHandle}__`
+          metadata.src = `__VITE_ASSET__${fileHandle}__`
         } else {
           metadata.src = posix.join('/@imagetools', id)
         }
@@ -134,32 +133,6 @@ export function imagetools(userOptions: Partial<VitePluginOptions> = {}): Plugin
 
         next()
       })
-    },
-
-    renderChunk(code) {
-      const assetUrlRE = /__VITE_IMAGE_ASSET__([a-z\d]{8})__(?:_(.*?)__)?/g
-
-      let match
-      let s
-      while ((match = assetUrlRE.exec(code))) {
-        s = s || (s = new MagicString(code))
-        const [full, hash, postfix = ''] = match
-
-        const file = this.getFileName(hash)
-
-        const outputFilepath = viteConfig.base + file + postfix
-
-        s.overwrite(match.index, match.index + full.length, outputFilepath)
-      }
-
-      if (s) {
-        return {
-          code: s.toString(),
-          map: viteConfig.build.sourcemap ? s.generateMap({ hires: true }) : null
-        }
-      } else {
-        return null
-      }
     }
   }
 }
