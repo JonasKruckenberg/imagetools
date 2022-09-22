@@ -14,6 +14,7 @@ import {
 } from 'imagetools-core'
 import { basename, extname, posix } from 'path'
 import { createFilter, dataToEsm } from '@rollup/pluginutils'
+import MagicString from 'magic-string'
 import { VitePluginOptions } from './types'
 
 const defaultOptions: VitePluginOptions = {
@@ -133,6 +134,37 @@ export function imagetools(userOptions: Partial<VitePluginOptions> = {}): Plugin
 
         next()
       })
+    },
+
+    renderChunk(code) {
+      const assetUrlRE = /const\s+(\S+)\s*=\s*"((__VITE_ASSET__([a-z\d]{8})__ \d+w,?\s?)+)";/g
+
+      let match
+      let s
+      while ((match = assetUrlRE.exec(code))) {
+        s = s || (s = new MagicString(code))
+        const [full, name, assets] = match
+        const parts = assets.split(',').flatMap((s, is, as) =>
+          s
+            .trim()
+            .split(' ')
+            .map((v, i, a) => (i === a.length - 1 && is < as.length - 1 ? v + ',' : v))
+        )
+        const output = [
+          ...parts.map((part, index) => `const ${name}__${index} = ${JSON.stringify(part)};`),
+          `const ${name} = [${parts.map((part, index) => `${name}__${index}`).join(', ')}].join(" ");`
+        ].join('\n')
+        s.overwrite(match.index, match.index + full.length, output)
+      }
+
+      if (s) {
+        return {
+          code: s.toString(),
+          map: viteConfig.build.sourcemap ? s.generateMap({ hires: true }) : null
+        }
+      } else {
+        return null
+      }
     }
   }
 }
