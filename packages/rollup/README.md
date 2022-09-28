@@ -100,7 +100,7 @@ ___
 
 Which paths to include when processing images.
 
-**`default`** '**\/*.{heic,heif,avif,jpeg,jpg,png,tiff,webp,gif}?*'
+**`default`** ['**\/*.{heic,heif,avif,jpeg,jpg,png,tiff,webp,gif}', '**\/*.{heic,heif,avif,jpeg,jpg,png,tiff,webp,gif}?*']
 
 ___
 

@@ -18,7 +18,10 @@ import MagicString from 'magic-string'
 import { VitePluginOptions } from './types'
 
 const defaultOptions: VitePluginOptions = {
-  include: '**/*.{heic,heif,avif,jpeg,jpg,png,tiff,webp,gif}?*',
+  include: [
+    '**/*.{heic,heif,avif,jpeg,jpg,png,tiff,webp,gif}',
+    '**/*.{heic,heif,avif,jpeg,jpg,png,tiff,webp,gif}?*'
+  ],
   exclude: 'public/**/*',
   silent: false,
   removeMetadata: true

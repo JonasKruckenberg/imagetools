@@ -16,7 +16,10 @@ import MagicString from 'magic-string'
 import { basename, extname, resolve, dirname } from 'path'
 
 const defaultOptions: RollupPluginOptions = {
-  include: '**/*.{heic,heif,avif,jpeg,jpg,png,tiff,webp,gif}?*',
+  include: [
+    '**/*.{heic,heif,avif,jpeg,jpg,png,tiff,webp,gif}',
+    '**/*.{heic,heif,avif,jpeg,jpg,png,tiff,webp,gif}?*'
+  ],
   exclude: '',
   silent: false,
   removeMetadata: true
