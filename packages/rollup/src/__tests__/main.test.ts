@@ -368,6 +368,15 @@ describe('rollup-plugin-imagetools', () => {
     await expect(p).rejects.toBeDefined()
   })
 
+  test('not an image', async () => {
+    const p = rollup({
+      input: join(__dirname, '__fixtures__/index.js'),
+      plugins: [testEntry(`import Image from "./pexels-allec-gomes-5195763.xml"`), imagetools()]
+    })
+
+    await expect(p).rejects.toBeDefined()
+  })
+
   test('no directives', async () => {
     const p = rollup({
       input: join(__dirname, '__fixtures__/index.js'),
