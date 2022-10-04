@@ -25,9 +25,11 @@
 
 ### Output Directives
 
-- [url](#url)
-- [srcset](#srcset)
 - [metadata](#metadata)
+- [picture](#picture)
+- [source](#source)
+- [srcset](#srcset)
+- [url](#url)
 
 ## Directives
 
@@ -368,19 +370,56 @@ import Image from 'example.jpg?tint=rgba(10,33,127)'
 
 ---
 
-### URL
+### Metadata
 
-• **Keyword**: `url`<br> • **Type**: _boolean_<br>
+• **Keyword**: `metadata` | `meta`<br> • **Type**: _boolean_ | _string[]_<br>
 
-Returns a URL to the generated image. This is the default when your directives produce only one output image.
+Returns all information collected about the image as a JavaScript object. The directive optionally takes a list of arguments that act as a *whitelist* for the metadata object. You can use it to only import specific image attributes, keeping your bundle size small.
 
 • **Example**:
 
 ```js
-import Image from 'example.jpg?w=500' // the type of Image is a string and it's a URL to the transformed image
+import Image from 'example.jpg?w=500;900;1200&avif&metadata'
+import { height, format } from 'example.jpg?w=700&gif&meta=height;format'
 ```
 
----
+### Picture
+
+• **Keyword**: `picture`<br> • **Type**: _boolean_<br>
+
+Returns information about the image necessary to render a `picture` tag as a JavaScript object.
+
+• **Example**:
+
+```js
+import image from 'example.jpg?w=500;900;1200&avif;webp;jpg&picture'
+
+let html = '<picture>';
+for (const [format, images] of Object.entries(image.sources)) {
+  html += `<source srcset={images.map((i) => `${i.src}`).join(', ')} type={'image/' + format} />`;
+}
+html += `<img src={image.fallback.src} /></picture>`
+```
+
+### Source
+
+• **Keyword**: `url`<br> • **Type**: _boolean_<br>
+
+Returns information about the image necessary to render a `source` tag as a JavaScript object. This only takes the image width into consideration.
+
+• **Example**:
+
+```js
+import avif from 'example.jpg?w=500;900;1200&avif&source'
+import webp from 'example.jpg?w=500;900;1200&webp&source'
+import fallback from 'example.jpg?w=700'
+
+const html = `<picture>
+    <source srcset="${avif.src} ${avif.w}" type="image/avif" />
+    <source srcset="${webp.src} ${webp.w}" type="image/webp" />
+    <img src="${fallback}" />
+</picture>
+```
 
 ### Srcset
 
@@ -403,15 +442,14 @@ const html = `<picture>
 `
 ```
 
-### Metadata
+### URL
 
-• **Keyword**: `metadata` | `meta`<br> • **Type**: _boolean_ | _string[]_<br>
+• **Keyword**: `url`<br> • **Type**: _boolean_<br>
 
-Returns all information collected about the image as a JavaScript object. The directive optionally takes a list of arguments that act as a *whitelist* for the metadata object. You can use it to only import specific image attributes, keeping your bundle size small.
+Returns a URL to the generated image. This is the default when your directives produce only one output image.
 
 • **Example**:
 
 ```js
-import Image from 'example.jpg?w=500;900;1200&avif&metadata'
-import { height, format } from 'example.jpg?w=700&gif&meta=height;format'
+import Image from 'example.jpg?w=500' // the type of Image is a string and it's a URL to the transformed image
 ```
