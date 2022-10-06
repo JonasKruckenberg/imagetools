@@ -294,7 +294,7 @@ describe('vite-imagetools', () => {
           build: { write: false },
           plugins: [
             testEntry(`
-                            import Image from "./with-metadata.png?metadata"
+                            import Image from "./with-metadata.png"
                             window.__IMAGE__ = Image
                         `),
             imagetools({

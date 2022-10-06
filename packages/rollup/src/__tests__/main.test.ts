@@ -236,7 +236,7 @@ describe('rollup-plugin-imagetools', () => {
           input: join(__dirname, '__fixtures__/index.js'),
           plugins: [
             testEntry(`
-                          import Image from "./with-metadata.png?metadata"
+                          import Image from "./with-metadata.png"
                           export default Image
                       `),
             imagetools({
