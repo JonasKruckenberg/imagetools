@@ -118,7 +118,6 @@ importers:
       imagetools-core: workspace:^
       jest-image-snapshot: ^5.0.0
       jsdom: ^20.0.0
-      magic-string: ^0.26.0
       picomatch: ^2.3.1
       rollup: ^2.66.1
       sharp: ^0.31.0
@@ -129,7 +128,6 @@ importers:
     dependencies:
       '@rollup/pluginutils': 4.2.1
       imagetools-core: link:../core
-      magic-string: 0.26.2
     devDependencies:
       '@rollup/plugin-typescript': 8.3.2_6qbdvrnuliyehzvxjtzrb3pjt4
       '@types/jest-image-snapshot': 5.1.0
