@@ -40,7 +40,7 @@
     "@rollup/plugin-typescript": "^8.3.0",
     "@types/jest-image-snapshot": "^5.0.0",
     "@types/sharp": "^0.31.0",
-    "@vitest/coverage-c8": "^0.23.0",
+    "@vitest/coverage-c8": "^0.24.0",
     "jest-file-snapshot": "^0.5.0",
     "jest-image-snapshot": "^5.0.0",
     "rollup": "^2.66.1",
