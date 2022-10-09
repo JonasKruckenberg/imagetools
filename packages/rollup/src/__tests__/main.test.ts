@@ -236,7 +236,7 @@ describe('rollup-plugin-imagetools', () => {
           input: join(__dirname, '__fixtures__/index.js'),
           plugins: [
             testEntry(`
-                          import Image from "./with-metadata.png?metadata"
+                          import Image from "./with-metadata.png"
                           export default Image
                       `),
             imagetools({
@@ -363,6 +363,15 @@ describe('rollup-plugin-imagetools', () => {
     const p = rollup({
       input: join(__dirname, '__fixtures__/index.js'),
       plugins: [testEntry(`import Image from "./invalid.png?w=300"`), imagetools()]
+    })
+
+    await expect(p).rejects.toBeDefined()
+  })
+
+  test('not an image', async () => {
+    const p = rollup({
+      input: join(__dirname, '__fixtures__/index.js'),
+      plugins: [testEntry(`import Image from "./pexels-allec-gomes-5195763.xml"`), imagetools()]
     })
 
     await expect(p).rejects.toBeDefined()

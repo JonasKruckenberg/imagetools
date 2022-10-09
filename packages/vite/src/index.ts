@@ -18,7 +18,10 @@ import MagicString from 'magic-string'
 import { VitePluginOptions } from './types'
 
 const defaultOptions: VitePluginOptions = {
-  include: '**/*.{heic,heif,avif,jpeg,jpg,png,tiff,webp,gif}?*',
+  include: [
+    '**/*.{heic,heif,avif,jpeg,jpg,png,tiff,webp,gif}',
+    '**/*.{heic,heif,avif,jpeg,jpg,png,tiff,webp,gif}?*'
+  ],
   exclude: 'public/**/*',
   silent: false,
   removeMetadata: true
@@ -57,6 +60,8 @@ export function imagetools(userOptions: Partial<VitePluginOptions> = {}): Plugin
       } else if (pluginOptions.defaultDirectives) {
         directives = new URLSearchParams([...pluginOptions.defaultDirectives, ...srcURL.searchParams])
       }
+
+      if (!directives.toString()) return null
 
       const parameters = extractEntries(directives)
       const imageConfigs =
