@@ -538,4 +538,26 @@ describe('vite-imagetools', () => {
     expect(window.__IMAGE__).toHaveProperty('format')
     expect(window.__IMAGE__).not.toHaveProperty('height')
   })
+
+  test('srcset', async () => {
+    const bundle = (await build({
+      root: join(__dirname, '__fixtures__'),
+      logLevel: 'warn',
+      build: { write: false },
+      plugins: [
+        testEntry(`
+                        import Image from "./with-metadata.png?srcset"
+                        window.__IMAGE__ = Image
+                    `),
+        imagetools()
+      ]
+    })) as RollupOutput | RollupOutput[]
+
+    const files = getFiles(bundle, '**.js') as OutputChunk[]
+    const { window } = new JSDOM(``, { runScripts: 'outside-only' })
+    window.eval(files[0].code)
+
+     expect(window.__IMAGE__).toBe('/assets/with-metadata.9ff75690.png 600w')
+  })
+
 })
