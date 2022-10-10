@@ -1,5 +1,18 @@
 # Change Log
 
+## 3.0.11
+
+### Patch Changes
+
+- 92b2fa3: chore(deps): update dependency @types/sharp to ^0.31.0
+- 07df0fa: fix: process URLs with no query string
+- 80250db: Update package READMEs and metadata.
+- 60890de: fix: add an exports map
+- Updated dependencies [92b2fa3]
+- Updated dependencies [80250db]
+- Updated dependencies [60890de]
+  - imagetools-core@3.2.2
+
 ## 3.0.10
 
 ### Patch Changes

@@ -1,5 +1,19 @@
 # Change Log
 
+## 4.0.10
+
+### Patch Changes
+
+- 92b2fa3: chore(deps): update dependency @types/sharp to ^0.31.0
+- 07df0fa: fix: process URLs with no query string
+- 80250db: Update package READMEs and metadata.
+- d11b927: Let vite create correct paths in build result
+- 60890de: fix: add an exports map
+- Updated dependencies [92b2fa3]
+- Updated dependencies [80250db]
+- Updated dependencies [60890de]
+  - imagetools-core@3.2.2
+
 ## 4.0.9
 
 ### Patch Changes
