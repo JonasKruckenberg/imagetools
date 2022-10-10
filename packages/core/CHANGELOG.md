@@ -1,5 +1,13 @@
 # Change Log
 
+## 3.2.2
+
+### Patch Changes
+
+- 92b2fa3: chore(deps): update dependency @types/sharp to ^0.31.0
+- 80250db: Update package READMEs and metadata.
+- 60890de: fix: add an exports map
+
 ## 3.2.1
 
 ### Patch Changes
