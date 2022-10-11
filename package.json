@@ -6,7 +6,6 @@
     "release": "pnpm run build && pnpm changeset publish",
     "build": "pnpm run --recursive --filter !example-* build",
     "test": "pnpm run --recursive test",
-    "test:ci": "pnpm run --recursive test:ci",
     "coverage": "pnpm run --recursive coverage",
     "lint": "eslint .",
     "format": "prettier --write .",

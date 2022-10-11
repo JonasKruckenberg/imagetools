@@ -34,7 +34,6 @@
     "dev": "rollup -cw",
     "build": "rollup -c",
     "test": "vitest run",
-    "test:ci": "vitest run --no-threads",
     "coverage": "vitest run --coverage"
   },
   "devDependencies": {
