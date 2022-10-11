@@ -1,8 +1,6 @@
 {
   "name": "rollup-plugin-imagetools",
   "version": "3.0.11",
-  "main": "dist/index.cjs",
-  "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
   "exports": {
     "./package.json": "./package.json",
