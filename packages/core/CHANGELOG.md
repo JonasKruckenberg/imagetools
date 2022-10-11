@@ -1,5 +1,11 @@
 # Change Log
 
+## 3.2.3
+
+### Patch Changes
+
+- dbc8d02: Fix type resolution by re-adding top-level types field
+
 ## 3.2.2
 
 ### Patch Changes
