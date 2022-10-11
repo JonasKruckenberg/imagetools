@@ -1,12 +1,12 @@
 import './style.css'
 // import 3 different sizes of the image and create a srcset from them
-import srcsetAvif from '../example.jpg?w=500;700;900;1200&avif&srcset'
+import srcsetAvif from '../../example.jpg?w=500;700;900;1200&avif&srcset'
 // do it a second time, but now as webp since safari can't display avif
-import srcsetWebp from '../example.jpg?w=500;700;900;1200&webp&srcset'
+import srcsetWebp from '../../example.jpg?w=500;700;900;1200&webp&srcset'
 // create a small placeholder and import its metadata
-import { src as placeholder, width, height } from '../example.jpg?width=300&metadata'
+import { src as placeholder, width, height } from '../../example.jpg?width=300&metadata'
 
-document.querySelector('#app').innerHTML = `
+document.querySelector('#app')!.innerHTML = `
   <h1>Hello Imagetools!</h1>
   <a href="https://github.com/JonasKruckenberg/imagetools/tree/main/docs" target="_blank">Documentation</a>
   
