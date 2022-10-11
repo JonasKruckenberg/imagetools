@@ -1,5 +1,14 @@
 import { expect, test } from '@playwright/test'
 
+test('url', async ({ page }) => {
+  await page.goto('/url')
+
+  const img = page.locator('img')
+  await expect(img).toBeVisible()
+
+  await expect(page).toHaveScreenshot()
+})
+
 test('metadata', async ({ page }) => {
   await Promise.all([page.waitForResponse((resp) => resp.url().endsWith('.webp')), page.goto('/metadata')])
 
@@ -33,6 +42,16 @@ test('source', async ({ page }) => {
 
 test('srcset', async ({ page }) => {
   await page.goto('/srcset')
+
+  const img = page.locator('img')
+  await expect(img).toBeVisible()
+
+  await expect(page).toHaveScreenshot()
+})
+
+
+test('no-directives', async ({ page }) => {
+  await page.goto('/no-directives')
 
   const img = page.locator('img')
   await expect(img).toBeVisible()
