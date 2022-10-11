@@ -4,4 +4,4 @@
 'vite-imagetools': patch
 ---
 
-fix: restore package.json fields
+Fix type resolution by re-adding top-level types field
