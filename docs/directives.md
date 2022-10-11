@@ -415,8 +415,8 @@ import webp from 'example.jpg?w=500;900;1200&webp&source'
 import fallback from 'example.jpg?w=700'
 
 const html = `<picture>
-    <source srcset="${avif.src} ${avif.w}" type="image/avif" />
-    <source srcset="${webp.src} ${webp.w}" type="image/webp" />
+    <source srcset="${avif.map(({src, w}) => `${src} ${w}w`).join(',')}" type="image/avif" />
+    <source srcset="${webp.map(({src, w}) => `${src} ${w}w`).join(',')}" type="image/webp" />
     <img src="${fallback}" />
 </picture>
 ```
