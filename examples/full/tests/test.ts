@@ -14,7 +14,25 @@ test('metadata', async ({ page }) => {
 })
 
 test('picture', async ({ page }) => {
-  page.goto('/picture')
+  await page.goto('/picture')
+
+  const img = page.locator('img')
+  await expect(img).toBeVisible()
+
+  await expect(page).toHaveScreenshot()
+})
+
+test('source', async ({ page }) => {
+  await page.goto('/source')
+
+  const img = page.locator('img')
+  await expect(img).toBeVisible()
+
+  await expect(page).toHaveScreenshot()
+})
+
+test('srcset', async ({ page }) => {
+  await page.goto('/srcset')
 
   const img = page.locator('img')
   await expect(img).toBeVisible()
