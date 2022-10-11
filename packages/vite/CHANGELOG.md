@@ -1,5 +1,13 @@
 # Change Log
 
+## 4.0.11
+
+### Patch Changes
+
+- dbc8d02: Fix type resolution by re-adding top-level types field
+- Updated dependencies [dbc8d02]
+  - imagetools-core@3.2.3
+
 ## 4.0.10
 
 ### Patch Changes
