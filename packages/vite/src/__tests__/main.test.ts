@@ -557,7 +557,7 @@ describe('vite-imagetools', () => {
     const { window } = new JSDOM(``, { runScripts: 'outside-only' })
     window.eval(files[0].code)
 
-     expect(window.__IMAGE__).toBe('/assets/with-metadata.9ff75690.png 600w')
+     expect(window.__IMAGE__).toMatch(/\/assets\/with-metadata.(\w+).png 600w/)
   })
 
 })
