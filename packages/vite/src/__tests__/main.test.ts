@@ -559,5 +559,4 @@ describe('vite-imagetools', () => {
 
      expect(window.__IMAGE__).toMatch(/\/assets\/with-metadata.(\w+).png 600w/)
   })
-
 })
