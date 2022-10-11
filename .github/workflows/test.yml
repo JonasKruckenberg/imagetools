@@ -50,12 +50,20 @@ jobs:
       - name: Run unit tests
         run: pnpm run test --no-threads
 
-      - name: Run e2e tests
-        run: pnpm playwright test 
-        working-directory: ./examples/full
-
       - uses: actions/upload-artifact@v3
         if: failure()
         with:
           name: image-diffs
           path: packages/**/__image_snapshots__/__diff_output__/
+
+      - name: Run e2e tests
+        run: pnpm playwright test 
+        working-directory: ./examples/full
+
+      - name: Upload test results
+        if: always()
+        uses: actions/upload-artifact@v2
+        with:
+          name: playwright-report
+          path: playwright-report
+        working-directory: ./examples/full
