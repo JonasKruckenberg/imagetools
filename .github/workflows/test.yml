@@ -48,7 +48,7 @@ jobs:
         run: pnpm run build
       
       - name: Run unit tests
-        run: pnpm run test
+        run: pnpm run test --no-threads
 
       - name: Run e2e tests
         run: pnpm playwright test 
