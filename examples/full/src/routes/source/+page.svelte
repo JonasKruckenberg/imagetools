@@ -5,7 +5,7 @@ import fallback from '$lib/assets/example.jpg?w=700'
 </script>
 
 <picture>
-    <source srcset="${avif}" type="image/avif" />
-    <source srcset="${webp}" type="image/webp" />
-    <img src="${fallback}" alt="" />
+    <source srcset={avif} type="image/avif" />
+    <source srcset={webp} type="image/webp" />
+    <img src="" alt="" />
 </picture>
