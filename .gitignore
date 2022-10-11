@@ -5,3 +5,4 @@ coverage
 yarn-error.log
 **/debug
 lerna-debug.log
+.svelte-kit
