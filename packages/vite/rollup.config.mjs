@@ -1,5 +1,5 @@
 import typescript from '@rollup/plugin-typescript'
-import pkg from './package.json'
+import pkg from './package.json' assert { type: 'json' }
 import { builtinModules as builtins } from 'module'
 
 const deps = Object.keys(pkg.dependencies || {})
