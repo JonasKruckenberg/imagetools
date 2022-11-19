@@ -15,7 +15,7 @@ with a Canadian sim card.
 
 ## The solution
 
-Optimizing your images by hand is a tedious and error-prone process: Opening the image in photoshop, naming and exporting each image individually and then reference everything correctly in the html.
+Optimizing your images by hand is a tedious and error-prone process: Opening the image in Photoshop, naming and exporting each image individually, and then reference everything correctly in the HTML.
 This is where imagetools comes to the rescue: simply reference your image in code, specify the needed transformations and imagetools will take care of the rest!
 
 And the best part? The syntax is super intuitive and extensible:
