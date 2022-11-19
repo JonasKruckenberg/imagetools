@@ -2,20 +2,20 @@
 
 ## The problem
 
-Optimizing javascript has been a focus for a while now. And while frameworks have gotten small, bundlers more effective
-and javascript engines faster, there is one thing that has fallen by the wayside:&nbsp;&nbsp;&nbsp;**Images**.
+Optimizing JavaScript has been a focus for a while now. And while frameworks have gotten smaller, bundlers more effective
+and JavaScript engines faster, there is one thing that has fallen by the wayside:&nbsp;&nbsp;&nbsp;**Images**.
 
 This is especially problematic since most websites serve
-[twice as much image bytes than javascript bytes](https://httparchive.org/reports/page-weight), optimizing each and
+[twice as much image bytes than JavaScript bytes](https://httparchive.org/reports/page-weight), optimizing each and
 every byte of those images should be our main priority!<br> Serving images that are too large will not only
 [hurt your seo](https://developers.google.com/search/blog/2020/05/evaluating-page-experience) but also
-[hurt your users](https://whatdoesmysitecost.com/#usdCost). Most people in the world don't have the luxury or
+[hurt your users](https://whatdoesmysitecost.com/#usdCost). Most people in the world don't have the luxury of
 gigabit-internet but instead rely on old DSL or even mobile connections, for example the average websites costs $0.24
-with a canadian sim card.
+with a Canadian sim card.
 
 ## The solution
 
-Optimizing your images by hand is a tedious and error-prone process: Opening the image in photoshop, naming and exporting each image individually and the reference everything correctly in the html.
+Optimizing your images by hand is a tedious and error-prone process: Opening the image in Photoshop, naming and exporting each image individually, and then reference everything correctly in the HTML.
 This is where imagetools comes to the rescue: simply reference your image in code, specify the needed transformations and imagetools will take care of the rest!
 
 And the best part? The syntax is super intuitive and extensible:
