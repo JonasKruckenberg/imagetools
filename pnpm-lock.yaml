@@ -5,7 +5,7 @@ importers:
   .:
     specifiers:
       '@changesets/cli': ^2.20.0
-      '@rollup/plugin-typescript': ^9.0.2
+      '@rollup/plugin-typescript': ^10.0.0
       '@typescript-eslint/eslint-plugin': ^5.10.1
       '@typescript-eslint/parser': ^5.10.1
       cross-env: ^7.0.3
@@ -19,7 +19,7 @@ importers:
       typescript: ^4.8.4
     devDependencies:
       '@changesets/cli': 2.22.0
-      '@rollup/plugin-typescript': 9.0.2_bvn3ed5hy3sfde644tygjdj4ia
+      '@rollup/plugin-typescript': 10.0.0_bvn3ed5hy3sfde644tygjdj4ia
       '@typescript-eslint/eslint-plugin': 5.27.0_ddkbsa5ddtpnu6y2ppamj3k5x4
       '@typescript-eslint/parser': 5.27.0_xlfkn4jejkelnl5fv2yyquzblu
       cross-env: 7.0.3
@@ -42,7 +42,7 @@ importers:
 
   packages/core:
     specifiers:
-      '@rollup/plugin-typescript': ^9.0.2
+      '@rollup/plugin-typescript': ^10.0.0
       '@types/jest-image-snapshot': ^5.0.0
       '@types/sharp': ^0.31.0
       '@vitest/coverage-c8': ^0.25.0
@@ -56,7 +56,7 @@ importers:
     dependencies:
       sharp: 0.31.0
     devDependencies:
-      '@rollup/plugin-typescript': 9.0.2_bvn3ed5hy3sfde644tygjdj4ia
+      '@rollup/plugin-typescript': 10.0.0_bvn3ed5hy3sfde644tygjdj4ia
       '@types/jest-image-snapshot': 5.1.0
       '@types/sharp': 0.31.0
       '@vitest/coverage-c8': 0.25.0
@@ -69,7 +69,7 @@ importers:
 
   packages/rollup:
     specifiers:
-      '@rollup/plugin-typescript': ^9.0.2
+      '@rollup/plugin-typescript': ^10.0.0
       '@rollup/pluginutils': ^5.0.0
       '@types/jest-image-snapshot': ^5.0.0
       '@types/jsdom': ^20.0.0
@@ -91,7 +91,7 @@ importers:
       imagetools-core: link:../core
       magic-string: 0.26.2
     devDependencies:
-      '@rollup/plugin-typescript': 9.0.2_bvn3ed5hy3sfde644tygjdj4ia
+      '@rollup/plugin-typescript': 10.0.0_bvn3ed5hy3sfde644tygjdj4ia
       '@types/jest-image-snapshot': 5.1.0
       '@types/jsdom': 20.0.0
       '@types/picomatch': 2.3.0
@@ -108,7 +108,7 @@ importers:
 
   packages/vite:
     specifiers:
-      '@rollup/plugin-typescript': ^9.0.2
+      '@rollup/plugin-typescript': ^10.0.0
       '@rollup/pluginutils': ^5.0.0
       '@types/jest-image-snapshot': ^5.0.0
       '@types/jsdom': ^20.0.0
@@ -129,7 +129,7 @@ importers:
       '@rollup/pluginutils': 5.0.0_rollup@3.2.3
       imagetools-core: link:../core
     devDependencies:
-      '@rollup/plugin-typescript': 9.0.2_bvn3ed5hy3sfde644tygjdj4ia
+      '@rollup/plugin-typescript': 10.0.0_bvn3ed5hy3sfde644tygjdj4ia
       '@types/jest-image-snapshot': 5.1.0
       '@types/jsdom': 20.0.0
       '@types/picomatch': 2.3.0
@@ -475,8 +475,8 @@ packages:
       fastq: 1.13.0
     dev: true
 
-  /@rollup/plugin-typescript/9.0.2_bvn3ed5hy3sfde644tygjdj4ia:
-    resolution: {integrity: sha512-/sS93vmHUMjzDUsl5scNQr1mUlNE1QjBBvOhmRwJCH8k2RRhDIm3c977B3wdu3t3Ap17W6dDeXP3hj1P1Un1bA==}
+  /@rollup/plugin-typescript/10.0.0_bvn3ed5hy3sfde644tygjdj4ia:
+    resolution: {integrity: sha512-iaTcQCbqTBA+vYS8uAVqvZvYXPobHBkz/tPYudqdMIz8QIjlPFNNFLpFX18rHGjLvGT9vUghd6GwE4ZpLhCnfA==}
     engines: {node: '>=14.0.0'}
     peerDependencies:
       rollup: ^2.14.0||^3.0.0
