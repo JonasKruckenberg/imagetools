@@ -3,7 +3,11 @@ import { ImageConfig } from './types'
 import { createHash } from 'crypto'
 
 export function loadImage(path: string) {
-  return sharp(path)
+  if(path.split('.').pop().toLowerCase() === 'gif') {
+    return sharp(path, {animated:true});
+  } else {
+      return sharp(path);
+  }
 }
 
 export function generateImageID(url: URL, config: ImageConfig) {
