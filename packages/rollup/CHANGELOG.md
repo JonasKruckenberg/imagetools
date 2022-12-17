@@ -1,5 +1,11 @@
 # Change Log
 
+## 3.0.13
+
+### Patch Changes
+
+- 425867f: Bundle imagetools-core
+
 ## 3.0.12
 
 ### Patch Changes
