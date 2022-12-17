@@ -88,7 +88,6 @@ importers:
       vitest: ^0.25.0
     dependencies:
       '@rollup/pluginutils': 5.0.0_rollup@3.2.3
-      imagetools-core: link:../core
       magic-string: 0.27.0
     devDependencies:
       '@rollup/plugin-typescript': 10.0.0_bvn3ed5hy3sfde644tygjdj4ia
@@ -97,6 +96,7 @@ importers:
       '@types/picomatch': 2.3.0
       '@types/sharp': 0.31.0
       '@vitest/coverage-c8': 0.25.0_jsdom@20.0.0
+      imagetools-core: link:../core
       jest-image-snapshot: 6.0.0
       jsdom: 20.0.0
       picomatch: 2.3.1
@@ -127,7 +127,6 @@ importers:
       vitest: ^0.25.0
     dependencies:
       '@rollup/pluginutils': 5.0.0_rollup@3.2.3
-      imagetools-core: link:../core
     devDependencies:
       '@rollup/plugin-typescript': 10.0.0_bvn3ed5hy3sfde644tygjdj4ia
       '@types/jest-image-snapshot': 6.1.0
@@ -135,6 +134,7 @@ importers:
       '@types/picomatch': 2.3.0
       '@types/sharp': 0.31.0
       '@vitest/coverage-c8': 0.25.0_jsdom@20.0.0
+      imagetools-core: link:../core
       jest-image-snapshot: 6.0.0
       jsdom: 20.0.0
       picomatch: 2.3.1

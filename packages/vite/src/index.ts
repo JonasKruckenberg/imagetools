@@ -26,6 +26,8 @@ const defaultOptions: VitePluginOptions = {
   removeMetadata: true
 }
 
+export * from 'imagetools-core';
+
 export function imagetools(userOptions: Partial<VitePluginOptions> = {}): Plugin {
   const pluginOptions: VitePluginOptions = { ...defaultOptions, ...userOptions }
 
