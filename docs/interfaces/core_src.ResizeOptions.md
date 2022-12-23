@@ -14,6 +14,8 @@
 - [height](core_src.ResizeOptions.md#height)
 - [w](core_src.ResizeOptions.md#w)
 - [width](core_src.ResizeOptions.md#width)
+- [withoutEnlargement](core_src.ResizeOptions.md#withoutEnlargement)
+- [withoutReduction](core_src.ResizeOptions.md#withoutReduction)
 
 ## Properties
 
@@ -74,3 +76,23 @@ ___
 #### Defined in
 
 [core/src/transforms/resize.ts:9](https://github.com/JonasKruckenberg/imagetools/blob/a033017/packages/core/src/transforms/resize.ts#L9)
+
+___
+
+### withoutEnlargement
+
+• **withoutEnlargement**: `boolean`
+
+#### Defined in
+
+[core/src/transforms/resize.ts:15](https://github.com/JonasKruckenberg/imagetools/blob/a033017/packages/core/src/transforms/resize.ts#L15)
+
+___
+
+### withoutReduction
+
+• **withoutReduction**: `boolean`
+
+#### Defined in
+
+[core/src/transforms/resize.ts:16](https://github.com/JonasKruckenberg/imagetools/blob/a033017/packages/core/src/transforms/resize.ts#L16)
