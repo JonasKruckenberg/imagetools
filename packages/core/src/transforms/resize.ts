@@ -81,7 +81,7 @@ export const resize: TransformFactory<ResizeOptions> = (config) => {
       (withoutEnlargement && (finalHeight > originalHeight || finalWidth > originalWidth)) ||
       (withoutReduction && (finalHeight < originalHeight || finalWidth < originalWidth))
     ) {
-      // revert back to original sizes if either width or height exceeds or subsceeds
+      // revert back to original sizes if either width or height exceeds or subceeds
       finalHeight = originalHeight
       finalWidth = originalWidth
     }
