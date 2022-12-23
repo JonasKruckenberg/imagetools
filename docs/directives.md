@@ -1,27 +1,37 @@
 ## Table of Contents
 
-- [Background](#background)
-- [Blur](#blur)
-- [Fit](#fit)
-- [Flatten](#flatten)
-- [Flip](#flip)
-- [Flop](#flop)
-- [Format](#format)
-- [Grayscale](#grayscale)
-- [Hue](#hue)
-- [Saturation](#saturation)
-- [Brightness](#brightness)
-- [Invert](#invert)
-- [Kernel](#kernel)
-- [Median](#median)
-- [Normalize](#normalize)
-- [Position](#position)
-- [Quality](#quality)
-- [Width](#width)
-- [Height](#height)
-- [Aspect](#aspect)
-- [Rotate](#rotate)
-- [Tint](#tint)
+- [Table of Contents](#table-of-contents)
+  - [Output Directives](#output-directives)
+- [Directives](#directives)
+  - [Background](#background)
+  - [Blur](#blur)
+  - [Fit](#fit)
+  - [Flatten](#flatten)
+  - [Flip](#flip)
+  - [Flop](#flop)
+  - [Format](#format)
+  - [Grayscale](#grayscale)
+  - [Hue](#hue)
+  - [Saturation](#saturation)
+  - [Brightness](#brightness)
+  - [Invert](#invert)
+  - [Kernel](#kernel)
+  - [Median](#median)
+  - [Normalize](#normalize)
+  - [Position](#position)
+  - [Quality](#quality)
+  - [Width](#width)
+  - [Height](#height)
+  - [Aspect](#aspect)
+  - [Without Enlargement](#without-enlargement)
+  - [Without Reduction](#without-reduction)
+  - [Rotate](#rotate)
+  - [Tint](#tint)
+  - [Metadata](#metadata)
+  - [Picture](#picture)
+  - [Source](#source)
+  - [Srcset](#srcset)
+  - [URL](#url)
 
 ### Output Directives
 
@@ -331,6 +341,38 @@ import Image from 'example.jpg?aspect=16:9'
 import Image from 'example.jpg?aspect=16:9&height=200'
 import Image from 'example.jpg?aspect=16:9&width=200'
 import Images from 'example.jpg?aspect=16:9&h=200;400;700'
+```
+
+---
+
+### Without Enlargement
+
+• **Keyword**: `withoutEnlargement`<br> • **Type**: _boolean_<br>
+
+Prevents the image from being resized if the specified or calculated width or height are greater than the original width or height.
+
+• **Example**:
+
+```js
+import Image from 'example.jpg?width=200;400&withoutEnlargement'
+import Image from 'example.jpg?aspect=16:9&withoutEnlargement'
+import Images from 'example.jpg?aspect=16:9&h=200;400;700&withoutEnlargement'
+```
+
+---
+
+### Without Reduction
+
+• **Keyword**: `withoutReduction`<br> • **Type**: _boolean_<br>
+
+Prevents the image from being resized if the specified or calculated width or height are less than the original width or height.
+
+• **Example**:
+
+```js
+import Image from 'example.jpg?height=300;600;900&withoutReduction'
+import Image from 'example.jpg?aspect=9:16&withoutReduction'
+import Images from 'example.jpg?aspect=16:9&h=200;400;700&withoutEnlargement&withoutReduction'
 ```
 
 ---
