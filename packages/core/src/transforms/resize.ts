@@ -1,9 +1,9 @@
 import { getMetadata, setMetadata } from '../lib/metadata'
 import { TransformFactory } from '../types'
-import { getFit } from './fit'
-import { getPosition } from './position'
-import { getKernel } from './kernel'
 import { getBackground } from './background'
+import { getFit } from './fit'
+import { getKernel } from './kernel'
+import { getPosition } from './position'
 
 export interface ResizeOptions {
   width: string
@@ -12,6 +12,8 @@ export interface ResizeOptions {
   h: string
   aspect: string
   ar: string
+  withoutEnlargement: '' | 'true'
+  withoutReduction: '' | 'true'
 }
 
 /**
@@ -43,6 +45,8 @@ export const resize: TransformFactory<ResizeOptions> = (config) => {
   const width = parseInt(config.width || config.w || '')
   const height = parseInt(config.height || config.h || '')
   const aspect = parseAspect(config.aspect || config.ar || '')
+  const withoutEnlargement = config.withoutEnlargement === '' || config.withoutEnlargement === 'true'
+  const withoutReduction = config.withoutReduction === '' || config.withoutReduction === 'true'
 
   if (!width && !height && !aspect) return
 
@@ -73,6 +77,15 @@ export const resize: TransformFactory<ResizeOptions> = (config) => {
       finalWidth = height * (aspect || originalAspect)
     }
 
+    if (
+      (withoutEnlargement && (finalHeight > originalHeight || finalWidth > originalWidth)) ||
+      (withoutReduction && (finalHeight < originalHeight || finalWidth < originalWidth))
+    ) {
+      // revert back to original sizes if either width or height exceeds or subsceeds
+      finalHeight = originalHeight
+      finalWidth = originalWidth
+    }
+
     setMetadata(image, 'height', finalHeight)
     setMetadata(image, 'width', finalWidth)
     setMetadata(image, 'aspect', aspect || originalAspect)
@@ -80,6 +93,8 @@ export const resize: TransformFactory<ResizeOptions> = (config) => {
     return image.resize({
       width: Math.round(finalWidth) || undefined,
       height: Math.round(finalHeight) || undefined,
+      withoutEnlargement: false,
+      withoutReduction: false,
       fit: getFit(config, image),
       position: getPosition(config, image),
       kernel: getKernel(config, image),
