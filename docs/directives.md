@@ -251,8 +251,8 @@ contrast.
 • **Example**:
 
 ```js
-import Image from 'example.jpg?invert'
-import Image from 'exmaple.jpg?invert=true'
+import Image from 'example.jpg?normalize'
+import Image from 'exmaple.jpg?normalize=true'
 ```
 
 ---
