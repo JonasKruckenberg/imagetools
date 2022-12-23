@@ -57,7 +57,8 @@ export const resize: TransformFactory<ResizeOptions> = (config) => {
     const originalAspect = originalWidth / originalHeight
 
     let finalWidth = width,
-      finalHeight = height
+      finalHeight = height,
+      finalAspect = aspect
 
     if (aspect && !width && !height) {
       // only aspect was given, need to calculate which dimension to crop
@@ -84,11 +85,12 @@ export const resize: TransformFactory<ResizeOptions> = (config) => {
       // revert back to original sizes if either width or height exceeds or subceeds
       finalHeight = originalHeight
       finalWidth = originalWidth
+      finalAspect = originalAspect
     }
 
     setMetadata(image, 'height', finalHeight)
     setMetadata(image, 'width', finalWidth)
-    setMetadata(image, 'aspect', aspect || originalAspect)
+    setMetadata(image, 'aspect', finalAspect)
 
     return image.resize({
       width: Math.round(finalWidth) || undefined,
