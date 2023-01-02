@@ -95,7 +95,14 @@ jobs:
         id: changesets
         uses: changesets/action@master
         with:
-          publish: pnpm -w run release
+          version: |
+            pnpm changeset version
+            pnpm doc
+          commit: "chore: update versions"
+          title: "chore: update versions"
+          publish: | 
+            pnpm build
+            pnpm publish -r
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
