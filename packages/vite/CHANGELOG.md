@@ -1,5 +1,11 @@
 # Change Log
 
+## 4.0.13
+
+### Patch Changes
+
+- e154d09: fix: revert bundling of imagetools-core
+
 ## 4.0.12
 
 ### Patch Changes
