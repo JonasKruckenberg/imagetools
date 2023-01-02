@@ -3,6 +3,8 @@
   "license": "MIT",
   "private": true,
   "scripts": {
+    "ci:version": "pnpm changeset version && pnpm doc",
+    "ci:publish": "pnpm build && pnpm publish -r",
     "build": "pnpm run --recursive --filter !example-* build",
     "test": "pnpm run --recursive test",
     "coverage": "pnpm run --recursive coverage",
