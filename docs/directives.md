@@ -392,7 +392,7 @@ Returns information about the image necessary to render a `picture` tag as a Jav
 • **Example**:
 
 ```js
-import image from 'example.jpg?w=500;900;1200&avif;webp;jpg&picture'
+import image from 'example.jpg?w=500;900;1200&format=avif;webp;jpg&picture'
 
 let html = '<picture>';
 for (const [format, images] of Object.entries(image.sources)) {
