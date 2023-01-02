@@ -91,11 +91,11 @@ jobs:
         with:
           run_install: true
 
-      - name: Create Release Pull Request or Publish to npm
-        id: changesets
-        uses: changesets/action@master
+      - name: create and publish versions
+        uses: changesets/action@v1
         with:
-          publish: pnpm -w run release
+          version: pnpm changeset version && pnpm doc
+          publish: pnpm build && pnpm publish -r
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}

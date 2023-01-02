@@ -38,7 +38,8 @@
     "coverage": "vitest run --coverage"
   },
   "dependencies": {
-    "@rollup/pluginutils": "^5.0.0"
+    "@rollup/pluginutils": "^5.0.0",
+    "imagetools-core": "workspace:^"
   },
   "devDependencies": {
     "@rollup/plugin-typescript": "^10.0.0",
