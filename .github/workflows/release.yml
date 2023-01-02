@@ -91,16 +91,13 @@ jobs:
         with:
           run_install: true
 
-      - name: Create Release Pull Request or Publish to npm
-        id: changesets
-        uses: changesets/action@master
+      - name: create and publish versions
+        uses: changesets/action@v1
         with:
           version: |
             pnpm changeset version
             pnpm doc
-          commit: "chore: update versions"
-          title: "chore: update versions"
-          publish: | 
+          publish: |
             pnpm build
             pnpm publish -r
         env:

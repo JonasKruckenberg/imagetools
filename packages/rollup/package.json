@@ -35,6 +35,7 @@
   },
   "dependencies": {
     "@rollup/pluginutils": "^5.0.0",
+    "imagetools-core": "workspace:^",
     "magic-string": "^0.27.0"
   },
   "devDependencies": {

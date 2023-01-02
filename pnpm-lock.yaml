@@ -88,6 +88,7 @@ importers:
       vitest: ^0.26.0
     dependencies:
       '@rollup/pluginutils': 5.0.0_rollup@3.2.3
+      imagetools-core: link:../core
       magic-string: 0.27.0
     devDependencies:
       '@rollup/plugin-typescript': 10.0.0_bvn3ed5hy3sfde644tygjdj4ia
@@ -127,6 +128,7 @@ importers:
       vitest: ^0.26.0
     dependencies:
       '@rollup/pluginutils': 5.0.0_rollup@3.2.3
+      imagetools-core: link:../core
     devDependencies:
       '@rollup/plugin-typescript': 10.0.0_bvn3ed5hy3sfde644tygjdj4ia
       '@types/jest-image-snapshot': 6.1.0
