@@ -1,15 +1,15 @@
-[imagetools](../README.md) / [Modules](../modules.md) / [core/src](../modules/core_src.md) / TransformFactoryContext
+[imagetools](../README.md) / [Modules](../modules.md) / [vite/src](../modules/vite_src.md) / TransformFactoryContext
 
 # Interface: TransformFactoryContext
 
-[core/src](../modules/core_src.md).TransformFactoryContext
+[vite/src](../modules/vite_src.md).TransformFactoryContext
 
 ## Table of contents
 
 ### Properties
 
-- [useParam](core_src.TransformFactoryContext.md#useparam)
-- [warn](core_src.TransformFactoryContext.md#warn)
+- [useParam](vite_src.TransformFactoryContext.md#useparam)
+- [warn](vite_src.TransformFactoryContext.md#warn)
 
 ## Properties
 
@@ -33,7 +33,7 @@
 
 #### Defined in
 
-[core/src/types.ts:6](https://github.com/JonasKruckenberg/imagetools/blob/04cb552/packages/core/src/types.ts#L6)
+core/dist/types.d.ts:4
 
 ___
 
@@ -57,4 +57,4 @@ ___
 
 #### Defined in
 
-[core/src/types.ts:7](https://github.com/JonasKruckenberg/imagetools/blob/04cb552/packages/core/src/types.ts#L7)
+core/dist/types.d.ts:5

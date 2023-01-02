@@ -10,7 +10,7 @@
     "coverage": "pnpm run --recursive coverage",
     "lint": "eslint .",
     "format": "prettier --write .",
-    "doc": "typedoc"
+    "doc": "pnpm run --filter imagetools-core build && typedoc"
   },
   "devDependencies": {
     "@changesets/cli": "^2.20.0",

@@ -18,4 +18,4 @@
 
 #### Defined in
 
-[core/src/transforms/blur.ts:5](https://github.com/JonasKruckenberg/imagetools/blob/a033017/packages/core/src/transforms/blur.ts#L5)
+[core/src/transforms/blur.ts:5](https://github.com/JonasKruckenberg/imagetools/blob/04cb552/packages/core/src/transforms/blur.ts#L5)
