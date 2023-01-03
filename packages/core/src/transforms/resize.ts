@@ -90,6 +90,10 @@ export const resize: TransformFactory<ResizeOptions> = (config) => {
       finalHeight = originalHeight
       finalWidth = originalWidth
       finalAspect = originalAspect
+
+      console.warn(
+        'withoutEnlargement or withoutReduction active. Image width, height and aspect ratio reverted to original values'
+      )
     }
 
     setMetadata(image, 'height', finalHeight)
