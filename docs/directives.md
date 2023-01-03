@@ -349,7 +349,7 @@ import Images from 'example.jpg?aspect=16:9&h=200;400;700'
 
 • **Keyword**: `withoutEnlargement`<br> • **Type**: _boolean_<br>
 
-Prevents the image from being resized if the specified or calculated width or height are greater than the original width or height.
+Prevents the image from being resized if the specified or calculated width or height are greater than the original width or height. Must be passed with a [width](#width), [height](#height) or [aspect](#aspect) directive.
 
 • **Example**:
 
@@ -365,7 +365,7 @@ import Images from 'example.jpg?aspect=16:9&h=200;400;700&withoutEnlargement'
 
 • **Keyword**: `withoutReduction`<br> • **Type**: _boolean_<br>
 
-Prevents the image from being resized if the specified or calculated width or height are less than the original width or height.
+Prevents the image from being resized if the specified or calculated width or height are less than the original width or height. Must be passed with a [width](#width), [height](#height) or [aspect](#aspect) directive.
 
 • **Example**:
 
