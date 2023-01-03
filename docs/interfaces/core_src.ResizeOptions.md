@@ -81,7 +81,7 @@ ___
 
 ### withoutEnlargement
 
-• **withoutEnlargement**: `boolean`
+• **withoutEnlargement**: ``""`` \| ``"true"``
 
 #### Defined in
 
@@ -91,7 +91,7 @@ ___
 
 ### withoutReduction
 
-• **withoutReduction**: `boolean`
+• **withoutReduction**: ``""`` \| ``"true"``
 
 #### Defined in
 
