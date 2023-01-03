@@ -412,6 +412,7 @@ describe('withoutEnlargement', () => {
 
   describe('arguments', () => {
     test('invalid withoutEnlargement', () => {
+      //@ts-expect-error invalid args
       const res = resize({ withoutEnlargement: 'invalid', width: '300' }, dirCtx)
 
       expect(res).toBeUndefined()
@@ -515,6 +516,7 @@ describe('withoutReduction', () => {
 
   describe('arguments', () => {
     test('invalid withoutReduction', () => {
+      //@ts-expect-error invalid args
       const res = resize({ withoutReduction: 'invalid', width: '900' }, dirCtx)
 
       expect(res).toBeUndefined()
