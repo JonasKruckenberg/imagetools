@@ -253,8 +253,8 @@ contrast.
 • **Example**:
 
 ```js
-import Image from 'example.jpg?invert'
-import Image from 'exmaple.jpg?invert=true'
+import Image from 'example.jpg?normalize'
+import Image from 'exmaple.jpg?normalize=true'
 ```
 
 ---
@@ -286,7 +286,6 @@ The argument must be a number between 0 and 100.
 
 ```js
 import Image from 'example.jpg?format=webp&quality=100'
-import Image from 'example.jpg?png&quality=200'
 import Images from 'example.jpg?avif&quality=10;50;75'
 ```
 

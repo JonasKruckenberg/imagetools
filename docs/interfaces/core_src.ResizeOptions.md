@@ -25,7 +25,7 @@
 
 #### Defined in
 
-[core/src/transforms/resize.ts:14](https://github.com/JonasKruckenberg/imagetools/blob/a033017/packages/core/src/transforms/resize.ts#L14)
+[core/src/transforms/resize.ts:14](https://github.com/JonasKruckenberg/imagetools/blob/04cb552/packages/core/src/transforms/resize.ts#L14)
 
 ___
 
@@ -35,7 +35,7 @@ ___
 
 #### Defined in
 
-[core/src/transforms/resize.ts:13](https://github.com/JonasKruckenberg/imagetools/blob/a033017/packages/core/src/transforms/resize.ts#L13)
+[core/src/transforms/resize.ts:13](https://github.com/JonasKruckenberg/imagetools/blob/04cb552/packages/core/src/transforms/resize.ts#L13)
 
 ___
 
@@ -45,7 +45,7 @@ ___
 
 #### Defined in
 
-[core/src/transforms/resize.ts:12](https://github.com/JonasKruckenberg/imagetools/blob/a033017/packages/core/src/transforms/resize.ts#L12)
+[core/src/transforms/resize.ts:12](https://github.com/JonasKruckenberg/imagetools/blob/04cb552/packages/core/src/transforms/resize.ts#L12)
 
 ___
 
@@ -55,7 +55,7 @@ ___
 
 #### Defined in
 
-[core/src/transforms/resize.ts:11](https://github.com/JonasKruckenberg/imagetools/blob/a033017/packages/core/src/transforms/resize.ts#L11)
+[core/src/transforms/resize.ts:11](https://github.com/JonasKruckenberg/imagetools/blob/04cb552/packages/core/src/transforms/resize.ts#L11)
 
 ___
 
@@ -65,7 +65,7 @@ ___
 
 #### Defined in
 
-[core/src/transforms/resize.ts:10](https://github.com/JonasKruckenberg/imagetools/blob/a033017/packages/core/src/transforms/resize.ts#L10)
+[core/src/transforms/resize.ts:10](https://github.com/JonasKruckenberg/imagetools/blob/04cb552/packages/core/src/transforms/resize.ts#L10)
 
 ___
 

@@ -1,7 +1,7 @@
 {
   "name": "vite-imagetools",
   "description": "Load and transform images using a toolbox of import directives!",
-  "version": "4.0.12",
+  "version": "4.0.13",
   "types": "dist/index.d.ts",
   "exports": {
     "./package.json": "./package.json",
@@ -38,7 +38,8 @@
     "coverage": "vitest run --coverage"
   },
   "dependencies": {
-    "@rollup/pluginutils": "^5.0.0"
+    "@rollup/pluginutils": "^5.0.0",
+    "imagetools-core": "workspace:^"
   },
   "devDependencies": {
     "@rollup/plugin-typescript": "^10.0.0",

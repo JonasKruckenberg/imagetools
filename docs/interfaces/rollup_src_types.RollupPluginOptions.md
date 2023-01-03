@@ -10,15 +10,12 @@
 
 - [defaultDirectives](rollup_src_types.RollupPluginOptions.md#defaultdirectives)
 - [exclude](rollup_src_types.RollupPluginOptions.md#exclude)
+- [extendOutputFormats](rollup_src_types.RollupPluginOptions.md#extendoutputformats)
+- [extendTransforms](rollup_src_types.RollupPluginOptions.md#extendtransforms)
 - [include](rollup_src_types.RollupPluginOptions.md#include)
 - [removeMetadata](rollup_src_types.RollupPluginOptions.md#removemetadata)
 - [resolveConfigs](rollup_src_types.RollupPluginOptions.md#resolveconfigs)
 - [silent](rollup_src_types.RollupPluginOptions.md#silent)
-
-### Methods
-
-- [extendOutputFormats](rollup_src_types.RollupPluginOptions.md#extendoutputformats)
-- [extendTransforms](rollup_src_types.RollupPluginOptions.md#extendtransforms)
 
 ## Properties
 
@@ -30,7 +27,8 @@ This option allows you to specify directives that should be applied _by default_
 You can also provide a function, in which case the function gets passed the asset ID and should return an object of directives.
 This can be used to define all sorts of shorthands or presets.
 
-**`example`**
+**`Example`**
+
 ```js
 import { imagetools } from 'vite-imagetools'
 
@@ -52,7 +50,7 @@ export default {
 
 #### Defined in
 
-[rollup/src/types.ts:40](https://github.com/JonasKruckenberg/imagetools/blob/a033017/packages/rollup/src/types.ts#L40)
+[rollup/src/types.ts:40](https://github.com/JonasKruckenberg/imagetools/blob/04cb552/packages/rollup/src/types.ts#L40)
 
 ___
 
@@ -62,11 +60,75 @@ ___
 
 What paths to exclude when processing images.
 
-**`default`** ''
+**`Default`**
+
+''
 
 #### Defined in
 
-[rollup/src/types.ts:13](https://github.com/JonasKruckenberg/imagetools/blob/a033017/packages/rollup/src/types.ts#L13)
+[rollup/src/types.ts:13](https://github.com/JonasKruckenberg/imagetools/blob/04cb552/packages/rollup/src/types.ts#L13)
+
+___
+
+### extendOutputFormats
+
+• `Optional` **extendOutputFormats**: (`builtins`: `Record`<`string`, [`OutputFormat`](../modules/vite_src.md#outputformat)\>) => `Record`<`string`, [`OutputFormat`](../modules/vite_src.md#outputformat)\>
+
+#### Type declaration
+
+▸ (`builtins`): `Record`<`string`, [`OutputFormat`](../modules/vite_src.md#outputformat)\>
+
+You can use this option to extend the builtin list of output formats.
+This list will be merged with the builtin output formats before determining the format to use.
+
+**`Default`**
+
+[]
+
+##### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `builtins` | `Record`<`string`, [`OutputFormat`](../modules/vite_src.md#outputformat)\> |
+
+##### Returns
+
+`Record`<`string`, [`OutputFormat`](../modules/vite_src.md#outputformat)\>
+
+#### Defined in
+
+[rollup/src/types.ts:54](https://github.com/JonasKruckenberg/imagetools/blob/04cb552/packages/rollup/src/types.ts#L54)
+
+___
+
+### extendTransforms
+
+• `Optional` **extendTransforms**: (`builtins`: [`TransformFactory`](../modules/vite_src.md#transformfactory)<`Record`<`string`, `unknown`\>\>[]) => [`TransformFactory`](../modules/vite_src.md#transformfactory)<`Record`<`string`, `unknown`\>\>[]
+
+#### Type declaration
+
+▸ (`builtins`): [`TransformFactory`](../modules/vite_src.md#transformfactory)<`Record`<`string`, `unknown`\>\>[]
+
+You can use this option to extend the builtin list of import transforms.
+This list will be merged with the builtin transforms before applying them to the input image.
+
+**`Default`**
+
+[]
+
+##### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `builtins` | [`TransformFactory`](../modules/vite_src.md#transformfactory)<`Record`<`string`, `unknown`\>\>[] |
+
+##### Returns
+
+[`TransformFactory`](../modules/vite_src.md#transformfactory)<`Record`<`string`, `unknown`\>\>[]
+
+#### Defined in
+
+[rollup/src/types.ts:47](https://github.com/JonasKruckenberg/imagetools/blob/04cb552/packages/rollup/src/types.ts#L47)
 
 ___
 
@@ -76,11 +138,13 @@ ___
 
 Which paths to include when processing images.
 
-**`default`** '**\/*.{heic,heif,avif,jpeg,jpg,png,tiff,webp,gif}?*'
+**`Default`**
+
+'**/*.{heic,heif,avif,jpeg,jpg,png,tiff,webp,gif}?*'
 
 #### Defined in
 
-[rollup/src/types.ts:8](https://github.com/JonasKruckenberg/imagetools/blob/a033017/packages/rollup/src/types.ts#L8)
+[rollup/src/types.ts:8](https://github.com/JonasKruckenberg/imagetools/blob/04cb552/packages/rollup/src/types.ts#L8)
 
 ___
 
@@ -90,17 +154,19 @@ ___
 
 Wether to remove potentially private metadata from the image, such as exif tags etc.
 
-**`default`** true
+**`Default`**
+
+true
 
 #### Defined in
 
-[rollup/src/types.ts:72](https://github.com/JonasKruckenberg/imagetools/blob/a033017/packages/rollup/src/types.ts#L72)
+[rollup/src/types.ts:72](https://github.com/JonasKruckenberg/imagetools/blob/04cb552/packages/rollup/src/types.ts#L72)
 
 ___
 
 ### resolveConfigs
 
-• `Optional` **resolveConfigs**: (`entries`: [`string`, `string`[]][], `outputFormats`: `Record`<`string`, `OutputFormat`\>) => `Record`<`string`, `string` \| `string`[]\>[]
+• `Optional` **resolveConfigs**: (`entries`: [`string`, `string`[]][], `outputFormats`: `Record`<`string`, [`OutputFormat`](../modules/vite_src.md#outputformat)\>) => `Record`<`string`, `string` \| `string`[]\>[]
 
 #### Type declaration
 
@@ -114,7 +180,7 @@ an returns it as an array of objects that can be given to a the transforms.
 | Name | Type | Description |
 | :------ | :------ | :------ |
 | `entries` | [`string`, `string`[]][] | The url parameter entries |
-| `outputFormats` | `Record`<`string`, `OutputFormat`\> | - |
+| `outputFormats` | `Record`<`string`, [`OutputFormat`](../modules/vite_src.md#outputformat)\> | - |
 
 ##### Returns
 
@@ -124,7 +190,7 @@ An array of directive options
 
 #### Defined in
 
-[rollup/src/types.ts:60](https://github.com/JonasKruckenberg/imagetools/blob/a033017/packages/rollup/src/types.ts#L60)
+[rollup/src/types.ts:60](https://github.com/JonasKruckenberg/imagetools/blob/04cb552/packages/rollup/src/types.ts#L60)
 
 ___
 
@@ -134,58 +200,10 @@ ___
 
 Settings this option to true disables all warnings produced by this plugin
 
-**`default`** false
+**`Default`**
+
+false
 
 #### Defined in
 
-[rollup/src/types.ts:66](https://github.com/JonasKruckenberg/imagetools/blob/a033017/packages/rollup/src/types.ts#L66)
-
-## Methods
-
-### extendOutputFormats
-
-▸ `Optional` **extendOutputFormats**(`builtins`): `Record`<`string`, `OutputFormat`\>
-
-You can use this option to extend the builtin list of output formats.
-This list will be merged with the builtin output formats before determining the format to use.
-
-**`default`** []
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `builtins` | `Record`<`string`, `OutputFormat`\> |
-
-#### Returns
-
-`Record`<`string`, `OutputFormat`\>
-
-#### Defined in
-
-[rollup/src/types.ts:54](https://github.com/JonasKruckenberg/imagetools/blob/a033017/packages/rollup/src/types.ts#L54)
-
-___
-
-### extendTransforms
-
-▸ `Optional` **extendTransforms**(`builtins`): `TransformFactory`<`Record`<`string`, `unknown`\>\>[]
-
-You can use this option to extend the builtin list of import transforms.
-This list will be merged with the builtin transforms before applying them to the input image.
-
-**`default`** []
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `builtins` | `TransformFactory`<`Record`<`string`, `unknown`\>\>[] |
-
-#### Returns
-
-`TransformFactory`<`Record`<`string`, `unknown`\>\>[]
-
-#### Defined in
-
-[rollup/src/types.ts:47](https://github.com/JonasKruckenberg/imagetools/blob/a033017/packages/rollup/src/types.ts#L47)
+[rollup/src/types.ts:66](https://github.com/JonasKruckenberg/imagetools/blob/04cb552/packages/rollup/src/types.ts#L66)
