@@ -48,7 +48,12 @@ export const resize: TransformFactory<ResizeOptions> = (config) => {
   const withoutEnlargement = config.withoutEnlargement === '' || config.withoutEnlargement === 'true'
   const withoutReduction = config.withoutReduction === '' || config.withoutReduction === 'true'
 
-  if (!width && !height && !aspect) return
+  if (
+    (!width && !height && !aspect) ||
+    (config.withoutEnlargement && !withoutEnlargement) ||
+    (config.withoutReduction && !withoutReduction)
+  )
+    return
 
   return function resizeTransform(image) {
     // calculate finalWidth & finalHeight
@@ -82,7 +87,6 @@ export const resize: TransformFactory<ResizeOptions> = (config) => {
       (withoutEnlargement && (finalHeight > originalHeight || finalWidth > originalWidth)) ||
       (withoutReduction && (finalHeight < originalHeight || finalWidth < originalWidth))
     ) {
-      // revert back to original sizes if either width or height exceeds or subceeds
       finalHeight = originalHeight
       finalWidth = originalWidth
       finalAspect = originalAspect
@@ -91,12 +95,14 @@ export const resize: TransformFactory<ResizeOptions> = (config) => {
     setMetadata(image, 'height', finalHeight)
     setMetadata(image, 'width', finalWidth)
     setMetadata(image, 'aspect', finalAspect)
+    setMetadata(image, 'withoutEnlargement', withoutEnlargement)
+    setMetadata(image, 'withoutReduction', withoutReduction)
 
     return image.resize({
       width: Math.round(finalWidth) || undefined,
       height: Math.round(finalHeight) || undefined,
-      withoutEnlargement: false,
-      withoutReduction: false,
+      withoutEnlargement: withoutEnlargement,
+      withoutReduction: withoutReduction,
       fit: getFit(config, image),
       position: getPosition(config, image),
       kernel: getKernel(config, image),
