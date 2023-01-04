@@ -3,13 +3,14 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "release": "pnpm run build && pnpm changeset publish",
+    "ci:version": "pnpm changeset version",
+    "ci:publish": "pnpm build && pnpm publish -r",
     "build": "pnpm run --recursive --filter !example-* build",
     "test": "pnpm run --recursive test",
     "coverage": "pnpm run --recursive coverage",
     "lint": "eslint .",
     "format": "prettier --write .",
-    "doc": "typedoc"
+    "doc": "pnpm run --filter imagetools-core build && typedoc"
   },
   "devDependencies": {
     "@changesets/cli": "^2.20.0",
@@ -31,7 +32,7 @@
       "@commitlint/config-conventional"
     ]
   },
-  "packageManager": "pnpm@7.18.0",
+  "packageManager": "pnpm@7.22.0",
   "engines": {
     "pnpm": "^7.0.0"
   },

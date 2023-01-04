@@ -25,6 +25,8 @@ const defaultOptions: RollupPluginOptions = {
   removeMetadata: true
 }
 
+export * from 'imagetools-core';
+
 export function imagetools(userOptions: Partial<RollupPluginOptions> = {}): Plugin {
   const pluginOptions: RollupPluginOptions = { ...defaultOptions, ...userOptions }
 

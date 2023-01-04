@@ -1,27 +1,35 @@
 ## Table of Contents
 
-- [Background](#background)
-- [Blur](#blur)
-- [Fit](#fit)
-- [Flatten](#flatten)
-- [Flip](#flip)
-- [Flop](#flop)
-- [Format](#format)
-- [Grayscale](#grayscale)
-- [Hue](#hue)
-- [Saturation](#saturation)
-- [Brightness](#brightness)
-- [Invert](#invert)
-- [Kernel](#kernel)
-- [Median](#median)
-- [Normalize](#normalize)
-- [Position](#position)
-- [Quality](#quality)
-- [Width](#width)
-- [Height](#height)
-- [Aspect](#aspect)
-- [Rotate](#rotate)
-- [Tint](#tint)
+- [Table of Contents](#table-of-contents)
+  - [Output Directives](#output-directives)
+- [Directives](#directives)
+  - [Background](#background)
+  - [Blur](#blur)
+  - [Fit](#fit)
+  - [Flatten](#flatten)
+  - [Flip](#flip)
+  - [Flop](#flop)
+  - [Format](#format)
+  - [Grayscale](#grayscale)
+  - [Hue](#hue)
+  - [Saturation](#saturation)
+  - [Brightness](#brightness)
+  - [Invert](#invert)
+  - [Kernel](#kernel)
+  - [Median](#median)
+  - [Normalize](#normalize)
+  - [Position](#position)
+  - [Quality](#quality)
+  - [Width](#width)
+  - [Height](#height)
+  - [Aspect](#aspect)
+  - [Rotate](#rotate)
+  - [Tint](#tint)
+  - [Metadata](#metadata)
+  - [Picture](#picture)
+  - [Source](#source)
+  - [Srcset](#srcset)
+  - [URL](#url)
 
 ### Output Directives
 
@@ -243,8 +251,8 @@ contrast.
 • **Example**:
 
 ```js
-import Image from 'example.jpg?invert'
-import Image from 'exmaple.jpg?invert=true'
+import Image from 'example.jpg?normalize'
+import Image from 'exmaple.jpg?normalize=true'
 ```
 
 ---
@@ -276,7 +284,6 @@ The argument must be a number between 0 and 100.
 
 ```js
 import Image from 'example.jpg?format=webp&quality=100'
-import Image from 'example.jpg?png&quality=200'
 import Images from 'example.jpg?avif&quality=10;50;75'
 ```
 
@@ -392,7 +399,7 @@ Returns information about the image necessary to render a `picture` tag as a Jav
 • **Example**:
 
 ```js
-import image from 'example.jpg?w=500;900;1200&avif;webp;jpg&picture'
+import image from 'example.jpg?w=500;900;1200&format=avif;webp;jpg&picture'
 
 let html = '<picture>';
 for (const [format, images] of Object.entries(image.sources)) {

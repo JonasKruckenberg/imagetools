@@ -1,14 +1,14 @@
-[imagetools](../README.md) / [Modules](../modules.md) / [core/src](../modules/core_src.md) / PositionOptions
+[imagetools](../README.md) / [Modules](../modules.md) / [vite/src](../modules/vite_src.md) / PositionOptions
 
 # Interface: PositionOptions
 
-[core/src](../modules/core_src.md).PositionOptions
+[vite/src](../modules/vite_src.md).PositionOptions
 
 ## Table of contents
 
 ### Properties
 
-- [position](core_src.PositionOptions.md#position)
+- [position](vite_src.PositionOptions.md#position)
 
 ## Properties
 
@@ -18,4 +18,4 @@
 
 #### Defined in
 
-[core/src/transforms/position.ts:41](https://github.com/JonasKruckenberg/imagetools/blob/04cb552/packages/core/src/transforms/position.ts#L41)
+core/dist/transforms/position.d.ts:6
