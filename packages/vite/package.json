@@ -42,7 +42,7 @@
     "imagetools-core": "workspace:^"
   },
   "devDependencies": {
-    "@rollup/plugin-typescript": "^10.0.0",
+    "@rollup/plugin-typescript": "^11.0.0",
     "@types/jest-image-snapshot": "^6.0.0",
     "@types/jsdom": "^20.0.0",
     "@types/picomatch": "^2.3.0",
