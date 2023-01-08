@@ -92,7 +92,7 @@ export const resize: TransformFactory<ResizeOptions> = (config) => {
       finalAspect = originalAspect
 
       console.warn(
-        'withoutEnlargement or withoutReduction active. Image width, height and aspect ratio reverted to original values'
+        '[imagetools] withoutEnlargement or withoutReduction enabled. Image width, height and aspect ratio reverted to original values'
       )
     }
 
