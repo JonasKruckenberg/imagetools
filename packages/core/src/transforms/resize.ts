@@ -92,7 +92,7 @@ export const resize: TransformFactory<ResizeOptions> = (config) => {
       finalAspect = originalAspect
 
       console.warn(
-        '[imagetools] withoutEnlargement or withoutReduction enabled. Image width, height and aspect ratio reverted to original values'
+        '[vite-imagetools] withoutEnlargement or withoutReduction enabled. Image width, height and aspect ratio reverted to original values'
       )
     }
 
