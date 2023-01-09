@@ -1,9 +1,9 @@
 import { getMetadata, setMetadata } from '../lib/metadata'
 import { TransformFactory } from '../types'
-import { getFit } from './fit'
-import { getPosition } from './position'
-import { getKernel } from './kernel'
 import { getBackground } from './background'
+import { getFit } from './fit'
+import { getKernel } from './kernel'
+import { getPosition } from './position'
 
 export interface ResizeOptions {
   width: string
@@ -12,6 +12,8 @@ export interface ResizeOptions {
   h: string
   aspect: string
   ar: string
+  withoutEnlargement: '' | 'true'
+  withoutReduction: '' | 'true'
 }
 
 /**
@@ -43,8 +45,15 @@ export const resize: TransformFactory<ResizeOptions> = (config) => {
   const width = parseInt(config.width || config.w || '')
   const height = parseInt(config.height || config.h || '')
   const aspect = parseAspect(config.aspect || config.ar || '')
+  const withoutEnlargement = config.withoutEnlargement === '' || config.withoutEnlargement === 'true'
+  const withoutReduction = config.withoutReduction === '' || config.withoutReduction === 'true'
 
-  if (!width && !height && !aspect) return
+  if (
+    (!width && !height && !aspect) ||
+    (config.withoutEnlargement && !withoutEnlargement) ||
+    (config.withoutReduction && !withoutReduction)
+  )
+    return
 
   return function resizeTransform(image) {
     // calculate finalWidth & finalHeight
@@ -53,7 +62,8 @@ export const resize: TransformFactory<ResizeOptions> = (config) => {
     const originalAspect = originalWidth / originalHeight
 
     let finalWidth = width,
-      finalHeight = height
+      finalHeight = height,
+      finalAspect = aspect
 
     if (aspect && !width && !height) {
       // only aspect was given, need to calculate which dimension to crop
@@ -73,13 +83,30 @@ export const resize: TransformFactory<ResizeOptions> = (config) => {
       finalWidth = height * (aspect || originalAspect)
     }
 
+    if (
+      (withoutEnlargement && (finalHeight > originalHeight || finalWidth > originalWidth)) ||
+      (withoutReduction && (finalHeight < originalHeight || finalWidth < originalWidth))
+    ) {
+      finalHeight = originalHeight
+      finalWidth = originalWidth
+      finalAspect = originalAspect
+
+      console.warn(
+        '[vite-imagetools] withoutEnlargement or withoutReduction enabled. Image width, height and aspect ratio reverted to original values'
+      )
+    }
+
     setMetadata(image, 'height', finalHeight)
     setMetadata(image, 'width', finalWidth)
-    setMetadata(image, 'aspect', aspect || originalAspect)
+    setMetadata(image, 'aspect', finalAspect)
+    setMetadata(image, 'withoutEnlargement', withoutEnlargement)
+    setMetadata(image, 'withoutReduction', withoutReduction)
 
     return image.resize({
       width: Math.round(finalWidth) || undefined,
       height: Math.round(finalHeight) || undefined,
+      withoutEnlargement: withoutEnlargement,
+      withoutReduction: withoutReduction,
       fit: getFit(config, image),
       position: getPosition(config, image),
       kernel: getKernel(config, image),

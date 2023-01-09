@@ -23,6 +23,8 @@
   - [Width](#width)
   - [Height](#height)
   - [Aspect](#aspect)
+  - [Without Enlargement](#without-enlargement)
+  - [Without Reduction](#without-reduction)
   - [Rotate](#rotate)
   - [Tint](#tint)
   - [Metadata](#metadata)
@@ -338,6 +340,38 @@ import Image from 'example.jpg?aspect=16:9'
 import Image from 'example.jpg?aspect=16:9&height=200'
 import Image from 'example.jpg?aspect=16:9&width=200'
 import Images from 'example.jpg?aspect=16:9&h=200;400;700'
+```
+
+---
+
+### Without Enlargement
+
+• **Keyword**: `withoutEnlargement`<br> • **Type**: _boolean_<br>
+
+Prevents the image from being resized if the specified or calculated width or height are greater than the original width or height. Must be passed with a [width](#width), [height](#height) or [aspect](#aspect) directive.
+
+• **Example**:
+
+```js
+import Image from 'example.jpg?width=200;400&withoutEnlargement'
+import Image from 'example.jpg?aspect=16:9&withoutEnlargement'
+import Images from 'example.jpg?aspect=16:9&h=200;400;700&withoutEnlargement'
+```
+
+---
+
+### Without Reduction
+
+• **Keyword**: `withoutReduction`<br> • **Type**: _boolean_<br>
+
+Prevents the image from being resized if the specified or calculated width or height are less than the original width or height. Must be passed with a [width](#width), [height](#height) or [aspect](#aspect) directive.
+
+• **Example**:
+
+```js
+import Image from 'example.jpg?height=300;600;900&withoutReduction'
+import Image from 'example.jpg?aspect=9:16&withoutReduction'
+import Images from 'example.jpg?aspect=16:9&h=200;400;700&withoutEnlargement&withoutReduction'
 ```
 
 ---
