@@ -45,27 +45,27 @@ importers:
       '@rollup/plugin-typescript': ^11.0.0
       '@types/jest-image-snapshot': ^6.0.0
       '@types/sharp': ^0.31.0
-      '@vitest/coverage-c8': ^0.26.0
+      '@vitest/coverage-c8': ^0.27.0
       jest-file-snapshot: ^0.5.0
       jest-image-snapshot: ^6.0.0
       rollup: ^3.2.3
       sharp: ^0.31.0
       tslib: ^2.4.0
       typescript: ^4.8.4
-      vitest: ^0.26.0
+      vitest: ^0.27.0
     dependencies:
       sharp: 0.31.0
     devDependencies:
       '@rollup/plugin-typescript': 11.0.0_bvn3ed5hy3sfde644tygjdj4ia
       '@types/jest-image-snapshot': 6.1.0
       '@types/sharp': 0.31.0
-      '@vitest/coverage-c8': 0.26.0
+      '@vitest/coverage-c8': 0.27.0
       jest-file-snapshot: 0.5.0
       jest-image-snapshot: 6.0.0
       rollup: 3.2.3
       tslib: 2.4.0
       typescript: 4.8.4
-      vitest: 0.26.0
+      vitest: 0.27.0
 
   packages/rollup:
     specifiers:
@@ -75,7 +75,7 @@ importers:
       '@types/jsdom': ^20.0.0
       '@types/picomatch': ^2.3.0
       '@types/sharp': ^0.31.0
-      '@vitest/coverage-c8': ^0.26.0
+      '@vitest/coverage-c8': ^0.27.0
       imagetools-core: workspace:^
       jest-image-snapshot: ^6.0.0
       jsdom: ^21.0.0
@@ -85,7 +85,7 @@ importers:
       sharp: ^0.31.0
       tslib: ^2.4.0
       typescript: ^4.8.4
-      vitest: ^0.26.0
+      vitest: ^0.27.0
     dependencies:
       '@rollup/pluginutils': 5.0.0_rollup@3.2.3
       imagetools-core: link:../core
@@ -96,7 +96,7 @@ importers:
       '@types/jsdom': 20.0.0
       '@types/picomatch': 2.3.0
       '@types/sharp': 0.31.0
-      '@vitest/coverage-c8': 0.26.0_jsdom@21.0.0
+      '@vitest/coverage-c8': 0.27.0_jsdom@21.0.0
       jest-image-snapshot: 6.0.0
       jsdom: 21.0.0
       picomatch: 2.3.1
@@ -104,7 +104,7 @@ importers:
       sharp: 0.31.0
       tslib: 2.4.0
       typescript: 4.8.4
-      vitest: 0.26.0_jsdom@21.0.0
+      vitest: 0.27.0_jsdom@21.0.0
 
   packages/vite:
     specifiers:
@@ -114,7 +114,7 @@ importers:
       '@types/jsdom': ^20.0.0
       '@types/picomatch': ^2.3.0
       '@types/sharp': ^0.31.0
-      '@vitest/coverage-c8': ^0.26.0
+      '@vitest/coverage-c8': ^0.27.0
       imagetools-core: workspace:^
       jest-image-snapshot: ^6.0.0
       jsdom: ^21.0.0
@@ -124,7 +124,7 @@ importers:
       tslib: ^2.4.0
       typescript: ^4.8.4
       vite: ^4.0.0
-      vitest: ^0.26.0
+      vitest: ^0.27.0
     dependencies:
       '@rollup/pluginutils': 5.0.0_rollup@3.2.3
       imagetools-core: link:../core
@@ -134,7 +134,7 @@ importers:
       '@types/jsdom': 20.0.0
       '@types/picomatch': 2.3.0
       '@types/sharp': 0.31.0
-      '@vitest/coverage-c8': 0.26.0_jsdom@21.0.0
+      '@vitest/coverage-c8': 0.27.0_jsdom@21.0.0
       jest-image-snapshot: 6.0.0
       jsdom: 21.0.0
       picomatch: 2.3.1
@@ -143,7 +143,7 @@ importers:
       tslib: 2.4.0
       typescript: 4.8.4
       vite: 4.0.1
-      vitest: 0.26.0_jsdom@21.0.0
+      vitest: 0.27.0_jsdom@21.0.0
 
 packages:
 
@@ -965,11 +965,11 @@ packages:
       eslint-visitor-keys: 3.3.0
     dev: true
 
-  /@vitest/coverage-c8/0.26.0:
-    resolution: {integrity: sha512-1LSMHvX1Winy1dIV1XqQanIskYBvd3+TlQtxO6BeyFa57Lah2uNBm3gh5iDB+ZWCySN5o6bl7qOJdaZjEQZZeg==}
+  /@vitest/coverage-c8/0.27.0:
+    resolution: {integrity: sha512-jO/TAz/qUP1ssfIj6Gg1FxTRkOD5tJBiP3mwKayaqGunMsknCmxWVuFrgF1XH+FGZWLnFzR2InTjYxlyGNSgzQ==}
     dependencies:
       c8: 7.12.0
-      vitest: 0.26.0
+      vitest: 0.27.0
     transitivePeerDependencies:
       - '@edge-runtime/vm'
       - '@vitest/browser'
@@ -984,11 +984,11 @@ packages:
       - terser
     dev: true
 
-  /@vitest/coverage-c8/0.26.0_jsdom@21.0.0:
-    resolution: {integrity: sha512-1LSMHvX1Winy1dIV1XqQanIskYBvd3+TlQtxO6BeyFa57Lah2uNBm3gh5iDB+ZWCySN5o6bl7qOJdaZjEQZZeg==}
+  /@vitest/coverage-c8/0.27.0_jsdom@21.0.0:
+    resolution: {integrity: sha512-jO/TAz/qUP1ssfIj6Gg1FxTRkOD5tJBiP3mwKayaqGunMsknCmxWVuFrgF1XH+FGZWLnFzR2InTjYxlyGNSgzQ==}
     dependencies:
       c8: 7.12.0
-      vitest: 0.26.0_jsdom@21.0.0
+      vitest: 0.27.0_jsdom@21.0.0
     transitivePeerDependencies:
       - '@edge-runtime/vm'
       - '@vitest/browser'
@@ -1182,6 +1182,11 @@ packages:
       v8-to-istanbul: 9.0.1
       yargs: 16.2.0
       yargs-parser: 20.2.9
+    dev: true
+
+  /cac/6.7.14:
+    resolution: {integrity: sha512-b6Ilus+c3RrdDk+JhLKUAQfzzgLEPy6wcXqS7f/xe1EETvsDP6GORG7SFuOs6cID5YkqchW/LXZbX5bc8j7ZcQ==}
+    engines: {node: '>=8'}
     dev: true
 
   /callsites/3.1.0:
@@ -3782,14 +3787,16 @@ packages:
       spdx-expression-parse: 3.0.1
     dev: true
 
-  /vite-node/0.26.0_@types+node@17.0.38:
-    resolution: {integrity: sha512-nLtHWCv6reONl1oFsKhQ/LT7n3UNLpvVARAJlmGrQV6qSElht/9AdN41Pa+WSkw2Winh682UzM0Yw0GNlfqejw==}
+  /vite-node/0.27.0_@types+node@17.0.38:
+    resolution: {integrity: sha512-O1o9joT0qCGx5Om6W0VNLr7M00ttrnFlfZX2d+oxt2T9oZ9DvYSv8kDRhNJDVhAgNgUm3Tc0h/+jppNf3mVKbA==}
     engines: {node: '>=v14.16.0'}
     hasBin: true
     dependencies:
+      cac: 6.7.14
       debug: 4.3.4
       mlly: 1.0.0
       pathe: 0.2.0
+      picocolors: 1.0.0
       source-map: 0.6.1
       source-map-support: 0.5.21
       vite: 4.0.1_@types+node@17.0.38
@@ -3894,8 +3901,8 @@ packages:
       fsevents: 2.3.2
     dev: true
 
-  /vitest/0.26.0:
-    resolution: {integrity: sha512-5kUnms5WOa0qrDCJePEPB13v9mhr+ZT1Qy0qNg0eVj1X7/Fx4GY4L1e5s3OH+BQ/J7M5WtaKsUGv9l1pbC7v2Q==}
+  /vitest/0.27.0:
+    resolution: {integrity: sha512-BnOa7T6CnXVC6UgcAsvFOZ2Dtvqkt+/Nl6CRgh4qVT70vElf65XwEL6zMRyTF+h2QXJziEkxYdrLo5WCxckMLQ==}
     engines: {node: '>=v14.16.0'}
     hasBin: true
     peerDependencies:
@@ -3921,16 +3928,18 @@ packages:
       '@types/node': 17.0.38
       acorn: 8.8.1
       acorn-walk: 8.2.0
+      cac: 6.7.14
       chai: 4.3.7
       debug: 4.3.4
       local-pkg: 0.4.2
+      picocolors: 1.0.0
       source-map: 0.6.1
       strip-literal: 1.0.0
       tinybench: 2.3.1
       tinypool: 0.3.0
       tinyspy: 1.0.2
       vite: 4.0.1_@types+node@17.0.38
-      vite-node: 0.26.0_@types+node@17.0.38
+      vite-node: 0.27.0_@types+node@17.0.38
     transitivePeerDependencies:
       - less
       - sass
@@ -3940,8 +3949,8 @@ packages:
       - terser
     dev: true
 
-  /vitest/0.26.0_jsdom@21.0.0:
-    resolution: {integrity: sha512-5kUnms5WOa0qrDCJePEPB13v9mhr+ZT1Qy0qNg0eVj1X7/Fx4GY4L1e5s3OH+BQ/J7M5WtaKsUGv9l1pbC7v2Q==}
+  /vitest/0.27.0_jsdom@21.0.0:
+    resolution: {integrity: sha512-BnOa7T6CnXVC6UgcAsvFOZ2Dtvqkt+/Nl6CRgh4qVT70vElf65XwEL6zMRyTF+h2QXJziEkxYdrLo5WCxckMLQ==}
     engines: {node: '>=v14.16.0'}
     hasBin: true
     peerDependencies:
@@ -3967,17 +3976,19 @@ packages:
       '@types/node': 17.0.38
       acorn: 8.8.1
       acorn-walk: 8.2.0
+      cac: 6.7.14
       chai: 4.3.7
       debug: 4.3.4
       jsdom: 21.0.0
       local-pkg: 0.4.2
+      picocolors: 1.0.0
       source-map: 0.6.1
       strip-literal: 1.0.0
       tinybench: 2.3.1
       tinypool: 0.3.0
       tinyspy: 1.0.2
       vite: 4.0.1_@types+node@17.0.38
-      vite-node: 0.26.0_@types+node@17.0.38
+      vite-node: 0.27.0_@types+node@17.0.38
     transitivePeerDependencies:
       - less
       - sass
