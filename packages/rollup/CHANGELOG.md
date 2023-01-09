@@ -1,5 +1,12 @@
 # Change Log
 
+## 3.0.15
+
+### Patch Changes
+
+- Updated dependencies [e7efc22]
+  - imagetools-core@3.3.0
+
 ## 3.0.14
 
 ### Patch Changes

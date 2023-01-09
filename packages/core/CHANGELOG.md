@@ -1,5 +1,12 @@
 # Change Log
 
+## 3.3.0
+
+### Minor Changes
+
+- e7efc22: Add `withoutEnlargment` & `withoutReduction` directives to prevent images being enlarged or shrunk beyond der
+  original size.
+
 ## 3.2.3
 
 ### Patch Changes
