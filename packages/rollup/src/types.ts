@@ -3,7 +3,7 @@ import { TransformFactory, OutputFormat, resolveConfigs } from 'imagetools-core'
 export interface RollupPluginOptions {
   /**
    * Which paths to include when processing images.
-   * @default '**\/*.{heic,heif,avif,jpeg,jpg,png,tiff,webp,gif}?*'
+   * @default '**\/*.\{heic,heif,avif,jpeg,jpg,png,tiff,webp,gif\}?*'
    */
   include: Array<string | RegExp> | string | RegExp
   /**
