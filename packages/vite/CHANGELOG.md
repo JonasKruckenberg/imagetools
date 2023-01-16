@@ -1,5 +1,11 @@
 # Change Log
 
+## 4.0.15
+
+### Patch Changes
+
+- d43bfff: fix: list types exports first
+
 ## 4.0.14
 
 ### Patch Changes
