@@ -17,16 +17,13 @@ import { createFilter, dataToEsm } from '@rollup/pluginutils'
 import { VitePluginOptions } from './types'
 
 const defaultOptions: VitePluginOptions = {
-  include: [
-    '**/*.{heic,heif,avif,jpeg,jpg,png,tiff,webp,gif}',
-    '**/*.{heic,heif,avif,jpeg,jpg,png,tiff,webp,gif}?*'
-  ],
+  include: ['**/*.{heic,heif,avif,jpeg,jpg,png,tiff,webp,gif}', '**/*.{heic,heif,avif,jpeg,jpg,png,tiff,webp,gif}?*'],
   exclude: 'public/**/*',
   silent: false,
   removeMetadata: true
 }
 
-export * from 'imagetools-core';
+export * from 'imagetools-core'
 
 export function imagetools(userOptions: Partial<VitePluginOptions> = {}): Plugin {
   const pluginOptions: VitePluginOptions = { ...defaultOptions, ...userOptions }

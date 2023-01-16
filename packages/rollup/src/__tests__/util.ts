@@ -6,7 +6,7 @@ export function testEntry(source: string): Plugin {
   let id: string
   return {
     name: 'test-entry',
-    resolveId(source) {      
+    resolveId(source) {
       if (basename(source) === 'index.js') {
         id = source
         return source

@@ -34,7 +34,8 @@ The folder structure is a following:
 ## Running Tests
 
 Running `yarn test`from the top level runs all tests for all packages, if your only interested in running tests for a
-single package cd into that directory and run `yarn test` there. You will need git-lfs to clone the repo with all test fixtures (see [project setup](#project-setup) for instructions on how to install git-lfs)
+single package cd into that directory and run `yarn test` there. You will need git-lfs to clone the repo with all test
+fixtures (see [project setup](#project-setup) for instructions on how to install git-lfs)
 
 ## Pull Request Guidelines
 
@@ -64,9 +65,9 @@ started:
 - Read the specification
 
 The user facing api has been designed to be interchangeable, so users can easily switch their existing project using an
-image processing server to use imagetools or vice-versa! That's why [the specification](docs/spec.md) clearly states what
-transformations and behaviour an Implementation must support to be compatible. You should reference this document to
-make sure your Integration is compatible with all others.
+image processing server to use imagetools or vice-versa! That's why [the specification](docs/spec.md) clearly states
+what transformations and behaviour an Implementation must support to be compatible. You should reference this document
+to make sure your Integration is compatible with all others.
 
 - Imagetools-core exposes commonly used utility funtions
 
