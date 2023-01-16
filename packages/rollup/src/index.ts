@@ -8,7 +8,8 @@ import {
   resolveConfigs,
   builtinOutputFormats,
   urlFormat,
-  extractEntries
+  extractEntries,
+  Logger
 } from 'imagetools-core'
 import { createFilter, dataToEsm } from '@rollup/pluginutils'
 import { RollupPluginOptions } from './types'
@@ -18,7 +19,6 @@ import { basename, extname, resolve, dirname } from 'path'
 const defaultOptions: RollupPluginOptions = {
   include: ['**/*.{heic,heif,avif,jpeg,jpg,png,tiff,webp,gif}', '**/*.{heic,heif,avif,jpeg,jpg,png,tiff,webp,gif}?*'],
   exclude: '',
-  silent: false,
   removeMetadata: true
 }
 
@@ -66,9 +66,14 @@ export function imagetools(userOptions: Partial<RollupPluginOptions> = {}): Plug
 
       const outputMetadatas = []
 
+      const logger: Logger = {
+        info: (msg) => this.warn(msg), // We fall back to warn, so the messages can be silenced in Rollup's `onwarn`
+        warn: (msg) => this.warn(msg),
+        error: (msg) => this.error(msg)
+      }
+
       for (const config of imageConfigs) {
-        const { transforms, warnings } = generateTransforms(config, transformFactories)
-        warnings.forEach((warning) => this.warn(warning))
+        const { transforms } = generateTransforms(config, transformFactories, logger)
 
         const { image, metadata } = await applyTransforms(transforms, img, pluginOptions.removeMetadata)
 

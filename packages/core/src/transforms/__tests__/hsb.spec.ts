@@ -6,13 +6,14 @@ import sharp, { Sharp } from 'sharp'
 import { join } from 'path'
 import { toMatchImageSnapshot } from 'jest-image-snapshot'
 import { describe, beforeEach, beforeAll, vi, expect, test } from 'vitest'
+import { consoleLogger } from '../../lib/logger'
 
 expect.extend({ toMatchImageSnapshot })
 
 describe('hue', () => {
   let dirCtx: TransformFactoryContext
   beforeAll(() => {
-    dirCtx = { useParam: vi.fn, warn: vi.fn }
+    dirCtx = { useParam: vi.fn, logger: consoleLogger }
   })
 
   test('keyword "hue"', () => {
@@ -100,7 +101,7 @@ describe('hue', () => {
 describe('saturation', () => {
   let dirCtx: TransformFactoryContext
   beforeAll(() => {
-    dirCtx = { useParam: vi.fn, warn: vi.fn }
+    dirCtx = { useParam: vi.fn, logger: consoleLogger }
   })
 
   test('keyword "saturation"', () => {
@@ -170,7 +171,7 @@ describe('saturation', () => {
 describe('brightness', () => {
   let dirCtx: TransformFactoryContext
   beforeAll(() => {
-    dirCtx = { useParam: vi.fn, warn: vi.fn }
+    dirCtx = { useParam: vi.fn, logger: consoleLogger }
   })
 
   test('keyword "brightness"', () => {

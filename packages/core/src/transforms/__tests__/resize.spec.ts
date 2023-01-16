@@ -1,20 +1,28 @@
 import { toMatchImageSnapshot } from 'jest-image-snapshot'
 import { join } from 'path'
 import sharp, { Sharp } from 'sharp'
-import { beforeAll, beforeEach, describe, expect, test, vi } from 'vitest'
+import { afterAll, beforeAll, beforeEach, describe, expect, test, vi } from 'vitest'
 
 import { applyTransforms } from '../../index'
 import { TransformFactoryContext } from '../../types'
 import { resize } from '../resize'
+import { consoleLogger } from '../../lib/logger'
 
 expect.extend({ toMatchImageSnapshot })
 
-describe('width', () => {
-  let dirCtx: TransformFactoryContext
-  beforeAll(() => {
-    dirCtx = { useParam: vi.fn, warn: vi.fn }
-  })
+let dirCtx: TransformFactoryContext
+beforeAll(() => {
+  dirCtx = { useParam: vi.fn(), logger: consoleLogger }
+  vi.spyOn(dirCtx.logger, 'info')
+})
+beforeEach(() => {
+  vi.resetAllMocks()
+})
+afterAll(() => {
+  vi.restoreAllMocks()
+})
 
+describe('width', () => {
   test('keyword "width"', () => {
     const res = resize({ width: '300' }, dirCtx)
 
@@ -82,11 +90,6 @@ describe('width', () => {
 })
 
 describe('height', () => {
-  let dirCtx: TransformFactoryContext
-  beforeAll(() => {
-    dirCtx = { useParam: vi.fn, warn: vi.fn }
-  })
-
   test('keyword "height"', () => {
     const res = resize({ height: '300' }, dirCtx)
 
@@ -154,11 +157,6 @@ describe('height', () => {
 })
 
 describe('width & height', () => {
-  let dirCtx: TransformFactoryContext
-  beforeAll(() => {
-    dirCtx = { useParam: vi.fn, warn: vi.fn }
-  })
-
   test('keywords "width" & "height"', () => {
     const res = resize({ width: '300', height: '300' }, dirCtx)
 
@@ -233,11 +231,6 @@ describe('width & height', () => {
 })
 
 describe('aspect', () => {
-  let dirCtx: TransformFactoryContext
-  beforeAll(() => {
-    dirCtx = { useParam: vi.fn, warn: vi.fn }
-  })
-
   test('keyword "aspect"', () => {
     const res = resize({ aspect: '16:9' }, dirCtx)
 
@@ -387,11 +380,6 @@ describe('aspect', () => {
 })
 
 describe('withoutEnlargement', () => {
-  let dirCtx: TransformFactoryContext
-  beforeAll(() => {
-    dirCtx = { useParam: vi.fn, warn: vi.fn }
-  })
-
   test('keyword "withoutEnlargement" w/ dimension', () => {
     const res = resize({ withoutEnlargement: 'true', width: '300' }, dirCtx)
 
@@ -491,11 +479,6 @@ describe('withoutEnlargement', () => {
 })
 
 describe('withoutReduction', () => {
-  let dirCtx: TransformFactoryContext
-  beforeAll(() => {
-    dirCtx = { useParam: vi.fn, warn: vi.fn }
-  })
-
   test('keyword "withoutReduction"', () => {
     const res = resize({ withoutReduction: 'true', width: '900' }, dirCtx)
 
@@ -545,6 +528,7 @@ describe('withoutReduction', () => {
       //@ts-expect-error we know this is safe
       const { image } = await applyTransforms([resize({ withoutReduction: 'true', width: '300;900' }, dirCtx)], img)
 
+      expect(dirCtx.logger.info).toHaveBeenCalledOnce()
       expect(await image.toBuffer()).toMatchImageSnapshot()
     })
 
@@ -559,6 +543,7 @@ describe('withoutReduction', () => {
       //@ts-expect-error we know this is safe
       const { image } = await applyTransforms([resize({ withoutReduction: 'true', height: '900' }, dirCtx)], img)
 
+      expect(dirCtx.logger.info).toHaveBeenCalledTimes(0)
       expect(await image.toBuffer()).toMatchImageSnapshot()
     })
 

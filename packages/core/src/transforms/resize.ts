@@ -41,7 +41,7 @@ function parseAspect(aspect: string): number | undefined {
   return aspectRatio
 }
 
-export const resize: TransformFactory<ResizeOptions> = (config) => {
+export const resize: TransformFactory<ResizeOptions> = (config, context) => {
   const width = parseInt(config.width || config.w || '')
   const height = parseInt(config.height || config.h || '')
   const aspect = parseAspect(config.aspect || config.ar || '')
@@ -91,8 +91,8 @@ export const resize: TransformFactory<ResizeOptions> = (config) => {
       finalWidth = originalWidth
       finalAspect = originalAspect
 
-      console.warn(
-        '[vite-imagetools] withoutEnlargement or withoutReduction enabled. Image width, height and aspect ratio reverted to original values'
+      context.logger.info(
+        'withoutEnlargement or withoutReduction enabled. Image width, height and aspect ratio reverted to original values'
       )
     }
 

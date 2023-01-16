@@ -2,9 +2,15 @@ import { Sharp } from 'sharp'
 
 export type ImageConfig = Record<string, unknown>
 
+export interface Logger {
+  info: (msg: string) => void
+  warn: (msg: string) => void
+  error: (msg: string) => void
+}
+
 export interface TransformFactoryContext {
   useParam: (parameter: string) => void
-  warn: (message: string) => void
+  logger: Logger
 }
 
 export type TransformFactory<A = Record<string, unknown>> = (

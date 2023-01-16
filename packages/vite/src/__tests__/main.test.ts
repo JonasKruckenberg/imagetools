@@ -1,4 +1,4 @@
-import { build } from 'vite'
+import { build, createLogger } from 'vite'
 import { imagetools } from '../index'
 import { join } from 'path'
 import { getFiles, testEntry } from './util'
@@ -6,9 +6,13 @@ import { toMatchImageSnapshot } from 'jest-image-snapshot'
 import { OutputAsset, OutputChunk, RollupOutput } from 'rollup'
 import { JSDOM } from 'jsdom'
 import sharp from 'sharp'
-import { describe, test, expect, it } from 'vitest'
+import { afterEach, describe, test, expect, it, vi } from 'vitest'
 
 expect.extend({ toMatchImageSnapshot })
+
+afterEach(() => {
+  vi.restoreAllMocks()
+})
 
 describe('vite-imagetools', () => {
   describe('options', () => {
@@ -208,11 +212,93 @@ describe('vite-imagetools', () => {
       })
     })
 
-    // describe('silent', () => {
-    //   test('false by default', () => {})
-    //   test('true disables all warnings', () => {})
-    //   test('false enables warnings', () => {})
-    // })
+    describe('logging', () => {
+      test('logs info messages to console', async () => {
+        const logger = createLogger('info')
+        const spy = vi.spyOn(logger, 'info')
+        await build({
+          root: join(__dirname, '__fixtures__'),
+          logLevel: 'info',
+          customLogger: logger,
+          build: { write: false },
+          plugins: [
+            testEntry(`
+                          import Image from "./with-metadata.png?warn"
+                          window.__IMAGE__ = Image
+                      `),
+            imagetools({
+              extendTransforms() {
+                return [
+                  (config, context) => {
+                    context.logger.info('An info message')
+                    return (image) => image
+                  }
+                ]
+              }
+            })
+          ]
+        })
+
+        expect(spy).toHaveBeenCalledWith('An info message')
+      })
+      test('logs warn messages through rollup', async () => {
+        const logger = createLogger('info')
+        const spy = vi.spyOn(logger, 'warn')
+        await build({
+          root: join(__dirname, '__fixtures__'),
+          logLevel: 'warn',
+          customLogger: logger,
+          build: { write: false },
+          plugins: [
+            testEntry(`
+                          import Image from "./with-metadata.png?warn"
+                          window.__IMAGE__ = Image
+                      `),
+            imagetools({
+              extendTransforms() {
+                return [
+                  (config, context) => {
+                    context.logger.warn('A warning')
+                    return (image) => image
+                  }
+                ]
+              }
+            })
+          ]
+        })
+
+        expect(spy.mock.lastCall?.[0]).toContain('A warning')
+      })
+      test('logs error messages through rollup', async () => {
+        try {
+          await build({
+            root: join(__dirname, '__fixtures__'),
+            logLevel: 'warn',
+            build: { write: false },
+            plugins: [
+              testEntry(`
+                            import Image from "./with-metadata.png?warn"
+                            window.__IMAGE__ = Image
+                        `),
+              imagetools({
+                extendTransforms() {
+                  return [
+                    (config, context) => {
+                      context.logger.error('An error')
+                      return (image) => image
+                    }
+                  ]
+                }
+              })
+            ]
+          })
+          fail()
+        } catch (err: any) {
+          expect(err.plugin).toEqual('imagetools')
+          expect(err.message).toMatch(/An error$/)
+        }
+      })
+    })
 
     describe('removeMetadata', () => {
       test('true removes private metadata', async () => {
