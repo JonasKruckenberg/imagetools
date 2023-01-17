@@ -11,7 +11,7 @@ importers:
       cross-env: ^7.0.3
       eslint: ^8.8.0
       eslint-config-prettier: ^8.3.0
-      prettier: ^2.5.1
+      prettier: ^2.8.3
       rollup: ^3.2.3
       tslib: ^2.4.0
       typedoc: ^0.23.24
@@ -25,7 +25,7 @@ importers:
       cross-env: 7.0.3
       eslint: 8.16.0
       eslint-config-prettier: 8.5.0_eslint@8.16.0
-      prettier: 2.6.2
+      prettier: 2.8.3
       rollup: 3.2.3
       tslib: 2.4.0
       typedoc: 0.23.24_typescript@4.8.4
@@ -3099,8 +3099,8 @@ packages:
     hasBin: true
     dev: true
 
-  /prettier/2.6.2:
-    resolution: {integrity: sha512-PkUpF+qoXTqhOeWL9fu7As8LXsIUZ1WYaJiY/a7McAQzxjk82OF0tibkFXVCDImZtWxbvojFjerkiLb0/q8mew==}
+  /prettier/2.8.3:
+    resolution: {integrity: sha512-tJ/oJ4amDihPoufT5sM0Z1SKEuKay8LfVAMlbbhnnkvt6BUserZylqo2PN+p9KeljLr0OHa2rXHU1T8reeoTrw==}
     engines: {node: '>=10.13.0'}
     hasBin: true
     dev: true

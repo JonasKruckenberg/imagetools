@@ -5,7 +5,7 @@ import { getProgressive } from './progressive'
 
 export const formatValues = ['avif', 'jpg', 'jpeg', 'png', 'heif', 'heic', 'webp', 'tiff'] as const
 
-export type FormatValue = typeof formatValues[number]
+export type FormatValue = (typeof formatValues)[number]
 
 export interface FormatOptions {
   format: FormatValue
