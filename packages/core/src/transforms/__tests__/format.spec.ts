@@ -107,7 +107,6 @@ describe('format', () => {
     })
 
     test('avif', async () => {
-      
       const { metadata } = await applyTransforms([format({ format: 'avif' }, dirCtx)!], img)
 
       expect(metadata).toHaveProperty('format', 'avif')

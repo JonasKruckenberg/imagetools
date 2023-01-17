@@ -16,16 +16,13 @@ import MagicString from 'magic-string'
 import { basename, extname, resolve, dirname } from 'path'
 
 const defaultOptions: RollupPluginOptions = {
-  include: [
-    '**/*.{heic,heif,avif,jpeg,jpg,png,tiff,webp,gif}',
-    '**/*.{heic,heif,avif,jpeg,jpg,png,tiff,webp,gif}?*'
-  ],
+  include: ['**/*.{heic,heif,avif,jpeg,jpg,png,tiff,webp,gif}', '**/*.{heic,heif,avif,jpeg,jpg,png,tiff,webp,gif}?*'],
   exclude: '',
   silent: false,
   removeMetadata: true
 }
 
-export * from 'imagetools-core';
+export * from 'imagetools-core'
 
 export function imagetools(userOptions: Partial<RollupPluginOptions> = {}): Plugin {
   const pluginOptions: RollupPluginOptions = { ...defaultOptions, ...userOptions }
@@ -53,7 +50,7 @@ export function imagetools(userOptions: Partial<RollupPluginOptions> = {}): Plug
 
       let directives = srcURL.searchParams
 
-      if(typeof pluginOptions.defaultDirectives === "function") {
+      if (typeof pluginOptions.defaultDirectives === 'function') {
         directives = new URLSearchParams([...pluginOptions.defaultDirectives(srcURL), ...srcURL.searchParams])
       } else if (pluginOptions.defaultDirectives) {
         directives = new URLSearchParams([...pluginOptions.defaultDirectives, ...srcURL.searchParams])

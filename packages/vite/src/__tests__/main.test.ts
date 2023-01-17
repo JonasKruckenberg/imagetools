@@ -208,11 +208,11 @@ describe('vite-imagetools', () => {
       })
     })
 
-    describe('silent', () => {
-      test('false by default', () => {})
-      test('true disables all warnings', () => {})
-      test('false enables warnings', () => {})
-    })
+    // describe('silent', () => {
+    //   test('false by default', () => {})
+    //   test('true disables all warnings', () => {})
+    //   test('false enables warnings', () => {})
+    // })
 
     describe('removeMetadata', () => {
       test('true removes private metadata', async () => {
@@ -557,7 +557,6 @@ describe('vite-imagetools', () => {
     const { window } = new JSDOM(``, { runScripts: 'outside-only' })
     window.eval(files[0].code)
 
-     expect(window.__IMAGE__).toBe('/assets/with-metadata-404f605d.png 600w')
+    expect(window.__IMAGE__).toBe('/assets/with-metadata-404f605d.png 600w')
   })
-
 })

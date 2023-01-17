@@ -17,53 +17,53 @@ export const metadataFormat: OutputFormat = (whitelist) => (metadatas) => {
     metadatas = metadatas.map((cfg) => Object.fromEntries(Object.entries(cfg).filter(([k]) => whitelist.includes(k))))
   }
 
-  metadatas.forEach(m => delete m.image)
+  metadatas.forEach((m) => delete m.image)
 
   return metadatas.length === 1 ? metadatas[0] : metadatas
 }
 
-const metadataToSource = (m: ImageConfig) => ({ src: m.src, w: m.width } as Source);
+const metadataToSource = (m: ImageConfig) => ({ src: m.src, w: m.width } as Source)
 
 /** normalizes the format for use in mime-type */
-const format = (m: ImageConfig) => (m.format as string).replace('jpg', 'jpeg');
+const format = (m: ImageConfig) => (m.format as string).replace('jpg', 'jpeg')
 
 export const sourceFormat: OutputFormat = () => (metadatas) => {
-  return metadatas.map(m => metadataToSource(m));
+  return metadatas.map((m) => metadataToSource(m))
 }
 
 /** fallback format should be specified last */
 export const pictureFormat: OutputFormat = () => (metadatas) => {
-  const fallbackFormat = [...new Set(metadatas.map((m) => format(m)))].pop();
+  const fallbackFormat = [...new Set(metadatas.map((m) => format(m)))].pop()
 
-  let largestFallback;
-  let largestFallbackSize = 0;
-  let fallbackFormatCount = 0;
+  let largestFallback
+  let largestFallbackSize = 0
+  let fallbackFormatCount = 0
   for (let i = 0; i < metadatas.length; i++) {
-    const m = metadatas[i];
+    const m = metadatas[i]
     if (format(m) === fallbackFormat) {
-      fallbackFormatCount++;
-      if (m.width as number > largestFallbackSize) {
-        largestFallback = m;
-        largestFallbackSize = m.width as number;
-      }  
+      fallbackFormatCount++
+      if ((m.width as number) > largestFallbackSize) {
+        largestFallback = m
+        largestFallbackSize = m.width as number
+      }
     }
   }
 
-  const sources: Record<string, Source[]> = {};
+  const sources: Record<string, Source[]> = {}
   for (let i = 0; i < metadatas.length; i++) {
-    const m = metadatas[i];
-    const f = format(m);
+    const m = metadatas[i]
+    const f = format(m)
     // we don't need to create a source tag for the fallback format if there is
     // only a single image in that format
     if (f === fallbackFormat && fallbackFormatCount < 2) {
-      continue;
+      continue
     }
     if (sources[f]) {
-      sources[f].push(metadataToSource(m));
+      sources[f].push(metadataToSource(m))
     } else {
       sources[f] = [metadataToSource(m)]
     }
-  };
+  }
 
   const result: Picture = {
     sources,
@@ -75,8 +75,8 @@ export const pictureFormat: OutputFormat = () => (metadatas) => {
       w: largestFallback?.width as number,
       h: largestFallback?.height as number
     }
-  };
-  return result;
+  }
+  return result
 }
 
 export const builtinOutputFormats = {

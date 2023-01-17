@@ -5,7 +5,7 @@ import { getProgressive } from './progressive'
 
 export const formatValues = ['avif', 'jpg', 'jpeg', 'png', 'heif', 'heic', 'webp', 'tiff'] as const
 
-export type FormatValue = typeof formatValues[number]
+export type FormatValue = (typeof formatValues)[number]
 
 export interface FormatOptions {
   format: FormatValue
@@ -24,7 +24,6 @@ export const format: TransformFactory<FormatOptions> = (config, ctx) => {
   return function formatTransform(image) {
     setMetadata(image, 'format', format)
 
-    //@ts-ignore
     return image.toFormat(format, {
       quality: getQuality(config, image),
       progressive: getProgressive(config, image)

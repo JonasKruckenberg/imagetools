@@ -5,7 +5,7 @@ import { applyTransforms } from '../../index'
 import sharp, { Sharp } from 'sharp'
 import { join } from 'path'
 import { toMatchImageSnapshot } from 'jest-image-snapshot'
-import { describe, beforeEach,beforeAll,  expect, test, vi } from 'vitest'
+import { describe, beforeEach, beforeAll, expect, test, vi } from 'vitest'
 
 expect.extend({ toMatchImageSnapshot })
 

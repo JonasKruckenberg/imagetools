@@ -71,7 +71,7 @@ describe('picture format', () => {
   test('multiple image formats and sizes', () => {
     const output = pictureFormat()([
       { src: '/foo-100.avif', format: 'avif', width: 100, height: 50 },
-      { src: '/foo-100.webp', format: 'webp', width: 100 , height: 50},
+      { src: '/foo-100.webp', format: 'webp', width: 100, height: 50 },
       { src: '/foo-100.jpg', format: 'jpg', width: 100, height: 50 },
       { src: '/foo-50.avif', format: 'avif', width: 50, height: 25 },
       { src: '/foo-50.webp', format: 'webp', width: 50, height: 25 },
@@ -80,9 +80,18 @@ describe('picture format', () => {
 
     expect(output).toStrictEqual({
       sources: {
-        avif: [{ src: '/foo-100.avif', w: 100 }, { src: '/foo-50.avif', w: 50 }],
-        webp: [{ src: '/foo-100.webp', w: 100 }, { src: '/foo-50.webp', w: 50 }],
-        jpeg: [{ src: '/foo-100.jpg', w: 100 }, { src: '/foo-50.jpg', w: 50 }]
+        avif: [
+          { src: '/foo-100.avif', w: 100 },
+          { src: '/foo-50.avif', w: 50 }
+        ],
+        webp: [
+          { src: '/foo-100.webp', w: 100 },
+          { src: '/foo-50.webp', w: 50 }
+        ],
+        jpeg: [
+          { src: '/foo-100.jpg', w: 100 },
+          { src: '/foo-50.jpg', w: 50 }
+        ]
       },
       fallback: {
         src: '/foo-100.jpg',
@@ -123,6 +132,9 @@ describe('srcset format', () => {
       { src: '/bar.jpg', width: 300 }
     ])
 
-    expect(output).toEqual([{ src: '/foo.jpg', w: 500}, { src: '/bar.jpg', w: 300 }])
+    expect(output).toEqual([
+      { src: '/foo.jpg', w: 500 },
+      { src: '/bar.jpg', w: 300 }
+    ])
   })
 })

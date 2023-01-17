@@ -158,11 +158,11 @@ describe('rollup-plugin-imagetools', () => {
       })
     })
 
-    describe('silent', () => {
-      test('false by default', () => {})
-      test('true disables all warnings', () => {})
-      test('false enables warnings', () => {})
-    })
+    // describe('silent', () => {
+    //   test('false by default', () => {})
+    //   test('true disables all warnings', () => {})
+    //   test('false enables warnings', () => {})
+    // })
 
     describe('removeMetadata', () => {
       test('true removes private metadata', async () => {
