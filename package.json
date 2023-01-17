@@ -8,7 +8,7 @@
     "build": "pnpm run --recursive --filter !example-* build",
     "test": "pnpm run --recursive test",
     "coverage": "pnpm run --recursive coverage",
-    "lint": "prettier --check . && eslint .",
+    "lint": "prettier --write . && git --no-pager diff && git checkout -- . && prettier --check . && eslint .",
     "format": "prettier --write .",
     "doc": "pnpm run --filter imagetools-core build && typedoc"
   },
