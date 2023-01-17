@@ -11,6 +11,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+        with:
+          lfs: true
+
       - uses: pnpm/action-setup@v2.2.4
       - uses: actions/setup-node@v3
         with:
@@ -18,5 +21,6 @@ jobs:
       - name: Install dependencies
         run: pnpm install
       - run: pnpx prettier --version
+
       - name: lint
         run: pnpm run lint
