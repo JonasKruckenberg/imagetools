@@ -37,7 +37,7 @@ export function imagetools(userOptions: Partial<VitePluginOptions> = {}): Plugin
     : builtinOutputFormats
 
   let viteConfig: ResolvedConfig
-	let basePath: string
+  let basePath: string
 
   const generatedImages = new Map()
 
@@ -46,7 +46,7 @@ export function imagetools(userOptions: Partial<VitePluginOptions> = {}): Plugin
     enforce: 'pre',
     configResolved(cfg) {
       viteConfig = cfg
-			basePath = viteConfig.base || '/'
+      basePath = viteConfig.base || '/'
     },
     async load(id) {
       if (!filter(id)) return null
