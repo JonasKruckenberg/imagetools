@@ -37,6 +37,7 @@ export function imagetools(userOptions: Partial<VitePluginOptions> = {}): Plugin
     : builtinOutputFormats
 
   let viteConfig: ResolvedConfig
+	let basePath: string
 
   const generatedImages = new Map()
 
@@ -45,6 +46,7 @@ export function imagetools(userOptions: Partial<VitePluginOptions> = {}): Plugin
     enforce: 'pre',
     configResolved(cfg) {
       viteConfig = cfg
+			basePath = viteConfig.base || '/'
     },
     async load(id) {
       if (!filter(id)) return null
@@ -88,7 +90,7 @@ export function imagetools(userOptions: Partial<VitePluginOptions> = {}): Plugin
 
           metadata.src = `__VITE_ASSET__${fileHandle}__`
         } else {
-          metadata.src = posix.join(`${viteConfig.json?.base}/@imagetools`, id)
+          metadata.src = posix.join(basePath, '@imagetools', id)
         }
 
         metadata.image = image
@@ -118,8 +120,8 @@ export function imagetools(userOptions: Partial<VitePluginOptions> = {}): Plugin
 
     configureServer(server) {
       server.middlewares.use((req, res, next) => {
-        if (req.url?.startsWith(`${viteConfig.json?.base}/@imagetools/`)) {
-          const [, id] = req.url.split(`${viteConfig.json?.base}/@imagetools/`)
+        if (req.url?.startsWith(`${basePath}@imagetools/`)) {
+          const [, id] = req.url.split(`${basePath}@imagetools/`)
 
           const image = generatedImages.get(id)
 
