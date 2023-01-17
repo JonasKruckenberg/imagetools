@@ -2,4 +2,4 @@ dist
 node_modules
 pnpm-lock.yaml
 docs
-packages/vite/src/__tests__/__fixtures__
+src/__tests__/__fixtures__
