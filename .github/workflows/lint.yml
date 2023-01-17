@@ -17,5 +17,6 @@ jobs:
           cache: 'pnpm'
       - name: Install dependencies
         run: pnpm install
+      - run: prettier --version
       - name: lint
         run: pnpm run lint
