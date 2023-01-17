@@ -1,4 +1,5 @@
 {
+  "version": "4.0.16-0.0.1",
   "name": "imagetools",
   "license": "MIT",
   "private": true,
