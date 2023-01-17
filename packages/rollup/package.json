@@ -31,7 +31,8 @@
     "dev": "rollup -cw",
     "build": "rollup -c",
     "test": "vitest run",
-    "coverage": "vitest run --coverage"
+    "coverage": "vitest run --coverage",
+    "lint": "prettier --check . --config ../../.prettierrc.json"
   },
   "dependencies": {
     "@rollup/pluginutils": "^5.0.0",
@@ -52,7 +53,7 @@
     "rollup": "^3.2.3",
     "sharp": "^0.31.0",
     "tslib": "^2.4.0",
-    "typescript": "^4.8.4",
+    "typescript": "^4.9.4",
     "vitest": "^0.27.0"
   }
 }

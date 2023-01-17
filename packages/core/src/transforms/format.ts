@@ -24,7 +24,6 @@ export const format: TransformFactory<FormatOptions> = (config, ctx) => {
   return function formatTransform(image) {
     setMetadata(image, 'format', format)
 
-    //@ts-ignore
     return image.toFormat(format, {
       quality: getQuality(config, image),
       progressive: getProgressive(config, image)

@@ -1,6 +1,6 @@
 import { Plugin, RollupBuild } from 'rollup'
 import pm from 'picomatch'
-import { join, dirname, basename } from 'path'
+import { basename } from 'path'
 
 export function testEntry(source: string): Plugin {
   let id: string
