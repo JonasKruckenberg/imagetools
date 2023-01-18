@@ -44,21 +44,21 @@ importers:
     specifiers:
       '@rollup/plugin-typescript': ^11.0.0
       '@types/jest-image-snapshot': ^6.0.0
-      '@types/sharp': ^0.31.0
+      '@types/sharp': ^0.31.1
       '@vitest/coverage-c8': ^0.27.0
       jest-file-snapshot: ^0.5.0
       jest-image-snapshot: ^6.0.0
       rollup: ^3.2.3
-      sharp: ^0.31.0
+      sharp: ^0.31.3
       tslib: ^2.4.0
       typescript: ^4.9.4
       vitest: ^0.27.0
     dependencies:
-      sharp: 0.31.0
+      sharp: 0.31.3
     devDependencies:
       '@rollup/plugin-typescript': 11.0.0_kgr7nskyq5mmjyfwg5fs5naf4y
       '@types/jest-image-snapshot': 6.1.0
-      '@types/sharp': 0.31.0
+      '@types/sharp': 0.31.1
       '@vitest/coverage-c8': 0.27.0
       jest-file-snapshot: 0.5.0
       jest-image-snapshot: 6.0.0
@@ -74,7 +74,7 @@ importers:
       '@types/jest-image-snapshot': ^6.0.0
       '@types/jsdom': ^20.0.0
       '@types/picomatch': ^2.3.0
-      '@types/sharp': ^0.31.0
+      '@types/sharp': ^0.31.1
       '@vitest/coverage-c8': ^0.27.0
       imagetools-core: workspace:^
       jest-image-snapshot: ^6.0.0
@@ -82,7 +82,7 @@ importers:
       magic-string: ^0.27.0
       picomatch: ^2.3.1
       rollup: ^3.2.3
-      sharp: ^0.31.0
+      sharp: ^0.31.3
       tslib: ^2.4.0
       typescript: ^4.9.4
       vitest: ^0.27.0
@@ -95,13 +95,13 @@ importers:
       '@types/jest-image-snapshot': 6.1.0
       '@types/jsdom': 20.0.0
       '@types/picomatch': 2.3.0
-      '@types/sharp': 0.31.0
+      '@types/sharp': 0.31.1
       '@vitest/coverage-c8': 0.27.0_jsdom@21.0.0
       jest-image-snapshot: 6.0.0
       jsdom: 21.0.0
       picomatch: 2.3.1
       rollup: 3.2.3
-      sharp: 0.31.0
+      sharp: 0.31.3
       tslib: 2.4.0
       typescript: 4.9.4
       vitest: 0.27.0_jsdom@21.0.0
@@ -113,14 +113,14 @@ importers:
       '@types/jest-image-snapshot': ^6.0.0
       '@types/jsdom': ^20.0.0
       '@types/picomatch': ^2.3.0
-      '@types/sharp': ^0.31.0
+      '@types/sharp': ^0.31.1
       '@vitest/coverage-c8': ^0.27.0
       imagetools-core: workspace:^
       jest-image-snapshot: ^6.0.0
       jsdom: ^21.0.0
       picomatch: ^2.3.1
       rollup: ^3.2.3
-      sharp: ^0.31.0
+      sharp: ^0.31.3
       tslib: ^2.4.0
       typescript: ^4.9.4
       vite: ^4.0.0
@@ -133,13 +133,13 @@ importers:
       '@types/jest-image-snapshot': 6.1.0
       '@types/jsdom': 20.0.0
       '@types/picomatch': 2.3.0
-      '@types/sharp': 0.31.0
+      '@types/sharp': 0.31.1
       '@vitest/coverage-c8': 0.27.0_jsdom@21.0.0
       jest-image-snapshot: 6.0.0
       jsdom: 21.0.0
       picomatch: 2.3.1
       rollup: 3.2.3
-      sharp: 0.31.0
+      sharp: 0.31.3
       tslib: 2.4.0
       typescript: 4.9.4
       vite: 4.0.1
@@ -848,8 +848,8 @@ packages:
     resolution: {integrity: sha512-21cFJr9z3g5dW8B0CVI9g2O9beqaThGQ6ZFBqHfwhzLDKUxaqTIy3vnfah/UPkfOiF2pLq+tGz+W8RyCskuslw==}
     dev: true
 
-  /@types/sharp/0.31.0:
-    resolution: {integrity: sha512-nwivOU101fYInCwdDcH/0/Ru6yIRXOpORx25ynEOc6/IakuCmjOAGpaO5VfUl4QkDtUC6hj+Z2eCQvgXOioknw==}
+  /@types/sharp/0.31.1:
+    resolution: {integrity: sha512-5nWwamN9ZFHXaYEincMSuza8nNfOof8nmO+mcI+Agx1uMUk4/pQnNIcix+9rLPXzKrm1pS34+6WRDbDV0Jn7ag==}
     dependencies:
       '@types/node': 17.0.38
     dev: true
@@ -962,7 +962,7 @@ packages:
       debug: 4.3.4
       globby: 11.1.0
       is-glob: 4.0.3
-      semver: 7.3.7
+      semver: 7.3.8
       tsutils: 3.21.0_typescript@4.8.4
       typescript: 4.8.4
     transitivePeerDependencies:
@@ -2151,7 +2151,7 @@ packages:
     dev: true
 
   /github-from-package/0.0.0:
-    resolution: {integrity: sha512-SyHy3T1v2NUXn29OsWdxmK6RwHD+vkj3v8en8AOBZ1wBQ/hCAQ5bAQTD02kW4W9tUp/3Qh6J8r9EvntiyCmOOw==}
+    resolution: {integrity: sha1-l/tdlr/eiXMxPyDoKI75oWf6ZM4=}
 
   /glob-parent/5.1.2:
     resolution: {integrity: sha512-AOIgSQCepiJYwP3ARnGx+5VnTu2HBYdzbGP45eLw1vr3zB3vZLeyed1sC9hnbcOc9/SrMyM5RPQrkGz4aS9Zow==}
@@ -2840,7 +2840,7 @@ packages:
     resolution: {integrity: sha512-u4uAs/4Zzmp/jjsD9cyFYDXeISfUWaAVWshPmDZOFOv4Xl4SbzTXm53I04C2uRueYJ+0t5PEtLH/owbn2Npf/w==}
     engines: {node: '>=10'}
     dependencies:
-      semver: 7.3.7
+      semver: 7.3.8
 
   /node-addon-api/5.0.0:
     resolution: {integrity: sha512-CvkDw2OEnme7ybCykJpVcKH+uAOLV2qLqiyla128dN9TkEWfrYmxG6C2boDe5KcNQqZF3orkqzGgOMvZ/JNekA==}
@@ -3351,13 +3351,21 @@ packages:
     hasBin: true
     dependencies:
       lru-cache: 6.0.0
+    dev: true
+
+  /semver/7.3.8:
+    resolution: {integrity: sha512-NB1ctGL5rlHrPJtFDVIVzTyQylMLu9N9VICA6HSFJo8MCGVTMW6gfpicwKmmK/dAjTOrqu5l63JJOpDSrAis3A==}
+    engines: {node: '>=10'}
+    hasBin: true
+    dependencies:
+      lru-cache: 6.0.0
 
   /set-blocking/2.0.0:
     resolution: {integrity: sha1-BF+XgtARrppoA93TgrJDkrPYkPc=}
     dev: true
 
-  /sharp/0.31.0:
-    resolution: {integrity: sha512-ft96f8WzGxavg0rkLpMw90MTPMUZDyf0tHjPPh8Ob59xt6KzX8EqtotcqZGUm7kwqpX2pmYiyYX2LL0IZ/FDEw==}
+  /sharp/0.31.3:
+    resolution: {integrity: sha512-XcR4+FCLBFKw1bdB+GEhnUNXNXvnt0tDo4WsBsraKymuo/IAuPuCBVAL2wIkUw2r/dwFW5Q5+g66Kwl2dgDFVg==}
     engines: {node: '>=14.15.0'}
     requiresBuild: true
     dependencies:
@@ -3365,7 +3373,7 @@ packages:
       detect-libc: 2.0.1
       node-addon-api: 5.0.0
       prebuild-install: 7.1.1
-      semver: 7.3.7
+      semver: 7.3.8
       simple-get: 4.0.1
       tar-fs: 2.1.1
       tunnel-agent: 0.6.0
