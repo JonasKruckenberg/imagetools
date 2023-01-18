@@ -5,7 +5,7 @@ export interface FlopOptions {
   flop: '' | 'true'
 }
 
-export const flop: TransformFactory<FlopOptions> = ({ flop }, ctx) => {
+export const flop: TransformFactory<FlopOptions> = ({ flop }) => {
   if (flop !== '' && flop !== 'true') return
 
   return function flopTransform(image) {

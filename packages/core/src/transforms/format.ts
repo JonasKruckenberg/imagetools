@@ -11,7 +11,7 @@ export interface FormatOptions {
   format: FormatValue
 }
 
-export const format: TransformFactory<FormatOptions> = (config, ctx) => {
+export const format: TransformFactory<FormatOptions> = (config) => {
   let format: FormatValue | undefined = undefined
 
   if (config.format && formatValues.includes(config.format)) {
