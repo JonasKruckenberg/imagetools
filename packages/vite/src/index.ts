@@ -46,7 +46,7 @@ export function imagetools(userOptions: Partial<VitePluginOptions> = {}): Plugin
     enforce: 'pre',
     configResolved(cfg) {
       viteConfig = cfg
-      basePath = viteConfig.base || '/'
+      basePath = viteConfig.base?.replace(/\/$/, '') || ''
     },
     async load(id) {
       if (!filter(id)) return null
@@ -120,8 +120,8 @@ export function imagetools(userOptions: Partial<VitePluginOptions> = {}): Plugin
 
     configureServer(server) {
       server.middlewares.use((req, res, next) => {
-        if (req.url?.startsWith(`${basePath}@imagetools/`)) {
-          const [, id] = req.url.split(`${basePath}@imagetools/`)
+        if (req.url?.startsWith(`${basePath}/@imagetools/`)) {
+          const [, id] = req.url.split(`${basePath}/@imagetools/`)
 
           const image = generatedImages.get(id)
 
