@@ -34,7 +34,7 @@ yarn add imagetools-core
 ## Usage
 
 ```js
-import { loadImage, applyTransforms, builtins } from 'imagetools-core'
+import { loadImage, applyTransforms, builtins, generateTransforms } from 'imagetools-core'
 
 // loadImageFromDisk is a utility function that creates a sharp instances of the specified image
 const image = loadImage('./example.jpg')
