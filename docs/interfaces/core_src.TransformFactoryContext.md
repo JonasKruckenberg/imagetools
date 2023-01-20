@@ -8,10 +8,20 @@
 
 ### Properties
 
+- [logger](core_src.TransformFactoryContext.md#logger)
 - [useParam](core_src.TransformFactoryContext.md#useparam)
-- [warn](core_src.TransformFactoryContext.md#warn)
 
 ## Properties
+
+### logger
+
+• **logger**: [`Logger`](core_src.Logger.md)
+
+#### Defined in
+
+[core/src/types.ts:13](https://github.com/JonasKruckenberg/imagetools/blob/6842c73/packages/core/src/types.ts#L13)
+
+___
 
 ### useParam
 
@@ -33,28 +43,4 @@
 
 #### Defined in
 
-[core/src/types.ts:6](https://github.com/JonasKruckenberg/imagetools/blob/04cb552/packages/core/src/types.ts#L6)
-
-___
-
-### warn
-
-• **warn**: (`message`: `string`) => `void`
-
-#### Type declaration
-
-▸ (`message`): `void`
-
-##### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `message` | `string` |
-
-##### Returns
-
-`void`
-
-#### Defined in
-
-[core/src/types.ts:7](https://github.com/JonasKruckenberg/imagetools/blob/04cb552/packages/core/src/types.ts#L7)
+[core/src/types.ts:12](https://github.com/JonasKruckenberg/imagetools/blob/6842c73/packages/core/src/types.ts#L12)

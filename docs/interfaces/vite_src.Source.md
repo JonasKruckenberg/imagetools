@@ -23,7 +23,7 @@ choose between width descriptor, pixel density descriptor, or no descriptor.
 
 #### Defined in
 
-core/dist/types.d.ts:24
+core/dist/types.d.ts:29
 
 ___
 
@@ -33,4 +33,4 @@ ___
 
 #### Defined in
 
-core/dist/types.d.ts:25
+core/dist/types.d.ts:30

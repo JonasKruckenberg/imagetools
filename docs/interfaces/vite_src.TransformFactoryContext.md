@@ -8,10 +8,20 @@
 
 ### Properties
 
+- [logger](vite_src.TransformFactoryContext.md#logger)
 - [useParam](vite_src.TransformFactoryContext.md#useparam)
-- [warn](vite_src.TransformFactoryContext.md#warn)
 
 ## Properties
+
+### logger
+
+• **logger**: [`Logger`](vite_src.Logger.md)
+
+#### Defined in
+
+core/dist/types.d.ts:10
+
+___
 
 ### useParam
 
@@ -33,28 +43,4 @@
 
 #### Defined in
 
-core/dist/types.d.ts:4
-
-___
-
-### warn
-
-• **warn**: (`message`: `string`) => `void`
-
-#### Type declaration
-
-▸ (`message`): `void`
-
-##### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `message` | `string` |
-
-##### Returns
-
-`void`
-
-#### Defined in
-
-core/dist/types.d.ts:5
+core/dist/types.d.ts:9

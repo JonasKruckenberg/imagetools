@@ -22,6 +22,7 @@
 - [InvertOptions](rollup_src.md#invertoptions)
 - [KernelOptions](rollup_src.md#kerneloptions)
 - [KernelValue](rollup_src.md#kernelvalue)
+- [Logger](rollup_src.md#logger)
 - [MedianOptions](rollup_src.md#medianoptions)
 - [NormalizeOptions](rollup_src.md#normalizeoptions)
 - [OutputFormat](rollup_src.md#outputformat)
@@ -178,6 +179,12 @@ ___
 ### KernelValue
 
 Re-exports [KernelValue](vite_src.md#kernelvalue)
+
+___
+
+### Logger
+
+Re-exports [Logger](../interfaces/vite_src.Logger.md)
 
 ___
 
@@ -533,4 +540,4 @@ Re-exports [urlFormat](vite_src.md#urlformat)
 
 #### Defined in
 
-[rollup/src/index.ts:30](https://github.com/JonasKruckenberg/imagetools/blob/04cb552/packages/rollup/src/index.ts#L30)
+[rollup/src/index.ts:27](https://github.com/JonasKruckenberg/imagetools/blob/6842c73/packages/rollup/src/index.ts#L27)
