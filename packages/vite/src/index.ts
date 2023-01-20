@@ -10,7 +10,8 @@ import {
   generateImageID,
   builtinOutputFormats,
   urlFormat,
-  extractEntries
+  extractEntries,
+  Logger
 } from 'imagetools-core'
 import { basename, extname, posix } from 'path'
 import { createFilter, dataToEsm } from '@rollup/pluginutils'
@@ -19,7 +20,6 @@ import { VitePluginOptions } from './types'
 const defaultOptions: VitePluginOptions = {
   include: ['**/*.{heic,heif,avif,jpeg,jpg,png,tiff,webp,gif}', '**/*.{heic,heif,avif,jpeg,jpg,png,tiff,webp,gif}?*'],
   exclude: 'public/**/*',
-  silent: false,
   removeMetadata: true
 }
 
@@ -71,10 +71,16 @@ export function imagetools(userOptions: Partial<VitePluginOptions> = {}): Plugin
 
       const outputMetadatas = []
 
+      const logger: Logger = {
+        info: (msg) => viteConfig.logger.info(msg),
+        warn: (msg) => this.warn(msg),
+        error: (msg) => this.error(msg)
+      }
+
       for (const config of imageConfigs) {
         const id = generateImageID(srcURL, config)
 
-        const { transforms } = generateTransforms(config, transformFactories)
+        const { transforms } = generateTransforms(config, transformFactories, logger)
         const { image, metadata } = await applyTransforms(transforms, img.clone(), pluginOptions.removeMetadata)
 
         generatedImages.set(id, image)

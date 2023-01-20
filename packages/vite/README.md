@@ -118,14 +118,6 @@ Wether to remove potentially private metadata from the image, such as exif tags 
 
 ---
 
-### silent
-
-• **silent**: `boolean`
-
-Settings this option to true disables all warnings produced by this plugin
-
-**`default`** false
-
 ### extendOutputFormats
 
 ▸ `Optional` **extendOutputFormats**(`builtins`): `Record`<`string`,

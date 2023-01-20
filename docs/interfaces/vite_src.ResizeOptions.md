@@ -14,6 +14,8 @@
 - [height](vite_src.ResizeOptions.md#height)
 - [w](vite_src.ResizeOptions.md#w)
 - [width](vite_src.ResizeOptions.md#width)
+- [withoutEnlargement](vite_src.ResizeOptions.md#withoutenlargement)
+- [withoutReduction](vite_src.ResizeOptions.md#withoutreduction)
 
 ## Properties
 
@@ -74,3 +76,23 @@ ___
 #### Defined in
 
 core/dist/transforms/resize.d.ts:3
+
+___
+
+### withoutEnlargement
+
+• **withoutEnlargement**: ``""`` \| ``"true"``
+
+#### Defined in
+
+core/dist/transforms/resize.d.ts:9
+
+___
+
+### withoutReduction
+
+• **withoutReduction**: ``""`` \| ``"true"``
+
+#### Defined in
+
+core/dist/transforms/resize.d.ts:10

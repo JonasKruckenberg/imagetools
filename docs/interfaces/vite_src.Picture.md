@@ -29,7 +29,7 @@ The picture output format.
 
 #### Defined in
 
-core/dist/types.d.ts:32
+core/dist/types.d.ts:37
 
 ___
 
@@ -39,4 +39,4 @@ ___
 
 #### Defined in
 
-core/dist/types.d.ts:31
+core/dist/types.d.ts:36

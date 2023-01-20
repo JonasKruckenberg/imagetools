@@ -62,10 +62,9 @@ export interface VitePluginOptions {
   resolveConfigs?: typeof resolveConfigs
 
   /**
-   * Settings this option to true disables all warnings produced by this plugin
-   * @default false
+   * @deprecated This option has no effect. Logging is done through Vite's logger.
    */
-  silent: boolean
+  silent?: boolean
 
   /**
    * Wether to remove potentially private metadata from the image, such as exif tags etc.

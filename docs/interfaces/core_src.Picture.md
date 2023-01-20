@@ -29,7 +29,7 @@ The picture output format.
 
 #### Defined in
 
-[core/src/types.ts:44](https://github.com/JonasKruckenberg/imagetools/blob/04cb552/packages/core/src/types.ts#L44)
+[core/src/types.ts:53](https://github.com/JonasKruckenberg/imagetools/blob/6842c73/packages/core/src/types.ts#L53)
 
 ___
 
@@ -39,4 +39,4 @@ ___
 
 #### Defined in
 
-[core/src/types.ts:43](https://github.com/JonasKruckenberg/imagetools/blob/04cb552/packages/core/src/types.ts#L43)
+[core/src/types.ts:52](https://github.com/JonasKruckenberg/imagetools/blob/6842c73/packages/core/src/types.ts#L52)

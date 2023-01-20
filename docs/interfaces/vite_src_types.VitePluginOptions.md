@@ -25,7 +25,7 @@
 • `Optional` **defaultDirectives**: `URLSearchParams` \| (`url`: `URL`) => `URLSearchParams`
 
 This option allows you to specify directives that should be applied _by default_ to every image.
-You can also provide a function, in which case the function gets passed the asset ID and should return an object of directives. 
+You can also provide a function, in which case the function gets passed the asset ID and should return an object of directives.
 This can be used to define all sorts of shorthands or presets.
 
 **`Example`**
@@ -52,7 +52,7 @@ export default defineConfig({
 
 #### Defined in
 
-[vite/src/types.ts:42](https://github.com/JonasKruckenberg/imagetools/blob/04cb552/packages/vite/src/types.ts#L42)
+[vite/src/types.ts:42](https://github.com/JonasKruckenberg/imagetools/blob/6842c73/packages/vite/src/types.ts#L42)
 
 ___
 
@@ -69,7 +69,7 @@ This defaults to the public dir to mirror vites behavior.
 
 #### Defined in
 
-[vite/src/types.ts:14](https://github.com/JonasKruckenberg/imagetools/blob/04cb552/packages/vite/src/types.ts#L14)
+[vite/src/types.ts:14](https://github.com/JonasKruckenberg/imagetools/blob/6842c73/packages/vite/src/types.ts#L14)
 
 ___
 
@@ -100,7 +100,7 @@ This list will be merged with the builtin output formats before determining the 
 
 #### Defined in
 
-[vite/src/types.ts:56](https://github.com/JonasKruckenberg/imagetools/blob/04cb552/packages/vite/src/types.ts#L56)
+[vite/src/types.ts:56](https://github.com/JonasKruckenberg/imagetools/blob/6842c73/packages/vite/src/types.ts#L56)
 
 ___
 
@@ -131,7 +131,7 @@ This list will be merged with the builtin transforms before applying them to the
 
 #### Defined in
 
-[vite/src/types.ts:49](https://github.com/JonasKruckenberg/imagetools/blob/04cb552/packages/vite/src/types.ts#L49)
+[vite/src/types.ts:49](https://github.com/JonasKruckenberg/imagetools/blob/6842c73/packages/vite/src/types.ts#L49)
 
 ___
 
@@ -145,7 +145,7 @@ This option used to enable the plugin during development mode. This option is no
 
 #### Defined in
 
-[vite/src/types.ts:80](https://github.com/JonasKruckenberg/imagetools/blob/04cb552/packages/vite/src/types.ts#L80)
+[vite/src/types.ts:79](https://github.com/JonasKruckenberg/imagetools/blob/6842c73/packages/vite/src/types.ts#L79)
 
 ___
 
@@ -161,7 +161,7 @@ Which paths to include when processing images.
 
 #### Defined in
 
-[vite/src/types.ts:8](https://github.com/JonasKruckenberg/imagetools/blob/04cb552/packages/vite/src/types.ts#L8)
+[vite/src/types.ts:8](https://github.com/JonasKruckenberg/imagetools/blob/6842c73/packages/vite/src/types.ts#L8)
 
 ___
 
@@ -177,7 +177,7 @@ true
 
 #### Defined in
 
-[vite/src/types.ts:74](https://github.com/JonasKruckenberg/imagetools/blob/04cb552/packages/vite/src/types.ts#L74)
+[vite/src/types.ts:73](https://github.com/JonasKruckenberg/imagetools/blob/6842c73/packages/vite/src/types.ts#L73)
 
 ___
 
@@ -189,38 +189,37 @@ ___
 
 ▸ (`entries`, `outputFormats`): `Record`<`string`, `string` \| `string`[]\>[]
 
-This function builds up all possible combinations the given entries can be combined
-an returns it as an array of objects that can be given to a the transforms.
+You can use this option to override the resolution of configs based on the url parameters
+
+**`Default`**
+
+undefined
 
 ##### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `entries` | [`string`, `string`[]][] | The url parameter entries |
-| `outputFormats` | `Record`<`string`, [`OutputFormat`](../modules/vite_src.md#outputformat)\> | - |
+| Name | Type |
+| :------ | :------ |
+| `entries` | [`string`, `string`[]][] |
+| `outputFormats` | `Record`<`string`, [`OutputFormat`](../modules/vite_src.md#outputformat)\> |
 
 ##### Returns
 
 `Record`<`string`, `string` \| `string`[]\>[]
 
-An array of directive options
-
 #### Defined in
 
-[vite/src/types.ts:62](https://github.com/JonasKruckenberg/imagetools/blob/04cb552/packages/vite/src/types.ts#L62)
+[vite/src/types.ts:62](https://github.com/JonasKruckenberg/imagetools/blob/6842c73/packages/vite/src/types.ts#L62)
 
 ___
 
 ### silent
 
-• **silent**: `boolean`
+• `Optional` **silent**: `boolean`
 
-Settings this option to true disables all warnings produced by this plugin
+**`Deprecated`**
 
-**`Default`**
-
-false
+This option has no effect. Logging is done through Vite's logger.
 
 #### Defined in
 
-[vite/src/types.ts:68](https://github.com/JonasKruckenberg/imagetools/blob/04cb552/packages/vite/src/types.ts#L68)
+[vite/src/types.ts:67](https://github.com/JonasKruckenberg/imagetools/blob/6842c73/packages/vite/src/types.ts#L67)

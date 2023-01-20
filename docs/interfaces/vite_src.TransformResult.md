@@ -19,7 +19,7 @@
 
 #### Defined in
 
-core/dist/types.d.ts:11
+core/dist/types.d.ts:16
 
 ___
 
@@ -29,4 +29,4 @@ ___
 
 #### Defined in
 
-core/dist/types.d.ts:12
+core/dist/types.d.ts:17

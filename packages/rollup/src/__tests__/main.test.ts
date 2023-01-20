@@ -5,9 +5,12 @@ import { testEntry, getFiles } from './util'
 import { toMatchImageSnapshot } from 'jest-image-snapshot'
 import { JSDOM } from 'jsdom'
 import sharp from 'sharp'
-import { describe, test, expect, it } from 'vitest'
+import { afterEach, describe, test, expect, it, vi } from 'vitest'
 
 expect.extend({ toMatchImageSnapshot })
+afterEach(() => {
+  vi.restoreAllMocks()
+})
 
 describe('rollup-plugin-imagetools', () => {
   describe('options', () => {
@@ -158,11 +161,87 @@ describe('rollup-plugin-imagetools', () => {
       })
     })
 
-    // describe('silent', () => {
-    //   test('false by default', () => {})
-    //   test('true disables all warnings', () => {})
-    //   test('false enables warnings', () => {})
-    // })
+    describe('logging', () => {
+      test('logs info messages through rollups warn', async () => {
+        const spy = vi.fn()
+        await rollup({
+          input: join(__dirname, '__fixtures__/index.js'),
+          onwarn: spy,
+          plugins: [
+            testEntry(`
+                          import Image from "./with-metadata.png?warn"
+                          window.__IMAGE__ = Image
+                      `),
+            imagetools({
+              extendTransforms() {
+                return [
+                  (config, context) => {
+                    context.logger.info('An info message')
+                    return (image) => image
+                  }
+                ]
+              }
+            })
+          ]
+        })
+
+        expect(spy.mock.lastCall?.[0].message).toStrictEqual('An info message')
+      })
+      test('logs warn messages through rollup', async () => {
+        const spy = vi.fn()
+        await rollup({
+          input: join(__dirname, '__fixtures__/index.js'),
+          onwarn: spy,
+          plugins: [
+            testEntry(`
+                          import Image from "./with-metadata.png?warn"
+                          window.__IMAGE__ = Image
+                      `),
+            imagetools({
+              extendTransforms() {
+                return [
+                  (config, context) => {
+                    context.logger.warn('A warning')
+                    return (image) => image
+                  }
+                ]
+              }
+            })
+          ]
+        })
+
+        expect(spy.mock.lastCall?.[0].message).toStrictEqual('A warning')
+      })
+      test('logs error messages through rollup', async () => {
+        const spy = vi.fn()
+        try {
+          await rollup({
+            input: join(__dirname, '__fixtures__/index.js'),
+            onwarn: spy,
+            plugins: [
+              testEntry(`
+                          import Image from "./with-metadata.png?warn"
+                          window.__IMAGE__ = Image
+                      `),
+              imagetools({
+                extendTransforms() {
+                  return [
+                    (config, context) => {
+                      context.logger.error('An error')
+                      return (image) => image
+                    }
+                  ]
+                }
+              })
+            ]
+          })
+          fail()
+        } catch (err: any) {
+          expect(err.plugin).toEqual('imagetools')
+          expect(err.message).toMatch(/An error$/)
+        }
+      })
+    })
 
     describe('removeMetadata', () => {
       test('true removes private metadata', async () => {

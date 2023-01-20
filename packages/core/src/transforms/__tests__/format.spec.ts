@@ -7,13 +7,14 @@ import { join } from 'path'
 import { toMatchFile } from 'jest-file-snapshot'
 import { toMatchImageSnapshot } from 'jest-image-snapshot'
 import { describe, beforeAll, beforeEach, test, expect, vi } from 'vitest'
+import { consoleLogger } from '../../lib/logger'
 
 expect.extend({ toMatchFile, toMatchImageSnapshot })
 
 describe('format', () => {
   let dirCtx: TransformFactoryContext
   beforeAll(() => {
-    dirCtx = { useParam: vi.fn, warn: vi.fn }
+    dirCtx = { useParam: vi.fn, logger: consoleLogger }
   })
 
   test('keyword "format"', () => {

@@ -60,10 +60,9 @@ export interface RollupPluginOptions {
   resolveConfigs?: typeof resolveConfigs
 
   /**
-   * Settings this option to true disables all warnings produced by this plugin
-   * @default false
+   * @deprecated This option has no effect. Logging is done through Rollup's warning facilities.
    */
-  silent: boolean
+  silent?: boolean
 
   /**
    * Wether to remove potentially private metadata from the image, such as exif tags etc.
