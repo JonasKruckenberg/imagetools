@@ -13,13 +13,13 @@
     "doc": "pnpm run --filter imagetools-core build && typedoc"
   },
   "devDependencies": {
-    "@changesets/cli": "^2.20.0",
+    "@changesets/cli": "^2.22.0",
     "@rollup/plugin-typescript": "^11.0.0",
     "@typescript-eslint/eslint-plugin": "^5.48.2",
     "@typescript-eslint/parser": "^5.48.2",
     "cross-env": "^7.0.3",
     "eslint": "^8.32.0",
-    "eslint-config-prettier": "^8.3.0",
+    "eslint-config-prettier": "^8.5.0",
     "prettier": "^2.8.3",
     "rollup": "^3.2.3",
     "tslib": "^2.4.0",
