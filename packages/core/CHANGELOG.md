@@ -1,5 +1,14 @@
 # Change Log
 
+## 3.3.1
+
+### Patch Changes
+
+- c64e7ef: chore: upgrade typescript
+- 93bc23a: fix: log messages through Vite and Rollup. Allows the log level to be set with `logLevel` and `onwarn`
+  respectively.
+- 04bd2a0: Update sharp to 0.31.3
+
 ## 3.3.0
 
 ### Minor Changes
