@@ -1,6 +1,6 @@
 {
   "name": "rollup-plugin-imagetools",
-  "version": "3.0.16",
+  "version": "3.0.17",
   "types": "dist/index.d.ts",
   "exports": {
     "./package.json": "./package.json",

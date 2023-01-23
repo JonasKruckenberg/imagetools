@@ -1,5 +1,17 @@
 # Change Log
 
+## 3.0.17
+
+### Patch Changes
+
+- c64e7ef: chore: upgrade typescript
+- 93bc23a: fix: log messages through Vite and Rollup. Allows the log level to be set with `logLevel` and `onwarn`
+  respectively.
+- Updated dependencies [c64e7ef]
+- Updated dependencies [93bc23a]
+- Updated dependencies [04bd2a0]
+  - imagetools-core@3.3.1
+
 ## 3.0.16
 
 ### Patch Changes

@@ -1,6 +1,6 @@
 {
   "name": "imagetools-core",
-  "version": "3.3.0",
+  "version": "3.3.1",
   "types": "dist/index.d.ts",
   "exports": {
     "./package.json": "./package.json",
