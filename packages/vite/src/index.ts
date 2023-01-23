@@ -96,7 +96,7 @@ export function imagetools(userOptions: Partial<VitePluginOptions> = {}): Plugin
 
           metadata.src = `__VITE_ASSET__${fileHandle}__`
         } else {
-          metadata.src = posix.join(basePath, '@imagetools', id)
+          metadata.src = posix.join(basePath, '/@imagetools', id)
         }
 
         metadata.image = image
