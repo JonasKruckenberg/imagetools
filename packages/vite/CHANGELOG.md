@@ -1,5 +1,11 @@
 # Change Log
 
+## 4.0.17
+
+### Patch Changes
+
+- 6459cf6: fix: ensure leading slash in generated URL
+
 ## 4.0.16
 
 ### Patch Changes
