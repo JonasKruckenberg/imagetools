@@ -7,6 +7,7 @@ import { OutputAsset, OutputChunk, RollupOutput } from 'rollup'
 import { JSDOM } from 'jsdom'
 import sharp from 'sharp'
 import { afterEach, describe, test, expect, it, vi } from 'vitest'
+import { createBasePath } from '../utils'
 
 expect.extend({ toMatchImageSnapshot })
 
@@ -644,5 +645,16 @@ describe('vite-imagetools', () => {
     window.eval(files[0].code)
 
     expect(window.__IMAGE__).toBe('/assets/with-metadata-404f605d.png 600w')
+  })
+
+  describe('utils', () => {
+    test('createBasePath', () => {
+      expect(createBasePath('')).toBe('/@imagetools/')
+      expect(createBasePath('/')).toBe('/@imagetools/')
+      expect(createBasePath('/base')).toBe('/base/@imagetools/')
+      expect(createBasePath('/base/')).toBe('/base/@imagetools/')
+      expect(createBasePath('http://localhost:9000/frontend')).toBe('http://localhost:9000/frontend/@imagetools/')
+      expect(createBasePath('http://localhost:9000/frontend/')).toBe('http://localhost:9000/frontend/@imagetools/')
+    })
   })
 })

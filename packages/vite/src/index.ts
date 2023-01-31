@@ -1,3 +1,4 @@
+import { basename, extname } from 'node:path'
 import { Plugin, ResolvedConfig } from 'vite'
 import {
   parseURL,
@@ -13,9 +14,9 @@ import {
   extractEntries,
   Logger
 } from 'imagetools-core'
-import { basename, extname } from 'path'
 import { createFilter, dataToEsm } from '@rollup/pluginutils'
 import { VitePluginOptions } from './types'
+import { createBasePath } from './utils'
 
 const defaultOptions: VitePluginOptions = {
   include: ['**/*.{heic,heif,avif,jpeg,jpg,png,tiff,webp,gif}', '**/*.{heic,heif,avif,jpeg,jpg,png,tiff,webp,gif}?*'],
@@ -46,7 +47,7 @@ export function imagetools(userOptions: Partial<VitePluginOptions> = {}): Plugin
     enforce: 'pre',
     configResolved(cfg) {
       viteConfig = cfg
-      basePath = (viteConfig.base?.replace(/\/$/, '') || '') + '/@imagetools/'
+      basePath = createBasePath(viteConfig.base)
     },
     async load(id) {
       if (!filter(id)) return null
