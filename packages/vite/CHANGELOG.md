@@ -1,5 +1,11 @@
 # Change Log
 
+## 4.0.18
+
+### Patch Changes
+
+- 22f2ff1: fix: support URL with scheme in base option
+
 ## 4.0.17
 
 ### Patch Changes
