@@ -13,7 +13,7 @@ import {
   extractEntries,
   Logger
 } from 'imagetools-core'
-import { basename, extname, posix } from 'path'
+import { basename, extname } from 'path'
 import { createFilter, dataToEsm } from '@rollup/pluginutils'
 import { VitePluginOptions } from './types'
 
@@ -46,7 +46,7 @@ export function imagetools(userOptions: Partial<VitePluginOptions> = {}): Plugin
     enforce: 'pre',
     configResolved(cfg) {
       viteConfig = cfg
-      basePath = viteConfig.base?.replace(/\/$/, '') || ''
+      basePath = (viteConfig.base?.replace(/\/$/, '') || '') + '/@imagetools/'
     },
     async load(id) {
       if (!filter(id)) return null
@@ -96,7 +96,7 @@ export function imagetools(userOptions: Partial<VitePluginOptions> = {}): Plugin
 
           metadata.src = `__VITE_ASSET__${fileHandle}__`
         } else {
-          metadata.src = posix.join(basePath, '/@imagetools', id)
+          metadata.src = basePath + id
         }
 
         metadata.image = image
@@ -126,8 +126,8 @@ export function imagetools(userOptions: Partial<VitePluginOptions> = {}): Plugin
 
     configureServer(server) {
       server.middlewares.use((req, res, next) => {
-        if (req.url?.startsWith(`${basePath}/@imagetools/`)) {
-          const [, id] = req.url.split(`${basePath}/@imagetools/`)
+        if (req.url?.startsWith(basePath)) {
+          const [, id] = req.url.split(basePath)
 
           const image = generatedImages.get(id)
 
