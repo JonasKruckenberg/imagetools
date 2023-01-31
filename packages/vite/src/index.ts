@@ -13,7 +13,7 @@ import {
   extractEntries,
   Logger
 } from 'imagetools-core'
-import { basename, extname, posix } from 'path'
+import { basename, extname } from 'path'
 import { createFilter, dataToEsm } from '@rollup/pluginutils'
 import { VitePluginOptions } from './types'
 
@@ -96,7 +96,7 @@ export function imagetools(userOptions: Partial<VitePluginOptions> = {}): Plugin
 
           metadata.src = `__VITE_ASSET__${fileHandle}__`
         } else {
-          metadata.src = basePath + posix.join('/@imagetools', id)
+          metadata.src = `${basePath}/@imagetools/${id}`
         }
 
         metadata.image = image
