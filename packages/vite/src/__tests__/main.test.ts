@@ -647,6 +647,32 @@ describe('vite-imagetools', () => {
     expect(window.__IMAGE__).toBe('/assets/with-metadata-404f605d.png 600w')
   })
 
+  test('async output format', async () => {
+    const bundle = (await build({
+      root: join(__dirname, '__fixtures__'),
+      logLevel: 'warn',
+      build: { write: false },
+      plugins: [
+        testEntry(`
+          import Image from "./with-metadata.png?run"
+          window.__IMAGE__ = Image
+        `),
+        imagetools({
+          extendOutputFormats: (defaults) => ({
+            ...defaults,
+            run: () => () => new Promise((resolve) => setTimeout(() => resolve('success'), 500))
+          })
+        })
+      ]
+    })) as RollupOutput | RollupOutput[]
+
+    const files = getFiles(bundle, '**.js') as OutputChunk[]
+    const { window } = new JSDOM(``, { runScripts: 'outside-only' })
+    window.eval(files[0].code)
+
+    expect(window.__IMAGE__).toBe('success')
+  })
+
   describe('utils', () => {
     test('createBasePath', () => {
       expect(createBasePath('')).toBe('/@imagetools/')
