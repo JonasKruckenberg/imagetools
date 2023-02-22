@@ -79,7 +79,7 @@ importers:
       imagetools-core: workspace:^
       jest-image-snapshot: ^6.0.0
       jsdom: ^21.0.0
-      magic-string: ^0.29.0
+      magic-string: ^0.30.0
       picomatch: ^2.3.1
       rollup: ^3.2.3
       sharp: ^0.31.0
@@ -89,7 +89,7 @@ importers:
     dependencies:
       '@rollup/pluginutils': 5.0.0_rollup@3.2.3
       imagetools-core: link:../core
-      magic-string: 0.29.0
+      magic-string: 0.30.0
     devDependencies:
       '@rollup/plugin-typescript': 11.0.0_kgr7nskyq5mmjyfwg5fs5naf4y
       '@types/jest-image-snapshot': 6.1.0
@@ -2748,8 +2748,8 @@ packages:
     resolution: {integrity: sha512-zTU3DaZaF3Rt9rhN3uBMGQD3dD2/vFQqnvZCDv4dl5iOzq2IZQqTxu90r4E5J+nP70J3ilqVCrbho2eWaeW8Ow==}
     dev: true
 
-  /magic-string/0.29.0:
-    resolution: {integrity: sha512-WcfidHrDjMY+eLjlU+8OvwREqHwpgCeKVBUpQ3OhYYuvfaYCUgcbuBzappNzZvg/v8onU3oQj+BYpkOJe9Iw4Q==}
+  /magic-string/0.30.0:
+    resolution: {integrity: sha512-LA+31JYDJLs82r2ScLrlz1GjSgu66ZV518eyWT+S8VhyQn/JL0u9MeBOvQMGYiPk1DBiSN9DDMOcXvigJZaViQ==}
     engines: {node: '>=12'}
     dependencies:
       '@jridgewell/sourcemap-codec': 1.4.13

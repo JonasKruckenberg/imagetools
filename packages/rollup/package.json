@@ -36,7 +36,7 @@
   "dependencies": {
     "@rollup/pluginutils": "^5.0.0",
     "imagetools-core": "workspace:^",
-    "magic-string": "^0.29.0"
+    "magic-string": "^0.30.0"
   },
   "devDependencies": {
     "@rollup/plugin-typescript": "^11.0.0",
