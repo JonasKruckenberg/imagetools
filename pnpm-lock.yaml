@@ -49,12 +49,12 @@ importers:
       jest-file-snapshot: ^0.5.0
       jest-image-snapshot: ^6.0.0
       rollup: ^3.2.3
-      sharp: ^0.31.3
+      sharp: ^0.32.0
       tslib: ^2.4.0
       typescript: ^4.9.4
       vitest: ^0.29.0
     dependencies:
-      sharp: 0.31.3
+      sharp: 0.32.0
     devDependencies:
       '@rollup/plugin-typescript': 11.0.0_kgr7nskyq5mmjyfwg5fs5naf4y
       '@types/jest-image-snapshot': 6.1.0
@@ -82,7 +82,7 @@ importers:
       magic-string: ^0.30.0
       picomatch: ^2.3.1
       rollup: ^3.2.3
-      sharp: ^0.31.0
+      sharp: ^0.32.0
       tslib: ^2.4.0
       typescript: ^4.9.4
       vitest: ^0.29.0
@@ -101,7 +101,7 @@ importers:
       jsdom: 21.0.0
       picomatch: 2.3.1
       rollup: 3.2.3
-      sharp: 0.31.0
+      sharp: 0.32.0
       tslib: 2.4.0
       typescript: 4.9.4
       vitest: 0.29.1_jsdom@21.0.0
@@ -120,7 +120,7 @@ importers:
       jsdom: ^21.0.0
       picomatch: ^2.3.1
       rollup: ^3.2.3
-      sharp: ^0.31.0
+      sharp: ^0.32.0
       tslib: ^2.4.0
       typescript: ^4.9.4
       vite: ^4.0.0
@@ -139,7 +139,7 @@ importers:
       jsdom: 21.0.0
       picomatch: 2.3.1
       rollup: 3.2.3
-      sharp: 0.31.0
+      sharp: 0.32.0
       tslib: 2.4.0
       typescript: 4.9.4
       vite: 4.0.1
@@ -2874,8 +2874,8 @@ packages:
     dependencies:
       semver: 7.3.8
 
-  /node-addon-api/5.0.0:
-    resolution: {integrity: sha512-CvkDw2OEnme7ybCykJpVcKH+uAOLV2qLqiyla128dN9TkEWfrYmxG6C2boDe5KcNQqZF3orkqzGgOMvZ/JNekA==}
+  /node-addon-api/6.0.0:
+    resolution: {integrity: sha512-GyHvgPvUXBvAkXa0YvYnhilSB1A+FRYMpIVggKzPZqdaZfevZOuzfWzyvgzOwRLHBeo/MMswmJFsrNF4Nw1pmA==}
 
   /normalize-package-data/2.5.0:
     resolution: {integrity: sha512-/5CMN3T0R4XTj4DcGaexo+roZSdSFW/0AOOTROrjxzCG1wrWXEsGbRKevjlIL+ZDE4sZlJr5ED4YW0yqmkK+eA==}
@@ -3393,35 +3393,19 @@ packages:
     resolution: {integrity: sha1-BF+XgtARrppoA93TgrJDkrPYkPc=}
     dev: true
 
-  /sharp/0.31.0:
-    resolution: {integrity: sha512-ft96f8WzGxavg0rkLpMw90MTPMUZDyf0tHjPPh8Ob59xt6KzX8EqtotcqZGUm7kwqpX2pmYiyYX2LL0IZ/FDEw==}
+  /sharp/0.32.0:
+    resolution: {integrity: sha512-yLAypVcqj1toSAqRSwbs86nEzfyZVDYqjuUX8grhFpeij0DDNagKJXELS/auegDBRDg1XBtELdOGfo2X1cCpeA==}
     engines: {node: '>=14.15.0'}
     requiresBuild: true
     dependencies:
       color: 4.2.3
       detect-libc: 2.0.1
-      node-addon-api: 5.0.0
-      prebuild-install: 7.1.1
-      semver: 7.3.7
-      simple-get: 4.0.1
-      tar-fs: 2.1.1
-      tunnel-agent: 0.6.0
-    dev: true
-
-  /sharp/0.31.3:
-    resolution: {integrity: sha512-XcR4+FCLBFKw1bdB+GEhnUNXNXvnt0tDo4WsBsraKymuo/IAuPuCBVAL2wIkUw2r/dwFW5Q5+g66Kwl2dgDFVg==}
-    engines: {node: '>=14.15.0'}
-    requiresBuild: true
-    dependencies:
-      color: 4.2.3
-      detect-libc: 2.0.1
-      node-addon-api: 5.0.0
+      node-addon-api: 6.0.0
       prebuild-install: 7.1.1
       semver: 7.3.8
       simple-get: 4.0.1
       tar-fs: 2.1.1
       tunnel-agent: 0.6.0
-    dev: false
 
   /shebang-command/1.2.0:
     resolution: {integrity: sha1-RKrGW2lbAzmJaMOfNj/uXer98eo=}
