@@ -56,6 +56,7 @@ export const resize: TransformFactory<ResizeOptions> = (config, context) => {
     return
 
   return function resizeTransform(image) {
+    const fit = getFit(config, image)
     // calculate finalWidth & finalHeight
     const originalWidth = getMetadata(image, 'width')
     const originalHeight = getMetadata(image, 'height')
@@ -74,13 +75,39 @@ export const resize: TransformFactory<ResizeOptions> = (config, context) => {
         finalHeight = originalHeight
         finalWidth = originalHeight / aspect
       }
+    } else if (width && height) {
+      // width & height BOTH given, need to look at fit
+      switch (fit) {
+        case 'inside':
+          if (width / height < originalAspect) {
+            finalHeight = width / originalAspect
+          } else {
+            finalWidth = height * originalAspect
+          }
+          break
+        case 'outside':
+          if (width / height > originalAspect) {
+            finalHeight = width / originalAspect
+          } else {
+            finalWidth = height * originalAspect
+          }
+          break
+        case 'cover':
+        case 'contain':
+        case 'fill':
+        default:
+          // no recalculation necessary
+          break
+      }
+      finalAspect = finalWidth / finalHeight
     } else if (!height) {
       // only width was provided, need to calculate height
-
-      finalHeight = width / (aspect || originalAspect)
+      finalAspect = aspect || originalAspect
+      finalHeight = width / finalAspect
     } else if (!width) {
-      /* only height was provided, need to calculate width */
-      finalWidth = height * (aspect || originalAspect)
+      // only height was provided, need to calculate width
+      finalAspect = aspect || originalAspect
+      finalWidth = height * finalAspect
     }
 
     if (
@@ -96,6 +123,9 @@ export const resize: TransformFactory<ResizeOptions> = (config, context) => {
       )
     }
 
+    finalWidth = Math.round(finalWidth)
+    finalHeight = Math.round(finalHeight)
+
     setMetadata(image, 'height', finalHeight)
     setMetadata(image, 'width', finalWidth)
     setMetadata(image, 'aspect', finalAspect)
@@ -103,11 +133,11 @@ export const resize: TransformFactory<ResizeOptions> = (config, context) => {
     setMetadata(image, 'withoutReduction', withoutReduction)
 
     return image.resize({
-      width: Math.round(finalWidth) || undefined,
-      height: Math.round(finalHeight) || undefined,
+      width: finalWidth || undefined,
+      height: finalHeight || undefined,
       withoutEnlargement: withoutEnlargement,
       withoutReduction: withoutReduction,
-      fit: getFit(config, image),
+      fit: fit,
       position: getPosition(config, image),
       kernel: getKernel(config, image),
       background: getBackground(config, image)
