@@ -32,9 +32,9 @@
       "@commitlint/config-conventional"
     ]
   },
-  "packageManager": "pnpm@7.29.0",
+  "packageManager": "pnpm@8.1.1",
   "engines": {
-    "pnpm": "^7.0.0"
+    "pnpm": "^8.0.0"
   },
   "pnpm": {
     "peerDependencyRules": {
