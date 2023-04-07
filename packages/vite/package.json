@@ -55,7 +55,7 @@
     "rollup": "^3.2.3",
     "sharp": "^0.32.0",
     "tslib": "^2.4.0",
-    "typescript": "^4.9.4",
+    "typescript": "^5.0.0",
     "vite": "^4.0.0",
     "vitest": "^0.29.0"
   }
