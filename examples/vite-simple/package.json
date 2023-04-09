@@ -8,7 +8,7 @@
     "serve": "vite preview"
   },
   "devDependencies": {
-    "vite": "^2.3.0",
+    "vite": "^2.9.9",
     "vite-imagetools": "workspace:^4.0.3"
   }
 }
