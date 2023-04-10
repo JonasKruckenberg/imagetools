@@ -35,10 +35,3 @@ jobs:
           token: ${{ secrets.CODECOV_TOKEN }}
           flags: vite-imagetools
           files: 'packages/vite/coverage/coverage-final.json'
-
-      - name: Upload rollup-plugin-imagetools Report
-        uses: codecov/codecov-action@v3
-        with:
-          token: ${{ secrets.CODECOV_TOKEN }}
-          flags: rollup-plugin-imagetools
-          files: 'packages/rollup/coverage/coverage-final.json'
