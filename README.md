@@ -16,10 +16,10 @@ transformations are powered by [sharp](https://sharp.pixelplumbing.com).
 
 ## Packages
 
-| Package                                     | Version (click for changelogs)                                                                                                       |
-| ------------------------------------------- | :----------------------------------------------------------------------------------------------------------------------------------- |
-| [imagetools-core](packages/core)            | [![imagetools-core version](https://img.shields.io/npm/v/imagetools-core?label=%20)](packages/core/CHANGELOG.md)                     |
-| [vite-imagetools](packages/vite)            | [![vite-imagetools version](https://img.shields.io/npm/v/vite-imagetools?label=%20)](packages/vite/CHANGELOG.md)                     |
+| Package                          | Version (click for changelogs)                                                                                   |
+| -------------------------------- | :--------------------------------------------------------------------------------------------------------------- |
+| [imagetools-core](packages/core) | [![imagetools-core version](https://img.shields.io/npm/v/imagetools-core?label=%20)](packages/core/CHANGELOG.md) |
+| [vite-imagetools](packages/vite) | [![vite-imagetools version](https://img.shields.io/npm/v/vite-imagetools?label=%20)](packages/vite/CHANGELOG.md) |
 
 ## Contributing
 
