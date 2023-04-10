@@ -51,8 +51,7 @@ Let's break that down:
 import { resize, format } from 'imagetools'
 ```
 
-Both vite-imagetools and rollup-plugin-imagetools exports all directives so you can reuse them in you own directives, as
-we will see shortly.
+`vite-imagetools` exports all directives so you can reuse them in you own directives, as we will see shortly.
 
 ```ts
 function customDirective(config, ctx) {
@@ -91,11 +90,10 @@ must also always return the transformed image.
 > NOTE: The image object provided to the transform function is a sharp instance, so you have access to all it's methods
 > as well.
 
-### Asyn ImageTransform functions
+### Async ImageTransform functions
 
 ![vite-imagetools v2.4.0 and newer](https://img.shields.io/badge/imagetools--core-^2.4.0-brightgreen)
 ![vite-imagetools v3.5.3 and newer](https://img.shields.io/badge/vite--imagetools-^3.5.3-brightgreen)
-![rollup-plugin-imagetools v2.1.3](https://img.shields.io/badge/rollup--plugin--imagetools-^2.1.3-brightgreen)
 
 Sometimes a transformation needs to perform some asynchronous action. To accommodate this, ImageTransform functions can
 return a promise that resolved with the sharp instance once the transformation is done.
