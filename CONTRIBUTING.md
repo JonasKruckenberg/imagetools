@@ -94,4 +94,6 @@ to have your package moven into this monorepo, so your code stays maintained.
 
 - Reexport the directives when possible
 
-`vite-imagetools` re-exports all built-in directives, so users can create their own directives using the builtins as building blocks. You should - whenever possible - also do the same so users can profit from the extensible nature of imagetools.
+`vite-imagetools` re-exports all built-in directives, so users can create their own directives using the builtins as
+building blocks. You should - whenever possible - also do the same so users can profit from the extensible nature of
+imagetools.
