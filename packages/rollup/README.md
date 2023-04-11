@@ -9,6 +9,13 @@
 A toolbox of import directives for [rollup](https://rollupjs.org) that import and transform your image at compile-time.
 All of the image transformations are powered by [sharp](https://sharp.pixelplumbing.com).
 
+## Deprecated
+
+This plugin has been deprecated in favor of [`vite-imagetools`](https://github.com/JonasKruckenberg/imagetools) and will
+no longer be updated. `vite-imagetools` had 1000x as much usage as this library, so we will be focusing all of our
+efforts there. While Rollup is great for bundling libraries, [Vite](https://vitejs.dev/) is a better choice for building
+web applications, and so we recommend that users of this library migrate to [Vite](https://vitejs.dev/).
+
 ## Features
 
 - **🚀 Output modern formats**
