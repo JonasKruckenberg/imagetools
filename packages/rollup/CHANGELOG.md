@@ -1,5 +1,11 @@
 # Change Log
 
+## 3.0.18
+
+### Patch Changes
+
+- f514254: Update README with deprecation notice
+
 ## 3.0.17
 
 ### Patch Changes
