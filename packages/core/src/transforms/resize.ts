@@ -58,7 +58,7 @@ export const resize: TransformFactory<ResizeOptions> = (config, context) => {
   return function resizeTransform(image) {
     // calculate finalWidth & finalHeight
     const originalWidth = getMetadata(image, 'width')
-    const originalHeight = getMetadata(image, 'pageHeight') || getMetadata(image, 'height');
+    const originalHeight = (getMetadata(image, 'pages') > 1) ? getMetadata(image, 'pageHeight') : getMetadata(image, 'height');
     const originalAspect = originalWidth / originalHeight
 
     let finalWidth = width,
