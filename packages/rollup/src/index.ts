@@ -22,7 +22,8 @@ const defaultOptions: RollupPluginOptions = {
   ],
   exclude: '',
   silent: false,
-  removeMetadata: true
+  removeMetadata: true,
+  animated: false
 }
 
 export * from 'imagetools-core';
@@ -65,7 +66,7 @@ export function imagetools(userOptions: Partial<RollupPluginOptions> = {}): Plug
       const imageConfigs =
         pluginOptions.resolveConfigs?.(parameters, outputFormats) ?? resolveConfigs(parameters, outputFormats)
 
-      const img = loadImage(decodeURIComponent(srcURL.pathname))
+      const img = loadImage(decodeURIComponent(srcURL.pathname, pluginOptions.animated))
 
       const outputMetadatas = []
 

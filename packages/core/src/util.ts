@@ -2,8 +2,8 @@ import sharp from 'sharp'
 import { ImageConfig } from './types'
 import { createHash } from 'crypto'
 
-export function loadImage(path: string) {
-  if(path.split('.').pop().toLowerCase() === 'gif') {
+export function loadImage(path: string, animated: boolean = false) {
+  if(animated) {
     return sharp(path, {animated:true});
   } else {
       return sharp(path);

@@ -70,4 +70,10 @@ export interface RollupPluginOptions {
    * @default true
    */
   removeMetadata: boolean
+
+  /**
+   * Set to true to read all frames/pages of an animated image (GIF, WebP, TIFF), equivalent of setting pages to -1.
+   * @default true
+   */
+    animated: boolean
 }
