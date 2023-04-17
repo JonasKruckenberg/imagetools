@@ -19,7 +19,7 @@ import { VitePluginOptions } from './types'
 import { createBasePath } from './utils'
 
 const defaultOptions: VitePluginOptions = {
-  include: ['**/*.{heic,heif,avif,jpeg,jpg,png,tiff,webp,gif}', '**/*.{heic,heif,avif,jpeg,jpg,png,tiff,webp,gif}?*'],
+  include: /^[^?]+\.(heic|heif|avif|jpeg|jpg|png|tiff|webp|gif)(\?.*)?$/,
   exclude: 'public/**/*',
   removeMetadata: true
 }
