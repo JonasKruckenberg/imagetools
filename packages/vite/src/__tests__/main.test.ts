@@ -349,6 +349,54 @@ describe('vite-imagetools', () => {
       })
     })
 
+    describe('animated', () => {
+      test('true allows animated images', async () => {
+        const bundle = (await build({
+          root: join(__dirname, '__fixtures__'),
+          logLevel: 'warn',
+          build: { write: false },
+          plugins: [
+            testEntry(`
+                            import Image from "./animated.png?animated"
+                            window.__IMAGE__ = Image
+                        `),
+            imagetools({
+              animated: true
+            })
+          ]
+        })) as RollupOutput | RollupOutput[]
+
+        const files = getFiles(bundle, '**.gif') as OutputAsset[]
+
+        const metadata = await sharp(files[0].source as Buffer).metadata()
+
+        expect(metadata.pages).not.toHaveProperty(3)
+      })
+
+      test('false only processes first frame', async () => {
+        const bundle = (await build({
+          root: join(__dirname, '__fixtures__'),
+          logLevel: 'warn',
+          build: { write: false },
+          plugins: [
+            testEntry(`
+                            import Image from "./animated.png?animated"
+                            window.__IMAGE__ = Image
+                        `),
+            imagetools({
+              animated: false
+            })
+          ]
+        })) as RollupOutput | RollupOutput[]
+
+        const files = getFiles(bundle, '**.gif') as OutputAsset[]
+
+        const metadata = await sharp(files[0].source as Buffer).metadata()
+
+        expect(metadata.pages).not.toHaveProperty(1)
+      })
+    })
+
     describe('resolveConfigs', () => {
       test('can be used to generate multiple images (presets)', async () => {
         const bundle = (await build({
