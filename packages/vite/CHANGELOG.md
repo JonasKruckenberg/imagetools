@@ -1,5 +1,12 @@
 # Change Log
 
+## 4.0.19
+
+### Patch Changes
+
+- 4306ad7: feat: allow `async` output formats
+- c1c49c1: fix: don't match extensions in query string
+
 ## 4.0.18
 
 ### Patch Changes
