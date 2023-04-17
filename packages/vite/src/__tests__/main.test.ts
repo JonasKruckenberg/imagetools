@@ -370,7 +370,7 @@ describe('vite-imagetools', () => {
 
         const metadata = await sharp(files[0].source as Buffer).metadata()
 
-        expect(metadata.pages).not.toHaveProperty(3)
+        expect(metadata.pages).toHaveProperty(3)
       })
 
       test('false only processes first frame', async () => {
@@ -393,7 +393,7 @@ describe('vite-imagetools', () => {
 
         const metadata = await sharp(files[0].source as Buffer).metadata()
 
-        expect(metadata.pages).not.toHaveProperty(1)
+        expect(metadata.pages).toHaveProperty(1)
       })
     })
 
