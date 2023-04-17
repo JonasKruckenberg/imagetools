@@ -1,3 +1,4 @@
+import { basename, extname } from 'node:path'
 import { Plugin, ResolvedConfig } from 'vite'
 import {
   parseURL,
@@ -10,24 +11,21 @@ import {
   generateImageID,
   builtinOutputFormats,
   urlFormat,
-  extractEntries
+  extractEntries,
+  Logger
 } from 'imagetools-core'
-import { basename, extname, posix } from 'path'
 import { createFilter, dataToEsm } from '@rollup/pluginutils'
 import { VitePluginOptions } from './types'
+import { createBasePath } from './utils'
 
 const defaultOptions: VitePluginOptions = {
-  include: [
-    '**/*.{heic,heif,avif,jpeg,jpg,png,tiff,webp,gif}',
-    '**/*.{heic,heif,avif,jpeg,jpg,png,tiff,webp,gif}?*'
-  ],
+  include: ['**/*.{heic,heif,avif,jpeg,jpg,png,tiff,webp,gif}', '**/*.{heic,heif,avif,jpeg,jpg,png,tiff,webp,gif}?*'],
   exclude: 'public/**/*',
-  silent: false,
   removeMetadata: true,
   animated: false
 }
 
-export * from 'imagetools-core';
+export * from 'imagetools-core'
 
 export function imagetools(userOptions: Partial<VitePluginOptions> = {}): Plugin {
   const pluginOptions: VitePluginOptions = { ...defaultOptions, ...userOptions }
@@ -41,6 +39,7 @@ export function imagetools(userOptions: Partial<VitePluginOptions> = {}): Plugin
     : builtinOutputFormats
 
   let viteConfig: ResolvedConfig
+  let basePath: string
 
   const generatedImages = new Map()
 
@@ -49,6 +48,7 @@ export function imagetools(userOptions: Partial<VitePluginOptions> = {}): Plugin
     enforce: 'pre',
     configResolved(cfg) {
       viteConfig = cfg
+      basePath = createBasePath(viteConfig.base)
     },
     async load(id) {
       if (!filter(id)) return null
@@ -73,10 +73,16 @@ export function imagetools(userOptions: Partial<VitePluginOptions> = {}): Plugin
 
       const outputMetadatas = []
 
+      const logger: Logger = {
+        info: (msg) => viteConfig.logger.info(msg),
+        warn: (msg) => this.warn(msg),
+        error: (msg) => this.error(msg)
+      }
+
       for (const config of imageConfigs) {
         const id = generateImageID(srcURL, config)
 
-        const { transforms } = generateTransforms(config, transformFactories)
+        const { transforms } = generateTransforms(config, transformFactories, logger)
         const { image, metadata } = await applyTransforms(transforms, img.clone(), pluginOptions.removeMetadata)
 
         generatedImages.set(id, image)
@@ -92,7 +98,7 @@ export function imagetools(userOptions: Partial<VitePluginOptions> = {}): Plugin
 
           metadata.src = `__VITE_ASSET__${fileHandle}__`
         } else {
-          metadata.src = posix.join('/@imagetools', id)
+          metadata.src = basePath + id
         }
 
         metadata.image = image
@@ -122,8 +128,8 @@ export function imagetools(userOptions: Partial<VitePluginOptions> = {}): Plugin
 
     configureServer(server) {
       server.middlewares.use((req, res, next) => {
-        if (req.url?.startsWith('/@imagetools/')) {
-          const [, id] = req.url.split('/@imagetools/')
+        if (req.url?.startsWith(basePath)) {
+          const [, id] = req.url.split(basePath)
 
           const image = generatedImages.get(id)
 

@@ -18,4 +18,4 @@
 
 #### Defined in
 
-[core/src/transforms/median.ts:5](https://github.com/JonasKruckenberg/imagetools/blob/04cb552/packages/core/src/transforms/median.ts#L5)
+[core/src/transforms/median.ts:5](https://github.com/JonasKruckenberg/imagetools/blob/6842c73/packages/core/src/transforms/median.ts#L5)

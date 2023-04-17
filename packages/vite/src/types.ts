@@ -3,7 +3,7 @@ import { TransformFactory, OutputFormat, resolveConfigs } from 'imagetools-core'
 export interface VitePluginOptions {
   /**
    * Which paths to include when processing images.
-   * @default '**\/*.{heic,heif,avif,jpeg,jpg,png,tiff,webp,gif}?*'
+   * @default '**\/*.\{heic,heif,avif,jpeg,jpg,png,tiff,webp,gif\}?*'
    */
   include: Array<string | RegExp> | string | RegExp
   /**
@@ -15,9 +15,9 @@ export interface VitePluginOptions {
 
   /**
    * This option allows you to specify directives that should be applied _by default_ to every image.
-   * You can also provide a function, in which case the function gets passed the asset ID and should return an object of directives. 
+   * You can also provide a function, in which case the function gets passed the asset ID and should return an object of directives.
    * This can be used to define all sorts of shorthands or presets.
-   * 
+   *
    * @example
    * ```js
    * import { defineConfig } from 'vite'
@@ -62,10 +62,9 @@ export interface VitePluginOptions {
   resolveConfigs?: typeof resolveConfigs
 
   /**
-   * Settings this option to true disables all warnings produced by this plugin
-   * @default false
+   * @deprecated This option has no effect. Logging is done through Vite's logger.
    */
-  silent: boolean
+  silent?: boolean
 
   /**
    * Wether to remove potentially private metadata from the image, such as exif tags etc.

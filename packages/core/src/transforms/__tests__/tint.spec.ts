@@ -5,14 +5,15 @@ import { applyTransforms } from '../../index'
 import sharp, { Sharp } from 'sharp'
 import { join } from 'path'
 import { toMatchImageSnapshot } from 'jest-image-snapshot'
-import { describe, beforeEach,beforeAll,  expect, test, vi } from 'vitest'
+import { describe, beforeEach, beforeAll, expect, test, vi } from 'vitest'
+import { consoleLogger } from '../../lib/logger'
 
 expect.extend({ toMatchImageSnapshot })
 
 describe('tint', () => {
   let dirCtx: TransformFactoryContext
   beforeAll(() => {
-    dirCtx = { useParam: vi.fn, warn: vi.fn }
+    dirCtx = { useParam: vi.fn, logger: consoleLogger }
   })
 
   test('keyword "tint"', () => {

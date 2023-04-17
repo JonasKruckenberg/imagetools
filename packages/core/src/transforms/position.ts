@@ -35,7 +35,7 @@ export const positionShorthands = [
   'left top'
 ]
 
-export type PositionValue = typeof positionValues[number]
+export type PositionValue = (typeof positionValues)[number]
 
 export interface PositionOptions {
   position: PositionValue

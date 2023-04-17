@@ -19,7 +19,7 @@
 
 #### Defined in
 
-[core/src/types.ts:20](https://github.com/JonasKruckenberg/imagetools/blob/04cb552/packages/core/src/types.ts#L20)
+[core/src/types.ts:29](https://github.com/JonasKruckenberg/imagetools/blob/6842c73/packages/core/src/types.ts#L29)
 
 ___
 
@@ -29,4 +29,4 @@ ___
 
 #### Defined in
 
-[core/src/types.ts:21](https://github.com/JonasKruckenberg/imagetools/blob/04cb552/packages/core/src/types.ts#L21)
+[core/src/types.ts:30](https://github.com/JonasKruckenberg/imagetools/blob/6842c73/packages/core/src/types.ts#L30)

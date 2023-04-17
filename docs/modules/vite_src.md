@@ -21,6 +21,7 @@
 - [HSBOptions](../interfaces/vite_src.HSBOptions.md)
 - [InvertOptions](../interfaces/vite_src.InvertOptions.md)
 - [KernelOptions](../interfaces/vite_src.KernelOptions.md)
+- [Logger](../interfaces/vite_src.Logger.md)
 - [MedianOptions](../interfaces/vite_src.MedianOptions.md)
 - [NormalizeOptions](../interfaces/vite_src.NormalizeOptions.md)
 - [Picture](../interfaces/vite_src.Picture.md)
@@ -150,7 +151,7 @@ ___
 
 #### Defined in
 
-core/dist/types.d.ts:9
+core/dist/types.d.ts:14
 
 ___
 
@@ -198,7 +199,7 @@ The JS object returned by the image import.
 
 #### Defined in
 
-core/dist/types.d.ts:17
+core/dist/types.d.ts:22
 
 ___
 
@@ -239,7 +240,7 @@ ___
 
 #### Defined in
 
-core/dist/types.d.ts:7
+core/dist/types.d.ts:12
 
 ___
 
@@ -271,7 +272,7 @@ ___
 
 #### Defined in
 
-core/dist/types.d.ts:8
+core/dist/types.d.ts:13
 
 ## Variables
 
@@ -395,7 +396,7 @@ ___
 
 #### Defined in
 
-core/dist/types.d.ts:7
+core/dist/types.d.ts:12
 
 ___
 
@@ -436,7 +437,7 @@ ___
 
 #### Defined in
 
-core/dist/types.d.ts:7
+core/dist/types.d.ts:12
 
 ___
 
@@ -457,7 +458,7 @@ ___
 
 #### Defined in
 
-core/dist/types.d.ts:7
+core/dist/types.d.ts:12
 
 ___
 
@@ -478,7 +479,7 @@ ___
 
 #### Defined in
 
-core/dist/types.d.ts:7
+core/dist/types.d.ts:12
 
 ___
 
@@ -499,7 +500,7 @@ ___
 
 #### Defined in
 
-core/dist/types.d.ts:7
+core/dist/types.d.ts:12
 
 ___
 
@@ -526,7 +527,7 @@ ___
 
 ### generateTransforms
 
-▸ **generateTransforms**(`config`, `factories`): `Object`
+▸ **generateTransforms**(`config`, `factories`, `logger?`): `Object`
 
 #### Parameters
 
@@ -534,6 +535,7 @@ ___
 | :------ | :------ |
 | `config` | [`ImageConfig`](vite_src.md#imageconfig) |
 | `factories` | [`TransformFactory`](vite_src.md#transformfactory)<`Record`<`string`, `unknown`\>\>[] |
+| `logger?` | [`Logger`](../interfaces/vite_src.Logger.md) |
 
 #### Returns
 
@@ -543,7 +545,6 @@ ___
 | :------ | :------ |
 | `parametersUsed` | `Set`<`string`\> |
 | `transforms` | [`ImageTransformation`](vite_src.md#imagetransformation)[] |
-| `warnings` | `string`[] |
 
 #### Defined in
 
@@ -568,7 +569,7 @@ ___
 
 #### Defined in
 
-core/dist/types.d.ts:8
+core/dist/types.d.ts:13
 
 ___
 
@@ -589,7 +590,7 @@ ___
 
 #### Defined in
 
-core/dist/types.d.ts:8
+core/dist/types.d.ts:13
 
 ___
 
@@ -610,7 +611,7 @@ ___
 
 #### Defined in
 
-core/dist/types.d.ts:8
+core/dist/types.d.ts:13
 
 ___
 
@@ -652,7 +653,7 @@ ___
 
 #### Defined in
 
-core/dist/types.d.ts:8
+core/dist/types.d.ts:13
 
 ___
 
@@ -673,7 +674,7 @@ ___
 
 #### Defined in
 
-core/dist/types.d.ts:8
+core/dist/types.d.ts:13
 
 ___
 
@@ -694,7 +695,7 @@ ___
 
 #### Defined in
 
-core/dist/types.d.ts:8
+core/dist/types.d.ts:13
 
 ___
 
@@ -715,7 +716,7 @@ ___
 
 #### Defined in
 
-core/dist/types.d.ts:7
+core/dist/types.d.ts:12
 
 ___
 
@@ -736,7 +737,7 @@ ___
 
 #### Defined in
 
-core/dist/types.d.ts:7
+core/dist/types.d.ts:12
 
 ___
 
@@ -756,7 +757,7 @@ ___
 
 #### Defined in
 
-[vite/src/index.ts:31](https://github.com/JonasKruckenberg/imagetools/blob/04cb552/packages/vite/src/index.ts#L31)
+[vite/src/index.ts:28](https://github.com/JonasKruckenberg/imagetools/blob/6842c73/packages/vite/src/index.ts#L28)
 
 ___
 
@@ -777,7 +778,7 @@ ___
 
 #### Defined in
 
-core/dist/types.d.ts:7
+core/dist/types.d.ts:12
 
 ___
 
@@ -818,7 +819,7 @@ ___
 
 #### Defined in
 
-core/dist/types.d.ts:7
+core/dist/types.d.ts:12
 
 ___
 
@@ -852,7 +853,7 @@ The JS object returned by the image import.
 
 #### Defined in
 
-core/dist/types.d.ts:17
+core/dist/types.d.ts:22
 
 ___
 
@@ -873,7 +874,7 @@ ___
 
 #### Defined in
 
-core/dist/types.d.ts:7
+core/dist/types.d.ts:12
 
 ___
 
@@ -927,7 +928,7 @@ fallback format should be specified last
 
 #### Defined in
 
-core/dist/types.d.ts:17
+core/dist/types.d.ts:22
 
 ___
 
@@ -948,7 +949,7 @@ ___
 
 #### Defined in
 
-core/dist/types.d.ts:7
+core/dist/types.d.ts:12
 
 ___
 
@@ -969,7 +970,7 @@ ___
 
 #### Defined in
 
-core/dist/types.d.ts:7
+core/dist/types.d.ts:12
 
 ___
 
@@ -1025,7 +1026,7 @@ The JS object returned by the image import.
 
 #### Defined in
 
-core/dist/types.d.ts:17
+core/dist/types.d.ts:22
 
 ___
 
@@ -1059,7 +1060,7 @@ The JS object returned by the image import.
 
 #### Defined in
 
-core/dist/types.d.ts:17
+core/dist/types.d.ts:22
 
 ___
 
@@ -1080,7 +1081,7 @@ ___
 
 #### Defined in
 
-core/dist/types.d.ts:7
+core/dist/types.d.ts:12
 
 ___
 
@@ -1114,4 +1115,4 @@ The JS object returned by the image import.
 
 #### Defined in
 
-core/dist/types.d.ts:17
+core/dist/types.d.ts:22

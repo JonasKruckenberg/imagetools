@@ -6,13 +6,14 @@ import sharp, { Sharp } from 'sharp'
 import { join } from 'path'
 import { toMatchImageSnapshot } from 'jest-image-snapshot'
 import { describe, beforeAll, beforeEach, test, expect, vi } from 'vitest'
+import { consoleLogger } from '../../lib/logger'
 
 expect.extend({ toMatchImageSnapshot })
 
 describe('flop', () => {
   let dirCtx: TransformFactoryContext
   beforeAll(() => {
-    dirCtx = { useParam: vi.fn, warn: vi.fn }
+    dirCtx = { useParam: vi.fn, logger: consoleLogger }
   })
 
   test('keyword "flop"', () => {

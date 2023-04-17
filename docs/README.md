@@ -1,9 +1,5 @@
 imagetools / [Modules](modules.md)
 
-imagetools / [Modules](modules.md)
-
-imagetools / [Modules](modules.md)
-
 # Imagetools documentation
 
 Welcome! Below you will find a list of helpful resources to get you started with imagetools!<br> Please keep in mind

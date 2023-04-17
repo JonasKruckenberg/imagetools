@@ -59,20 +59,21 @@ import Image from 'example.jpg?w=400&h=300&webp'
 
 • `Optional` **defaultDirectives**: `URLSearchParams` \| (`url`: `URL`) => `URLSearchParams`
 
-This option allows you to specify directives that should be applied _by default_ to every image.
-You can also provide a function, in which case the function gets passed the asset ID and should return an object of directives.
-This can be used to define all sorts of shorthands or presets.
+This option allows you to specify directives that should be applied _by default_ to every image. You can also provide a
+function, in which case the function gets passed the asset ID and should return an object of directives. This can be
+used to define all sorts of shorthands or presets.
 
 **`example`**
+
 ```js
 import { defineConfig } from 'vite'
 import { imagetools } from 'vite-imagetools'
 
 export default defineConfig({
- plugins: [
-   imagetools({
+  plugins: [
+    imagetools({
       defaultDirectives: (url) => {
-       if (url.searchParams.has('spotify')) {
+        if (url.searchParams.has('spotify')) {
           return new URLSearchParams({
             tint: 'ffaa22'
           })
@@ -80,23 +81,21 @@ export default defineConfig({
         return new URLSearchParams()
       }
     })
-   ]
+  ]
 })
 ```
 
-___
+---
 
 ### exclude
 
 • **exclude**: `string` \| `RegExp` \| (`string` \| `RegExp`)[]
 
-What paths to exclude when processing images.
-This defaults to the public dir to mirror vites behavior.
+What paths to exclude when processing images. This defaults to the public dir to mirror vites behavior.
 
 **`default`** `'public\/**\/*'`
 
-___
-
+---
 
 ### include
 
@@ -104,9 +103,10 @@ ___
 
 Which paths to include when processing images.
 
-**`default`** `['**\/*.{heic,heif,avif,jpeg,jpg,png,tiff,webp,gif}', '**\/*.{heic,heif,avif,jpeg,jpg,png,tiff,webp,gif}?*']`
+**`default`**
+`['**\/*.{heic,heif,avif,jpeg,jpg,png,tiff,webp,gif}', '**\/*.{heic,heif,avif,jpeg,jpg,png,tiff,webp,gif}?*']`
 
-___
+---
 
 ### removeMetadata
 
@@ -116,75 +116,70 @@ Wether to remove potentially private metadata from the image, such as exif tags 
 
 **`default`** true
 
-___
-
-### silent
-
-• **silent**: `boolean`
-
-Settings this option to true disables all warnings produced by this plugin
-
-**`default`** false
+---
 
 ### extendOutputFormats
 
-▸ `Optional` **extendOutputFormats**(`builtins`): `Record`<`string`, [`OutputFormat`](../../docs/modules/core_src.md#outputformat)\>
+▸ `Optional` **extendOutputFormats**(`builtins`): `Record`<`string`,
+[`OutputFormat`](../../docs/modules/core_src.md#outputformat)\>
 
-You can use this option to extend the builtin list of output formats.
-This list will be merged with the builtin output formats before determining the format to use.
+You can use this option to extend the builtin list of output formats. This list will be merged with the builtin output
+formats before determining the format to use.
 
 **`default`** []
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
+| Name       | Type                                                                               |
+| :--------- | :--------------------------------------------------------------------------------- |
 | `builtins` | `Record`<`string`, [`OutputFormat`](../../docs/modules/core_src.md#outputformat)\> |
 
 #### Returns
 
 `Record`<`string`, [`OutputFormat`](../../docs/modules/core_src.md#outputformat)\>
 
-___
+---
 
 ### extendTransforms
 
-▸ `Optional` **extendTransforms**(`builtins`): [`TransformFactory`](../../docs/modules/core_src.md#transformfactory)<`Record`<`string`, `unknown`\>\>[]
+▸ `Optional` **extendTransforms**(`builtins`):
+[`TransformFactory`](../../docs/modules/core_src.md#transformfactory)<`Record`<`string`, `unknown`\>\>[]
 
-You can use this option to extend the builtin list of import transforms.
-This list will be merged with the builtin transforms before applying them to the input image.
+You can use this option to extend the builtin list of import transforms. This list will be merged with the builtin
+transforms before applying them to the input image.
 
 **`default`** []
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
+| Name       | Type                                                                                                     |
+| :--------- | :------------------------------------------------------------------------------------------------------- |
 | `builtins` | [`TransformFactory`](../../docs/modules/core_src.md#transformfactory)<`Record`<`string`, `unknown`\>\>[] |
 
 #### Returns
 
 [`TransformFactory`](../../docs/modules/core_src.md#transformfactory)<`Record`<`string`, `unknown`\>\>[]
 
-___
+---
 
 ### resolveConfigs
 
-• `Optional` **resolveConfigs**: (`entries`: [`string`, `string`[]][], `outputFormats`: `Record`<`string`, [`OutputFormat`](../modules/core_src.md#outputformat)\>) => `Record`<`string`, `string` \| `string`[]\>[]
+• `Optional` **resolveConfigs**: (`entries`: [`string`, `string`[]][], `outputFormats`: `Record`<`string`,
+[`OutputFormat`](../modules/core_src.md#outputformat)\>) => `Record`<`string`, `string` \| `string`[]\>[]
 
 #### Type declaration
 
 ▸ (`entries`, `outputFormats`): `Record`<`string`, `string` \| `string`[]\>[]
 
-This function builds up all possible combinations the given entries can be combined
-an returns it as an array of objects that can be given to a the transforms.
+This function builds up all possible combinations the given entries can be combined an returns it as an array of objects
+that can be given to a the transforms.
 
 ##### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `entries` | [`string`, `string`[]][] | The url parameter entries |
-| `outputFormats` | `Record`<`string`, [`OutputFormat`](../modules/core_src.md#outputformat)\> | - |
+| Name            | Type                                                                       | Description               |
+| :-------------- | :------------------------------------------------------------------------- | :------------------------ |
+| `entries`       | [`string`, `string`[]][]                                                   | The url parameter entries |
+| `outputFormats` | `Record`<`string`, [`OutputFormat`](../modules/core_src.md#outputformat)\> | -                         |
 
 ##### Returns
 

@@ -5,7 +5,7 @@ export interface BlurOptions {
   blur: string
 }
 
-export const blur: TransformFactory<BlurOptions> = (config, ctx) => {
+export const blur: TransformFactory<BlurOptions> = (config) => {
   let blur: number | boolean | undefined = undefined
 
   blur = config.blur ? parseFloat(config.blur) : undefined

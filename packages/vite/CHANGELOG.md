@@ -1,5 +1,43 @@
 # Change Log
 
+## 4.0.18
+
+### Patch Changes
+
+- 22f2ff1: fix: support URL with scheme in base option
+
+## 4.0.17
+
+### Patch Changes
+
+- 6459cf6: fix: ensure leading slash in generated URL
+
+## 4.0.16
+
+### Patch Changes
+
+- c64e7ef: chore: upgrade typescript
+- 93bc23a: fix: log messages through Vite and Rollup. Allows the log level to be set with `logLevel` and `onwarn`
+  respectively.
+- 6291c71: fix: support Vite's `base` config
+- Updated dependencies [c64e7ef]
+- Updated dependencies [93bc23a]
+- Updated dependencies [04bd2a0]
+  - imagetools-core@3.3.1
+
+## 4.0.15
+
+### Patch Changes
+
+- d43bfff: fix: list types exports first
+
+## 4.0.14
+
+### Patch Changes
+
+- Updated dependencies [e7efc22]
+  - imagetools-core@3.3.0
+
 ## 4.0.13
 
 ### Patch Changes

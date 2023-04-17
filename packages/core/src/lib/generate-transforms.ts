@@ -1,13 +1,17 @@
-import { ImageTransformation, ImageConfig, TransformFactory, TransformFactoryContext } from '../types'
+import { ImageTransformation, ImageConfig, TransformFactory, TransformFactoryContext, Logger } from '../types'
+import { consoleLogger } from './logger'
 
-export function generateTransforms(config: ImageConfig, factories: TransformFactory[]) {
+export function generateTransforms(config: ImageConfig, factories: TransformFactory[], logger?: Logger) {
+  if (logger === undefined) {
+    logger = consoleLogger
+  }
+
   const transforms: ImageTransformation[] = []
   const parametersUsed = new Set<string>()
-  const warnings: string[] = []
 
   const context: TransformFactoryContext = {
     useParam: (k) => parametersUsed.add(k),
-    warn: (m) => warnings.push(m)
+    logger
   }
 
   for (const directive of factories) {
@@ -18,7 +22,6 @@ export function generateTransforms(config: ImageConfig, factories: TransformFact
 
   return {
     transforms,
-    parametersUsed,
-    warnings
+    parametersUsed
   }
 }

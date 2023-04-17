@@ -5,10 +5,8 @@
     "outDir": "./dist",
     "paths": {
       "imagetools-core": ["../core/dist"],
-      "vite-imagetools": ["../vite/dist"],
-      "rollup-plugin-imagetools": ["../rollup/dist"]
+      "vite-imagetools": ["../vite/dist"]
     }
   },
   "exclude": ["node_modules", "dist", "**/__tests__/**"]
 }
-

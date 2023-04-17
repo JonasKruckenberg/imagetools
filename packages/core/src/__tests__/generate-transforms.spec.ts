@@ -1,6 +1,10 @@
 import { TransformFactory } from '../types'
 import { generateTransforms } from '../lib/generate-transforms'
-import { describe, it, expect } from 'vitest'
+import { describe, it, expect, vi, afterEach } from 'vitest'
+
+afterEach(() => {
+  vi.restoreAllMocks()
+})
 
 describe('applyTransforms', () => {
   it('returns the transformations array', () => {
@@ -46,5 +50,42 @@ describe('applyTransforms', () => {
       expect(transforms).toBeInstanceOf(Array)
       expect(transforms).toHaveLength(2)
     }
+  })
+
+  it('passes the logger on to transforms', () => {
+    const logger = { info: vi.fn(), warn: vi.fn(), error: vi.fn() }
+    const dirs: TransformFactory[] = [
+      (_, c) => {
+        c.logger.info('Info message')
+        c.logger.warn('Warn message')
+        c.logger.error('Error message')
+        return undefined
+      }
+    ]
+
+    generateTransforms({}, dirs, logger)
+
+    expect(logger.info).toHaveBeenCalledWith('Info message')
+    expect(logger.warn).toHaveBeenCalledWith('Warn message')
+    expect(logger.error).toHaveBeenCalledWith('Error message')
+  })
+
+  it('passes a console logger by default', () => {
+    vi.spyOn(console, 'info')
+    vi.spyOn(console, 'warn')
+    vi.spyOn(console, 'error')
+
+    generateTransforms({}, [
+      (_, c) => {
+        c.logger.info('Info message')
+        c.logger.warn('Warn message')
+        c.logger.error('Error message')
+        return undefined
+      }
+    ])
+
+    expect(console.info).toHaveBeenCalledWith('Info message')
+    expect(console.warn).toHaveBeenCalledWith('Warn message')
+    expect(console.error).toHaveBeenCalledWith('Error message')
   })
 })

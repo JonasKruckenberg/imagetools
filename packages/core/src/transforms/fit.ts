@@ -3,7 +3,7 @@ import { setMetadata } from '../lib/metadata'
 
 export const fitValues = ['cover', 'contain', 'fill', 'inside', 'outside'] as const
 
-export type FitValue = typeof fitValues[number]
+export type FitValue = (typeof fitValues)[number]
 
 export interface FitOptions {
   fit: FitValue

@@ -50,7 +50,7 @@ export default {
 
 #### Defined in
 
-[rollup/src/types.ts:40](https://github.com/JonasKruckenberg/imagetools/blob/04cb552/packages/rollup/src/types.ts#L40)
+[rollup/src/types.ts:40](https://github.com/JonasKruckenberg/imagetools/blob/6842c73/packages/rollup/src/types.ts#L40)
 
 ___
 
@@ -66,7 +66,7 @@ What paths to exclude when processing images.
 
 #### Defined in
 
-[rollup/src/types.ts:13](https://github.com/JonasKruckenberg/imagetools/blob/04cb552/packages/rollup/src/types.ts#L13)
+[rollup/src/types.ts:13](https://github.com/JonasKruckenberg/imagetools/blob/6842c73/packages/rollup/src/types.ts#L13)
 
 ___
 
@@ -97,7 +97,7 @@ This list will be merged with the builtin output formats before determining the 
 
 #### Defined in
 
-[rollup/src/types.ts:54](https://github.com/JonasKruckenberg/imagetools/blob/04cb552/packages/rollup/src/types.ts#L54)
+[rollup/src/types.ts:54](https://github.com/JonasKruckenberg/imagetools/blob/6842c73/packages/rollup/src/types.ts#L54)
 
 ___
 
@@ -128,7 +128,7 @@ This list will be merged with the builtin transforms before applying them to the
 
 #### Defined in
 
-[rollup/src/types.ts:47](https://github.com/JonasKruckenberg/imagetools/blob/04cb552/packages/rollup/src/types.ts#L47)
+[rollup/src/types.ts:47](https://github.com/JonasKruckenberg/imagetools/blob/6842c73/packages/rollup/src/types.ts#L47)
 
 ___
 
@@ -144,7 +144,7 @@ Which paths to include when processing images.
 
 #### Defined in
 
-[rollup/src/types.ts:8](https://github.com/JonasKruckenberg/imagetools/blob/04cb552/packages/rollup/src/types.ts#L8)
+[rollup/src/types.ts:8](https://github.com/JonasKruckenberg/imagetools/blob/6842c73/packages/rollup/src/types.ts#L8)
 
 ___
 
@@ -160,7 +160,7 @@ true
 
 #### Defined in
 
-[rollup/src/types.ts:72](https://github.com/JonasKruckenberg/imagetools/blob/04cb552/packages/rollup/src/types.ts#L72)
+[rollup/src/types.ts:71](https://github.com/JonasKruckenberg/imagetools/blob/6842c73/packages/rollup/src/types.ts#L71)
 
 ___
 
@@ -172,38 +172,37 @@ ___
 
 ▸ (`entries`, `outputFormats`): `Record`<`string`, `string` \| `string`[]\>[]
 
-This function builds up all possible combinations the given entries can be combined
-an returns it as an array of objects that can be given to a the transforms.
+You can use this option to override the resolution of configs based on the url parameters
+
+**`Default`**
+
+undefined
 
 ##### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `entries` | [`string`, `string`[]][] | The url parameter entries |
-| `outputFormats` | `Record`<`string`, [`OutputFormat`](../modules/vite_src.md#outputformat)\> | - |
+| Name | Type |
+| :------ | :------ |
+| `entries` | [`string`, `string`[]][] |
+| `outputFormats` | `Record`<`string`, [`OutputFormat`](../modules/vite_src.md#outputformat)\> |
 
 ##### Returns
 
 `Record`<`string`, `string` \| `string`[]\>[]
 
-An array of directive options
-
 #### Defined in
 
-[rollup/src/types.ts:60](https://github.com/JonasKruckenberg/imagetools/blob/04cb552/packages/rollup/src/types.ts#L60)
+[rollup/src/types.ts:60](https://github.com/JonasKruckenberg/imagetools/blob/6842c73/packages/rollup/src/types.ts#L60)
 
 ___
 
 ### silent
 
-• **silent**: `boolean`
+• `Optional` **silent**: `boolean`
 
-Settings this option to true disables all warnings produced by this plugin
+**`Deprecated`**
 
-**`Default`**
-
-false
+This option has no effect. Logging is done through Rollup's warning facilities.
 
 #### Defined in
 
-[rollup/src/types.ts:66](https://github.com/JonasKruckenberg/imagetools/blob/04cb552/packages/rollup/src/types.ts#L66)
+[rollup/src/types.ts:65](https://github.com/JonasKruckenberg/imagetools/blob/6842c73/packages/rollup/src/types.ts#L65)
