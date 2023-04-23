@@ -18,4 +18,4 @@
 
 #### Defined in
 
-[core/src/transforms/invert.ts:5](https://github.com/JonasKruckenberg/imagetools/blob/6842c73/packages/core/src/transforms/invert.ts#L5)
+[core/src/transforms/invert.ts:5](https://github.com/JonasKruckenberg/imagetools/blob/0016446/packages/core/src/transforms/invert.ts#L5)

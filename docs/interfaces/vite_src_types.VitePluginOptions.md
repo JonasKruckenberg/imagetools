@@ -52,7 +52,7 @@ export default defineConfig({
 
 #### Defined in
 
-[vite/src/types.ts:42](https://github.com/JonasKruckenberg/imagetools/blob/6842c73/packages/vite/src/types.ts#L42)
+[vite/src/types.ts:42](https://github.com/JonasKruckenberg/imagetools/blob/0016446/packages/vite/src/types.ts#L42)
 
 ___
 
@@ -65,11 +65,13 @@ This defaults to the public dir to mirror vites behavior.
 
 **`Default`**
 
+```ts
 'public/**/*'
+```
 
 #### Defined in
 
-[vite/src/types.ts:14](https://github.com/JonasKruckenberg/imagetools/blob/6842c73/packages/vite/src/types.ts#L14)
+[vite/src/types.ts:14](https://github.com/JonasKruckenberg/imagetools/blob/0016446/packages/vite/src/types.ts#L14)
 
 ___
 
@@ -86,7 +88,9 @@ This list will be merged with the builtin output formats before determining the 
 
 **`Default`**
 
+```ts
 []
+```
 
 ##### Parameters
 
@@ -100,38 +104,40 @@ This list will be merged with the builtin output formats before determining the 
 
 #### Defined in
 
-[vite/src/types.ts:56](https://github.com/JonasKruckenberg/imagetools/blob/6842c73/packages/vite/src/types.ts#L56)
+[vite/src/types.ts:56](https://github.com/JonasKruckenberg/imagetools/blob/0016446/packages/vite/src/types.ts#L56)
 
 ___
 
 ### extendTransforms
 
-• `Optional` **extendTransforms**: (`builtins`: [`TransformFactory`](../modules/vite_src.md#transformfactory)<`Record`<`string`, `unknown`\>\>[]) => [`TransformFactory`](../modules/vite_src.md#transformfactory)<`Record`<`string`, `unknown`\>\>[]
+• `Optional` **extendTransforms**: (`builtins`: [`TransformFactory`](../modules/vite_src.md#transformfactory)[]) => [`TransformFactory`](../modules/vite_src.md#transformfactory)[]
 
 #### Type declaration
 
-▸ (`builtins`): [`TransformFactory`](../modules/vite_src.md#transformfactory)<`Record`<`string`, `unknown`\>\>[]
+▸ (`builtins`): [`TransformFactory`](../modules/vite_src.md#transformfactory)[]
 
 You can use this option to extend the builtin list of import transforms.
 This list will be merged with the builtin transforms before applying them to the input image.
 
 **`Default`**
 
+```ts
 []
+```
 
 ##### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `builtins` | [`TransformFactory`](../modules/vite_src.md#transformfactory)<`Record`<`string`, `unknown`\>\>[] |
+| `builtins` | [`TransformFactory`](../modules/vite_src.md#transformfactory)[] |
 
 ##### Returns
 
-[`TransformFactory`](../modules/vite_src.md#transformfactory)<`Record`<`string`, `unknown`\>\>[]
+[`TransformFactory`](../modules/vite_src.md#transformfactory)[]
 
 #### Defined in
 
-[vite/src/types.ts:49](https://github.com/JonasKruckenberg/imagetools/blob/6842c73/packages/vite/src/types.ts#L49)
+[vite/src/types.ts:49](https://github.com/JonasKruckenberg/imagetools/blob/0016446/packages/vite/src/types.ts#L49)
 
 ___
 
@@ -145,7 +151,7 @@ This option used to enable the plugin during development mode. This option is no
 
 #### Defined in
 
-[vite/src/types.ts:79](https://github.com/JonasKruckenberg/imagetools/blob/6842c73/packages/vite/src/types.ts#L79)
+[vite/src/types.ts:79](https://github.com/JonasKruckenberg/imagetools/blob/0016446/packages/vite/src/types.ts#L79)
 
 ___
 
@@ -157,11 +163,13 @@ Which paths to include when processing images.
 
 **`Default`**
 
+```ts
 '**/*.{heic,heif,avif,jpeg,jpg,png,tiff,webp,gif}?*'
+```
 
 #### Defined in
 
-[vite/src/types.ts:8](https://github.com/JonasKruckenberg/imagetools/blob/6842c73/packages/vite/src/types.ts#L8)
+[vite/src/types.ts:8](https://github.com/JonasKruckenberg/imagetools/blob/0016446/packages/vite/src/types.ts#L8)
 
 ___
 
@@ -173,11 +181,13 @@ Wether to remove potentially private metadata from the image, such as exif tags 
 
 **`Default`**
 
+```ts
 true
+```
 
 #### Defined in
 
-[vite/src/types.ts:73](https://github.com/JonasKruckenberg/imagetools/blob/6842c73/packages/vite/src/types.ts#L73)
+[vite/src/types.ts:73](https://github.com/JonasKruckenberg/imagetools/blob/0016446/packages/vite/src/types.ts#L73)
 
 ___
 
@@ -193,7 +203,9 @@ You can use this option to override the resolution of configs based on the url p
 
 **`Default`**
 
+```ts
 undefined
+```
 
 ##### Parameters
 
@@ -208,7 +220,7 @@ undefined
 
 #### Defined in
 
-[vite/src/types.ts:62](https://github.com/JonasKruckenberg/imagetools/blob/6842c73/packages/vite/src/types.ts#L62)
+[vite/src/types.ts:62](https://github.com/JonasKruckenberg/imagetools/blob/0016446/packages/vite/src/types.ts#L62)
 
 ___
 
@@ -222,4 +234,4 @@ This option has no effect. Logging is done through Vite's logger.
 
 #### Defined in
 
-[vite/src/types.ts:67](https://github.com/JonasKruckenberg/imagetools/blob/6842c73/packages/vite/src/types.ts#L67)
+[vite/src/types.ts:67](https://github.com/JonasKruckenberg/imagetools/blob/0016446/packages/vite/src/types.ts#L67)
