@@ -1,6 +1,7 @@
 {
   "entryPoints": ["packages/core/src/index.ts", "packages/vite/src/index.ts", "packages/vite/src/types.ts"],
   "out": "docs",
+  "plugin": ["typedoc-plugin-markdown"],
   "readme": "docs/README.md",
   "cleanOutputDir": false
 }
