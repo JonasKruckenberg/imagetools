@@ -141,20 +141,17 @@ import Image from 'exmaple.jpg?flop=true'
 ### Format
 
 • **Keyword**: `format`<br> • **Type**: _heic_\| _heif_ \| _avif_ \| _jpeg_ \| _jpg_ \| _png_ \| _tiff_ \| _webp_ \|
-_gif_<br> • **Shorthands**: `heic`\| `heif` \| `avif` \| `jpg` \|`jpeg` \| `png` \| `tiff` \| `webp` \| (`gif`)<br>
+_gif_<br>
 
 Convert the image into the given format.
 
 > NOTE: Converting to the `gif` format requires libvips compiled with support for ImageMagick or GraphicsMagick See
 > [The sharp docs](https://sharp.pixelplumbing.com/install#custom-libvips) for details.
 
-> You cannot use multiple shorthands, use `format` instead.
-
 • **Example**:
 
 ```js
 import Image from 'example.jpg?format=webp'
-import Image from 'example.jpg?png'
 import Images from 'example.jpg?format=webp;avif;heic'
 ```
 
@@ -286,7 +283,7 @@ The argument must be a number between 0 and 100.
 
 ```js
 import Image from 'example.jpg?format=webp&quality=100'
-import Images from 'example.jpg?avif&quality=10;50;75'
+import Images from 'example.jpg?format=avif&quality=10;50;75'
 ```
 
 ---
@@ -421,7 +418,7 @@ Returns all information collected about the image as a JavaScript object. The di
 
 ```js
 import Image from 'example.jpg?w=500;900;1200&avif&metadata'
-import { height, format } from 'example.jpg?w=700&gif&as=meta:height;format'
+import { height, format } from 'example.jpg?w=700&format=gif&as=meta:height;format'
 ```
 
 ### Picture
@@ -451,8 +448,8 @@ Returns information about the image necessary to render a `source` tag as a Java
 • **Example**:
 
 ```js
-import avif from 'example.jpg?w=500;900;1200&avif&as=source'
-import webp from 'example.jpg?w=500;900;1200&webp&as=source'
+import avif from 'example.jpg?w=500;900;1200&format=avif&as=source'
+import webp from 'example.jpg?w=500;900;1200&format=webp&as=source'
 import fallback from 'example.jpg?w=700'
 
 const html = `<picture>
@@ -471,8 +468,8 @@ Returns a srcset string of the generated images to be used in a `<picture>` tag.
 • **Example**:
 
 ```js
-import avif from 'example.jpg?w=500;900;1200&avif&srcset'
-import webp from 'example.jpg?w=500;900;1200&webp&srcset'
+import avif from 'example.jpg?w=500;900;1200&format=avif&as=srcset'
+import webp from 'example.jpg?w=500;900;1200&format=webp&as=srcset'
 import fallback from 'example.jpg?w=700'
 
 const html = `<picture>

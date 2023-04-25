@@ -8,8 +8,8 @@ The example creates a simple `picture` element, that has 2 different dynamically
 image format and one in `webp` for all browsers that don't support avif (like safari).
 
 ```ts
-import srcsetAvif from '../example.jpg?w=500;700;900;1200&avif&srcset'
-import srcsetWebp from '../example.jpg?w=500;700;900;1200&webp&srcset'
+import srcsetAvif from '../example.jpg?w=500;700;900;1200&format=avif&as=srcset'
+import srcsetWebp from '../example.jpg?w=500;700;900;1200&format=webp&as=srcset'
 ```
 
 The last import above for example instructs imagetools to do the following:

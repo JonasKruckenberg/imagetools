@@ -50,7 +50,7 @@ export default defineConfig({
 ```
 
 ```js
-import Image from 'example.jpg?w=400&h=300&webp'
+import Image from 'example.jpg?w=400&h=300&format=webp'
 ```
 
 ## Options

@@ -12,7 +12,7 @@ export default defineConfig({
 Now you can transform image by importing them like this:
 
 ```js
-import Image from 'example.jpg?w=400&h=300&webp'
+import Image from 'example.jpg?w=400&h=300&format=webp'
 ```
 
 ## Basic usage
@@ -46,28 +46,13 @@ multiple directives with multiple arguments:
 
 This will generate 9 different images, one for each combination of width and format.
 
-## Shorthands
-
-As you've seen, having a lot of directives on a single image makes the import statement very hard to read.<br> This is
-why the most commonly used transforms have shorthands that you can use instead. So writing:
-
-```
-<url>?format=webp
-```
-
-Is equivalent to writing:
-
-```
-<url>?webp
-```
-
 ## Metadata
 
 Normally you get a single url pointing to the transformed image, or an array of those. There are situations however, where you'd like to have more information about the image, e.g. the images width and height or format.
 This is why the special `metadata` (`meta`) directive exists. Instead of returning the url it returns an object holding the image metadata:
 
 ```js
-import { width, height, format, src } from 'example.jpg?width=300&webp&metadata'
+import { width, height, format, src } from 'example.jpg?width=300&format=webp&as=metadata'
 
 width // is 300
 height // is automatically generated
