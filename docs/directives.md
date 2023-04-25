@@ -421,7 +421,7 @@ Returns all information collected about the image as a JavaScript object. The di
 
 ```js
 import Image from 'example.jpg?w=500;900;1200&avif&metadata'
-import { height, format } from 'example.jpg?w=700&gif&meta=height;format'
+import { height, format } from 'example.jpg?w=700&gif&as=meta:height;format'
 ```
 
 ### Picture
@@ -433,7 +433,7 @@ Returns information about the image necessary to render a `picture` tag as a Jav
 • **Example**:
 
 ```js
-import image from 'example.jpg?w=500;900;1200&format=avif;webp;jpg&picture'
+import image from 'example.jpg?w=500;900;1200&format=avif;webp;jpg&as=picture'
 
 let html = '<picture>';
 for (const [format, images] of Object.entries(image.sources)) {
@@ -451,8 +451,8 @@ Returns information about the image necessary to render a `source` tag as a Java
 • **Example**:
 
 ```js
-import avif from 'example.jpg?w=500;900;1200&avif&source'
-import webp from 'example.jpg?w=500;900;1200&webp&source'
+import avif from 'example.jpg?w=500;900;1200&avif&as=source'
+import webp from 'example.jpg?w=500;900;1200&webp&as=source'
 import fallback from 'example.jpg?w=700'
 
 const html = `<picture>

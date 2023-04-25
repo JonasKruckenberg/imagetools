@@ -23,7 +23,7 @@ export function resolveConfigs(
     .filter(([k]) => !(k in outputFormats))
     .map(([key, values]) => values.map<[[string, string]]>((v) => [[key, v]]))
 
-  // do a cartesian product on all entries to get all combainations we need to produce
+  // do a cartesian product on all entries to get all combinations we need to produce
   const combinations = singleArgumentEntries
     // .filter(([key]) => !(key[0][0] in outputFormats))
     .reduce((prev, cur) => (prev.length ? cartesian(prev, cur) : cur), [])

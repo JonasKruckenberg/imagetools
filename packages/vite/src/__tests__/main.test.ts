@@ -309,7 +309,7 @@ describe('vite-imagetools', () => {
           build: { write: false },
           plugins: [
             testEntry(`
-                            import Image from "./with-metadata.png?metadata"
+                            import Image from "./with-metadata.png?as=metadata"
                             window.__IMAGE__ = Image
                         `),
             imagetools({
@@ -332,7 +332,7 @@ describe('vite-imagetools', () => {
           build: { write: false },
           plugins: [
             testEntry(`
-                            import Image from "./with-metadata.png?metadata"
+                            import Image from "./with-metadata.png?as=metadata"
                             window.__IMAGE__ = Image
                         `),
             imagetools({
@@ -357,7 +357,7 @@ describe('vite-imagetools', () => {
           build: { write: false },
           plugins: [
             testEntry(`
-                            import Image from "./with-metadata.png?metadata"
+                            import Image from "./with-metadata.png?as=metadata"
                             window.__IMAGE__ = Image
                         `),
             imagetools({
@@ -432,7 +432,7 @@ describe('vite-imagetools', () => {
             imagetools({
               defaultDirectives: (id) => {
                 if (id.searchParams.has('mypreset')) {
-                  return new URLSearchParams('metadata')
+                  return new URLSearchParams('as=metadata')
                 }
                 return new URLSearchParams()
               }
@@ -556,7 +556,7 @@ describe('vite-imagetools', () => {
       build: { write: false },
       plugins: [
         testEntry(`
-                    import Image from "./pexels-allec-gomes-5195763.png?metadata"
+                    import Image from "./pexels-allec-gomes-5195763.png?as=metadata"
                     window.__IMAGE__ = Image
                 `),
         imagetools()
@@ -587,7 +587,7 @@ describe('vite-imagetools', () => {
       build: { write: false },
       plugins: [
         testEntry(`
-                    import { width, height, format } from "./pexels-allec-gomes-5195763.png?metadata"
+                    import { width, height, format } from "./pexels-allec-gomes-5195763.png?as=metadata"
                     window.__IMAGE__ = { width, height, format }
                 `),
         imagetools()
@@ -610,7 +610,7 @@ describe('vite-imagetools', () => {
       build: { write: false },
       plugins: [
         testEntry(`
-                    import { width, format } from "./pexels-allec-gomes-5195763.png?metadata=width;format"
+                    import { width, format } from "./pexels-allec-gomes-5195763.png?as=metadata:width;format"
                     window.__IMAGE__ = { width, format }
                 `),
         imagetools()
@@ -633,7 +633,7 @@ describe('vite-imagetools', () => {
       build: { write: false },
       plugins: [
         testEntry(`
-                        import Image from "./with-metadata.png?srcset"
+                        import Image from "./with-metadata.png?as=srcset"
                         window.__IMAGE__ = Image
                     `),
         imagetools()
@@ -654,7 +654,7 @@ describe('vite-imagetools', () => {
       build: { write: false },
       plugins: [
         testEntry(`
-          import Image from "./with-metadata.png?run"
+          import Image from "./with-metadata.png?as=run"
           window.__IMAGE__ = Image
         `),
         imagetools({
