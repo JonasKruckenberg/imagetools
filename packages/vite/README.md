@@ -53,6 +53,8 @@ export default defineConfig({
 import Image from 'example.jpg?w=400&h=300&webp'
 ```
 
+You can also import a directory of images using [Vite's `import.meta.glob` with its `query` option](https://vitejs.dev/guide/features.html#custom-queries).
+
 ## Options
 
 ### defaultDirectives
