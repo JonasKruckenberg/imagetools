@@ -6,6 +6,17 @@ import srcsetWebp from '../example.jpg?w=500;700;900;1200&webp&srcset'
 // create a small placeholder and import its metadata
 import { src as placeholder, width, height } from '../example.jpg?width=300&metadata'
 
+const sponsors = import.meta.glob('./sponsors/*', {
+  query: { format: 'webp', width: 100 }
+})
+
+let sponsorHtml = ''
+for (let sponsor of Object.values(sponsors)) {
+  const import_statment = sponsor()
+  const url = (await import_statment).default
+  sponsorHtml += `<img src="${url}" /><br/>`
+}
+
 document.querySelector('#app').innerHTML = `
   <h1>Hello Imagetools!</h1>
   <a href="https://github.com/JonasKruckenberg/imagetools/tree/main/docs" target="_blank">Documentation</a>
@@ -20,4 +31,10 @@ document.querySelector('#app').innerHTML = `
         height="${height}"
         alt="Women Lying Near to a Multicolored Glass Window Close-up Photography"/>
   </picture>
+
+  <div style="width:300px; margin: 50px auto">
+    Here are a few sponsors of Vite:<br/>
+    <br/>
+    ${sponsorHtml}
+  </div>
 `
