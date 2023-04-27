@@ -1,4 +1,4 @@
-import { urlFormat, metadataFormat, pictureFormat, sourceFormat, srcsetFormat } from '../output-formats'
+import { urlFormat, metadataFormat, imgFormat, pictureFormat, sourceFormat, srcsetFormat } from '../output-formats'
 import { describe, test, expect } from 'vitest'
 
 describe('url format', () => {
@@ -47,6 +47,35 @@ describe('metadata format', () => {
   })
 })
 
+describe('image format', () => {
+  test('single image', () => {
+    const output = imgFormat()([{ src: '/foo.webp', format: 'webp', width: 100, height: 50 }])
+
+    expect(output).toStrictEqual({
+      src: '/foo.webp',
+      w: 100,
+      h: 50
+    })
+  })
+
+  test('multiple image sizes', () => {
+    const output = imgFormat()([
+      { src: '/foo-100.webp', format: 'webp', width: 100, height: 50 },
+      { src: '/foo-50.webp', format: 'webp', width: 50, height: 25 }
+    ])
+
+    expect(output).toStrictEqual({
+      srcset: [
+        { src: '/foo-100.webp', w: 100 },
+        { src: '/foo-50.webp', w: 50 }
+      ],
+      src: '/foo-100.webp',
+      w: 100,
+      h: 50
+    })
+  })
+})
+
 describe('picture format', () => {
   test('multiple image formats', () => {
     const output = pictureFormat()([
@@ -60,7 +89,7 @@ describe('picture format', () => {
         avif: [{ src: '/foo.avif', w: 100 }],
         webp: [{ src: '/foo.webp', w: 100 }]
       },
-      fallback: {
+      img: {
         src: '/foo.jpg',
         w: 100,
         h: 50
@@ -93,7 +122,7 @@ describe('picture format', () => {
           { src: '/foo-50.jpg', w: 50 }
         ]
       },
-      fallback: {
+      img: {
         src: '/foo-100.jpg',
         w: 100,
         h: 50
