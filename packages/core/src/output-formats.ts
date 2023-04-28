@@ -51,12 +51,7 @@ export const imgFormat: OutputFormat = () => (metadatas) => {
   if (metadatas.length >= 2) {
     result.srcset = []
     for (let i = 0; i < metadatas.length; i++) {
-      const m = metadatas[i]
-      // we don't need to create a srcset if there is only a single image
-      if (metadatas.length < 2) {
-        continue
-      }
-      result.srcset.push(metadataToSource(m))
+      result.srcset.push(metadataToSource(metadatas[i]))
     }
   }
 
