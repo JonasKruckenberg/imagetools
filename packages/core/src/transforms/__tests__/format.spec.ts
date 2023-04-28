@@ -29,30 +29,8 @@ describe('format', () => {
     expect(res).toBeUndefined()
   })
 
-  describe('shorthands', () => {
-    test('invalid', () => {
-      const formats = ['avif', 'jpg', 'jpeg', 'png', 'heif', 'heic', 'webp', 'tiff']
-
-      for (const f of formats) {
-        const res = format({ [f]: 'invalid' }, dirCtx)
-
-        expect(res).toBeUndefined()
-      }
-    })
-
-    test('valid', () => {
-      const formats = ['avif', 'jpg', 'jpeg', 'png', 'heif', 'heic', 'webp', 'tiff']
-
-      for (const f of formats) {
-        const res = format({ [f]: '' }, dirCtx)
-
-        expect(res).toBeInstanceOf(Function)
-      }
-    })
-  })
-
   describe('arguments', () => {
-    test('inavlid', () => {
+    test('invalid', () => {
       //@ts-expect-error invalid args
       const res = format({ format: 'invalid' }, dirCtx)
 

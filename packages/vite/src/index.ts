@@ -106,14 +106,11 @@ export function imagetools(userOptions: Partial<VitePluginOptions> = {}): Plugin
       }
 
       let outputFormat = urlFormat()
-
+      const asParam = directives.get('as')?.split(':')
+      const as = asParam ? asParam[0] : undefined
       for (const [key, format] of Object.entries(outputFormats)) {
-        if (directives.has(key)) {
-          const params = directives
-            .get(key)
-            ?.split(';')
-            .filter((v: string) => !!v)
-          outputFormat = format(params?.length ? params : undefined)
+        if (as === key) {
+          outputFormat = format(asParam && asParam[1] ? asParam[1].split(';') : undefined)
           break
         }
       }

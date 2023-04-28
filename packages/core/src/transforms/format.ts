@@ -17,8 +17,6 @@ export const format: TransformFactory<FormatOptions> = (config) => {
 
   if (config.format && formatValues.includes(config.format)) {
     format = config.format
-  } else {
-    format = Object.keys(config).find((k: any): k is FormatValue => formatValues.includes(k) && config[k] === '')
   }
   if (!format) return
 

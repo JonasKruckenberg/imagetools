@@ -6,7 +6,8 @@ export function extractEntries(searchParams: URLSearchParams) {
   const entries: Array<[string, string[]]> = []
 
   for (const [key, value] of searchParams) {
-    entries.push([key, value.split(';')])
+    const values = value.includes(':') ? [value] : value.split(';')
+    entries.push([key, values])
   }
 
   return entries

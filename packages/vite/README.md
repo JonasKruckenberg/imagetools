@@ -50,7 +50,7 @@ export default defineConfig({
 ```
 
 ```js
-import Image from 'example.jpg?w=400&h=300&webp'
+import Image from 'example.jpg?w=400&h=300&format=webp'
 ```
 
 You can also import a directory of images using
@@ -166,12 +166,12 @@ transforms before applying them to the input image.
 
 ### resolveConfigs
 
-• `Optional` **resolveConfigs**: (`entries`: [`string`, `string`[]][], `outputFormats`: `Record`<`string`,
-[`OutputFormat`](../modules/core_src.md#outputformat)\>) => `Record`<`string`, `string` \| `string`[]\>[]
+• `Optional` **resolveConfigs**: (`entries`: `[string, string[]][]`, `outputFormats`: `Record`<`string`,
+[`OutputFormat`](../modules/core_src.md#outputformat)\>) => `Record<string, string | string[]>[]`
 
 #### Type declaration
 
-▸ (`entries`, `outputFormats`): `Record`<`string`, `string` \| `string`[]\>[]
+▸ (`entries`, `outputFormats`): `Record<string, string | string[]>[]`
 
 This function builds up all possible combinations the given entries can be combined an returns it as an array of objects
 that can be given to a the transforms.
@@ -180,12 +180,12 @@ that can be given to a the transforms.
 
 | Name            | Type                                                                       | Description               |
 | :-------------- | :------------------------------------------------------------------------- | :------------------------ |
-| `entries`       | [`string`, `string`[]][]                                                   | The url parameter entries |
+| `entries`       | `[string, string[]][]`                                                     | The url parameter entries |
 | `outputFormats` | `Record`<`string`, [`OutputFormat`](../modules/core_src.md#outputformat)\> | -                         |
 
 ##### Returns
 
-`Record`<`string`, `string` \| `string`[]\>[]
+`Record<string, string | string[]>[]`
 
 An array of directive options
 
