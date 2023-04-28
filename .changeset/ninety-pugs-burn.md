@@ -3,5 +3,4 @@
 'vite-imagetools': major
 ---
 
-breaking: simplify ability to provide defaults. Image format is now specified with `format=` and output format is now
-specified with `as=`
+breaking: simplify ability to provide defaults. Output format is now specified with `as=`
