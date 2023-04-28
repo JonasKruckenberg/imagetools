@@ -362,7 +362,7 @@ describe('vite-imagetools', () => {
                         `),
             imagetools({
               resolveConfigs() {
-                return [{ width: '300' }, { width: '500' }]
+                return [{ w: '300' }, { w: '500' }]
               }
             })
           ]
@@ -385,7 +385,7 @@ describe('vite-imagetools', () => {
                             window.__IMAGE__ = Image
                         `),
             imagetools({
-              defaultDirectives: new URLSearchParams('width=300;500')
+              defaultDirectives: new URLSearchParams('w=300;500')
             })
           ]
         })) as RollupOutput | RollupOutput[]
@@ -407,7 +407,7 @@ describe('vite-imagetools', () => {
             imagetools({
               defaultDirectives: (id) => {
                 if (id.searchParams.has('mypreset')) {
-                  return new URLSearchParams('width=300;500')
+                  return new URLSearchParams('w=300;500')
                 }
                 return new URLSearchParams()
               }

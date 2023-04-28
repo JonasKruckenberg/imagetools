@@ -22,7 +22,7 @@ type TransformFactory<A = {}> = (
 Say you're using the following import statement very often
 
 ```
-<url>?width=<width>&format=webp
+<url>?w=<width>&format=webp
 ```
 
 Instead of writing out the whole thing everytime you could write a custom directive that handles that is one go:
@@ -32,7 +32,7 @@ import { resize, format } from 'imagetools'
 
 function customDirective(config, ctx) {
   // we would like to reuse the existing directives as much as possible
-  const resizeTransform = resize({ width: config.customKeyword }, ctx)
+  const resizeTransform = resize({ w: config.customKeyword }, ctx)
   const formatTransform = format({ format: 'webp' }, ctx)
 
   if (!resizeTransform) return

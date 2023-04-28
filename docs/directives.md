@@ -290,39 +290,37 @@ import Images from 'example.jpg?format=avif&quality=10;50;75'
 
 ### Width
 
-• **Keyword**: `width`\| `w`<br> • **Type**: _integer_<br>
+• **Keyword**: `w`<br> • **Type**: _integer_<br>
 
 Resizes the image to be the specified amount of pixels wide. If not given the height will be scaled accordingly.
 
 • **Example**:
 
 ```js
-import Image from 'example.jpg?width=200'
 import Image from 'example.jpg?w=200'
-import Images from 'example.jpg?width=200;400;700'
+import Images from 'example.jpg?w=200;400;700'
 ```
 
 ---
 
 ### Height
 
-• **Keyword**: `height`\| `h`<br> • **Type**: _integer_<br>
+• **Keyword**: `h`<br> • **Type**: _integer_<br>
 
 Resizes the image to be the specified amount of pixels tall. If not given the width will be scaled accordingly.
 
 • **Example**:
 
 ```js
-import Image from 'example.jpg?height=200'
 import Image from 'example.jpg?h=200'
-import Images from 'example.jpg?height=200;400;700'
+import Images from 'example.jpg?h=200;400;700'
 ```
 
 ---
 
 ### Aspect
 
-• **Keyword**: `aspect` \| `ar`<br> • **Type**: _string_ \| _number_<br>
+• **Keyword**: `aspect`<br> • **Type**: _string_ \| _number_<br>
 
 Resizes the image to be the specified aspect ratio. Aspect ratio can be defined with a string in the form `16:9` or a
 positive number representing the width divided by height (e.g., `1.5` for a `3:2` aspect ratio) If height and width are
@@ -334,8 +332,8 @@ aspect ratio.
 
 ```js
 import Image from 'example.jpg?aspect=16:9'
-import Image from 'example.jpg?aspect=16:9&height=200'
-import Image from 'example.jpg?aspect=16:9&width=200'
+import Image from 'example.jpg?aspect=16:9&h=200'
+import Image from 'example.jpg?aspect=16:9&w=200'
 import Images from 'example.jpg?aspect=16:9&h=200;400;700'
 ```
 
@@ -350,7 +348,7 @@ Prevents the image from being resized if the specified or calculated width or he
 • **Example**:
 
 ```js
-import Image from 'example.jpg?width=200;400&withoutEnlargement'
+import Image from 'example.jpg?w=200;400&withoutEnlargement'
 import Image from 'example.jpg?aspect=16:9&withoutEnlargement'
 import Images from 'example.jpg?aspect=16:9&h=200;400;700&withoutEnlargement'
 ```
