@@ -12,7 +12,7 @@ export interface ResizeOptions {
   h: string
   aspect: string
   ar: string
-  withoutEnlargement: '' | 'true'
+  allowUpscale: '' | 'true'
 }
 
 /**
@@ -44,9 +44,9 @@ export const resize: TransformFactory<ResizeOptions> = (config, context) => {
   const width = parseInt(config.width || config.w || '')
   const height = parseInt(config.height || config.h || '')
   const aspect = parseAspect(config.aspect || config.ar || '')
-  const withoutEnlargement = config.withoutEnlargement === '' || config.withoutEnlargement === 'true'
+  const allowUpscale = config.allowUpscale === '' || config.allowUpscale === 'true'
 
-  if ((!width && !height && !aspect) || (config.withoutEnlargement && !withoutEnlargement)) return
+  if (!width && !height && !aspect) return
 
   return function resizeTransform(image) {
     // calculate finalWidth & finalHeight
@@ -76,25 +76,25 @@ export const resize: TransformFactory<ResizeOptions> = (config, context) => {
       finalWidth = height * (aspect || originalAspect)
     }
 
-    if (withoutEnlargement && (finalHeight > originalHeight || finalWidth > originalWidth)) {
+    if (!allowUpscale && (finalHeight > originalHeight || finalWidth > originalWidth)) {
       finalHeight = originalHeight
       finalWidth = originalWidth
       finalAspect = originalAspect
 
       context.logger.info(
-        'withoutEnlargement enabled. Image width, height and aspect ratio reverted to original values'
+        'allowUpscale not enabled. Image width, height and aspect ratio reverted to original values'
       )
     }
 
     setMetadata(image, 'height', finalHeight)
     setMetadata(image, 'width', finalWidth)
     setMetadata(image, 'aspect', finalAspect)
-    setMetadata(image, 'withoutEnlargement', withoutEnlargement)
+    setMetadata(image, 'allowUpscale', allowUpscale)
 
     return image.resize({
       width: Math.round(finalWidth) || undefined,
       height: Math.round(finalHeight) || undefined,
-      withoutEnlargement: withoutEnlargement,
+      withoutEnlargement: !allowUpscale,
       fit: getFit(config, image),
       position: getPosition(config, image),
       kernel: getKernel(config, image),
