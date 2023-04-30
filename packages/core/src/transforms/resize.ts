@@ -13,7 +13,6 @@ export interface ResizeOptions {
   aspect: string
   ar: string
   withoutEnlargement: '' | 'true'
-  withoutReduction: '' | 'true'
 }
 
 /**
@@ -46,14 +45,8 @@ export const resize: TransformFactory<ResizeOptions> = (config, context) => {
   const height = parseInt(config.height || config.h || '')
   const aspect = parseAspect(config.aspect || config.ar || '')
   const withoutEnlargement = config.withoutEnlargement === '' || config.withoutEnlargement === 'true'
-  const withoutReduction = config.withoutReduction === '' || config.withoutReduction === 'true'
 
-  if (
-    (!width && !height && !aspect) ||
-    (config.withoutEnlargement && !withoutEnlargement) ||
-    (config.withoutReduction && !withoutReduction)
-  )
-    return
+  if ((!width && !height && !aspect) || (config.withoutEnlargement && !withoutEnlargement)) return
 
   return function resizeTransform(image) {
     // calculate finalWidth & finalHeight
@@ -83,16 +76,13 @@ export const resize: TransformFactory<ResizeOptions> = (config, context) => {
       finalWidth = height * (aspect || originalAspect)
     }
 
-    if (
-      (withoutEnlargement && (finalHeight > originalHeight || finalWidth > originalWidth)) ||
-      (withoutReduction && (finalHeight < originalHeight || finalWidth < originalWidth))
-    ) {
+    if (withoutEnlargement && (finalHeight > originalHeight || finalWidth > originalWidth)) {
       finalHeight = originalHeight
       finalWidth = originalWidth
       finalAspect = originalAspect
 
       context.logger.info(
-        'withoutEnlargement or withoutReduction enabled. Image width, height and aspect ratio reverted to original values'
+        'withoutEnlargement enabled. Image width, height and aspect ratio reverted to original values'
       )
     }
 
@@ -100,13 +90,11 @@ export const resize: TransformFactory<ResizeOptions> = (config, context) => {
     setMetadata(image, 'width', finalWidth)
     setMetadata(image, 'aspect', finalAspect)
     setMetadata(image, 'withoutEnlargement', withoutEnlargement)
-    setMetadata(image, 'withoutReduction', withoutReduction)
 
     return image.resize({
       width: Math.round(finalWidth) || undefined,
       height: Math.round(finalHeight) || undefined,
       withoutEnlargement: withoutEnlargement,
-      withoutReduction: withoutReduction,
       fit: getFit(config, image),
       position: getPosition(config, image),
       kernel: getKernel(config, image),
