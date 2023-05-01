@@ -81,9 +81,7 @@ export const resize: TransformFactory<ResizeOptions> = (config, context) => {
       finalWidth = originalWidth
       finalAspect = originalAspect
 
-      context.logger.info(
-        'allowUpscale not enabled. Image width, height and aspect ratio reverted to original values'
-      )
+      context.logger.info('allowUpscale not enabled. Image width, height and aspect ratio reverted to original values')
     }
 
     setMetadata(image, 'height', finalHeight)
