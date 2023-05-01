@@ -12,6 +12,7 @@ import {
   builtinOutputFormats,
   urlFormat,
   extractEntries,
+  ImageConfig,
   Logger
 } from 'imagetools-core'
 import { createFilter, dataToEsm } from '@rollup/pluginutils'
@@ -57,9 +58,15 @@ export function imagetools(userOptions: Partial<VitePluginOptions> = {}): Plugin
       let directives = srcURL.searchParams
 
       if (typeof pluginOptions.defaultDirectives === 'function') {
-        directives = new URLSearchParams([...pluginOptions.defaultDirectives(srcURL), ...srcURL.searchParams])
+        directives = new URLSearchParams({
+          ...Object.fromEntries(pluginOptions.defaultDirectives(srcURL)),
+          ...Object.fromEntries(srcURL.searchParams)
+        })
       } else if (pluginOptions.defaultDirectives) {
-        directives = new URLSearchParams([...pluginOptions.defaultDirectives, ...srcURL.searchParams])
+        directives = new URLSearchParams({
+          ...Object.fromEntries(pluginOptions.defaultDirectives),
+          ...Object.fromEntries(srcURL.searchParams)
+        })
       }
 
       if (!directives.toString()) return null
@@ -70,7 +77,7 @@ export function imagetools(userOptions: Partial<VitePluginOptions> = {}): Plugin
 
       const img = loadImage(decodeURIComponent(srcURL.pathname))
 
-      const outputMetadatas = []
+      const outputMetadatas: Array<ImageConfig> = []
 
       const logger: Logger = {
         info: (msg) => viteConfig.logger.info(msg),
