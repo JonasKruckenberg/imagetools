@@ -86,12 +86,8 @@ export function imagetools(userOptions: Partial<VitePluginOptions> = {}): Plugin
       }
 
       for (const config of imageConfigs) {
-        const id = generateImageID(srcURL, config)
-
         const { transforms } = generateTransforms(config, transformFactories, logger)
         const { image, metadata } = await applyTransforms(transforms, img.clone(), pluginOptions.removeMetadata)
-
-        generatedImages.set(id, image)
 
         if (!this.meta.watchMode) {
           const fileName = basename(srcURL.pathname, extname(srcURL.pathname)) + `.${metadata.format}`
@@ -104,6 +100,8 @@ export function imagetools(userOptions: Partial<VitePluginOptions> = {}): Plugin
 
           metadata.src = `__VITE_ASSET__${fileHandle}__`
         } else {
+          const id = generateImageID(srcURL, config)
+          generatedImages.set(id, image)
           metadata.src = basePath + id
         }
 
