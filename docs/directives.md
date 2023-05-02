@@ -86,7 +86,7 @@ import Image from 'example.jpg?blur=100'
 
 ### Fit
 
-• **Keyword**: `fit`<br> • **Type**: _cover_\| _contain_ \| _fill_ \| _inside_ \| _outside_ <br>
+• **Keyword**: `fit`<br> • **Type**: _cover_ \| _contain_ \| _fill_ \| _inside_ \| _outside_ <br>
 
 When both a `width` and `height` are provided, this directive can be used to specify the method by which the image
 should **fit**.
