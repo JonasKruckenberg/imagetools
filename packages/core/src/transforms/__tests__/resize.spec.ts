@@ -23,12 +23,6 @@ afterAll(() => {
 })
 
 describe('width', () => {
-  test('keyword "width"', () => {
-    const res = resize({ width: '300' }, dirCtx)
-
-    expect(res).toBeInstanceOf(Function)
-  })
-
   test('keyword "w"', () => {
     const res = resize({ w: '300' }, dirCtx)
 
@@ -43,25 +37,25 @@ describe('width', () => {
 
   describe('arguments', () => {
     test('invalid', () => {
-      const res = resize({ width: 'invalid' }, dirCtx)
+      const res = resize({ w: 'invalid' }, dirCtx)
 
       expect(res).toBeUndefined()
     })
 
     test('empty', () => {
-      const res = resize({ width: '' }, dirCtx)
+      const res = resize({ w: '' }, dirCtx)
 
       expect(res).toBeUndefined()
     })
 
     test('integer', () => {
-      const res = resize({ width: '300' }, dirCtx)
+      const res = resize({ w: '300' }, dirCtx)
 
       expect(res).toBeInstanceOf(Function)
     })
 
     test('rounds float to int', () => {
-      const res = resize({ height: '300.75' }, dirCtx)
+      const res = resize({ h: '300.75' }, dirCtx)
 
       expect(res).toBeInstanceOf(Function)
     })
@@ -75,14 +69,14 @@ describe('width', () => {
 
     test('100', async () => {
       //@ts-expect-error we know this is safe
-      const { image } = await applyTransforms([resize({ width: '100' }, dirCtx)], img)
+      const { image } = await applyTransforms([resize({ w: '100' }, dirCtx)], img)
 
       expect(await image.toBuffer()).toMatchImageSnapshot()
     })
 
     test('400', async () => {
       //@ts-expect-error we know this is safe
-      const { image } = await applyTransforms([resize({ width: '400' }, dirCtx)], img)
+      const { image } = await applyTransforms([resize({ w: '400' }, dirCtx)], img)
 
       expect(await image.toBuffer()).toMatchImageSnapshot()
     })
@@ -90,12 +84,6 @@ describe('width', () => {
 })
 
 describe('height', () => {
-  test('keyword "height"', () => {
-    const res = resize({ height: '300' }, dirCtx)
-
-    expect(res).toBeInstanceOf(Function)
-  })
-
   test('keyword "h"', () => {
     const res = resize({ h: '300' }, dirCtx)
 
@@ -110,25 +98,25 @@ describe('height', () => {
 
   describe('arguments', () => {
     test('invalid', () => {
-      const res = resize({ height: 'invalid' }, dirCtx)
+      const res = resize({ h: 'invalid' }, dirCtx)
 
       expect(res).toBeUndefined()
     })
 
     test('empty', () => {
-      const res = resize({ height: '' }, dirCtx)
+      const res = resize({ h: '' }, dirCtx)
 
       expect(res).toBeUndefined()
     })
 
     test('integer', () => {
-      const res = resize({ height: '300' }, dirCtx)
+      const res = resize({ h: '300' }, dirCtx)
 
       expect(res).toBeInstanceOf(Function)
     })
 
     test('rounds float to int', () => {
-      const res = resize({ height: '300.75' }, dirCtx)
+      const res = resize({ h: '300.75' }, dirCtx)
 
       expect(res).toBeInstanceOf(Function)
     })
@@ -142,14 +130,14 @@ describe('height', () => {
 
     test('100', async () => {
       //@ts-expect-error we know this is safe
-      const { image } = await applyTransforms([resize({ height: '100' }, dirCtx)], img)
+      const { image } = await applyTransforms([resize({ h: '100' }, dirCtx)], img)
 
       expect(await image.toBuffer()).toMatchImageSnapshot()
     })
 
     test('400', async () => {
       //@ts-expect-error we know this is safe
-      const { image } = await applyTransforms([resize({ height: '400' }, dirCtx)], img)
+      const { image } = await applyTransforms([resize({ h: '400' }, dirCtx)], img)
 
       expect(await image.toBuffer()).toMatchImageSnapshot()
     })
@@ -157,26 +145,8 @@ describe('height', () => {
 })
 
 describe('width & height', () => {
-  test('keywords "width" & "height"', () => {
-    const res = resize({ width: '300', height: '300' }, dirCtx)
-
-    expect(res).toBeInstanceOf(Function)
-  })
-
   test('keywords "w" & "h"', () => {
     const res = resize({ w: '300', h: '300' }, dirCtx)
-
-    expect(res).toBeInstanceOf(Function)
-  })
-
-  test('keywords "width" & "h"', () => {
-    const res = resize({ width: '300', h: '300' }, dirCtx)
-
-    expect(res).toBeInstanceOf(Function)
-  })
-
-  test('keywords "w" & "height"', () => {
-    const res = resize({ w: '300', height: '300' }, dirCtx)
 
     expect(res).toBeInstanceOf(Function)
   })
@@ -233,12 +203,6 @@ describe('width & height', () => {
 describe('aspect', () => {
   test('keyword "aspect"', () => {
     const res = resize({ aspect: '16:9' }, dirCtx)
-
-    expect(res).toBeInstanceOf(Function)
-  })
-
-  test('keyword "ar"', () => {
-    const res = resize({ ar: '16:9' }, dirCtx)
 
     expect(res).toBeInstanceOf(Function)
   })
@@ -355,14 +319,14 @@ describe('aspect', () => {
 
     test('w/ height', async () => {
       //@ts-expect-error we know this is safe
-      const { image } = await applyTransforms([resize({ aspect: '4:3', height: '75' }, dirCtx)], img)
+      const { image } = await applyTransforms([resize({ aspect: '4:3', h: '75' }, dirCtx)], img)
 
       expect(await image.toBuffer()).toMatchImageSnapshot()
     })
 
     test('w/ width', async () => {
       //@ts-expect-error we know this is safe
-      const { image } = await applyTransforms([resize({ aspect: '4:3', width: '300' }, dirCtx)], img)
+      const { image } = await applyTransforms([resize({ aspect: '4:3', w: '300' }, dirCtx)], img)
 
       expect(await image.toBuffer()).toMatchImageSnapshot()
     })
@@ -370,7 +334,7 @@ describe('aspect', () => {
     test('w/ width & height', async () => {
       const { image } = await applyTransforms(
         //@ts-expect-error we know this is safe
-        [resize({ aspect: '4:3', height: '300', width: '300' }, dirCtx)],
+        [resize({ aspect: '4:3', h: '300', w: '300' }, dirCtx)],
         img
       )
 
@@ -381,7 +345,7 @@ describe('aspect', () => {
 
 describe('allowUpscale', () => {
   test('keyword "allowUpscale" w/ dimension', () => {
-    const res = resize({ allowUpscale: 'true', width: '300' }, dirCtx)
+    const res = resize({ allowUpscale: 'true', w: '300' }, dirCtx)
 
     expect(res).toBeInstanceOf(Function)
   })
@@ -401,19 +365,19 @@ describe('allowUpscale', () => {
   describe('arguments', () => {
     test('invalid allowUpscale', () => {
       //@ts-expect-error invalid args
-      const res = resize({ allowUpscale: 'invalid', width: '300' }, dirCtx)
+      const res = resize({ allowUpscale: 'invalid', w: '300' }, dirCtx)
 
       expect(res).toBeInstanceOf(Function)
     })
 
     test('empty', () => {
-      const res = resize({ allowUpscale: '', width: '300' }, dirCtx)
+      const res = resize({ allowUpscale: '', w: '300' }, dirCtx)
 
       expect(res).toBeInstanceOf(Function)
     })
 
     test('true', () => {
-      const res = resize({ allowUpscale: 'true', width: '300' }, dirCtx)
+      const res = resize({ allowUpscale: 'true', w: '300' }, dirCtx)
 
       expect(res).toBeInstanceOf(Function)
     })
@@ -427,21 +391,21 @@ describe('allowUpscale', () => {
 
     test('w/ multiple dimensions', async () => {
       //@ts-expect-error we know this is safe
-      const { image } = await applyTransforms([resize({ allowUpscale: 'true', width: '300;900' }, dirCtx)], img)
+      const { image } = await applyTransforms([resize({ allowUpscale: 'true', w: '300;900' }, dirCtx)], img)
 
       expect(await image.toBuffer()).toMatchImageSnapshot()
     })
 
     test('w/ width', async () => {
       //@ts-expect-error we know this is safe
-      const { image } = await applyTransforms([resize({ allowUpscale: 'true', width: '300' }, dirCtx)], img)
+      const { image } = await applyTransforms([resize({ allowUpscale: 'true', w: '300' }, dirCtx)], img)
 
       expect(await image.toBuffer()).toMatchImageSnapshot()
     })
 
     test('w/ height', async () => {
       //@ts-expect-error we know this is safe
-      const { image } = await applyTransforms([resize({ allowUpscale: 'true', height: '300;900' }, dirCtx)], img)
+      const { image } = await applyTransforms([resize({ allowUpscale: 'true', h: '300;900' }, dirCtx)], img)
 
       expect(await image.toBuffer()).toMatchImageSnapshot()
     })
@@ -459,7 +423,7 @@ describe('allowUpscale', () => {
     test('w/ width & height', async () => {
       const { image } = await applyTransforms(
         //@ts-expect-error we know this is safe
-        [resize({ allowUpscale: 'true', height: '300', width: '300' }, dirCtx)],
+        [resize({ allowUpscale: 'true', h: '300', w: '300' }, dirCtx)],
         img
       )
 
@@ -469,7 +433,7 @@ describe('allowUpscale', () => {
     test('w/ width & height & aspect', async () => {
       const { image } = await applyTransforms(
         //@ts-expect-error we know this is safe
-        [resize({ allowUpscale: 'true', aspect: '4:3', height: '300', width: '300' }, dirCtx)],
+        [resize({ allowUpscale: 'true', aspect: '4:3', h: '300', w: '300' }, dirCtx)],
         img
       )
 

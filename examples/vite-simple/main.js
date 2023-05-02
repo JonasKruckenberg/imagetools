@@ -4,10 +4,10 @@ import srcsetAvif from '../example.jpg?w=500;700;900;1200&format=avif&as=srcset'
 // do it a second time, but now as webp since safari can't display avif
 import srcsetWebp from '../example.jpg?w=500;700;900;1200&format=webp&as=srcset'
 // create a small placeholder and import its metadata
-import { src as placeholder, width, height } from '../example.jpg?width=300&as=metadata'
+import { src as placeholder, width, height } from '../example.jpg?w=300&as=metadata'
 
 const sponsors = import.meta.glob('./sponsors/*', {
-  query: { format: 'webp', width: 100 }
+  query: { format: 'webp', w: 100 }
 })
 
 let sponsorHtml = ''

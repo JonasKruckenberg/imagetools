@@ -6,12 +6,9 @@ import { getKernel } from './kernel'
 import { getPosition } from './position'
 
 export interface ResizeOptions {
-  width: string
   w: string
-  height: string
   h: string
   aspect: string
-  ar: string
   allowUpscale: '' | 'true'
 }
 
@@ -41,9 +38,9 @@ function parseAspect(aspect: string): number | undefined {
 }
 
 export const resize: TransformFactory<ResizeOptions> = (config, context) => {
-  const width = parseInt(config.width || config.w || '')
-  const height = parseInt(config.height || config.h || '')
-  const aspect = parseAspect(config.aspect || config.ar || '')
+  const width = parseInt(config.w || '')
+  const height = parseInt(config.h || '')
+  const aspect = parseAspect(config.aspect || '')
   const allowUpscale = config.allowUpscale === '' || config.allowUpscale === 'true'
 
   if (!width && !height && !aspect) return

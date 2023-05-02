@@ -25,7 +25,7 @@ The last import above for example instructs imagetools to do the following:
 We also generate a fallback image on the fly and import it with it's metadata:
 
 ```ts
-import { src as placeholder, width, height } from '../example.jpg?width=300&metadata'
+import { src as placeholder, width, height } from '../example.jpg?w=300&as=metadata'
 ```
 
 Which instructs imagetools to first resize the image and the return us the whole metadata object.

@@ -27,7 +27,7 @@ describe('extractEntries', () => {
   })
 
   it('returns a valid array of entries', () => {
-    const src = new URL('/example.jpg?foo=bar&hello=world&width=300', 'file://')
+    const src = new URL('/example.jpg?foo=bar&hello=world&w=300', 'file://')
 
     const entries = extractEntries(src.searchParams)
     // this will throw and fail the test if entries is not a valid array of entries
@@ -35,15 +35,15 @@ describe('extractEntries', () => {
 
     expect(asObject).toHaveProperty('foo', ['bar'])
     expect(asObject).toHaveProperty('hello', ['world'])
-    expect(asObject).toHaveProperty('width', ['300'])
+    expect(asObject).toHaveProperty('w', ['300'])
   })
 
   it('splits the arguments at the ";" char', () => {
-    const src = new URL('/test.jpg?width=300;400;500', 'file:///')
+    const src = new URL('/test.jpg?w=300;400;500', 'file:///')
 
     const entries = extractEntries(src.searchParams)
     const asObject = Object.fromEntries(entries)
 
-    expect(asObject).toHaveProperty('width', ['300', '400', '500'])
+    expect(asObject).toHaveProperty('w', ['300', '400', '500'])
   })
 })
