@@ -60,7 +60,7 @@ You can also import a directory of images using
 
 ### defaultDirectives
 
-• `Optional` **defaultDirectives**: `URLSearchParams` \| (`url`: `URL`) => `URLSearchParams`
+• `Optional` **defaultDirectives**: `URLSearchParams | (url: URL) => URLSearchParams`
 
 This option allows you to specify [directives](../../docs/directives.md) that should be applied _by default_ to every
 image. You can also provide a function, in which case the function gets passed the asset ID and should return an object
@@ -92,7 +92,7 @@ export default defineConfig({
 
 ### exclude
 
-• **exclude**: `string` \| `RegExp` \| (`string` \| `RegExp`)[]
+• **exclude**: `string | RegExp | (string | RegExp)[]`
 
 What paths to exclude when processing images. This defaults to the public dir to mirror Vite's behavior.
 
@@ -102,7 +102,7 @@ What paths to exclude when processing images. This defaults to the public dir to
 
 ### include
 
-• **include**: `string` \| `RegExp` \| (`string` \| `RegExp`)[]
+• **include**: `string | RegExp | (string | RegExp)[]`
 
 Which paths to include when processing images.
 
