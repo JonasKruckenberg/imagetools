@@ -89,20 +89,18 @@ export function imagetools(userOptions: Partial<VitePluginOptions> = {}): Plugin
         const { transforms } = generateTransforms(config, transformFactories, logger)
         const { image, metadata } = await applyTransforms(transforms, img.clone(), pluginOptions.removeMetadata)
 
-        if (!this.meta.watchMode) {
-          const fileName = basename(srcURL.pathname, extname(srcURL.pathname)) + `.${metadata.format}`
-
+        if (this.meta.watchMode) {
+          const id = generateImageID(srcURL, config)
+          generatedImages.set(id, image)
+          metadata.src = basePath + id
+        } else {
           const fileHandle = this.emitFile({
-            name: fileName,
+            name: basename(srcURL.pathname, extname(srcURL.pathname)) + `.${metadata.format}`,
             source: await image.toBuffer(),
             type: 'asset'
           })
 
           metadata.src = `__VITE_ASSET__${fileHandle}__`
-        } else {
-          const id = generateImageID(srcURL, config)
-          generatedImages.set(id, image)
-          metadata.src = basePath + id
         }
 
         metadata.image = image
