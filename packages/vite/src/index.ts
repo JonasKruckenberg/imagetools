@@ -13,7 +13,8 @@ import {
   urlFormat,
   extractEntries,
   ImageConfig,
-  Logger
+  Logger,
+  OutputFormat
 } from 'imagetools-core'
 import { createFilter, dataToEsm } from '@rollup/pluginutils'
 import { VitePluginOptions } from './types'
@@ -34,7 +35,7 @@ export function imagetools(userOptions: Partial<VitePluginOptions> = {}): Plugin
 
   const transformFactories = pluginOptions.extendTransforms ? pluginOptions.extendTransforms(builtins) : builtins
 
-  const outputFormats = pluginOptions.extendOutputFormats
+  const outputFormats: Record<string, OutputFormat> = pluginOptions.extendOutputFormats
     ? pluginOptions.extendOutputFormats(builtinOutputFormats)
     : builtinOutputFormats
 
