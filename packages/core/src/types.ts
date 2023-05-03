@@ -10,6 +10,7 @@ export interface Logger {
 
 export interface TransformFactoryContext {
   useParam: (parameter: string) => void
+  manualSearchParams: URLSearchParams
   logger: Logger
 }
 
