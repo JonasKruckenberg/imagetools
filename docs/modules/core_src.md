@@ -97,7 +97,7 @@
 
 #### Defined in
 
-[core/src/transforms/fit.ts:6](https://github.com/JonasKruckenberg/imagetools/blob/6842c73/packages/core/src/transforms/fit.ts#L6)
+[core/src/transforms/fit.ts:6](https://github.com/JonasKruckenberg/imagetools/blob/0016446/packages/core/src/transforms/fit.ts#L6)
 
 ___
 
@@ -107,7 +107,7 @@ ___
 
 #### Defined in
 
-[core/src/transforms/format.ts:9](https://github.com/JonasKruckenberg/imagetools/blob/6842c73/packages/core/src/transforms/format.ts#L9)
+[core/src/transforms/format.ts:9](https://github.com/JonasKruckenberg/imagetools/blob/0016446/packages/core/src/transforms/format.ts#L9)
 
 ___
 
@@ -117,7 +117,7 @@ ___
 
 #### Defined in
 
-[core/src/types.ts:3](https://github.com/JonasKruckenberg/imagetools/blob/6842c73/packages/core/src/types.ts#L3)
+[core/src/types.ts:3](https://github.com/JonasKruckenberg/imagetools/blob/0016446/packages/core/src/types.ts#L3)
 
 ___
 
@@ -141,7 +141,7 @@ ___
 
 #### Defined in
 
-[core/src/types.ts:26](https://github.com/JonasKruckenberg/imagetools/blob/6842c73/packages/core/src/types.ts#L26)
+[core/src/types.ts:26](https://github.com/JonasKruckenberg/imagetools/blob/0016446/packages/core/src/types.ts#L26)
 
 ___
 
@@ -151,7 +151,7 @@ ___
 
 #### Defined in
 
-[core/src/transforms/kernel.ts:6](https://github.com/JonasKruckenberg/imagetools/blob/6842c73/packages/core/src/transforms/kernel.ts#L6)
+[core/src/transforms/kernel.ts:6](https://github.com/JonasKruckenberg/imagetools/blob/0016446/packages/core/src/transforms/kernel.ts#L6)
 
 ___
 
@@ -189,7 +189,7 @@ The JS object returned by the image import.
 
 #### Defined in
 
-[core/src/types.ts:36](https://github.com/JonasKruckenberg/imagetools/blob/6842c73/packages/core/src/types.ts#L36)
+[core/src/types.ts:36](https://github.com/JonasKruckenberg/imagetools/blob/0016446/packages/core/src/types.ts#L36)
 
 ___
 
@@ -199,7 +199,7 @@ ___
 
 #### Defined in
 
-[core/src/transforms/position.ts:38](https://github.com/JonasKruckenberg/imagetools/blob/6842c73/packages/core/src/transforms/position.ts#L38)
+[core/src/transforms/position.ts:38](https://github.com/JonasKruckenberg/imagetools/blob/0016446/packages/core/src/transforms/position.ts#L38)
 
 ___
 
@@ -230,7 +230,7 @@ ___
 
 #### Defined in
 
-[core/src/types.ts:16](https://github.com/JonasKruckenberg/imagetools/blob/6842c73/packages/core/src/types.ts#L16)
+[core/src/types.ts:16](https://github.com/JonasKruckenberg/imagetools/blob/0016446/packages/core/src/types.ts#L16)
 
 ___
 
@@ -262,7 +262,7 @@ ___
 
 #### Defined in
 
-[core/src/types.ts:21](https://github.com/JonasKruckenberg/imagetools/blob/6842c73/packages/core/src/types.ts#L21)
+[core/src/types.ts:21](https://github.com/JonasKruckenberg/imagetools/blob/0016446/packages/core/src/types.ts#L21)
 
 ## Variables
 
@@ -283,7 +283,7 @@ ___
 
 #### Defined in
 
-[core/src/output-formats.ts:82](https://github.com/JonasKruckenberg/imagetools/blob/6842c73/packages/core/src/output-formats.ts#L82)
+[core/src/output-formats.ts:82](https://github.com/JonasKruckenberg/imagetools/blob/0016446/packages/core/src/output-formats.ts#L82)
 
 ___
 
@@ -293,7 +293,7 @@ ___
 
 #### Defined in
 
-[core/src/builtins.ts:15](https://github.com/JonasKruckenberg/imagetools/blob/6842c73/packages/core/src/builtins.ts#L15)
+[core/src/builtins.ts:15](https://github.com/JonasKruckenberg/imagetools/blob/0016446/packages/core/src/builtins.ts#L15)
 
 ___
 
@@ -303,7 +303,7 @@ ___
 
 #### Defined in
 
-[core/src/transforms/fit.ts:4](https://github.com/JonasKruckenberg/imagetools/blob/6842c73/packages/core/src/transforms/fit.ts#L4)
+[core/src/transforms/fit.ts:4](https://github.com/JonasKruckenberg/imagetools/blob/0016446/packages/core/src/transforms/fit.ts#L4)
 
 ___
 
@@ -313,7 +313,7 @@ ___
 
 #### Defined in
 
-[core/src/transforms/format.ts:7](https://github.com/JonasKruckenberg/imagetools/blob/6842c73/packages/core/src/transforms/format.ts#L7)
+[core/src/transforms/format.ts:7](https://github.com/JonasKruckenberg/imagetools/blob/0016446/packages/core/src/transforms/format.ts#L7)
 
 ___
 
@@ -323,7 +323,7 @@ ___
 
 #### Defined in
 
-[core/src/transforms/kernel.ts:4](https://github.com/JonasKruckenberg/imagetools/blob/6842c73/packages/core/src/transforms/kernel.ts#L4)
+[core/src/transforms/kernel.ts:4](https://github.com/JonasKruckenberg/imagetools/blob/0016446/packages/core/src/transforms/kernel.ts#L4)
 
 ___
 
@@ -333,7 +333,7 @@ ___
 
 #### Defined in
 
-[core/src/transforms/position.ts:27](https://github.com/JonasKruckenberg/imagetools/blob/6842c73/packages/core/src/transforms/position.ts#L27)
+[core/src/transforms/position.ts:27](https://github.com/JonasKruckenberg/imagetools/blob/0016446/packages/core/src/transforms/position.ts#L27)
 
 ___
 
@@ -343,7 +343,7 @@ ___
 
 #### Defined in
 
-[core/src/transforms/position.ts:4](https://github.com/JonasKruckenberg/imagetools/blob/6842c73/packages/core/src/transforms/position.ts#L4)
+[core/src/transforms/position.ts:4](https://github.com/JonasKruckenberg/imagetools/blob/0016446/packages/core/src/transforms/position.ts#L4)
 
 ## Functions
 
@@ -365,7 +365,7 @@ ___
 
 #### Defined in
 
-[core/src/lib/apply-transforms.ts:5](https://github.com/JonasKruckenberg/imagetools/blob/6842c73/packages/core/src/lib/apply-transforms.ts#L5)
+[core/src/lib/apply-transforms.ts:5](https://github.com/JonasKruckenberg/imagetools/blob/0016446/packages/core/src/lib/apply-transforms.ts#L5)
 
 ___
 
@@ -386,7 +386,7 @@ ___
 
 #### Defined in
 
-[core/src/types.ts:16](https://github.com/JonasKruckenberg/imagetools/blob/6842c73/packages/core/src/types.ts#L16)
+[core/src/types.ts:16](https://github.com/JonasKruckenberg/imagetools/blob/0016446/packages/core/src/types.ts#L16)
 
 ___
 
@@ -406,7 +406,7 @@ ___
 
 #### Defined in
 
-[core/src/lib/parse-url.ts:5](https://github.com/JonasKruckenberg/imagetools/blob/6842c73/packages/core/src/lib/parse-url.ts#L5)
+[core/src/lib/parse-url.ts:5](https://github.com/JonasKruckenberg/imagetools/blob/0016446/packages/core/src/lib/parse-url.ts#L5)
 
 ___
 
@@ -427,7 +427,7 @@ ___
 
 #### Defined in
 
-[core/src/types.ts:16](https://github.com/JonasKruckenberg/imagetools/blob/6842c73/packages/core/src/types.ts#L16)
+[core/src/types.ts:16](https://github.com/JonasKruckenberg/imagetools/blob/0016446/packages/core/src/types.ts#L16)
 
 ___
 
@@ -448,7 +448,7 @@ ___
 
 #### Defined in
 
-[core/src/types.ts:16](https://github.com/JonasKruckenberg/imagetools/blob/6842c73/packages/core/src/types.ts#L16)
+[core/src/types.ts:16](https://github.com/JonasKruckenberg/imagetools/blob/0016446/packages/core/src/types.ts#L16)
 
 ___
 
@@ -469,7 +469,7 @@ ___
 
 #### Defined in
 
-[core/src/types.ts:16](https://github.com/JonasKruckenberg/imagetools/blob/6842c73/packages/core/src/types.ts#L16)
+[core/src/types.ts:16](https://github.com/JonasKruckenberg/imagetools/blob/0016446/packages/core/src/types.ts#L16)
 
 ___
 
@@ -490,7 +490,7 @@ ___
 
 #### Defined in
 
-[core/src/types.ts:16](https://github.com/JonasKruckenberg/imagetools/blob/6842c73/packages/core/src/types.ts#L16)
+[core/src/types.ts:16](https://github.com/JonasKruckenberg/imagetools/blob/0016446/packages/core/src/types.ts#L16)
 
 ___
 
@@ -511,7 +511,7 @@ ___
 
 #### Defined in
 
-[core/src/util.ts:9](https://github.com/JonasKruckenberg/imagetools/blob/6842c73/packages/core/src/util.ts#L9)
+[core/src/util.ts:9](https://github.com/JonasKruckenberg/imagetools/blob/0016446/packages/core/src/util.ts#L9)
 
 ___
 
@@ -524,7 +524,7 @@ ___
 | Name | Type |
 | :------ | :------ |
 | `config` | [`ImageConfig`](core_src.md#imageconfig) |
-| `factories` | [`TransformFactory`](core_src.md#transformfactory)<`Record`<`string`, `unknown`\>\>[] |
+| `factories` | [`TransformFactory`](core_src.md#transformfactory)[] |
 | `logger?` | [`Logger`](../interfaces/core_src.Logger.md) |
 
 #### Returns
@@ -538,7 +538,7 @@ ___
 
 #### Defined in
 
-[core/src/lib/generate-transforms.ts:4](https://github.com/JonasKruckenberg/imagetools/blob/6842c73/packages/core/src/lib/generate-transforms.ts#L4)
+[core/src/lib/generate-transforms.ts:4](https://github.com/JonasKruckenberg/imagetools/blob/0016446/packages/core/src/lib/generate-transforms.ts#L4)
 
 ___
 
@@ -559,7 +559,7 @@ ___
 
 #### Defined in
 
-[core/src/types.ts:21](https://github.com/JonasKruckenberg/imagetools/blob/6842c73/packages/core/src/types.ts#L21)
+[core/src/types.ts:21](https://github.com/JonasKruckenberg/imagetools/blob/0016446/packages/core/src/types.ts#L21)
 
 ___
 
@@ -580,7 +580,7 @@ ___
 
 #### Defined in
 
-[core/src/types.ts:21](https://github.com/JonasKruckenberg/imagetools/blob/6842c73/packages/core/src/types.ts#L21)
+[core/src/types.ts:21](https://github.com/JonasKruckenberg/imagetools/blob/0016446/packages/core/src/types.ts#L21)
 
 ___
 
@@ -601,7 +601,7 @@ ___
 
 #### Defined in
 
-[core/src/types.ts:21](https://github.com/JonasKruckenberg/imagetools/blob/6842c73/packages/core/src/types.ts#L21)
+[core/src/types.ts:21](https://github.com/JonasKruckenberg/imagetools/blob/0016446/packages/core/src/types.ts#L21)
 
 ___
 
@@ -622,7 +622,7 @@ ___
 
 #### Defined in
 
-[core/src/lib/metadata.ts:15](https://github.com/JonasKruckenberg/imagetools/blob/6842c73/packages/core/src/lib/metadata.ts#L15)
+[core/src/lib/metadata.ts:15](https://github.com/JonasKruckenberg/imagetools/blob/0016446/packages/core/src/lib/metadata.ts#L15)
 
 ___
 
@@ -643,7 +643,7 @@ ___
 
 #### Defined in
 
-[core/src/types.ts:21](https://github.com/JonasKruckenberg/imagetools/blob/6842c73/packages/core/src/types.ts#L21)
+[core/src/types.ts:21](https://github.com/JonasKruckenberg/imagetools/blob/0016446/packages/core/src/types.ts#L21)
 
 ___
 
@@ -664,7 +664,7 @@ ___
 
 #### Defined in
 
-[core/src/types.ts:21](https://github.com/JonasKruckenberg/imagetools/blob/6842c73/packages/core/src/types.ts#L21)
+[core/src/types.ts:21](https://github.com/JonasKruckenberg/imagetools/blob/0016446/packages/core/src/types.ts#L21)
 
 ___
 
@@ -685,7 +685,7 @@ ___
 
 #### Defined in
 
-[core/src/types.ts:21](https://github.com/JonasKruckenberg/imagetools/blob/6842c73/packages/core/src/types.ts#L21)
+[core/src/types.ts:21](https://github.com/JonasKruckenberg/imagetools/blob/0016446/packages/core/src/types.ts#L21)
 
 ___
 
@@ -706,7 +706,7 @@ ___
 
 #### Defined in
 
-[core/src/types.ts:16](https://github.com/JonasKruckenberg/imagetools/blob/6842c73/packages/core/src/types.ts#L16)
+[core/src/types.ts:16](https://github.com/JonasKruckenberg/imagetools/blob/0016446/packages/core/src/types.ts#L16)
 
 ___
 
@@ -727,7 +727,7 @@ ___
 
 #### Defined in
 
-[core/src/types.ts:16](https://github.com/JonasKruckenberg/imagetools/blob/6842c73/packages/core/src/types.ts#L16)
+[core/src/types.ts:16](https://github.com/JonasKruckenberg/imagetools/blob/0016446/packages/core/src/types.ts#L16)
 
 ___
 
@@ -748,7 +748,7 @@ ___
 
 #### Defined in
 
-[core/src/types.ts:16](https://github.com/JonasKruckenberg/imagetools/blob/6842c73/packages/core/src/types.ts#L16)
+[core/src/types.ts:16](https://github.com/JonasKruckenberg/imagetools/blob/0016446/packages/core/src/types.ts#L16)
 
 ___
 
@@ -768,7 +768,7 @@ ___
 
 #### Defined in
 
-[core/src/util.ts:5](https://github.com/JonasKruckenberg/imagetools/blob/6842c73/packages/core/src/util.ts#L5)
+[core/src/util.ts:5](https://github.com/JonasKruckenberg/imagetools/blob/0016446/packages/core/src/util.ts#L5)
 
 ___
 
@@ -789,7 +789,7 @@ ___
 
 #### Defined in
 
-[core/src/types.ts:16](https://github.com/JonasKruckenberg/imagetools/blob/6842c73/packages/core/src/types.ts#L16)
+[core/src/types.ts:16](https://github.com/JonasKruckenberg/imagetools/blob/0016446/packages/core/src/types.ts#L16)
 
 ___
 
@@ -823,7 +823,7 @@ The JS object returned by the image import.
 
 #### Defined in
 
-[core/src/types.ts:36](https://github.com/JonasKruckenberg/imagetools/blob/6842c73/packages/core/src/types.ts#L36)
+[core/src/types.ts:36](https://github.com/JonasKruckenberg/imagetools/blob/0016446/packages/core/src/types.ts#L36)
 
 ___
 
@@ -844,7 +844,7 @@ ___
 
 #### Defined in
 
-[core/src/types.ts:16](https://github.com/JonasKruckenberg/imagetools/blob/6842c73/packages/core/src/types.ts#L16)
+[core/src/types.ts:16](https://github.com/JonasKruckenberg/imagetools/blob/0016446/packages/core/src/types.ts#L16)
 
 ___
 
@@ -864,7 +864,7 @@ ___
 
 #### Defined in
 
-[core/src/lib/parse-url.ts:1](https://github.com/JonasKruckenberg/imagetools/blob/6842c73/packages/core/src/lib/parse-url.ts#L1)
+[core/src/lib/parse-url.ts:1](https://github.com/JonasKruckenberg/imagetools/blob/0016446/packages/core/src/lib/parse-url.ts#L1)
 
 ___
 
@@ -898,7 +898,7 @@ fallback format should be specified last
 
 #### Defined in
 
-[core/src/types.ts:36](https://github.com/JonasKruckenberg/imagetools/blob/6842c73/packages/core/src/types.ts#L36)
+[core/src/types.ts:36](https://github.com/JonasKruckenberg/imagetools/blob/0016446/packages/core/src/types.ts#L36)
 
 ___
 
@@ -919,7 +919,7 @@ ___
 
 #### Defined in
 
-[core/src/types.ts:16](https://github.com/JonasKruckenberg/imagetools/blob/6842c73/packages/core/src/types.ts#L16)
+[core/src/types.ts:16](https://github.com/JonasKruckenberg/imagetools/blob/0016446/packages/core/src/types.ts#L16)
 
 ___
 
@@ -945,7 +945,7 @@ An array of directive options
 
 #### Defined in
 
-[core/src/lib/resolve-configs.ts:17](https://github.com/JonasKruckenberg/imagetools/blob/6842c73/packages/core/src/lib/resolve-configs.ts#L17)
+[core/src/lib/resolve-configs.ts:17](https://github.com/JonasKruckenberg/imagetools/blob/0016446/packages/core/src/lib/resolve-configs.ts#L17)
 
 ___
 
@@ -966,7 +966,7 @@ ___
 
 #### Defined in
 
-[core/src/types.ts:16](https://github.com/JonasKruckenberg/imagetools/blob/6842c73/packages/core/src/types.ts#L16)
+[core/src/types.ts:16](https://github.com/JonasKruckenberg/imagetools/blob/0016446/packages/core/src/types.ts#L16)
 
 ___
 
@@ -988,7 +988,7 @@ ___
 
 #### Defined in
 
-[core/src/lib/metadata.ts:11](https://github.com/JonasKruckenberg/imagetools/blob/6842c73/packages/core/src/lib/metadata.ts#L11)
+[core/src/lib/metadata.ts:11](https://github.com/JonasKruckenberg/imagetools/blob/0016446/packages/core/src/lib/metadata.ts#L11)
 
 ___
 
@@ -1022,7 +1022,7 @@ The JS object returned by the image import.
 
 #### Defined in
 
-[core/src/types.ts:36](https://github.com/JonasKruckenberg/imagetools/blob/6842c73/packages/core/src/types.ts#L36)
+[core/src/types.ts:36](https://github.com/JonasKruckenberg/imagetools/blob/0016446/packages/core/src/types.ts#L36)
 
 ___
 
@@ -1056,7 +1056,7 @@ The JS object returned by the image import.
 
 #### Defined in
 
-[core/src/types.ts:36](https://github.com/JonasKruckenberg/imagetools/blob/6842c73/packages/core/src/types.ts#L36)
+[core/src/types.ts:36](https://github.com/JonasKruckenberg/imagetools/blob/0016446/packages/core/src/types.ts#L36)
 
 ___
 
@@ -1077,7 +1077,7 @@ ___
 
 #### Defined in
 
-[core/src/types.ts:16](https://github.com/JonasKruckenberg/imagetools/blob/6842c73/packages/core/src/types.ts#L16)
+[core/src/types.ts:16](https://github.com/JonasKruckenberg/imagetools/blob/0016446/packages/core/src/types.ts#L16)
 
 ___
 
@@ -1111,4 +1111,4 @@ The JS object returned by the image import.
 
 #### Defined in
 
-[core/src/types.ts:36](https://github.com/JonasKruckenberg/imagetools/blob/6842c73/packages/core/src/types.ts#L36)
+[core/src/types.ts:36](https://github.com/JonasKruckenberg/imagetools/blob/0016446/packages/core/src/types.ts#L36)

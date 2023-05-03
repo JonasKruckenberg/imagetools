@@ -23,7 +23,7 @@ choose between width descriptor, pixel density descriptor, or no descriptor.
 
 #### Defined in
 
-[core/src/types.ts:44](https://github.com/JonasKruckenberg/imagetools/blob/6842c73/packages/core/src/types.ts#L44)
+[core/src/types.ts:44](https://github.com/JonasKruckenberg/imagetools/blob/0016446/packages/core/src/types.ts#L44)
 
 ___
 
@@ -33,4 +33,4 @@ ___
 
 #### Defined in
 
-[core/src/types.ts:45](https://github.com/JonasKruckenberg/imagetools/blob/6842c73/packages/core/src/types.ts#L45)
+[core/src/types.ts:45](https://github.com/JonasKruckenberg/imagetools/blob/0016446/packages/core/src/types.ts#L45)

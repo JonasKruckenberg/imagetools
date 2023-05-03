@@ -12,14 +12,16 @@ import {
   builtinOutputFormats,
   urlFormat,
   extractEntries,
-  Logger
+  ImageConfig,
+  Logger,
+  OutputFormat
 } from 'imagetools-core'
 import { createFilter, dataToEsm } from '@rollup/pluginutils'
 import { VitePluginOptions } from './types'
 import { createBasePath } from './utils'
 
 const defaultOptions: VitePluginOptions = {
-  include: ['**/*.{heic,heif,avif,jpeg,jpg,png,tiff,webp,gif}', '**/*.{heic,heif,avif,jpeg,jpg,png,tiff,webp,gif}?*'],
+  include: /^[^?]+\.(heic|heif|avif|jpeg|jpg|png|tiff|webp|gif)(\?.*)?$/,
   exclude: 'public/**/*',
   removeMetadata: true
 }
@@ -33,7 +35,7 @@ export function imagetools(userOptions: Partial<VitePluginOptions> = {}): Plugin
 
   const transformFactories = pluginOptions.extendTransforms ? pluginOptions.extendTransforms(builtins) : builtins
 
-  const outputFormats = pluginOptions.extendOutputFormats
+  const outputFormats: Record<string, OutputFormat> = pluginOptions.extendOutputFormats
     ? pluginOptions.extendOutputFormats(builtinOutputFormats)
     : builtinOutputFormats
 
@@ -54,23 +56,49 @@ export function imagetools(userOptions: Partial<VitePluginOptions> = {}): Plugin
 
       const srcURL = parseURL(id)
 
-      let directives = srcURL.searchParams
-
-      if (typeof pluginOptions.defaultDirectives === 'function') {
-        directives = new URLSearchParams([...pluginOptions.defaultDirectives(srcURL), ...srcURL.searchParams])
-      } else if (pluginOptions.defaultDirectives) {
-        directives = new URLSearchParams([...pluginOptions.defaultDirectives, ...srcURL.searchParams])
-      }
+      const defaultDirectives =
+        typeof pluginOptions.defaultDirectives === 'function'
+          ? pluginOptions.defaultDirectives(srcURL)
+          : pluginOptions.defaultDirectives || new URLSearchParams()
+      const directives = new URLSearchParams({
+        ...Object.fromEntries(defaultDirectives),
+        ...Object.fromEntries(srcURL.searchParams)
+      })
 
       if (!directives.toString()) return null
+
+      const img = loadImage(decodeURIComponent(srcURL.pathname))
+      if (directives.get('allowUpscale') !== 'true') {
+        const metadata = await img.metadata()
+        const intrinsicWidth = metadata.width || 0
+        const intrinsicHeight = metadata.height || 0
+
+        const originalWidths = directives.get('w')?.split(';') || []
+        const widths = originalWidths.filter((d) => parseInt(d) < intrinsicWidth)
+        if (widths.length != originalWidths.length) {
+          if (widths.length) {
+            directives.set('w', widths.join(';'))
+          } else {
+            directives.delete('w')
+          }
+        }
+
+        const originalHeights = directives.get('h')?.split(';') || []
+        const heights = originalHeights.filter((d) => parseInt(d) < intrinsicHeight)
+        if (heights.length != originalHeights.length) {
+          if (heights.length) {
+            directives.set('h', heights.join(';'))
+          } else {
+            directives.delete('h')
+          }
+        }
+      }
 
       const parameters = extractEntries(directives)
       const imageConfigs =
         pluginOptions.resolveConfigs?.(parameters, outputFormats) ?? resolveConfigs(parameters, outputFormats)
 
-      const img = loadImage(decodeURIComponent(srcURL.pathname))
-
-      const outputMetadatas = []
+      const outputMetadatas: Array<ImageConfig> = []
 
       const logger: Logger = {
         info: (msg) => viteConfig.logger.info(msg),
@@ -79,25 +107,21 @@ export function imagetools(userOptions: Partial<VitePluginOptions> = {}): Plugin
       }
 
       for (const config of imageConfigs) {
-        const id = generateImageID(srcURL, config)
-
-        const { transforms } = generateTransforms(config, transformFactories, logger)
+        const { transforms } = generateTransforms(config, transformFactories, srcURL.searchParams, logger)
         const { image, metadata } = await applyTransforms(transforms, img.clone(), pluginOptions.removeMetadata)
 
-        generatedImages.set(id, image)
-
-        if (!this.meta.watchMode) {
-          const fileName = basename(srcURL.pathname, extname(srcURL.pathname)) + `.${metadata.format}`
-
+        if (this.meta.watchMode) {
+          const id = generateImageID(srcURL, config)
+          generatedImages.set(id, image)
+          metadata.src = basePath + id
+        } else {
           const fileHandle = this.emitFile({
-            name: fileName,
+            name: basename(srcURL.pathname, extname(srcURL.pathname)) + `.${metadata.format}`,
             source: await image.toBuffer(),
             type: 'asset'
           })
 
           metadata.src = `__VITE_ASSET__${fileHandle}__`
-        } else {
-          metadata.src = basePath + id
         }
 
         metadata.image = image
@@ -106,19 +130,16 @@ export function imagetools(userOptions: Partial<VitePluginOptions> = {}): Plugin
       }
 
       let outputFormat = urlFormat()
-
+      const asParam = directives.get('as')?.split(':')
+      const as = asParam ? asParam[0] : undefined
       for (const [key, format] of Object.entries(outputFormats)) {
-        if (directives.has(key)) {
-          const params = directives
-            .get(key)
-            ?.split(';')
-            .filter((v: string) => !!v)
-          outputFormat = format(params?.length ? params : undefined)
+        if (as === key) {
+          outputFormat = format(asParam && asParam[1] ? asParam[1].split(';') : undefined)
           break
         }
       }
 
-      return dataToEsm(outputFormat(outputMetadatas), {
+      return dataToEsm(await outputFormat(outputMetadatas), {
         namedExports: viteConfig.json?.namedExports ?? true,
         compact: !!viteConfig.build.minify ?? false,
         preferConst: true

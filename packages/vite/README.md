@@ -6,8 +6,8 @@
 [![standard-readme compliant](https://img.shields.io/badge/readme%20style-standard-brightgreen.svg?style=flat-square)](https://github.com/RichardLitt/standard-readme)
 [![codecov](https://codecov.io/gh/JonasKruckenberg/imagetools/branch/graph/badge.svg?token=bJrFBmuczA&flag=vite-imagetools)](https://codecov.io/gh/JonasKruckenberg/imagetools/)
 
-A toolbox of import directives for [vitejs](https://github.com/vitejs/vite) that can transform your image at
-compile-time. All of the image transformations are powered by [sharp](https://sharp.pixelplumbing.com).
+A toolbox of import [directives](../../docs/directives.md) for [Vite](https://github.com/vitejs/vite) that can transform
+your image at compile-time. All of the image transformations are powered by [sharp](https://sharp.pixelplumbing.com).
 
 ## Features
 
@@ -50,18 +50,21 @@ export default defineConfig({
 ```
 
 ```js
-import Image from 'example.jpg?w=400&h=300&webp'
+import Image from 'example.jpg?w=400&h=300&format=webp'
 ```
+
+You can also import a directory of images using
+[Vite's `import.meta.glob` with its `query` option](https://vitejs.dev/guide/features.html#custom-queries).
 
 ## Options
 
 ### defaultDirectives
 
-• `Optional` **defaultDirectives**: `URLSearchParams` \| (`url`: `URL`) => `URLSearchParams`
+• `Optional` **defaultDirectives**: `URLSearchParams | (url: URL) => URLSearchParams`
 
-This option allows you to specify directives that should be applied _by default_ to every image. You can also provide a
-function, in which case the function gets passed the asset ID and should return an object of directives. This can be
-used to define all sorts of shorthands or presets.
+This option allows you to specify [directives](../../docs/directives.md) that should be applied _by default_ to every
+image. You can also provide a function, in which case the function gets passed the asset ID and should return an object
+of [directives](../../docs/directives.md). This can be used to define all sorts of shorthands or presets.
 
 **`example`**
 
@@ -89,9 +92,9 @@ export default defineConfig({
 
 ### exclude
 
-• **exclude**: `string` \| `RegExp` \| (`string` \| `RegExp`)[]
+• **exclude**: `string | RegExp | (string | RegExp)[]`
 
-What paths to exclude when processing images. This defaults to the public dir to mirror vites behavior.
+What paths to exclude when processing images. This defaults to the public dir to mirror Vite's behavior.
 
 **`default`** `'public\/**\/*'`
 
@@ -99,12 +102,11 @@ What paths to exclude when processing images. This defaults to the public dir to
 
 ### include
 
-• **include**: `string` \| `RegExp` \| (`string` \| `RegExp`)[]
+• **include**: `string | RegExp | (string | RegExp)[]`
 
 Which paths to include when processing images.
 
-**`default`**
-`['**\/*.{heic,heif,avif,jpeg,jpg,png,tiff,webp,gif}', '**\/*.{heic,heif,avif,jpeg,jpg,png,tiff,webp,gif}?*']`
+**`default`** `/^[^?]+\.(heic|heif|avif|jpeg|jpg|png|tiff|webp|gif)(\?.*)?$/`
 
 ---
 
@@ -164,12 +166,12 @@ transforms before applying them to the input image.
 
 ### resolveConfigs
 
-• `Optional` **resolveConfigs**: (`entries`: [`string`, `string`[]][], `outputFormats`: `Record`<`string`,
-[`OutputFormat`](../modules/core_src.md#outputformat)\>) => `Record`<`string`, `string` \| `string`[]\>[]
+• `Optional` **resolveConfigs**: (`entries`: `[string, string[]][]`, `outputFormats`: `Record`<`string`,
+[`OutputFormat`](../modules/core_src.md#outputformat)\>) => `Record<string, string | string[]>[]`
 
 #### Type declaration
 
-▸ (`entries`, `outputFormats`): `Record`<`string`, `string` \| `string`[]\>[]
+▸ (`entries`, `outputFormats`): `Record<string, string | string[]>[]`
 
 This function builds up all possible combinations the given entries can be combined an returns it as an array of objects
 that can be given to a the transforms.
@@ -178,12 +180,12 @@ that can be given to a the transforms.
 
 | Name            | Type                                                                       | Description               |
 | :-------------- | :------------------------------------------------------------------------- | :------------------------ |
-| `entries`       | [`string`, `string`[]][]                                                   | The url parameter entries |
+| `entries`       | `[string, string[]][]`                                                     | The url parameter entries |
 | `outputFormats` | `Record`<`string`, [`OutputFormat`](../modules/core_src.md#outputformat)\> | -                         |
 
 ##### Returns
 
-`Record`<`string`, `string` \| `string`[]\>[]
+`Record<string, string | string[]>[]`
 
 An array of directive options
 

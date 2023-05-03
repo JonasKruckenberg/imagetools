@@ -8,8 +8,8 @@ The example creates a simple `picture` element, that has 2 different dynamically
 image format and one in `webp` for all browsers that don't support avif (like safari).
 
 ```ts
-import srcsetAvif from '../example.jpg?w=500;700;900;1200&avif&srcset'
-import srcsetWebp from '../example.jpg?w=500;700;900;1200&webp&srcset'
+import srcsetAvif from '../example.jpg?w=500;700;900;1200&format=avif&as=srcset'
+import srcsetWebp from '../example.jpg?w=500;700;900;1200&format=webp&as=srcset'
 ```
 
 The last import above for example instructs imagetools to do the following:
@@ -25,7 +25,7 @@ The last import above for example instructs imagetools to do the following:
 We also generate a fallback image on the fly and import it with it's metadata:
 
 ```ts
-import { src as placeholder, width, height } from '../example.jpg?width=300&metadata'
+import { src as placeholder, width, height } from '../example.jpg?w=300&as=metadata'
 ```
 
 Which instructs imagetools to first resize the image and the return us the whole metadata object.

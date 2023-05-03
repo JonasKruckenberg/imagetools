@@ -86,7 +86,7 @@ import Image from 'example.jpg?blur=100'
 
 ### Fit
 
-• **Keyword**: `fit`<br> • **Type**: _cover_\| _contain_ \| _fill_ \| _inside_ \| _outside_ <br>
+• **Keyword**: `fit`<br> • **Type**: _cover_ \| _contain_ \| _fill_ \| _inside_ \| _outside_ <br>
 
 When both a `width` and `height` are provided, this directive can be used to specify the method by which the image
 should **fit**.
@@ -141,20 +141,17 @@ import Image from 'exmaple.jpg?flop=true'
 ### Format
 
 • **Keyword**: `format`<br> • **Type**: _heic_\| _heif_ \| _avif_ \| _jpeg_ \| _jpg_ \| _png_ \| _tiff_ \| _webp_ \|
-_gif_<br> • **Shorthands**: `heic`\| `heif` \| `avif` \| `jpg` \|`jpeg` \| `png` \| `tiff` \| `webp` \| (`gif`)<br>
+_gif_<br>
 
 Convert the image into the given format.
 
 > NOTE: Converting to the `gif` format requires libvips compiled with support for ImageMagick or GraphicsMagick See
 > [The sharp docs](https://sharp.pixelplumbing.com/install#custom-libvips) for details.
 
-> You cannot use multiple shorthands, use `format` instead.
-
 • **Example**:
 
 ```js
 import Image from 'example.jpg?format=webp'
-import Image from 'example.jpg?png'
 import Images from 'example.jpg?format=webp;avif;heic'
 ```
 
@@ -286,46 +283,44 @@ The argument must be a number between 0 and 100.
 
 ```js
 import Image from 'example.jpg?format=webp&quality=100'
-import Images from 'example.jpg?avif&quality=10;50;75'
+import Images from 'example.jpg?format=avif&quality=10;50;75'
 ```
 
 ---
 
 ### Width
 
-• **Keyword**: `width`\| `w`<br> • **Type**: _integer_<br>
+• **Keyword**: `w`<br> • **Type**: _integer_<br>
 
 Resizes the image to be the specified amount of pixels wide. If not given the height will be scaled accordingly.
 
 • **Example**:
 
 ```js
-import Image from 'example.jpg?width=200'
 import Image from 'example.jpg?w=200'
-import Images from 'example.jpg?width=200;400;700'
+import Images from 'example.jpg?w=200;400;700'
 ```
 
 ---
 
 ### Height
 
-• **Keyword**: `height`\| `h`<br> • **Type**: _integer_<br>
+• **Keyword**: `h`<br> • **Type**: _integer_<br>
 
 Resizes the image to be the specified amount of pixels tall. If not given the width will be scaled accordingly.
 
 • **Example**:
 
 ```js
-import Image from 'example.jpg?height=200'
 import Image from 'example.jpg?h=200'
-import Images from 'example.jpg?height=200;400;700'
+import Images from 'example.jpg?h=200;400;700'
 ```
 
 ---
 
 ### Aspect
 
-• **Keyword**: `aspect` \| `ar`<br> • **Type**: _string_ \| _number_<br>
+• **Keyword**: `aspect`<br> • **Type**: _string_ \| _number_<br>
 
 Resizes the image to be the specified aspect ratio. Aspect ratio can be defined with a string in the form `16:9` or a
 positive number representing the width divided by height (e.g., `1.5` for a `3:2` aspect ratio) If height and width are
@@ -337,8 +332,8 @@ aspect ratio.
 
 ```js
 import Image from 'example.jpg?aspect=16:9'
-import Image from 'example.jpg?aspect=16:9&height=200'
-import Image from 'example.jpg?aspect=16:9&width=200'
+import Image from 'example.jpg?aspect=16:9&h=200'
+import Image from 'example.jpg?aspect=16:9&w=200'
 import Images from 'example.jpg?aspect=16:9&h=200;400;700'
 ```
 
@@ -353,7 +348,7 @@ Prevents the image from being resized if the specified or calculated width or he
 • **Example**:
 
 ```js
-import Image from 'example.jpg?width=200;400&withoutEnlargement'
+import Image from 'example.jpg?w=200;400&withoutEnlargement'
 import Image from 'example.jpg?aspect=16:9&withoutEnlargement'
 import Images from 'example.jpg?aspect=16:9&h=200;400;700&withoutEnlargement'
 ```
@@ -421,7 +416,7 @@ Returns all information collected about the image as a JavaScript object. The di
 
 ```js
 import Image from 'example.jpg?w=500;900;1200&avif&metadata'
-import { height, format } from 'example.jpg?w=700&gif&meta=height;format'
+import { height, format } from 'example.jpg?w=700&format=gif&as=meta:height;format'
 ```
 
 ### Picture
@@ -433,7 +428,7 @@ Returns information about the image necessary to render a `picture` tag as a Jav
 • **Example**:
 
 ```js
-import image from 'example.jpg?w=500;900;1200&format=avif;webp;jpg&picture'
+import image from 'example.jpg?w=500;900;1200&format=avif;webp;jpg&as=picture'
 
 let html = '<picture>';
 for (const [format, images] of Object.entries(image.sources)) {
@@ -451,8 +446,8 @@ Returns information about the image necessary to render a `source` tag as a Java
 • **Example**:
 
 ```js
-import avif from 'example.jpg?w=500;900;1200&avif&source'
-import webp from 'example.jpg?w=500;900;1200&webp&source'
+import avif from 'example.jpg?w=500;900;1200&format=avif&as=source'
+import webp from 'example.jpg?w=500;900;1200&format=webp&as=source'
 import fallback from 'example.jpg?w=700'
 
 const html = `<picture>
@@ -471,8 +466,8 @@ Returns a srcset string of the generated images to be used in a `<picture>` tag.
 • **Example**:
 
 ```js
-import avif from 'example.jpg?w=500;900;1200&avif&srcset'
-import webp from 'example.jpg?w=500;900;1200&webp&srcset'
+import avif from 'example.jpg?w=500;900;1200&format=avif&as=srcset'
+import webp from 'example.jpg?w=500;900;1200&format=webp&as=srcset'
 import fallback from 'example.jpg?w=700'
 
 const html = `<picture>

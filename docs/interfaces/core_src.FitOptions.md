@@ -18,4 +18,4 @@
 
 #### Defined in
 
-[core/src/transforms/fit.ts:9](https://github.com/JonasKruckenberg/imagetools/blob/6842c73/packages/core/src/transforms/fit.ts#L9)
+[core/src/transforms/fit.ts:9](https://github.com/JonasKruckenberg/imagetools/blob/0016446/packages/core/src/transforms/fit.ts#L9)

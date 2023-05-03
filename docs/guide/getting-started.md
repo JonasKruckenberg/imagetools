@@ -12,7 +12,7 @@ export default defineConfig({
 Now you can transform image by importing them like this:
 
 ```js
-import Image from 'example.jpg?w=400&h=300&webp'
+import Image from 'example.jpg?w=400&h=300&format=webp'
 ```
 
 ## Basic usage
@@ -24,7 +24,7 @@ compile-time plugin.
 This is why all directives are specified in the url as query parameters:
 
 ```
-<url>?width=300
+<url>?w=300
 ```
 
 You can have multiple key-value pairs. This will invoke all specified directives and return the transformed image.
@@ -34,32 +34,17 @@ You can have multiple key-value pairs. This will invoke all specified directives
 One strength of imagetools is the ability to generate multiple image versions from one import statement:
 
 ```
-<url>?width=300;500;700
+<url>?w=300;500;700
 ```
 
 will generate three images with widths of 300, 500 and 700 pixels.<br> This is not where it ends however, you can have
 multiple directives with multiple arguments:
 
 ```
-<url>?width=300;500;700&format=webp;avif;jpg
+<url>?w=300;500;700&format=webp;avif;jpg
 ```
 
 This will generate 9 different images, one for each combination of width and format.
-
-## Shorthands
-
-As you've seen, having a lot of directives on a single image makes the import statement very hard to read.<br> This is
-why the most commonly used transforms have shorthands that you can use instead. So writing:
-
-```
-<url>?format=webp
-```
-
-Is equivalent to writing:
-
-```
-<url>?webp
-```
 
 ## Metadata
 
@@ -67,7 +52,7 @@ Normally you get a single url pointing to the transformed image, or an array of 
 This is why the special `metadata` (`meta`) directive exists. Instead of returning the url it returns an object holding the image metadata:
 
 ```js
-import { width, height, format, src } from 'example.jpg?width=300&webp&metadata'
+import { width, height, format, src } from 'example.jpg?w=300&format=webp&as=metadata'
 
 width // is 300
 height // is automatically generated

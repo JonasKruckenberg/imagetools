@@ -534,7 +534,7 @@ ___
 | Name | Type |
 | :------ | :------ |
 | `config` | [`ImageConfig`](vite_src.md#imageconfig) |
-| `factories` | [`TransformFactory`](vite_src.md#transformfactory)<`Record`<`string`, `unknown`\>\>[] |
+| `factories` | [`TransformFactory`](vite_src.md#transformfactory)[] |
 | `logger?` | [`Logger`](../interfaces/vite_src.Logger.md) |
 
 #### Returns
@@ -757,7 +757,7 @@ ___
 
 #### Defined in
 
-[vite/src/index.ts:28](https://github.com/JonasKruckenberg/imagetools/blob/6842c73/packages/vite/src/index.ts#L28)
+[vite/src/index.ts:29](https://github.com/JonasKruckenberg/imagetools/blob/0016446/packages/vite/src/index.ts#L29)
 
 ___
 

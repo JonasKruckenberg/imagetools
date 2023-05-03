@@ -1,5 +1,28 @@
 # Change Log
 
+## 4.0.1
+
+### Patch Changes
+
+- 53af8fc: fix: reduce logging when providing larger image dimension via defaultDirectives
+
+## 4.0.0
+
+### Major Changes
+
+- 45cf457: breaking: removed shorthands (e.g. webp as a standalone query parameter). You must now specify the full
+  `format=`
+- 022519c: breaking: replace `withoutEnlargement` with `allowUpscale` and disable upscaling by default
+- 10ca129: breaking: drop CJS support
+- 36beecb: breaking: remove width, height, and ar directive aliases. Use w, h, and aspect instead
+- 022519c: breaking: remove `withoutReduction` option as there is no usecase for it
+- 45cf457: breaking: simplify ability to provide defaults. Output format is now specified with `as=`
+- 861276f: breaking: rename picture fallback to img
+
+### Minor Changes
+
+- 861276f: feat: add a new img output format
+
 ## 3.3.1
 
 ### Patch Changes

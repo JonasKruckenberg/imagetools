@@ -6,14 +6,10 @@ import { getKernel } from './kernel'
 import { getPosition } from './position'
 
 export interface ResizeOptions {
-  width: string
   w: string
-  height: string
   h: string
   aspect: string
-  ar: string
-  withoutEnlargement: '' | 'true'
-  withoutReduction: '' | 'true'
+  allowUpscale: '' | 'true'
 }
 
 /**
@@ -42,18 +38,12 @@ function parseAspect(aspect: string): number | undefined {
 }
 
 export const resize: TransformFactory<ResizeOptions> = (config, context) => {
-  const width = parseInt(config.width || config.w || '')
-  const height = parseInt(config.height || config.h || '')
-  const aspect = parseAspect(config.aspect || config.ar || '')
-  const withoutEnlargement = config.withoutEnlargement === '' || config.withoutEnlargement === 'true'
-  const withoutReduction = config.withoutReduction === '' || config.withoutReduction === 'true'
+  const width = parseInt(config.w || '')
+  const height = parseInt(config.h || '')
+  const aspect = parseAspect(config.aspect || '')
+  const allowUpscale = config.allowUpscale === '' || config.allowUpscale === 'true'
 
-  if (
-    (!width && !height && !aspect) ||
-    (config.withoutEnlargement && !withoutEnlargement) ||
-    (config.withoutReduction && !withoutReduction)
-  )
-    return
+  if (!width && !height && !aspect) return
 
   return function resizeTransform(image) {
     const fit = getFit(config, image)
@@ -110,17 +100,16 @@ export const resize: TransformFactory<ResizeOptions> = (config, context) => {
       finalWidth = height * finalAspect
     }
 
-    if (
-      (withoutEnlargement && (finalHeight > originalHeight || finalWidth > originalWidth)) ||
-      (withoutReduction && (finalHeight < originalHeight || finalWidth < originalWidth))
-    ) {
+    if (!allowUpscale && (finalHeight > originalHeight || finalWidth > originalWidth)) {
       finalHeight = originalHeight
       finalWidth = originalWidth
       finalAspect = originalAspect
 
-      context.logger.info(
-        'withoutEnlargement or withoutReduction enabled. Image width, height and aspect ratio reverted to original values'
-      )
+      if (context.manualSearchParams.has('width') || context.manualSearchParams.has('height')) {
+        context.logger.info(
+          'allowUpscale not enabled. Image width, height and aspect ratio reverted to original values'
+        )
+      }
     }
 
     finalWidth = Math.round(finalWidth)
@@ -129,14 +118,12 @@ export const resize: TransformFactory<ResizeOptions> = (config, context) => {
     setMetadata(image, 'height', finalHeight)
     setMetadata(image, 'width', finalWidth)
     setMetadata(image, 'aspect', finalAspect)
-    setMetadata(image, 'withoutEnlargement', withoutEnlargement)
-    setMetadata(image, 'withoutReduction', withoutReduction)
+    setMetadata(image, 'allowUpscale', allowUpscale)
 
     return image.resize({
       width: finalWidth || undefined,
       height: finalHeight || undefined,
-      withoutEnlargement: withoutEnlargement,
-      withoutReduction: withoutReduction,
+      withoutEnlargement: !allowUpscale,
       fit,
       position: getPosition(config, image),
       kernel: getKernel(config, image),

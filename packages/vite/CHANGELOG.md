@@ -1,5 +1,49 @@
 # Change Log
 
+## 5.0.2
+
+### Patch Changes
+
+- a6fa0fb: fix: account for possibility of all provided dimensions being upsizes
+
+## 5.0.1
+
+### Patch Changes
+
+- 53af8fc: fix: reduce logging when providing larger image dimension via defaultDirectives
+- bf391fd: fix: don't generate multiple images at same dimensions
+- Updated dependencies [53af8fc]
+  - imagetools-core@4.0.1
+
+## 5.0.0
+
+### Major Changes
+
+- 45cf457: breaking: removed shorthands (e.g. webp as a standalone query parameter). You must now specify the full
+  `format=`
+- 10ca129: breaking: drop CJS support
+- 36beecb: breaking: remove width, height, and ar directive aliases. Use w, h, and aspect instead
+- 45cf457: breaking: simplify ability to provide defaults. Output format is now specified with `as=`
+
+### Patch Changes
+
+- Updated dependencies [45cf457]
+- Updated dependencies [022519c]
+- Updated dependencies [10ca129]
+- Updated dependencies [36beecb]
+- Updated dependencies [022519c]
+- Updated dependencies [861276f]
+- Updated dependencies [45cf457]
+- Updated dependencies [861276f]
+  - imagetools-core@4.0.0
+
+## 4.0.19
+
+### Patch Changes
+
+- 4306ad7: feat: allow `async` output formats
+- c1c49c1: fix: don't match extensions in query string
+
 ## 4.0.18
 
 ### Patch Changes

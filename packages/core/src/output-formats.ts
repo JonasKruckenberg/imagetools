@@ -1,4 +1,4 @@
-import type { ImageConfig, OutputFormat, Picture, Source } from './types'
+import type { ImageConfig, Img, OutputFormat, Picture, Source } from './types'
 
 export const urlFormat: OutputFormat = () => (metadatas) => {
   const urls: string[] = metadatas.map((metadata) => metadata.src as string)
@@ -29,6 +29,33 @@ const format = (m: ImageConfig) => (m.format as string).replace('jpg', 'jpeg')
 
 export const sourceFormat: OutputFormat = () => (metadatas) => {
   return metadatas.map((m) => metadataToSource(m))
+}
+
+export const imgFormat: OutputFormat = () => (metadatas) => {
+  let largestImage
+  let largestImageSize = 0
+  for (let i = 0; i < metadatas.length; i++) {
+    const m = metadatas[i]
+    if ((m.width as number) > largestImageSize) {
+      largestImage = m
+      largestImageSize = m.width as number
+    }
+  }
+
+  const result: Img = {
+    src: largestImage?.src as string,
+    w: largestImage?.width as number,
+    h: largestImage?.height as number
+  }
+
+  if (metadatas.length >= 2) {
+    result.srcset = []
+    for (let i = 0; i < metadatas.length; i++) {
+      result.srcset.push(metadataToSource(metadatas[i]))
+    }
+  }
+
+  return result
 }
 
 /** fallback format should be specified last */
@@ -70,7 +97,7 @@ export const pictureFormat: OutputFormat = () => (metadatas) => {
     // the fallback should be the largest image in the fallback format
     // we assume users should never upsize an image because that is just wasted
     // bytes since the browser can upsize just as well
-    fallback: {
+    img: {
       src: largestFallback?.src as string,
       w: largestFallback?.width as number,
       h: largestFallback?.height as number
@@ -83,6 +110,7 @@ export const builtinOutputFormats = {
   url: urlFormat,
   source: sourceFormat,
   srcset: srcsetFormat,
+  img: imgFormat,
   picture: pictureFormat,
   metadata: metadataFormat,
   meta: metadataFormat

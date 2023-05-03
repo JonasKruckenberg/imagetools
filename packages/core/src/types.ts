@@ -10,6 +10,7 @@ export interface Logger {
 
 export interface TransformFactoryContext {
   useParam: (parameter: string) => void
+  manualSearchParams: URLSearchParams
   logger: Logger
 }
 
@@ -46,11 +47,28 @@ export interface Source {
 }
 
 /**
+ * The img output format.
+ */
+export interface Img {
+  src: string
+  /**
+   * The intrinsic width
+   */
+  w: number
+  /**
+   * The intrinsic height. May not be the rendered height.
+   * Helps prevent reflow. See https://html.com/attributes/img-height/
+   */
+  h: number
+  srcset?: Source[]
+}
+
+/**
  * The picture output format.
  */
 export interface Picture {
   sources: Record<string, Source[]>
-  fallback: {
+  img: {
     src: string
     w: number
     h: number

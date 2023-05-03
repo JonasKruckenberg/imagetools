@@ -13,7 +13,7 @@ expect.extend({ toMatchImageSnapshot })
 describe('hue', () => {
   let dirCtx: TransformFactoryContext
   beforeAll(() => {
-    dirCtx = { useParam: vi.fn, logger: consoleLogger }
+    dirCtx = { useParam: vi.fn, manualSearchParams: new URLSearchParams(), logger: consoleLogger }
   })
 
   test('keyword "hue"', () => {
@@ -101,7 +101,7 @@ describe('hue', () => {
 describe('saturation', () => {
   let dirCtx: TransformFactoryContext
   beforeAll(() => {
-    dirCtx = { useParam: vi.fn, logger: consoleLogger }
+    dirCtx = { useParam: vi.fn, manualSearchParams: new URLSearchParams(), logger: consoleLogger }
   })
 
   test('keyword "saturation"', () => {
@@ -171,7 +171,7 @@ describe('saturation', () => {
 describe('brightness', () => {
   let dirCtx: TransformFactoryContext
   beforeAll(() => {
-    dirCtx = { useParam: vi.fn, logger: consoleLogger }
+    dirCtx = { useParam: vi.fn, manualSearchParams: new URLSearchParams(), logger: consoleLogger }
   })
 
   test('keyword "brightness"', () => {
