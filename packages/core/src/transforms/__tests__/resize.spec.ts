@@ -12,7 +12,7 @@ expect.extend({ toMatchImageSnapshot })
 
 let dirCtx: TransformFactoryContext
 beforeAll(() => {
-  dirCtx = { useParam: vi.fn(), logger: consoleLogger }
+  dirCtx = { useParam: vi.fn(), manualSearchParams: new URLSearchParams(), logger: consoleLogger }
   vi.spyOn(dirCtx.logger, 'info')
 })
 beforeEach(() => {

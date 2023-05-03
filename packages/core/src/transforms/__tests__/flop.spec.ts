@@ -13,7 +13,7 @@ expect.extend({ toMatchImageSnapshot })
 describe('flop', () => {
   let dirCtx: TransformFactoryContext
   beforeAll(() => {
-    dirCtx = { useParam: vi.fn, logger: consoleLogger }
+    dirCtx = { useParam: vi.fn, manualSearchParams: new URLSearchParams(), logger: consoleLogger }
   })
 
   test('keyword "flop"', () => {

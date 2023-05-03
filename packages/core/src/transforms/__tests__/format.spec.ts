@@ -14,7 +14,7 @@ expect.extend({ toMatchFile, toMatchImageSnapshot })
 describe('format', () => {
   let dirCtx: TransformFactoryContext
   beforeAll(() => {
-    dirCtx = { useParam: vi.fn, logger: consoleLogger }
+    dirCtx = { useParam: vi.fn, manualSearchParams: new URLSearchParams(), logger: consoleLogger }
   })
 
   test('keyword "format"', () => {
