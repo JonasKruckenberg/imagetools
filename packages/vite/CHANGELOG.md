@@ -1,5 +1,11 @@
 # Change Log
 
+## 5.0.2
+
+### Patch Changes
+
+- a6fa0fb: fix: account for possibility of all provided dimensions being upsizes
+
 ## 5.0.1
 
 ### Patch Changes
