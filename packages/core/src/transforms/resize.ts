@@ -137,7 +137,7 @@ export const resize: TransformFactory<ResizeOptions> = (config, context) => {
       height: finalHeight || undefined,
       withoutEnlargement: withoutEnlargement,
       withoutReduction: withoutReduction,
-      fit: fit,
+      fit,
       position: getPosition(config, image),
       kernel: getKernel(config, image),
       background: getBackground(config, image)
