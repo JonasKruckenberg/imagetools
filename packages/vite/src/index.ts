@@ -56,19 +56,14 @@ export function imagetools(userOptions: Partial<VitePluginOptions> = {}): Plugin
 
       const srcURL = parseURL(id)
 
-      let directives = srcURL.searchParams
-
-      if (typeof pluginOptions.defaultDirectives === 'function') {
-        directives = new URLSearchParams({
-          ...Object.fromEntries(pluginOptions.defaultDirectives(srcURL)),
-          ...Object.fromEntries(srcURL.searchParams)
-        })
-      } else if (pluginOptions.defaultDirectives) {
-        directives = new URLSearchParams({
-          ...Object.fromEntries(pluginOptions.defaultDirectives),
-          ...Object.fromEntries(srcURL.searchParams)
-        })
-      }
+      const defaultDirectives =
+        typeof pluginOptions.defaultDirectives === 'function'
+          ? pluginOptions.defaultDirectives(srcURL)
+          : pluginOptions.defaultDirectives || new URLSearchParams()
+      const directives = new URLSearchParams({
+        ...Object.fromEntries(defaultDirectives),
+        ...Object.fromEntries(srcURL.searchParams)
+      })
 
       if (!directives.toString()) return null
 
