@@ -11,7 +11,7 @@ describe('applyTransforms', () => {
     const options = { width: 300, height: 100 }
     const dirs: TransformFactory[] = [() => (i) => i]
 
-    const { transforms } = generateTransforms(options, dirs)
+    const { transforms } = generateTransforms(options, dirs, new URLSearchParams())
 
     expect(transforms).toBeInstanceOf(Array)
     expect(transforms).toHaveLength(1)
@@ -26,7 +26,7 @@ describe('applyTransforms', () => {
       }
     ]
 
-    const { parametersUsed } = generateTransforms(options, dirs)
+    const { parametersUsed } = generateTransforms(options, dirs, new URLSearchParams())
 
     expect(parametersUsed.has('foo')).toBeTruthy()
   })
@@ -36,7 +36,7 @@ describe('applyTransforms', () => {
       const options = { width: 300, height: 100 }
       const dirs: TransformFactory[] = [() => undefined, () => undefined, () => undefined]
 
-      const { transforms } = generateTransforms(options, dirs)
+      const { transforms } = generateTransforms(options, dirs, new URLSearchParams())
 
       expect(transforms).toBeInstanceOf(Array)
       expect(transforms).toHaveLength(0)
@@ -45,7 +45,7 @@ describe('applyTransforms', () => {
       const options = { width: 300, height: 100 }
       const dirs: TransformFactory[] = [() => (i) => i, () => (i) => i, () => undefined]
 
-      const { transforms } = generateTransforms(options, dirs)
+      const { transforms } = generateTransforms(options, dirs, new URLSearchParams())
 
       expect(transforms).toBeInstanceOf(Array)
       expect(transforms).toHaveLength(2)
@@ -63,7 +63,7 @@ describe('applyTransforms', () => {
       }
     ]
 
-    generateTransforms({}, dirs, logger)
+    generateTransforms({}, dirs, new URLSearchParams(), logger)
 
     expect(logger.info).toHaveBeenCalledWith('Info message')
     expect(logger.warn).toHaveBeenCalledWith('Warn message')
@@ -75,14 +75,18 @@ describe('applyTransforms', () => {
     vi.spyOn(console, 'warn')
     vi.spyOn(console, 'error')
 
-    generateTransforms({}, [
-      (_, c) => {
-        c.logger.info('Info message')
-        c.logger.warn('Warn message')
-        c.logger.error('Error message')
-        return undefined
-      }
-    ])
+    generateTransforms(
+      {},
+      [
+        (_, c) => {
+          c.logger.info('Info message')
+          c.logger.warn('Warn message')
+          c.logger.error('Error message')
+          return undefined
+        }
+      ],
+      new URLSearchParams()
+    )
 
     expect(console.info).toHaveBeenCalledWith('Info message')
     expect(console.warn).toHaveBeenCalledWith('Warn message')

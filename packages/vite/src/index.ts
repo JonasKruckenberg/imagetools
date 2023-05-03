@@ -82,7 +82,7 @@ export function imagetools(userOptions: Partial<VitePluginOptions> = {}): Plugin
       }
 
       for (const config of imageConfigs) {
-        const { transforms } = generateTransforms(config, transformFactories, logger)
+        const { transforms } = generateTransforms(config, transformFactories, srcURL.searchParams, logger)
         const { image, metadata } = await applyTransforms(transforms, img.clone(), pluginOptions.removeMetadata)
 
         if (this.meta.watchMode) {

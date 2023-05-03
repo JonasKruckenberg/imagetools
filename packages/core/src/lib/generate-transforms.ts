@@ -1,7 +1,12 @@
 import { ImageTransformation, ImageConfig, TransformFactory, TransformFactoryContext, Logger } from '../types'
 import { consoleLogger } from './logger'
 
-export function generateTransforms(config: ImageConfig, factories: TransformFactory[], logger?: Logger) {
+export function generateTransforms(
+  config: ImageConfig,
+  factories: TransformFactory[],
+  manualSearchParams: URLSearchParams,
+  logger?: Logger
+) {
   if (logger === undefined) {
     logger = consoleLogger
   }
@@ -11,6 +16,7 @@ export function generateTransforms(config: ImageConfig, factories: TransformFact
 
   const context: TransformFactoryContext = {
     useParam: (k) => parametersUsed.add(k),
+    manualSearchParams,
     logger
   }
 
