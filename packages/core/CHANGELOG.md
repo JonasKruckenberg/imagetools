@@ -1,5 +1,11 @@
 # Change Log
 
+## 4.0.1
+
+### Patch Changes
+
+- 53af8fc: fix: reduce logging when providing larger image dimension via defaultDirectives
+
 ## 4.0.0
 
 ### Major Changes

@@ -1,5 +1,14 @@
 # Change Log
 
+## 5.0.1
+
+### Patch Changes
+
+- 53af8fc: fix: reduce logging when providing larger image dimension via defaultDirectives
+- bf391fd: fix: don't generate multiple images at same dimensions
+- Updated dependencies [53af8fc]
+  - imagetools-core@4.0.1
+
 ## 5.0.0
 
 ### Major Changes
