@@ -73,23 +73,23 @@ export function imagetools(userOptions: Partial<VitePluginOptions> = {}): Plugin
         const intrinsicWidth = metadata.width || 0
         const intrinsicHeight = metadata.height || 0
 
-        const originalWidths = (directives.get('w')?.split(';') || []);
+        const originalWidths = directives.get('w')?.split(';') || []
         const widths = originalWidths.filter((d) => parseInt(d) < intrinsicWidth)
         if (widths.length != originalWidths.length) {
           if (widths.length) {
-              directives.set('w', widths.join(';'));
+            directives.set('w', widths.join(';'))
           } else {
-              directives.delete('w');
+            directives.delete('w')
           }
         }
 
-        const originalHeights = (directives.get('h')?.split(';') || []);
+        const originalHeights = directives.get('h')?.split(';') || []
         const heights = originalHeights.filter((d) => parseInt(d) < intrinsicHeight)
         if (heights.length != originalHeights.length) {
           if (heights.length) {
-              directives.set('h', heights.join(';'));
+            directives.set('h', heights.join(';'))
           } else {
-              directives.delete('h');
+            directives.delete('h')
           }
         }
       }
