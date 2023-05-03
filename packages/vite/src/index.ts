@@ -67,11 +67,26 @@ export function imagetools(userOptions: Partial<VitePluginOptions> = {}): Plugin
 
       if (!directives.toString()) return null
 
+      const img = loadImage(decodeURIComponent(srcURL.pathname))
+      if (directives.get('allowUpscale') !== 'true') {
+        const metadata = await img.metadata()
+        const intrinsicWidth = metadata.width || 0
+        const intrinsicHeight = metadata.height || 0
+
+        const widths = (directives.get('w')?.split(';') || []).filter((d) => parseInt(d) > intrinsicWidth).join(';')
+        if (widths) {
+          directives.set('w', widths)
+        }
+
+        const heights = (directives.get('h')?.split(';') || []).filter((d) => parseInt(d) > intrinsicHeight).join(';')
+        if (heights) {
+          directives.set('h', widths)
+        }
+      }
+
       const parameters = extractEntries(directives)
       const imageConfigs =
         pluginOptions.resolveConfigs?.(parameters, outputFormats) ?? resolveConfigs(parameters, outputFormats)
-
-      const img = loadImage(decodeURIComponent(srcURL.pathname))
 
       const outputMetadatas: Array<ImageConfig> = []
 
