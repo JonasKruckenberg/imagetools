@@ -1,7 +1,7 @@
-import { TransformFactory } from '../types'
-import { setMetadata } from '../lib/metadata'
-import { getQuality } from './quality'
-import { getProgressive } from './progressive'
+import { TransformFactory } from '../types.js'
+import { setMetadata } from '../lib/metadata.js'
+import { getQuality } from './quality.js'
+import { getProgressive } from './progressive.js'
 import { FormatEnum } from 'sharp'
 
 export const formatValues = ['avif', 'jpg', 'jpeg', 'png', 'heif', 'heic', 'webp', 'tiff'] as const

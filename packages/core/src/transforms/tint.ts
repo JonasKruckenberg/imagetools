@@ -1,5 +1,5 @@
-import { TransformFactory } from '../types'
-import { setMetadata } from '../lib/metadata'
+import { TransformFactory } from '../types.js'
+import { setMetadata } from '../lib/metadata.js'
 
 export interface TintOptions {
   tint: string

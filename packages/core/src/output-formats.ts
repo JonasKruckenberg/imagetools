@@ -1,4 +1,4 @@
-import type { ImageConfig, Img, OutputFormat, Picture, Source } from './types'
+import type { ImageConfig, Img, OutputFormat, Picture, Source } from './types.js'
 
 export const urlFormat: OutputFormat = () => (metadatas) => {
   const urls: string[] = metadatas.map((metadata) => metadata.src as string)
