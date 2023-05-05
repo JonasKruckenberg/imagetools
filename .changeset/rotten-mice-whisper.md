@@ -3,4 +3,4 @@
 'vite-imagetools': patch
 ---
 
-Support Node16 & NodeNext module resolution
+fix: support `node16` and `nodenext` values for  TypeScript's `moduleResolution` setting
