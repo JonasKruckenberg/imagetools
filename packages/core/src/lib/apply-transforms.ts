@@ -1,6 +1,6 @@
 import { Sharp } from 'sharp'
-import { ImageTransformation, TransformResult } from '../types'
-import { METADATA } from './metadata'
+import { ImageTransformation, TransformResult } from '../types.js'
+import { METADATA } from './metadata.js'
 
 export async function applyTransforms(
   transforms: ImageTransformation[],

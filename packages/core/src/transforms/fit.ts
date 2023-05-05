@@ -1,5 +1,5 @@
-import { TransformOption } from '../types'
-import { setMetadata } from '../lib/metadata'
+import { TransformOption } from '../types.js'
+import { setMetadata } from '../lib/metadata.js'
 
 export const fitValues = ['cover', 'contain', 'fill', 'inside', 'outside'] as const
 

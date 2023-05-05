@@ -1,6 +1,6 @@
-import { TransformFactory } from '../types'
-import { setMetadata } from '../lib/metadata'
-import { getBackground } from './background'
+import { TransformFactory } from '../types.js'
+import { setMetadata } from '../lib/metadata.js'
+import { getBackground } from './background.js'
 
 export interface RotateOptions {
   rotate: string

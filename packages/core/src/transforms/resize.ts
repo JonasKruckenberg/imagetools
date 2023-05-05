@@ -1,9 +1,9 @@
-import { getMetadata, setMetadata } from '../lib/metadata'
-import { TransformFactory } from '../types'
-import { getBackground } from './background'
-import { getFit } from './fit'
-import { getKernel } from './kernel'
-import { getPosition } from './position'
+import { getMetadata, setMetadata } from '../lib/metadata.js'
+import { TransformFactory } from '../types.js'
+import { getBackground } from './background.js'
+import { getFit } from './fit.js'
+import { getKernel } from './kernel.js'
+import { getPosition } from './position.js'
 
 export interface ResizeOptions {
   w: string

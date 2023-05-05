@@ -17,8 +17,8 @@ import {
   OutputFormat
 } from 'imagetools-core'
 import { createFilter, dataToEsm } from '@rollup/pluginutils'
-import { VitePluginOptions } from './types'
-import { createBasePath } from './utils'
+import { VitePluginOptions } from './types.js'
+import { createBasePath } from './utils.js'
 
 const defaultOptions: VitePluginOptions = {
   include: /^[^?]+\.(heic|heif|avif|jpeg|jpg|png|tiff|webp|gif)(\?.*)?$/,

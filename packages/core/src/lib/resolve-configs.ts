@@ -1,4 +1,4 @@
-import { OutputFormat } from '..'
+import { OutputFormat } from '../index.js'
 
 /**
  * This function calculates the cartesian product of two or more arrays and is straight from stackoverflow ;)
