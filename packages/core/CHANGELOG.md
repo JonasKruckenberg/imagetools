@@ -1,5 +1,12 @@
 # Change Log
 
+## 4.0.2
+
+### Patch Changes
+
+- 75160ef: fix: correctly calculate resize metadata when given w & h
+- 815650a: fix: support `node16` and `nodenext` values for TypeScript's `moduleResolution` setting
+
 ## 4.0.1
 
 ### Patch Changes
