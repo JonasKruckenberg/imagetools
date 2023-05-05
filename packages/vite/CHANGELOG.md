@@ -1,5 +1,14 @@
 # Change Log
 
+## 5.0.3
+
+### Patch Changes
+
+- 815650a: fix: support `node16` and `nodenext` values for TypeScript's `moduleResolution` setting
+- Updated dependencies [75160ef]
+- Updated dependencies [815650a]
+  - imagetools-core@4.0.2
+
 ## 5.0.2
 
 ### Patch Changes
