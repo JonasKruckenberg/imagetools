@@ -1,5 +1,11 @@
 # Change Log
 
+## 4.0.3
+
+### Patch Changes
+
+- a99c7ad: fix: use default rather than import specifier for better error message in CJS projects
+
 ## 4.0.2
 
 ### Patch Changes
