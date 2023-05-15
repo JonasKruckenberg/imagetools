@@ -1,5 +1,13 @@
 # Change Log
 
+## 5.0.4
+
+### Patch Changes
+
+- a99c7ad: fix: use default rather than import specifier for better error message in CJS projects
+- Updated dependencies [a99c7ad]
+  - imagetools-core@4.0.3
+
 ## 5.0.3
 
 ### Patch Changes
