@@ -13,19 +13,19 @@
     "doc": "pnpm run --filter imagetools-core build && typedoc"
   },
   "devDependencies": {
-    "@changesets/cli": "^2.22.0",
-    "@rollup/plugin-typescript": "^11.0.0",
-    "@typescript-eslint/eslint-plugin": "^5.48.2",
-    "@typescript-eslint/parser": "^5.48.2",
+    "@changesets/cli": "^2.26.2",
+    "@rollup/plugin-typescript": "^11.1.2",
+    "@typescript-eslint/eslint-plugin": "^5.61.0",
+    "@typescript-eslint/parser": "^5.61.0",
     "cross-env": "^7.0.3",
-    "eslint": "^8.32.0",
-    "eslint-config-prettier": "^8.5.0",
-    "prettier": "^2.8.3",
-    "rollup": "^3.2.3",
-    "tslib": "^2.5.0",
-    "typedoc": "^0.24.5",
-    "typedoc-plugin-markdown": "^3.15.2",
-    "typescript": "^5.0.4"
+    "eslint": "^8.44.0",
+    "eslint-config-prettier": "^8.8.0",
+    "prettier": "^2.8.8",
+    "rollup": "^3.26.2",
+    "tslib": "^2.6.0",
+    "typedoc": "^0.24.8",
+    "typedoc-plugin-markdown": "^3.15.3",
+    "typescript": "^5.1.6"
   },
   "commitlint": {
     "extends": [
