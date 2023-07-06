@@ -22,7 +22,7 @@ export const metadataFormat: OutputFormat = (whitelist) => (metadatas) => {
   return metadatas.length === 1 ? metadatas[0] : metadatas
 }
 
-const metadataToSource = (m: ImageConfig) => ({ src: m.src, w: m.width } as Source)
+const metadataToSource = (m: ImageConfig) => ({ src: m.src, w: m.width }) as Source
 
 /** normalizes the format for use in mime-type */
 const format = (m: ImageConfig) => (m.format as string).replace('jpg', 'jpeg')
