@@ -1,5 +1,11 @@
 # Change Log
 
+## 5.0.5
+
+### Patch Changes
+
+- 3a439ae: fix: allow image same size as original by default. I.e. even when upscaling disabled
+
 ## 5.0.4
 
 ### Patch Changes
