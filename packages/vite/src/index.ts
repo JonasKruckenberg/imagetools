@@ -74,7 +74,7 @@ export function imagetools(userOptions: Partial<VitePluginOptions> = {}): Plugin
         const intrinsicHeight = metadata.height || 0
 
         const originalWidths = directives.get('w')?.split(';') || []
-        const widths = originalWidths.filter((d) => parseInt(d) < intrinsicWidth)
+        const widths = originalWidths.filter((d) => parseInt(d) <= intrinsicWidth)
         if (widths.length != originalWidths.length) {
           if (widths.length) {
             directives.set('w', widths.join(';'))
@@ -84,7 +84,7 @@ export function imagetools(userOptions: Partial<VitePluginOptions> = {}): Plugin
         }
 
         const originalHeights = directives.get('h')?.split(';') || []
-        const heights = originalHeights.filter((d) => parseInt(d) < intrinsicHeight)
+        const heights = originalHeights.filter((d) => parseInt(d) <= intrinsicHeight)
         if (heights.length != originalHeights.length) {
           if (heights.length) {
             directives.set('h', heights.join(';'))
