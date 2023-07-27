@@ -20,6 +20,7 @@ export const format: TransformFactory<FormatOptions> = (config) => {
   }
   if (!format) return
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const fixedFormat: keyof FormatEnum = format as any
 
   return function formatTransform(image) {
