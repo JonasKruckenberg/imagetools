@@ -1,5 +1,13 @@
 # Change Log
 
+## 5.0.6
+
+### Patch Changes
+
+- 474170c: chore: upgrade dependencies
+- Updated dependencies [474170c]
+  - imagetools-core@4.0.4
+
 ## 5.0.5
 
 ### Patch Changes
