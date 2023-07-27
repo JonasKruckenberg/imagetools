@@ -1,5 +1,11 @@
 # Change Log
 
+## 4.0.4
+
+### Patch Changes
+
+- 474170c: chore: upgrade dependencies
+
 ## 4.0.3
 
 ### Patch Changes
