@@ -294,9 +294,10 @@ describe('vite-imagetools', () => {
             ]
           })
           fail()
-        } catch (err: any) {
-          expect(err.plugin).toEqual('imagetools')
-          expect(err.message).toMatch(/An error$/)
+        } catch (err: unknown) {
+          const e = err as { plugin: string; message: string }
+          expect(e.plugin).toEqual('imagetools')
+          expect(e.message).toMatch(/An error$/)
         }
       })
     })

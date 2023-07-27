@@ -4,11 +4,11 @@ export const METADATA = Symbol('image metadata')
 
 declare module 'sharp' {
   interface Sharp {
-    [METADATA]: Record<string, any>
+    [METADATA]: Record<string, unknown>
   }
 }
 
-export function setMetadata(image: Sharp, key: string, value: any) {
+export function setMetadata(image: Sharp, key: string, value: unknown) {
   image[METADATA] && (image[METADATA][key] = value)
 }
 
