@@ -1,5 +1,11 @@
 # Change Log
 
+## 4.0.5
+
+### Patch Changes
+
+- 9104638: fix: address regression in resolve-configs
+
 ## 4.0.4
 
 ### Patch Changes
