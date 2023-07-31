@@ -99,49 +99,28 @@ describe('generateConfigs', () => {
   })
 
   test('the returned array contains the product of all arguments', () => {
-    {
-      const e: [string, string[]][] = [
-        ['width', ['300', '400']],
-        ['test', ['foo', 'bar']]
-      ]
+    const e: [string, string[]][] = [
+      ['width', ['300', '400']],
+      ['test', ['foo', 'bar']],
+      ['height', ['100', '700']]
+    ]
 
-      const expected = [
-        { width: '300', test: 'foo' },
-        { width: '300', test: 'bar' },
-        { width: '400', test: 'foo' },
-        { width: '300', test: 'bar' }
-      ]
+    const expected = [
+      { width: '300', test: 'foo', height: '100' },
+      { width: '300', test: 'foo', height: '700' },
+      { width: '300', test: 'bar', height: '100' },
+      { width: '300', test: 'bar', height: '700' },
+      { width: '400', test: 'foo', height: '100' },
+      { width: '400', test: 'foo', height: '700' },
+      { width: '400', test: 'bar', height: '100' },
+      { width: '400', test: 'bar', height: '700' }
+    ]
 
-      const res = resolveConfigs(e, builtinOutputFormats)
+    const res = resolveConfigs(e, builtinOutputFormats)
 
-      expected.forEach((entry) => {
-        expect(res).toContainEqual(entry)
-      })
-    }
-    {
-      const e: [string, string[]][] = [
-        ['width', ['300', '400']],
-        ['test', ['foo', 'bar']],
-        ['height', ['100', '700']]
-      ]
-
-      const expected = [
-        { width: '300', test: 'foo', height: '100' },
-        { width: '300', test: 'foo', height: '700' },
-        { width: '300', test: 'bar', height: '100' },
-        { width: '300', test: 'bar', height: '700' },
-        { width: '400', test: 'foo', height: '100' },
-        { width: '400', test: 'foo', height: '700' },
-        { width: '400', test: 'bar', height: '100' },
-        { width: '400', test: 'bar', height: '700' }
-      ]
-
-      const res = resolveConfigs(e, builtinOutputFormats)
-
-      expected.forEach((entry) => {
-        expect(res).toContainEqual(entry)
-      })
-    }
+    expected.forEach((entry) => {
+      expect(res).toContainEqual(entry)
+    })
   })
 
   test('output transforms are ignored', () => {
