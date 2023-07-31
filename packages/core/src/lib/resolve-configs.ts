@@ -4,7 +4,7 @@ import { OutputFormat } from '../index.js'
  * This function calculates the cartesian product of two or more arrays and is straight from stackoverflow ;)
  * Should be replaced with something more legible but works for now.
  */
-const cartesian = (...a: [string, string][][]) =>
+const cartesian = (...a: [[string, string]][][]) =>
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   a.reduce((a: any, b: any) => a.flatMap((d: any) => b.map((e: any) => [d, e].flat())))
 
@@ -21,7 +21,7 @@ export function resolveConfigs(
   // create a new array of entries for each argument
   const singleArgumentEntries = entries
     .filter(([k]) => !(k in outputFormats))
-    .map(([key, values]) => values.map<[string, string]>((v) => [key, v]))
+    .map(([key, values]) => values.map<[[string, string]]>((v) => [[key, v]]))
 
   // do a cartesian product on all entries to get all combinations we need to produce
   const combinations = singleArgumentEntries
@@ -32,7 +32,7 @@ export function resolveConfigs(
 
   // and return as an array of objects
   const out: Record<string, string | string[]>[] = combinations.map((options) =>
-    Object.fromEntries([[...options, ...metadataAddons]])
+    Object.fromEntries([...options, ...metadataAddons])
   )
 
   return out.length ? out : [Object.fromEntries(metadataAddons)]
