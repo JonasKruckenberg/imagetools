@@ -52,6 +52,39 @@ describe('generateConfigs', () => {
     expect(res).toHaveLength(2)
   })
 
+  // test('the returned array length equals the product of all arguments', () => {
+  //   {
+  //     const e: [string, string[]][] = [['width', ['300', '400']]]
+
+  //     const res = resolveConfigs(e, builtinOutputFormats)
+
+  //     expect(res).toHaveLength(2)
+  //   }
+  //   {
+  //     const e: [string, string[]][] = [
+  //       ['width', ['300', '400']],
+  //       ['test', ['foo', 'bar']]
+  //     ]
+
+  //     const res = resolveConfigs(e, builtinOutputFormats)
+
+  //     console.log(res)
+
+  //     expect(res).toHaveLength(4)
+  //   }
+  //   {
+  //     const e: [string, string[]][] = [
+  //       ['width', ['300', '400']],
+  //       ['test', ['foo', 'bar']],
+  //       ['height', ['100', '700']]
+  //     ]
+
+  //     const res = resolveConfigs(e, builtinOutputFormats)
+
+  //     expect(res).toHaveLength(8)
+  //   }
+  // })
+
   test('the returned array length equals the product of all arguments', () => {
     {
       const e: [string, string[]][] = [['width', ['300', '400']]]
@@ -68,6 +101,8 @@ describe('generateConfigs', () => {
 
       const res = resolveConfigs(e, builtinOutputFormats)
 
+      console.log(res)
+
       expect(res).toHaveLength(4)
     }
     {
@@ -80,6 +115,48 @@ describe('generateConfigs', () => {
       const res = resolveConfigs(e, builtinOutputFormats)
 
       expect(res).toHaveLength(8)
+    }
+  })
+
+  test('the returned array contains the product of all arguments', () =>{
+    {
+      const e: [string, string[]][] = [
+        ['width', ['300', '400']],
+        ['test', ['foo', 'bar']]
+      ]
+
+      const expected = [
+        { width: '300', test: 'foo'},
+        { width: '300', test: 'bar'},
+        { width: '400', test: 'foo'},
+        { width: '300', test: 'bar'},
+      ]
+
+      const res = resolveConfigs(e, builtinOutputFormats)
+
+      expected.forEach(entry => {expect(res).toContainEqual(entry)})
+    }
+    {
+      const e: [string, string[]][] = [
+        ['width', ['300', '400']],
+        ['test', ['foo', 'bar']],
+        ['height', ['100', '700']]
+      ]
+
+      const expected = [
+        { width: '300', test: 'foo', height: '100'},
+        { width: '300', test: 'foo', height: '700'},
+        { width: '300', test: 'bar', height: '100'},
+        { width: '300', test: 'bar', height: '700'},
+        { width: '400', test: 'foo', height: '100'},
+        { width: '400', test: 'foo', height: '700'},
+        { width: '400', test: 'bar', height: '100'},
+        { width: '400', test: 'bar', height: '700'},
+      ]
+
+      const res = resolveConfigs(e, builtinOutputFormats)
+
+      expected.forEach(entry => {expect(res).toContainEqual(entry)})
     }
   })
 
@@ -106,6 +183,7 @@ describe('generateConfigs', () => {
     ]
 
     const res = resolveConfigs(e, builtinOutputFormats)
+    // console.log(res)
 
     expect(res).toHaveLength(4)
   })

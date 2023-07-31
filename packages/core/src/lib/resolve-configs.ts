@@ -31,9 +31,22 @@ export function resolveConfigs(
   const metadataAddons = entries.filter(([k]) => k in outputFormats)
 
   // and return as an array of objects
-  const out: Record<string, string | string[]>[] = combinations.map((options) =>
-    Object.fromEntries([[...options, ...metadataAddons]])
-  )
+  const out = combinations.map((options) =>  {
+    const mergedOptions = [...options, ...metadataAddons]
+
+    // Use the iterator directly to grab each pair
+    const comboIterator = mergedOptions[Symbol.iterator]();
+    const pairCount = mergedOptions.length/2
+    let outEntry = []
+
+    for (let i = 0; i < pairCount; i++) {
+      // Assumes there's 2 more values; `Object.fromEntries` only works properly with 
+      // even-arity values, so if this is not the case things will break regardless
+      outEntry.push( [ comboIterator.next().value, comboIterator.next().value ] )
+    }
+
+    return Object.fromEntries(outEntry)
+  });
 
   return out.length ? out : [Object.fromEntries(metadataAddons)]
 }
