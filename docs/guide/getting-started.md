@@ -84,4 +84,4 @@ interface OutputMetadata {
 > NOTE: `vite-imagetools` respects the `json.namedExports` vite configuration option, so when namedExports are disabled,
 > you are unable to use destructured imports!
 
-> Interested in more ? Read the [spec](../spec.md) or see the [extending guide](extending.md)
+> Interested in more ? Read the [extending guide](extending.md)
