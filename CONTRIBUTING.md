@@ -62,13 +62,6 @@ fixtures (see [project setup](#project-setup) for instructions on how to install
 Imagetools is written to be easily adaptable to different buildtools and environment, here are a few tips to get you
 started:
 
-- Read the specification
-
-The user facing api has been designed to be interchangeable, so users can easily switch their existing project using an
-image processing server to use imagetools or vice-versa! That's why [the specification](docs/spec.md) clearly states
-what transformations and behaviour an Implementation must support to be compatible. You should reference this document
-to make sure your Integration is compatible with all others.
-
 - Imagetools-core exposes commonly used utility funtions
 
 To make your life easier imagetools-core provides utility functions for the common tasks like generating cache keys,
