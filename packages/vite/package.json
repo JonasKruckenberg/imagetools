@@ -1,7 +1,7 @@
 {
   "name": "vite-imagetools",
   "description": "Load and transform images using a toolbox of import directives!",
-  "version": "5.0.7",
+  "version": "5.0.8",
   "type": "module",
   "types": "dist/index.d.ts",
   "exports": {
