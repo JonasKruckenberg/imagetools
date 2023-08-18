@@ -1,5 +1,11 @@
 # Change Log
 
+## 5.0.8
+
+### Patch Changes
+
+- e4bba3c: fix: correct detection for Vite build vs serve mode
+
 ## 5.0.7
 
 ### Patch Changes
