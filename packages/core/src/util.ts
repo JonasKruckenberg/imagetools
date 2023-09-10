@@ -1,7 +1,7 @@
 import { createHash } from 'node:crypto'
+import path from 'node:path'
 import sharp from 'sharp'
 import { ImageConfig } from './types.js'
-import path from 'path'
 
 export function loadImage(path: string) {
   return sharp(path)
