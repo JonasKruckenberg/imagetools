@@ -23,7 +23,7 @@ document.querySelector('#app').innerHTML = `
   
   <!-- Now we can use our images -->
   <picture>
-    <source scrset="${srcsetAvif}" type="image/avif"/>
+    <source srcset="${srcsetAvif}" type="image/avif"/>
     <source srcset="${srcsetWebp}" type="image/webp"/>
     <img 
         src="${placeholder}"
