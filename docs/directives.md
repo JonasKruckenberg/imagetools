@@ -5,6 +5,7 @@
 - [Directives](#directives)
   - [Background](#background)
   - [Blur](#blur)
+  - [Effort](#effort)
   - [Fit](#fit)
   - [Flatten](#flatten)
   - [Flip](#flip)
@@ -81,6 +82,30 @@ it performs a more accurate gaussian blur.
 import Image from 'example.jpg?blur'
 import Image from 'exmaple.jpg?blur=0.75'
 import Image from 'example.jpg?blur=100'
+```
+
+---
+
+### Effort
+
+• **Keyword**: `effort`<br> • **Type**: _integer_<br>
+
+Adjust the effort to spend encoding the image.
+The effect of effort varies per encoding, but a lower value leads to faster encoding.
+
+The supported range varies per encoding:
+- `png`: 1 to 10 (default 7)
+- `webp`: 0 to 6 (default 4)
+- `avif`/`heif`/`heic`: 0 to 9 (default 4)
+- `gif`: 1 to 10 (default 7)
+
+> Search `options.effort` in [sharp's Output options documentation](https://sharp.pixelplumbing.com/api-output) for details.
+
+• **Example**:
+
+```js
+import GenerateQuicklyWebp from 'example.jpg?format=webp&effort=1'
+import GenerateQuicklyAvif from 'example.jpg?format=avif&effort=0'
 ```
 
 ---
@@ -294,7 +319,7 @@ See sharps [resize options](https://sharp.pixelplumbing.com/api-resize#resize) f
 
 All formats (except `gif`) allow the quality to be adjusted by setting this directive.
 
-The argument must be a number between 0 and 100.
+The argument must be a number between 1 and 100.
 
 > See sharps [Output options](https://sharp.pixelplumbing.com/api-output) for default quality values.
 
