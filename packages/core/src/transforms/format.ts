@@ -2,6 +2,7 @@ import { TransformFactory } from '../types.js'
 import { setMetadata } from '../lib/metadata.js'
 import { getQuality } from './quality.js'
 import { getProgressive } from './progressive.js'
+import { getLossless } from './lossless.js'
 import { FormatEnum } from 'sharp'
 
 export const formatValues = ['avif', 'jpg', 'jpeg', 'png', 'heif', 'heic', 'webp', 'tiff'] as const
@@ -28,6 +29,7 @@ export const format: TransformFactory<FormatOptions> = (config) => {
 
     return image.toFormat(fixedFormat, {
       quality: getQuality(config, image),
+      lossless: getLossless(config, image) as boolean,
       progressive: getProgressive(config, image) as boolean
     })
   }
