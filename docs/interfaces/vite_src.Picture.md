@@ -10,14 +10,14 @@ The picture output format.
 
 ### Properties
 
-- [fallback](vite_src.Picture.md#fallback)
+- [img](vite_src.Picture.md#img)
 - [sources](vite_src.Picture.md#sources)
 
 ## Properties
 
-### fallback
+### img
 
-• **fallback**: `Object`
+• **img**: `Object`
 
 #### Type declaration
 
@@ -29,7 +29,7 @@ The picture output format.
 
 #### Defined in
 
-core/dist/types.d.ts:37
+core/dist/types.d.ts:54
 
 ___
 
@@ -39,4 +39,4 @@ ___
 
 #### Defined in
 
-core/dist/types.d.ts:36
+core/dist/types.d.ts:53

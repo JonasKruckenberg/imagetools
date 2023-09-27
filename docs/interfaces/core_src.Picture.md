@@ -10,14 +10,14 @@ The picture output format.
 
 ### Properties
 
-- [fallback](core_src.Picture.md#fallback)
+- [img](core_src.Picture.md#img)
 - [sources](core_src.Picture.md#sources)
 
 ## Properties
 
-### fallback
+### img
 
-• **fallback**: `Object`
+• **img**: `Object`
 
 #### Type declaration
 
@@ -29,7 +29,7 @@ The picture output format.
 
 #### Defined in
 
-[core/src/types.ts:53](https://github.com/JonasKruckenberg/imagetools/blob/0016446/packages/core/src/types.ts#L53)
+[core/src/types.ts:71](https://github.com/JonasKruckenberg/imagetools/blob/488aa33/packages/core/src/types.ts#L71)
 
 ___
 
@@ -39,4 +39,4 @@ ___
 
 #### Defined in
 
-[core/src/types.ts:52](https://github.com/JonasKruckenberg/imagetools/blob/0016446/packages/core/src/types.ts#L52)
+[core/src/types.ts:70](https://github.com/JonasKruckenberg/imagetools/blob/488aa33/packages/core/src/types.ts#L70)

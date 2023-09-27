@@ -428,13 +428,13 @@ Returns information about the image necessary to render a `picture` tag as a Jav
 • **Example**:
 
 ```js
-import image from 'example.jpg?w=500;900;1200&format=avif;webp;jpg&as=picture'
+import picture from 'example.jpg?w=500;900;1200&format=avif;webp;jpg&as=picture'
 
 let html = '<picture>';
-for (const [format, images] of Object.entries(image.sources)) {
+for (const [format, images] of Object.entries(picture.sources)) {
   html += `<source srcset={images.map((i) => `${i.src}`).join(', ')} type={'image/' + format} />`;
 }
-html += `<img src={image.fallback.src} /></picture>`
+html += `<img src={picture.img.src} /></picture>`
 ```
 
 ### Source

@@ -8,24 +8,20 @@
 
 ### Properties
 
-- [ar](vite_src.ResizeOptions.md#ar)
+- [allowUpscale](vite_src.ResizeOptions.md#allowupscale)
 - [aspect](vite_src.ResizeOptions.md#aspect)
 - [h](vite_src.ResizeOptions.md#h)
-- [height](vite_src.ResizeOptions.md#height)
 - [w](vite_src.ResizeOptions.md#w)
-- [width](vite_src.ResizeOptions.md#width)
-- [withoutEnlargement](vite_src.ResizeOptions.md#withoutenlargement)
-- [withoutReduction](vite_src.ResizeOptions.md#withoutreduction)
 
 ## Properties
 
-### ar
+### allowUpscale
 
-• **ar**: `string`
+• **allowUpscale**: ``""`` \| ``"true"``
 
 #### Defined in
 
-core/dist/transforms/resize.d.ts:8
+core/dist/transforms/resize.d.ts:6
 
 ___
 
@@ -35,7 +31,7 @@ ___
 
 #### Defined in
 
-core/dist/transforms/resize.d.ts:7
+core/dist/transforms/resize.d.ts:5
 
 ___
 
@@ -45,17 +41,7 @@ ___
 
 #### Defined in
 
-core/dist/transforms/resize.d.ts:6
-
-___
-
-### height
-
-• **height**: `string`
-
-#### Defined in
-
-core/dist/transforms/resize.d.ts:5
+core/dist/transforms/resize.d.ts:4
 
 ___
 
@@ -65,34 +51,4 @@ ___
 
 #### Defined in
 
-core/dist/transforms/resize.d.ts:4
-
-___
-
-### width
-
-• **width**: `string`
-
-#### Defined in
-
 core/dist/transforms/resize.d.ts:3
-
-___
-
-### withoutEnlargement
-
-• **withoutEnlargement**: ``""`` \| ``"true"``
-
-#### Defined in
-
-core/dist/transforms/resize.d.ts:9
-
-___
-
-### withoutReduction
-
-• **withoutReduction**: ``""`` \| ``"true"``
-
-#### Defined in
-
-core/dist/transforms/resize.d.ts:10
