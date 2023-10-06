@@ -8,6 +8,7 @@ export function loadImage(path: string) {
 }
 
 export function generateImageID(url: URL, config: ImageConfig) {
+  // this isn't a valid URL, but just a string used for an identifier
   const baseURL = url.host
     ? new URL(url.origin + url.pathname)
     // use a relative path here so that the path is the same locally and on CI
