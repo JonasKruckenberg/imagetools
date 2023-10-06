@@ -1,5 +1,11 @@
 # Change Log
 
+## 4.0.6
+
+### Patch Changes
+
+- 5cbdbe8: chore: image IDs are now generated from relative filepaths instead of absolute ones
+
 ## 4.0.5
 
 ### Patch Changes
