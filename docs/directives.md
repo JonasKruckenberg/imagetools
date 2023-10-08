@@ -16,6 +16,7 @@
   - [Brightness](#brightness)
   - [Invert](#invert)
   - [Kernel](#kernel)
+  - [Lossless](#lossless)
   - [Median](#median)
   - [Normalize](#normalize)
   - [Position](#position)
@@ -221,6 +222,24 @@ import Image from 'exmaple.jpg?invert=true'
 • **Keyword**: kernel<br> • **Type**: _nearest_\| _cubic_ \| _mitchell_ \| _lanczos2_ \| _lanczos3_<br>
 
 Use this directive to set a different interpolation kernel when resizing the image.
+
+---
+
+### Lossless
+
+• **Keyword**: `lossless`<br> • **Type**: _boolean_<br>
+
+Use lossless compression mode.
+
+Formats that support this directive are: 
+  `avif`, `heif`, `heic`, and `webp`
+
+• **Example**:
+
+```js
+import losslessWebp from 'example.jpg?format=webp&lossless';
+import losslessAvif from 'example.jpg?format=avif&lossless=true';
+```
 
 ---
 
