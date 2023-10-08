@@ -161,7 +161,10 @@ describe('format', () => {
     })
 
     test('webp w/ lossless', async () => {
-      const { image } = await applyTransforms([format({ format: 'webp', lossless: 'true', quality: '1' }, dirCtx)!], img)
+      const { image } = await applyTransforms(
+        [format({ format: 'webp', lossless: 'true', quality: '1' }, dirCtx)!],
+        img
+      )
 
       expect(await image.toBuffer()).toMatchFile()
     })
