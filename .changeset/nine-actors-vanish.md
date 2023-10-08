@@ -2,4 +2,4 @@
 'imagetools-core': minor
 ---
 
-Add lossless directive
+feat: add lossless directive
