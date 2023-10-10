@@ -172,7 +172,7 @@ describe('format', () => {
     test('webp w/ effort', async () => {
       const { image } = await applyTransforms([format({ format: 'webp', effort: 'min' }, dirCtx)!], img)
 
-      expect(await image.toBuffer()).toMatchImageSnapshot()
+      expect(await image.toBuffer()).toMatchFile()
     })
   })
 })
