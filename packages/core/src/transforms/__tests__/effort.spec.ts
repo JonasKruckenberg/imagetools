@@ -2,6 +2,7 @@ import { getEffort } from '../effort'
 import sharp, { Sharp } from 'sharp'
 import { join } from 'path'
 import { describe, beforeEach, expect, test, it } from 'vitest'
+import { METADATA } from '../../lib/metadata'
 
 describe('effort', () => {
   let img: Sharp
@@ -46,10 +47,25 @@ describe('effort', () => {
       expect(res).toEqual(3)
     })
 
-    it('rounds float to int', () => {
-      const res = getEffort({ effort: '3.5' }, img)
+    it('sets to minimum effort with "min"', async () => {
+      img[METADATA] = { format: 'webp' }
+      const res = getEffort({ effort: 'min' }, img)
 
-      expect(res).toEqual(3)
+      expect(res).toEqual(0)
+    })
+
+    it('sets to maximum effort with "max"', async () => {
+      img[METADATA] = { format: 'webp' }
+      const res = getEffort({ effort: 'max' }, img)
+
+      expect(res).toEqual(6)
+    })
+
+    it('ignores effort when not applicable', async () => {
+      img[METADATA] = { format: 'jpeg' }
+      const res = getEffort({ effort: 'max' }, img)
+
+      expect(res).toBeUndefined()
     })
   })
 })

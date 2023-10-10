@@ -88,24 +88,26 @@ import Image from 'example.jpg?blur=100'
 
 ### Effort
 
-• **Keyword**: `effort`<br> • **Type**: _integer_<br>
+• **Keyword**: `effort`<br> • **Type**: _integer_ | _"max"_ | _"min"_ <br>
 
 Adjust the effort to spend encoding the image.
-The effect of effort varies per encoding, but a lower value leads to faster encoding.
+The effect of effort varies per format, but a lower value leads to faster encoding.
 
-The supported range varies per encoding:
+The supported ranges by format:
 - `png`: 1 to 10 (default 7)
 - `webp`: 0 to 6 (default 4)
 - `avif`/`heif`/`heic`: 0 to 9 (default 4)
 - `gif`: 1 to 10 (default 7)
+
+The keywords `"min"` and `"max"` apply the highest effort value for the given image format.
 
 > Search `options.effort` in [sharp's Output options documentation](https://sharp.pixelplumbing.com/api-output) for details.
 
 • **Example**:
 
 ```js
-import GenerateQuicklyWebp from 'example.jpg?format=webp&effort=1'
-import GenerateQuicklyAvif from 'example.jpg?format=avif&effort=0'
+import highestEffortWebp from 'example.jpg?format=webp&effort=max'
+import quicklyGeneratingAvif from 'example.jpg?format=avif&effort=0'
 ```
 
 ---
