@@ -7,14 +7,15 @@ export type Include = Array<string | RegExp> | string | RegExp
 
 export type Exclude = Array<string | RegExp> | string | RegExp
 
-export type DefaultDirectives = URLSearchParams
-| ((url: URL, metadata: () => MaybePromise<Metadata>) => MaybePromise<URLSearchParams>);
+export type DefaultDirectives =
+  | URLSearchParams
+  | ((url: URL, metadata: () => MaybePromise<Metadata>) => MaybePromise<URLSearchParams>)
 
-export type ExtendTransforms = (builtins: TransformFactory[]) => TransformFactory[];
+export type ExtendTransforms = (builtins: TransformFactory[]) => TransformFactory[]
 
 export type ExtendOutputFormats = (builtins: Record<string, OutputFormat>) => Record<string, OutputFormat>
 
-export type ResolveConfigs = typeof resolveConfigs;
+export type ResolveConfigs = typeof resolveConfigs
 
 export interface VitePluginOptions {
   /**
