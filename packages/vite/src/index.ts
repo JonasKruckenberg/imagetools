@@ -21,6 +21,16 @@ import type { Metadata, Sharp } from 'sharp'
 import { createBasePath } from './utils.js'
 import type { VitePluginOptions } from './types.js'
 
+export type {
+  Include,
+  Exclude,
+  DefaultDirectives,
+  ExtendTransforms,
+  ExtendOutputFormats,
+  ResolveConfigs,
+  VitePluginOptions
+} from './types.js'
+
 const defaultOptions: VitePluginOptions = {
   include: /^[^?]+\.(heic|heif|avif|jpeg|jpg|png|tiff|webp|gif)(\?.*)?$/,
   exclude: 'public/**/*',
