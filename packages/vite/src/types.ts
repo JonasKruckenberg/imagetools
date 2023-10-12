@@ -42,7 +42,9 @@ export interface VitePluginOptions {
    * })
    * ```
    */
-  defaultDirectives?: URLSearchParams | ((url: URL, metadata: () => MaybePromise<Metadata>) => MaybePromise<URLSearchParams>)
+  defaultDirectives?:
+    | URLSearchParams
+    | ((url: URL, metadata: () => MaybePromise<Metadata>) => MaybePromise<URLSearchParams>)
 
   /**
    * You can use this option to extend the builtin list of import transforms.
