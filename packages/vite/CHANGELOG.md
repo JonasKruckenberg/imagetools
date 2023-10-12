@@ -1,5 +1,11 @@
 # Change Log
 
+## 5.1.1
+
+### Patch Changes
+
+- 5d9d4f2: chore: create and expose type aliases
+
 ## 5.1.0
 
 ### Minor Changes
