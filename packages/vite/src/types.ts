@@ -3,18 +3,32 @@ import type { Metadata } from 'sharp'
 
 type MaybePromise<T> = T | Promise<T>
 
+export type Include = Array<string | RegExp> | string | RegExp
+
+export type Exclude = Array<string | RegExp> | string | RegExp
+
+export type DefaultDirectives =
+  | URLSearchParams
+  | ((url: URL, metadata: () => MaybePromise<Metadata>) => MaybePromise<URLSearchParams>)
+
+export type ExtendTransforms = (builtins: TransformFactory[]) => TransformFactory[]
+
+export type ExtendOutputFormats = (builtins: Record<string, OutputFormat>) => Record<string, OutputFormat>
+
+export type ResolveConfigs = typeof resolveConfigs
+
 export interface VitePluginOptions {
   /**
    * Which paths to include when processing images.
    * @default '**\/*.\{heic,heif,avif,jpeg,jpg,png,tiff,webp,gif\}?*'
    */
-  include: Array<string | RegExp> | string | RegExp
+  include: Include
   /**
    * What paths to exclude when processing images.
    * This defaults to the public dir to mirror vites behavior.
    * @default 'public\/**\/*'
    */
-  exclude: Array<string | RegExp> | string | RegExp
+  exclude: Exclude
 
   /**
    * This option allows you to specify directives that should be applied _by default_ to every image.
@@ -42,29 +56,27 @@ export interface VitePluginOptions {
    * })
    * ```
    */
-  defaultDirectives?:
-    | URLSearchParams
-    | ((url: URL, metadata: () => MaybePromise<Metadata>) => MaybePromise<URLSearchParams>)
+  defaultDirectives?: DefaultDirectives
 
   /**
    * You can use this option to extend the builtin list of import transforms.
    * This list will be merged with the builtin transforms before applying them to the input image.
    * @default []
    */
-  extendTransforms?: (builtins: TransformFactory[]) => TransformFactory[]
+  extendTransforms?: ExtendTransforms
 
   /**
    * You can use this option to extend the builtin list of output formats.
    * This list will be merged with the builtin output formats before determining the format to use.
    * @default []
    */
-  extendOutputFormats?: (builtins: Record<string, OutputFormat>) => Record<string, OutputFormat>
+  extendOutputFormats?: ExtendOutputFormats
 
   /**
    * You can use this option to override the resolution of configs based on the url parameters
    * @default undefined
    */
-  resolveConfigs?: typeof resolveConfigs
+  resolveConfigs?: ResolveConfigs
 
   /**
    * @deprecated This option has no effect. Logging is done through Vite's logger.
