@@ -1,5 +1,11 @@
 # Change Log
 
+## 4.1.0
+
+### Minor Changes
+
+- 500e4fc: feat: add lossless directive
+
 ## 4.0.6
 
 ### Patch Changes

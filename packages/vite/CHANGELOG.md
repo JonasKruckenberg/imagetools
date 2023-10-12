@@ -1,5 +1,16 @@
 # Change Log
 
+## 5.1.0
+
+### Minor Changes
+
+- 49a89a6: feat: make image metadata available in defaultDirectives
+
+### Patch Changes
+
+- Updated dependencies [500e4fc]
+  - imagetools-core@4.1.0
+
 ## 5.0.9
 
 ### Patch Changes
