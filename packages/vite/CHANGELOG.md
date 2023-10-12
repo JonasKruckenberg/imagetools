@@ -1,5 +1,11 @@
 # Change Log
 
+## 5.1.2
+
+### Patch Changes
+
+- 93356e6: fix: actually expose recently added types
+
 ## 5.1.1
 
 ### Patch Changes
