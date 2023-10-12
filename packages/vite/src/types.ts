@@ -1,4 +1,7 @@
-import { TransformFactory, OutputFormat, resolveConfigs } from 'imagetools-core'
+import type { TransformFactory, OutputFormat, resolveConfigs } from 'imagetools-core'
+import type { Metadata } from 'sharp'
+
+type MaybePromise<T> = T | Promise<T>
 
 export interface VitePluginOptions {
   /**
@@ -39,7 +42,9 @@ export interface VitePluginOptions {
    * })
    * ```
    */
-  defaultDirectives?: URLSearchParams | ((url: URL) => URLSearchParams)
+  defaultDirectives?:
+    | URLSearchParams
+    | ((url: URL, metadata: () => MaybePromise<Metadata>) => MaybePromise<URLSearchParams>)
 
   /**
    * You can use this option to extend the builtin list of import transforms.
