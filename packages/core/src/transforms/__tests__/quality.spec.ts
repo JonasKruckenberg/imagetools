@@ -2,11 +2,13 @@ import { getQuality } from '../quality'
 import sharp, { Sharp } from 'sharp'
 import { join } from 'path'
 import { describe, beforeEach, expect, test, it } from 'vitest'
+import { METADATA } from '../../lib/metadata'
 
 describe('quality', () => {
   let img: Sharp
   beforeEach(() => {
     img = sharp(join(__dirname, '../../__tests__/__fixtures__/pexels-allec-gomes-5195763.png'))
+    img[METADATA] = { chromaSubsampling: '' }
   })
 
   test('keyword "quality"', () => {
