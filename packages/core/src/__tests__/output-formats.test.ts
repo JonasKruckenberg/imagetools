@@ -108,7 +108,7 @@ describe('picture format', () => {
       sources: {
         avif: '/foo-100.avif 100w, /foo-50.avif 50w',
         webp: '/foo-100.webp 100w, /foo-50.webp 50w',
-        jpeg: '/foo-100.jpg 100w, /foo-50.jpg 50w',
+        jpeg: '/foo-100.jpg 100w, /foo-50.jpg 50w'
       },
       img: {
         src: '/foo-100.jpg',

@@ -12,7 +12,7 @@ import {
   builtinOutputFormats,
   urlFormat,
   extractEntries,
-  type ImageConfig,
+  type ImageMetadata,
   type Logger,
   type OutputFormat
 } from 'imagetools-core'
@@ -123,7 +123,7 @@ export function imagetools(userOptions: Partial<VitePluginOptions> = {}): Plugin
       const imageConfigs =
         pluginOptions.resolveConfigs?.(parameters, outputFormats) ?? resolveConfigs(parameters, outputFormats)
 
-      const outputMetadatas: Array<ImageConfig> = []
+      const outputMetadatas: Array<ImageMetadata> = []
 
       const logger: Logger = {
         info: (msg) => viteConfig.logger.info(msg),

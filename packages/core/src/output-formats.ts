@@ -1,4 +1,4 @@
-import type { ImageConfig, Img, OutputFormat, Picture } from './types.js'
+import type { ImageMetadata, Img, OutputFormat, Picture } from './types.js'
 
 export const urlFormat: OutputFormat = () => (metadatas) => {
   const urls: string[] = metadatas.map((metadata) => metadata.src as string)
@@ -9,20 +9,27 @@ export const urlFormat: OutputFormat = () => (metadatas) => {
 export const srcsetFormat: OutputFormat = () => metadatasToSourceset
 
 export const metadataFormat: OutputFormat = (whitelist) => (metadatas) => {
-  if (whitelist) {
-    metadatas = metadatas.map((cfg) => Object.fromEntries(Object.entries(cfg).filter(([k]) => whitelist.includes(k))))
-  }
+  const result = whitelist
+    ? metadatas.map((cfg) => Object.fromEntries(Object.entries(cfg).filter(([k]) => whitelist.includes(k))))
+    : metadatas
 
-  metadatas.forEach((m) => delete m.image)
+  result.forEach((m) => delete m.image)
 
-  return metadatas.length === 1 ? metadatas[0] : metadatas
+  return result.length === 1 ? result[0] : result
 }
 
-const metadatasToSourceset = (metadatas: ImageConfig[]) =>
-  metadatas.map((meta) => `${meta.src} ${meta.width}w`).join(', ')
+const metadatasToSourceset = (metadatas: ImageMetadata[]) =>
+  metadatas
+    .map((meta) => {
+      return `${meta.src} ${meta.width}w`
+    })
+    .join(', ')
 
 /** normalizes the format for use in mime-type */
-const format = (m: ImageConfig) => (m.format as string).replace('jpg', 'jpeg')
+const getFormat = (m: ImageMetadata) => {
+  if (!m.format) throw new Error(`Could not determine image format`)
+  return m.format.replace('jpg', 'jpeg')
+}
 
 export const imgFormat: OutputFormat = () => (metadatas) => {
   let largestImage
@@ -50,14 +57,14 @@ export const imgFormat: OutputFormat = () => (metadatas) => {
 
 /** fallback format should be specified last */
 export const pictureFormat: OutputFormat = () => (metadatas) => {
-  const fallbackFormat = [...new Set(metadatas.map((m) => format(m)))].pop()
+  const fallbackFormat = [...new Set(metadatas.map((m) => getFormat(m)))].pop()
 
   let largestFallback
   let largestFallbackSize = 0
   let fallbackFormatCount = 0
   for (let i = 0; i < metadatas.length; i++) {
     const m = metadatas[i]
-    if (format(m) === fallbackFormat) {
+    if (getFormat(m) === fallbackFormat) {
       fallbackFormatCount++
       if ((m.width as number) > largestFallbackSize) {
         largestFallback = m
@@ -66,10 +73,10 @@ export const pictureFormat: OutputFormat = () => (metadatas) => {
     }
   }
 
-  const sourceMetadatas: Record<string, ImageConfig[]> = {}
+  const sourceMetadatas: Record<string, ImageMetadata[]> = {}
   for (let i = 0; i < metadatas.length; i++) {
     const m = metadatas[i]
-    const f = format(m)
+    const f = getFormat(m)
     // we don't need to create a source tag for the fallback format if there is
     // only a single image in that format
     if (f === fallbackFormat && fallbackFormatCount < 2) {

@@ -1,6 +1,11 @@
-import { Sharp } from 'sharp'
+import { Metadata, Sharp } from 'sharp'
 
-export type ImageConfig = Record<string, unknown>
+export type ImageMetadata = Metadata & {
+  src: string
+  image: Sharp
+}
+
+export type ImageConfig = Record<string, string | string[]>
 
 export interface Logger {
   info: (msg: string) => void
@@ -28,13 +33,13 @@ export type ImageTransformation = (image: Sharp) => Sharp | Promise<Sharp>
 
 export interface TransformResult {
   image: Sharp
-  metadata: Record<string, unknown>
+  metadata: ImageMetadata
 }
 
 /**
  * The JS object returned by the image import.
  */
-export type OutputFormat = (args?: string[]) => (metadata: ImageConfig[]) => unknown
+export type OutputFormat = (args?: string[]) => (metadata: ImageMetadata[]) => unknown
 
 /**
  * The img output format.
