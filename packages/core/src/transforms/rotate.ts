@@ -1,5 +1,5 @@
 import { TransformFactory } from '../types.js'
-import { setMetadata } from '../lib/metadata.js'
+import { METADATA } from '../lib/metadata.js'
 import { getBackground } from './background.js'
 
 export interface RotateOptions {
@@ -12,7 +12,7 @@ export const rotate: TransformFactory<RotateOptions> = (config) => {
   if (!rotate) return
 
   return function rotateTransform(image) {
-    setMetadata(image, 'rotate', rotate)
+    image[METADATA].rotate = rotate
 
     return image.rotate(rotate, {
       background: getBackground(config, image)

@@ -1,5 +1,5 @@
 import { TransformOption } from '../types.js'
-import { setMetadata } from '../lib/metadata.js'
+import { METADATA } from '../lib/metadata.js'
 
 export interface ProgressiveOptions {
   progressive: '' | 'true'
@@ -8,7 +8,7 @@ export interface ProgressiveOptions {
 export const getProgressive: TransformOption<ProgressiveOptions> = ({ progressive }, image) => {
   if (progressive !== '' && progressive !== 'true') return
 
-  setMetadata(image, 'progressive', true)
+  image[METADATA].progressive = true
 
   return true
 }

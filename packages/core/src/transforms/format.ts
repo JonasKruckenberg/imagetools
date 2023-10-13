@@ -1,11 +1,11 @@
 import { TransformFactory } from '../types.js'
-import { setMetadata } from '../lib/metadata.js'
+import { METADATA } from '../lib/metadata.js'
 import { getQuality } from './quality.js'
 import { getProgressive } from './progressive.js'
 import { getLossless } from './lossless.js'
 import { FormatEnum } from 'sharp'
 
-export const formatValues = ['avif', 'jpg', 'jpeg', 'png', 'heif', 'heic', 'webp', 'tiff'] as const
+export const formatValues = ['avif', 'jpg', 'jpeg', 'png', 'heif', 'webp', 'tiff'] as const
 
 export type FormatValue = (typeof formatValues)[number]
 
@@ -25,7 +25,7 @@ export const format: TransformFactory<FormatOptions> = (config) => {
   const fixedFormat: keyof FormatEnum = format as any
 
   return function formatTransform(image) {
-    setMetadata(image, 'format', format)
+    image[METADATA].format = format
 
     return image.toFormat(fixedFormat, {
       quality: getQuality(config, image),

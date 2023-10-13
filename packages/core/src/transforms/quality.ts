@@ -1,5 +1,5 @@
 import { TransformOption } from '../types.js'
-import { setMetadata } from '../lib/metadata.js'
+import { METADATA } from '../lib/metadata.js'
 
 export interface QualityOptions {
   quality: string
@@ -10,7 +10,7 @@ export const getQuality: TransformOption<QualityOptions, number> = ({ quality: _
 
   if (!quality) return
 
-  setMetadata(image, 'quality', quality)
+  image[METADATA].quality = quality
 
   return quality
 }

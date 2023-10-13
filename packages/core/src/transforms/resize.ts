@@ -1,4 +1,5 @@
-import { getMetadata, setMetadata } from '../lib/metadata.js'
+import { FitEnum } from 'sharp'
+import { METADATA } from '../lib/metadata.js'
 import { TransformFactory } from '../types.js'
 import { getBackground } from './background.js'
 import { getFit } from './fit.js'
@@ -46,10 +47,10 @@ export const resize: TransformFactory<ResizeOptions> = (config, context) => {
   if (!width && !height && !aspect) return
 
   return function resizeTransform(image) {
-    const fit = getFit(config, image)
+    const fit = getFit(config, image) as keyof FitEnum | undefined
     // calculate finalWidth & finalHeight
-    const originalWidth = getMetadata(image, 'width') as number
-    const originalHeight = getMetadata(image, 'height') as number
+    const originalWidth = image[METADATA].width as number
+    const originalHeight = image[METADATA].height as number
     const originalAspect = originalWidth / originalHeight
 
     let finalWidth = width,
@@ -115,10 +116,10 @@ export const resize: TransformFactory<ResizeOptions> = (config, context) => {
     finalWidth = Math.round(finalWidth)
     finalHeight = Math.round(finalHeight)
 
-    setMetadata(image, 'height', finalHeight)
-    setMetadata(image, 'width', finalWidth)
-    setMetadata(image, 'aspect', finalAspect)
-    setMetadata(image, 'allowUpscale', allowUpscale)
+    image[METADATA].height = finalHeight
+    image[METADATA].width = finalWidth
+    image[METADATA].aspect = finalAspect
+    image[METADATA].allowUpscale = allowUpscale
 
     return image.resize({
       width: finalWidth || undefined,

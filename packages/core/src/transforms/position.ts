@@ -1,5 +1,5 @@
 import { TransformOption } from '../types.js'
-import { setMetadata } from '../lib/metadata.js'
+import { METADATA } from '../lib/metadata.js'
 
 export const positionValues = [
   'top',
@@ -53,7 +53,7 @@ export const getPosition: TransformOption<PositionOptions, PositionValue> = (con
   }
   if (!position) return
 
-  setMetadata(image, 'position', position)
+  image[METADATA].position = position
 
   return position
 }

@@ -12,9 +12,9 @@ import {
   builtinOutputFormats,
   urlFormat,
   extractEntries,
-  type ImageMetadata,
   type Logger,
-  type OutputFormat
+  type OutputFormat,
+  type ProcessedImageMetadata
 } from 'imagetools-core'
 import { createFilter, dataToEsm } from '@rollup/pluginutils'
 import type { Metadata, Sharp } from 'sharp'
@@ -123,7 +123,7 @@ export function imagetools(userOptions: Partial<VitePluginOptions> = {}): Plugin
       const imageConfigs =
         pluginOptions.resolveConfigs?.(parameters, outputFormats) ?? resolveConfigs(parameters, outputFormats)
 
-      const outputMetadatas: Array<ImageMetadata> = []
+      const outputMetadatas: Array<ProcessedImageMetadata> = []
 
       const logger: Logger = {
         info: (msg) => viteConfig.logger.info(msg),
@@ -151,7 +151,7 @@ export function imagetools(userOptions: Partial<VitePluginOptions> = {}): Plugin
 
         metadata.image = image
 
-        outputMetadatas.push(metadata)
+        outputMetadatas.push(metadata as ProcessedImageMetadata)
       }
 
       let outputFormat = urlFormat()

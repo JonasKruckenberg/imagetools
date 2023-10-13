@@ -1,8 +1,36 @@
 import { Metadata, Sharp } from 'sharp'
+import { kernelValues } from './transforms/kernel'
+import { positionValues } from './transforms/position'
 
-export type ImageMetadata = Metadata & {
+export interface ProcessedImageMetadata extends ImageMetadata {
   src: string
   image: Sharp
+}
+
+export interface ImageMetadata extends Metadata {
+  allowUpscale?: boolean
+  aspect?: number | undefined
+  backgroundDirective?: string
+  blur?: number | boolean | undefined
+  brightness?: number | '' | undefined
+  fit?: string
+  flip?: true
+  flop?: true
+  flatten?: true
+  hue?: number | '' | undefined
+  invert?: true
+  grayscale?: true
+  kernel?: (typeof kernelValues)[number]
+  lossless?: true
+  median?: number
+  normalize?: true
+  position?: (typeof positionValues)[number]
+  progressive?: true
+  quality?: number
+  saturation?: number | '' | undefined
+  tint?: string
+  rotate?: number
+  [key: string]: unknown
 }
 
 export type ImageConfig = Record<string, string | string[]>
@@ -39,7 +67,7 @@ export interface TransformResult {
 /**
  * The JS object returned by the image import.
  */
-export type OutputFormat = (args?: string[]) => (metadata: ImageMetadata[]) => unknown
+export type OutputFormat = (args?: string[]) => (metadata: ProcessedImageMetadata[]) => unknown
 
 /**
  * The img output format.
