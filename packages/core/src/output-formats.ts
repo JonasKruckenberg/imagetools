@@ -21,7 +21,8 @@ export const metadataFormat: OutputFormat = (whitelist) => (metadatas) => {
 const metadatasToSourceset = (metadatas: ImageMetadata[]) =>
   metadatas
     .map((meta) => {
-      return `${meta.src} ${meta.width}w`
+      const density = meta.pixelDensityDescriptor
+      return density ? `${meta.src} ${density}` : `${meta.src} ${meta.width}w`
     })
     .join(', ')
 

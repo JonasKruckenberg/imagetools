@@ -11,6 +11,7 @@ export interface ResizeOptions {
   h: string
   aspect: string
   allowUpscale: '' | 'true'
+  basePixels: string
 }
 
 /**
@@ -43,6 +44,7 @@ export const resize: TransformFactory<ResizeOptions> = (config, context) => {
   const height = parseInt(config.h || '')
   const aspect = parseAspect(config.aspect || '')
   const allowUpscale = config.allowUpscale === '' || config.allowUpscale === 'true'
+  const basePixels = parseInt(config.basePixels || '')
 
   if (!width && !height && !aspect) return
 
@@ -120,6 +122,7 @@ export const resize: TransformFactory<ResizeOptions> = (config, context) => {
     image[METADATA].width = finalWidth
     image[METADATA].aspect = finalAspect
     image[METADATA].allowUpscale = allowUpscale
+    image[METADATA].pixelDensityDescriptor = basePixels > 0 ? finalWidth / basePixels + 'x' : undefined
 
     return image.resize({
       width: finalWidth || undefined,

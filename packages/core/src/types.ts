@@ -24,6 +24,7 @@ export interface ImageMetadata extends Metadata {
   lossless?: true
   median?: number
   normalize?: true
+  pixelDensityDescriptor?: string | undefined
   position?: (typeof positionValues)[number]
   progressive?: true
   quality?: number
