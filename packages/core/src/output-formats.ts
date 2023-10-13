@@ -1,4 +1,4 @@
-import type { ImageConfig, Img, OutputFormat, Picture, Source } from './types.js'
+import type { ImageConfig, Img, OutputFormat, Picture } from './types.js'
 
 export const urlFormat: OutputFormat = () => (metadatas) => {
   const urls: string[] = metadatas.map((metadata) => metadata.src as string)
@@ -6,11 +6,7 @@ export const urlFormat: OutputFormat = () => (metadatas) => {
   return urls.length == 1 ? urls[0] : urls
 }
 
-export const srcsetFormat: OutputFormat = () => (metadatas) => {
-  const sources = metadatas.map((meta) => `${meta.src} ${meta.width}w`)
-
-  return sources.join(', ')
-}
+export const srcsetFormat: OutputFormat = () => metadatasToSourceset
 
 export const metadataFormat: OutputFormat = (whitelist) => (metadatas) => {
   if (whitelist) {
@@ -22,14 +18,11 @@ export const metadataFormat: OutputFormat = (whitelist) => (metadatas) => {
   return metadatas.length === 1 ? metadatas[0] : metadatas
 }
 
-const metadataToSource = (m: ImageConfig) => ({ src: m.src, w: m.width }) as Source
+const metadatasToSourceset = (metadatas: ImageConfig[]) =>
+  metadatas.map((meta) => `${meta.src} ${meta.width}w`).join(', ')
 
 /** normalizes the format for use in mime-type */
 const format = (m: ImageConfig) => (m.format as string).replace('jpg', 'jpeg')
-
-export const sourceFormat: OutputFormat = () => (metadatas) => {
-  return metadatas.map((m) => metadataToSource(m))
-}
 
 export const imgFormat: OutputFormat = () => (metadatas) => {
   let largestImage
@@ -49,10 +42,7 @@ export const imgFormat: OutputFormat = () => (metadatas) => {
   }
 
   if (metadatas.length >= 2) {
-    result.srcset = []
-    for (let i = 0; i < metadatas.length; i++) {
-      result.srcset.push(metadataToSource(metadatas[i]))
-    }
+    result.srcset = metadatasToSourceset(metadatas)
   }
 
   return result
@@ -76,7 +66,7 @@ export const pictureFormat: OutputFormat = () => (metadatas) => {
     }
   }
 
-  const sources: Record<string, Source[]> = {}
+  const sourceMetadatas: Record<string, ImageConfig[]> = {}
   for (let i = 0; i < metadatas.length; i++) {
     const m = metadatas[i]
     const f = format(m)
@@ -85,11 +75,16 @@ export const pictureFormat: OutputFormat = () => (metadatas) => {
     if (f === fallbackFormat && fallbackFormatCount < 2) {
       continue
     }
-    if (sources[f]) {
-      sources[f].push(metadataToSource(m))
+    if (sourceMetadatas[f]) {
+      sourceMetadatas[f].push(m)
     } else {
-      sources[f] = [metadataToSource(m)]
+      sourceMetadatas[f] = [m]
     }
+  }
+
+  const sources: Record<string, string> = {}
+  for (const [key, value] of Object.entries(sourceMetadatas)) {
+    sources[key] = metadatasToSourceset(value)
   }
 
   const result: Picture = {
@@ -108,7 +103,6 @@ export const pictureFormat: OutputFormat = () => (metadatas) => {
 
 export const builtinOutputFormats = {
   url: urlFormat,
-  source: sourceFormat,
   srcset: srcsetFormat,
   img: imgFormat,
   picture: pictureFormat,

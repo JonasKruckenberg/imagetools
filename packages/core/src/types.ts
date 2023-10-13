@@ -37,16 +37,6 @@ export interface TransformResult {
 export type OutputFormat = (args?: string[]) => (metadata: ImageConfig[]) => unknown
 
 /**
- * The source output format.
- * Can be used to dynamically construct a sourceset string when you need to
- * choose between width descriptor, pixel density descriptor, or no descriptor.
- */
-export interface Source {
-  src: string
-  w: number
-}
-
-/**
  * The img output format.
  */
 export interface Img {
@@ -60,14 +50,17 @@ export interface Img {
    * Helps prevent reflow. See https://html.com/attributes/img-height/
    */
   h: number
-  srcset?: Source[]
+  srcset?: string
 }
 
 /**
  * The picture output format.
  */
 export interface Picture {
-  sources: Record<string, Source[]>
+  /**
+   * Key is format. Value is srcset.
+   */
+  sources: Record<string, string>
   img: {
     src: string
     w: number
