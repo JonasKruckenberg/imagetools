@@ -1,5 +1,5 @@
 import { TransformFactory } from '../types.js'
-import { setMetadata } from '../lib/metadata.js'
+import { METADATA } from '../lib/metadata.js'
 
 export interface BlurOptions {
   blur: string
@@ -15,7 +15,7 @@ export const blur: TransformFactory<BlurOptions> = (config) => {
   if (!blur) return
 
   return function blurTransform(image) {
-    setMetadata(image, 'blur', blur)
+    image[METADATA].blur = blur
 
     return image.blur(blur)
   }

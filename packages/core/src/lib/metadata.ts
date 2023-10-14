@@ -1,10 +1,11 @@
 import { Sharp } from 'sharp'
+import { ImageMetadata } from '../types'
 
 export const METADATA = Symbol('image metadata')
 
 declare module 'sharp' {
   interface Sharp {
-    [METADATA]: Record<string, unknown>
+    [METADATA]: ImageMetadata
   }
 }
 

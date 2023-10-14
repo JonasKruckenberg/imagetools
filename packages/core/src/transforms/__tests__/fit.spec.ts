@@ -2,11 +2,13 @@ import { getFit, FitValue } from '../fit'
 import { join } from 'path'
 import sharp, { Sharp } from 'sharp'
 import { describe, beforeEach, test, expect } from 'vitest'
+import { METADATA } from '../../lib/metadata'
 
 describe('fit', () => {
   let img: Sharp
   beforeEach(() => {
     img = sharp(join(__dirname, '../../__tests__/__fixtures__/pexels-allec-gomes-5195763.png'))
+    img[METADATA] = { chromaSubsampling: '' }
   })
 
   test('keyword "fit"', () => {
@@ -45,7 +47,6 @@ describe('fit', () => {
 
   describe('arguments', () => {
     test('invalid', () => {
-      //@ts-expect-error invalid args
       const res = getFit({ fit: 'invalid' }, img)
 
       expect(res).toBeUndefined()

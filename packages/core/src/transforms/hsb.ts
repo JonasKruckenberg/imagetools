@@ -1,5 +1,5 @@
 import { TransformFactory } from '../types.js'
-import { setMetadata } from '../lib/metadata.js'
+import { METADATA } from '../lib/metadata.js'
 
 export interface HSBOptions {
   hue: string
@@ -15,9 +15,9 @@ export const hsb: TransformFactory<HSBOptions> = (config) => {
   if (!hue && !saturation && !brightness) return
 
   return function hsbTransform(image) {
-    setMetadata(image, 'hue', hue)
-    setMetadata(image, 'saturation', saturation)
-    setMetadata(image, 'brightness', brightness)
+    image[METADATA].hue = hue
+    image[METADATA].saturation = saturation
+    image[METADATA].brightness = brightness
 
     return image.modulate({
       hue: hue || 0,

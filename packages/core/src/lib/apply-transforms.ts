@@ -7,7 +7,7 @@ export async function applyTransforms(
   image: Sharp,
   removeMetadata = true
 ): Promise<TransformResult> {
-  image[METADATA] = await image.metadata()
+  image[METADATA] = { ...(await image.metadata()) }
 
   if (removeMetadata) {
     // delete the private metadata

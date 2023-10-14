@@ -1,5 +1,5 @@
 import { TransformOption } from '../types.js'
-import { setMetadata } from '../lib/metadata.js'
+import { METADATA } from '../lib/metadata.js'
 
 export const fitValues = ['cover', 'contain', 'fill', 'inside', 'outside']
 
@@ -20,7 +20,7 @@ export const getFit: TransformOption<FitOptions, FitValue> = (config, image) => 
 
   if (!fit) return
 
-  setMetadata(image, 'fit', fit)
+  image[METADATA].fit = fit
 
   return fit
 }

@@ -1,5 +1,5 @@
 import { TransformFactory } from '../types.js'
-import { setMetadata } from '../lib/metadata.js'
+import { METADATA } from '../lib/metadata.js'
 
 export interface MedianOptions {
   median: string
@@ -11,7 +11,7 @@ export const median: TransformFactory<MedianOptions> = (config) => {
   if (!median) return
 
   return function medianTransform(image) {
-    setMetadata(image, 'median', median)
+    image[METADATA].median = median
 
     return image.median(median)
   }
