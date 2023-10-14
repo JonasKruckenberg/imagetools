@@ -45,7 +45,7 @@ describe('format', () => {
     })
 
     test('valid', () => {
-      const formats: FormatValue[] = ['avif', 'jpg', 'jpeg', 'png', 'heif', 'heic', 'webp', 'tiff']
+      const formats: FormatValue[] = ['avif', 'jpg', 'jpeg', 'png', 'heif', 'webp', 'tiff']
 
       for (const f of formats) {
         const res = format({ format: f }, dirCtx)
@@ -95,12 +95,6 @@ describe('format', () => {
       const { metadata } = await applyTransforms([format({ format: 'heif' }, dirCtx)!], img)
 
       expect(metadata).toHaveProperty('format', 'heif')
-    })
-
-    test('heic', async () => {
-      const { metadata } = await applyTransforms([format({ format: 'heic' }, dirCtx)!], img)
-
-      expect(metadata).toHaveProperty('format', 'heic')
     })
 
     test('tiff', async () => {

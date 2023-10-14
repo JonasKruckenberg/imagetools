@@ -20,7 +20,7 @@ export type ResolveConfigs = typeof resolveConfigs
 export interface VitePluginOptions {
   /**
    * Which paths to include when processing images.
-   * @default '**\/*.\{heic,heif,avif,jpeg,jpg,png,tiff,webp,gif\}?*'
+   * @default '**\/*.\{heif,avif,jpeg,jpg,png,tiff,webp,gif\}?*'
    */
   include: Include
   /**
