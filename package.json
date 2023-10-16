@@ -32,7 +32,7 @@
       "@commitlint/config-conventional"
     ]
   },
-  "packageManager": "pnpm@8.9.0",
+  "packageManager": "pnpm@8.9.2",
   "engines": {
     "pnpm": "^8.0.0"
   },
