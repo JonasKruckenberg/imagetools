@@ -79,19 +79,8 @@ export interface VitePluginOptions {
   resolveConfigs?: ResolveConfigs
 
   /**
-   * @deprecated This option has no effect. Logging is done through Vite's logger.
-   */
-  silent?: boolean
-
-  /**
    * Wether to remove potentially private metadata from the image, such as exif tags etc.
    * @default true
    */
   removeMetadata: boolean
-
-  /**
-   * This option used to enable the plugin during development mode. This option is no longer required!
-   * @deprecated
-   */
-  force?: boolean
 }
