@@ -1,5 +1,20 @@
 # Change Log
 
+## 6.0.0
+
+### Major Changes
+
+- 4ebc88f: breaking: remove deprecated options
+- 378c863: breaking: simplify picture, image, and srcset output formats and remove source output format. This is both
+  simpler and will enable pixel density descriptors
+
+### Patch Changes
+
+- Updated dependencies [378c863]
+- Updated dependencies [378c863]
+- Updated dependencies [378c863]
+  - imagetools-core@5.0.0
+
 ## 5.1.2
 
 ### Patch Changes
