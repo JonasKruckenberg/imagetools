@@ -20,7 +20,7 @@
 
 #### Defined in
 
-[core/src/transforms/hsb.ts:7](https://github.com/JonasKruckenberg/imagetools/blob/0016446/packages/core/src/transforms/hsb.ts#L7)
+[packages/core/src/transforms/hsb.ts:7](https://github.com/JonasKruckenberg/imagetools/blob/4ebc88f/packages/core/src/transforms/hsb.ts#L7)
 
 ___
 
@@ -30,7 +30,7 @@ ___
 
 #### Defined in
 
-[core/src/transforms/hsb.ts:5](https://github.com/JonasKruckenberg/imagetools/blob/0016446/packages/core/src/transforms/hsb.ts#L5)
+[packages/core/src/transforms/hsb.ts:5](https://github.com/JonasKruckenberg/imagetools/blob/4ebc88f/packages/core/src/transforms/hsb.ts#L5)
 
 ___
 
@@ -40,4 +40,4 @@ ___
 
 #### Defined in
 
-[core/src/transforms/hsb.ts:6](https://github.com/JonasKruckenberg/imagetools/blob/0016446/packages/core/src/transforms/hsb.ts#L6)
+[packages/core/src/transforms/hsb.ts:6](https://github.com/JonasKruckenberg/imagetools/blob/4ebc88f/packages/core/src/transforms/hsb.ts#L6)

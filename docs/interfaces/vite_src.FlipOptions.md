@@ -18,4 +18,4 @@
 
 #### Defined in
 
-core/dist/transforms/flip.d.ts:3
+packages/core/dist/transforms/flip.d.ts:3

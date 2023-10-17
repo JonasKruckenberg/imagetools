@@ -14,8 +14,8 @@
 
 ### format
 
-• **format**: ``"avif"`` \| ``"jpg"`` \| ``"jpeg"`` \| ``"png"`` \| ``"heif"`` \| ``"heic"`` \| ``"webp"`` \| ``"tiff"``
+• **format**: ``"avif"`` \| ``"heif"`` \| ``"jpeg"`` \| ``"jpg"`` \| ``"png"`` \| ``"tiff"`` \| ``"webp"``
 
 #### Defined in
 
-core/dist/transforms/format.d.ts:5
+packages/core/dist/transforms/format.d.ts:5

@@ -34,7 +34,7 @@
 
 #### Defined in
 
-core/dist/types.d.ts:6
+packages/core/dist/types.d.ts:38
 
 ___
 
@@ -58,7 +58,7 @@ ___
 
 #### Defined in
 
-core/dist/types.d.ts:4
+packages/core/dist/types.d.ts:36
 
 ___
 
@@ -82,4 +82,4 @@ ___
 
 #### Defined in
 
-core/dist/types.d.ts:5
+packages/core/dist/types.d.ts:37

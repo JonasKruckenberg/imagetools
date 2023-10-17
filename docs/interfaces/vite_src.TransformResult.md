@@ -19,14 +19,14 @@
 
 #### Defined in
 
-core/dist/types.d.ts:16
+packages/core/dist/types.d.ts:49
 
 ___
 
 ### metadata
 
-• **metadata**: `Record`<`string`, `unknown`\>
+• **metadata**: [`ImageMetadata`](vite_src.ImageMetadata.md)
 
 #### Defined in
 
-core/dist/types.d.ts:17
+packages/core/dist/types.d.ts:50

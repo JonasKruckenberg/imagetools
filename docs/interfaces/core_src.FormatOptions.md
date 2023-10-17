@@ -14,8 +14,8 @@
 
 ### format
 
-• **format**: ``"avif"`` \| ``"jpg"`` \| ``"jpeg"`` \| ``"png"`` \| ``"heif"`` \| ``"heic"`` \| ``"webp"`` \| ``"tiff"``
+• **format**: ``"avif"`` \| ``"heif"`` \| ``"jpeg"`` \| ``"jpg"`` \| ``"png"`` \| ``"tiff"`` \| ``"webp"``
 
 #### Defined in
 
-[core/src/transforms/format.ts:12](https://github.com/JonasKruckenberg/imagetools/blob/0016446/packages/core/src/transforms/format.ts#L12)
+[packages/core/src/transforms/format.ts:13](https://github.com/JonasKruckenberg/imagetools/blob/4ebc88f/packages/core/src/transforms/format.ts#L13)

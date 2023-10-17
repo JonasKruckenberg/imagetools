@@ -18,4 +18,4 @@
 
 #### Defined in
 
-core/dist/transforms/fit.d.ts:5
+packages/core/dist/transforms/fit.d.ts:5

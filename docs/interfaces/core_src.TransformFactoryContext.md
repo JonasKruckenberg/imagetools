@@ -9,6 +9,7 @@
 ### Properties
 
 - [logger](core_src.TransformFactoryContext.md#logger)
+- [manualSearchParams](core_src.TransformFactoryContext.md#manualsearchparams)
 - [useParam](core_src.TransformFactoryContext.md#useparam)
 
 ## Properties
@@ -19,7 +20,17 @@
 
 #### Defined in
 
-[core/src/types.ts:13](https://github.com/JonasKruckenberg/imagetools/blob/0016446/packages/core/src/types.ts#L13)
+[packages/core/src/types.ts:48](https://github.com/JonasKruckenberg/imagetools/blob/4ebc88f/packages/core/src/types.ts#L48)
+
+___
+
+### manualSearchParams
+
+• **manualSearchParams**: `URLSearchParams`
+
+#### Defined in
+
+[packages/core/src/types.ts:47](https://github.com/JonasKruckenberg/imagetools/blob/4ebc88f/packages/core/src/types.ts#L47)
 
 ___
 
@@ -43,4 +54,4 @@ ___
 
 #### Defined in
 
-[core/src/types.ts:12](https://github.com/JonasKruckenberg/imagetools/blob/0016446/packages/core/src/types.ts#L12)
+[packages/core/src/types.ts:46](https://github.com/JonasKruckenberg/imagetools/blob/4ebc88f/packages/core/src/types.ts#L46)

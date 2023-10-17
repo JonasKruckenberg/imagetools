@@ -12,17 +12,15 @@
 - [exclude](vite_src_types.VitePluginOptions.md#exclude)
 - [extendOutputFormats](vite_src_types.VitePluginOptions.md#extendoutputformats)
 - [extendTransforms](vite_src_types.VitePluginOptions.md#extendtransforms)
-- [force](vite_src_types.VitePluginOptions.md#force)
 - [include](vite_src_types.VitePluginOptions.md#include)
 - [removeMetadata](vite_src_types.VitePluginOptions.md#removemetadata)
 - [resolveConfigs](vite_src_types.VitePluginOptions.md#resolveconfigs)
-- [silent](vite_src_types.VitePluginOptions.md#silent)
 
 ## Properties
 
 ### defaultDirectives
 
-• `Optional` **defaultDirectives**: `URLSearchParams` \| (`url`: `URL`) => `URLSearchParams`
+• `Optional` **defaultDirectives**: [`DefaultDirectives`](../modules/vite_src_types.md#defaultdirectives)
 
 This option allows you to specify directives that should be applied _by default_ to every image.
 You can also provide a function, in which case the function gets passed the asset ID and should return an object of directives.
@@ -52,13 +50,13 @@ export default defineConfig({
 
 #### Defined in
 
-[vite/src/types.ts:42](https://github.com/JonasKruckenberg/imagetools/blob/0016446/packages/vite/src/types.ts#L42)
+[packages/vite/src/types.ts:59](https://github.com/JonasKruckenberg/imagetools/blob/4ebc88f/packages/vite/src/types.ts#L59)
 
 ___
 
 ### exclude
 
-• **exclude**: `string` \| `RegExp` \| (`string` \| `RegExp`)[]
+• **exclude**: [`Exclude`](../modules/vite_src_types.md#exclude)
 
 What paths to exclude when processing images.
 This defaults to the public dir to mirror vites behavior.
@@ -71,17 +69,13 @@ This defaults to the public dir to mirror vites behavior.
 
 #### Defined in
 
-[vite/src/types.ts:14](https://github.com/JonasKruckenberg/imagetools/blob/0016446/packages/vite/src/types.ts#L14)
+[packages/vite/src/types.ts:31](https://github.com/JonasKruckenberg/imagetools/blob/4ebc88f/packages/vite/src/types.ts#L31)
 
 ___
 
 ### extendOutputFormats
 
-• `Optional` **extendOutputFormats**: (`builtins`: `Record`<`string`, [`OutputFormat`](../modules/vite_src.md#outputformat)\>) => `Record`<`string`, [`OutputFormat`](../modules/vite_src.md#outputformat)\>
-
-#### Type declaration
-
-▸ (`builtins`): `Record`<`string`, [`OutputFormat`](../modules/vite_src.md#outputformat)\>
+• `Optional` **extendOutputFormats**: [`ExtendOutputFormats`](../modules/vite_src_types.md#extendoutputformats)
 
 You can use this option to extend the builtin list of output formats.
 This list will be merged with the builtin output formats before determining the format to use.
@@ -92,29 +86,15 @@ This list will be merged with the builtin output formats before determining the 
 []
 ```
 
-##### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `builtins` | `Record`<`string`, [`OutputFormat`](../modules/vite_src.md#outputformat)\> |
-
-##### Returns
-
-`Record`<`string`, [`OutputFormat`](../modules/vite_src.md#outputformat)\>
-
 #### Defined in
 
-[vite/src/types.ts:56](https://github.com/JonasKruckenberg/imagetools/blob/0016446/packages/vite/src/types.ts#L56)
+[packages/vite/src/types.ts:73](https://github.com/JonasKruckenberg/imagetools/blob/4ebc88f/packages/vite/src/types.ts#L73)
 
 ___
 
 ### extendTransforms
 
-• `Optional` **extendTransforms**: (`builtins`: [`TransformFactory`](../modules/vite_src.md#transformfactory)[]) => [`TransformFactory`](../modules/vite_src.md#transformfactory)[]
-
-#### Type declaration
-
-▸ (`builtins`): [`TransformFactory`](../modules/vite_src.md#transformfactory)[]
+• `Optional` **extendTransforms**: [`ExtendTransforms`](../modules/vite_src_types.md#extendtransforms)
 
 You can use this option to extend the builtin list of import transforms.
 This list will be merged with the builtin transforms before applying them to the input image.
@@ -125,51 +105,27 @@ This list will be merged with the builtin transforms before applying them to the
 []
 ```
 
-##### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `builtins` | [`TransformFactory`](../modules/vite_src.md#transformfactory)[] |
-
-##### Returns
-
-[`TransformFactory`](../modules/vite_src.md#transformfactory)[]
-
 #### Defined in
 
-[vite/src/types.ts:49](https://github.com/JonasKruckenberg/imagetools/blob/0016446/packages/vite/src/types.ts#L49)
-
-___
-
-### force
-
-• `Optional` **force**: `boolean`
-
-This option used to enable the plugin during development mode. This option is no longer required!
-
-**`Deprecated`**
-
-#### Defined in
-
-[vite/src/types.ts:79](https://github.com/JonasKruckenberg/imagetools/blob/0016446/packages/vite/src/types.ts#L79)
+[packages/vite/src/types.ts:66](https://github.com/JonasKruckenberg/imagetools/blob/4ebc88f/packages/vite/src/types.ts#L66)
 
 ___
 
 ### include
 
-• **include**: `string` \| `RegExp` \| (`string` \| `RegExp`)[]
+• **include**: [`Include`](../modules/vite_src_types.md#include)
 
 Which paths to include when processing images.
 
 **`Default`**
 
 ```ts
-'**/*.{heic,heif,avif,jpeg,jpg,png,tiff,webp,gif}?*'
+'**/*.{heif,avif,jpeg,jpg,png,tiff,webp,gif}?*'
 ```
 
 #### Defined in
 
-[vite/src/types.ts:8](https://github.com/JonasKruckenberg/imagetools/blob/0016446/packages/vite/src/types.ts#L8)
+[packages/vite/src/types.ts:25](https://github.com/JonasKruckenberg/imagetools/blob/4ebc88f/packages/vite/src/types.ts#L25)
 
 ___
 
@@ -187,7 +143,7 @@ true
 
 #### Defined in
 
-[vite/src/types.ts:73](https://github.com/JonasKruckenberg/imagetools/blob/0016446/packages/vite/src/types.ts#L73)
+[packages/vite/src/types.ts:85](https://github.com/JonasKruckenberg/imagetools/blob/4ebc88f/packages/vite/src/types.ts#L85)
 
 ___
 
@@ -201,12 +157,6 @@ ___
 
 You can use this option to override the resolution of configs based on the url parameters
 
-**`Default`**
-
-```ts
-undefined
-```
-
 ##### Parameters
 
 | Name | Type |
@@ -218,20 +168,12 @@ undefined
 
 `Record`<`string`, `string` \| `string`[]\>[]
 
-#### Defined in
+**`Default`**
 
-[vite/src/types.ts:62](https://github.com/JonasKruckenberg/imagetools/blob/0016446/packages/vite/src/types.ts#L62)
-
-___
-
-### silent
-
-• `Optional` **silent**: `boolean`
-
-**`Deprecated`**
-
-This option has no effect. Logging is done through Vite's logger.
+```ts
+undefined
+```
 
 #### Defined in
 
-[vite/src/types.ts:67](https://github.com/JonasKruckenberg/imagetools/blob/0016446/packages/vite/src/types.ts#L67)
+[packages/vite/src/types.ts:79](https://github.com/JonasKruckenberg/imagetools/blob/4ebc88f/packages/vite/src/types.ts#L79)

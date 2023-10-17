@@ -9,6 +9,7 @@
 ### Properties
 
 - [logger](vite_src.TransformFactoryContext.md#logger)
+- [manualSearchParams](vite_src.TransformFactoryContext.md#manualsearchparams)
 - [useParam](vite_src.TransformFactoryContext.md#useparam)
 
 ## Properties
@@ -19,7 +20,17 @@
 
 #### Defined in
 
-core/dist/types.d.ts:10
+packages/core/dist/types.d.ts:43
+
+___
+
+### manualSearchParams
+
+• **manualSearchParams**: `URLSearchParams`
+
+#### Defined in
+
+packages/core/dist/types.d.ts:42
 
 ___
 
@@ -43,4 +54,4 @@ ___
 
 #### Defined in
 
-core/dist/types.d.ts:9
+packages/core/dist/types.d.ts:41

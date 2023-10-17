@@ -29,14 +29,16 @@ The picture output format.
 
 #### Defined in
 
-[core/src/types.ts:71](https://github.com/JonasKruckenberg/imagetools/blob/488aa33/packages/core/src/types.ts#L71)
+[packages/core/src/types.ts:98](https://github.com/JonasKruckenberg/imagetools/blob/4ebc88f/packages/core/src/types.ts#L98)
 
 ___
 
 ### sources
 
-• **sources**: `Record`<`string`, [`Source`](core_src.Source.md)[]\>
+• **sources**: `Record`<`string`, `string`\>
+
+Key is format. Value is srcset.
 
 #### Defined in
 
-[core/src/types.ts:70](https://github.com/JonasKruckenberg/imagetools/blob/488aa33/packages/core/src/types.ts#L70)
+[packages/core/src/types.ts:97](https://github.com/JonasKruckenberg/imagetools/blob/4ebc88f/packages/core/src/types.ts#L97)

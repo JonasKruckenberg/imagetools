@@ -20,7 +20,7 @@
 
 #### Defined in
 
-core/dist/transforms/hsb.d.ts:5
+packages/core/dist/transforms/hsb.d.ts:5
 
 ___
 
@@ -30,7 +30,7 @@ ___
 
 #### Defined in
 
-core/dist/transforms/hsb.d.ts:3
+packages/core/dist/transforms/hsb.d.ts:3
 
 ___
 
@@ -40,4 +40,4 @@ ___
 
 #### Defined in
 
-core/dist/transforms/hsb.d.ts:4
+packages/core/dist/transforms/hsb.d.ts:4

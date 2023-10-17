@@ -18,4 +18,4 @@
 
 #### Defined in
 
-core/dist/transforms/position.d.ts:6
+packages/core/dist/transforms/position.d.ts:6

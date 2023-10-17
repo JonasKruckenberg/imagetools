@@ -18,4 +18,4 @@
 
 #### Defined in
 
-[core/src/transforms/progressive.ts:5](https://github.com/JonasKruckenberg/imagetools/blob/0016446/packages/core/src/transforms/progressive.ts#L5)
+[packages/core/src/transforms/progressive.ts:5](https://github.com/JonasKruckenberg/imagetools/blob/4ebc88f/packages/core/src/transforms/progressive.ts#L5)

@@ -19,14 +19,14 @@
 
 #### Defined in
 
-[core/src/types.ts:29](https://github.com/JonasKruckenberg/imagetools/blob/0016446/packages/core/src/types.ts#L29)
+[packages/core/src/types.ts:64](https://github.com/JonasKruckenberg/imagetools/blob/4ebc88f/packages/core/src/types.ts#L64)
 
 ___
 
 ### metadata
 
-• **metadata**: `Record`<`string`, `unknown`\>
+• **metadata**: [`ImageMetadata`](core_src.ImageMetadata.md)
 
 #### Defined in
 
-[core/src/types.ts:30](https://github.com/JonasKruckenberg/imagetools/blob/0016446/packages/core/src/types.ts#L30)
+[packages/core/src/types.ts:65](https://github.com/JonasKruckenberg/imagetools/blob/4ebc88f/packages/core/src/types.ts#L65)

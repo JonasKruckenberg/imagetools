@@ -6,7 +6,14 @@
 
 ### References
 
-- [resolveConfigs](vite_src.md#resolveconfigs)
+- [DefaultDirectives](vite_src.md#defaultdirectives)
+- [Exclude](vite_src.md#exclude)
+- [ExtendOutputFormats](vite_src.md#extendoutputformats)
+- [ExtendTransforms](vite_src.md#extendtransforms)
+- [Include](vite_src.md#include)
+- [ResolveConfigs](vite_src.md#resolveconfigs)
+- [VitePluginOptions](vite_src.md#vitepluginoptions)
+- [resolveConfigs](vite_src.md#resolveconfigs-1)
 
 ### Interfaces
 
@@ -19,18 +26,21 @@
 - [FormatOptions](../interfaces/vite_src.FormatOptions.md)
 - [GrayscaleOptions](../interfaces/vite_src.GrayscaleOptions.md)
 - [HSBOptions](../interfaces/vite_src.HSBOptions.md)
+- [ImageMetadata](../interfaces/vite_src.ImageMetadata.md)
+- [Img](../interfaces/vite_src.Img.md)
 - [InvertOptions](../interfaces/vite_src.InvertOptions.md)
 - [KernelOptions](../interfaces/vite_src.KernelOptions.md)
 - [Logger](../interfaces/vite_src.Logger.md)
+- [LosslessOptions](../interfaces/vite_src.LosslessOptions.md)
 - [MedianOptions](../interfaces/vite_src.MedianOptions.md)
 - [NormalizeOptions](../interfaces/vite_src.NormalizeOptions.md)
 - [Picture](../interfaces/vite_src.Picture.md)
 - [PositionOptions](../interfaces/vite_src.PositionOptions.md)
+- [ProcessedImageMetadata](../interfaces/vite_src.ProcessedImageMetadata.md)
 - [ProgressiveOptions](../interfaces/vite_src.ProgressiveOptions.md)
 - [QualityOptions](../interfaces/vite_src.QualityOptions.md)
 - [ResizeOptions](../interfaces/vite_src.ResizeOptions.md)
 - [RotateOptions](../interfaces/vite_src.RotateOptions.md)
-- [Source](../interfaces/vite_src.Source.md)
 - [TintOptions](../interfaces/vite_src.TintOptions.md)
 - [TransformFactoryContext](../interfaces/vite_src.TransformFactoryContext.md)
 - [TransformResult](../interfaces/vite_src.TransformResult.md)
@@ -71,6 +81,7 @@
 - [getBackground](vite_src.md#getbackground)
 - [getFit](vite_src.md#getfit)
 - [getKernel](vite_src.md#getkernel)
+- [getLossless](vite_src.md#getlossless)
 - [getMetadata](vite_src.md#getmetadata)
 - [getPosition](vite_src.md#getposition)
 - [getProgressive](vite_src.md#getprogressive)
@@ -78,6 +89,7 @@
 - [grayscale](vite_src.md#grayscale)
 - [hsb](vite_src.md#hsb)
 - [imagetools](vite_src.md#imagetools)
+- [imgFormat](vite_src.md#imgformat)
 - [invert](vite_src.md#invert)
 - [loadImage](vite_src.md#loadimage)
 - [median](vite_src.md#median)
@@ -88,12 +100,53 @@
 - [resize](vite_src.md#resize)
 - [rotate](vite_src.md#rotate)
 - [setMetadata](vite_src.md#setmetadata)
-- [sourceFormat](vite_src.md#sourceformat)
 - [srcsetFormat](vite_src.md#srcsetformat)
 - [tint](vite_src.md#tint)
 - [urlFormat](vite_src.md#urlformat)
 
 ## References
+
+### DefaultDirectives
+
+Re-exports [DefaultDirectives](vite_src_types.md#defaultdirectives)
+
+___
+
+### Exclude
+
+Re-exports [Exclude](vite_src_types.md#exclude)
+
+___
+
+### ExtendOutputFormats
+
+Re-exports [ExtendOutputFormats](vite_src_types.md#extendoutputformats)
+
+___
+
+### ExtendTransforms
+
+Re-exports [ExtendTransforms](vite_src_types.md#extendtransforms)
+
+___
+
+### Include
+
+Re-exports [Include](vite_src_types.md#include)
+
+___
+
+### ResolveConfigs
+
+Re-exports [ResolveConfigs](vite_src_types.md#resolveconfigs)
+
+___
+
+### VitePluginOptions
+
+Re-exports [VitePluginOptions](../interfaces/vite_src_types.VitePluginOptions.md)
+
+___
 
 ### resolveConfigs
 
@@ -107,7 +160,7 @@ Renames and re-exports [__type](../interfaces/vite_src_types.VitePluginOptions.m
 
 #### Defined in
 
-core/dist/transforms/fit.d.ts:3
+packages/core/dist/transforms/fit.d.ts:3
 
 ___
 
@@ -117,17 +170,17 @@ ___
 
 #### Defined in
 
-core/dist/transforms/format.d.ts:3
+packages/core/dist/transforms/format.d.ts:3
 
 ___
 
 ### ImageConfig
 
-Ƭ **ImageConfig**: `Record`<`string`, `unknown`\>
+Ƭ **ImageConfig**: `Record`<`string`, `string` \| `string`[]\>
 
 #### Defined in
 
-core/dist/types.d.ts:2
+packages/core/dist/types.d.ts:34
 
 ___
 
@@ -151,7 +204,7 @@ ___
 
 #### Defined in
 
-core/dist/types.d.ts:14
+packages/core/dist/types.d.ts:47
 
 ___
 
@@ -161,17 +214,17 @@ ___
 
 #### Defined in
 
-core/dist/transforms/kernel.d.ts:3
+packages/core/dist/transforms/kernel.d.ts:3
 
 ___
 
 ### OutputFormat
 
-Ƭ **OutputFormat**: (`args?`: `string`[]) => (`metadata`: [`ImageConfig`](vite_src.md#imageconfig)[]) => `unknown`
+Ƭ **OutputFormat**: (`args?`: `string`[]) => (`metadata`: [`ProcessedImageMetadata`](../interfaces/vite_src.ProcessedImageMetadata.md)[]) => `unknown`
 
 #### Type declaration
 
-▸ (`args?`): (`metadata`: [`ImageConfig`](vite_src.md#imageconfig)[]) => `unknown`
+▸ (`args?`): (`metadata`: [`ProcessedImageMetadata`](../interfaces/vite_src.ProcessedImageMetadata.md)[]) => `unknown`
 
 The JS object returned by the image import.
 
@@ -191,7 +244,7 @@ The JS object returned by the image import.
 
 | Name | Type |
 | :------ | :------ |
-| `metadata` | [`ImageConfig`](vite_src.md#imageconfig)[] |
+| `metadata` | [`ProcessedImageMetadata`](../interfaces/vite_src.ProcessedImageMetadata.md)[] |
 
 ##### Returns
 
@@ -199,7 +252,7 @@ The JS object returned by the image import.
 
 #### Defined in
 
-core/dist/types.d.ts:22
+packages/core/dist/types.d.ts:55
 
 ___
 
@@ -209,7 +262,7 @@ ___
 
 #### Defined in
 
-core/dist/transforms/position.d.ts:4
+packages/core/dist/transforms/position.d.ts:4
 
 ___
 
@@ -240,7 +293,7 @@ ___
 
 #### Defined in
 
-core/dist/types.d.ts:12
+packages/core/dist/types.d.ts:45
 
 ___
 
@@ -272,7 +325,7 @@ ___
 
 #### Defined in
 
-core/dist/types.d.ts:13
+packages/core/dist/types.d.ts:46
 
 ## Variables
 
@@ -284,16 +337,16 @@ core/dist/types.d.ts:13
 
 | Name | Type |
 | :------ | :------ |
+| `img` | [`OutputFormat`](vite_src.md#outputformat) |
 | `meta` | [`OutputFormat`](vite_src.md#outputformat) |
 | `metadata` | [`OutputFormat`](vite_src.md#outputformat) |
 | `picture` | [`OutputFormat`](vite_src.md#outputformat) |
-| `source` | [`OutputFormat`](vite_src.md#outputformat) |
 | `srcset` | [`OutputFormat`](vite_src.md#outputformat) |
 | `url` | [`OutputFormat`](vite_src.md#outputformat) |
 
 #### Defined in
 
-core/dist/output-formats.d.ts:8
+packages/core/dist/output-formats.d.ts:8
 
 ___
 
@@ -303,7 +356,7 @@ ___
 
 #### Defined in
 
-core/dist/builtins.d.ts:1
+packages/core/dist/builtins.d.ts:1
 
 ___
 
@@ -313,17 +366,17 @@ ___
 
 #### Defined in
 
-core/dist/transforms/fit.d.ts:2
+packages/core/dist/transforms/fit.d.ts:2
 
 ___
 
 ### formatValues
 
-• `Const` **formatValues**: readonly [``"avif"``, ``"jpg"``, ``"jpeg"``, ``"png"``, ``"heif"``, ``"heic"``, ``"webp"``, ``"tiff"``]
+• `Const` **formatValues**: readonly [``"avif"``, ``"jpg"``, ``"jpeg"``, ``"png"``, ``"heif"``, ``"webp"``, ``"tiff"``]
 
 #### Defined in
 
-core/dist/transforms/format.d.ts:2
+packages/core/dist/transforms/format.d.ts:2
 
 ___
 
@@ -333,7 +386,7 @@ ___
 
 #### Defined in
 
-core/dist/transforms/kernel.d.ts:2
+packages/core/dist/transforms/kernel.d.ts:2
 
 ___
 
@@ -343,7 +396,7 @@ ___
 
 #### Defined in
 
-core/dist/transforms/position.d.ts:3
+packages/core/dist/transforms/position.d.ts:3
 
 ___
 
@@ -353,7 +406,7 @@ ___
 
 #### Defined in
 
-core/dist/transforms/position.d.ts:2
+packages/core/dist/transforms/position.d.ts:2
 
 ## Functions
 
@@ -375,7 +428,7 @@ core/dist/transforms/position.d.ts:2
 
 #### Defined in
 
-core/dist/lib/apply-transforms.d.ts:3
+packages/core/dist/lib/apply-transforms.d.ts:3
 
 ___
 
@@ -396,7 +449,7 @@ ___
 
 #### Defined in
 
-core/dist/types.d.ts:12
+packages/core/dist/types.d.ts:45
 
 ___
 
@@ -416,7 +469,7 @@ ___
 
 #### Defined in
 
-core/dist/lib/parse-url.d.ts:2
+packages/core/dist/lib/parse-url.d.ts:2
 
 ___
 
@@ -437,7 +490,7 @@ ___
 
 #### Defined in
 
-core/dist/types.d.ts:12
+packages/core/dist/types.d.ts:45
 
 ___
 
@@ -458,7 +511,7 @@ ___
 
 #### Defined in
 
-core/dist/types.d.ts:12
+packages/core/dist/types.d.ts:45
 
 ___
 
@@ -479,7 +532,7 @@ ___
 
 #### Defined in
 
-core/dist/types.d.ts:12
+packages/core/dist/types.d.ts:45
 
 ___
 
@@ -500,7 +553,7 @@ ___
 
 #### Defined in
 
-core/dist/types.d.ts:12
+packages/core/dist/types.d.ts:45
 
 ___
 
@@ -521,13 +574,13 @@ ___
 
 #### Defined in
 
-core/dist/util.d.ts:4
+packages/core/dist/util.d.ts:4
 
 ___
 
 ### generateTransforms
 
-▸ **generateTransforms**(`config`, `factories`, `logger?`): `Object`
+▸ **generateTransforms**(`config`, `factories`, `manualSearchParams`, `logger?`): `Object`
 
 #### Parameters
 
@@ -535,6 +588,7 @@ ___
 | :------ | :------ |
 | `config` | [`ImageConfig`](vite_src.md#imageconfig) |
 | `factories` | [`TransformFactory`](vite_src.md#transformfactory)[] |
+| `manualSearchParams` | `URLSearchParams` |
 | `logger?` | [`Logger`](../interfaces/vite_src.Logger.md) |
 
 #### Returns
@@ -548,7 +602,7 @@ ___
 
 #### Defined in
 
-core/dist/lib/generate-transforms.d.ts:2
+packages/core/dist/lib/generate-transforms.d.ts:2
 
 ___
 
@@ -569,7 +623,7 @@ ___
 
 #### Defined in
 
-core/dist/types.d.ts:13
+packages/core/dist/types.d.ts:46
 
 ___
 
@@ -590,7 +644,7 @@ ___
 
 #### Defined in
 
-core/dist/types.d.ts:13
+packages/core/dist/types.d.ts:46
 
 ___
 
@@ -611,13 +665,34 @@ ___
 
 #### Defined in
 
-core/dist/types.d.ts:13
+packages/core/dist/types.d.ts:46
+
+___
+
+### getLossless
+
+▸ **getLossless**(`metadata`, `image`): `unknown`
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `metadata` | `Partial`<[`ImageConfig`](vite_src.md#imageconfig) & [`LosslessOptions`](../interfaces/vite_src.LosslessOptions.md)\> |
+| `image` | `Sharp` |
+
+#### Returns
+
+`unknown`
+
+#### Defined in
+
+packages/core/dist/types.d.ts:46
 
 ___
 
 ### getMetadata
 
-▸ **getMetadata**(`image`, `key`): `any`
+▸ **getMetadata**(`image`, `key`): `unknown`
 
 #### Parameters
 
@@ -628,11 +703,11 @@ ___
 
 #### Returns
 
-`any`
+`unknown`
 
 #### Defined in
 
-core/dist/lib/metadata.d.ts:9
+packages/core/dist/lib/metadata.d.ts:10
 
 ___
 
@@ -653,7 +728,7 @@ ___
 
 #### Defined in
 
-core/dist/types.d.ts:13
+packages/core/dist/types.d.ts:46
 
 ___
 
@@ -674,7 +749,7 @@ ___
 
 #### Defined in
 
-core/dist/types.d.ts:13
+packages/core/dist/types.d.ts:46
 
 ___
 
@@ -695,7 +770,7 @@ ___
 
 #### Defined in
 
-core/dist/types.d.ts:13
+packages/core/dist/types.d.ts:46
 
 ___
 
@@ -716,7 +791,7 @@ ___
 
 #### Defined in
 
-core/dist/types.d.ts:12
+packages/core/dist/types.d.ts:45
 
 ___
 
@@ -737,7 +812,7 @@ ___
 
 #### Defined in
 
-core/dist/types.d.ts:12
+packages/core/dist/types.d.ts:45
 
 ___
 
@@ -757,7 +832,41 @@ ___
 
 #### Defined in
 
-[vite/src/index.ts:29](https://github.com/JonasKruckenberg/imagetools/blob/0016446/packages/vite/src/index.ts#L29)
+[packages/vite/src/index.ts:42](https://github.com/JonasKruckenberg/imagetools/blob/4ebc88f/packages/vite/src/index.ts#L42)
+
+___
+
+### imgFormat
+
+▸ **imgFormat**(`args?`): (`metadata`: [`ProcessedImageMetadata`](../interfaces/vite_src.ProcessedImageMetadata.md)[]) => `unknown`
+
+The JS object returned by the image import.
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `args?` | `string`[] |
+
+#### Returns
+
+`fn`
+
+▸ (`metadata`): `unknown`
+
+##### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `metadata` | [`ProcessedImageMetadata`](../interfaces/vite_src.ProcessedImageMetadata.md)[] |
+
+##### Returns
+
+`unknown`
+
+#### Defined in
+
+packages/core/dist/types.d.ts:55
 
 ___
 
@@ -778,7 +887,7 @@ ___
 
 #### Defined in
 
-core/dist/types.d.ts:12
+packages/core/dist/types.d.ts:45
 
 ___
 
@@ -798,7 +907,7 @@ ___
 
 #### Defined in
 
-core/dist/util.d.ts:3
+packages/core/dist/util.d.ts:3
 
 ___
 
@@ -819,13 +928,13 @@ ___
 
 #### Defined in
 
-core/dist/types.d.ts:12
+packages/core/dist/types.d.ts:45
 
 ___
 
 ### metadataFormat
 
-▸ **metadataFormat**(`args?`): (`metadata`: [`ImageConfig`](vite_src.md#imageconfig)[]) => `unknown`
+▸ **metadataFormat**(`args?`): (`metadata`: [`ProcessedImageMetadata`](../interfaces/vite_src.ProcessedImageMetadata.md)[]) => `unknown`
 
 The JS object returned by the image import.
 
@@ -845,7 +954,7 @@ The JS object returned by the image import.
 
 | Name | Type |
 | :------ | :------ |
-| `metadata` | [`ImageConfig`](vite_src.md#imageconfig)[] |
+| `metadata` | [`ProcessedImageMetadata`](../interfaces/vite_src.ProcessedImageMetadata.md)[] |
 
 ##### Returns
 
@@ -853,7 +962,7 @@ The JS object returned by the image import.
 
 #### Defined in
 
-core/dist/types.d.ts:22
+packages/core/dist/types.d.ts:55
 
 ___
 
@@ -874,7 +983,7 @@ ___
 
 #### Defined in
 
-core/dist/types.d.ts:12
+packages/core/dist/types.d.ts:45
 
 ___
 
@@ -894,13 +1003,13 @@ ___
 
 #### Defined in
 
-core/dist/lib/parse-url.d.ts:1
+packages/core/dist/lib/parse-url.d.ts:1
 
 ___
 
 ### pictureFormat
 
-▸ **pictureFormat**(`args?`): (`metadata`: [`ImageConfig`](vite_src.md#imageconfig)[]) => `unknown`
+▸ **pictureFormat**(`args?`): (`metadata`: [`ProcessedImageMetadata`](../interfaces/vite_src.ProcessedImageMetadata.md)[]) => `unknown`
 
 fallback format should be specified last
 
@@ -920,7 +1029,7 @@ fallback format should be specified last
 
 | Name | Type |
 | :------ | :------ |
-| `metadata` | [`ImageConfig`](vite_src.md#imageconfig)[] |
+| `metadata` | [`ProcessedImageMetadata`](../interfaces/vite_src.ProcessedImageMetadata.md)[] |
 
 ##### Returns
 
@@ -928,7 +1037,7 @@ fallback format should be specified last
 
 #### Defined in
 
-core/dist/types.d.ts:22
+packages/core/dist/types.d.ts:55
 
 ___
 
@@ -949,7 +1058,7 @@ ___
 
 #### Defined in
 
-core/dist/types.d.ts:12
+packages/core/dist/types.d.ts:45
 
 ___
 
@@ -970,7 +1079,7 @@ ___
 
 #### Defined in
 
-core/dist/types.d.ts:12
+packages/core/dist/types.d.ts:45
 
 ___
 
@@ -984,7 +1093,7 @@ ___
 | :------ | :------ |
 | `image` | `Sharp` |
 | `key` | `string` |
-| `value` | `any` |
+| `value` | `unknown` |
 
 #### Returns
 
@@ -992,47 +1101,13 @@ ___
 
 #### Defined in
 
-core/dist/lib/metadata.d.ts:8
-
-___
-
-### sourceFormat
-
-▸ **sourceFormat**(`args?`): (`metadata`: [`ImageConfig`](vite_src.md#imageconfig)[]) => `unknown`
-
-The JS object returned by the image import.
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `args?` | `string`[] |
-
-#### Returns
-
-`fn`
-
-▸ (`metadata`): `unknown`
-
-##### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `metadata` | [`ImageConfig`](vite_src.md#imageconfig)[] |
-
-##### Returns
-
-`unknown`
-
-#### Defined in
-
-core/dist/types.d.ts:22
+packages/core/dist/lib/metadata.d.ts:9
 
 ___
 
 ### srcsetFormat
 
-▸ **srcsetFormat**(`args?`): (`metadata`: [`ImageConfig`](vite_src.md#imageconfig)[]) => `unknown`
+▸ **srcsetFormat**(`args?`): (`metadata`: [`ProcessedImageMetadata`](../interfaces/vite_src.ProcessedImageMetadata.md)[]) => `unknown`
 
 The JS object returned by the image import.
 
@@ -1052,7 +1127,7 @@ The JS object returned by the image import.
 
 | Name | Type |
 | :------ | :------ |
-| `metadata` | [`ImageConfig`](vite_src.md#imageconfig)[] |
+| `metadata` | [`ProcessedImageMetadata`](../interfaces/vite_src.ProcessedImageMetadata.md)[] |
 
 ##### Returns
 
@@ -1060,7 +1135,7 @@ The JS object returned by the image import.
 
 #### Defined in
 
-core/dist/types.d.ts:22
+packages/core/dist/types.d.ts:55
 
 ___
 
@@ -1081,13 +1156,13 @@ ___
 
 #### Defined in
 
-core/dist/types.d.ts:12
+packages/core/dist/types.d.ts:45
 
 ___
 
 ### urlFormat
 
-▸ **urlFormat**(`args?`): (`metadata`: [`ImageConfig`](vite_src.md#imageconfig)[]) => `unknown`
+▸ **urlFormat**(`args?`): (`metadata`: [`ProcessedImageMetadata`](../interfaces/vite_src.ProcessedImageMetadata.md)[]) => `unknown`
 
 The JS object returned by the image import.
 
@@ -1107,7 +1182,7 @@ The JS object returned by the image import.
 
 | Name | Type |
 | :------ | :------ |
-| `metadata` | [`ImageConfig`](vite_src.md#imageconfig)[] |
+| `metadata` | [`ProcessedImageMetadata`](../interfaces/vite_src.ProcessedImageMetadata.md)[] |
 
 ##### Returns
 
@@ -1115,4 +1190,4 @@ The JS object returned by the image import.
 
 #### Defined in
 
-core/dist/types.d.ts:22
+packages/core/dist/types.d.ts:55

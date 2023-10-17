@@ -18,4 +18,4 @@
 
 #### Defined in
 
-core/dist/transforms/quality.d.ts:3
+packages/core/dist/transforms/quality.d.ts:3

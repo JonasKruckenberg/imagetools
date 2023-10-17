@@ -18,4 +18,4 @@
 
 #### Defined in
 
-core/dist/transforms/kernel.d.ts:5
+packages/core/dist/transforms/kernel.d.ts:5

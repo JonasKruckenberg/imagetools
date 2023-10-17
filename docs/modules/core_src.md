@@ -15,18 +15,21 @@
 - [FormatOptions](../interfaces/core_src.FormatOptions.md)
 - [GrayscaleOptions](../interfaces/core_src.GrayscaleOptions.md)
 - [HSBOptions](../interfaces/core_src.HSBOptions.md)
+- [ImageMetadata](../interfaces/core_src.ImageMetadata.md)
+- [Img](../interfaces/core_src.Img.md)
 - [InvertOptions](../interfaces/core_src.InvertOptions.md)
 - [KernelOptions](../interfaces/core_src.KernelOptions.md)
 - [Logger](../interfaces/core_src.Logger.md)
+- [LosslessOptions](../interfaces/core_src.LosslessOptions.md)
 - [MedianOptions](../interfaces/core_src.MedianOptions.md)
 - [NormalizeOptions](../interfaces/core_src.NormalizeOptions.md)
 - [Picture](../interfaces/core_src.Picture.md)
 - [PositionOptions](../interfaces/core_src.PositionOptions.md)
+- [ProcessedImageMetadata](../interfaces/core_src.ProcessedImageMetadata.md)
 - [ProgressiveOptions](../interfaces/core_src.ProgressiveOptions.md)
 - [QualityOptions](../interfaces/core_src.QualityOptions.md)
 - [ResizeOptions](../interfaces/core_src.ResizeOptions.md)
 - [RotateOptions](../interfaces/core_src.RotateOptions.md)
-- [Source](../interfaces/core_src.Source.md)
 - [TintOptions](../interfaces/core_src.TintOptions.md)
 - [TransformFactoryContext](../interfaces/core_src.TransformFactoryContext.md)
 - [TransformResult](../interfaces/core_src.TransformResult.md)
@@ -67,12 +70,14 @@
 - [getBackground](core_src.md#getbackground)
 - [getFit](core_src.md#getfit)
 - [getKernel](core_src.md#getkernel)
+- [getLossless](core_src.md#getlossless)
 - [getMetadata](core_src.md#getmetadata)
 - [getPosition](core_src.md#getposition)
 - [getProgressive](core_src.md#getprogressive)
 - [getQuality](core_src.md#getquality)
 - [grayscale](core_src.md#grayscale)
 - [hsb](core_src.md#hsb)
+- [imgFormat](core_src.md#imgformat)
 - [invert](core_src.md#invert)
 - [loadImage](core_src.md#loadimage)
 - [median](core_src.md#median)
@@ -84,7 +89,6 @@
 - [resolveConfigs](core_src.md#resolveconfigs)
 - [rotate](core_src.md#rotate)
 - [setMetadata](core_src.md#setmetadata)
-- [sourceFormat](core_src.md#sourceformat)
 - [srcsetFormat](core_src.md#srcsetformat)
 - [tint](core_src.md#tint)
 - [urlFormat](core_src.md#urlformat)
@@ -97,7 +101,7 @@
 
 #### Defined in
 
-[core/src/transforms/fit.ts:6](https://github.com/JonasKruckenberg/imagetools/blob/0016446/packages/core/src/transforms/fit.ts#L6)
+[packages/core/src/transforms/fit.ts:6](https://github.com/JonasKruckenberg/imagetools/blob/4ebc88f/packages/core/src/transforms/fit.ts#L6)
 
 ___
 
@@ -107,17 +111,17 @@ ___
 
 #### Defined in
 
-[core/src/transforms/format.ts:9](https://github.com/JonasKruckenberg/imagetools/blob/0016446/packages/core/src/transforms/format.ts#L9)
+[packages/core/src/transforms/format.ts:10](https://github.com/JonasKruckenberg/imagetools/blob/4ebc88f/packages/core/src/transforms/format.ts#L10)
 
 ___
 
 ### ImageConfig
 
-Ƭ **ImageConfig**: `Record`<`string`, `unknown`\>
+Ƭ **ImageConfig**: `Record`<`string`, `string` \| `string`[]\>
 
 #### Defined in
 
-[core/src/types.ts:3](https://github.com/JonasKruckenberg/imagetools/blob/0016446/packages/core/src/types.ts#L3)
+[packages/core/src/types.ts:37](https://github.com/JonasKruckenberg/imagetools/blob/4ebc88f/packages/core/src/types.ts#L37)
 
 ___
 
@@ -141,7 +145,7 @@ ___
 
 #### Defined in
 
-[core/src/types.ts:26](https://github.com/JonasKruckenberg/imagetools/blob/0016446/packages/core/src/types.ts#L26)
+[packages/core/src/types.ts:61](https://github.com/JonasKruckenberg/imagetools/blob/4ebc88f/packages/core/src/types.ts#L61)
 
 ___
 
@@ -151,17 +155,17 @@ ___
 
 #### Defined in
 
-[core/src/transforms/kernel.ts:6](https://github.com/JonasKruckenberg/imagetools/blob/0016446/packages/core/src/transforms/kernel.ts#L6)
+[packages/core/src/transforms/kernel.ts:6](https://github.com/JonasKruckenberg/imagetools/blob/4ebc88f/packages/core/src/transforms/kernel.ts#L6)
 
 ___
 
 ### OutputFormat
 
-Ƭ **OutputFormat**: (`args?`: `string`[]) => (`metadata`: [`ImageConfig`](core_src.md#imageconfig)[]) => `unknown`
+Ƭ **OutputFormat**: (`args?`: `string`[]) => (`metadata`: [`ProcessedImageMetadata`](../interfaces/core_src.ProcessedImageMetadata.md)[]) => `unknown`
 
 #### Type declaration
 
-▸ (`args?`): (`metadata`: [`ImageConfig`](core_src.md#imageconfig)[]) => `unknown`
+▸ (`args?`): (`metadata`: [`ProcessedImageMetadata`](../interfaces/core_src.ProcessedImageMetadata.md)[]) => `unknown`
 
 The JS object returned by the image import.
 
@@ -181,7 +185,7 @@ The JS object returned by the image import.
 
 | Name | Type |
 | :------ | :------ |
-| `metadata` | [`ImageConfig`](core_src.md#imageconfig)[] |
+| `metadata` | [`ProcessedImageMetadata`](../interfaces/core_src.ProcessedImageMetadata.md)[] |
 
 ##### Returns
 
@@ -189,7 +193,7 @@ The JS object returned by the image import.
 
 #### Defined in
 
-[core/src/types.ts:36](https://github.com/JonasKruckenberg/imagetools/blob/0016446/packages/core/src/types.ts#L36)
+[packages/core/src/types.ts:71](https://github.com/JonasKruckenberg/imagetools/blob/4ebc88f/packages/core/src/types.ts#L71)
 
 ___
 
@@ -199,7 +203,7 @@ ___
 
 #### Defined in
 
-[core/src/transforms/position.ts:38](https://github.com/JonasKruckenberg/imagetools/blob/0016446/packages/core/src/transforms/position.ts#L38)
+[packages/core/src/transforms/position.ts:38](https://github.com/JonasKruckenberg/imagetools/blob/4ebc88f/packages/core/src/transforms/position.ts#L38)
 
 ___
 
@@ -230,7 +234,7 @@ ___
 
 #### Defined in
 
-[core/src/types.ts:16](https://github.com/JonasKruckenberg/imagetools/blob/0016446/packages/core/src/types.ts#L16)
+[packages/core/src/types.ts:51](https://github.com/JonasKruckenberg/imagetools/blob/4ebc88f/packages/core/src/types.ts#L51)
 
 ___
 
@@ -262,7 +266,7 @@ ___
 
 #### Defined in
 
-[core/src/types.ts:21](https://github.com/JonasKruckenberg/imagetools/blob/0016446/packages/core/src/types.ts#L21)
+[packages/core/src/types.ts:56](https://github.com/JonasKruckenberg/imagetools/blob/4ebc88f/packages/core/src/types.ts#L56)
 
 ## Variables
 
@@ -274,16 +278,16 @@ ___
 
 | Name | Type |
 | :------ | :------ |
+| `img` | [`OutputFormat`](core_src.md#outputformat) |
 | `meta` | [`OutputFormat`](core_src.md#outputformat) |
 | `metadata` | [`OutputFormat`](core_src.md#outputformat) |
 | `picture` | [`OutputFormat`](core_src.md#outputformat) |
-| `source` | [`OutputFormat`](core_src.md#outputformat) |
 | `srcset` | [`OutputFormat`](core_src.md#outputformat) |
 | `url` | [`OutputFormat`](core_src.md#outputformat) |
 
 #### Defined in
 
-[core/src/output-formats.ts:82](https://github.com/JonasKruckenberg/imagetools/blob/0016446/packages/core/src/output-formats.ts#L82)
+[packages/core/src/output-formats.ts:112](https://github.com/JonasKruckenberg/imagetools/blob/4ebc88f/packages/core/src/output-formats.ts#L112)
 
 ___
 
@@ -293,7 +297,7 @@ ___
 
 #### Defined in
 
-[core/src/builtins.ts:15](https://github.com/JonasKruckenberg/imagetools/blob/0016446/packages/core/src/builtins.ts#L15)
+[packages/core/src/builtins.ts:15](https://github.com/JonasKruckenberg/imagetools/blob/4ebc88f/packages/core/src/builtins.ts#L15)
 
 ___
 
@@ -303,17 +307,17 @@ ___
 
 #### Defined in
 
-[core/src/transforms/fit.ts:4](https://github.com/JonasKruckenberg/imagetools/blob/0016446/packages/core/src/transforms/fit.ts#L4)
+[packages/core/src/transforms/fit.ts:4](https://github.com/JonasKruckenberg/imagetools/blob/4ebc88f/packages/core/src/transforms/fit.ts#L4)
 
 ___
 
 ### formatValues
 
-• `Const` **formatValues**: readonly [``"avif"``, ``"jpg"``, ``"jpeg"``, ``"png"``, ``"heif"``, ``"heic"``, ``"webp"``, ``"tiff"``]
+• `Const` **formatValues**: readonly [``"avif"``, ``"jpg"``, ``"jpeg"``, ``"png"``, ``"heif"``, ``"webp"``, ``"tiff"``]
 
 #### Defined in
 
-[core/src/transforms/format.ts:7](https://github.com/JonasKruckenberg/imagetools/blob/0016446/packages/core/src/transforms/format.ts#L7)
+[packages/core/src/transforms/format.ts:8](https://github.com/JonasKruckenberg/imagetools/blob/4ebc88f/packages/core/src/transforms/format.ts#L8)
 
 ___
 
@@ -323,7 +327,7 @@ ___
 
 #### Defined in
 
-[core/src/transforms/kernel.ts:4](https://github.com/JonasKruckenberg/imagetools/blob/0016446/packages/core/src/transforms/kernel.ts#L4)
+[packages/core/src/transforms/kernel.ts:4](https://github.com/JonasKruckenberg/imagetools/blob/4ebc88f/packages/core/src/transforms/kernel.ts#L4)
 
 ___
 
@@ -333,7 +337,7 @@ ___
 
 #### Defined in
 
-[core/src/transforms/position.ts:27](https://github.com/JonasKruckenberg/imagetools/blob/0016446/packages/core/src/transforms/position.ts#L27)
+[packages/core/src/transforms/position.ts:27](https://github.com/JonasKruckenberg/imagetools/blob/4ebc88f/packages/core/src/transforms/position.ts#L27)
 
 ___
 
@@ -343,7 +347,7 @@ ___
 
 #### Defined in
 
-[core/src/transforms/position.ts:4](https://github.com/JonasKruckenberg/imagetools/blob/0016446/packages/core/src/transforms/position.ts#L4)
+[packages/core/src/transforms/position.ts:4](https://github.com/JonasKruckenberg/imagetools/blob/4ebc88f/packages/core/src/transforms/position.ts#L4)
 
 ## Functions
 
@@ -365,7 +369,7 @@ ___
 
 #### Defined in
 
-[core/src/lib/apply-transforms.ts:5](https://github.com/JonasKruckenberg/imagetools/blob/0016446/packages/core/src/lib/apply-transforms.ts#L5)
+[packages/core/src/lib/apply-transforms.ts:5](https://github.com/JonasKruckenberg/imagetools/blob/4ebc88f/packages/core/src/lib/apply-transforms.ts#L5)
 
 ___
 
@@ -386,7 +390,7 @@ ___
 
 #### Defined in
 
-[core/src/types.ts:16](https://github.com/JonasKruckenberg/imagetools/blob/0016446/packages/core/src/types.ts#L16)
+[packages/core/src/types.ts:51](https://github.com/JonasKruckenberg/imagetools/blob/4ebc88f/packages/core/src/types.ts#L51)
 
 ___
 
@@ -406,7 +410,7 @@ ___
 
 #### Defined in
 
-[core/src/lib/parse-url.ts:5](https://github.com/JonasKruckenberg/imagetools/blob/0016446/packages/core/src/lib/parse-url.ts#L5)
+[packages/core/src/lib/parse-url.ts:5](https://github.com/JonasKruckenberg/imagetools/blob/4ebc88f/packages/core/src/lib/parse-url.ts#L5)
 
 ___
 
@@ -427,7 +431,7 @@ ___
 
 #### Defined in
 
-[core/src/types.ts:16](https://github.com/JonasKruckenberg/imagetools/blob/0016446/packages/core/src/types.ts#L16)
+[packages/core/src/types.ts:51](https://github.com/JonasKruckenberg/imagetools/blob/4ebc88f/packages/core/src/types.ts#L51)
 
 ___
 
@@ -448,7 +452,7 @@ ___
 
 #### Defined in
 
-[core/src/types.ts:16](https://github.com/JonasKruckenberg/imagetools/blob/0016446/packages/core/src/types.ts#L16)
+[packages/core/src/types.ts:51](https://github.com/JonasKruckenberg/imagetools/blob/4ebc88f/packages/core/src/types.ts#L51)
 
 ___
 
@@ -469,7 +473,7 @@ ___
 
 #### Defined in
 
-[core/src/types.ts:16](https://github.com/JonasKruckenberg/imagetools/blob/0016446/packages/core/src/types.ts#L16)
+[packages/core/src/types.ts:51](https://github.com/JonasKruckenberg/imagetools/blob/4ebc88f/packages/core/src/types.ts#L51)
 
 ___
 
@@ -490,7 +494,7 @@ ___
 
 #### Defined in
 
-[core/src/types.ts:16](https://github.com/JonasKruckenberg/imagetools/blob/0016446/packages/core/src/types.ts#L16)
+[packages/core/src/types.ts:51](https://github.com/JonasKruckenberg/imagetools/blob/4ebc88f/packages/core/src/types.ts#L51)
 
 ___
 
@@ -511,13 +515,13 @@ ___
 
 #### Defined in
 
-[core/src/util.ts:9](https://github.com/JonasKruckenberg/imagetools/blob/0016446/packages/core/src/util.ts#L9)
+[packages/core/src/util.ts:10](https://github.com/JonasKruckenberg/imagetools/blob/4ebc88f/packages/core/src/util.ts#L10)
 
 ___
 
 ### generateTransforms
 
-▸ **generateTransforms**(`config`, `factories`, `logger?`): `Object`
+▸ **generateTransforms**(`config`, `factories`, `manualSearchParams`, `logger?`): `Object`
 
 #### Parameters
 
@@ -525,6 +529,7 @@ ___
 | :------ | :------ |
 | `config` | [`ImageConfig`](core_src.md#imageconfig) |
 | `factories` | [`TransformFactory`](core_src.md#transformfactory)[] |
+| `manualSearchParams` | `URLSearchParams` |
 | `logger?` | [`Logger`](../interfaces/core_src.Logger.md) |
 
 #### Returns
@@ -538,7 +543,7 @@ ___
 
 #### Defined in
 
-[core/src/lib/generate-transforms.ts:4](https://github.com/JonasKruckenberg/imagetools/blob/0016446/packages/core/src/lib/generate-transforms.ts#L4)
+[packages/core/src/lib/generate-transforms.ts:4](https://github.com/JonasKruckenberg/imagetools/blob/4ebc88f/packages/core/src/lib/generate-transforms.ts#L4)
 
 ___
 
@@ -559,7 +564,7 @@ ___
 
 #### Defined in
 
-[core/src/types.ts:21](https://github.com/JonasKruckenberg/imagetools/blob/0016446/packages/core/src/types.ts#L21)
+[packages/core/src/types.ts:56](https://github.com/JonasKruckenberg/imagetools/blob/4ebc88f/packages/core/src/types.ts#L56)
 
 ___
 
@@ -580,7 +585,7 @@ ___
 
 #### Defined in
 
-[core/src/types.ts:21](https://github.com/JonasKruckenberg/imagetools/blob/0016446/packages/core/src/types.ts#L21)
+[packages/core/src/types.ts:56](https://github.com/JonasKruckenberg/imagetools/blob/4ebc88f/packages/core/src/types.ts#L56)
 
 ___
 
@@ -601,13 +606,34 @@ ___
 
 #### Defined in
 
-[core/src/types.ts:21](https://github.com/JonasKruckenberg/imagetools/blob/0016446/packages/core/src/types.ts#L21)
+[packages/core/src/types.ts:56](https://github.com/JonasKruckenberg/imagetools/blob/4ebc88f/packages/core/src/types.ts#L56)
+
+___
+
+### getLossless
+
+▸ **getLossless**(`metadata`, `image`): `unknown`
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `metadata` | `Partial`<[`ImageConfig`](core_src.md#imageconfig) & [`LosslessOptions`](../interfaces/core_src.LosslessOptions.md)\> |
+| `image` | `Sharp` |
+
+#### Returns
+
+`unknown`
+
+#### Defined in
+
+[packages/core/src/types.ts:56](https://github.com/JonasKruckenberg/imagetools/blob/4ebc88f/packages/core/src/types.ts#L56)
 
 ___
 
 ### getMetadata
 
-▸ **getMetadata**(`image`, `key`): `any`
+▸ **getMetadata**(`image`, `key`): `unknown`
 
 #### Parameters
 
@@ -618,11 +644,11 @@ ___
 
 #### Returns
 
-`any`
+`unknown`
 
 #### Defined in
 
-[core/src/lib/metadata.ts:15](https://github.com/JonasKruckenberg/imagetools/blob/0016446/packages/core/src/lib/metadata.ts#L15)
+[packages/core/src/lib/metadata.ts:16](https://github.com/JonasKruckenberg/imagetools/blob/4ebc88f/packages/core/src/lib/metadata.ts#L16)
 
 ___
 
@@ -643,7 +669,7 @@ ___
 
 #### Defined in
 
-[core/src/types.ts:21](https://github.com/JonasKruckenberg/imagetools/blob/0016446/packages/core/src/types.ts#L21)
+[packages/core/src/types.ts:56](https://github.com/JonasKruckenberg/imagetools/blob/4ebc88f/packages/core/src/types.ts#L56)
 
 ___
 
@@ -664,7 +690,7 @@ ___
 
 #### Defined in
 
-[core/src/types.ts:21](https://github.com/JonasKruckenberg/imagetools/blob/0016446/packages/core/src/types.ts#L21)
+[packages/core/src/types.ts:56](https://github.com/JonasKruckenberg/imagetools/blob/4ebc88f/packages/core/src/types.ts#L56)
 
 ___
 
@@ -685,7 +711,7 @@ ___
 
 #### Defined in
 
-[core/src/types.ts:21](https://github.com/JonasKruckenberg/imagetools/blob/0016446/packages/core/src/types.ts#L21)
+[packages/core/src/types.ts:56](https://github.com/JonasKruckenberg/imagetools/blob/4ebc88f/packages/core/src/types.ts#L56)
 
 ___
 
@@ -706,7 +732,7 @@ ___
 
 #### Defined in
 
-[core/src/types.ts:16](https://github.com/JonasKruckenberg/imagetools/blob/0016446/packages/core/src/types.ts#L16)
+[packages/core/src/types.ts:51](https://github.com/JonasKruckenberg/imagetools/blob/4ebc88f/packages/core/src/types.ts#L51)
 
 ___
 
@@ -727,7 +753,41 @@ ___
 
 #### Defined in
 
-[core/src/types.ts:16](https://github.com/JonasKruckenberg/imagetools/blob/0016446/packages/core/src/types.ts#L16)
+[packages/core/src/types.ts:51](https://github.com/JonasKruckenberg/imagetools/blob/4ebc88f/packages/core/src/types.ts#L51)
+
+___
+
+### imgFormat
+
+▸ **imgFormat**(`args?`): (`metadata`: [`ProcessedImageMetadata`](../interfaces/core_src.ProcessedImageMetadata.md)[]) => `unknown`
+
+The JS object returned by the image import.
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `args?` | `string`[] |
+
+#### Returns
+
+`fn`
+
+▸ (`metadata`): `unknown`
+
+##### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `metadata` | [`ProcessedImageMetadata`](../interfaces/core_src.ProcessedImageMetadata.md)[] |
+
+##### Returns
+
+`unknown`
+
+#### Defined in
+
+[packages/core/src/types.ts:71](https://github.com/JonasKruckenberg/imagetools/blob/4ebc88f/packages/core/src/types.ts#L71)
 
 ___
 
@@ -748,7 +808,7 @@ ___
 
 #### Defined in
 
-[core/src/types.ts:16](https://github.com/JonasKruckenberg/imagetools/blob/0016446/packages/core/src/types.ts#L16)
+[packages/core/src/types.ts:51](https://github.com/JonasKruckenberg/imagetools/blob/4ebc88f/packages/core/src/types.ts#L51)
 
 ___
 
@@ -768,7 +828,7 @@ ___
 
 #### Defined in
 
-[core/src/util.ts:5](https://github.com/JonasKruckenberg/imagetools/blob/0016446/packages/core/src/util.ts#L5)
+[packages/core/src/util.ts:6](https://github.com/JonasKruckenberg/imagetools/blob/4ebc88f/packages/core/src/util.ts#L6)
 
 ___
 
@@ -789,13 +849,13 @@ ___
 
 #### Defined in
 
-[core/src/types.ts:16](https://github.com/JonasKruckenberg/imagetools/blob/0016446/packages/core/src/types.ts#L16)
+[packages/core/src/types.ts:51](https://github.com/JonasKruckenberg/imagetools/blob/4ebc88f/packages/core/src/types.ts#L51)
 
 ___
 
 ### metadataFormat
 
-▸ **metadataFormat**(`args?`): (`metadata`: [`ImageConfig`](core_src.md#imageconfig)[]) => `unknown`
+▸ **metadataFormat**(`args?`): (`metadata`: [`ProcessedImageMetadata`](../interfaces/core_src.ProcessedImageMetadata.md)[]) => `unknown`
 
 The JS object returned by the image import.
 
@@ -815,7 +875,7 @@ The JS object returned by the image import.
 
 | Name | Type |
 | :------ | :------ |
-| `metadata` | [`ImageConfig`](core_src.md#imageconfig)[] |
+| `metadata` | [`ProcessedImageMetadata`](../interfaces/core_src.ProcessedImageMetadata.md)[] |
 
 ##### Returns
 
@@ -823,7 +883,7 @@ The JS object returned by the image import.
 
 #### Defined in
 
-[core/src/types.ts:36](https://github.com/JonasKruckenberg/imagetools/blob/0016446/packages/core/src/types.ts#L36)
+[packages/core/src/types.ts:71](https://github.com/JonasKruckenberg/imagetools/blob/4ebc88f/packages/core/src/types.ts#L71)
 
 ___
 
@@ -844,7 +904,7 @@ ___
 
 #### Defined in
 
-[core/src/types.ts:16](https://github.com/JonasKruckenberg/imagetools/blob/0016446/packages/core/src/types.ts#L16)
+[packages/core/src/types.ts:51](https://github.com/JonasKruckenberg/imagetools/blob/4ebc88f/packages/core/src/types.ts#L51)
 
 ___
 
@@ -864,13 +924,13 @@ ___
 
 #### Defined in
 
-[core/src/lib/parse-url.ts:1](https://github.com/JonasKruckenberg/imagetools/blob/0016446/packages/core/src/lib/parse-url.ts#L1)
+[packages/core/src/lib/parse-url.ts:1](https://github.com/JonasKruckenberg/imagetools/blob/4ebc88f/packages/core/src/lib/parse-url.ts#L1)
 
 ___
 
 ### pictureFormat
 
-▸ **pictureFormat**(`args?`): (`metadata`: [`ImageConfig`](core_src.md#imageconfig)[]) => `unknown`
+▸ **pictureFormat**(`args?`): (`metadata`: [`ProcessedImageMetadata`](../interfaces/core_src.ProcessedImageMetadata.md)[]) => `unknown`
 
 fallback format should be specified last
 
@@ -890,7 +950,7 @@ fallback format should be specified last
 
 | Name | Type |
 | :------ | :------ |
-| `metadata` | [`ImageConfig`](core_src.md#imageconfig)[] |
+| `metadata` | [`ProcessedImageMetadata`](../interfaces/core_src.ProcessedImageMetadata.md)[] |
 
 ##### Returns
 
@@ -898,7 +958,7 @@ fallback format should be specified last
 
 #### Defined in
 
-[core/src/types.ts:36](https://github.com/JonasKruckenberg/imagetools/blob/0016446/packages/core/src/types.ts#L36)
+[packages/core/src/types.ts:71](https://github.com/JonasKruckenberg/imagetools/blob/4ebc88f/packages/core/src/types.ts#L71)
 
 ___
 
@@ -919,7 +979,7 @@ ___
 
 #### Defined in
 
-[core/src/types.ts:16](https://github.com/JonasKruckenberg/imagetools/blob/0016446/packages/core/src/types.ts#L16)
+[packages/core/src/types.ts:51](https://github.com/JonasKruckenberg/imagetools/blob/4ebc88f/packages/core/src/types.ts#L51)
 
 ___
 
@@ -928,7 +988,7 @@ ___
 ▸ **resolveConfigs**(`entries`, `outputFormats`): `Record`<`string`, `string` \| `string`[]\>[]
 
 This function builds up all possible combinations the given entries can be combined
-an returns it as an array of objects that can be given to a the transforms.
+and returns it as an array of objects that can be given to a the transforms.
 
 #### Parameters
 
@@ -945,7 +1005,7 @@ An array of directive options
 
 #### Defined in
 
-[core/src/lib/resolve-configs.ts:17](https://github.com/JonasKruckenberg/imagetools/blob/0016446/packages/core/src/lib/resolve-configs.ts#L17)
+[packages/core/src/lib/resolve-configs.ts:17](https://github.com/JonasKruckenberg/imagetools/blob/4ebc88f/packages/core/src/lib/resolve-configs.ts#L17)
 
 ___
 
@@ -966,7 +1026,7 @@ ___
 
 #### Defined in
 
-[core/src/types.ts:16](https://github.com/JonasKruckenberg/imagetools/blob/0016446/packages/core/src/types.ts#L16)
+[packages/core/src/types.ts:51](https://github.com/JonasKruckenberg/imagetools/blob/4ebc88f/packages/core/src/types.ts#L51)
 
 ___
 
@@ -980,7 +1040,7 @@ ___
 | :------ | :------ |
 | `image` | `Sharp` |
 | `key` | `string` |
-| `value` | `any` |
+| `value` | `unknown` |
 
 #### Returns
 
@@ -988,47 +1048,13 @@ ___
 
 #### Defined in
 
-[core/src/lib/metadata.ts:11](https://github.com/JonasKruckenberg/imagetools/blob/0016446/packages/core/src/lib/metadata.ts#L11)
-
-___
-
-### sourceFormat
-
-▸ **sourceFormat**(`args?`): (`metadata`: [`ImageConfig`](core_src.md#imageconfig)[]) => `unknown`
-
-The JS object returned by the image import.
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `args?` | `string`[] |
-
-#### Returns
-
-`fn`
-
-▸ (`metadata`): `unknown`
-
-##### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `metadata` | [`ImageConfig`](core_src.md#imageconfig)[] |
-
-##### Returns
-
-`unknown`
-
-#### Defined in
-
-[core/src/types.ts:36](https://github.com/JonasKruckenberg/imagetools/blob/0016446/packages/core/src/types.ts#L36)
+[packages/core/src/lib/metadata.ts:12](https://github.com/JonasKruckenberg/imagetools/blob/4ebc88f/packages/core/src/lib/metadata.ts#L12)
 
 ___
 
 ### srcsetFormat
 
-▸ **srcsetFormat**(`args?`): (`metadata`: [`ImageConfig`](core_src.md#imageconfig)[]) => `unknown`
+▸ **srcsetFormat**(`args?`): (`metadata`: [`ProcessedImageMetadata`](../interfaces/core_src.ProcessedImageMetadata.md)[]) => `unknown`
 
 The JS object returned by the image import.
 
@@ -1048,7 +1074,7 @@ The JS object returned by the image import.
 
 | Name | Type |
 | :------ | :------ |
-| `metadata` | [`ImageConfig`](core_src.md#imageconfig)[] |
+| `metadata` | [`ProcessedImageMetadata`](../interfaces/core_src.ProcessedImageMetadata.md)[] |
 
 ##### Returns
 
@@ -1056,7 +1082,7 @@ The JS object returned by the image import.
 
 #### Defined in
 
-[core/src/types.ts:36](https://github.com/JonasKruckenberg/imagetools/blob/0016446/packages/core/src/types.ts#L36)
+[packages/core/src/types.ts:71](https://github.com/JonasKruckenberg/imagetools/blob/4ebc88f/packages/core/src/types.ts#L71)
 
 ___
 
@@ -1077,13 +1103,13 @@ ___
 
 #### Defined in
 
-[core/src/types.ts:16](https://github.com/JonasKruckenberg/imagetools/blob/0016446/packages/core/src/types.ts#L16)
+[packages/core/src/types.ts:51](https://github.com/JonasKruckenberg/imagetools/blob/4ebc88f/packages/core/src/types.ts#L51)
 
 ___
 
 ### urlFormat
 
-▸ **urlFormat**(`args?`): (`metadata`: [`ImageConfig`](core_src.md#imageconfig)[]) => `unknown`
+▸ **urlFormat**(`args?`): (`metadata`: [`ProcessedImageMetadata`](../interfaces/core_src.ProcessedImageMetadata.md)[]) => `unknown`
 
 The JS object returned by the image import.
 
@@ -1103,7 +1129,7 @@ The JS object returned by the image import.
 
 | Name | Type |
 | :------ | :------ |
-| `metadata` | [`ImageConfig`](core_src.md#imageconfig)[] |
+| `metadata` | [`ProcessedImageMetadata`](../interfaces/core_src.ProcessedImageMetadata.md)[] |
 
 ##### Returns
 
@@ -1111,4 +1137,4 @@ The JS object returned by the image import.
 
 #### Defined in
 
-[core/src/types.ts:36](https://github.com/JonasKruckenberg/imagetools/blob/0016446/packages/core/src/types.ts#L36)
+[packages/core/src/types.ts:71](https://github.com/JonasKruckenberg/imagetools/blob/4ebc88f/packages/core/src/types.ts#L71)

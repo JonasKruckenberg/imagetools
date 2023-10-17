@@ -29,14 +29,16 @@ The picture output format.
 
 #### Defined in
 
-core/dist/types.d.ts:54
+packages/core/dist/types.d.ts:80
 
 ___
 
 ### sources
 
-• **sources**: `Record`<`string`, [`Source`](vite_src.Source.md)[]\>
+• **sources**: `Record`<`string`, `string`\>
+
+Key is format. Value is srcset.
 
 #### Defined in
 
-core/dist/types.d.ts:53
+packages/core/dist/types.d.ts:79

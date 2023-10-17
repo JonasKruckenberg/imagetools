@@ -18,4 +18,4 @@
 
 #### Defined in
 
-core/dist/transforms/grayscale.d.ts:3
+packages/core/dist/transforms/grayscale.d.ts:3

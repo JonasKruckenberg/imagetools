@@ -10,6 +10,7 @@
 
 - [allowUpscale](vite_src.ResizeOptions.md#allowupscale)
 - [aspect](vite_src.ResizeOptions.md#aspect)
+- [basePixels](vite_src.ResizeOptions.md#basepixels)
 - [h](vite_src.ResizeOptions.md#h)
 - [w](vite_src.ResizeOptions.md#w)
 
@@ -19,9 +20,11 @@
 
 • **allowUpscale**: ``""`` \| ``"true"``
 
+Whether to allow making images larger. This is generally a waste, so is disabled by default.
+
 #### Defined in
 
-core/dist/transforms/resize.d.ts:6
+packages/core/dist/transforms/resize.d.ts:10
 
 ___
 
@@ -29,9 +32,24 @@ ___
 
 • **aspect**: `string`
 
+aspect ratio
+
 #### Defined in
 
-core/dist/transforms/resize.d.ts:5
+packages/core/dist/transforms/resize.d.ts:8
+
+___
+
+### basePixels
+
+• **basePixels**: `string`
+
+The width in pixels for the 1x pixel density descriptor.
+If supplied, output will use pixel density descriptors rather than width descriptors.
+
+#### Defined in
+
+packages/core/dist/transforms/resize.d.ts:15
 
 ___
 
@@ -39,9 +57,11 @@ ___
 
 • **h**: `string`
 
+height in pixels
+
 #### Defined in
 
-core/dist/transforms/resize.d.ts:4
+packages/core/dist/transforms/resize.d.ts:6
 
 ___
 
@@ -49,6 +69,8 @@ ___
 
 • **w**: `string`
 
+width in pixels
+
 #### Defined in
 
-core/dist/transforms/resize.d.ts:3
+packages/core/dist/transforms/resize.d.ts:4

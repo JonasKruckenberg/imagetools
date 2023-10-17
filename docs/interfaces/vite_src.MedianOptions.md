@@ -18,4 +18,4 @@
 
 #### Defined in
 
-core/dist/transforms/median.d.ts:3
+packages/core/dist/transforms/median.d.ts:3
