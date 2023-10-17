@@ -1,5 +1,17 @@
 # Change Log
 
+## 5.0.0
+
+### Major Changes
+
+- 378c863: breaking: improve types
+- 378c863: breaking: simplify picture, image, and srcset output formats and remove source output format. This is both
+  simpler and will enable pixel density descriptors
+
+### Minor Changes
+
+- 378c863: feat: add `basePixels` directive for outputting pixel density descriptors
+
 ## 4.1.0
 
 ### Minor Changes
