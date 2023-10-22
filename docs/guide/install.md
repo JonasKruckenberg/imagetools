@@ -12,4 +12,10 @@ or via yarn:
 yarn add -D vite-imagetools
 ```
 
+or via pnpm:
+
+```
+pnpm add -D vite-imagetools
+```
+
 > Next: [Getting Started](getting-started.md)
