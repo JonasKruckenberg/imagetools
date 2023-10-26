@@ -1,13 +1,13 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-import { format, FormatValue } from '../format'
-import { TransformFactoryContext } from '../../types'
+import { format } from '../format'
 import { applyTransforms } from '../../index'
-import sharp, { Sharp } from 'sharp'
-import { join } from 'path'
+import { consoleLogger } from '../../lib/logger'
+import { TransformFactoryContext } from '../../types'
+import { join } from 'node:path'
 import { toMatchFile } from 'jest-file-snapshot'
 import { toMatchImageSnapshot } from 'jest-image-snapshot'
+import sharp, { FormatEnum, Sharp } from 'sharp'
 import { describe, beforeAll, beforeEach, test, expect, vi } from 'vitest'
-import { consoleLogger } from '../../lib/logger'
 
 expect.extend({ toMatchFile, toMatchImageSnapshot })
 
@@ -34,7 +34,7 @@ describe('format', () => {
       //@ts-expect-error invalid args
       const res = format({ format: 'invalid' }, dirCtx)
 
-      expect(res).toBeUndefined()
+      expect(res).toThrow()
     })
 
     test('empty', () => {
@@ -45,7 +45,7 @@ describe('format', () => {
     })
 
     test('valid', () => {
-      const formats: FormatValue[] = ['avif', 'jpg', 'jpeg', 'png', 'heif', 'webp', 'tiff']
+      const formats: Array<keyof FormatEnum> = ['avif', 'jpg', 'jpeg', 'png', 'heif', 'webp', 'tiff']
 
       for (const f of formats) {
         const res = format({ format: f }, dirCtx)
