@@ -35,7 +35,7 @@
     "coverage": "vitest run --coverage"
   },
   "dependencies": {
-    "@rollup/pluginutils": "^5.0.2",
+    "@rollup/pluginutils": "^5.0.5",
     "imagetools-core": "workspace:^"
   },
   "devDependencies": {
@@ -49,11 +49,11 @@
     "jest-image-snapshot": "^6.2.0",
     "jsdom": "^22.1.0",
     "picomatch": "^2.3.1",
-    "rollup": "^4.0.0",
+    "rollup": "^4.1.4",
     "sharp": "^0.32.4",
     "tslib": "^2.6.1",
     "typescript": "^5.1.6",
-    "vite": "^4.4.7",
+    "vite": "^4.4.11",
     "vitest": "^0.34.0"
   }
 }

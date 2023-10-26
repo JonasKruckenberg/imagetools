@@ -1,17 +1,18 @@
 import { basename, extname } from 'node:path'
 import { Plugin, ResolvedConfig } from 'vite'
 import {
-  parseURL,
-  loadImage,
-  builtins,
-  resolveConfigs,
   applyTransforms,
+  builtinOutputFormats,
+  builtins,
+  extractEntries,
+  formatValues,
+  loadImage,
+  generateImageID,
   generateTransforms,
   getMetadata,
-  generateImageID,
-  builtinOutputFormats,
+  parseURL,
+  resolveConfigs,
   urlFormat,
-  extractEntries,
   type Logger,
   type OutputFormat,
   type ProcessedImageMetadata
@@ -32,7 +33,7 @@ export type {
 } from './types.js'
 
 const defaultOptions: VitePluginOptions = {
-  include: /^[^?]+\.(heif|avif|jpeg|jpg|png|tiff|webp|gif)(\?.*)?$/,
+  include: new RegExp('^[^?]+\\.(' + formatValues.join('|') + ')(\\?.*)?$'),
   exclude: 'public/**/*',
   removeMetadata: true
 }
