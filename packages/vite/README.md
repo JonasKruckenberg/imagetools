@@ -106,7 +106,7 @@ What paths to exclude when processing images. This defaults to the public dir to
 
 Which paths to include when processing images.
 
-**`default`** `/^[^?]+\.(heic|heif|avif|jpeg|jpg|png|tiff|webp|gif)(\?.*)?$/`
+**`default`** `/^[^?]+\.(heif|avif|jpeg|jpg|png|tiff|webp|gif)(\?.*)?$/`
 
 ---
 
