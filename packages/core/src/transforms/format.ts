@@ -11,11 +11,11 @@ export interface FormatOptions {
 
 export const format: TransformFactory<FormatOptions> = (config) => {
   let format: keyof FormatEnum
-  
+
   if (!config.format) {
-    return;
+    return
   } else {
-    format = config.format;
+    format = config.format
   }
 
   return function formatTransform(image) {
