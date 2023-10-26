@@ -1,5 +1,16 @@
 # Change Log
 
+## 6.1.0
+
+### Minor Changes
+
+- b84b271: feat: allow usage of all supported sharp output formats
+
+### Patch Changes
+
+- Updated dependencies [b84b271]
+  - imagetools-core@5.1.0
+
 ## 6.0.0
 
 ### Major Changes

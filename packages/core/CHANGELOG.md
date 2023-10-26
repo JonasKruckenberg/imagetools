@@ -1,5 +1,11 @@
 # Change Log
 
+## 5.1.0
+
+### Minor Changes
+
+- b84b271: feat: allow usage of all supported sharp output formats
+
 ## 5.0.0
 
 ### Major Changes
