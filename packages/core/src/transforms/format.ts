@@ -5,7 +5,7 @@ import { getProgressive } from './progressive.js'
 import { getLossless } from './lossless.js'
 import { FormatEnum } from 'sharp'
 
-export const formatValues = ['avif', 'jpg', 'jpeg', 'png', 'heif', 'webp', 'tiff'] as const
+export const formatValues = ['avif', 'heif', 'jpeg', 'jpg', 'png', 'tiff', 'webp'] as const
 
 export type FormatValue = (typeof formatValues)[number]
 
