@@ -27,10 +27,6 @@ powered by [sharp](https://sharp.pixelplumbing.com).
 npm install imagetools-core
 ```
 
-```
-yarn add imagetools-core
-```
-
 ## Usage
 
 ```js

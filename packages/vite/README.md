@@ -34,10 +34,6 @@ your image at compile-time. All of the image transformations are powered by [sha
 npm install --save-dev vite-imagetools
 ```
 
-```
-yarn add -D vite-imagetools
-```
-
 ## Usage
 
 ```ts

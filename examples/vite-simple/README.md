@@ -1,8 +1,8 @@
 # Simple example using vite
 
-This simple example shows the usage of imagetools with vite. To follow along open this folder and type `yarn` (or
-`npm install`), then `yarn dev` (or `npm run dev`) to start the vite development server. Now you can open the
-[main.js file](./main.js) to see imagetools in action!
+This simple example shows the usage of imagetools with vite. To follow along open this folder and type `pnpm install`,
+then `pnpm dev` to start the Vite development server. Now you can open the [main.js file](./main.js) to see imagetools
+in action!
 
 The example creates a simple `picture` element, that has 2 different dynamically generated sources. One in the `avif`
 image format and one in `webp` for all browsers that don't support avif (like safari).
