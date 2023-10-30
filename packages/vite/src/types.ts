@@ -89,5 +89,5 @@ export interface VitePluginOptions {
    * Takes precedence over Vite's `json.namedExports`
    * @default undefined
    */
-  namedExports?: undefined
+  namedExports?: boolean
 }
