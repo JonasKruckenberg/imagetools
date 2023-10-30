@@ -79,8 +79,15 @@ export interface VitePluginOptions {
   resolveConfigs?: ResolveConfigs
 
   /**
-   * Wether to remove potentially private metadata from the image, such as exif tags etc.
+   * Whether to remove potentially private metadata from the image, such as exif tags etc.
    * @default true
    */
   removeMetadata: boolean
+
+  /**
+   * Whether to generate named exports.
+   * Takes precedence over Vite's `json.namedExports`
+   * @default undefined
+   */
+  namedExports?: undefined
 }
