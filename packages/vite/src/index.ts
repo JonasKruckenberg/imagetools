@@ -165,7 +165,7 @@ export function imagetools(userOptions: Partial<VitePluginOptions> = {}): Plugin
       }
 
       return dataToEsm(await outputFormat(outputMetadatas), {
-        namedExports: viteConfig.json?.namedExports ?? true,
+        namedExports: pluginOptions.namedExports ?? viteConfig.json?.namedExports ?? true,
         compact: !!viteConfig.build.minify ?? false,
         preferConst: true
       })
