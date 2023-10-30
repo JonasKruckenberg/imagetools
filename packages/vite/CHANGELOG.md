@@ -1,5 +1,11 @@
 # Change Log
 
+## 6.2.0
+
+### Minor Changes
+
+- b4aa0a5: feat: option to override Vite's namedExports
+
 ## 6.1.0
 
 ### Minor Changes
