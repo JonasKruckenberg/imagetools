@@ -1,5 +1,11 @@
 # Change Log
 
+## 6.2.1
+
+### Patch Changes
+
+- 3923ab2: fix: address typo in namedExports type definition
+
 ## 6.2.0
 
 ### Minor Changes
