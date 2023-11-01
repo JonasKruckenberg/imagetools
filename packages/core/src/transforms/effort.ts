@@ -6,12 +6,12 @@ export interface EffortOptions {
 }
 
 const FORMAT_TO_EFFORT_RANGE: Record<string, [number, number]> = {
-  png: [1, 10],
-  webp: [0, 6],
   avif: [0, 9],
+  gif: [1, 10],
   heif: [0, 9],
-  heic: [0, 9],
-  gif: [1, 10]
+  jxl: [3, 9],
+  png: [1, 10],
+  webp: [0, 6]
 }
 
 function parseEffort(effort: string, format: string) {

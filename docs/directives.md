@@ -96,7 +96,8 @@ The effect of effort varies per format, but a lower value leads to faster encodi
 The supported ranges by format:
 - `png`: 1 to 10 (default 7)
 - `webp`: 0 to 6 (default 4)
-- `avif`/`heif`/`heic`: 0 to 9 (default 4)
+- `avif`/`heif`: 0 to 9 (default 4)
+- `jxl`: 3 to 9 (default 7)
 - `gif`: 1 to 10 (default 7)
 
 The keywords `"min"` and `"max"` apply the highest effort value for the given image format.
@@ -168,7 +169,7 @@ import Image from 'exmaple.jpg?flop=true'
 
 ### Format
 
-• **Keyword**: `format`<br> • **Type**: _heic_\| _heif_ \| _avif_ \| _jpeg_ \| _jpg_ \| _png_ \| _tiff_ \| _webp_ \|
+• **Keyword**: `format`<br> • **Type**: _jxl_\| _heif_ \| _avif_ \| _jpeg_ \| _jpg_ \| _png_ \| _tiff_ \| _webp_ \|
 _gif_<br>
 
 Convert the image into the given format.
@@ -180,7 +181,7 @@ Convert the image into the given format.
 
 ```js
 import Image from 'example.jpg?format=webp'
-import Images from 'example.jpg?format=webp;avif;heic'
+import Images from 'example.jpg?format=webp;avif;jxl'
 ```
 
 ---
@@ -259,7 +260,7 @@ Use this directive to set a different interpolation kernel when resizing the ima
 Use lossless compression mode.
 
 Formats that support this directive are: 
-  `avif`, `heif`, `heic`, and `webp`
+  `avif`, `heif`, `jxl`, and `webp`
 
 • **Example**:
 
