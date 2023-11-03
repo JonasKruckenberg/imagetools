@@ -1,5 +1,11 @@
 # Change Log
 
+## 5.1.1
+
+### Patch Changes
+
+- 7bd11b7: fix: address issues when preventing upscale
+
 ## 5.1.0
 
 ### Minor Changes

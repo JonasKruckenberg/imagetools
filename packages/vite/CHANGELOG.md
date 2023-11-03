@@ -1,5 +1,13 @@
 # Change Log
 
+## 6.2.2
+
+### Patch Changes
+
+- 7bd11b7: fix: address issues when preventing upscale
+- Updated dependencies [7bd11b7]
+  - imagetools-core@5.1.1
+
 ## 6.2.1
 
 ### Patch Changes
