@@ -97,21 +97,17 @@ export function imagetools(userOptions: Partial<VitePluginOptions> = {}): Plugin
       const heightParam = directives.get('h')
       if (directives.get('allowUpscale') !== 'true' && (widthParam || heightParam)) {
         const metadata = await lazyLoadMetadata()
+        const clamp = (s: string, intrinsic: number) =>
+          [...new Set(s.split(';').map((d): string => (parseInt(d) <= intrinsic ? d : intrinsic.toString())))].join(';')
 
         if (widthParam) {
           const intrinsicWidth = metadata.width || 0
-          const widths = [
-            ...new Set(widthParam.split(';').map((d) => (parseInt(d) <= intrinsicWidth ? d : intrinsicWidth)))
-          ]
-          directives.set('w', widths.join(';'))
+          directives.set('w', clamp(widthParam, intrinsicWidth))
         }
 
         if (heightParam) {
           const intrinsicHeight = metadata.height || 0
-          const heights = [
-            ...new Set(heightParam.split(';').map((d) => (parseInt(d) <= intrinsicHeight ? d : intrinsicHeight)))
-          ]
-          directives.set('h', heights.join(';'))
+          directives.set('h', clamp(heightParam, intrinsicHeight))
         }
       }
 
