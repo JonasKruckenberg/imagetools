@@ -100,14 +100,18 @@ export function imagetools(userOptions: Partial<VitePluginOptions> = {}): Plugin
 
         if (widthParam) {
           const intrinsicWidth = metadata.width || 0
-          const widths = [...new Set(widthParam.split(';').map((d) => parseInt(d) <= intrinsicWidth ? d : intrinsicWidth))]
+          const widths = [
+            ...new Set(widthParam.split(';').map((d) => (parseInt(d) <= intrinsicWidth ? d : intrinsicWidth)))
+          ]
           directives.set('w', widths.join(';'))
         }
 
         if (heightParam) {
           const intrinsicHeight = metadata.height || 0
-          const heights = [...new Set(heightParam.split(';').map((d) => parseInt(d) <= intrinsicHeight ? d : intrinsicHeight))]
-          directives.set('h', heights.join(';'))  
+          const heights = [
+            ...new Set(heightParam.split(';').map((d) => (parseInt(d) <= intrinsicHeight ? d : intrinsicHeight)))
+          ]
+          directives.set('h', heights.join(';'))
         }
       }
 
