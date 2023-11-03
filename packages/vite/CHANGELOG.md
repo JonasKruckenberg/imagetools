@@ -1,5 +1,11 @@
 # Change Log
 
+## 6.2.3
+
+### Patch Changes
+
+- 63141c8: fix: avoid duplicate widths in output
+
 ## 6.2.2
 
 ### Patch Changes
