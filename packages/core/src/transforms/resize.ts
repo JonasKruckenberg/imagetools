@@ -116,7 +116,7 @@ export const resize: TransformFactory<ResizeOptions> = (config, context) => {
       finalWidth = originalWidth
       finalAspect = originalAspect
 
-      if (context.manualSearchParams.has('width') || context.manualSearchParams.has('height')) {
+      if (context.manualSearchParams.has('w') || context.manualSearchParams.has('h')) {
         context.logger.info(
           'allowUpscale not enabled. Image width, height and aspect ratio reverted to original values'
         )

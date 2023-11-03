@@ -93,29 +93,21 @@ export function imagetools(userOptions: Partial<VitePluginOptions> = {}): Plugin
       if (!directives.toString()) return null
 
       const img = lazyLoadImage()
-      if (directives.get('allowUpscale') !== 'true') {
+      const widthParam = directives.get('w')
+      const heightParam = directives.get('h')
+      if (directives.get('allowUpscale') !== 'true' && (widthParam || heightParam)) {
         const metadata = await lazyLoadMetadata()
-        const intrinsicWidth = metadata.width || 0
-        const intrinsicHeight = metadata.height || 0
 
-        const originalWidths = directives.get('w')?.split(';') || []
-        const widths = originalWidths.filter((d) => parseInt(d) <= intrinsicWidth)
-        if (widths.length != originalWidths.length) {
-          if (widths.length) {
-            directives.set('w', widths.join(';'))
-          } else {
-            directives.delete('w')
-          }
+        if (widthParam) {
+          const intrinsicWidth = metadata.width || 0
+          const widths = [...new Set(widthParam.split(';').map((d) => parseInt(d) <= intrinsicWidth ? d : intrinsicWidth))]
+          directives.set('w', widths.join(';'))
         }
 
-        const originalHeights = directives.get('h')?.split(';') || []
-        const heights = originalHeights.filter((d) => parseInt(d) <= intrinsicHeight)
-        if (heights.length != originalHeights.length) {
-          if (heights.length) {
-            directives.set('h', heights.join(';'))
-          } else {
-            directives.delete('h')
-          }
+        if (heightParam) {
+          const intrinsicHeight = metadata.height || 0
+          const heights = [...new Set(heightParam.split(';').map((d) => parseInt(d) <= intrinsicHeight ? d : intrinsicHeight))]
+          directives.set('h', heights.join(';'))  
         }
       }
 
