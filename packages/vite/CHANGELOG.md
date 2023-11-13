@@ -1,5 +1,13 @@
 # Change Log
 
+## 6.2.4
+
+### Patch Changes
+
+- c54ad96: fix: refresh images in dev mode when they change
+- Updated dependencies [c54ad96]
+  - imagetools-core@6.0.0
+
 ## 6.2.3
 
 ### Patch Changes

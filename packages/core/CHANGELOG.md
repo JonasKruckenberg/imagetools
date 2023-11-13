@@ -1,5 +1,11 @@
 # Change Log
 
+## 6.0.0
+
+### Major Changes
+
+- c54ad96: breaking: remove utils
+
 ## 5.1.1
 
 ### Patch Changes
