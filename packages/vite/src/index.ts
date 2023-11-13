@@ -5,10 +5,8 @@ import {
   builtins,
   builtinOutputFormats,
   extractEntries,
-  generateImageID,
   generateTransforms,
   getMetadata,
-  loadImage,
   parseURL,
   urlFormat,
   resolveConfigs,
@@ -17,8 +15,8 @@ import {
   type ProcessedImageMetadata
 } from 'imagetools-core'
 import { createFilter, dataToEsm } from '@rollup/pluginutils'
-import type { Metadata, Sharp } from 'sharp'
-import { createBasePath } from './utils.js'
+import sharp, { type Metadata, type Sharp } from 'sharp'
+import { createBasePath, generateImageID } from './utils.js'
 import type { VitePluginOptions } from './types.js'
 
 export type {
@@ -53,7 +51,7 @@ export function imagetools(userOptions: Partial<VitePluginOptions> = {}): Plugin
   let viteConfig: ResolvedConfig
   let basePath: string
 
-  const generatedImages = new Map()
+  const generatedImages = new Map<string, Sharp>()
 
   return {
     name: 'imagetools',
@@ -72,7 +70,7 @@ export function imagetools(userOptions: Partial<VitePluginOptions> = {}): Plugin
       let lazyImg: Sharp
       const lazyLoadImage = () => {
         if (lazyImg) return lazyImg
-        return (lazyImg = loadImage(decodeURIComponent(srcURL.pathname)))
+        return (lazyImg = sharp(decodeURIComponent(srcURL.pathname)))
       }
 
       let lazyMetadata: Metadata
@@ -128,7 +126,7 @@ export function imagetools(userOptions: Partial<VitePluginOptions> = {}): Plugin
         const { image, metadata } = await applyTransforms(transforms, img.clone(), pluginOptions.removeMetadata)
 
         if (viteConfig.command === 'serve') {
-          const id = generateImageID(srcURL, config)
+          const id = await generateImageID(srcURL, config, img)
           generatedImages.set(id, image)
           metadata.src = basePath + id
         } else {
