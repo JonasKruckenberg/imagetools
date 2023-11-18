@@ -14,7 +14,7 @@
   },
   "devDependencies": {
     "@changesets/cli": "^2.26.2",
-    "@rollup/plugin-typescript": "^11.1.2",
+    "@rollup/plugin-typescript": "^11.1.5",
     "@typescript-eslint/eslint-plugin": "^6.2.0",
     "@typescript-eslint/parser": "^6.2.0",
     "cross-env": "^7.0.3",
