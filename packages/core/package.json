@@ -35,7 +35,7 @@
     "coverage": "vitest run --coverage"
   },
   "devDependencies": {
-    "@rollup/plugin-typescript": "^11.1.2",
+    "@rollup/plugin-typescript": "^11.1.5",
     "@types/jest-image-snapshot": "^6.1.0",
     "@types/sharp": "^0.32.0",
     "@vitest/coverage-v8": "^0.34.0",
@@ -47,6 +47,6 @@
     "vitest": "^0.34.0"
   },
   "dependencies": {
-    "sharp": "^0.32.4"
+    "sharp": "^0.32.6"
   }
 }

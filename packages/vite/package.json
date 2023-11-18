@@ -35,11 +35,11 @@
     "coverage": "vitest run --coverage"
   },
   "dependencies": {
-    "@rollup/pluginutils": "^5.0.2",
+    "@rollup/pluginutils": "^5.0.5",
     "imagetools-core": "workspace:^"
   },
   "devDependencies": {
-    "@rollup/plugin-typescript": "^11.1.2",
+    "@rollup/plugin-typescript": "^11.1.5",
     "@types/jest-image-snapshot": "^6.1.0",
     "@types/jsdom": "^21.1.1",
     "@types/picomatch": "^2.3.0",
@@ -50,7 +50,7 @@
     "jsdom": "^22.1.0",
     "picomatch": "^3.0.0",
     "rollup": "^4.0.0",
-    "sharp": "^0.32.4",
+    "sharp": "^0.32.6",
     "tslib": "^2.6.1",
     "typescript": "^5.1.6",
     "vite": "^4.4.7",
