@@ -41,7 +41,7 @@
     "@vitest/coverage-v8": "^0.34.0",
     "jest-file-snapshot": "^0.5.0",
     "jest-image-snapshot": "^6.2.0",
-    "rollup": "^4.0.0",
+    "rollup": "^4.5.0",
     "tslib": "^2.6.1",
     "typescript": "^5.1.6",
     "vitest": "^0.34.0"
