@@ -1,5 +1,11 @@
 # Change Log
 
+## 6.0.1
+
+### Patch Changes
+
+- fcd7389: chore: upgrade sharp
+
 ## 6.0.0
 
 ### Major Changes

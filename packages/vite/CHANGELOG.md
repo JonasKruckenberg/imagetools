@@ -1,5 +1,13 @@
 # Change Log
 
+## 6.2.5
+
+### Patch Changes
+
+- fcd7389: chore: upgrade @rollup/pluginutils
+- Updated dependencies [fcd7389]
+  - imagetools-core@6.0.1
+
 ## 6.2.4
 
 ### Patch Changes
