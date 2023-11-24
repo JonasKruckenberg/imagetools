@@ -1,8 +1,8 @@
 import { createHash } from 'node:crypto'
 import path from 'node:path'
 import { stat } from 'node:fs/promises'
-import { ImageConfig } from 'imagetools-core'
-import { Sharp } from 'sharp'
+import type { ImageConfig } from 'imagetools-core'
+import type { Sharp } from 'sharp'
 
 export const createBasePath = (base?: string) => {
   return (base?.replace(/\/$/, '') || '') + '/@imagetools/'

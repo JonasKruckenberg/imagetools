@@ -1,5 +1,5 @@
 import { basename, extname } from 'node:path'
-import { Plugin, ResolvedConfig } from 'vite'
+import type { Plugin, ResolvedConfig } from 'vite'
 import {
   applyTransforms,
   builtins,

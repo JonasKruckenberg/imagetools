@@ -1,5 +1,5 @@
 import { Sharp } from 'sharp'
-import { ImageMetadata } from '../types'
+import { ImageMetadata } from '../types.js'
 
 export const METADATA = Symbol('image metadata')
 
