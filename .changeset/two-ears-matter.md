@@ -3,4 +3,4 @@
 'vite-imagetools': patch
 ---
 
-Corrected TypeScript imports to pass compilation under "moduleResolution": "nodenext" and "verbatimModuleSyntax": true
+fix: corrected imports to compile with `"moduleResolution": "nodenext"`
