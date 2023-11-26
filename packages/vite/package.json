@@ -47,7 +47,7 @@
     "@vitest/coverage-v8": "^0.34.0",
     "imagetools-core": "workspace:^",
     "jest-image-snapshot": "^6.2.0",
-    "jsdom": "^22.1.0",
+    "jsdom": "^23.0.0",
     "picomatch": "^3.0.0",
     "rollup": "^4.5.0",
     "sharp": "^0.32.6",
