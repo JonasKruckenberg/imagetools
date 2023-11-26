@@ -1,5 +1,13 @@
 # Change Log
 
+## 6.2.6
+
+### Patch Changes
+
+- e0ba6c0: fix: corrected imports to compile with `"moduleResolution": "nodenext"`
+- Updated dependencies [e0ba6c0]
+  - imagetools-core@6.0.2
+
 ## 6.2.5
 
 ### Patch Changes

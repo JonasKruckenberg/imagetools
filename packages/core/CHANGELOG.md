@@ -1,5 +1,11 @@
 # Change Log
 
+## 6.0.2
+
+### Patch Changes
+
+- e0ba6c0: fix: corrected imports to compile with `"moduleResolution": "nodenext"`
+
 ## 6.0.1
 
 ### Patch Changes
