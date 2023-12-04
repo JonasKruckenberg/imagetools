@@ -22,6 +22,7 @@ export const format: TransformFactory<FormatOptions> = (config) => {
     image[METADATA].format = format
 
     return image.toFormat(format, {
+      compression: format == 'heif' ? 'av1' : undefined,
       quality: getQuality(config, image),
       lossless: getLossless(config, image) as boolean,
       progressive: getProgressive(config, image) as boolean
