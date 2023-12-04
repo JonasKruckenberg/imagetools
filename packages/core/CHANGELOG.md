@@ -1,5 +1,11 @@
 # Change Log
 
+## 6.0.3
+
+### Patch Changes
+
+- 5d7a77d: chore: update sharp to 0.33
+
 ## 6.0.2
 
 ### Patch Changes
