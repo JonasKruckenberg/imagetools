@@ -1,5 +1,13 @@
 # Change Log
 
+## 6.2.7
+
+### Patch Changes
+
+- 5d7a77d: chore: update sharp to 0.33
+- Updated dependencies [5d7a77d]
+  - imagetools-core@6.0.3
+
 ## 6.2.6
 
 ### Patch Changes
