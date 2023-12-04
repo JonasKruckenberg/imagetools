@@ -3,4 +3,4 @@
 'vite-imagetools': patch
 ---
 
-Update sharp to 0.33
+chore: update sharp to 0.33
