@@ -16,7 +16,7 @@ import {
 } from 'imagetools-core'
 import { createFilter, dataToEsm } from '@rollup/pluginutils'
 import sharp, { type Metadata, type Sharp } from 'sharp'
-import { createBasePath, generateImageID } from './utils.js'
+import { createBasePath, generateImageID, joinUrlSegments } from './utils.js'
 import type { VitePluginOptions } from './types.js'
 
 export type {
@@ -56,6 +56,31 @@ export function imagetools(userOptions: Partial<VitePluginOptions> = {}): Plugin
   return {
     name: 'imagetools',
     enforce: 'pre',
+    config(cfg) {
+      return {
+        ...cfg,
+        experimental: {
+          ...(cfg.experimental ?? {}),
+          renderBuiltUrl: (filename, type) => {
+            const relative = viteConfig.base === '' || viteConfig.base === './'
+            if (
+              type.type === 'asset' &&
+              (type.ssr || !relative) &&
+              filename.match(/^[^?]+\.(avif|gif|heif|jpeg|jpg|png|tiff|webp)(\?.*)?$/)
+            ) {
+              if (cfg.experimental?.renderBuiltUrl) {
+                const res = cfg.experimental.renderBuiltUrl(encodeURI(filename), type)
+                if (typeof res === 'string' || res?.relative === true || res?.runtime) {
+                  return res
+                }
+              }
+              return joinUrlSegments(viteConfig.base, encodeURI(filename))
+            }
+            return undefined
+          }
+        }
+      }
+    },
     configResolved(cfg) {
       viteConfig = cfg
       basePath = createBasePath(viteConfig.base)
@@ -64,13 +89,14 @@ export function imagetools(userOptions: Partial<VitePluginOptions> = {}): Plugin
       if (!filter(id)) return null
 
       const srcURL = parseURL(id)
+      const pathname = decodeURIComponent(srcURL.pathname)
 
       // lazy loaders so that we can load the metadata in defaultDirectives if needed
       // but if there are no directives then we can just skip loading
       let lazyImg: Sharp
       const lazyLoadImage = () => {
         if (lazyImg) return lazyImg
-        return (lazyImg = sharp(decodeURIComponent(srcURL.pathname)))
+        return (lazyImg = sharp(pathname))
       }
 
       let lazyMetadata: Metadata
@@ -131,7 +157,7 @@ export function imagetools(userOptions: Partial<VitePluginOptions> = {}): Plugin
           metadata.src = basePath + id
         } else {
           const fileHandle = this.emitFile({
-            name: basename(srcURL.pathname, extname(srcURL.pathname)) + `.${metadata.format}`,
+            name: basename(pathname, extname(pathname)) + `.${metadata.format}`,
             source: await image.toBuffer(),
             type: 'asset'
           })
