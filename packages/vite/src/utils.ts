@@ -18,7 +18,7 @@ export async function generateImageID(url: URL, config: ImageConfig, originalIma
   // baseURL isn't a valid URL, but just a string used for an identifier
   // use a relative path in the local case so that it's consistent across machines
   const baseURL = new URL(url.protocol + path.relative(process.cwd(), url.pathname))
-  const { mtime } = await stat(path.resolve(process.cwd(), url.pathname))
+  const { mtime } = await stat(path.resolve(process.cwd(), decodeURIComponent(url.pathname)))
   return hash([baseURL.href, JSON.stringify(config), mtime.getTime().toString()])
 }
 
