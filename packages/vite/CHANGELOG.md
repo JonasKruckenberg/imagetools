@@ -1,5 +1,12 @@
 # Change Log
 
+## 6.2.8
+
+### Patch Changes
+
+- 1bdfe74: fix: make `generateImageID` work for files with spaces
+- 216e40a: fix: avoid using fs/promises
+
 ## 6.2.7
 
 ### Patch Changes
