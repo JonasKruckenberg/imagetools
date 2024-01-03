@@ -1,5 +1,13 @@
 # Change Log
 
+## 6.2.9
+
+### Patch Changes
+
+- 0eca643: chore: bump sharp to 0.33.1
+- Updated dependencies [0eca643]
+  - imagetools-core@6.0.4
+
 ## 6.2.8
 
 ### Patch Changes

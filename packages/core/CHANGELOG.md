@@ -1,5 +1,11 @@
 # Change Log
 
+## 6.0.4
+
+### Patch Changes
+
+- 0eca643: chore: bump sharp to 0.33.1
+
 ## 6.0.3
 
 ### Patch Changes
