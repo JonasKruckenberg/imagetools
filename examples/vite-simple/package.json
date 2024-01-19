@@ -9,7 +9,7 @@
     "preview": "vite preview"
   },
   "devDependencies": {
-    "vite": "^5.0.5",
+    "vite": "^5.0.12",
     "vite-imagetools": "workspace:*"
   }
 }
