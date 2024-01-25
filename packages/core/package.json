@@ -1,6 +1,6 @@
 {
   "name": "imagetools-core",
-  "version": "6.0.3",
+  "version": "6.0.4",
   "type": "module",
   "types": "dist/index.d.ts",
   "exports": {
@@ -46,6 +46,6 @@
     "vitest": "^1.0.1"
   },
   "dependencies": {
-    "sharp": "^0.33.0"
+    "sharp": "^0.33.1"
   }
 }
