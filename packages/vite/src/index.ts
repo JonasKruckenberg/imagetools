@@ -128,7 +128,7 @@ export function imagetools(userOptions: Partial<VitePluginOptions> = {}): Plugin
         if (viteConfig.command === 'serve') {
           const id = await generateImageID(srcURL, config, img)
           generatedImages.set(id, image)
-          metadata.src = basePath + id
+          metadata.src = path.join(viteConfig?.server?.origin ?? viteConfig?.origin ?? '', basePath) + id;
         } else {
           const fileHandle = this.emitFile({
             name: basename(srcURL.pathname, extname(srcURL.pathname)) + `.${metadata.format}`,
