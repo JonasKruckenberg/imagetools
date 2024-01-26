@@ -64,13 +64,14 @@ export function imagetools(userOptions: Partial<VitePluginOptions> = {}): Plugin
       if (!filter(id)) return null
 
       const srcURL = parseURL(id)
+      const pathname = decodeURIComponent(srcURL.pathname)
 
       // lazy loaders so that we can load the metadata in defaultDirectives if needed
       // but if there are no directives then we can just skip loading
       let lazyImg: Sharp
       const lazyLoadImage = () => {
         if (lazyImg) return lazyImg
-        return (lazyImg = sharp(decodeURIComponent(srcURL.pathname)))
+        return (lazyImg = sharp(pathname))
       }
 
       let lazyMetadata: Metadata
@@ -131,7 +132,7 @@ export function imagetools(userOptions: Partial<VitePluginOptions> = {}): Plugin
           metadata.src = basePath + id
         } else {
           const fileHandle = this.emitFile({
-            name: basename(srcURL.pathname, extname(srcURL.pathname)) + `.${metadata.format}`,
+            name: basename(pathname, extname(pathname)) + `.${metadata.format}`,
             source: await image.toBuffer(),
             type: 'asset'
           })
