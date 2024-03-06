@@ -458,7 +458,7 @@ html += `<img src={picture.img.src} /></picture>`
 
 ### Source
 
-• **Keyword**: `url`<br> • **Type**: _boolean_<br>
+• **Keyword**: `source`<br> • **Type**: _boolean_<br>
 
 Returns information about the image necessary to render a `source` tag as a JavaScript object. This only takes the image width into consideration.
 
@@ -478,7 +478,7 @@ const html = `<picture>
 
 ### Srcset
 
-• **Keyword**: `url`<br> • **Type**: _boolean_<br>
+• **Keyword**: `srcset`<br> • **Type**: _boolean_<br>
 
 Returns a srcset string of the generated images to be used in a `<picture>` tag. This only takes the image width into consideration.
 
