@@ -9,7 +9,7 @@ jobs:
         with:
           lfs: true
 
-      - uses: pnpm/action-setup@v2.4.0
+      - uses: pnpm/action-setup@v3.0.0
       - uses: actions/setup-node@v4
         with:
           cache: 'pnpm'
@@ -23,14 +23,14 @@ jobs:
         run: pnpm run coverage
 
       - name: Upload imagetools-core Report
-        uses: codecov/codecov-action@v3
+        uses: codecov/codecov-action@v4
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
           flags: imagetools-core
           files: 'packages/core/coverage/coverage-final.json'
 
       - name: Upload vite-imagetools Report
-        uses: codecov/codecov-action@v3
+        uses: codecov/codecov-action@v4
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
           flags: vite-imagetools
