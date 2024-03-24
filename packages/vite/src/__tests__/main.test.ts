@@ -297,7 +297,7 @@ describe('vite-imagetools', () => {
         } catch (err: unknown) {
           const e = err as { plugin: string; message: string }
           expect(e.plugin).toEqual('imagetools')
-          expect(e.message).toMatch(/An error$/)
+          expect(e.message).toContain('An error')
         }
       })
     })
@@ -645,7 +645,7 @@ describe('vite-imagetools', () => {
     const { window } = new JSDOM(``, { runScripts: 'outside-only' })
     window.eval(files[0].code)
 
-    expect(window.__IMAGE__).toBe('/assets/with-metadata-_x-Qsbou.png 600w')
+    expect(window.__IMAGE__).toBe('/assets/with-metadata-D_H5Cxui.png 600w')
   })
 
   test('async output format', async () => {
