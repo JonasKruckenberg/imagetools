@@ -1,4 +1,5 @@
 import { basename, extname } from 'node:path'
+import { join } from 'node:path/posix'
 import type { Plugin, ResolvedConfig } from 'vite'
 import {
   applyTransforms,
@@ -126,10 +127,12 @@ export function imagetools(userOptions: Partial<VitePluginOptions> = {}): Plugin
         const { transforms } = generateTransforms(config, transformFactories, srcURL.searchParams, logger)
         const { image, metadata } = await applyTransforms(transforms, img.clone(), pluginOptions.removeMetadata)
 
-        if (viteConfig.command === 'serve') {
+        if (directives.has('inline')) {
+          metadata.src = `data:image/${metadata.format};base64,${(await image.toBuffer()).toString('base64')}`
+        } else if (viteConfig.command === 'serve') {
           const id = await generateImageID(srcURL, config, img)
           generatedImages.set(id, image)
-          metadata.src = path.posix.join(viteConfig?.server?.origin ?? '', basePath) + id
+          metadata.src = join(viteConfig?.server?.origin ?? '', basePath) + id
         } else {
           const fileHandle = this.emitFile({
             name: basename(pathname, extname(pathname)) + `.${metadata.format}`,

@@ -33,6 +33,7 @@
   - [Source](#source)
   - [Srcset](#srcset)
   - [URL](#url)
+  - [Inline](#inline)
 
 ### Output Directives
 
@@ -508,3 +509,19 @@ Returns a URL to the generated image. This is the default when your directives p
 ```js
 import Image from 'example.jpg?w=500' // the type of Image is a string and it's a URL to the transformed image
 ```
+
+---
+
+### Inline
+
+• **Keyword**: `inline`<br> • **Type**: _boolean_<br>
+
+Return base64 encoded inline image instead of URL to the generated image. This can be combined with some output directives like `url`, `srcset` or `picture`.
+
+• **Example**:
+
+```js
+import inlineImage from 'example.jpg?format=webp&inline';
+```
+
+The returned `inlineImage` will start with `data:image/webp;base64,...`
