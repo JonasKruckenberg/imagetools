@@ -1,14 +1,13 @@
 import { basename, extname } from 'node:path'
-import { Plugin, ResolvedConfig } from 'vite'
+import { join } from 'node:path/posix'
+import type { Plugin, ResolvedConfig } from 'vite'
 import {
   applyTransforms,
   builtins,
   builtinOutputFormats,
   extractEntries,
-  generateImageID,
   generateTransforms,
   getMetadata,
-  loadImage,
   parseURL,
   urlFormat,
   resolveConfigs,
@@ -17,8 +16,8 @@ import {
   type ProcessedImageMetadata
 } from 'imagetools-core'
 import { createFilter, dataToEsm } from '@rollup/pluginutils'
-import type { Metadata, Sharp } from 'sharp'
-import { createBasePath } from './utils.js'
+import sharp, { type Metadata, type Sharp } from 'sharp'
+import { createBasePath, generateImageID } from './utils.js'
 import type { VitePluginOptions } from './types.js'
 
 export type {
@@ -53,7 +52,7 @@ export function imagetools(userOptions: Partial<VitePluginOptions> = {}): Plugin
   let viteConfig: ResolvedConfig
   let basePath: string
 
-  const generatedImages = new Map()
+  const generatedImages = new Map<string, Sharp>()
 
   return {
     name: 'imagetools',
@@ -66,13 +65,14 @@ export function imagetools(userOptions: Partial<VitePluginOptions> = {}): Plugin
       if (!filter(id)) return null
 
       const srcURL = parseURL(id)
+      const pathname = decodeURIComponent(srcURL.pathname)
 
       // lazy loaders so that we can load the metadata in defaultDirectives if needed
       // but if there are no directives then we can just skip loading
       let lazyImg: Sharp
       const lazyLoadImage = () => {
         if (lazyImg) return lazyImg
-        return (lazyImg = loadImage(decodeURIComponent(srcURL.pathname)))
+        return (lazyImg = sharp(pathname))
       }
 
       let lazyMetadata: Metadata
@@ -93,29 +93,21 @@ export function imagetools(userOptions: Partial<VitePluginOptions> = {}): Plugin
       if (!directives.toString()) return null
 
       const img = lazyLoadImage()
-      if (directives.get('allowUpscale') !== 'true') {
+      const widthParam = directives.get('w')
+      const heightParam = directives.get('h')
+      if (directives.get('allowUpscale') !== 'true' && (widthParam || heightParam)) {
         const metadata = await lazyLoadMetadata()
-        const intrinsicWidth = metadata.width || 0
-        const intrinsicHeight = metadata.height || 0
+        const clamp = (s: string, intrinsic: number) =>
+          [...new Set(s.split(';').map((d): string => (parseInt(d) <= intrinsic ? d : intrinsic.toString())))].join(';')
 
-        const originalWidths = directives.get('w')?.split(';') || []
-        const widths = originalWidths.filter((d) => parseInt(d) <= intrinsicWidth)
-        if (widths.length != originalWidths.length) {
-          if (widths.length) {
-            directives.set('w', widths.join(';'))
-          } else {
-            directives.delete('w')
-          }
+        if (widthParam) {
+          const intrinsicWidth = metadata.width || 0
+          directives.set('w', clamp(widthParam, intrinsicWidth))
         }
 
-        const originalHeights = directives.get('h')?.split(';') || []
-        const heights = originalHeights.filter((d) => parseInt(d) <= intrinsicHeight)
-        if (heights.length != originalHeights.length) {
-          if (heights.length) {
-            directives.set('h', heights.join(';'))
-          } else {
-            directives.delete('h')
-          }
+        if (heightParam) {
+          const intrinsicHeight = metadata.height || 0
+          directives.set('h', clamp(heightParam, intrinsicHeight))
         }
       }
 
@@ -135,13 +127,18 @@ export function imagetools(userOptions: Partial<VitePluginOptions> = {}): Plugin
         const { transforms } = generateTransforms(config, transformFactories, srcURL.searchParams, logger)
         const { image, metadata } = await applyTransforms(transforms, img.clone(), pluginOptions.removeMetadata)
 
+        let imageId: string
         if (viteConfig.command === 'serve') {
-          const id = generateImageID(srcURL, config)
-          generatedImages.set(id, image)
-          metadata.src = basePath + id
+          imageId = await generateImageID(srcURL, config, img)
+          generatedImages.set(imageId, image)
+        }
+        if (directives.has('inline')) {
+          metadata.src = `data:image/${metadata.format};base64,${(await image.toBuffer()).toString('base64')}`
+        } else if (viteConfig.command === 'serve') {
+          metadata.src = join(viteConfig?.server?.origin ?? '', basePath) + imageId
         } else {
           const fileHandle = this.emitFile({
-            name: basename(srcURL.pathname, extname(srcURL.pathname)) + `.${metadata.format}`,
+            name: basename(pathname, extname(pathname)) + `.${metadata.format}`,
             source: await image.toBuffer(),
             type: 'asset'
           })

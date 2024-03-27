@@ -1,6 +1,6 @@
 import { Metadata, Sharp } from 'sharp'
-import { kernelValues } from './transforms/kernel'
-import { positionValues } from './transforms/position'
+import { kernelValues } from './transforms/kernel.js'
+import { positionValues } from './transforms/position.js'
 
 export interface ProcessedImageMetadata extends ImageMetadata {
   src: string

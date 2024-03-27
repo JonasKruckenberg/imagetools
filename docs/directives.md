@@ -34,6 +34,7 @@
   - [Source](#source)
   - [Srcset](#srcset)
   - [URL](#url)
+  - [Inline](#inline)
 
 ### Output Directives
 
@@ -486,7 +487,7 @@ html += `<img src={picture.img.src} /></picture>`
 
 ### Source
 
-• **Keyword**: `url`<br> • **Type**: _boolean_<br>
+• **Keyword**: `source`<br> • **Type**: _boolean_<br>
 
 Returns information about the image necessary to render a `source` tag as a JavaScript object. This only takes the image width into consideration.
 
@@ -506,7 +507,7 @@ const html = `<picture>
 
 ### Srcset
 
-• **Keyword**: `url`<br> • **Type**: _boolean_<br>
+• **Keyword**: `srcset`<br> • **Type**: _boolean_<br>
 
 Returns a srcset string of the generated images to be used in a `<picture>` tag. This only takes the image width into consideration.
 
@@ -536,3 +537,19 @@ Returns a URL to the generated image. This is the default when your directives p
 ```js
 import Image from 'example.jpg?w=500' // the type of Image is a string and it's a URL to the transformed image
 ```
+
+---
+
+### Inline
+
+• **Keyword**: `inline`<br> • **Type**: _boolean_<br>
+
+Return base64 encoded inline image instead of URL to the generated image. This can be combined with some output directives like `srcset` or `picture`.
+
+• **Example**:
+
+```js
+import inlineImage from 'example.jpg?format=webp&inline';
+```
+
+The returned `inlineImage` will start with `data:image/webp;base64,...`

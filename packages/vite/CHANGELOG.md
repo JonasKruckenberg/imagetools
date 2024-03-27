@@ -1,5 +1,66 @@
 # Change Log
 
+## 6.2.9
+
+### Patch Changes
+
+- 0eca643: chore: bump sharp to 0.33.1
+- Updated dependencies [0eca643]
+  - imagetools-core@6.0.4
+
+## 6.2.8
+
+### Patch Changes
+
+- 1bdfe74: fix: make `generateImageID` work for files with spaces
+- 216e40a: fix: avoid using fs/promises
+
+## 6.2.7
+
+### Patch Changes
+
+- 5d7a77d: chore: update sharp to 0.33
+- Updated dependencies [5d7a77d]
+  - imagetools-core@6.0.3
+
+## 6.2.6
+
+### Patch Changes
+
+- e0ba6c0: fix: corrected imports to compile with `"moduleResolution": "nodenext"`
+- Updated dependencies [e0ba6c0]
+  - imagetools-core@6.0.2
+
+## 6.2.5
+
+### Patch Changes
+
+- fcd7389: chore: upgrade @rollup/pluginutils
+- Updated dependencies [fcd7389]
+  - imagetools-core@6.0.1
+
+## 6.2.4
+
+### Patch Changes
+
+- c54ad96: fix: refresh images in dev mode when they change
+- Updated dependencies [c54ad96]
+  - imagetools-core@6.0.0
+
+## 6.2.3
+
+### Patch Changes
+
+- 63141c8: fix: avoid duplicate widths in output
+
+## 6.2.2
+
+### Patch Changes
+
+- 7bd11b7: fix: address issues when preventing upscale
+- Updated dependencies [7bd11b7]
+  - imagetools-core@5.1.1
+
 ## 6.2.1
 
 ### Patch Changes
