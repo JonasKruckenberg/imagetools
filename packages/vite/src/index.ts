@@ -127,7 +127,7 @@ export function imagetools(userOptions: Partial<VitePluginOptions> = {}): Plugin
         const { transforms } = generateTransforms(config, transformFactories, srcURL.searchParams, logger)
         const { image, metadata } = await applyTransforms(transforms, img.clone(), pluginOptions.removeMetadata)
 
-        let imageId = ''
+        let imageId: string
         if (viteConfig.command === 'serve') {
           imageId = await generateImageID(srcURL, config, img)
           generatedImages.set(imageId, image)
