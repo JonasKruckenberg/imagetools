@@ -5,6 +5,7 @@
 - [Directives](#directives)
   - [Background](#background)
   - [Blur](#blur)
+  - [Effort](#effort)
   - [Fit](#fit)
   - [Flatten](#flatten)
   - [Flip](#flip)
@@ -86,6 +87,33 @@ import Image from 'example.jpg?blur=100'
 
 ---
 
+### Effort
+
+• **Keyword**: `effort`<br> • **Type**: _integer_ | _"max"_ | _"min"_ <br>
+
+Adjust the effort to spend encoding the image.
+The effect of effort varies per format, but a lower value leads to faster encoding.
+
+The supported ranges by format:
+- `png`: 1 to 10 (default 7)
+- `webp`: 0 to 6 (default 4)
+- `avif`/`heif`: 0 to 9 (default 4)
+- `jxl`: 3 to 9 (default 7)
+- `gif`: 1 to 10 (default 7)
+
+The keywords `"min"` and `"max"` apply the highest effort value for the given image format.
+
+> Search `options.effort` in [sharp's Output options documentation](https://sharp.pixelplumbing.com/api-output) for details.
+
+• **Example**:
+
+```js
+import highestEffortWebp from 'example.jpg?format=webp&effort=max'
+import quicklyGeneratingAvif from 'example.jpg?format=avif&effort=0'
+```
+
+---
+
 ### Fit
 
 • **Keyword**: `fit`<br> • **Type**: _cover_ \| _contain_ \| _fill_ \| _inside_ \| _outside_ <br>
@@ -142,7 +170,7 @@ import Image from 'exmaple.jpg?flop=true'
 
 ### Format
 
-• **Keyword**: `format`<br> • **Type**: _heic_\| _heif_ \| _avif_ \| _jpeg_ \| _jpg_ \| _png_ \| _tiff_ \| _webp_ \|
+• **Keyword**: `format`<br> • **Type**: _jxl_\| _heif_ \| _avif_ \| _jpeg_ \| _jpg_ \| _png_ \| _tiff_ \| _webp_ \|
 _gif_<br>
 
 Convert the image into the given format.
@@ -154,7 +182,7 @@ Convert the image into the given format.
 
 ```js
 import Image from 'example.jpg?format=webp'
-import Images from 'example.jpg?format=webp;avif;heic'
+import Images from 'example.jpg?format=webp;avif;jxl'
 ```
 
 ---
@@ -233,7 +261,7 @@ Use this directive to set a different interpolation kernel when resizing the ima
 Use lossless compression mode.
 
 Formats that support this directive are: 
-  `avif`, `heif`, `heic`, and `webp`
+  `avif`, `heif`, `jxl`, and `webp`
 
 • **Example**:
 
@@ -295,7 +323,7 @@ See sharps [resize options](https://sharp.pixelplumbing.com/api-resize#resize) f
 
 All formats (except `gif`) allow the quality to be adjusted by setting this directive.
 
-The argument must be a number between 0 and 100.
+The argument must be a number between 1 and 100.
 
 > See sharps [Output options](https://sharp.pixelplumbing.com/api-output) for default quality values.
 

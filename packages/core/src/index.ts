@@ -1,5 +1,6 @@
 export * from './transforms/background.js'
 export * from './transforms/blur.js'
+export * from './transforms/effort.js'
 export * from './transforms/fit.js'
 export * from './transforms/flatten.js'
 export * from './transforms/flip.js'

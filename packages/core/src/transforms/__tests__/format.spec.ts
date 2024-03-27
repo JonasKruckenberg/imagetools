@@ -162,5 +162,20 @@ describe('format', () => {
 
       expect(await image.toBuffer()).toMatchFile()
     })
+
+    test('png w/ effort', async () => {
+      const { image } = await applyTransforms([format({ format: 'png', effort: '1' }, dirCtx)!], img)
+
+      expect(await image.toBuffer()).toMatchImageSnapshot({
+        failureThreshold: 0.05,
+        failureThresholdType: 'percent'
+      })
+    })
+
+    test('webp w/ effort', async () => {
+      const { image } = await applyTransforms([format({ format: 'webp', effort: 'min' }, dirCtx)!], img)
+
+      expect(await image.toBuffer()).toMatchFile()
+    })
   })
 })
