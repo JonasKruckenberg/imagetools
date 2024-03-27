@@ -1,5 +1,5 @@
 ---
-'vite-imagetools': patch
+'vite-imagetools': minor
 ---
 
 feat: add "inline" directive
