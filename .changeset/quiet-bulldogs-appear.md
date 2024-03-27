@@ -1,5 +1,5 @@
 ---
-"vite-imagetools": patch
+"vite-imagetools": minor
 ---
 
-Support Vite's `server.origin` option
+feat: support Vite's `server.origin` option
