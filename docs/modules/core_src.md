@@ -80,6 +80,7 @@
 - [imgFormat](core_src.md#imgformat)
 - [invert](core_src.md#invert)
 - [loadImage](core_src.md#loadimage)
+- [lqipPictureFormat](core_src.md#lqipPictureformat)
 - [median](core_src.md#median)
 - [metadataFormat](core_src.md#metadataformat)
 - [normalize](core_src.md#normalize)
@@ -829,6 +830,40 @@ ___
 #### Defined in
 
 [packages/core/src/util.ts:6](https://github.com/JonasKruckenberg/imagetools/blob/4ebc88f/packages/core/src/util.ts#L6)
+
+___
+
+### lqipPictureFormat
+
+▸ **lqipPictureFormat**(`args?`): (`metadata`: [`ProcessedImageMetadata`](../interfaces/core_src.ProcessedImageMetadata.md)[]) => `unknown`
+
+fallback format should be specified last
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `args?` | `string`[] |
+
+#### Returns
+
+`fn`
+
+▸ (`metadata`): `unknown`
+
+##### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `metadata` | [`ProcessedImageMetadata`](../interfaces/core_src.ProcessedImageMetadata.md)[] |
+
+##### Returns
+
+`unknown`
+
+#### Defined in
+
+[packages/core/src/types.ts:71](https://github.com/JonasKruckenberg/imagetools/blob/4ebc88f/packages/core/src/types.ts#L71)
 
 ___
 
