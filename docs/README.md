@@ -17,3 +17,4 @@ unclear!
 
 - [Extend Imagetools](guide/extending.md)
 - [Sharp's documentation](https://sharp.pixelplumbing.com)
+- [Caching](guide/caching.md)

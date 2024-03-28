@@ -2,17 +2,15 @@ import { createHash } from 'node:crypto'
 import path from 'node:path'
 import { statSync } from 'node:fs'
 import type { ImageConfig } from 'imagetools-core'
-import type { Sharp } from 'sharp'
 
 export const createBasePath = (base?: string) => {
   return (base?.replace(/\/$/, '') || '') + '/@imagetools/'
 }
 
-export async function generateImageID(url: URL, config: ImageConfig, originalImage: Sharp) {
+export async function generateImageID(url: URL, config: ImageConfig, imageBuffer: Buffer) {
   if (url.host) {
     const baseURL = new URL(url.origin + url.pathname)
-    const buffer = await originalImage.toBuffer()
-    return hash([baseURL.href, JSON.stringify(config), buffer])
+    return hash([baseURL.href, JSON.stringify(config), imageBuffer])
   }
 
   // baseURL isn't a valid URL, but just a string used for an identifier
