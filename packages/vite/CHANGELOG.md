@@ -1,5 +1,24 @@
 # Change Log
 
+## 7.0.0
+
+### Major Changes
+
+- c4fdd3a: breaking: require Node 18 or newer to align with Vite and Vitest
+
+### Minor Changes
+
+- 7542fa5: feat: add "inline" directive
+- 4819fc1: feat: caching of generated images
+- dc25e4b: feat: support Vite's `server.origin` option
+
+### Patch Changes
+
+- 755912c: fix: use URI-decoded pathname when emitting file
+- Updated dependencies [dc2f16f]
+- Updated dependencies [c4fdd3a]
+  - imagetools-core@7.0.0
+
 ## 6.2.9
 
 ### Patch Changes
