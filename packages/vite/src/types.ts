@@ -90,4 +90,26 @@ export interface VitePluginOptions {
    * @default undefined
    */
   namedExports?: boolean
+
+  /**
+   * Whether to cache transformed images and options for caching.
+   */
+  cache?: CacheOptions
+}
+
+export interface CacheOptions {
+  /**
+   * Should the image cache be enabled. Default is true
+   */
+  enabled?: boolean
+
+  /**
+   * Where should the cached images be stored. Default is './node_modules/.cache/imagetools'
+   */
+  dir?: string
+
+  /**
+   * For how many seconds to keep transformed images cached. Default is undefined, which keeps the images forever.
+   */
+  retention?: number
 }

@@ -7,6 +7,7 @@
 ### Interfaces
 
 - [VitePluginOptions](../interfaces/vite_src_types.VitePluginOptions.md)
+- [CacheOptions](../interfaces/vite_src_types.CacheOptions.md)
 
 ### Type Aliases
 
