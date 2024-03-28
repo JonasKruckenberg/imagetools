@@ -1,5 +1,15 @@
 # Change Log
 
+## 7.0.0
+
+### Major Changes
+
+- c4fdd3a: breaking: require Node 18 or newer to align with Vite and Vitest
+
+### Minor Changes
+
+- dc2f16f: feat: add effort directive
+
 ## 6.0.4
 
 ### Patch Changes
