@@ -2,4 +2,4 @@
 'vite-imagetools': patch
 ---
 
-fix: avif format when file is from cache
+fix: correctly set avif format when file is read from cache
