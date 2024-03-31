@@ -1,5 +1,11 @@
 # Change Log
 
+## 7.0.1
+
+### Patch Changes
+
+- 29b3fed: fix: correctly set avif format when file is read from cache
+
 ## 7.0.0
 
 ### Major Changes
