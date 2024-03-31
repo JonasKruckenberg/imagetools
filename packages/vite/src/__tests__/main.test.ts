@@ -523,6 +523,41 @@ describe('vite-imagetools', () => {
         expect(image).toBeTypeOf('string')
       })
     })
+
+    describe('cache.avifFormat', () => {
+      test('is avif format', async () => {
+        const dir = './node_modules/.cache/imagetools_test_cache_dir'
+        await build({
+          root: join(__dirname, '__fixtures__'),
+          logLevel: 'warn',
+          build: { write: false },
+          plugins: [
+            testEntry(`
+                            import Image from "./pexels-allec-gomes-5195763.png?format=avif"
+                            window.__IMAGE__ = Image
+                        `),
+            imagetools({ cache: { dir } })
+          ]
+        })
+
+        const bundle = (await build({
+          root: join(__dirname, '__fixtures__'),
+          logLevel: 'warn',
+          build: { write: false },
+          plugins: [
+            testEntry(`
+                            import Image from "./pexels-allec-gomes-5195763.png?format=avif"
+                            window.__IMAGE__ = Image
+                        `),
+            imagetools({ cache: { dir } })
+          ]
+        })) as RollupOutput | RollupOutput[]
+
+        const files = getFiles(bundle, '**.avif') as OutputAsset[]
+
+        expect(files).toHaveLength(1)
+      })
+    })
   })
 
   test('relative import', async () => {
