@@ -502,8 +502,8 @@ describe('vite-imagetools', () => {
     })
 
     describe('cache.dir', () => {
+      const dir = './node_modules/.cache/imagetools_test_cache_dir'
       test('is used', async () => {
-        const dir = './node_modules/.cache/imagetools_test_cache_dir'
         await rm(dir, { recursive: true, force: true })
         const root = join(__dirname, '__fixtures__')
         await build({
@@ -521,6 +521,12 @@ describe('vite-imagetools', () => {
 
         const image = (await readdir(dir))[0]
         expect(image).toBeTypeOf('string')
+      })
+
+      test('is consistent', async () => {
+        const image = (await readdir(dir))[0]
+
+        expect(image).toBe('3884ad0a2b86439bb0abda8c08ee68e9fbee7c43')
       })
     })
 
