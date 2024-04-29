@@ -6,7 +6,7 @@ export const createBasePath = (base?: string) => {
   return (base?.replace(/\/$/, '') || '') + '/@imagetools/'
 }
 
-export async function generateImageID(url: URL, config: ImageConfig, imageBuffer: Buffer) {
+export function generateImageID(url: URL, config: ImageConfig, imageBuffer: Buffer) {
   if (url.host) {
     const baseURL = new URL(url.origin + url.pathname)
     return hash([baseURL.href, JSON.stringify(config), imageBuffer])

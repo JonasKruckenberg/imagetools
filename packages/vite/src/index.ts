@@ -136,7 +136,7 @@ export function imagetools(userOptions: Partial<VitePluginOptions> = {}): Plugin
       const imageBuffer = await img.clone().toBuffer()
 
       for (const config of imageConfigs) {
-        const id = await generateImageID(srcURL, config, imageBuffer)
+        const id = generateImageID(srcURL, config, imageBuffer)
         let image: Sharp | undefined
         let metadata: ImageMetadata
 
