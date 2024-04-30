@@ -137,7 +137,7 @@ export function imagetools(userOptions: Partial<VitePluginOptions> = {}): Plugin
 
       const imageHash = hash([imageBuffer])
       for (const config of imageConfigs) {
-        const id = generateImageID(srcURL, config, imageHash)
+        const id = generateImageID(config, imageHash)
         let image: Sharp | undefined
         let metadata: ImageMetadata
 
