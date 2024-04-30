@@ -526,7 +526,7 @@ describe('vite-imagetools', () => {
       test('is consistent', async () => {
         const image = (await readdir(dir))[0]
 
-        expect(image).toBe('32832663b21d26da61d880b4909edd37a9dbd853')
+        expect(image).toBe('7a7bca50a264376853d5c77aba0bddc0163c02f9')
       })
     })
 

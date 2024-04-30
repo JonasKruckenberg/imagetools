@@ -20,7 +20,7 @@ import {
 } from 'imagetools-core'
 import { createFilter, dataToEsm } from '@rollup/pluginutils'
 import sharp, { type Metadata, type Sharp } from 'sharp'
-import { createBasePath, generateImageID } from './utils.js'
+import { createBasePath, generateImageID, hash } from './utils.js'
 import type { VitePluginOptions } from './types.js'
 
 export type {
@@ -136,7 +136,8 @@ export function imagetools(userOptions: Partial<VitePluginOptions> = {}): Plugin
       const imageBuffer = await img.clone().toBuffer()
 
       for (const config of imageConfigs) {
-        const id = generateImageID(srcURL, config, imageBuffer)
+        const imageHash = hash([imageBuffer])
+        const id = generateImageID(srcURL, config, imageHash)
         let image: Sharp | undefined
         let metadata: ImageMetadata
 
