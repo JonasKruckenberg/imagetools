@@ -1,5 +1,11 @@
 # Change Log
 
+## 7.0.2
+
+### Patch Changes
+
+- f049b7f: fix: consistent image id hashes across machines
+
 ## 7.0.1
 
 ### Patch Changes
