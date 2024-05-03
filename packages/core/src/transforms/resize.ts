@@ -1,6 +1,6 @@
-import { FitEnum } from 'sharp'
+import type { FitEnum } from 'sharp'
 import { METADATA } from '../lib/metadata.js'
-import { TransformFactory } from '../types.js'
+import type { TransformFactory } from '../types.js'
 import { getBackground } from './background.js'
 import { getFit } from './fit.js'
 import { getKernel } from './kernel.js'

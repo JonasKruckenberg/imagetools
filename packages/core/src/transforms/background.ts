@@ -1,4 +1,4 @@
-import { TransformOption } from '../types.js'
+import type { TransformOption } from '../types.js'
 import { METADATA } from '../lib/metadata.js'
 
 export interface BackgroundOptions {

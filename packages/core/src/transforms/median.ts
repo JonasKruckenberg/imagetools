@@ -1,4 +1,4 @@
-import { TransformFactory } from '../types.js'
+import type { TransformFactory } from '../types.js'
 import { METADATA } from '../lib/metadata.js'
 
 export interface MedianOptions {

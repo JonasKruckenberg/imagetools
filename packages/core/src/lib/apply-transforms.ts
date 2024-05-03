@@ -1,5 +1,5 @@
-import { Sharp } from 'sharp'
-import { ImageTransformation, TransformResult } from '../types.js'
+import type { Sharp } from 'sharp'
+import type { ImageTransformation, TransformResult } from '../types.js'
 import { METADATA } from './metadata.js'
 
 export async function applyTransforms(

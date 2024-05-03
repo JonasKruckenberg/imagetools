@@ -1,4 +1,4 @@
-import { ImageTransformation, ImageConfig, TransformFactory, TransformFactoryContext, Logger } from '../types.js'
+import type { ImageTransformation, ImageConfig, TransformFactory, TransformFactoryContext, Logger } from '../types.js'
 import { consoleLogger } from './logger.js'
 
 export function generateTransforms(

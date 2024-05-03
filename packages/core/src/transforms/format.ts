@@ -1,10 +1,10 @@
-import { TransformFactory } from '../types.js'
+import type { TransformFactory } from '../types.js'
 import { METADATA } from '../lib/metadata.js'
 import { getEffort } from './effort.js'
 import { getQuality } from './quality.js'
 import { getProgressive } from './progressive.js'
 import { getLossless } from './lossless.js'
-import { FormatEnum } from 'sharp'
+import type { FormatEnum } from 'sharp'
 
 export interface FormatOptions {
   format: keyof FormatEnum

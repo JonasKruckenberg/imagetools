@@ -1,4 +1,4 @@
-import { Metadata, Sharp } from 'sharp'
+import type { Metadata, Sharp } from 'sharp'
 import { kernelValues } from './transforms/kernel.js'
 import { positionValues } from './transforms/position.js'
 
