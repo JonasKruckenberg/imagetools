@@ -150,7 +150,10 @@ export function imagetools(userOptions: Partial<VitePluginOptions> = {}): Plugin
             metadata.format = 'avif'
         } else {
           const { transforms } = generateTransforms(config, transformFactories, srcURL.searchParams, logger)
-          const res = await applyTransforms(transforms, img, { removeMetadata: pluginOptions.removeMetadata })
+          const res = await applyTransforms(transforms, img, {
+            removeMetadata: pluginOptions.removeMetadata,
+            experimental: { preserveInitialOrientation: pluginOptions.experimental?.preserveInitialOrientation }
+          })
           metadata = res.metadata
           if (cacheOptions.enabled) {
             await writeFile(`${cacheOptions.dir}/${id}`, await res.image.toBuffer())

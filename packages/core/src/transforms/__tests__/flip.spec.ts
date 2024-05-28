@@ -82,11 +82,19 @@ describe('flip', () => {
       const scenarios = [
         {
           name: 'matches removeMetadata=true legacy behavior',
-          opts: { removeMetadata: true }
+          opts: { removeMetadata: true, experimental: { preserveInitialOrientation: false } }
         },
         {
           name: 'matches removeMetadata=false legacy behavior',
-          opts: { removeMetadata: false }
+          opts: { removeMetadata: false, experimental: { preserveInitialOrientation: false } }
+        },
+        {
+          name: 'matches removeMetadata=true expected behavior',
+          opts: { removeMetadata: true, experimental: { preserveInitialOrientation: true } }
+        },
+        {
+          name: 'matches removeMetadata=false expected behavior',
+          opts: { removeMetadata: false, experimental: { preserveInitialOrientation: true } }
         }
       ]
 

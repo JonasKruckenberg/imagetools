@@ -95,6 +95,22 @@ export interface VitePluginOptions {
    * Whether to cache transformed images and options for caching.
    */
   cache?: CacheOptions
+
+  /**
+   * These features are not guaranteed to work exactly the same, or even be
+   * present between minor versions.
+   */
+  experimental?: {
+    /**
+     * Sharp's handling of image orientation probably does not match the
+     * expectations of users of imagetools. Enabling this option tries tp preserve
+     * the expectation that an image's transformations are applied on top of the
+     * initial orientation of the image, whether baked into the pixels or
+     * described in the EXIF data.
+     * @default false
+     */
+    preserveInitialOrientation?: boolean
+  }
 }
 
 export interface CacheOptions {

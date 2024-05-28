@@ -62,6 +62,9 @@ export type ImageTransformation = (image: Sharp) => Sharp | Promise<Sharp>
 
 export type ApplyTransformsOptions = {
   removeMetadata?: boolean
+  experimental?: {
+    preserveInitialOrientation?: boolean
+  }
 }
 
 export interface TransformResult {
