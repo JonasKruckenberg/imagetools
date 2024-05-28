@@ -1,15 +1,36 @@
 import type { Sharp } from 'sharp'
-import type { ImageTransformation, TransformResult } from '../types.js'
+import type { ApplyTransformsOptions, ImageTransformation, TransformResult } from '../types.js'
 import { METADATA } from './metadata.js'
+
+const defaultOptions: ApplyTransformsOptions = {
+  removeMetadata: true
+}
 
 export async function applyTransforms(
   transforms: ImageTransformation[],
   image: Sharp,
-  removeMetadata = true
+  options?: ApplyTransformsOptions
+): Promise<TransformResult>
+export async function applyTransforms(
+  transforms: ImageTransformation[],
+  image: Sharp,
+  removeMetadata?: boolean
+): Promise<TransformResult>
+export async function applyTransforms(
+  transforms: ImageTransformation[],
+  image: Sharp,
+  optionsOrRemoveMetadata?: ApplyTransformsOptions | boolean
 ): Promise<TransformResult> {
+  const opts = {
+    ...defaultOptions,
+    ...(typeof optionsOrRemoveMetadata === 'boolean'
+      ? { removeMetadata: optionsOrRemoveMetadata }
+      : optionsOrRemoveMetadata)
+  }
+
   image[METADATA] = { ...(await image.metadata()) }
 
-  if (removeMetadata) {
+  if (opts.removeMetadata) {
     // delete the private metadata
     delete image[METADATA].exif
     delete image[METADATA].iptc
