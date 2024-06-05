@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [18.x, 20.x]
+        node-version: [18.x, 20.x, 22.x]
 
     steps:
       - uses: actions/checkout@v4
@@ -50,7 +50,6 @@ jobs:
         name: Install pnpm
         id: pnpm-install
         with:
-          version: 7
           run_install: false
 
       - name: Get pnpm store directory
