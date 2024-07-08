@@ -38,7 +38,7 @@
     "@rollup/plugin-typescript": "^11.1.5",
     "@types/jest-image-snapshot": "^6.1.0",
     "@vitest/coverage-v8": "^1.4.0",
-    "jest-file-snapshot": "^0.5.0",
+    "jest-file-snapshot": "^0.6.0",
     "jest-image-snapshot": "^6.2.0",
     "rollup": "^4.13.0",
     "tslib": "^2.6.1",
