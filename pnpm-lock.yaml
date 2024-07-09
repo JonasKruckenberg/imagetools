@@ -110,8 +110,8 @@ importers:
         specifier: ^21.1.1
         version: 21.1.1
       '@types/picomatch':
-        specifier: ^2.3.0
-        version: 2.3.0
+        specifier: ^3.0.0
+        version: 3.0.0
       '@vitest/coverage-v8':
         specifier: ^1.4.0
         version: 1.4.0(vitest@1.4.0(@types/node@20.4.5)(jsdom@24.0.0))
@@ -720,8 +720,8 @@ packages:
   '@types/normalize-package-data@2.4.1':
     resolution: {integrity: sha512-Gj7cI7z+98M282Tqmp2K5EIsoouUEzbBJhQQzDE3jSIRk6r9gsz0oUokqIUR4u1R3dMHo0pDHM7sNOHyhulypw==}
 
-  '@types/picomatch@2.3.0':
-    resolution: {integrity: sha512-O397rnSS9iQI4OirieAtsDqvCj4+3eY1J+EPdNTKuHuRWIfUoGyzX294o8C4KJYaLqgSrd2o60c5EqCU8Zv02g==}
+  '@types/picomatch@3.0.0':
+    resolution: {integrity: sha512-iX/Qwk9vU17N/5Q7QrV46wzciloTdCqTRt6z8A7uFFADM2+Sy5oQh9ldZhAiTXH+l0sM/EkXatEhJIs8FUyOBQ==}
 
   '@types/pixelmatch@5.2.4':
     resolution: {integrity: sha512-HDaSHIAv9kwpMN7zlmwfTv6gax0PiporJOipcrGsVNF3Ba+kryOZc0Pio5pn6NhisgWr7TaajlPEKTbTAypIBQ==}
@@ -3118,7 +3118,7 @@ snapshots:
 
   '@types/normalize-package-data@2.4.1': {}
 
-  '@types/picomatch@2.3.0': {}
+  '@types/picomatch@3.0.0': {}
 
   '@types/pixelmatch@5.2.4':
     dependencies:
