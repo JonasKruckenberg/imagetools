@@ -69,8 +69,8 @@ importers:
         specifier: ^1.4.0
         version: 1.4.0(vitest@1.4.0(@types/node@20.4.5)(jsdom@24.0.0))
       jest-file-snapshot:
-        specifier: ^0.6.0
-        version: 0.6.0
+        specifier: ^0.7.0
+        version: 0.7.0
       jest-image-snapshot:
         specifier: ^6.2.0
         version: 6.2.0
@@ -1572,20 +1572,12 @@ packages:
     resolution: {integrity: sha512-TLgnMkKg3iTDsQ9PbPTdpfAK2DzjF9mqUG7RMgcQl8oFjad8ob4laGxv5XV5U9MAfx8D6tSJiUyuAwzLicaxlg==}
     engines: {node: '>=8'}
 
-  jest-diff@29.6.2:
-    resolution: {integrity: sha512-t+ST7CB9GX5F2xKwhwCf0TAR17uNDiaPTZnVymP9lw0lssa9vG+AFyDZoeIHStU3WowFFwT+ky+er0WVl2yGhA==}
-    engines: {node: ^14.15.0 || ^16.10.0 || >=18.0.0}
-
   jest-diff@29.7.0:
     resolution: {integrity: sha512-LMIgiIrhigmPrs03JHpxUh2yISK3vLFPkAodPeo0+BuF7wA2FoQbkEg1u8gBYBThncu7e1oEDUfIXVuTqLRUjw==}
     engines: {node: ^14.15.0 || ^16.10.0 || >=18.0.0}
 
-  jest-file-snapshot@0.6.0:
-    resolution: {integrity: sha512-1ipFupAXh3JbbwkNlKG7C6VhXFO5D77NBLtQEgiMNqTt+W9v+coX3khpaoIfusR5+N5C55EMS8KZ1q7urrtE9Q==}
-
-  jest-get-type@29.4.3:
-    resolution: {integrity: sha512-J5Xez4nRRMjk8emnTpWrlkyb9pfRQQanDrvWHhsR1+VUfbwxi30eVcZFlcdGInRibU4G5LwHXpI7IRHU0CY+gg==}
-    engines: {node: ^14.15.0 || ^16.10.0 || >=18.0.0}
+  jest-file-snapshot@0.7.0:
+    resolution: {integrity: sha512-HkuzLleG2bEVz5nu7ey3SkiBeBvTz8IhY0mJ9W+9BO4xiIi3nVUfB81jFLWS7PMPpeBVgkpW0G1YyrYKi3Hcxw==}
 
   jest-get-type@29.6.3:
     resolution: {integrity: sha512-zrteXnqYxfQh7l5FHyL38jL39di8H8rHoecLH3JNxH3BwOrBsNeabdap5e0I23lD4HHI8W5VFBZqG4Eaq5LNcw==}
@@ -2948,7 +2940,7 @@ snapshots:
 
   '@jest/expect-utils@29.6.2':
     dependencies:
-      jest-get-type: 29.4.3
+      jest-get-type: 29.6.3
 
   '@jest/schemas@29.6.0':
     dependencies:
@@ -2960,7 +2952,7 @@ snapshots:
 
   '@jest/types@29.6.1':
     dependencies:
-      '@jest/schemas': 29.6.0
+      '@jest/schemas': 29.6.3
       '@types/istanbul-lib-coverage': 2.0.4
       '@types/istanbul-reports': 3.0.1
       '@types/node': 20.4.5
@@ -3749,7 +3741,7 @@ snapshots:
     dependencies:
       '@jest/expect-utils': 29.6.2
       '@types/node': 20.4.5
-      jest-get-type: 29.4.3
+      jest-get-type: 29.6.3
       jest-matcher-utils: 29.6.2
       jest-message-util: 29.6.2
       jest-util: 29.6.2
@@ -4117,13 +4109,6 @@ snapshots:
       html-escaper: 2.0.2
       istanbul-lib-report: 3.0.1
 
-  jest-diff@29.6.2:
-    dependencies:
-      chalk: 4.1.2
-      diff-sequences: 29.6.3
-      jest-get-type: 29.4.3
-      pretty-format: 29.7.0
-
   jest-diff@29.7.0:
     dependencies:
       chalk: 4.1.2
@@ -4131,14 +4116,12 @@ snapshots:
       jest-get-type: 29.6.3
       pretty-format: 29.7.0
 
-  jest-file-snapshot@0.6.0:
+  jest-file-snapshot@0.7.0:
     dependencies:
       chalk: 4.1.2
       filenamify: 4.3.0
       jest-diff: 29.7.0
       mkdirp: 3.0.1
-
-  jest-get-type@29.4.3: {}
 
   jest-get-type@29.6.3: {}
 
@@ -4156,8 +4139,8 @@ snapshots:
   jest-matcher-utils@29.6.2:
     dependencies:
       chalk: 4.1.2
-      jest-diff: 29.6.2
-      jest-get-type: 29.4.3
+      jest-diff: 29.7.0
+      jest-get-type: 29.6.3
       pretty-format: 29.7.0
 
   jest-message-util@29.6.2:
