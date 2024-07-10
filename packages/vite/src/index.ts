@@ -1,5 +1,4 @@
 import { basename, extname } from 'node:path'
-import { join } from 'node:path/posix'
 import { statSync, mkdirSync, createReadStream } from 'node:fs'
 import { writeFile, readFile, opendir, stat, rm } from 'node:fs/promises'
 import type { Plugin, ResolvedConfig } from 'vite'
@@ -167,7 +166,7 @@ export function imagetools(userOptions: Partial<VitePluginOptions> = {}): Plugin
             : await readFile(`${cacheOptions.dir}/${id}`)
           ).toString('base64')}`
         } else if (viteConfig.command === 'serve') {
-          metadata.src = join(viteConfig?.server?.origin ?? '', basePath) + id
+          metadata.src = (viteConfig?.server?.origin ?? '') + basePath + id
         } else {
           const fileHandle = this.emitFile({
             name: basename(pathname, extname(pathname)) + `.${metadata.format}`,
