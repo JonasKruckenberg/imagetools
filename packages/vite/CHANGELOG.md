@@ -1,5 +1,11 @@
 # Change Log
 
+## 7.0.4
+
+### Patch Changes
+
+- c4a0dc7: fix: correct URL concatenation in dev mode when origin set in server options
+
 ## 7.0.3
 
 ### Patch Changes
