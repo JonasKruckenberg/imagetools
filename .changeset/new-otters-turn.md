@@ -2,4 +2,4 @@
 'vite-imagetools': patch
 ---
 
-Fixed url concatenation for dev mode with origin set in server options.
+fix: correct URL concatenation in dev mode when origin set in server options
