@@ -1,5 +1,11 @@
 # Change Log
 
+## 7.0.1
+
+### Patch Changes
+
+- 57e070e: fix: attempt to make sharp dependency declaration compatible with yarn
+
 ## 7.0.0
 
 ### Major Changes
