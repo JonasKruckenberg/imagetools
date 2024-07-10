@@ -1,5 +1,13 @@
 # Change Log
 
+## 7.0.3
+
+### Patch Changes
+
+- 57e070e: fix: attempt to make sharp dependency declaration compatible with yarn
+- Updated dependencies [57e070e]
+  - imagetools-core@7.0.1
+
 ## 7.0.2
 
 ### Patch Changes
