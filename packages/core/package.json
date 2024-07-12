@@ -32,6 +32,7 @@
     "dev": "rollup -cw",
     "build": "rollup -c",
     "test": "vitest run",
+    "test:watch": "vitest watch",
     "coverage": "vitest run --coverage"
   },
   "devDependencies": {
