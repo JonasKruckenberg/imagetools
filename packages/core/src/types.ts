@@ -100,4 +100,5 @@ export interface Picture {
     w: number
     h: number
   }
+  lqip?: string
 }

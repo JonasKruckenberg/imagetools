@@ -1,3 +1,4 @@
+import { readFile } from 'fs/promises'
 import type { ImageMetadata, Img, OutputFormat, Picture } from './types.js'
 
 export const urlFormat: OutputFormat = () => (metadatas) => {
@@ -109,11 +110,44 @@ export const pictureFormat: OutputFormat = () => (metadatas) => {
   return result
 }
 
+export const lqipPictureFormat: OutputFormat = () => async (metadatas) => {
+  const fallbackFormat = [...new Set(metadatas.map((m) => getFormat(m)))].pop()
+
+  let smallestFallback
+  let smallestFallbackSize = 0
+  for (const m of metadatas) {
+    if (m.format?.replace('jpg', 'jpeg') === fallbackFormat) {
+      if (m.width && (!smallestFallbackSize || m.width < smallestFallbackSize)) {
+        smallestFallback = m
+        smallestFallbackSize = m.width
+      }
+    }
+  }
+
+  const filteredMetadatas = metadatas.filter((m) => m.width && m.width > smallestFallbackSize)
+  if (filteredMetadatas.length > 0) {
+    metadatas = filteredMetadatas
+  }
+
+  const result = pictureFormat()(metadatas) as Picture
+
+  if (smallestFallback?.imagePath) {
+    const data = (await readFile(smallestFallback.imagePath as string)).toString('base64')
+    result.lqip = `data:image/${smallestFallback.format};base64,${data}`
+  } else if (smallestFallback?.image) {
+    const data = (await smallestFallback.image.toBuffer()).toString('base64')
+    result.lqip = `data:image/${smallestFallback.format};base64,${data}`
+  }
+
+  return result
+}
+
 export const builtinOutputFormats = {
   url: urlFormat,
   srcset: srcsetFormat,
   img: imgFormat,
   picture: pictureFormat,
+  'picture-lqip': lqipPictureFormat,
   metadata: metadataFormat,
   meta: metadataFormat
 }
