@@ -1,4 +1,4 @@
-import { basename, extname } from 'node:path'
+import { basename, extname, parse, relative } from 'node:path'
 import { statSync, mkdirSync, createReadStream } from 'node:fs'
 import { writeFile, readFile, opendir, stat, rm } from 'node:fs/promises'
 import type { Plugin, ResolvedConfig } from 'vite'
@@ -168,8 +168,11 @@ export function imagetools(userOptions: Partial<VitePluginOptions> = {}): Plugin
         } else if (viteConfig.command === 'serve') {
           metadata.src = (viteConfig?.server?.origin ?? '') + basePath + id
         } else {
+          const parsedPath = parse(pathname);
+          const relativeDir = relative(viteConfig.root, parsedPath.dir);
+
           const fileHandle = this.emitFile({
-            name: basename(pathname, extname(pathname)) + `.${metadata.format}`,
+            name: `${relativeDir}/${parsedPath.name}.${metadata.format}`,
             source: image ? await image.toBuffer() : await readFile(`${cacheOptions.dir}/${id}`),
             type: 'asset'
           })
