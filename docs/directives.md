@@ -31,6 +31,7 @@
   - [Tint](#tint)
   - [Metadata](#metadata)
   - [Picture](#picture)
+  - [Picture with low quality inplace image](#picture-with-low-quality-inplace-image)
   - [Source](#source)
   - [Srcset](#srcset)
   - [URL](#url)
@@ -483,6 +484,26 @@ for (const [format, images] of Object.entries(picture.sources)) {
   html += `<source srcset={images.map((i) => `${i.src}`).join(', ')} type={'image/' + format} />`;
 }
 html += `<img src={picture.img.src} /></picture>`
+```
+
+### Picture with low quality inplace image
+
+• **Keyword**: `picture-lqip`<br> • **Type**: _boolean_<br>
+
+Returns information about the image necessary to render a `picture` tag as a JavaScript object.
+Includes a base64 encoded inplace representation of the image using the smallest requested size
+and the fallback format. The smallest requested size will be excluded from the sources.
+
+• **Example**:
+
+```js
+import picture from 'example.jpg?w=50;500;900;1200&format=avif;webp;jpg&as=picture-lqip'
+
+let html = '<picture>';
+for (const [format, images] of Object.entries(picture.sources)) {
+  html += `<source srcset={images.map((i) => `${i.src}`).join(', ')} type={'image/' + format} />`;
+}
+html += `<img src={picture.lqip} /></picture>`
 ```
 
 ### Source
