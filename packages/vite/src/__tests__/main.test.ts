@@ -358,6 +358,48 @@ describe('vite-imagetools', () => {
       })
     })
 
+    describe('experimental.preserveInitialOrientation', () => {
+      test('true affects images with orientation', async () => {
+        const bundle = (await build({
+          root: join(__dirname, '__fixtures__'),
+          logLevel: 'warn',
+          build: { write: false },
+          plugins: [
+            testEntry(`
+                            import Image from "./exif-orientation-3.jpg?rotate=90&format=png"
+                            window.__IMAGE__ = Image
+                        `),
+            imagetools({
+              experimental: { preserveInitialOrientation: true }
+            })
+          ]
+        })) as RollupOutput | RollupOutput[]
+
+        const files = getFiles(bundle, '**.png') as OutputAsset[]
+        expect(files[0].source).toMatchImageSnapshot()
+      })
+
+      test('false retains old behavior', async () => {
+        const bundle = (await build({
+          root: join(__dirname, '__fixtures__'),
+          logLevel: 'warn',
+          build: { write: false },
+          plugins: [
+            testEntry(`
+                            import Image from "./exif-orientation-3.jpg?rotate=90&format=png"
+                            window.__IMAGE__ = Image
+                        `),
+            imagetools({
+              experimental: { preserveInitialOrientation: false }
+            })
+          ]
+        })) as RollupOutput | RollupOutput[]
+
+        const files = getFiles(bundle, '**.png') as OutputAsset[]
+        expect(files[0].source).toMatchImageSnapshot()
+      })
+    })
+
     describe('resolveConfigs', () => {
       test('can be used to generate multiple images (presets)', async () => {
         const bundle = (await build({

@@ -60,6 +60,13 @@ export type TransformOption<A = Record<string, unknown>, T = unknown> = (
 
 export type ImageTransformation = (image: Sharp) => Sharp | Promise<Sharp>
 
+export type ApplyTransformsOptions = {
+  removeMetadata?: boolean
+  experimental?: {
+    preserveInitialOrientation?: boolean
+  }
+}
+
 export interface TransformResult {
   image: Sharp
   metadata: ImageMetadata

@@ -30,10 +30,20 @@ describe('applyTransforms', () => {
     expect(metadata).not.toHaveProperty('iptc')
   })
 
-  it('metadata stripping can be disabled', async () => {
+  it('metadata stripping can be disabled via boolean', async () => {
     const t = vi.fn((i) => i)
 
     const { metadata } = await applyTransforms([t], img, false)
+
+    expect(t).toBeCalled()
+    expect(metadata).toHaveProperty('icc')
+    expect(metadata).toHaveProperty('xmp')
+  })
+
+  it('metadata stripping can be disabled via options object', async () => {
+    const t = vi.fn((i) => i)
+
+    const { metadata } = await applyTransforms([t], img, { removeMetadata: false })
 
     expect(t).toBeCalled()
     expect(metadata).toHaveProperty('icc')
