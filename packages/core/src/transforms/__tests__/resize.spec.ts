@@ -283,6 +283,16 @@ describe('aspect', () => {
       expect(await image.toBuffer()).toMatchImageSnapshot()
     })
 
+    test('w/ crop horizontally', async () => {
+      //@ts-expect-error we know this is safe
+      const { image } = await applyTransforms([resize({ aspect: '1:2' }, dirCtx)], img)
+
+      const { width = 0, height = 0 } = await sharp(await image.toBuffer()).metadata()
+      expect(width / height).toEqual(1 / 2)
+
+      expect(await image.toBuffer()).toMatchImageSnapshot()
+    })
+
     test('w/ fit', async () => {
       //@ts-expect-error we know this is safe
       const { image } = await applyTransforms([resize({ aspect: '4:3', fit: 'contain' }, dirCtx)], img)

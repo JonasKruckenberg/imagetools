@@ -74,7 +74,7 @@ export const resize: TransformFactory<ResizeOptions> = (config, context) => {
         finalWidth = originalWidth
       } else {
         finalHeight = originalHeight
-        finalWidth = originalHeight / aspect
+        finalWidth = originalHeight * aspect
       }
     } else if (width && height) {
       // width & height BOTH given, need to look at fit
