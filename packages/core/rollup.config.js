@@ -1,6 +1,10 @@
 import typescript from '@rollup/plugin-typescript'
-import pkg from './package.json' assert { type: 'json' }
-import { builtinModules as builtins } from 'module'
+import * as fs from 'node:fs/promises'
+import * as path from 'node:path'
+import { builtinModules as builtins } from 'node:module'
+import { fileURLToPath } from 'node:url'
+
+const pkg = JSON.parse(await fs.readFile(path.join(fileURLToPath(import.meta.url), '..', 'package.json')))
 
 const deps = Object.keys(pkg.dependencies || {})
 
