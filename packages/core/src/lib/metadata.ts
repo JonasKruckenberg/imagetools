@@ -11,7 +11,7 @@ declare module 'sharp' {
 
 export function setMetadata(image: Sharp, key: string, value: unknown) {
   if (image[METADATA]) {
-    image[METADATA][key] = value;
+    image[METADATA][key] = value
   }
 }
 
