@@ -119,7 +119,7 @@ Wether to remove potentially private metadata from the image, such as exif tags 
 ### extendOutputFormats
 
 ▸ `Optional` **extendOutputFormats**(`builtins`): `Record`<`string`,
-[`OutputFormat`](../../docs/modules/core_src.md#outputformat)\>
+[`OutputFormat`](../../docs/core/src/README.md#outputformat)\>
 
 You can use this option to extend the builtin list of output formats. This list will be merged with the builtin output
 formats before determining the format to use.
@@ -130,18 +130,18 @@ formats before determining the format to use.
 
 | Name       | Type                                                                               |
 | :--------- | :--------------------------------------------------------------------------------- |
-| `builtins` | `Record`<`string`, [`OutputFormat`](../../docs/modules/core_src.md#outputformat)\> |
+| `builtins` | `Record`<`string`, [`OutputFormat`](../../docs/core/src/README.md#outputformat)\> |
 
 #### Returns
 
-`Record`<`string`, [`OutputFormat`](../../docs/modules/core_src.md#outputformat)\>
+`Record`<`string`, [`OutputFormat`](../../docs/core/src/README.md#outputformat)\>
 
 ---
 
 ### extendTransforms
 
 ▸ `Optional` **extendTransforms**(`builtins`):
-[`TransformFactory`](../../docs/modules/core_src.md#transformfactory)<`Record`<`string`, `unknown`\>\>[]
+[`TransformFactory`](../../docs/core/src/README.md#transformfactory)<`Record`<`string`, `unknown`\>\>[]
 
 You can use this option to extend the builtin list of import transforms. This list will be merged with the builtin
 transforms before applying them to the input image.
@@ -152,18 +152,18 @@ transforms before applying them to the input image.
 
 | Name       | Type                                                                                                     |
 | :--------- | :------------------------------------------------------------------------------------------------------- |
-| `builtins` | [`TransformFactory`](../../docs/modules/core_src.md#transformfactory)<`Record`<`string`, `unknown`\>\>[] |
+| `builtins` | [`TransformFactory`](../../docs/core/src/README.md#transformfactory)<`Record`<`string`, `unknown`\>\>[] |
 
 #### Returns
 
-[`TransformFactory`](../../docs/modules/core_src.md#transformfactory)<`Record`<`string`, `unknown`\>\>[]
+[`TransformFactory`](../../docs/core/src/README.md#transformfactory)<`Record`<`string`, `unknown`\>\>[]
 
 ---
 
 ### resolveConfigs
 
 • `Optional` **resolveConfigs**: (`entries`: `[string, string[]][]`, `outputFormats`: `Record`<`string`,
-[`OutputFormat`](../modules/core_src.md#outputformat)\>) => `Record<string, string | string[]>[]`
+[`OutputFormat`](../core/src/README.md#outputformat)\>) => `Record<string, string | string[]>[]`
 
 #### Type declaration
 
@@ -177,7 +177,7 @@ that can be given to a the transforms.
 | Name            | Type                                                                       | Description               |
 | :-------------- | :------------------------------------------------------------------------- | :------------------------ |
 | `entries`       | `[string, string[]][]`                                                     | The url parameter entries |
-| `outputFormats` | `Record`<`string`, [`OutputFormat`](../modules/core_src.md#outputformat)\> | -                         |
+| `outputFormats` | `Record`<`string`, [`OutputFormat`](../core/src/README.md#outputformat)\> | -                         |
 
 ##### Returns
 
