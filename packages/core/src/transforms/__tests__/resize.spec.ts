@@ -284,7 +284,7 @@ describe('aspect', () => {
     })
 
     test('w/ crop horizontally', async () => {
-      //@ts-expect-error we know this is safe
+      // @ts-expect-error we know this is safe
       const { image } = await applyTransforms([resize({ aspect: '1:2' }, dirCtx)], img)
 
       const { width = 0, height = 0 } = await sharp(await image.toBuffer()).metadata()
