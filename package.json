@@ -2,6 +2,7 @@
   "name": "imagetools",
   "license": "MIT",
   "private": true,
+  "type": "module",
   "scripts": {
     "ci:version": "pnpm changeset version",
     "ci:publish": "pnpm build && pnpm publish -r",
@@ -14,6 +15,8 @@
   },
   "devDependencies": {
     "@changesets/cli": "^2.26.2",
+    "@eslint/eslintrc": "^3.2.0",
+    "@eslint/js": "^9.15.0",
     "@rollup/plugin-typescript": "^12.0.0",
     "@typescript-eslint/eslint-plugin": "^8.16.0",
     "@typescript-eslint/parser": "^8.16.0",
