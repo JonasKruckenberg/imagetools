@@ -128,8 +128,8 @@ formats before determining the format to use.
 
 #### Parameters
 
-| Name       | Type                                                                               |
-| :--------- | :--------------------------------------------------------------------------------- |
+| Name       | Type                                                                                    |
+| :--------- | :-------------------------------------------------------------------------------------- |
 | `builtins` | `Record`<`string`, [`OutputFormat`](../../docs/core/src/type-aliases/OutputFormat.md)\> |
 
 #### Returns
@@ -150,8 +150,8 @@ transforms before applying them to the input image.
 
 #### Parameters
 
-| Name       | Type                                                                                                     |
-| :--------- | :------------------------------------------------------------------------------------------------------- |
+| Name       | Type                                                                                                          |
+| :--------- | :------------------------------------------------------------------------------------------------------------ |
 | `builtins` | [`TransformFactory`](../../docs/core/src/type-aliases/TransformFactory.md)<`Record`<`string`, `unknown`\>\>[] |
 
 #### Returns
@@ -174,9 +174,9 @@ that can be given to a the transforms.
 
 ##### Parameters
 
-| Name            | Type                                                                       | Description               |
-| :-------------- | :------------------------------------------------------------------------- | :------------------------ |
-| `entries`       | `[string, string[]][]`                                                     | The url parameter entries |
+| Name            | Type                                                                      | Description               |
+| :-------------- | :------------------------------------------------------------------------ | :------------------------ |
+| `entries`       | `[string, string[]][]`                                                    | The url parameter entries |
 | `outputFormats` | `Record`<`string`, [`OutputFormat`](../core/src/README.md#outputformat)\> | -                         |
 
 ##### Returns
