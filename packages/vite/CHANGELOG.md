@@ -1,5 +1,12 @@
 # Change Log
 
+## 7.0.5
+
+### Patch Changes
+
+- Updated dependencies [c530897]
+  - imagetools-core@7.0.2
+
 ## 7.0.4
 
 ### Patch Changes

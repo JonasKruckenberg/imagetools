@@ -1,5 +1,11 @@
 # Change Log
 
+## 7.0.2
+
+### Patch Changes
+
+- c530897: fix: correctly reduce the aspect ratio when no width or height is provided
+
 ## 7.0.1
 
 ### Patch Changes
