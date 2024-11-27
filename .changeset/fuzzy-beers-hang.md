@@ -2,4 +2,4 @@
 'imagetools-core': patch
 ---
 
-Reducing the aspect ratio without providing width or height works correctly now
+fix: correctly reduce the aspect ratio when no width or height is provided
