@@ -1,13 +1,5 @@
 **imagetools** • [**Docs**](modules.md)
 
-***
-
-**imagetools** • [**Docs**](_media/modules.md)
-
-***
-
-imagetools / [Modules](_media/modules-1.md)
-
 # Imagetools documentation
 
 Welcome! Below you will find a list of helpful resources to get you started with imagetools!<br> Please keep in mind
@@ -16,13 +8,13 @@ unclear!
 
 ## Basic
 
-- [Why?](_media/why.md)
-- [Install](_media/install.md)
-- [Getting Started](_media/getting-started.md)
-- [All directives](_media/directives.md)
+- [Why?](guide/why.md)
+- [Install](guide/install.md)
+- [Getting Started](guide/getting-started.md)
+- [All directives](guide/directives.md)
 
 ## Dive deeper
 
-- [Extend Imagetools](_media/extending.md)
+- [Extend Imagetools](guide/extending.md)
 - [Sharp's documentation](https://sharp.pixelplumbing.com)
-- [Caching](_media/caching.md)
+- [Caching](guide/caching.md)
