@@ -1,11 +1,11 @@
-[imagetools](README.md) / Modules
+[**imagetools**](README.md) • **Docs**
+
+***
 
 # imagetools
 
-## Table of contents
+## Modules
 
-### Modules
-
-- [core/src](modules/core_src.md)
-- [vite/src](modules/vite_src.md)
-- [vite/src/types](modules/vite_src_types.md)
+- [core/src](core/src/README.md)
+- [vite/src](vite/src/README.md)
+- [vite/src/types](vite/src/types/README.md)

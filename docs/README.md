@@ -1,4 +1,4 @@
-imagetools / [Modules](modules.md)
+**imagetools** • [**Docs**](modules.md)
 
 # Imagetools documentation
 
