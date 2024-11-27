@@ -11,7 +11,7 @@ unclear!
 - [Why?](guide/why.md)
 - [Install](guide/install.md)
 - [Getting Started](guide/getting-started.md)
-- [All directives](guide/directives.md)
+- [All directives](directives.md)
 
 ## Dive deeper
 
