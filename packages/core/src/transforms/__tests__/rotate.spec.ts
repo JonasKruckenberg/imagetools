@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { rotate } from '../rotate'
 import { TransformFactoryContext } from '../../types'
 import { applyTransforms } from '../../index'
