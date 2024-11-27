@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { format } from '../format'
 import { applyTransforms } from '../../index'
 import { consoleLogger } from '../../lib/logger'

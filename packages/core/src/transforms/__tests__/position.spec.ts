@@ -24,7 +24,6 @@ describe('position', () => {
   })
 
   describe('shorthands', () => {
-    // eslint-disable-next-line @typescript-eslint/no-empty-function
     test('invalid', () => {})
 
     test('valid', () => {
