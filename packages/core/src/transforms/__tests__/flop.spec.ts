@@ -1,6 +1,6 @@
 import { TransformFactoryContext } from '../../types'
 import { flop } from '../flop'
-import { applyTransforms } from '../../index'
+import { applyTransforms, format } from '../../index'
 import sharp, { Sharp } from 'sharp'
 import { join } from 'path'
 import { toMatchImageSnapshot } from 'jest-image-snapshot'
@@ -64,6 +64,62 @@ describe('flop', () => {
       const { image } = await applyTransforms([flop({ flop: 'true' }, dirCtx)!], img)
 
       expect(await image.toBuffer()).toMatchImageSnapshot()
+    })
+  })
+
+  const exifOrientations = [1, 2, 3, 4, 5, 6]
+
+  exifOrientations.forEach((exifOrientation) => {
+    describe(`with orientation ${exifOrientation}:`, () => {
+      let img: Sharp
+      beforeEach(() => {
+        img = sharp(join(__dirname, `../../__tests__/__fixtures__/exif-orientation-${exifOrientation}.jpg`))
+      })
+      // `.toMatchImageSnapshot` doesn't work with anything other than PNG
+      const formatTransform = format({ format: 'png' }, dirCtx)
+
+      const scenarios = [
+        {
+          name: 'matches removeMetadata=true legacy behavior',
+          opts: { removeMetadata: true, experimental: { preserveInitialOrientation: false } }
+        },
+        {
+          name: 'matches removeMetadata=false legacy behavior',
+          opts: { removeMetadata: false, experimental: { preserveInitialOrientation: false } }
+        },
+        {
+          name: 'matches removeMetadata=true expected behavior',
+          opts: { removeMetadata: true, experimental: { preserveInitialOrientation: true } }
+        },
+        {
+          name: 'matches removeMetadata=false expected behavior',
+          opts: { removeMetadata: false, experimental: { preserveInitialOrientation: true } }
+        }
+      ]
+
+      for (const scenario of scenarios) {
+        describe(scenario.name, () => {
+          test('once', async () => {
+            const { image } = await applyTransforms(
+              [flop({ flop: 'true' }, dirCtx)!, formatTransform!],
+              img,
+              scenario.opts
+            )
+
+            expect(await image.toBuffer()).toMatchImageSnapshot()
+          })
+
+          test('twice', async () => {
+            const { image } = await applyTransforms(
+              [flop({ flop: 'true' }, dirCtx)!, flop({ flop: 'true' }, dirCtx)!, formatTransform!],
+              img,
+              scenario.opts
+            )
+
+            expect(await image.toBuffer()).toMatchImageSnapshot()
+          })
+        })
+      }
     })
   })
 })
