@@ -15,7 +15,7 @@ jobs:
         with:
           lfs: true
 
-      - uses: pnpm/action-setup@v4.0.0
+      - uses: pnpm/action-setup@v4.1.0
       - uses: actions/setup-node@v4
         with:
           cache: 'pnpm'
@@ -46,7 +46,7 @@ jobs:
           fetch-depth: 0
           lfs: true
 
-      - uses: pnpm/action-setup@v4.0.0
+      - uses: pnpm/action-setup@v4.1.0
         name: Install pnpm
         id: pnpm-install
         with:
@@ -65,7 +65,7 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-pnpm-store-
 
-      - uses: pnpm/action-setup@v4.0.0
+      - uses: pnpm/action-setup@v4.1.0
         with:
           run_install: true
 
