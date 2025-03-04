@@ -1,10 +1,12 @@
-[**imagetools**](../../../README.md) • **Docs**
+[**imagetools**](../../../README.md)
 
 ***
 
 [imagetools](../../../modules.md) / [vite/src](../README.md) / Picture
 
 # Interface: Picture
+
+Defined in: packages/core/dist/types.d.ts:75
 
 The picture output format.
 
@@ -13,6 +15,8 @@ The picture output format.
 ### img
 
 > **img**: `object`
+
+Defined in: packages/core/dist/types.d.ts:80
 
 #### h
 
@@ -26,18 +30,12 @@ The picture output format.
 
 > **w**: `number`
 
-#### Defined in
-
-packages/core/dist/types.d.ts:80
-
 ***
 
 ### sources
 
 > **sources**: `Record`\<`string`, `string`\>
 
+Defined in: packages/core/dist/types.d.ts:79
+
 Key is format. Value is srcset.
-
-#### Defined in
-
-packages/core/dist/types.d.ts:79

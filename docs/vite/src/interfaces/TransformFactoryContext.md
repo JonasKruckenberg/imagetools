@@ -1,4 +1,4 @@
-[**imagetools**](../../../README.md) • **Docs**
+[**imagetools**](../../../README.md)
 
 ***
 
@@ -6,15 +6,15 @@
 
 # Interface: TransformFactoryContext
 
+Defined in: packages/core/dist/types.d.ts:40
+
 ## Properties
 
 ### logger
 
 > **logger**: [`Logger`](Logger.md)
 
-#### Defined in
-
-packages/core/dist/types.d.ts:43
+Defined in: packages/core/dist/types.d.ts:43
 
 ***
 
@@ -22,9 +22,7 @@ packages/core/dist/types.d.ts:43
 
 > **manualSearchParams**: `URLSearchParams`
 
-#### Defined in
-
-packages/core/dist/types.d.ts:42
+Defined in: packages/core/dist/types.d.ts:42
 
 ***
 
@@ -32,14 +30,14 @@ packages/core/dist/types.d.ts:42
 
 > **useParam**: (`parameter`) => `void`
 
+Defined in: packages/core/dist/types.d.ts:41
+
 #### Parameters
 
-• **parameter**: `string`
+##### parameter
+
+`string`
 
 #### Returns
 
 `void`
-
-#### Defined in
-
-packages/core/dist/types.d.ts:41

@@ -1,4 +1,4 @@
-[**imagetools**](../../../README.md) • **Docs**
+[**imagetools**](../../../README.md)
 
 ***
 
@@ -6,14 +6,12 @@
 
 # vite/src/types
 
-## Index
-
-### Interfaces
+## Interfaces
 
 - [CacheOptions](interfaces/CacheOptions.md)
 - [VitePluginOptions](interfaces/VitePluginOptions.md)
 
-### Type Aliases
+## Type Aliases
 
 - [DefaultDirectives](type-aliases/DefaultDirectives.md)
 - [Exclude](type-aliases/Exclude.md)

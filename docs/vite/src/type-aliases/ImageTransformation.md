@@ -1,4 +1,4 @@
-[**imagetools**](../../../README.md) • **Docs**
+[**imagetools**](../../../README.md)
 
 ***
 
@@ -8,14 +8,14 @@
 
 > **ImageTransformation**: (`image`) => `Sharp` \| `Promise`\<`Sharp`\>
 
+Defined in: packages/core/dist/types.d.ts:47
+
 ## Parameters
 
-• **image**: `Sharp`
+### image
+
+`Sharp`
 
 ## Returns
 
 `Sharp` \| `Promise`\<`Sharp`\>
-
-## Defined in
-
-packages/core/dist/types.d.ts:47

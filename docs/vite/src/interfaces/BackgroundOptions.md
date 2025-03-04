@@ -1,4 +1,4 @@
-[**imagetools**](../../../README.md) • **Docs**
+[**imagetools**](../../../README.md)
 
 ***
 
@@ -6,12 +6,12 @@
 
 # Interface: BackgroundOptions
 
+Defined in: packages/core/dist/transforms/background.d.ts:2
+
 ## Properties
 
 ### background
 
 > **background**: `string`
 
-#### Defined in
-
-packages/core/dist/transforms/background.d.ts:3
+Defined in: packages/core/dist/transforms/background.d.ts:3

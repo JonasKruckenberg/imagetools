@@ -1,4 +1,4 @@
-[**imagetools**](../../../README.md) • **Docs**
+[**imagetools**](../../../README.md)
 
 ***
 
@@ -6,12 +6,12 @@
 
 # Interface: MedianOptions
 
+Defined in: packages/core/dist/transforms/median.d.ts:2
+
 ## Properties
 
 ### median
 
 > **median**: `string`
 
-#### Defined in
-
-packages/core/dist/transforms/median.d.ts:3
+Defined in: packages/core/dist/transforms/median.d.ts:3

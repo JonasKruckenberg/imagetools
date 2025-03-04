@@ -1,4 +1,4 @@
-[**imagetools**](../../../README.md) • **Docs**
+[**imagetools**](../../../README.md)
 
 ***
 
@@ -8,6 +8,4 @@
 
 > **FitValue**: *typeof* [`fitValues`](../variables/fitValues.md)\[`number`\]
 
-## Defined in
-
-packages/core/dist/transforms/fit.d.ts:3
+Defined in: packages/core/dist/transforms/fit.d.ts:3

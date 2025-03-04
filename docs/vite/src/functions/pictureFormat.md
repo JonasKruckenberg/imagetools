@@ -1,4 +1,4 @@
-[**imagetools**](../../../README.md) • **Docs**
+[**imagetools**](../../../README.md)
 
 ***
 
@@ -8,11 +8,15 @@
 
 > **pictureFormat**(`args`?): (`metadata`) => `unknown`
 
+Defined in: packages/core/dist/output-formats.d.ts:7
+
 fallback format should be specified last
 
 ## Parameters
 
-• **args?**: `string`[]
+### args?
+
+`string`[]
 
 ## Returns
 
@@ -20,12 +24,10 @@ fallback format should be specified last
 
 ### Parameters
 
-• **metadata**: [`ProcessedImageMetadata`](../interfaces/ProcessedImageMetadata.md)[]
+#### metadata
+
+[`ProcessedImageMetadata`](../interfaces/ProcessedImageMetadata.md)[]
 
 ### Returns
 
 `unknown`
-
-## Defined in
-
-packages/core/dist/output-formats.d.ts:7

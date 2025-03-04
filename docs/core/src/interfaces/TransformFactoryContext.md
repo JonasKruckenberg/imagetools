@@ -1,4 +1,4 @@
-[**imagetools**](../../../README.md) • **Docs**
+[**imagetools**](../../../README.md)
 
 ***
 
@@ -6,15 +6,15 @@
 
 # Interface: TransformFactoryContext
 
+Defined in: [packages/core/src/types.ts:45](https://github.com/JonasKruckenberg/imagetools/blob/87fff79acddac50a50f7aee7c6a68a0623fbc68f/packages/core/src/types.ts#L45)
+
 ## Properties
 
 ### logger
 
 > **logger**: [`Logger`](Logger.md)
 
-#### Defined in
-
-[packages/core/src/types.ts:48](https://github.com/JonasKruckenberg/imagetools/blob/b6421598cd4879d5c28755c1d558f8b5955cc5a1/packages/core/src/types.ts#L48)
+Defined in: [packages/core/src/types.ts:48](https://github.com/JonasKruckenberg/imagetools/blob/87fff79acddac50a50f7aee7c6a68a0623fbc68f/packages/core/src/types.ts#L48)
 
 ***
 
@@ -22,9 +22,7 @@
 
 > **manualSearchParams**: `URLSearchParams`
 
-#### Defined in
-
-[packages/core/src/types.ts:47](https://github.com/JonasKruckenberg/imagetools/blob/b6421598cd4879d5c28755c1d558f8b5955cc5a1/packages/core/src/types.ts#L47)
+Defined in: [packages/core/src/types.ts:47](https://github.com/JonasKruckenberg/imagetools/blob/87fff79acddac50a50f7aee7c6a68a0623fbc68f/packages/core/src/types.ts#L47)
 
 ***
 
@@ -32,14 +30,14 @@
 
 > **useParam**: (`parameter`) => `void`
 
+Defined in: [packages/core/src/types.ts:46](https://github.com/JonasKruckenberg/imagetools/blob/87fff79acddac50a50f7aee7c6a68a0623fbc68f/packages/core/src/types.ts#L46)
+
 #### Parameters
 
-• **parameter**: `string`
+##### parameter
+
+`string`
 
 #### Returns
 
 `void`
-
-#### Defined in
-
-[packages/core/src/types.ts:46](https://github.com/JonasKruckenberg/imagetools/blob/b6421598cd4879d5c28755c1d558f8b5955cc5a1/packages/core/src/types.ts#L46)

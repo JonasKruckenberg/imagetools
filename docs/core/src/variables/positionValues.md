@@ -1,4 +1,4 @@
-[**imagetools**](../../../README.md) • **Docs**
+[**imagetools**](../../../README.md)
 
 ***
 
@@ -6,8 +6,6 @@
 
 # Variable: positionValues
 
-> `const` **positionValues**: readonly [`"top"`, `"right top"`, `"right"`, `"right bottom"`, `"bottom"`, `"left bottom"`, `"left"`, `"left top"`, `"north"`, `"northeast"`, `"east"`, `"southeast"`, `"south"`, `"southwest"`, `"west"`, `"northwest"`, `"center"`, `"centre"`, `"entropy"`, `"attention"`]
+> `const` **positionValues**: readonly \[`"top"`, `"right top"`, `"right"`, `"right bottom"`, `"bottom"`, `"left bottom"`, `"left"`, `"left top"`, `"north"`, `"northeast"`, `"east"`, `"southeast"`, `"south"`, `"southwest"`, `"west"`, `"northwest"`, `"center"`, `"centre"`, `"entropy"`, `"attention"`\]
 
-## Defined in
-
-[packages/core/src/transforms/position.ts:4](https://github.com/JonasKruckenberg/imagetools/blob/b6421598cd4879d5c28755c1d558f8b5955cc5a1/packages/core/src/transforms/position.ts#L4)
+Defined in: [packages/core/src/transforms/position.ts:4](https://github.com/JonasKruckenberg/imagetools/blob/87fff79acddac50a50f7aee7c6a68a0623fbc68f/packages/core/src/transforms/position.ts#L4)

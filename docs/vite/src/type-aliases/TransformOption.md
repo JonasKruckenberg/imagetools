@@ -1,4 +1,4 @@
-[**imagetools**](../../../README.md) • **Docs**
+[**imagetools**](../../../README.md)
 
 ***
 
@@ -8,6 +8,8 @@
 
 > **TransformOption**\<`A`, `T`\>: (`metadata`, `image`) => `T` \| `undefined`
 
+Defined in: packages/core/dist/types.d.ts:46
+
 ## Type Parameters
 
 • **A** = `Record`\<`string`, `unknown`\>
@@ -16,14 +18,14 @@
 
 ## Parameters
 
-• **metadata**: `Partial`\<[`ImageConfig`](ImageConfig.md) & `A`\>
+### metadata
 
-• **image**: `Sharp`
+`Partial`\<[`ImageConfig`](ImageConfig.md) & `A`\>
+
+### image
+
+`Sharp`
 
 ## Returns
 
 `T` \| `undefined`
-
-## Defined in
-
-packages/core/dist/types.d.ts:46

@@ -1,4 +1,4 @@
-[**imagetools**](../../../README.md) • **Docs**
+[**imagetools**](../../../README.md)
 
 ***
 
@@ -6,12 +6,12 @@
 
 # Interface: TintOptions
 
+Defined in: packages/core/dist/transforms/tint.d.ts:2
+
 ## Properties
 
 ### tint
 
 > **tint**: `string`
 
-#### Defined in
-
-packages/core/dist/transforms/tint.d.ts:3
+Defined in: packages/core/dist/transforms/tint.d.ts:3

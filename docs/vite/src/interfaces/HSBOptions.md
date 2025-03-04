@@ -1,4 +1,4 @@
-[**imagetools**](../../../README.md) • **Docs**
+[**imagetools**](../../../README.md)
 
 ***
 
@@ -6,15 +6,15 @@
 
 # Interface: HSBOptions
 
+Defined in: packages/core/dist/transforms/hsb.d.ts:2
+
 ## Properties
 
 ### brightness
 
 > **brightness**: `string`
 
-#### Defined in
-
-packages/core/dist/transforms/hsb.d.ts:5
+Defined in: packages/core/dist/transforms/hsb.d.ts:5
 
 ***
 
@@ -22,9 +22,7 @@ packages/core/dist/transforms/hsb.d.ts:5
 
 > **hue**: `string`
 
-#### Defined in
-
-packages/core/dist/transforms/hsb.d.ts:3
+Defined in: packages/core/dist/transforms/hsb.d.ts:3
 
 ***
 
@@ -32,6 +30,4 @@ packages/core/dist/transforms/hsb.d.ts:3
 
 > **saturation**: `string`
 
-#### Defined in
-
-packages/core/dist/transforms/hsb.d.ts:4
+Defined in: packages/core/dist/transforms/hsb.d.ts:4

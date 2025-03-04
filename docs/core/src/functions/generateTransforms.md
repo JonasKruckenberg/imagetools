@@ -1,4 +1,4 @@
-[**imagetools**](../../../README.md) • **Docs**
+[**imagetools**](../../../README.md)
 
 ***
 
@@ -8,15 +8,25 @@
 
 > **generateTransforms**(`config`, `factories`, `manualSearchParams`, `logger`?): `object`
 
+Defined in: [packages/core/src/lib/generate-transforms.ts:4](https://github.com/JonasKruckenberg/imagetools/blob/87fff79acddac50a50f7aee7c6a68a0623fbc68f/packages/core/src/lib/generate-transforms.ts#L4)
+
 ## Parameters
 
-• **config**: [`ImageConfig`](../type-aliases/ImageConfig.md)
+### config
 
-• **factories**: [`TransformFactory`](../type-aliases/TransformFactory.md)[]
+[`ImageConfig`](../type-aliases/ImageConfig.md)
 
-• **manualSearchParams**: `URLSearchParams`
+### factories
 
-• **logger?**: [`Logger`](../interfaces/Logger.md)
+[`TransformFactory`](../type-aliases/TransformFactory.md)[]
+
+### manualSearchParams
+
+`URLSearchParams`
+
+### logger?
+
+[`Logger`](../interfaces/Logger.md)
 
 ## Returns
 
@@ -29,7 +39,3 @@
 ### transforms
 
 > **transforms**: [`ImageTransformation`](../type-aliases/ImageTransformation.md)[]
-
-## Defined in
-
-[packages/core/src/lib/generate-transforms.ts:4](https://github.com/JonasKruckenberg/imagetools/blob/b6421598cd4879d5c28755c1d558f8b5955cc5a1/packages/core/src/lib/generate-transforms.ts#L4)

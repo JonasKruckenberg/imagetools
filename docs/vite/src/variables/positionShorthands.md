@@ -1,4 +1,4 @@
-[**imagetools**](../../../README.md) • **Docs**
+[**imagetools**](../../../README.md)
 
 ***
 
@@ -8,6 +8,4 @@
 
 > `const` **positionShorthands**: `string`[]
 
-## Defined in
-
-packages/core/dist/transforms/position.d.ts:3
+Defined in: packages/core/dist/transforms/position.d.ts:3

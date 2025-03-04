@@ -1,4 +1,4 @@
-[**imagetools**](../../../README.md) • **Docs**
+[**imagetools**](../../../README.md)
 
 ***
 
@@ -8,15 +8,25 @@
 
 > **generateTransforms**(`config`, `factories`, `manualSearchParams`, `logger`?): `object`
 
+Defined in: packages/core/dist/lib/generate-transforms.d.ts:2
+
 ## Parameters
 
-• **config**: [`ImageConfig`](../type-aliases/ImageConfig.md)
+### config
 
-• **factories**: [`TransformFactory`](../type-aliases/TransformFactory.md)[]
+[`ImageConfig`](../type-aliases/ImageConfig.md)
 
-• **manualSearchParams**: `URLSearchParams`
+### factories
 
-• **logger?**: [`Logger`](../interfaces/Logger.md)
+[`TransformFactory`](../type-aliases/TransformFactory.md)[]
+
+### manualSearchParams
+
+`URLSearchParams`
+
+### logger?
+
+[`Logger`](../interfaces/Logger.md)
 
 ## Returns
 
@@ -29,7 +39,3 @@
 ### transforms
 
 > **transforms**: [`ImageTransformation`](../type-aliases/ImageTransformation.md)[]
-
-## Defined in
-
-packages/core/dist/lib/generate-transforms.d.ts:2

@@ -1,4 +1,4 @@
-[**imagetools**](../../../README.md) • **Docs**
+[**imagetools**](../../../README.md)
 
 ***
 
@@ -8,16 +8,18 @@
 
 > **getMetadata**(`image`, `key`): `unknown`
 
+Defined in: packages/core/dist/lib/metadata.d.ts:10
+
 ## Parameters
 
-• **image**: `Sharp`
+### image
 
-• **key**: `string`
+`Sharp`
+
+### key
+
+`string`
 
 ## Returns
 
 `unknown`
-
-## Defined in
-
-packages/core/dist/lib/metadata.d.ts:10

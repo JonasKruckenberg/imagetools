@@ -1,4 +1,4 @@
-[**imagetools**](../../../README.md) • **Docs**
+[**imagetools**](../../../README.md)
 
 ***
 
@@ -8,9 +8,13 @@
 
 > **urlFormat**(`args`?): (`metadata`) => `unknown`
 
+Defined in: packages/core/dist/output-formats.d.ts:2
+
 ## Parameters
 
-• **args?**: `string`[]
+### args?
+
+`string`[]
 
 ## Returns
 
@@ -18,12 +22,10 @@
 
 ### Parameters
 
-• **metadata**: [`ProcessedImageMetadata`](../interfaces/ProcessedImageMetadata.md)[]
+#### metadata
+
+[`ProcessedImageMetadata`](../interfaces/ProcessedImageMetadata.md)[]
 
 ### Returns
 
 `unknown`
-
-## Defined in
-
-packages/core/dist/output-formats.d.ts:2

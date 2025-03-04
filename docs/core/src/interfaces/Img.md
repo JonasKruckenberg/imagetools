@@ -1,10 +1,12 @@
-[**imagetools**](../../../README.md) • **Docs**
+[**imagetools**](../../../README.md)
 
 ***
 
 [imagetools](../../../modules.md) / [core/src](../README.md) / Img
 
 # Interface: Img
+
+Defined in: [packages/core/src/types.ts:76](https://github.com/JonasKruckenberg/imagetools/blob/87fff79acddac50a50f7aee7c6a68a0623fbc68f/packages/core/src/types.ts#L76)
 
 The img output format.
 
@@ -14,12 +16,10 @@ The img output format.
 
 > **h**: `number`
 
+Defined in: [packages/core/src/types.ts:86](https://github.com/JonasKruckenberg/imagetools/blob/87fff79acddac50a50f7aee7c6a68a0623fbc68f/packages/core/src/types.ts#L86)
+
 The intrinsic height. May not be the rendered height.
 Helps prevent reflow. See https://html.com/attributes/img-height/
-
-#### Defined in
-
-[packages/core/src/types.ts:86](https://github.com/JonasKruckenberg/imagetools/blob/b6421598cd4879d5c28755c1d558f8b5955cc5a1/packages/core/src/types.ts#L86)
 
 ***
 
@@ -27,9 +27,7 @@ Helps prevent reflow. See https://html.com/attributes/img-height/
 
 > **src**: `string`
 
-#### Defined in
-
-[packages/core/src/types.ts:77](https://github.com/JonasKruckenberg/imagetools/blob/b6421598cd4879d5c28755c1d558f8b5955cc5a1/packages/core/src/types.ts#L77)
+Defined in: [packages/core/src/types.ts:77](https://github.com/JonasKruckenberg/imagetools/blob/87fff79acddac50a50f7aee7c6a68a0623fbc68f/packages/core/src/types.ts#L77)
 
 ***
 
@@ -37,9 +35,7 @@ Helps prevent reflow. See https://html.com/attributes/img-height/
 
 > `optional` **srcset**: `string`
 
-#### Defined in
-
-[packages/core/src/types.ts:87](https://github.com/JonasKruckenberg/imagetools/blob/b6421598cd4879d5c28755c1d558f8b5955cc5a1/packages/core/src/types.ts#L87)
+Defined in: [packages/core/src/types.ts:87](https://github.com/JonasKruckenberg/imagetools/blob/87fff79acddac50a50f7aee7c6a68a0623fbc68f/packages/core/src/types.ts#L87)
 
 ***
 
@@ -47,8 +43,6 @@ Helps prevent reflow. See https://html.com/attributes/img-height/
 
 > **w**: `number`
 
+Defined in: [packages/core/src/types.ts:81](https://github.com/JonasKruckenberg/imagetools/blob/87fff79acddac50a50f7aee7c6a68a0623fbc68f/packages/core/src/types.ts#L81)
+
 The intrinsic width
-
-#### Defined in
-
-[packages/core/src/types.ts:81](https://github.com/JonasKruckenberg/imagetools/blob/b6421598cd4879d5c28755c1d558f8b5955cc5a1/packages/core/src/types.ts#L81)

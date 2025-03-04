@@ -1,4 +1,4 @@
-[**imagetools**](../../../README.md) • **Docs**
+[**imagetools**](../../../README.md)
 
 ***
 
@@ -6,12 +6,12 @@
 
 # Interface: PositionOptions
 
+Defined in: packages/core/dist/transforms/position.d.ts:5
+
 ## Properties
 
 ### position
 
 > **position**: `"top"` \| `"right top"` \| `"right"` \| `"right bottom"` \| `"bottom"` \| `"left bottom"` \| `"left"` \| `"left top"` \| `"north"` \| `"northeast"` \| `"east"` \| `"southeast"` \| `"south"` \| `"southwest"` \| `"west"` \| `"northwest"` \| `"center"` \| `"centre"` \| `"entropy"` \| `"attention"`
 
-#### Defined in
-
-packages/core/dist/transforms/position.d.ts:6
+Defined in: packages/core/dist/transforms/position.d.ts:6

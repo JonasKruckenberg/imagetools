@@ -1,4 +1,4 @@
-[**imagetools**](../../../README.md) • **Docs**
+[**imagetools**](../../../README.md)
 
 ***
 
@@ -6,12 +6,12 @@
 
 # Interface: QualityOptions
 
+Defined in: packages/core/dist/transforms/quality.d.ts:2
+
 ## Properties
 
 ### quality
 
 > **quality**: `string`
 
-#### Defined in
-
-packages/core/dist/transforms/quality.d.ts:3
+Defined in: packages/core/dist/transforms/quality.d.ts:3
