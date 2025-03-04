@@ -31,7 +31,6 @@
   - [Tint](#tint)
   - [Metadata](#metadata)
   - [Picture](#picture)
-  - [Source](#source)
   - [Srcset](#srcset)
   - [URL](#url)
   - [Inline](#inline)
@@ -40,7 +39,6 @@
 
 - [metadata](#metadata)
 - [picture](#picture)
-- [source](#source)
 - [srcset](#srcset)
 - [url](#url)
 
@@ -483,26 +481,6 @@ for (const [format, images] of Object.entries(picture.sources)) {
   html += `<source srcset={images.map((i) => `${i.src}`).join(', ')} type={'image/' + format} />`;
 }
 html += `<img src={picture.img.src} /></picture>`
-```
-
-### Source
-
-• **Keyword**: `source`<br> • **Type**: _boolean_<br>
-
-Returns information about the image necessary to render a `source` tag as a JavaScript object. This only takes the image width into consideration.
-
-• **Example**:
-
-```js
-import avif from 'example.jpg?w=500;900;1200&format=avif&as=source'
-import webp from 'example.jpg?w=500;900;1200&format=webp&as=source'
-import fallback from 'example.jpg?w=700'
-
-const html = `<picture>
-    <source srcset="${avif.map(({src, w}) => `${src} ${w}w`).join(',')}" type="image/avif" />
-    <source srcset="${webp.map(({src, w}) => `${src} ${w}w`).join(',')}" type="image/webp" />
-    <img src="${fallback}" />
-</picture>
 ```
 
 ### Srcset
