@@ -1,4 +1,4 @@
-[**imagetools**](../../../README.md) • **Docs**
+[**imagetools**](../../../README.md)
 
 ***
 
@@ -8,16 +8,18 @@
 
 > **median**(`metadata`, `ctx`): `undefined` \| [`ImageTransformation`](../type-aliases/ImageTransformation.md)
 
+Defined in: packages/core/dist/transforms/median.d.ts:5
+
 ## Parameters
 
-• **metadata**: `Partial`\<[`ImageConfig`](../type-aliases/ImageConfig.md) & [`MedianOptions`](../interfaces/MedianOptions.md)\>
+### metadata
 
-• **ctx**: [`TransformFactoryContext`](../interfaces/TransformFactoryContext.md)
+`Partial`\<[`ImageConfig`](../type-aliases/ImageConfig.md) & [`MedianOptions`](../interfaces/MedianOptions.md)\>
+
+### ctx
+
+[`TransformFactoryContext`](../interfaces/TransformFactoryContext.md)
 
 ## Returns
 
 `undefined` \| [`ImageTransformation`](../type-aliases/ImageTransformation.md)
-
-## Defined in
-
-packages/core/dist/transforms/median.d.ts:5

@@ -1,4 +1,4 @@
-[**imagetools**](../../../README.md) • **Docs**
+[**imagetools**](../../../README.md)
 
 ***
 
@@ -8,6 +8,4 @@
 
 > **PositionValue**: *typeof* [`positionValues`](../variables/positionValues.md)\[`number`\]
 
-## Defined in
-
-packages/core/dist/transforms/position.d.ts:4
+Defined in: packages/core/dist/transforms/position.d.ts:4

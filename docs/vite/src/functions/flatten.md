@@ -1,4 +1,4 @@
-[**imagetools**](../../../README.md) • **Docs**
+[**imagetools**](../../../README.md)
 
 ***
 
@@ -8,16 +8,18 @@
 
 > **flatten**(`metadata`, `ctx`): `undefined` \| [`ImageTransformation`](../type-aliases/ImageTransformation.md)
 
+Defined in: packages/core/dist/transforms/flatten.d.ts:5
+
 ## Parameters
 
-• **metadata**: `Partial`\<[`ImageConfig`](../type-aliases/ImageConfig.md) & [`FlattenOptions`](../interfaces/FlattenOptions.md)\>
+### metadata
 
-• **ctx**: [`TransformFactoryContext`](../interfaces/TransformFactoryContext.md)
+`Partial`\<[`ImageConfig`](../type-aliases/ImageConfig.md) & [`FlattenOptions`](../interfaces/FlattenOptions.md)\>
+
+### ctx
+
+[`TransformFactoryContext`](../interfaces/TransformFactoryContext.md)
 
 ## Returns
 
 `undefined` \| [`ImageTransformation`](../type-aliases/ImageTransformation.md)
-
-## Defined in
-
-packages/core/dist/transforms/flatten.d.ts:5

@@ -1,4 +1,4 @@
-[**imagetools**](../../../README.md) • **Docs**
+[**imagetools**](../../../README.md)
 
 ***
 
@@ -6,16 +6,16 @@
 
 # Function: extractEntries()
 
-> **extractEntries**(`searchParams`): [`string`, `string`[]][]
+> **extractEntries**(`searchParams`): \[`string`, `string`[]\][]
+
+Defined in: packages/core/dist/lib/parse-url.d.ts:2
 
 ## Parameters
 
-• **searchParams**: `URLSearchParams`
+### searchParams
+
+`URLSearchParams`
 
 ## Returns
 
-[`string`, `string`[]][]
-
-## Defined in
-
-packages/core/dist/lib/parse-url.d.ts:2
+\[`string`, `string`[]\][]

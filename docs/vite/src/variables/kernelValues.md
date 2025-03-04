@@ -1,4 +1,4 @@
-[**imagetools**](../../../README.md) • **Docs**
+[**imagetools**](../../../README.md)
 
 ***
 
@@ -6,8 +6,6 @@
 
 # Variable: kernelValues
 
-> `const` **kernelValues**: readonly [`"nearest"`, `"cubic"`, `"mitchell"`, `"lanczos2"`, `"lanczos3"`]
+> `const` **kernelValues**: readonly \[`"nearest"`, `"cubic"`, `"mitchell"`, `"lanczos2"`, `"lanczos3"`\]
 
-## Defined in
-
-packages/core/dist/transforms/kernel.d.ts:2
+Defined in: packages/core/dist/transforms/kernel.d.ts:2

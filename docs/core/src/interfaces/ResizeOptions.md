@@ -1,4 +1,4 @@
-[**imagetools**](../../../README.md) • **Docs**
+[**imagetools**](../../../README.md)
 
 ***
 
@@ -6,17 +6,17 @@
 
 # Interface: ResizeOptions
 
+Defined in: [packages/core/src/transforms/resize.ts:9](https://github.com/JonasKruckenberg/imagetools/blob/87fff79acddac50a50f7aee7c6a68a0623fbc68f/packages/core/src/transforms/resize.ts#L9)
+
 ## Properties
 
 ### allowUpscale
 
 > **allowUpscale**: `""` \| `"true"`
 
+Defined in: [packages/core/src/transforms/resize.ts:17](https://github.com/JonasKruckenberg/imagetools/blob/87fff79acddac50a50f7aee7c6a68a0623fbc68f/packages/core/src/transforms/resize.ts#L17)
+
 Whether to allow making images larger. This is generally a waste, so is disabled by default.
-
-#### Defined in
-
-[packages/core/src/transforms/resize.ts:17](https://github.com/JonasKruckenberg/imagetools/blob/b6421598cd4879d5c28755c1d558f8b5955cc5a1/packages/core/src/transforms/resize.ts#L17)
 
 ***
 
@@ -24,11 +24,9 @@ Whether to allow making images larger. This is generally a waste, so is disabled
 
 > **aspect**: `string`
 
+Defined in: [packages/core/src/transforms/resize.ts:15](https://github.com/JonasKruckenberg/imagetools/blob/87fff79acddac50a50f7aee7c6a68a0623fbc68f/packages/core/src/transforms/resize.ts#L15)
+
 aspect ratio
-
-#### Defined in
-
-[packages/core/src/transforms/resize.ts:15](https://github.com/JonasKruckenberg/imagetools/blob/b6421598cd4879d5c28755c1d558f8b5955cc5a1/packages/core/src/transforms/resize.ts#L15)
 
 ***
 
@@ -36,12 +34,10 @@ aspect ratio
 
 > **basePixels**: `string`
 
+Defined in: [packages/core/src/transforms/resize.ts:22](https://github.com/JonasKruckenberg/imagetools/blob/87fff79acddac50a50f7aee7c6a68a0623fbc68f/packages/core/src/transforms/resize.ts#L22)
+
 The width in pixels for the 1x pixel density descriptor.
 If supplied, output will use pixel density descriptors rather than width descriptors.
-
-#### Defined in
-
-[packages/core/src/transforms/resize.ts:22](https://github.com/JonasKruckenberg/imagetools/blob/b6421598cd4879d5c28755c1d558f8b5955cc5a1/packages/core/src/transforms/resize.ts#L22)
 
 ***
 
@@ -49,11 +45,9 @@ If supplied, output will use pixel density descriptors rather than width descrip
 
 > **h**: `string`
 
+Defined in: [packages/core/src/transforms/resize.ts:13](https://github.com/JonasKruckenberg/imagetools/blob/87fff79acddac50a50f7aee7c6a68a0623fbc68f/packages/core/src/transforms/resize.ts#L13)
+
 height in pixels
-
-#### Defined in
-
-[packages/core/src/transforms/resize.ts:13](https://github.com/JonasKruckenberg/imagetools/blob/b6421598cd4879d5c28755c1d558f8b5955cc5a1/packages/core/src/transforms/resize.ts#L13)
 
 ***
 
@@ -61,8 +55,6 @@ height in pixels
 
 > **w**: `string`
 
+Defined in: [packages/core/src/transforms/resize.ts:11](https://github.com/JonasKruckenberg/imagetools/blob/87fff79acddac50a50f7aee7c6a68a0623fbc68f/packages/core/src/transforms/resize.ts#L11)
+
 width in pixels
-
-#### Defined in
-
-[packages/core/src/transforms/resize.ts:11](https://github.com/JonasKruckenberg/imagetools/blob/b6421598cd4879d5c28755c1d558f8b5955cc5a1/packages/core/src/transforms/resize.ts#L11)

@@ -1,4 +1,4 @@
-[**imagetools**](../../../README.md) • **Docs**
+[**imagetools**](../../../README.md)
 
 ***
 
@@ -8,16 +8,18 @@
 
 > **getLossless**(`metadata`, `image`): `unknown`
 
+Defined in: packages/core/dist/transforms/lossless.d.ts:5
+
 ## Parameters
 
-• **metadata**: `Partial`\<[`ImageConfig`](../type-aliases/ImageConfig.md) & [`LosslessOptions`](../interfaces/LosslessOptions.md)\>
+### metadata
 
-• **image**: `Sharp`
+`Partial`\<[`ImageConfig`](../type-aliases/ImageConfig.md) & [`LosslessOptions`](../interfaces/LosslessOptions.md)\>
+
+### image
+
+`Sharp`
 
 ## Returns
 
 `unknown`
-
-## Defined in
-
-packages/core/dist/transforms/lossless.d.ts:5

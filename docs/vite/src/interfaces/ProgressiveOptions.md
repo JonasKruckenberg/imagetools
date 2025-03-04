@@ -1,4 +1,4 @@
-[**imagetools**](../../../README.md) • **Docs**
+[**imagetools**](../../../README.md)
 
 ***
 
@@ -6,12 +6,12 @@
 
 # Interface: ProgressiveOptions
 
+Defined in: packages/core/dist/transforms/progressive.d.ts:2
+
 ## Properties
 
 ### progressive
 
 > **progressive**: `""` \| `"true"`
 
-#### Defined in
-
-packages/core/dist/transforms/progressive.d.ts:3
+Defined in: packages/core/dist/transforms/progressive.d.ts:3

@@ -1,4 +1,4 @@
-[**imagetools**](../../../README.md) • **Docs**
+[**imagetools**](../../../README.md)
 
 ***
 
@@ -6,12 +6,12 @@
 
 # Interface: FlattenOptions
 
+Defined in: packages/core/dist/transforms/flatten.d.ts:2
+
 ## Properties
 
 ### flatten
 
 > **flatten**: `""` \| `"true"`
 
-#### Defined in
-
-packages/core/dist/transforms/flatten.d.ts:3
+Defined in: packages/core/dist/transforms/flatten.d.ts:3

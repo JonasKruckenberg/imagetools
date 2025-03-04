@@ -1,4 +1,4 @@
-[**imagetools**](../../../README.md) • **Docs**
+[**imagetools**](../../../README.md)
 
 ***
 
@@ -6,12 +6,12 @@
 
 # Interface: RotateOptions
 
+Defined in: packages/core/dist/transforms/rotate.d.ts:2
+
 ## Properties
 
 ### rotate
 
 > **rotate**: `string`
 
-#### Defined in
-
-packages/core/dist/transforms/rotate.d.ts:3
+Defined in: packages/core/dist/transforms/rotate.d.ts:3

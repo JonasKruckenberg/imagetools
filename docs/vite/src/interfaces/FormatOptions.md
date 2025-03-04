@@ -1,4 +1,4 @@
-[**imagetools**](../../../README.md) • **Docs**
+[**imagetools**](../../../README.md)
 
 ***
 
@@ -6,12 +6,12 @@
 
 # Interface: FormatOptions
 
+Defined in: packages/core/dist/transforms/format.d.ts:3
+
 ## Properties
 
 ### format
 
 > **format**: keyof `FormatEnum`
 
-#### Defined in
-
-packages/core/dist/transforms/format.d.ts:4
+Defined in: packages/core/dist/transforms/format.d.ts:4

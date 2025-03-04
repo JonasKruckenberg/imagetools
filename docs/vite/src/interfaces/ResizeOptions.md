@@ -1,4 +1,4 @@
-[**imagetools**](../../../README.md) • **Docs**
+[**imagetools**](../../../README.md)
 
 ***
 
@@ -6,17 +6,17 @@
 
 # Interface: ResizeOptions
 
+Defined in: packages/core/dist/transforms/resize.d.ts:2
+
 ## Properties
 
 ### allowUpscale
 
 > **allowUpscale**: `""` \| `"true"`
 
+Defined in: packages/core/dist/transforms/resize.d.ts:10
+
 Whether to allow making images larger. This is generally a waste, so is disabled by default.
-
-#### Defined in
-
-packages/core/dist/transforms/resize.d.ts:10
 
 ***
 
@@ -24,11 +24,9 @@ packages/core/dist/transforms/resize.d.ts:10
 
 > **aspect**: `string`
 
+Defined in: packages/core/dist/transforms/resize.d.ts:8
+
 aspect ratio
-
-#### Defined in
-
-packages/core/dist/transforms/resize.d.ts:8
 
 ***
 
@@ -36,12 +34,10 @@ packages/core/dist/transforms/resize.d.ts:8
 
 > **basePixels**: `string`
 
+Defined in: packages/core/dist/transforms/resize.d.ts:15
+
 The width in pixels for the 1x pixel density descriptor.
 If supplied, output will use pixel density descriptors rather than width descriptors.
-
-#### Defined in
-
-packages/core/dist/transforms/resize.d.ts:15
 
 ***
 
@@ -49,11 +45,9 @@ packages/core/dist/transforms/resize.d.ts:15
 
 > **h**: `string`
 
+Defined in: packages/core/dist/transforms/resize.d.ts:6
+
 height in pixels
-
-#### Defined in
-
-packages/core/dist/transforms/resize.d.ts:6
 
 ***
 
@@ -61,8 +55,6 @@ packages/core/dist/transforms/resize.d.ts:6
 
 > **w**: `string`
 
+Defined in: packages/core/dist/transforms/resize.d.ts:4
+
 width in pixels
-
-#### Defined in
-
-packages/core/dist/transforms/resize.d.ts:4

@@ -1,4 +1,4 @@
-[**imagetools**](../../../README.md) • **Docs**
+[**imagetools**](../../../README.md)
 
 ***
 
@@ -8,16 +8,18 @@
 
 > **getEffort**(`metadata`, `image`): `undefined` \| `number`
 
+Defined in: [packages/core/src/transforms/effort.ts:26](https://github.com/JonasKruckenberg/imagetools/blob/87fff79acddac50a50f7aee7c6a68a0623fbc68f/packages/core/src/transforms/effort.ts#L26)
+
 ## Parameters
 
-• **metadata**: `Partial`\<[`ImageConfig`](../type-aliases/ImageConfig.md) & [`EffortOptions`](../interfaces/EffortOptions.md)\>
+### metadata
 
-• **image**: `Sharp`
+`Partial`\<[`ImageConfig`](../type-aliases/ImageConfig.md) & [`EffortOptions`](../interfaces/EffortOptions.md)\>
+
+### image
+
+`Sharp`
 
 ## Returns
 
 `undefined` \| `number`
-
-## Defined in
-
-[packages/core/src/transforms/effort.ts:26](https://github.com/JonasKruckenberg/imagetools/blob/b6421598cd4879d5c28755c1d558f8b5955cc5a1/packages/core/src/transforms/effort.ts#L26)

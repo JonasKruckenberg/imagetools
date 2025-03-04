@@ -1,4 +1,4 @@
-[**imagetools**](../../../README.md) • **Docs**
+[**imagetools**](../../../README.md)
 
 ***
 
@@ -6,12 +6,12 @@
 
 # Interface: BlurOptions
 
+Defined in: packages/core/dist/transforms/blur.d.ts:2
+
 ## Properties
 
 ### blur
 
 > **blur**: `string`
 
-#### Defined in
-
-packages/core/dist/transforms/blur.d.ts:3
+Defined in: packages/core/dist/transforms/blur.d.ts:3

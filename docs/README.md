@@ -1,4 +1,4 @@
-**imagetools** • [**Docs**](modules.md)
+**imagetools** • [**Docs**](_media/modules.md)
 
 # Imagetools documentation
 
@@ -8,13 +8,13 @@ unclear!
 
 ## Basic
 
-- [Why?](guide/why.md)
-- [Install](guide/install.md)
-- [Getting Started](guide/getting-started.md)
-- [All directives](directives.md)
+- [Why?](_media/why.md)
+- [Install](_media/install.md)
+- [Getting Started](_media/getting-started.md)
+- [All directives](_media/directives.md)
 
 ## Dive deeper
 
-- [Extend Imagetools](guide/extending.md)
+- [Extend Imagetools](_media/extending.md)
 - [Sharp's documentation](https://sharp.pixelplumbing.com)
-- [Caching](guide/caching.md)
+- [Caching](_media/caching.md)

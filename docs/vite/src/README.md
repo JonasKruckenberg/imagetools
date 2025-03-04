@@ -1,4 +1,4 @@
-[**imagetools**](../../README.md) • **Docs**
+[**imagetools**](../../README.md)
 
 ***
 
@@ -6,9 +6,7 @@
 
 # vite/src
 
-## Index
-
-### Interfaces
+## Interfaces
 
 - [BackgroundOptions](interfaces/BackgroundOptions.md)
 - [BlurOptions](interfaces/BlurOptions.md)
@@ -39,7 +37,7 @@
 - [TransformFactoryContext](interfaces/TransformFactoryContext.md)
 - [TransformResult](interfaces/TransformResult.md)
 
-### Type Aliases
+## Type Aliases
 
 - [FitValue](type-aliases/FitValue.md)
 - [ImageConfig](type-aliases/ImageConfig.md)
@@ -50,7 +48,7 @@
 - [TransformFactory](type-aliases/TransformFactory.md)
 - [TransformOption](type-aliases/TransformOption.md)
 
-### Variables
+## Variables
 
 - [builtinOutputFormats](variables/builtinOutputFormats.md)
 - [builtins](variables/builtins.md)
@@ -59,7 +57,7 @@
 - [positionShorthands](variables/positionShorthands.md)
 - [positionValues](variables/positionValues.md)
 
-### Functions
+## Functions
 
 - [applyTransforms](functions/applyTransforms.md)
 - [blur](functions/blur.md)

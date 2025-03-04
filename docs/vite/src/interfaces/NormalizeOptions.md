@@ -1,4 +1,4 @@
-[**imagetools**](../../../README.md) • **Docs**
+[**imagetools**](../../../README.md)
 
 ***
 
@@ -6,12 +6,12 @@
 
 # Interface: NormalizeOptions
 
+Defined in: packages/core/dist/transforms/normalize.d.ts:2
+
 ## Properties
 
 ### normalize
 
 > **normalize**: `""` \| `"true"`
 
-#### Defined in
-
-packages/core/dist/transforms/normalize.d.ts:3
+Defined in: packages/core/dist/transforms/normalize.d.ts:3

@@ -1,4 +1,4 @@
-[**imagetools**](../../../README.md) • **Docs**
+[**imagetools**](../../../README.md)
 
 ***
 
@@ -6,12 +6,12 @@
 
 # Interface: KernelOptions
 
+Defined in: packages/core/dist/transforms/kernel.d.ts:4
+
 ## Properties
 
 ### kernel
 
 > **kernel**: `"nearest"` \| `"cubic"` \| `"mitchell"` \| `"lanczos2"` \| `"lanczos3"`
 
-#### Defined in
-
-packages/core/dist/transforms/kernel.d.ts:5
+Defined in: packages/core/dist/transforms/kernel.d.ts:5

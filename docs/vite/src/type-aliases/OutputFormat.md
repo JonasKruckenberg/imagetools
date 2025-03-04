@@ -1,4 +1,4 @@
-[**imagetools**](../../../README.md) • **Docs**
+[**imagetools**](../../../README.md)
 
 ***
 
@@ -8,11 +8,15 @@
 
 > **OutputFormat**: (`args`?) => (`metadata`) => `unknown`
 
+Defined in: packages/core/dist/types.d.ts:55
+
 The JS object returned by the image import.
 
 ## Parameters
 
-• **args?**: `string`[]
+### args?
+
+`string`[]
 
 ## Returns
 
@@ -20,12 +24,10 @@ The JS object returned by the image import.
 
 ### Parameters
 
-• **metadata**: [`ProcessedImageMetadata`](../interfaces/ProcessedImageMetadata.md)[]
+#### metadata
+
+[`ProcessedImageMetadata`](../interfaces/ProcessedImageMetadata.md)[]
 
 ### Returns
 
 `unknown`
-
-## Defined in
-
-packages/core/dist/types.d.ts:55

@@ -1,4 +1,4 @@
-[**imagetools**](../../../README.md) • **Docs**
+[**imagetools**](../../../README.md)
 
 ***
 
@@ -6,12 +6,12 @@
 
 # Interface: LosslessOptions
 
+Defined in: packages/core/dist/transforms/lossless.d.ts:2
+
 ## Properties
 
 ### lossless
 
 > **lossless**: `""` \| `"true"`
 
-#### Defined in
-
-packages/core/dist/transforms/lossless.d.ts:3
+Defined in: packages/core/dist/transforms/lossless.d.ts:3

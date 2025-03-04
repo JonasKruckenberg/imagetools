@@ -1,4 +1,4 @@
-[**imagetools**](../../../README.md) • **Docs**
+[**imagetools**](../../../README.md)
 
 ***
 
@@ -6,8 +6,6 @@
 
 # Variable: builtins
 
-> `const` **builtins**: (`TransformFactory` \| `TransformFactory` \| `TransformFactory` \| `TransformFactory` \| `TransformFactory` \| `TransformFactory` \| `TransformFactory` \| `TransformFactory` \| `TransformFactory` \| `TransformFactory` \| `TransformFactory` \| `TransformFactory` \| `TransformFactory`)[]
+> `const` **builtins**: ([`TransformFactory`](../type-aliases/TransformFactory.md) \| [`TransformFactory`](../type-aliases/TransformFactory.md) \| [`TransformFactory`](../type-aliases/TransformFactory.md) \| [`TransformFactory`](../type-aliases/TransformFactory.md) \| [`TransformFactory`](../type-aliases/TransformFactory.md) \| [`TransformFactory`](../type-aliases/TransformFactory.md) \| [`TransformFactory`](../type-aliases/TransformFactory.md) \| [`TransformFactory`](../type-aliases/TransformFactory.md) \| [`TransformFactory`](../type-aliases/TransformFactory.md) \| [`TransformFactory`](../type-aliases/TransformFactory.md) \| [`TransformFactory`](../type-aliases/TransformFactory.md) \| [`TransformFactory`](../type-aliases/TransformFactory.md) \| [`TransformFactory`](../type-aliases/TransformFactory.md))[]
 
-## Defined in
-
-packages/core/dist/builtins.d.ts:1
+Defined in: packages/core/dist/builtins.d.ts:1

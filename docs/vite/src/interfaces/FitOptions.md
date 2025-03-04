@@ -1,4 +1,4 @@
-[**imagetools**](../../../README.md) • **Docs**
+[**imagetools**](../../../README.md)
 
 ***
 
@@ -6,12 +6,12 @@
 
 # Interface: FitOptions
 
+Defined in: packages/core/dist/transforms/fit.d.ts:4
+
 ## Properties
 
 ### fit
 
 > **fit**: `"cover"` \| `"contain"` \| `"fill"` \| `"inside"` \| `"outside"`
 
-#### Defined in
-
-packages/core/dist/transforms/fit.d.ts:5
+Defined in: packages/core/dist/transforms/fit.d.ts:5

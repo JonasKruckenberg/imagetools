@@ -1,4 +1,4 @@
-[**imagetools**](../../../README.md) • **Docs**
+[**imagetools**](../../../README.md)
 
 ***
 
@@ -6,12 +6,12 @@
 
 # Interface: FlopOptions
 
+Defined in: packages/core/dist/transforms/flop.d.ts:2
+
 ## Properties
 
 ### flop
 
 > **flop**: `""` \| `"true"`
 
-#### Defined in
-
-packages/core/dist/transforms/flop.d.ts:3
+Defined in: packages/core/dist/transforms/flop.d.ts:3

@@ -1,4 +1,4 @@
-[**imagetools**](../../../README.md) • **Docs**
+[**imagetools**](../../../README.md)
 
 ***
 
@@ -8,18 +8,22 @@
 
 > **applyTransforms**(`transforms`, `image`, `removeMetadata`?): `Promise`\<[`TransformResult`](../interfaces/TransformResult.md)\>
 
+Defined in: packages/core/dist/lib/apply-transforms.d.ts:3
+
 ## Parameters
 
-• **transforms**: [`ImageTransformation`](../type-aliases/ImageTransformation.md)[]
+### transforms
 
-• **image**: `Sharp`
+[`ImageTransformation`](../type-aliases/ImageTransformation.md)[]
 
-• **removeMetadata?**: `boolean`
+### image
+
+`Sharp`
+
+### removeMetadata?
+
+`boolean`
 
 ## Returns
 
 `Promise`\<[`TransformResult`](../interfaces/TransformResult.md)\>
-
-## Defined in
-
-packages/core/dist/lib/apply-transforms.d.ts:3

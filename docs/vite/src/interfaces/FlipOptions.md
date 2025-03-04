@@ -1,4 +1,4 @@
-[**imagetools**](../../../README.md) • **Docs**
+[**imagetools**](../../../README.md)
 
 ***
 
@@ -6,12 +6,12 @@
 
 # Interface: FlipOptions
 
+Defined in: packages/core/dist/transforms/flip.d.ts:2
+
 ## Properties
 
 ### flip
 
 > **flip**: `""` \| `"true"`
 
-#### Defined in
-
-packages/core/dist/transforms/flip.d.ts:3
+Defined in: packages/core/dist/transforms/flip.d.ts:3

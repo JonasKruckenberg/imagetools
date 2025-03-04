@@ -1,4 +1,4 @@
-[**imagetools**](../../../README.md) • **Docs**
+[**imagetools**](../../../README.md)
 
 ***
 
@@ -7,6 +7,8 @@
 # Variable: builtinOutputFormats
 
 > `const` **builtinOutputFormats**: `object`
+
+Defined in: packages/core/dist/output-formats.d.ts:8
 
 ## Type declaration
 
@@ -33,7 +35,3 @@
 ### url
 
 > **url**: [`OutputFormat`](../type-aliases/OutputFormat.md)
-
-## Defined in
-
-packages/core/dist/output-formats.d.ts:8

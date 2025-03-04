@@ -1,4 +1,4 @@
-[**imagetools**](../../../README.md) • **Docs**
+[**imagetools**](../../../README.md)
 
 ***
 
@@ -8,18 +8,22 @@
 
 > **setMetadata**(`image`, `key`, `value`): `void`
 
+Defined in: packages/core/dist/lib/metadata.d.ts:9
+
 ## Parameters
 
-• **image**: `Sharp`
+### image
 
-• **key**: `string`
+`Sharp`
 
-• **value**: `unknown`
+### key
+
+`string`
+
+### value
+
+`unknown`
 
 ## Returns
 
 `void`
-
-## Defined in
-
-packages/core/dist/lib/metadata.d.ts:9

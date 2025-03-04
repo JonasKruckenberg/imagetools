@@ -1,4 +1,4 @@
-[**imagetools**](../../../README.md) • **Docs**
+[**imagetools**](../../../README.md)
 
 ***
 
@@ -8,14 +8,14 @@
 
 > **parseURL**(`rawURL`): `URL`
 
+Defined in: packages/core/dist/lib/parse-url.d.ts:1
+
 ## Parameters
 
-• **rawURL**: `string`
+### rawURL
+
+`string`
 
 ## Returns
 
 `URL`
-
-## Defined in
-
-packages/core/dist/lib/parse-url.d.ts:1

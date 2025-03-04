@@ -1,4 +1,4 @@
-[**imagetools**](../../../README.md) • **Docs**
+[**imagetools**](../../../README.md)
 
 ***
 
@@ -6,12 +6,12 @@
 
 # Interface: InvertOptions
 
+Defined in: packages/core/dist/transforms/invert.d.ts:2
+
 ## Properties
 
 ### invert
 
 > **invert**: `""` \| `"true"`
 
-#### Defined in
-
-packages/core/dist/transforms/invert.d.ts:3
+Defined in: packages/core/dist/transforms/invert.d.ts:3

@@ -1,4 +1,4 @@
-[**imagetools**](../../../README.md) • **Docs**
+[**imagetools**](../../../README.md)
 
 ***
 
@@ -8,16 +8,18 @@
 
 > **getProgressive**(`metadata`, `image`): `unknown`
 
+Defined in: packages/core/dist/transforms/progressive.d.ts:5
+
 ## Parameters
 
-• **metadata**: `Partial`\<[`ImageConfig`](../type-aliases/ImageConfig.md) & [`ProgressiveOptions`](../interfaces/ProgressiveOptions.md)\>
+### metadata
 
-• **image**: `Sharp`
+`Partial`\<[`ImageConfig`](../type-aliases/ImageConfig.md) & [`ProgressiveOptions`](../interfaces/ProgressiveOptions.md)\>
+
+### image
+
+`Sharp`
 
 ## Returns
 
 `unknown`
-
-## Defined in
-
-packages/core/dist/transforms/progressive.d.ts:5

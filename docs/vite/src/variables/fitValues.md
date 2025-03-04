@@ -1,4 +1,4 @@
-[**imagetools**](../../../README.md) • **Docs**
+[**imagetools**](../../../README.md)
 
 ***
 
@@ -6,8 +6,6 @@
 
 # Variable: fitValues
 
-> `const` **fitValues**: readonly [`"cover"`, `"contain"`, `"fill"`, `"inside"`, `"outside"`]
+> `const` **fitValues**: readonly \[`"cover"`, `"contain"`, `"fill"`, `"inside"`, `"outside"`\]
 
-## Defined in
-
-packages/core/dist/transforms/fit.d.ts:2
+Defined in: packages/core/dist/transforms/fit.d.ts:2

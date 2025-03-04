@@ -1,4 +1,4 @@
-[**imagetools**](../../../README.md) • **Docs**
+[**imagetools**](../../../README.md)
 
 ***
 
@@ -6,12 +6,12 @@
 
 # Interface: EffortOptions
 
+Defined in: packages/core/dist/transforms/effort.d.ts:2
+
 ## Properties
 
 ### effort
 
 > **effort**: `string`
 
-#### Defined in
-
-packages/core/dist/transforms/effort.d.ts:3
+Defined in: packages/core/dist/transforms/effort.d.ts:3

@@ -1,4 +1,4 @@
-[**imagetools**](../../../README.md) • **Docs**
+[**imagetools**](../../../README.md)
 
 ***
 
@@ -8,6 +8,4 @@
 
 > **ImageConfig**: `Record`\<`string`, `string` \| `string`[]\>
 
-## Defined in
-
-packages/core/dist/types.d.ts:34
+Defined in: packages/core/dist/types.d.ts:34

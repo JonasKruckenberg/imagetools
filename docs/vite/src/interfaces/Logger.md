@@ -1,4 +1,4 @@
-[**imagetools**](../../../README.md) • **Docs**
+[**imagetools**](../../../README.md)
 
 ***
 
@@ -6,23 +6,25 @@
 
 # Interface: Logger
 
+Defined in: packages/core/dist/types.d.ts:35
+
 ## Properties
 
 ### error()
 
 > **error**: (`msg`) => `void`
 
+Defined in: packages/core/dist/types.d.ts:38
+
 #### Parameters
 
-• **msg**: `string`
+##### msg
+
+`string`
 
 #### Returns
 
 `void`
-
-#### Defined in
-
-packages/core/dist/types.d.ts:38
 
 ***
 
@@ -30,17 +32,17 @@ packages/core/dist/types.d.ts:38
 
 > **info**: (`msg`) => `void`
 
+Defined in: packages/core/dist/types.d.ts:36
+
 #### Parameters
 
-• **msg**: `string`
+##### msg
+
+`string`
 
 #### Returns
 
 `void`
-
-#### Defined in
-
-packages/core/dist/types.d.ts:36
 
 ***
 
@@ -48,14 +50,14 @@ packages/core/dist/types.d.ts:36
 
 > **warn**: (`msg`) => `void`
 
+Defined in: packages/core/dist/types.d.ts:37
+
 #### Parameters
 
-• **msg**: `string`
+##### msg
+
+`string`
 
 #### Returns
 
 `void`
-
-#### Defined in
-
-packages/core/dist/types.d.ts:37

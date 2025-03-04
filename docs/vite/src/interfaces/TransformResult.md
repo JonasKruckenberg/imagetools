@@ -1,4 +1,4 @@
-[**imagetools**](../../../README.md) • **Docs**
+[**imagetools**](../../../README.md)
 
 ***
 
@@ -6,15 +6,15 @@
 
 # Interface: TransformResult
 
+Defined in: packages/core/dist/types.d.ts:48
+
 ## Properties
 
 ### image
 
 > **image**: `Sharp`
 
-#### Defined in
-
-packages/core/dist/types.d.ts:49
+Defined in: packages/core/dist/types.d.ts:49
 
 ***
 
@@ -22,6 +22,4 @@ packages/core/dist/types.d.ts:49
 
 > **metadata**: [`ImageMetadata`](ImageMetadata.md)
 
-#### Defined in
-
-packages/core/dist/types.d.ts:50
+Defined in: packages/core/dist/types.d.ts:50
