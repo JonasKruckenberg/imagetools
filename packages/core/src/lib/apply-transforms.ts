@@ -24,8 +24,10 @@ export async function applyTransforms(
     image = await transform(image)
   }
 
+  const stats = await image.stats()
+
   return {
     image,
-    metadata: image[METADATA]
+    metadata: Object.assign(image[METADATA], stats)
   }
 }
