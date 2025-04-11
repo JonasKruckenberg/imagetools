@@ -3,6 +3,7 @@
 - [Table of Contents](#table-of-contents)
   - [Output Directives](#output-directives)
 - [Directives](#directives)
+  - [Auto Orient](#auto-orient)
   - [Background](#background)
   - [Blur](#blur)
   - [Effort](#effort)
@@ -43,6 +44,26 @@
 - [url](#url)
 
 ## Directives
+
+### Auto Orient
+
+• **Keyword**: `noAutoOrient`<br> • **Type**: _boolean_<br>
+
+The `autoOrient` directive is the only directive that, when included, will automatically apply to all images. You can opt-out of this directive on a per image basis by using the keyword `noAutoOrient` as a boolean.
+
+The default behavior of `autoOrient` will bake in the EXIF orientation data for your image. This is very likely what you want for all your images.
+
+• **Example**:
+
+```js
+// Will be autoOriented
+import Image from 'foo.jpg?background=#FFFFFFAA'
+// Will NOT be autoOriented
+import Image from 'foo.jpg?background=#FFFFFFAA&noAutoOrient'
+import Image from 'foo.jpg?background=#FFFFFFAA&noAutoOrient=true'
+```
+
+---
 
 ### Background
 
