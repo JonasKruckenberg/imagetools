@@ -62,7 +62,25 @@ This option allows you to specify [directives](../../docs/directives.md) that sh
 image. You can also provide a function, in which case the function gets passed the asset ID and should return an object
 of [directives](../../docs/directives.md). This can be used to define all sorts of shorthands or presets.
 
-**`example`**
+**`example: object`**
+
+```js
+import { defineConfig } from 'vite'
+import { imagetools } from 'vite-imagetools'
+
+export default defineConfig({
+  plugins: [
+    imagetools({
+      defaultDirectives: {
+        // Bake in orientation metadata to prevent surprising image rotation.
+        autoOrient: 'true'
+      }
+    })
+  ]
+})
+```
+
+**`example: function`**
 
 ```js
 import { defineConfig } from 'vite'
@@ -72,12 +90,17 @@ export default defineConfig({
   plugins: [
     imagetools({
       defaultDirectives: (url) => {
+        const defaults = {
+          // Bake in orientation metadata to prevent surprising image rotation.
+          autoOrient: 'true'
+        }
         if (url.searchParams.has('spotify')) {
           return new URLSearchParams({
-            tint: 'ffaa22'
+            tint: 'ffaa22',
+            ...defaults
           })
         }
-        return new URLSearchParams()
+        return new URLSearchParams(defaults)
       }
     })
   ]
