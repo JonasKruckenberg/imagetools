@@ -41,6 +41,9 @@
       "ignoreMissing": [
         "jest"
       ]
-    }
+    },
+    "onlyBuiltDependencies": [
+      "sharp"
+    ]
   }
 }

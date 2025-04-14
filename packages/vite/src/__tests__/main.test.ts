@@ -526,7 +526,7 @@ describe('vite-imagetools', () => {
       test('is consistent', async () => {
         const image = (await readdir(dir))[0]
 
-        expect(image).toBe('325b80fade286c672ea884b87e65f7a3278a9f8a')
+        expect(image).toBe('f08980fec9232acd6473f4c2f73148ef47d7f900')
       })
     })
 
@@ -796,7 +796,7 @@ describe('vite-imagetools', () => {
     const { window } = new JSDOM(``, { runScripts: 'outside-only' })
     window.eval(files[0].code)
 
-    expect(window.__IMAGE__).toBe('/assets/with-metadata-D_H5Cxui.png 600w')
+    expect(window.__IMAGE__).toBe('/assets/with-metadata-CMyRTzDt.png 600w')
   })
 
   test('async output format', async () => {

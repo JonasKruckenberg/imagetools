@@ -37,7 +37,7 @@
   "dependencies": {
     "@rollup/pluginutils": "^5.0.5",
     "imagetools-core": "workspace:^",
-    "sharp": "^0.33.4"
+    "sharp": "^0.34.1"
   },
   "devDependencies": {
     "@rollup/plugin-typescript": "^12.0.0",
