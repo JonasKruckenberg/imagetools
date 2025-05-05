@@ -1,5 +1,16 @@
 # Change Log
 
+## 7.1.0
+
+### Minor Changes
+
+- 28a6e8b: chore(deps): upgrade sharp to 0.34.1
+
+### Patch Changes
+
+- Updated dependencies [28a6e8b]
+  - imagetools-core@7.1.0
+
 ## 7.0.5
 
 ### Patch Changes
