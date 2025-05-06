@@ -1,5 +1,11 @@
 # Change Log
 
+## 7.1.0
+
+### Minor Changes
+
+- 28a6e8b: chore(deps): upgrade sharp to 0.34.1
+
 ## 7.0.2
 
 ### Patch Changes
