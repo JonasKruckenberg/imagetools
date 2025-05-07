@@ -732,6 +732,28 @@ describe('vite-imagetools', () => {
     expect(window.__IMAGE__).toHaveProperty('hasAlpha')
   })
 
+  test('autoOrient is applied automatically', async () => {
+    const bundle = (await build({
+      root: join(__dirname, '__fixtures__'),
+      logLevel: 'warn',
+      build: { write: false },
+      plugins: [
+        testEntry(`
+                    import Image from "./Landscape_5.jpg?as=metadata"
+                    window.__IMAGE__ = Image
+                `),
+        imagetools()
+      ]
+    })) as RollupOutput | RollupOutput[]
+
+    const files = getFiles(bundle, '**.js') as OutputChunk[]
+    const { window } = new JSDOM(``, { runScripts: 'outside-only' })
+    window.eval(files[0].code)
+
+    expect(window.__IMAGE__.width).toBe(600)
+    expect(window.__IMAGE__.height).toBe(450)
+  })
+
   test('destructured metadata import', async () => {
     const bundle = (await build({
       root: join(__dirname, '__fixtures__'),

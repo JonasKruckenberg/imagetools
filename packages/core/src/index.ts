@@ -1,3 +1,4 @@
+export * from './transforms/autoOrient.js'
 export * from './transforms/background.js'
 export * from './transforms/blur.js'
 export * from './transforms/effort.js'
