@@ -1,3 +1,4 @@
+import { autoOrient } from './transforms/autoOrient.js'
 import { blur } from './transforms/blur.js'
 import { flatten } from './transforms/flatten.js'
 import { flip } from './transforms/flip.js'
@@ -13,6 +14,7 @@ import { rotate } from './transforms/rotate.js'
 import { tint } from './transforms/tint.js'
 
 export const builtins = [
+  autoOrient,
   blur,
   flatten,
   flip,
