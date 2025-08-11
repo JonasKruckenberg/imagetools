@@ -2,6 +2,7 @@ import { builtins } from '../builtins'
 import { describe, test, expect } from 'vitest'
 
 const expectedBuiltins = [
+  'autoOrient',
   'blur',
   'flatten',
   'flip',
