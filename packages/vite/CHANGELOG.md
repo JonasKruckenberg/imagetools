@@ -1,5 +1,11 @@
 # Change Log
 
+## 7.1.1
+
+### Patch Changes
+
+- 2afafeb: fix: add originalFilename to emitted asset in the mainfest.json
+
 ## 7.1.0
 
 ### Minor Changes
