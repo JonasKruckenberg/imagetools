@@ -2,7 +2,7 @@ import { basename, extname } from 'node:path'
 import { relative } from 'node:path/posix'
 import { statSync, mkdirSync, createReadStream } from 'node:fs'
 import { writeFile, readFile, opendir, stat, rm } from 'node:fs/promises'
-import type { Plugin, ResolvedConfig } from 'vite'
+import { normalizepath, type Plugin, type ResolvedConfig } from 'vite'
 import {
   applyTransforms,
   builtins,
@@ -60,7 +60,6 @@ export function imagetools(userOptions: Partial<VitePluginOptions> = {}): Plugin
     : builtinOutputFormats
 
   let viteConfig: ResolvedConfig
-  let rootPath: string
   let basePath: string
 
   const generatedImages = new Map<string, { image?: Sharp; metadata: ImageMetadata }>()
@@ -70,7 +69,6 @@ export function imagetools(userOptions: Partial<VitePluginOptions> = {}): Plugin
     enforce: 'pre',
     configResolved(cfg) {
       viteConfig = cfg
-      rootPath = viteConfig.root
       basePath = createBasePath(viteConfig.base)
     },
     async load(id) {
@@ -175,7 +173,7 @@ export function imagetools(userOptions: Partial<VitePluginOptions> = {}): Plugin
             name: basename(pathname, extname(pathname)) + `.${metadata.format}`,
             source: image ? await image.toBuffer() : await readFile(`${cacheOptions.dir}/${id}`),
             type: 'asset',
-            originalFilename: relative(rootPath, id)
+            originalFilename: normalizepath(relative(viteConfig.root, id))
           })
 
           metadata.src = `__VITE_ASSET__${fileHandle}__`
