@@ -2,7 +2,7 @@ import { basename, extname } from 'node:path'
 import { relative } from 'node:path/posix'
 import { statSync, mkdirSync, createReadStream } from 'node:fs'
 import { writeFile, readFile, opendir, stat, rm } from 'node:fs/promises'
-import { normalizepath, type Plugin, type ResolvedConfig } from 'vite'
+import { normalizePath, type Plugin, type ResolvedConfig } from 'vite'
 import {
   applyTransforms,
   builtins,
@@ -173,7 +173,7 @@ export function imagetools(userOptions: Partial<VitePluginOptions> = {}): Plugin
             name: basename(pathname, extname(pathname)) + `.${metadata.format}`,
             source: image ? await image.toBuffer() : await readFile(`${cacheOptions.dir}/${id}`),
             type: 'asset',
-            originalFilename: normalizepath(relative(viteConfig.root, id))
+            originalFilename: normalizePath(relative(viteConfig.root, id))
           })
 
           metadata.src = `__VITE_ASSET__${fileHandle}__`
