@@ -103,8 +103,8 @@ importers:
         specifier: ^6.4.0
         version: 6.4.0
       '@types/jsdom':
-        specifier: ^21.1.1
-        version: 21.1.1
+        specifier: ^27.0.0
+        version: 27.0.0
       '@types/picomatch':
         specifier: ^4.0.0
         version: 4.0.0
@@ -933,8 +933,8 @@ packages:
   '@types/jest@29.5.3':
     resolution: {integrity: sha512-1Nq7YrO/vJE/FYnqYyw0FS8LdrjExSgIiHyKg7xPpn+yi8Q4huZryKnkJatN1ZRH89Kw2v33/8ZMB7DuZeSLlA==}
 
-  '@types/jsdom@21.1.1':
-    resolution: {integrity: sha512-cZFuoVLtzKP3gmq9eNosUL1R50U+USkbLtUQ1bYVgl/lKp0FZM7Cq4aIHAL8oIvQ17uSHi7jXPtfDOdjPwBE7A==}
+  '@types/jsdom@27.0.0':
+    resolution: {integrity: sha512-NZyFl/PViwKzdEkQg96gtnB8wm+1ljhdDay9ahn4hgb+SfVtPCbm3TlmDUFXTA+MGN3CijicnMhG18SI5H3rFw==}
 
   '@types/json-schema@7.0.15':
     resolution: {integrity: sha512-5+fP8P8MFNC+AyZCDxrB2pkZFPGzqQWUzpSeuuVLvm8VMcorNYavBqoFcxK8bQz4Qsbn4oUEEem4wDLfcysGHA==}
@@ -1808,9 +1808,6 @@ packages:
   parent-module@1.0.1:
     resolution: {integrity: sha512-GQ2EWRpQV8/o+Aw8YqtfZZPfNRWZYkbidE9k5rpl/hC3vtHHBfGm2Ifi6qWV+coDGkrUKZAxE3Lot5kcsRlh+g==}
     engines: {node: '>=6'}
-
-  parse5@7.2.1:
-    resolution: {integrity: sha512-BuBYQYlv1ckiPdQi/ohiivi9Sagc9JG+Ozs0r7b/0iK3sKmrb0b9FdWdBbOdx6hBCM/F9Ir82ofnBhtZOjCRPQ==}
 
   parse5@7.3.0:
     resolution: {integrity: sha512-IInvU7fabl34qmi9gY8XOVxhYyMyuH2xUNpb2q8/Y+7552KlejkRvqvD19nMoUW/uQGGbqNpA6Tufu5FL5BZgw==}
@@ -3021,11 +3018,11 @@ snapshots:
       expect: 29.6.2
       pretty-format: 29.7.0
 
-  '@types/jsdom@21.1.1':
+  '@types/jsdom@27.0.0':
     dependencies:
       '@types/node': 20.4.5
       '@types/tough-cookie': 4.0.2
-      parse5: 7.2.1
+      parse5: 7.3.0
 
   '@types/json-schema@7.0.15': {}
 
@@ -3983,10 +3980,6 @@ snapshots:
   parent-module@1.0.1:
     dependencies:
       callsites: 3.1.0
-
-  parse5@7.2.1:
-    dependencies:
-      entities: 4.5.0
 
   parse5@7.3.0:
     dependencies:
