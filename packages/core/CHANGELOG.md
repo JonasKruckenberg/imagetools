@@ -1,5 +1,11 @@
 # Change Log
 
+## 9.0.0
+
+### Major Changes
+
+- 91332bc: breaking: drop support for Node 18
+
 ## 8.0.0
 
 ### Major Changes
