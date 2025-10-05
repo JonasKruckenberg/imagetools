@@ -847,6 +847,28 @@ describe('vite-imagetools', () => {
     expect(window.__IMAGE__).toBe('success')
   })
 
+  test('check "originalFilename" exported correctly', async () => {
+    const bundle = (await build({
+      root: join(__dirname, '__fixtures__'),
+      logLevel: 'warn',
+      build: { write: false },
+      plugins: [
+        testEntry(`
+          import Image from "./with-metadata.png?as=srcset"
+          window.__IMAGE__ = Image
+        `),
+        imagetools()
+      ]
+    })) as RollupOutput | RollupOutput[]
+
+    const files = getFiles(bundle, '**.png') as OutputAsset[]
+    const asset = files[0]
+
+    expect(asset).toHaveProperty('fileName', 'assets/with-metadata-CMyRTzDt.png')
+    expect(asset).toHaveProperty('names', ['with-metadata.png'])
+    expect(asset).toHaveProperty('originalFileNames', ['with-metadata.png'])
+  })
+
   describe('utils', () => {
     test('createBasePath', () => {
       expect(createBasePath('')).toBe('/@imagetools/')
