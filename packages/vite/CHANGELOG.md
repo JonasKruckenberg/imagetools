@@ -1,5 +1,16 @@
 # Change Log
 
+## 9.0.0
+
+### Major Changes
+
+- 91332bc: breaking: drop support for Node 18
+
+### Patch Changes
+
+- Updated dependencies [91332bc]
+  - imagetools-core@9.0.0
+
 ## 8.0.0
 
 ### Major Changes
