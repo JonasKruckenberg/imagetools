@@ -16,7 +16,7 @@ jobs:
           lfs: true
 
       - uses: pnpm/action-setup@v4.1.0
-      - uses: actions/setup-node@v5
+      - uses: actions/setup-node@v6
         with:
           cache: 'pnpm'
       - name: Install dependencies
