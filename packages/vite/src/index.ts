@@ -173,7 +173,7 @@ export function imagetools(userOptions: Partial<VitePluginOptions> = {}): Plugin
             name: basename(pathname, extname(pathname)) + `.${metadata.format}`,
             source: image ? await image.toBuffer() : await readFile(`${cacheOptions.dir}/${id}`),
             type: 'asset',
-            originalFilename: normalizePath(relative(viteConfig.root, id))
+            originalFileName: normalizePath(relative(viteConfig.root, srcURL.pathname))
           })
 
           metadata.src = `__VITE_ASSET__${fileHandle}__`
