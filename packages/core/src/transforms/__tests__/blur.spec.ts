@@ -1,7 +1,7 @@
 import { blur } from '../blur'
 import { TransformFactoryContext } from '../../types'
 import { applyTransforms } from '../../index'
-import sharp, { Sharp } from 'sharp'
+import sharp, { type Sharp } from 'sharp'
 import { join } from 'path'
 import { toMatchImageSnapshot } from 'jest-image-snapshot'
 import { describe, beforeAll, beforeEach, test, expect, vi } from 'vitest'

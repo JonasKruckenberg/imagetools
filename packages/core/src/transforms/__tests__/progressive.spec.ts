@@ -1,4 +1,4 @@
-import sharp, { Sharp } from 'sharp'
+import sharp, { type Sharp } from 'sharp'
 import { getProgressive } from '../progressive'
 import { join } from 'path'
 import { describe, beforeEach, expect, test } from 'vitest'

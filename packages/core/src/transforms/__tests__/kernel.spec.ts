@@ -1,6 +1,6 @@
 import { getKernel, KernelValue } from '../kernel'
 import { join } from 'path'
-import sharp, { Sharp } from 'sharp'
+import sharp, { type Sharp } from 'sharp'
 import { describe, beforeEach, expect, test } from 'vitest'
 import { METADATA } from '../../lib/metadata'
 

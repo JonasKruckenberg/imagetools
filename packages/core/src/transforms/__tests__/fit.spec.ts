@@ -1,6 +1,6 @@
 import { getFit, FitValue } from '../fit'
 import { join } from 'path'
-import sharp, { Sharp } from 'sharp'
+import sharp, { type Sharp } from 'sharp'
 import { describe, beforeEach, test, expect } from 'vitest'
 import { METADATA } from '../../lib/metadata'
 

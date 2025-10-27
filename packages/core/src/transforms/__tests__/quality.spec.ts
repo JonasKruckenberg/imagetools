@@ -1,5 +1,5 @@
 import { getQuality } from '../quality'
-import sharp, { Sharp } from 'sharp'
+import sharp, { type Sharp } from 'sharp'
 import { join } from 'path'
 import { describe, beforeEach, expect, test, it } from 'vitest'
 import { METADATA } from '../../lib/metadata'
