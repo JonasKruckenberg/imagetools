@@ -6,7 +6,7 @@ import { TransformFactoryContext } from '../../types'
 import { join } from 'node:path'
 import { toMatchFile } from 'jest-file-snapshot'
 import { toMatchImageSnapshot } from 'jest-image-snapshot'
-import sharp, { Sharp } from 'sharp'
+import sharp, { type Sharp } from 'sharp'
 import { describe, beforeAll, beforeEach, test, expect, vi } from 'vitest'
 
 expect.extend({ toMatchFile, toMatchImageSnapshot })

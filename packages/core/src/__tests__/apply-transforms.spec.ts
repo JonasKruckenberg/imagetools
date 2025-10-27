@@ -1,5 +1,5 @@
 import { applyTransforms } from '../lib/apply-transforms'
-import sharp, { Sharp } from 'sharp'
+import sharp, { type Sharp } from 'sharp'
 import { join } from 'path'
 import { describe, beforeEach, it, expect, vi } from 'vitest'
 

@@ -1,4 +1,4 @@
-import sharp, { Sharp } from 'sharp'
+import sharp, { type Sharp } from 'sharp'
 import { join } from 'path'
 import { getBackground } from '../background'
 import { describe, beforeEach, test, expect } from 'vitest'

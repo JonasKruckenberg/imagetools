@@ -1,7 +1,7 @@
 import { hsb } from '../hsb'
 import { TransformFactoryContext } from '../../types'
 import { applyTransforms } from '../../index'
-import sharp, { Sharp } from 'sharp'
+import sharp, { type Sharp } from 'sharp'
 import { join } from 'path'
 import { toMatchImageSnapshot } from 'jest-image-snapshot'
 import { describe, beforeEach, beforeAll, vi, expect, test } from 'vitest'
