@@ -1,5 +1,11 @@
 # Change Log
 
+## 9.0.1
+
+### Patch Changes
+
+- dfb819e: fix: correct output of `originalFilename` in Vite manifest
+
 ## 9.0.0
 
 ### Major Changes
