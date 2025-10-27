@@ -1,5 +1,5 @@
-import { Plugin } from 'vite'
-import { RollupOutput } from 'rollup'
+import { type Plugin } from 'vite'
+import { type RollupOutput } from 'rollup'
 import pm from 'picomatch'
 import { join, dirname } from 'path'
 
