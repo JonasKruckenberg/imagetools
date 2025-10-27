@@ -1,4 +1,4 @@
-import { InlineConfig, build, createLogger } from 'vite'
+import { type InlineConfig, build, createLogger } from 'vite'
 import { imagetools } from '../index'
 import { join } from 'path'
 import { getFiles, testEntry } from './util'
