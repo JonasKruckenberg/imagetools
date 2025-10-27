@@ -44,7 +44,7 @@
     "@types/jest-image-snapshot": "^6.4.0",
     "@types/jsdom": "^27.0.0",
     "@types/picomatch": "^4.0.0",
-    "@vitest/coverage-v8": "^3.2.4",
+    "@vitest/coverage-v8": "^4.0.4",
     "imagetools-core": "workspace:^",
     "jest-image-snapshot": "^6.4.0",
     "jsdom": "^27.0.0",
@@ -54,6 +54,6 @@
     "tslib": "^2.6.1",
     "typescript": "^5.1.6",
     "vite": "^7.1.12",
-    "vitest": "^3.2.4"
+    "vitest": "^4.0.4"
   }
 }
