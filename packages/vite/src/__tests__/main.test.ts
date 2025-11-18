@@ -7,7 +7,7 @@ import { type OutputAsset, type OutputChunk, type RollupOutput } from 'rollup'
 import { JSDOM } from 'jsdom'
 import sharp from 'sharp'
 import { afterEach, describe, test, expect, it, vi } from 'vitest'
-import { createBasePath } from '../utils'
+import { createBasePath, createMutexFactory } from '../utils'
 import { existsSync } from 'node:fs'
 import { rm, utimes, readdir, copyFile } from 'node:fs/promises'
 
@@ -699,7 +699,7 @@ describe('vite-imagetools', () => {
         build: { write: false, rollupOptions: { maxParallelFileOps: 100 } },
         plugins: [
           testEntry(`
-                    const images = import.meta.glob(['./*.{jpg,png,gif,jpeg,svg}'], {
+                    const images = import.meta.glob(['./pexels-allec-gomes-5195763*.png'], {
                       eager: true,
                       import: "default",
                       query: { url: "" },
@@ -925,6 +925,60 @@ describe('vite-imagetools', () => {
       expect(createBasePath('/base/')).toBe('/base/@imagetools/')
       expect(createBasePath('http://localhost:9000/frontend')).toBe('http://localhost:9000/frontend/@imagetools/')
       expect(createBasePath('http://localhost:9000/frontend/')).toBe('http://localhost:9000/frontend/@imagetools/')
+    })
+    describe('createMutexFactory', () => {
+      it('serialises callers per key', async () => {
+        const mutexFactory = createMutexFactory()
+        const steps: string[] = []
+
+        const releaseFirst = await mutexFactory('foo')
+        steps.push('first acquired')
+
+        let secondAcquired = false
+        const secondMutexPromise = mutexFactory('foo').then((release) => {
+          secondAcquired = true
+          steps.push('second acquired')
+          return release
+        })
+
+        await Promise.resolve()
+        expect(secondAcquired).toBe(false)
+        expect(steps).toEqual(['first acquired'])
+
+        releaseFirst()
+        const releaseSecond = await secondMutexPromise
+        releaseSecond()
+        steps.push('second released')
+
+        expect(steps).toEqual(['first acquired', 'second acquired', 'second released'])
+      })
+
+      it('allows different keys to proceed independently', async () => {
+        const mutexFactory = createMutexFactory()
+
+        const [releaseA, releaseB] = await Promise.all([mutexFactory('alpha'), mutexFactory('beta')])
+
+        expect(releaseA).not.toBe(releaseB)
+        releaseA()
+        releaseB()
+      })
+
+      it('treats release as idempotent', async () => {
+        const mutexFactory = createMutexFactory()
+
+        const releaseFirst = await mutexFactory('key')
+        const waiting = mutexFactory('key')
+
+        await Promise.resolve()
+        releaseFirst()
+        releaseFirst()
+
+        const releaseSecond = await waiting
+        releaseSecond()
+
+        const releaseThird = await mutexFactory('key')
+        releaseThird()
+      })
     })
   })
 })

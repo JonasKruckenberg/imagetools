@@ -20,7 +20,7 @@ import {
 } from 'imagetools-core'
 import { createFilter, dataToEsm } from '@rollup/pluginutils'
 import sharp, { type Metadata, type Sharp } from 'sharp'
-import { createBasePath, generateImageID, hash } from './utils.js'
+import { createBasePath, createMutexFactory, generateImageID, hash } from './utils.js'
 import type { VitePluginOptions } from './types.js'
 
 export type {
@@ -63,6 +63,8 @@ export function imagetools(userOptions: Partial<VitePluginOptions> = {}): Plugin
   let basePath: string
 
   const generatedImages = new Map<string, { image?: Sharp; metadata: ImageMetadata }>()
+
+  const acquireMutex = createMutexFactory()
 
   return {
     name: 'imagetools',
@@ -138,50 +140,73 @@ export function imagetools(userOptions: Partial<VitePluginOptions> = {}): Plugin
       const imageHash = hash([imageBuffer])
       for (const config of imageConfigs) {
         const id = generateImageID(config, imageHash)
-        let image: Sharp | undefined
-        let metadata: ImageMetadata
+        // By default, rollup (and thus vite) will parallelize file operations
+        // which can lead to multiple transformations of the same image
+        // being processed simultaneously.
+        // If caching is enabled, we need to lock identical image transformations
+        // to prevent multiple simultaneous reads/writes to the same cache file.
+        // This can cause corruption or inconsistent results.
+        // We can't enter the critical section below (in the try block) if another 
+        // caller used same ID and hasn't exited the critical section by invoking 
+        // the release function below. 
+        // Instead, we'll queue up here and wait for the lock to be released by 
+        // the previous owner of the mutex. This happens in the finally block of 
+        // this try block.
+        // Note: stringLock returns a function that releases the lock when called.
+        const releaseMutex = cacheOptions.enabled ? await acquireMutex(id) : undefined;
+        try {
+          let image: Sharp | undefined
+          let metadata: ImageMetadata
 
-        if (cacheOptions.enabled && (statSync(`${cacheOptions.dir}/${id}`, { throwIfNoEntry: false })?.size ?? 0) > 0) {
-          metadata = (await sharp(`${cacheOptions.dir}/${id}`).metadata()) as ImageMetadata
-          // we set the format on the metadata during transformation using the format directive
-          // when restoring from the cache, we use sharp to read it from the image and that results in a different value for avif images
-          // see https://github.com/lovell/sharp/issues/2504 and https://github.com/lovell/sharp/issues/3746
-          if (config.format === 'avif' && metadata.format === 'heif' && metadata.compression === 'av1')
-            metadata.format = 'avif'
-        } else {
-          const { transforms } = generateTransforms(config, transformFactories, srcURL.searchParams, logger)
-          const res = await applyTransforms(transforms, img, pluginOptions.removeMetadata)
-          metadata = res.metadata
-          if (cacheOptions.enabled) {
-            await writeFile(`${cacheOptions.dir}/${id}`, await res.image.toBuffer())
+          if (
+            cacheOptions.enabled &&
+            (statSync(`${cacheOptions.dir}/${id}`, { throwIfNoEntry: false })?.size ?? 0) > 0
+          ) {
+            metadata = (await sharp(`${cacheOptions.dir}/${id}`).metadata()) as ImageMetadata
+            // we set the format on the metadata during transformation using the format directive
+            // when restoring from the cache, we use sharp to read it from the image and that results in a different value for avif images
+            // see https://github.com/lovell/sharp/issues/2504 and https://github.com/lovell/sharp/issues/3746
+            if (config.format === 'avif' && metadata.format === 'heif' && metadata.compression === 'av1')
+              metadata.format = 'avif'
           } else {
-            image = res.image
+            const { transforms } = generateTransforms(config, transformFactories, srcURL.searchParams, logger)
+            const res = await applyTransforms(transforms, img, pluginOptions.removeMetadata)
+            metadata = res.metadata
+            if (cacheOptions.enabled) {
+              await writeFile(`${cacheOptions.dir}/${id}`, await res.image.toBuffer())
+            } else {
+              image = res.image
+            }
           }
+
+          generatedImages.set(id, { image, metadata })
+
+          if (directives.has('inline')) {
+            metadata.src = `data:image/${metadata.format};base64,${(image
+              ? await image.toBuffer()
+              : await readFile(`${cacheOptions.dir}/${id}`)
+            ).toString('base64')}`
+          } else if (viteConfig.command === 'serve') {
+            metadata.src = (viteConfig?.server?.origin ?? '') + basePath + id
+          } else {
+            const fileHandle = this.emitFile({
+              name: basename(pathname, extname(pathname)) + `.${metadata.format}`,
+              source: image ? await image.toBuffer() : await readFile(`${cacheOptions.dir}/${id}`),
+              type: 'asset',
+              originalFileName: normalizePath(relative(viteConfig.root, srcURL.pathname))
+            })
+
+            metadata.src = `__VITE_ASSET__${fileHandle}__`
+          }
+
+          metadata.image = image
+
+          outputMetadatas.push(metadata as ProcessedImageMetadata)
+        } finally {
+          // it's important to release the mutex (if it exists),
+          // even if an error occurred
+          releaseMutex?.()
         }
-
-        generatedImages.set(id, { image, metadata })
-
-        if (directives.has('inline')) {
-          metadata.src = `data:image/${metadata.format};base64,${(image
-            ? await image.toBuffer()
-            : await readFile(`${cacheOptions.dir}/${id}`)
-          ).toString('base64')}`
-        } else if (viteConfig.command === 'serve') {
-          metadata.src = (viteConfig?.server?.origin ?? '') + basePath + id
-        } else {
-          const fileHandle = this.emitFile({
-            name: basename(pathname, extname(pathname)) + `.${metadata.format}`,
-            source: image ? await image.toBuffer() : await readFile(`${cacheOptions.dir}/${id}`),
-            type: 'asset',
-            originalFileName: normalizePath(relative(viteConfig.root, srcURL.pathname))
-          })
-
-          metadata.src = `__VITE_ASSET__${fileHandle}__`
-        }
-
-        metadata.image = image
-
-        outputMetadatas.push(metadata as ProcessedImageMetadata)
       }
 
       let outputFormat = urlFormat()
