@@ -16,7 +16,8 @@ import {
   type Logger,
   type OutputFormat,
   type ProcessedImageMetadata,
-  type ImageMetadata
+  type ImageMetadata,
+  type ImageConfig
 } from 'imagetools-core'
 import { createFilter, dataToEsm } from '@rollup/pluginutils'
 import sharp, { type Metadata, type Sharp } from 'sharp'
@@ -40,6 +41,8 @@ const defaultOptions: VitePluginOptions = {
 }
 
 export * from 'imagetools-core'
+
+const transformPromises = new Map<string, Promise<ProcessedImageMetadata>>()
 
 export function imagetools(userOptions: Partial<VitePluginOptions> = {}): Plugin {
   const pluginOptions: VitePluginOptions = { ...defaultOptions, ...userOptions }
@@ -125,8 +128,6 @@ export function imagetools(userOptions: Partial<VitePluginOptions> = {}): Plugin
       const imageConfigs =
         pluginOptions.resolveConfigs?.(parameters, outputFormats) ?? resolveConfigs(parameters, outputFormats)
 
-      const outputMetadatas: Array<ProcessedImageMetadata> = []
-
       const logger: Logger = {
         info: (msg) => viteConfig.logger.info(msg),
         warn: (msg) => this.warn(msg),
@@ -136,8 +137,8 @@ export function imagetools(userOptions: Partial<VitePluginOptions> = {}): Plugin
       const imageBuffer = await img.clone().toBuffer()
 
       const imageHash = hash([imageBuffer])
-      for (const imageConfig of imageConfigs) {
-        const id = generateImageID(imageConfig, imageHash)
+
+      const executeTransform = async (id: string, imageConfig: ImageConfig) => {
         let image: Sharp | undefined
         let metadata: ImageMetadata
 
@@ -176,8 +177,39 @@ export function imagetools(userOptions: Partial<VitePluginOptions> = {}): Plugin
           metadata.src = `__VITE_ASSET__${fileHandle}__`
         }
 
-        outputMetadatas.push(metadata as ProcessedImageMetadata)
+        return metadata as ProcessedImageMetadata
       }
+
+      /** allows only one transform to be run for a given id */
+      async function synchronizedTransform(id: string, imageConfig: ImageConfig) {
+        let transformPromise = transformPromises.get(id)
+        if (transformPromise) return transformPromise
+
+        let resolve!: (v: ProcessedImageMetadata) => void
+        let reject!: (e: unknown) => void
+
+        transformPromise = new Promise((res, rej) => {
+          resolve = res
+          reject = rej
+        })
+
+        transformPromises.set(id, transformPromise)
+
+        executeTransform(id, imageConfig)
+          .then(resolve, reject)
+          .finally(() => {
+            transformPromises.delete(id)
+          })
+
+        return transformPromise
+      }
+
+      const outputs = await Promise.all(
+        imageConfigs.map((config) => {
+          const id = generateImageID(config, imageHash)
+          return synchronizedTransform(id, config)
+        })
+      )
 
       let outputFormat = urlFormat()
       const asParam = directives.get('as')?.split(':')
@@ -189,7 +221,7 @@ export function imagetools(userOptions: Partial<VitePluginOptions> = {}): Plugin
         }
       }
 
-      return dataToEsm(await outputFormat(outputMetadatas), {
+      return dataToEsm(await outputFormat(outputs), {
         namedExports: pluginOptions.namedExports ?? viteConfig.json?.namedExports ?? true,
         compact: !!viteConfig.build.minify,
         preferConst: true
