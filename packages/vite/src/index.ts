@@ -146,14 +146,14 @@ export function imagetools(userOptions: Partial<VitePluginOptions> = {}): Plugin
         // If caching is enabled, we need to lock identical image transformations
         // to prevent multiple simultaneous reads/writes to the same cache file.
         // This can cause corruption or inconsistent results.
-        // We can't enter the critical section below (in the try block) if another 
-        // caller used same ID and hasn't exited the critical section by invoking 
-        // the release function below. 
-        // Instead, we'll queue up here and wait for the lock to be released by 
-        // the previous owner of the mutex. This happens in the finally block of 
+        // We can't enter the critical section below (in the try block) if another
+        // caller used same ID and hasn't exited the critical section by invoking
+        // the release function below.
+        // Instead, we'll queue up here and wait for the lock to be released by
+        // the previous owner of the mutex. This happens in the finally block of
         // this try block.
         // Note: acquireMutex returns a function that releases the lock when called.
-        const releaseMutex = cacheOptions.enabled ? await acquireMutex(id) : undefined;
+        const releaseMutex = cacheOptions.enabled ? await acquireMutex(id) : undefined
         try {
           let image: Sharp | undefined
           let metadata: ImageMetadata
