@@ -152,7 +152,7 @@ export function imagetools(userOptions: Partial<VitePluginOptions> = {}): Plugin
         // Instead, we'll queue up here and wait for the lock to be released by 
         // the previous owner of the mutex. This happens in the finally block of 
         // this try block.
-        // Note: stringLock returns a function that releases the lock when called.
+        // Note: acquireMutex returns a function that releases the lock when called.
         const releaseMutex = cacheOptions.enabled ? await acquireMutex(id) : undefined;
         try {
           let image: Sharp | undefined
