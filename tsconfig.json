@@ -9,7 +9,7 @@
     "allowSyntheticDefaultImports": true,
     "strict": true,
     "forceConsistentCasingInFileNames": true,
-    "module": "ESNext",
+    "module": "nodenext",
     "moduleResolution": "nodenext",
     "isolatedModules": true,
     "verbatimModuleSyntax": true
