@@ -17,7 +17,7 @@ const cartesian = (...a: [[string, string]][][]) =>
 export function resolveConfigs(
   entries: Array<[string, string[]]>,
   outputFormats: Record<string, OutputFormat>
-): Record<string, string | string[]>[] {
+): ImageConfig[] {
   // create a new array of entries for each argument
   const singleArgumentEntries = entries
     .filter(([k]) => !(k in outputFormats))
@@ -31,9 +31,9 @@ export function resolveConfigs(
   const metadataAddons = entries.filter(([k]) => k in outputFormats)
 
   // and return as an array of objects
-  const out: Record<string, string | string[]>[] = combinations.map((options) =>
-    Object.fromEntries([...options, ...metadataAddons])
-  )
+  const out: ImageConfig[] = combinations.map((options) => Object.fromEntries([...options, ...metadataAddons]))
 
   return out.length ? out : [Object.fromEntries(metadataAddons)]
 }
+
+export type ImageConfig = Record<string, string | string[]>
