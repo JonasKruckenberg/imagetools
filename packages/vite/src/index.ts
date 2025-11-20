@@ -1,7 +1,7 @@
 import { basename, extname } from 'node:path'
 import { relative } from 'node:path/posix'
 import { statSync, mkdirSync, createReadStream } from 'node:fs'
-import { writeFile, readFile, opendir, stat, rm } from 'node:fs/promises'
+import { writeFile, opendir, stat, rm } from 'node:fs/promises'
 import { normalizePath, type Plugin, type ResolvedConfig } from 'vite'
 import {
   applyTransforms,
@@ -136,42 +136,39 @@ export function imagetools(userOptions: Partial<VitePluginOptions> = {}): Plugin
       const imageBuffer = await img.clone().toBuffer()
 
       const imageHash = hash([imageBuffer])
-      for (const config of imageConfigs) {
-        const id = generateImageID(config, imageHash)
+      for (const imageConfig of imageConfigs) {
+        const id = generateImageID(imageConfig, imageHash)
         let image: Sharp | undefined
         let metadata: ImageMetadata
 
         if (cacheOptions.enabled && (statSync(`${cacheOptions.dir}/${id}`, { throwIfNoEntry: false })?.size ?? 0) > 0) {
-          metadata = (await sharp(`${cacheOptions.dir}/${id}`).metadata()) as ImageMetadata
+          image = sharp(`${cacheOptions.dir}/${id}`)
+          metadata = (await image.metadata()) as ImageMetadata
           // we set the format on the metadata during transformation using the format directive
           // when restoring from the cache, we use sharp to read it from the image and that results in a different value for avif images
           // see https://github.com/lovell/sharp/issues/2504 and https://github.com/lovell/sharp/issues/3746
-          if (config.format === 'avif' && metadata.format === 'heif' && metadata.compression === 'av1')
+          if (imageConfig.format === 'avif' && metadata.format === 'heif' && metadata.compression === 'av1')
             metadata.format = 'avif'
         } else {
-          const { transforms } = generateTransforms(config, transformFactories, srcURL.searchParams, logger)
+          const { transforms } = generateTransforms(imageConfig, transformFactories, srcURL.searchParams, logger)
           const res = await applyTransforms(transforms, img, pluginOptions.removeMetadata)
+          image = res.image
           metadata = res.metadata
           if (cacheOptions.enabled) {
             await writeFile(`${cacheOptions.dir}/${id}`, await res.image.toBuffer())
-          } else {
-            image = res.image
           }
         }
 
         generatedImages.set(id, { image, metadata })
 
         if (directives.has('inline')) {
-          metadata.src = `data:image/${metadata.format};base64,${(image
-            ? await image.toBuffer()
-            : await readFile(`${cacheOptions.dir}/${id}`)
-          ).toString('base64')}`
+          metadata.src = `data:image/${metadata.format};base64,${(await image.toBuffer()).toString('base64')}`
         } else if (viteConfig.command === 'serve') {
           metadata.src = (viteConfig?.server?.origin ?? '') + basePath + id
         } else {
           const fileHandle = this.emitFile({
             name: basename(pathname, extname(pathname)) + `.${metadata.format}`,
-            source: image ? await image.toBuffer() : await readFile(`${cacheOptions.dir}/${id}`),
+            source: await image.toBuffer(),
             type: 'asset',
             originalFileName: normalizePath(relative(viteConfig.root, srcURL.pathname))
           })
