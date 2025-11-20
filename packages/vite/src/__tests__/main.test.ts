@@ -9,7 +9,7 @@ import sharp from 'sharp'
 import { afterEach, describe, test, expect, it, vi } from 'vitest'
 import { createBasePath } from '../utils'
 import { existsSync } from 'node:fs'
-import { rm, utimes, readdir } from 'node:fs/promises'
+import { rm, utimes, readdir, copyFile } from 'node:fs/promises'
 
 expect.extend({ toMatchImageSnapshot })
 
@@ -533,6 +533,7 @@ describe('vite-imagetools', () => {
     describe('cache.avifFormat', () => {
       test('is avif format', async () => {
         const dir = './node_modules/.cache/imagetools_test_cache_dir'
+        await rm(dir, { recursive: true, force: true })
         await build({
           root: join(__dirname, '__fixtures__'),
           logLevel: 'warn',
@@ -662,9 +663,53 @@ describe('vite-imagetools', () => {
     }
     await build(config)
     const bundle = (await build(config)) as RollupOutput | RollupOutput[]
-
     const files = getFiles(bundle, '**.png') as OutputAsset[]
     expect(files[0].source).toMatchImageSnapshot()
+  })
+
+  // test for https://github.com/JonasKruckenberg/imagetools/issues/839
+  test('import identical files with cache', async () => {
+    const dir = './node_modules/.cache/imagetools_test_import_identical_files_with_cache'
+    await rm(dir, { recursive: true, force: true })
+    const fixturesRoot = join(__dirname, '__fixtures__')
+    const numCopies = 200
+    const copyFiles = async () => {
+      for (let i = 0; i < numCopies; i++) {
+        await copyFile(
+          join(fixturesRoot, 'pexels-allec-gomes-5195763.png'),
+          join(fixturesRoot, `pexels-allec-gomes-5195763-copy${i}.png`)
+        )
+      }
+    }
+    const deleteFileCopies = async () => {
+      for (let i = 0; i < numCopies; i++) {
+        await rm(join(fixturesRoot, `pexels-allec-gomes-5195763-copy${i}.png`), {
+          force: true
+        })
+      }
+    }
+    try {
+      await copyFiles()
+      const config: InlineConfig = {
+        root: fixturesRoot,
+        logLevel: 'warn',
+        build: { write: false, rollupOptions: { maxParallelFileOps: 100 } },
+        plugins: [
+          testEntry(`
+                    const images = import.meta.glob(['./pexels-allec-gomes-5195763*.png'], {
+                      eager: true,
+                      import: "default",
+                      query: { url: "" },
+                    })
+                    export default images
+                `),
+          imagetools({ cache: { dir } })
+        ]
+      }
+      await expect(build(config)).resolves.toBeDefined()
+    } finally {
+      await deleteFileCopies()
+    }
   })
 
   test('non existent file', async () => {
