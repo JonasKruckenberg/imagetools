@@ -1,5 +1,14 @@
 # Change Log
 
+## 9.0.2
+
+### Patch Changes
+
+- 4c15f51: fix: avoid corruption and build errors caused by concurrent access to cache files
+- 068fe00: fix: avoid hitting the filesystem multiple times when restoring from cache"
+- Updated dependencies [81887b8]
+  - imagetools-core@9.1.0
+
 ## 9.0.1
 
 ### Patch Changes
