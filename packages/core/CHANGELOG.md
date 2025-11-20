@@ -1,5 +1,11 @@
 # Change Log
 
+## 9.1.0
+
+### Minor Changes
+
+- 81887b8: feat: export `ImageConfig` type
+
 ## 9.0.0
 
 ### Major Changes
