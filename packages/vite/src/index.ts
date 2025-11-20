@@ -134,9 +134,7 @@ export function imagetools(userOptions: Partial<VitePluginOptions> = {}): Plugin
         error: (msg) => this.error(msg)
       }
 
-      const imageBuffer = await img.clone().toBuffer()
-
-      const imageHash = hash([imageBuffer])
+      const imageHash = hash([await img.toBuffer()])
 
       const executeTransform = async (id: string, imageConfig: ImageConfig) => {
         let image: Sharp | undefined
@@ -152,7 +150,7 @@ export function imagetools(userOptions: Partial<VitePluginOptions> = {}): Plugin
             metadata.format = 'avif'
         } else {
           const { transforms } = generateTransforms(imageConfig, transformFactories, srcURL.searchParams, logger)
-          const res = await applyTransforms(transforms, img, pluginOptions.removeMetadata)
+          const res = await applyTransforms(transforms, img.clone(), pluginOptions.removeMetadata)
           image = res.image
           metadata = res.metadata
           if (cacheOptions.enabled) {
