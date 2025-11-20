@@ -155,7 +155,7 @@ export function imagetools(userOptions: Partial<VitePluginOptions> = {}): Plugin
           image = res.image
           metadata = res.metadata
           if (cacheOptions.enabled) {
-            await writeFile(`${cacheOptions.dir}/${id}`, await res.image.toBuffer())
+            await writeFile(`${cacheOptions.dir}/${id}`, await image.toBuffer())
           }
         }
 
@@ -175,8 +175,6 @@ export function imagetools(userOptions: Partial<VitePluginOptions> = {}): Plugin
 
           metadata.src = `__VITE_ASSET__${fileHandle}__`
         }
-
-        metadata.image = image
 
         outputMetadatas.push(metadata as ProcessedImageMetadata)
       }
