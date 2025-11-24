@@ -3,6 +3,11 @@ on:
   push:
     branches: ['main', 'next']
 
+permissions:
+  contents: write # to create release (changesets/action)
+  id-token: write # OpenID Connect token needed for provenance
+  pull-requests: write # to create pull request (changesets/action)
+
 jobs:
   test:
     runs-on: ubuntu-latest
@@ -76,4 +81,4 @@ jobs:
           publish: pnpm ci:publish
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NPM_CONFIG_PROVENANCE: true
