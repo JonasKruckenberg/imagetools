@@ -3,6 +3,10 @@ on:
   push:
     branches: ['main', 'next']
 
+permissions:
+  id-token: write  # Required for OIDC
+  contents: read
+  
 jobs:
   test:
     runs-on: ubuntu-latest
