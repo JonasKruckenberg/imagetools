@@ -4,8 +4,9 @@ on:
     branches: ['main', 'next']
 
 permissions:
-  id-token: write # Required for OIDC
-  contents: read
+      contents: write # to create release (changesets/action)
+      id-token: write # OpenID Connect token needed for provenance
+      pull-requests: write # to create pull request (changesets/action)
 
 jobs:
   test:
