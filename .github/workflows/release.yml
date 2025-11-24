@@ -25,8 +25,9 @@ jobs:
         with:
           node-version: 24.x
           cache: 'pnpm'
+
       - name: Install dependencies
-        run: pnpm install
+        run: pnpm install --frozen-lockfile
 
       - name: Build packages
         run: pnpm run build
@@ -46,34 +47,20 @@ jobs:
     needs: test
     steps:
       - name: Checkout Repo
-        uses: actions/checkout@master
+        uses: actions/checkout@v6
         with:
           # This makes Actions fetch all Git history so that Changesets can generate changelogs with the correct commits
           fetch-depth: 0
           lfs: true
 
       - uses: pnpm/action-setup@v4.2.0
-        name: Install pnpm
-        id: pnpm-install
+      - uses: actions/setup-node@v6
         with:
-          run_install: false
+          node-version: 24.x
+          cache: 'pnpm'
 
-      - name: Get pnpm store directory
-        id: pnpm-cache
-        run: |
-          echo "::set-output name=pnpm_cache_dir::$(pnpm store path)"
-
-      - uses: actions/cache@v4
-        name: Setup pnpm cache
-        with:
-          path: ${{ steps.pnpm-cache.outputs.pnpm_cache_dir }}
-          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
-          restore-keys: |
-            ${{ runner.os }}-pnpm-store-
-
-      - uses: pnpm/action-setup@v4.2.0
-        with:
-          run_install: true
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
 
       - name: create and publish versions
         uses: changesets/action@v1
