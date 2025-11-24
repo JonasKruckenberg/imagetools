@@ -69,6 +69,9 @@ jobs:
         with:
           run_install: true
 
+      - name: Update npm
+        run: npm install -g npm@latest
+
       - name: create and publish versions
         uses: changesets/action@v1
         with:
@@ -76,4 +79,3 @@ jobs:
           publish: pnpm ci:publish
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
