@@ -4,9 +4,9 @@ on:
     branches: ['main', 'next']
 
 permissions:
-      contents: write # to create release (changesets/action)
-      id-token: write # OpenID Connect token needed for provenance
-      pull-requests: write # to create pull request (changesets/action)
+  contents: write # to create release (changesets/action)
+  id-token: write # OpenID Connect token needed for provenance
+  pull-requests: write # to create pull request (changesets/action)
 
 jobs:
   test:
