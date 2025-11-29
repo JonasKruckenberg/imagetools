@@ -30,11 +30,11 @@ importers:
         specifier: ^2.6.1
         version: 2.6.1
       typedoc:
-        specifier: ^0.27.9
-        version: 0.27.9(typescript@5.1.6)
+        specifier: ^0.28.0
+        version: 0.28.15(typescript@5.1.6)
       typedoc-plugin-markdown:
         specifier: ^4.4.2
-        version: 4.4.2(typedoc@0.27.9(typescript@5.1.6))
+        version: 4.4.2(typedoc@0.28.15(typescript@5.1.6))
       typescript:
         specifier: ^5.1.6
         version: 5.1.6
@@ -46,7 +46,7 @@ importers:
     devDependencies:
       vite:
         specifier: ^7.1.12
-        version: 7.1.12(@types/node@24.9.1)(yaml@2.6.1)
+        version: 7.1.12(@types/node@24.9.1)(yaml@2.8.1)
       vite-imagetools:
         specifier: workspace:*
         version: link:../../packages/vite
@@ -61,7 +61,7 @@ importers:
         version: 6.4.0
       '@vitest/coverage-v8':
         specifier: ^4.0.4
-        version: 4.0.4(vitest@4.0.4(@types/node@24.9.1)(jsdom@27.0.0(postcss@8.5.6))(yaml@2.6.1))
+        version: 4.0.4(vitest@4.0.4(@types/node@24.9.1)(jsdom@27.0.0(postcss@8.5.6))(yaml@2.8.1))
       jest-file-snapshot:
         specifier: ^0.7.0
         version: 0.7.0
@@ -82,7 +82,7 @@ importers:
         version: 5.1.6
       vitest:
         specifier: ^4.0.4
-        version: 4.0.4(@types/node@24.9.1)(jsdom@27.0.0(postcss@8.5.6))(yaml@2.6.1)
+        version: 4.0.4(@types/node@24.9.1)(jsdom@27.0.0(postcss@8.5.6))(yaml@2.8.1)
 
   packages/vite:
     dependencies:
@@ -110,7 +110,7 @@ importers:
         version: 4.0.0
       '@vitest/coverage-v8':
         specifier: ^4.0.4
-        version: 4.0.4(vitest@4.0.4(@types/node@24.9.1)(jsdom@27.0.0(postcss@8.5.6))(yaml@2.6.1))
+        version: 4.0.4(vitest@4.0.4(@types/node@24.9.1)(jsdom@27.0.0(postcss@8.5.6))(yaml@2.8.1))
       jest-image-snapshot:
         specifier: ^6.4.0
         version: 6.4.0
@@ -131,10 +131,10 @@ importers:
         version: 5.1.6
       vite:
         specifier: ^7.1.12
-        version: 7.1.12(@types/node@24.9.1)(yaml@2.6.1)
+        version: 7.1.12(@types/node@24.9.1)(yaml@2.8.1)
       vitest:
         specifier: ^4.0.4
-        version: 4.0.4(@types/node@24.9.1)(jsdom@27.0.0(postcss@8.5.6))(yaml@2.6.1)
+        version: 4.0.4(@types/node@24.9.1)(jsdom@27.0.0(postcss@8.5.6))(yaml@2.8.1)
 
 packages:
 
@@ -470,8 +470,8 @@ packages:
     resolution: {integrity: sha512-43/qtrDUokr7LJqoF2c3+RInu/t4zfrpYdoSDfYyhg52rwLV6TnOvdG4fXm7IkSB3wErkcmJS9iEhjVtOSEjjA==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
 
-  '@gerrit0/mini-shiki@1.27.2':
-    resolution: {integrity: sha512-GeWyHz8ao2gBiUW4OJnQDxXQnFgZQwwQk05t/CVVgNBN7/rK8XZ7xY6YhLVv9tH3VppWWmr9DCl3MwemB/i+Og==}
+  '@gerrit0/mini-shiki@3.17.0':
+    resolution: {integrity: sha512-Bpf6WuFar20ZXL6qU6VpVl4bVQfyyYiX+6O4xrns4nkU3Mr8paeupDbS1HENpcLOYj7pN4Rkd/yCaPA0vQwKww==}
 
   '@humanfs/core@0.19.1':
     resolution: {integrity: sha512-5DyQ4+1JEUzejeK1JGICcideyfUbGixgS9jNgex5nqkW+cY7WZhxBigmieN5Qnw9ZosSNVC9KQKyb+GUaGyKUA==}
@@ -784,11 +784,17 @@ packages:
     cpu: [x64]
     os: [win32]
 
-  '@shikijs/engine-oniguruma@1.29.2':
-    resolution: {integrity: sha512-7iiOx3SG8+g1MnlzZVDYiaeHe7Ez2Kf2HrJzdmGwkRisT7r4rak0e655AcM/tF9JG/kg5fMNYlLLKglbN7gBqA==}
+  '@shikijs/engine-oniguruma@3.17.0':
+    resolution: {integrity: sha512-flSbHZAiOZDNTrEbULY8DLWavu/TyVu/E7RChpLB4WvKX4iHMfj80C6Hi3TjIWaQtHOW0KC6kzMcuB5TO1hZ8Q==}
 
-  '@shikijs/types@1.29.2':
-    resolution: {integrity: sha512-VJjK0eIijTZf0QSTODEXCqinjBn0joAHQ+aPSBzrv4O2d/QSbsMw+ZeSRx03kV34Hy7NzUvV/7NqfYGRLrASmw==}
+  '@shikijs/langs@3.17.0':
+    resolution: {integrity: sha512-icmur2n5Ojb+HAiQu6NEcIIJ8oWDFGGEpiqSCe43539Sabpx7Y829WR3QuUW2zjTM4l6V8Sazgb3rrHO2orEAw==}
+
+  '@shikijs/themes@3.17.0':
+    resolution: {integrity: sha512-/xEizMHLBmMHwtx4JuOkRf3zwhWD2bmG5BRr0IPjpcWpaq4C3mYEuTk/USAEglN0qPrTwEHwKVpSu/y2jhferA==}
+
+  '@shikijs/types@3.17.0':
+    resolution: {integrity: sha512-wjLVfutYWVUnxAjsWEob98xgyaGv0dTEnMZDruU5mRjVN7szcGOfgO+997W2yR6odp+1PtSBNeSITRRTfUzK/g==}
 
   '@shikijs/vscode-textmate@10.0.2':
     resolution: {integrity: sha512-83yeghZ2xxin3Nj8z1NMd/NCuca+gsYXswywDy5bHvwlWL8tpTQmzGeUuHd9FC3E/SBEMvzJRwWEOz5gGes9Qg==}
@@ -1918,12 +1924,12 @@ packages:
     peerDependencies:
       typedoc: 0.27.x
 
-  typedoc@0.27.9:
-    resolution: {integrity: sha512-/z585740YHURLl9DN2jCWe6OW7zKYm6VoQ93H0sxZ1cwHQEQrUn5BJrEnkWhfzUdyO+BLGjnKUZ9iz9hKloFDw==}
-    engines: {node: '>= 18'}
+  typedoc@0.28.15:
+    resolution: {integrity: sha512-mw2/2vTL7MlT+BVo43lOsufkkd2CJO4zeOSuWQQsiXoV2VuEn7f6IZp2jsUDPmBMABpgR0R5jlcJ2OGEFYmkyg==}
+    engines: {node: '>= 18', pnpm: '>= 10'}
     hasBin: true
     peerDependencies:
-      typescript: 5.0.x || 5.1.x || 5.2.x || 5.3.x || 5.4.x || 5.5.x || 5.6.x || 5.7.x || 5.8.x
+      typescript: 5.0.x || 5.1.x || 5.2.x || 5.3.x || 5.4.x || 5.5.x || 5.6.x || 5.7.x || 5.8.x || 5.9.x
 
   typescript-eslint@8.47.0:
     resolution: {integrity: sha512-Lwe8i2XQ3WoMjua/r1PHrCTpkubPYJCAfOurtn+mtTzqB6jNd+14n9UN1bJ4s3F49x9ixAm0FLflB/JzQ57M8Q==}
@@ -2076,9 +2082,9 @@ packages:
   xmlchars@2.2.0:
     resolution: {integrity: sha512-JZnDKK8B0RCDw84FNdDAIpZK+JuJw+s7Lz8nksI7SIuU3UXJJslUthsi+uWBUYOwPFwW7W7PRLRfUKpxjtjFCw==}
 
-  yaml@2.6.1:
-    resolution: {integrity: sha512-7r0XPzioN/Q9kXBro/XPnA6kznR73DHq+GXh5ON7ZozRO6aMjbmiBuKste2wslTFkC5d1dw0GooOCepZXJ2SAg==}
-    engines: {node: '>= 14'}
+  yaml@2.8.1:
+    resolution: {integrity: sha512-lcYcMxX2PO9XMGvAJkJ3OsNMw+/7FKes7/hgerGUYWIoWu5j/+YQqcZr5JnPZWzOsEBgMbSbiSTn/dv/69Mkpw==}
+    engines: {node: '>= 14.6'}
     hasBin: true
 
   yocto-queue@0.1.0:
@@ -2431,10 +2437,12 @@ snapshots:
       '@eslint/core': 0.17.0
       levn: 0.4.1
 
-  '@gerrit0/mini-shiki@1.27.2':
+  '@gerrit0/mini-shiki@3.17.0':
     dependencies:
-      '@shikijs/engine-oniguruma': 1.29.2
-      '@shikijs/types': 1.29.2
+      '@shikijs/engine-oniguruma': 3.17.0
+      '@shikijs/langs': 3.17.0
+      '@shikijs/themes': 3.17.0
+      '@shikijs/types': 3.17.0
       '@shikijs/vscode-textmate': 10.0.2
 
   '@humanfs/core@0.19.1': {}
@@ -2672,12 +2680,20 @@ snapshots:
   '@rollup/rollup-win32-x64-msvc@4.52.5':
     optional: true
 
-  '@shikijs/engine-oniguruma@1.29.2':
+  '@shikijs/engine-oniguruma@3.17.0':
     dependencies:
-      '@shikijs/types': 1.29.2
+      '@shikijs/types': 3.17.0
       '@shikijs/vscode-textmate': 10.0.2
 
-  '@shikijs/types@1.29.2':
+  '@shikijs/langs@3.17.0':
+    dependencies:
+      '@shikijs/types': 3.17.0
+
+  '@shikijs/themes@3.17.0':
+    dependencies:
+      '@shikijs/types': 3.17.0
+
+  '@shikijs/types@3.17.0':
     dependencies:
       '@shikijs/vscode-textmate': 10.0.2
       '@types/hast': 3.0.4
@@ -2847,7 +2863,7 @@ snapshots:
       '@typescript-eslint/types': 8.47.0
       eslint-visitor-keys: 4.2.1
 
-  '@vitest/coverage-v8@4.0.4(vitest@4.0.4(@types/node@24.9.1)(jsdom@27.0.0(postcss@8.5.6))(yaml@2.6.1))':
+  '@vitest/coverage-v8@4.0.4(vitest@4.0.4(@types/node@24.9.1)(jsdom@27.0.0(postcss@8.5.6))(yaml@2.8.1))':
     dependencies:
       '@bcoe/v8-coverage': 1.0.2
       '@vitest/utils': 4.0.4
@@ -2860,7 +2876,7 @@ snapshots:
       magicast: 0.3.5
       std-env: 3.10.0
       tinyrainbow: 3.0.3
-      vitest: 4.0.4(@types/node@24.9.1)(jsdom@27.0.0(postcss@8.5.6))(yaml@2.6.1)
+      vitest: 4.0.4(@types/node@24.9.1)(jsdom@27.0.0(postcss@8.5.6))(yaml@2.8.1)
     transitivePeerDependencies:
       - supports-color
 
@@ -2873,13 +2889,13 @@ snapshots:
       chai: 6.2.0
       tinyrainbow: 3.0.3
 
-  '@vitest/mocker@4.0.4(vite@7.1.12(@types/node@24.9.1)(yaml@2.6.1))':
+  '@vitest/mocker@4.0.4(vite@7.1.12(@types/node@24.9.1)(yaml@2.8.1))':
     dependencies:
       '@vitest/spy': 4.0.4
       estree-walker: 3.0.3
       magic-string: 0.30.21
     optionalDependencies:
-      vite: 7.1.12(@types/node@24.9.1)(yaml@2.6.1)
+      vite: 7.1.12(@types/node@24.9.1)(yaml@2.8.1)
 
   '@vitest/pretty-format@4.0.4':
     dependencies:
@@ -3890,18 +3906,18 @@ snapshots:
     dependencies:
       prelude-ls: 1.2.1
 
-  typedoc-plugin-markdown@4.4.2(typedoc@0.27.9(typescript@5.1.6)):
+  typedoc-plugin-markdown@4.4.2(typedoc@0.28.15(typescript@5.1.6)):
     dependencies:
-      typedoc: 0.27.9(typescript@5.1.6)
+      typedoc: 0.28.15(typescript@5.1.6)
 
-  typedoc@0.27.9(typescript@5.1.6):
+  typedoc@0.28.15(typescript@5.1.6):
     dependencies:
-      '@gerrit0/mini-shiki': 1.27.2
+      '@gerrit0/mini-shiki': 3.17.0
       lunr: 2.3.9
       markdown-it: 14.1.0
       minimatch: 9.0.5
       typescript: 5.1.6
-      yaml: 2.6.1
+      yaml: 2.8.1
 
   typescript-eslint@8.47.0(eslint@9.39.1)(typescript@5.1.6):
     dependencies:
@@ -3926,7 +3942,7 @@ snapshots:
     dependencies:
       punycode: 2.3.1
 
-  vite@7.1.12(@types/node@24.9.1)(yaml@2.6.1):
+  vite@7.1.12(@types/node@24.9.1)(yaml@2.8.1):
     dependencies:
       esbuild: 0.25.11
       fdir: 6.5.0(picomatch@4.0.3)
@@ -3937,12 +3953,12 @@ snapshots:
     optionalDependencies:
       '@types/node': 24.9.1
       fsevents: 2.3.3
-      yaml: 2.6.1
+      yaml: 2.8.1
 
-  vitest@4.0.4(@types/node@24.9.1)(jsdom@27.0.0(postcss@8.5.6))(yaml@2.6.1):
+  vitest@4.0.4(@types/node@24.9.1)(jsdom@27.0.0(postcss@8.5.6))(yaml@2.8.1):
     dependencies:
       '@vitest/expect': 4.0.4
-      '@vitest/mocker': 4.0.4(vite@7.1.12(@types/node@24.9.1)(yaml@2.6.1))
+      '@vitest/mocker': 4.0.4(vite@7.1.12(@types/node@24.9.1)(yaml@2.8.1))
       '@vitest/pretty-format': 4.0.4
       '@vitest/runner': 4.0.4
       '@vitest/snapshot': 4.0.4
@@ -3959,7 +3975,7 @@ snapshots:
       tinyexec: 0.3.2
       tinyglobby: 0.2.15
       tinyrainbow: 3.0.3
-      vite: 7.1.12(@types/node@24.9.1)(yaml@2.6.1)
+      vite: 7.1.12(@types/node@24.9.1)(yaml@2.8.1)
       why-is-node-running: 2.3.0
     optionalDependencies:
       '@types/node': 24.9.1
@@ -4012,6 +4028,6 @@ snapshots:
 
   xmlchars@2.2.0: {}
 
-  yaml@2.6.1: {}
+  yaml@2.8.1: {}
 
   yocto-queue@0.1.0: {}
