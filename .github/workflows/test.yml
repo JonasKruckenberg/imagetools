@@ -32,7 +32,7 @@ jobs:
       - name: Run unit tests
         run: pnpm run test
 
-      - uses: actions/upload-artifact@v5
+      - uses: actions/upload-artifact@v6
         if: failure()
         with:
           name: image-diffs
