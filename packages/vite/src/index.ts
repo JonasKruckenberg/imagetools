@@ -75,7 +75,7 @@ export function imagetools(userOptions: Partial<VitePluginOptions> = {}): Plugin
       basePath = createBasePath(viteConfig.base)
     },
     async load(id) {
-      if (!filter(id)) return null
+      if (/\?(url|raw)$/.test(id) || !filter(id)) return null
 
       const srcURL = parseURL(id)
       const pathname = decodeURIComponent(srcURL.pathname)
