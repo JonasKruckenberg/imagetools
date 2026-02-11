@@ -1,7 +1,7 @@
 import { basename, extname } from 'node:path'
 import { relative } from 'node:path/posix'
 import { statSync, mkdirSync, createReadStream } from 'node:fs'
-import { writeFile, opendir, stat, rm } from 'node:fs/promises'
+import { readFile, writeFile, opendir, stat, rm } from 'node:fs/promises'
 import { normalizePath, type Plugin, type ResolvedConfig } from 'vite'
 import {
   applyTransforms,
@@ -139,9 +139,11 @@ export function imagetools(userOptions: Partial<VitePluginOptions> = {}): Plugin
       const executeTransform = async (id: string, imageConfig: ImageConfig) => {
         let image: Sharp | undefined
         let metadata: ImageMetadata
+        let cachedBuffer: Buffer | undefined
 
         if (cacheOptions.enabled && (statSync(`${cacheOptions.dir}/${id}`, { throwIfNoEntry: false })?.size ?? 0) > 0) {
-          image = sharp(`${cacheOptions.dir}/${id}`)
+          cachedBuffer = await readFile(`${cacheOptions.dir}/${id}`)
+          image = sharp(cachedBuffer)
           metadata = (await image.metadata()) as ImageMetadata
           // we set the format on the metadata during transformation using the format directive
           // when restoring from the cache, we use sharp to read it from the image and that results in a different value for avif images
@@ -154,20 +156,22 @@ export function imagetools(userOptions: Partial<VitePluginOptions> = {}): Plugin
           image = res.image
           metadata = res.metadata
           if (cacheOptions.enabled) {
-            await writeFile(`${cacheOptions.dir}/${id}`, await image.toBuffer())
+            cachedBuffer = await image.toBuffer()
+            await writeFile(`${cacheOptions.dir}/${id}`, cachedBuffer)
           }
         }
 
         generatedImages.set(id, { image, metadata })
 
         if (directives.has('inline')) {
-          metadata.src = `data:image/${metadata.format};base64,${(await image.toBuffer()).toString('base64')}`
+          const inlineBuffer = cachedBuffer || await image.toBuffer()
+          metadata.src = `data:image/${metadata.format};base64,${inlineBuffer.toString('base64')}`
         } else if (viteConfig.command === 'serve') {
           metadata.src = (viteConfig?.server?.origin ?? '') + basePath + id
         } else {
           const fileHandle = this.emitFile({
             name: basename(pathname, extname(pathname)) + `.${metadata.format}`,
-            source: await image.toBuffer(),
+            source: cachedBuffer || await image.toBuffer(),
             type: 'asset',
             originalFileName: normalizePath(relative(viteConfig.root, srcURL.pathname))
           })
