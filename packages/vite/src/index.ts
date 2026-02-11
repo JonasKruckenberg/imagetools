@@ -164,14 +164,14 @@ export function imagetools(userOptions: Partial<VitePluginOptions> = {}): Plugin
         generatedImages.set(id, { image, metadata })
 
         if (directives.has('inline')) {
-          const inlineBuffer = cachedBuffer || await image.toBuffer()
+          const inlineBuffer = cachedBuffer || (await image.toBuffer())
           metadata.src = `data:image/${metadata.format};base64,${inlineBuffer.toString('base64')}`
         } else if (viteConfig.command === 'serve') {
           metadata.src = (viteConfig?.server?.origin ?? '') + basePath + id
         } else {
           const fileHandle = this.emitFile({
             name: basename(pathname, extname(pathname)) + `.${metadata.format}`,
-            source: cachedBuffer || await image.toBuffer(),
+            source: cachedBuffer || (await image.toBuffer()),
             type: 'asset',
             originalFileName: normalizePath(relative(viteConfig.root, srcURL.pathname))
           })
