@@ -1,5 +1,11 @@
 # Change Log
 
+## 9.0.3
+
+### Patch Changes
+
+- e4e74d4: fix: use raw cached bytes instead of re-encoding through sharp
+
 ## 9.0.2
 
 ### Patch Changes
