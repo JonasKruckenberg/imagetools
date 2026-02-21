@@ -6,6 +6,6 @@
 
 # Type Alias: PositionValue
 
-> **PositionValue**: *typeof* [`positionValues`](../variables/positionValues.md)\[`number`\]
+> **PositionValue** = *typeof* [`positionValues`](../variables/positionValues.md)\[`number`\]
 
-Defined in: [packages/core/src/transforms/position.ts:38](https://github.com/JonasKruckenberg/imagetools/blob/87fff79acddac50a50f7aee7c6a68a0623fbc68f/packages/core/src/transforms/position.ts#L38)
+Defined in: [packages/core/src/transforms/position.ts:38](https://github.com/JonasKruckenberg/imagetools/blob/aa84664d044e4b733cdf7005c6730584bc92ec90/packages/core/src/transforms/position.ts#L38)

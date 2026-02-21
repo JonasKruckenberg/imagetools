@@ -8,9 +8,9 @@
 
 > `const` **builtinOutputFormats**: `object`
 
-Defined in: [packages/core/src/output-formats.ts:112](https://github.com/JonasKruckenberg/imagetools/blob/87fff79acddac50a50f7aee7c6a68a0623fbc68f/packages/core/src/output-formats.ts#L112)
+Defined in: [packages/core/src/output-formats.ts:112](https://github.com/JonasKruckenberg/imagetools/blob/aa84664d044e4b733cdf7005c6730584bc92ec90/packages/core/src/output-formats.ts#L112)
 
-## Type declaration
+## Type Declaration
 
 ### img
 

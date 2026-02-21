@@ -6,9 +6,9 @@
 
 # Type Alias: OutputFormat()
 
-> **OutputFormat**: (`args`?) => (`metadata`) => `unknown`
+> **OutputFormat** = (`args?`) => (`metadata`) => `unknown`
 
-Defined in: [packages/core/src/types.ts:71](https://github.com/JonasKruckenberg/imagetools/blob/87fff79acddac50a50f7aee7c6a68a0623fbc68f/packages/core/src/types.ts#L71)
+Defined in: [packages/core/src/types.ts:71](https://github.com/JonasKruckenberg/imagetools/blob/aa84664d044e4b733cdf7005c6730584bc92ec90/packages/core/src/types.ts#L71)
 
 The JS object returned by the image import.
 
@@ -20,7 +20,7 @@ The JS object returned by the image import.
 
 ## Returns
 
-`Function`
+> (`metadata`): `unknown`
 
 ### Parameters
 

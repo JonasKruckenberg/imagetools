@@ -6,9 +6,9 @@
 
 # Function: resolveConfigs()
 
-> **resolveConfigs**(`entries`, `outputFormats`): `Record`\<`string`, `string` \| `string`[]\>[]
+> **resolveConfigs**(`entries`, `outputFormats`): `ImageConfig`[]
 
-Defined in: [packages/core/src/lib/resolve-configs.ts:17](https://github.com/JonasKruckenberg/imagetools/blob/87fff79acddac50a50f7aee7c6a68a0623fbc68f/packages/core/src/lib/resolve-configs.ts#L17)
+Defined in: [packages/core/src/lib/resolve-configs.ts:17](https://github.com/JonasKruckenberg/imagetools/blob/aa84664d044e4b733cdf7005c6730584bc92ec90/packages/core/src/lib/resolve-configs.ts#L17)
 
 This function builds up all possible combinations the given entries can be combined
 and returns it as an array of objects that can be given to a the transforms.
@@ -27,6 +27,6 @@ The url parameter entries
 
 ## Returns
 
-`Record`\<`string`, `string` \| `string`[]\>[]
+`ImageConfig`[]
 
 An array of directive options

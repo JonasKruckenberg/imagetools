@@ -6,7 +6,7 @@
 
 # Interface: ResizeOptions
 
-Defined in: [packages/core/src/transforms/resize.ts:9](https://github.com/JonasKruckenberg/imagetools/blob/87fff79acddac50a50f7aee7c6a68a0623fbc68f/packages/core/src/transforms/resize.ts#L9)
+Defined in: [packages/core/src/transforms/resize.ts:9](https://github.com/JonasKruckenberg/imagetools/blob/aa84664d044e4b733cdf7005c6730584bc92ec90/packages/core/src/transforms/resize.ts#L9)
 
 ## Properties
 
@@ -14,7 +14,7 @@ Defined in: [packages/core/src/transforms/resize.ts:9](https://github.com/JonasK
 
 > **allowUpscale**: `""` \| `"true"`
 
-Defined in: [packages/core/src/transforms/resize.ts:17](https://github.com/JonasKruckenberg/imagetools/blob/87fff79acddac50a50f7aee7c6a68a0623fbc68f/packages/core/src/transforms/resize.ts#L17)
+Defined in: [packages/core/src/transforms/resize.ts:17](https://github.com/JonasKruckenberg/imagetools/blob/aa84664d044e4b733cdf7005c6730584bc92ec90/packages/core/src/transforms/resize.ts#L17)
 
 Whether to allow making images larger. This is generally a waste, so is disabled by default.
 
@@ -24,7 +24,7 @@ Whether to allow making images larger. This is generally a waste, so is disabled
 
 > **aspect**: `string`
 
-Defined in: [packages/core/src/transforms/resize.ts:15](https://github.com/JonasKruckenberg/imagetools/blob/87fff79acddac50a50f7aee7c6a68a0623fbc68f/packages/core/src/transforms/resize.ts#L15)
+Defined in: [packages/core/src/transforms/resize.ts:15](https://github.com/JonasKruckenberg/imagetools/blob/aa84664d044e4b733cdf7005c6730584bc92ec90/packages/core/src/transforms/resize.ts#L15)
 
 aspect ratio
 
@@ -34,7 +34,7 @@ aspect ratio
 
 > **basePixels**: `string`
 
-Defined in: [packages/core/src/transforms/resize.ts:22](https://github.com/JonasKruckenberg/imagetools/blob/87fff79acddac50a50f7aee7c6a68a0623fbc68f/packages/core/src/transforms/resize.ts#L22)
+Defined in: [packages/core/src/transforms/resize.ts:22](https://github.com/JonasKruckenberg/imagetools/blob/aa84664d044e4b733cdf7005c6730584bc92ec90/packages/core/src/transforms/resize.ts#L22)
 
 The width in pixels for the 1x pixel density descriptor.
 If supplied, output will use pixel density descriptors rather than width descriptors.
@@ -45,7 +45,7 @@ If supplied, output will use pixel density descriptors rather than width descrip
 
 > **h**: `string`
 
-Defined in: [packages/core/src/transforms/resize.ts:13](https://github.com/JonasKruckenberg/imagetools/blob/87fff79acddac50a50f7aee7c6a68a0623fbc68f/packages/core/src/transforms/resize.ts#L13)
+Defined in: [packages/core/src/transforms/resize.ts:13](https://github.com/JonasKruckenberg/imagetools/blob/aa84664d044e4b733cdf7005c6730584bc92ec90/packages/core/src/transforms/resize.ts#L13)
 
 height in pixels
 
@@ -55,6 +55,6 @@ height in pixels
 
 > **w**: `string`
 
-Defined in: [packages/core/src/transforms/resize.ts:11](https://github.com/JonasKruckenberg/imagetools/blob/87fff79acddac50a50f7aee7c6a68a0623fbc68f/packages/core/src/transforms/resize.ts#L11)
+Defined in: [packages/core/src/transforms/resize.ts:11](https://github.com/JonasKruckenberg/imagetools/blob/aa84664d044e4b733cdf7005c6730584bc92ec90/packages/core/src/transforms/resize.ts#L11)
 
 width in pixels

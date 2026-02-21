@@ -6,6 +6,6 @@
 
 # Type Alias: FitValue
 
-> **FitValue**: *typeof* [`fitValues`](../variables/fitValues.md)\[`number`\]
+> **FitValue** = *typeof* [`fitValues`](../variables/fitValues.md)\[`number`\]
 
 Defined in: packages/core/dist/transforms/fit.d.ts:3

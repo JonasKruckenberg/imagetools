@@ -6,7 +6,7 @@
 
 # Function: applyTransforms()
 
-> **applyTransforms**(`transforms`, `image`, `removeMetadata`?): `Promise`\<[`TransformResult`](../interfaces/TransformResult.md)\>
+> **applyTransforms**(`transforms`, `image`, `removeMetadata?`): `Promise`\<[`TransformResult`](../interfaces/TransformResult.md)\>
 
 Defined in: packages/core/dist/lib/apply-transforms.d.ts:3
 

@@ -6,16 +6,16 @@
 
 # Function: imagetools()
 
-> **imagetools**(`userOptions`): `Plugin`
+> **imagetools**(`userOptions?`): `Plugin$1`
 
-Defined in: [packages/vite/src/index.ts:43](https://github.com/JonasKruckenberg/imagetools/blob/87fff79acddac50a50f7aee7c6a68a0623fbc68f/packages/vite/src/index.ts#L43)
+Defined in: [packages/vite/src/index.ts:47](https://github.com/JonasKruckenberg/imagetools/blob/aa84664d044e4b733cdf7005c6730584bc92ec90/packages/vite/src/index.ts#L47)
 
 ## Parameters
 
-### userOptions
+### userOptions?
 
 `Partial`\<[`VitePluginOptions`](../types/interfaces/VitePluginOptions.md)\> = `{}`
 
 ## Returns
 
-`Plugin`
+`Plugin$1`

@@ -6,7 +6,7 @@
 
 # Function: generateTransforms()
 
-> **generateTransforms**(`config`, `factories`, `manualSearchParams`, `logger`?): `object`
+> **generateTransforms**(`config`, `factories`, `manualSearchParams`, `logger?`): `object`
 
 Defined in: packages/core/dist/lib/generate-transforms.d.ts:2
 

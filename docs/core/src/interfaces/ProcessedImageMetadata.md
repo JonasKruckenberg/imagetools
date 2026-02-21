@@ -6,7 +6,7 @@
 
 # Interface: ProcessedImageMetadata
 
-Defined in: [packages/core/src/types.ts:5](https://github.com/JonasKruckenberg/imagetools/blob/87fff79acddac50a50f7aee7c6a68a0623fbc68f/packages/core/src/types.ts#L5)
+Defined in: [packages/core/src/types.ts:5](https://github.com/JonasKruckenberg/imagetools/blob/aa84664d044e4b733cdf7005c6730584bc92ec90/packages/core/src/types.ts#L5)
 
 ## Extends
 
@@ -22,7 +22,7 @@ Defined in: [packages/core/src/types.ts:5](https://github.com/JonasKruckenberg/i
 
 > `optional` **allowUpscale**: `boolean`
 
-Defined in: [packages/core/src/types.ts:11](https://github.com/JonasKruckenberg/imagetools/blob/87fff79acddac50a50f7aee7c6a68a0623fbc68f/packages/core/src/types.ts#L11)
+Defined in: [packages/core/src/types.ts:11](https://github.com/JonasKruckenberg/imagetools/blob/aa84664d044e4b733cdf7005c6730584bc92ec90/packages/core/src/types.ts#L11)
 
 #### Inherited from
 
@@ -34,7 +34,7 @@ Defined in: [packages/core/src/types.ts:11](https://github.com/JonasKruckenberg/
 
 > `optional` **aspect**: `number`
 
-Defined in: [packages/core/src/types.ts:12](https://github.com/JonasKruckenberg/imagetools/blob/87fff79acddac50a50f7aee7c6a68a0623fbc68f/packages/core/src/types.ts#L12)
+Defined in: [packages/core/src/types.ts:12](https://github.com/JonasKruckenberg/imagetools/blob/aa84664d044e4b733cdf7005c6730584bc92ec90/packages/core/src/types.ts#L12)
 
 #### Inherited from
 
@@ -42,13 +42,39 @@ Defined in: [packages/core/src/types.ts:12](https://github.com/JonasKruckenberg/
 
 ***
 
+### autoOrient
+
+> **autoOrient**: `object`
+
+Defined in: node\_modules/.pnpm/sharp@0.34.1/node\_modules/sharp/lib/index.d.ts:1157
+
+Any changed metadata after the image orientation is applied.
+
+#### height
+
+> **height**: `number`
+
+Number of pixels high (EXIF orientation is taken into consideration)
+
+#### width
+
+> **width**: `number`
+
+Number of pixels wide (EXIF orientation is taken into consideration)
+
+#### Inherited from
+
+[`ImageMetadata`](ImageMetadata.md).[`autoOrient`](ImageMetadata.md#autoorient)
+
+***
+
 ### background?
 
-> `optional` **background**: `number` \| \{ `b`: `number`; `g`: `number`; `r`: `number`; \}
+> `optional` **background**: \{ `b`: `number`; `g`: `number`; `r`: `number`; \} \| \{ `gray`: `number`; \}
 
-Defined in: node\_modules/.pnpm/sharp@0.33.4/node\_modules/sharp/lib/index.d.ts:1102
+Defined in: node\_modules/.pnpm/sharp@0.34.1/node\_modules/sharp/lib/index.d.ts:1206
 
-Default background colour, if present, for PNG (bKGD) and GIF images, either an RGB Object or a single greyscale value
+Default background colour, if present, for PNG (bKGD) and GIF images
 
 #### Inherited from
 
@@ -60,7 +86,7 @@ Default background colour, if present, for PNG (bKGD) and GIF images, either an 
 
 > `optional` **backgroundDirective**: `string`
 
-Defined in: [packages/core/src/types.ts:13](https://github.com/JonasKruckenberg/imagetools/blob/87fff79acddac50a50f7aee7c6a68a0623fbc68f/packages/core/src/types.ts#L13)
+Defined in: [packages/core/src/types.ts:13](https://github.com/JonasKruckenberg/imagetools/blob/aa84664d044e4b733cdf7005c6730584bc92ec90/packages/core/src/types.ts#L13)
 
 #### Inherited from
 
@@ -68,11 +94,25 @@ Defined in: [packages/core/src/types.ts:13](https://github.com/JonasKruckenberg/
 
 ***
 
+### bitsPerSample?
+
+> `optional` **bitsPerSample**: `number`
+
+Defined in: node\_modules/.pnpm/sharp@0.34.1/node\_modules/sharp/lib/index.d.ts:1178
+
+Number of bits per sample for each channel (GIF, PNG).
+
+#### Inherited from
+
+[`ImageMetadata`](ImageMetadata.md).[`bitsPerSample`](ImageMetadata.md#bitspersample)
+
+***
+
 ### blur?
 
 > `optional` **blur**: `number` \| `boolean`
 
-Defined in: [packages/core/src/types.ts:14](https://github.com/JonasKruckenberg/imagetools/blob/87fff79acddac50a50f7aee7c6a68a0623fbc68f/packages/core/src/types.ts#L14)
+Defined in: [packages/core/src/types.ts:14](https://github.com/JonasKruckenberg/imagetools/blob/aa84664d044e4b733cdf7005c6730584bc92ec90/packages/core/src/types.ts#L14)
 
 #### Inherited from
 
@@ -84,7 +124,7 @@ Defined in: [packages/core/src/types.ts:14](https://github.com/JonasKruckenberg/
 
 > `optional` **brightness**: `number` \| `""`
 
-Defined in: [packages/core/src/types.ts:15](https://github.com/JonasKruckenberg/imagetools/blob/87fff79acddac50a50f7aee7c6a68a0623fbc68f/packages/core/src/types.ts#L15)
+Defined in: [packages/core/src/types.ts:15](https://github.com/JonasKruckenberg/imagetools/blob/aa84664d044e4b733cdf7005c6730584bc92ec90/packages/core/src/types.ts#L15)
 
 #### Inherited from
 
@@ -96,7 +136,7 @@ Defined in: [packages/core/src/types.ts:15](https://github.com/JonasKruckenberg/
 
 > `optional` **channels**: `Channels`
 
-Defined in: node\_modules/.pnpm/sharp@0.33.4/node\_modules/sharp/lib/index.d.ts:1066
+Defined in: node\_modules/.pnpm/sharp@0.34.1/node\_modules/sharp/lib/index.d.ts:1166
 
 Number of bands e.g. 3 for sRGB, 4 for CMYK
 
@@ -106,11 +146,11 @@ Number of bands e.g. 3 for sRGB, 4 for CMYK
 
 ***
 
-### chromaSubsampling
+### chromaSubsampling?
 
-> **chromaSubsampling**: `string`
+> `optional` **chromaSubsampling**: `string`
 
-Defined in: node\_modules/.pnpm/sharp@0.33.4/node\_modules/sharp/lib/index.d.ts:1072
+Defined in: node\_modules/.pnpm/sharp@0.34.1/node\_modules/sharp/lib/index.d.ts:1172
 
 String containing JPEG chroma subsampling, 4:2:0 or 4:4:4 for RGB, 4:2:0:4 or 4:4:4:4 for CMYK
 
@@ -120,11 +160,25 @@ String containing JPEG chroma subsampling, 4:2:0 or 4:4:4 for RGB, 4:2:0:4 or 4:
 
 ***
 
+### comments?
+
+> `optional` **comments**: `CommentsMetadata`[]
+
+Defined in: node\_modules/.pnpm/sharp@0.34.1/node\_modules/sharp/lib/index.d.ts:1216
+
+Array of keyword/text pairs representing PNG text blocks, if present.
+
+#### Inherited from
+
+[`ImageMetadata`](ImageMetadata.md).[`comments`](ImageMetadata.md#comments)
+
+***
+
 ### compression?
 
 > `optional` **compression**: `"av1"` \| `"hevc"`
 
-Defined in: node\_modules/.pnpm/sharp@0.33.4/node\_modules/sharp/lib/index.d.ts:1100
+Defined in: node\_modules/.pnpm/sharp@0.34.1/node\_modules/sharp/lib/index.d.ts:1204
 
 The encoder used to compress an HEIF file, `av1` (AVIF) or `hevc` (HEIC)
 
@@ -138,7 +192,7 @@ The encoder used to compress an HEIF file, `av1` (AVIF) or `hevc` (HEIC)
 
 > `optional` **delay**: `number`[]
 
-Defined in: node\_modules/.pnpm/sharp@0.33.4/node\_modules/sharp/lib/index.d.ts:1082
+Defined in: node\_modules/.pnpm/sharp@0.34.1/node\_modules/sharp/lib/index.d.ts:1186
 
 Delay in ms between each page in an animated image, provided as an array of integers.
 
@@ -152,7 +206,7 @@ Delay in ms between each page in an animated image, provided as an array of inte
 
 > `optional` **density**: `number`
 
-Defined in: node\_modules/.pnpm/sharp@0.33.4/node\_modules/sharp/lib/index.d.ts:1070
+Defined in: node\_modules/.pnpm/sharp@0.34.1/node\_modules/sharp/lib/index.d.ts:1170
 
 Number of pixels per inch (DPI), if present
 
@@ -166,7 +220,7 @@ Number of pixels per inch (DPI), if present
 
 > `optional` **depth**: `string`
 
-Defined in: node\_modules/.pnpm/sharp@0.33.4/node\_modules/sharp/lib/index.d.ts:1068
+Defined in: node\_modules/.pnpm/sharp@0.34.1/node\_modules/sharp/lib/index.d.ts:1168
 
 Name of pixel depth format e.g. uchar, char, ushort, float ...
 
@@ -178,9 +232,9 @@ Name of pixel depth format e.g. uchar, char, ushort, float ...
 
 ### exif?
 
-> `optional` **exif**: `Buffer`
+> `optional` **exif**: `Buffer`\<`ArrayBufferLike`\>
 
-Defined in: node\_modules/.pnpm/sharp@0.33.4/node\_modules/sharp/lib/index.d.ts:1090
+Defined in: node\_modules/.pnpm/sharp@0.34.1/node\_modules/sharp/lib/index.d.ts:1194
 
 Buffer containing raw EXIF data, if present
 
@@ -194,7 +248,7 @@ Buffer containing raw EXIF data, if present
 
 > `optional` **fit**: `string`
 
-Defined in: [packages/core/src/types.ts:16](https://github.com/JonasKruckenberg/imagetools/blob/87fff79acddac50a50f7aee7c6a68a0623fbc68f/packages/core/src/types.ts#L16)
+Defined in: [packages/core/src/types.ts:16](https://github.com/JonasKruckenberg/imagetools/blob/aa84664d044e4b733cdf7005c6730584bc92ec90/packages/core/src/types.ts#L16)
 
 #### Inherited from
 
@@ -206,7 +260,7 @@ Defined in: [packages/core/src/types.ts:16](https://github.com/JonasKruckenberg/
 
 > `optional` **flatten**: `true`
 
-Defined in: [packages/core/src/types.ts:19](https://github.com/JonasKruckenberg/imagetools/blob/87fff79acddac50a50f7aee7c6a68a0623fbc68f/packages/core/src/types.ts#L19)
+Defined in: [packages/core/src/types.ts:19](https://github.com/JonasKruckenberg/imagetools/blob/aa84664d044e4b733cdf7005c6730584bc92ec90/packages/core/src/types.ts#L19)
 
 #### Inherited from
 
@@ -218,7 +272,7 @@ Defined in: [packages/core/src/types.ts:19](https://github.com/JonasKruckenberg/
 
 > `optional` **flip**: `true`
 
-Defined in: [packages/core/src/types.ts:17](https://github.com/JonasKruckenberg/imagetools/blob/87fff79acddac50a50f7aee7c6a68a0623fbc68f/packages/core/src/types.ts#L17)
+Defined in: [packages/core/src/types.ts:17](https://github.com/JonasKruckenberg/imagetools/blob/aa84664d044e4b733cdf7005c6730584bc92ec90/packages/core/src/types.ts#L17)
 
 #### Inherited from
 
@@ -230,7 +284,7 @@ Defined in: [packages/core/src/types.ts:17](https://github.com/JonasKruckenberg/
 
 > `optional` **flop**: `true`
 
-Defined in: [packages/core/src/types.ts:18](https://github.com/JonasKruckenberg/imagetools/blob/87fff79acddac50a50f7aee7c6a68a0623fbc68f/packages/core/src/types.ts#L18)
+Defined in: [packages/core/src/types.ts:18](https://github.com/JonasKruckenberg/imagetools/blob/aa84664d044e4b733cdf7005c6730584bc92ec90/packages/core/src/types.ts#L18)
 
 #### Inherited from
 
@@ -242,7 +296,7 @@ Defined in: [packages/core/src/types.ts:18](https://github.com/JonasKruckenberg/
 
 > `optional` **format**: keyof FormatEnum
 
-Defined in: node\_modules/.pnpm/sharp@0.33.4/node\_modules/sharp/lib/index.d.ts:1056
+Defined in: node\_modules/.pnpm/sharp@0.34.1/node\_modules/sharp/lib/index.d.ts:1149
 
 Name of decoder used to decompress image data e.g. jpeg, png, webp, gif, svg
 
@@ -256,7 +310,7 @@ Name of decoder used to decompress image data e.g. jpeg, png, webp, gif, svg
 
 > `optional` **formatMagick**: `string`
 
-Defined in: node\_modules/.pnpm/sharp@0.33.4/node\_modules/sharp/lib/index.d.ts:1110
+Defined in: node\_modules/.pnpm/sharp@0.34.1/node\_modules/sharp/lib/index.d.ts:1214
 
 String containing format for images loaded via *magick
 
@@ -270,7 +324,7 @@ String containing format for images loaded via *magick
 
 > `optional` **grayscale**: `true`
 
-Defined in: [packages/core/src/types.ts:22](https://github.com/JonasKruckenberg/imagetools/blob/87fff79acddac50a50f7aee7c6a68a0623fbc68f/packages/core/src/types.ts#L22)
+Defined in: [packages/core/src/types.ts:22](https://github.com/JonasKruckenberg/imagetools/blob/aa84664d044e4b733cdf7005c6730584bc92ec90/packages/core/src/types.ts#L22)
 
 #### Inherited from
 
@@ -282,7 +336,7 @@ Defined in: [packages/core/src/types.ts:22](https://github.com/JonasKruckenberg/
 
 > `optional` **hasAlpha**: `boolean`
 
-Defined in: node\_modules/.pnpm/sharp@0.33.4/node\_modules/sharp/lib/index.d.ts:1088
+Defined in: node\_modules/.pnpm/sharp@0.34.1/node\_modules/sharp/lib/index.d.ts:1192
 
 Boolean indicating the presence of an alpha transparency channel
 
@@ -296,7 +350,7 @@ Boolean indicating the presence of an alpha transparency channel
 
 > `optional` **hasProfile**: `boolean`
 
-Defined in: node\_modules/.pnpm/sharp@0.33.4/node\_modules/sharp/lib/index.d.ts:1086
+Defined in: node\_modules/.pnpm/sharp@0.34.1/node\_modules/sharp/lib/index.d.ts:1190
 
 Boolean indicating the presence of an embedded ICC profile
 
@@ -310,7 +364,7 @@ Boolean indicating the presence of an embedded ICC profile
 
 > `optional` **height**: `number`
 
-Defined in: node\_modules/.pnpm/sharp@0.33.4/node\_modules/sharp/lib/index.d.ts:1062
+Defined in: node\_modules/.pnpm/sharp@0.34.1/node\_modules/sharp/lib/index.d.ts:1155
 
 Number of pixels high (EXIF orientation is not taken into consideration)
 
@@ -324,7 +378,7 @@ Number of pixels high (EXIF orientation is not taken into consideration)
 
 > `optional` **hue**: `number` \| `""`
 
-Defined in: [packages/core/src/types.ts:20](https://github.com/JonasKruckenberg/imagetools/blob/87fff79acddac50a50f7aee7c6a68a0623fbc68f/packages/core/src/types.ts#L20)
+Defined in: [packages/core/src/types.ts:20](https://github.com/JonasKruckenberg/imagetools/blob/aa84664d044e4b733cdf7005c6730584bc92ec90/packages/core/src/types.ts#L20)
 
 #### Inherited from
 
@@ -334,9 +388,9 @@ Defined in: [packages/core/src/types.ts:20](https://github.com/JonasKruckenberg/
 
 ### icc?
 
-> `optional` **icc**: `Buffer`
+> `optional` **icc**: `Buffer`\<`ArrayBufferLike`\>
 
-Defined in: node\_modules/.pnpm/sharp@0.33.4/node\_modules/sharp/lib/index.d.ts:1092
+Defined in: node\_modules/.pnpm/sharp@0.34.1/node\_modules/sharp/lib/index.d.ts:1196
 
 Buffer containing raw ICC profile data, if present
 
@@ -350,7 +404,7 @@ Buffer containing raw ICC profile data, if present
 
 > **image**: `Sharp`
 
-Defined in: [packages/core/src/types.ts:7](https://github.com/JonasKruckenberg/imagetools/blob/87fff79acddac50a50f7aee7c6a68a0623fbc68f/packages/core/src/types.ts#L7)
+Defined in: [packages/core/src/types.ts:7](https://github.com/JonasKruckenberg/imagetools/blob/aa84664d044e4b733cdf7005c6730584bc92ec90/packages/core/src/types.ts#L7)
 
 ***
 
@@ -358,7 +412,7 @@ Defined in: [packages/core/src/types.ts:7](https://github.com/JonasKruckenberg/i
 
 > `optional` **invert**: `true`
 
-Defined in: [packages/core/src/types.ts:21](https://github.com/JonasKruckenberg/imagetools/blob/87fff79acddac50a50f7aee7c6a68a0623fbc68f/packages/core/src/types.ts#L21)
+Defined in: [packages/core/src/types.ts:21](https://github.com/JonasKruckenberg/imagetools/blob/aa84664d044e4b733cdf7005c6730584bc92ec90/packages/core/src/types.ts#L21)
 
 #### Inherited from
 
@@ -368,9 +422,9 @@ Defined in: [packages/core/src/types.ts:21](https://github.com/JonasKruckenberg/
 
 ### iptc?
 
-> `optional` **iptc**: `Buffer`
+> `optional` **iptc**: `Buffer`\<`ArrayBufferLike`\>
 
-Defined in: node\_modules/.pnpm/sharp@0.33.4/node\_modules/sharp/lib/index.d.ts:1094
+Defined in: node\_modules/.pnpm/sharp@0.34.1/node\_modules/sharp/lib/index.d.ts:1198
 
 Buffer containing raw IPTC data, if present
 
@@ -380,11 +434,25 @@ Buffer containing raw IPTC data, if present
 
 ***
 
+### isPalette?
+
+> `optional` **isPalette**: `boolean`
+
+Defined in: node\_modules/.pnpm/sharp@0.34.1/node\_modules/sharp/lib/index.d.ts:1176
+
+Boolean indicating whether the image is palette-based (GIF, PNG).
+
+#### Inherited from
+
+[`ImageMetadata`](ImageMetadata.md).[`isPalette`](ImageMetadata.md#ispalette)
+
+***
+
 ### isProgressive?
 
 > `optional` **isProgressive**: `boolean`
 
-Defined in: node\_modules/.pnpm/sharp@0.33.4/node\_modules/sharp/lib/index.d.ts:1074
+Defined in: node\_modules/.pnpm/sharp@0.34.1/node\_modules/sharp/lib/index.d.ts:1174
 
 Boolean indicating whether the image is interlaced using a progressive scan
 
@@ -398,7 +466,7 @@ Boolean indicating whether the image is interlaced using a progressive scan
 
 > `optional` **kernel**: `"nearest"` \| `"cubic"` \| `"mitchell"` \| `"lanczos2"` \| `"lanczos3"`
 
-Defined in: [packages/core/src/types.ts:23](https://github.com/JonasKruckenberg/imagetools/blob/87fff79acddac50a50f7aee7c6a68a0623fbc68f/packages/core/src/types.ts#L23)
+Defined in: [packages/core/src/types.ts:23](https://github.com/JonasKruckenberg/imagetools/blob/aa84664d044e4b733cdf7005c6730584bc92ec90/packages/core/src/types.ts#L23)
 
 #### Inherited from
 
@@ -410,7 +478,7 @@ Defined in: [packages/core/src/types.ts:23](https://github.com/JonasKruckenberg/
 
 > `optional` **levels**: `LevelMetadata`[]
 
-Defined in: node\_modules/.pnpm/sharp@0.33.4/node\_modules/sharp/lib/index.d.ts:1104
+Defined in: node\_modules/.pnpm/sharp@0.34.1/node\_modules/sharp/lib/index.d.ts:1208
 
 Details of each level in a multi-level image provided as an array of objects, requires libvips compiled with support for OpenSlide
 
@@ -424,7 +492,7 @@ Details of each level in a multi-level image provided as an array of objects, re
 
 > `optional` **loop**: `number`
 
-Defined in: node\_modules/.pnpm/sharp@0.33.4/node\_modules/sharp/lib/index.d.ts:1080
+Defined in: node\_modules/.pnpm/sharp@0.34.1/node\_modules/sharp/lib/index.d.ts:1184
 
 Number of times to loop an animated image, zero refers to a continuous loop.
 
@@ -438,7 +506,7 @@ Number of times to loop an animated image, zero refers to a continuous loop.
 
 > `optional` **lossless**: `true`
 
-Defined in: [packages/core/src/types.ts:24](https://github.com/JonasKruckenberg/imagetools/blob/87fff79acddac50a50f7aee7c6a68a0623fbc68f/packages/core/src/types.ts#L24)
+Defined in: [packages/core/src/types.ts:24](https://github.com/JonasKruckenberg/imagetools/blob/aa84664d044e4b733cdf7005c6730584bc92ec90/packages/core/src/types.ts#L24)
 
 #### Inherited from
 
@@ -450,7 +518,7 @@ Defined in: [packages/core/src/types.ts:24](https://github.com/JonasKruckenberg/
 
 > `optional` **median**: `number`
 
-Defined in: [packages/core/src/types.ts:25](https://github.com/JonasKruckenberg/imagetools/blob/87fff79acddac50a50f7aee7c6a68a0623fbc68f/packages/core/src/types.ts#L25)
+Defined in: [packages/core/src/types.ts:25](https://github.com/JonasKruckenberg/imagetools/blob/aa84664d044e4b733cdf7005c6730584bc92ec90/packages/core/src/types.ts#L25)
 
 #### Inherited from
 
@@ -462,7 +530,7 @@ Defined in: [packages/core/src/types.ts:25](https://github.com/JonasKruckenberg/
 
 > `optional` **normalize**: `true`
 
-Defined in: [packages/core/src/types.ts:26](https://github.com/JonasKruckenberg/imagetools/blob/87fff79acddac50a50f7aee7c6a68a0623fbc68f/packages/core/src/types.ts#L26)
+Defined in: [packages/core/src/types.ts:26](https://github.com/JonasKruckenberg/imagetools/blob/aa84664d044e4b733cdf7005c6730584bc92ec90/packages/core/src/types.ts#L26)
 
 #### Inherited from
 
@@ -474,7 +542,7 @@ Defined in: [packages/core/src/types.ts:26](https://github.com/JonasKruckenberg/
 
 > `optional` **orientation**: `number`
 
-Defined in: node\_modules/.pnpm/sharp@0.33.4/node\_modules/sharp/lib/index.d.ts:1054
+Defined in: node\_modules/.pnpm/sharp@0.34.1/node\_modules/sharp/lib/index.d.ts:1147
 
 Number value of the EXIF Orientation header, if present
 
@@ -488,7 +556,7 @@ Number value of the EXIF Orientation header, if present
 
 > `optional` **pageHeight**: `number`
 
-Defined in: node\_modules/.pnpm/sharp@0.33.4/node\_modules/sharp/lib/index.d.ts:1078
+Defined in: node\_modules/.pnpm/sharp@0.34.1/node\_modules/sharp/lib/index.d.ts:1182
 
 Number of pixels high each page in a multi-page image will be.
 
@@ -502,7 +570,7 @@ Number of pixels high each page in a multi-page image will be.
 
 > `optional` **pagePrimary**: `number`
 
-Defined in: node\_modules/.pnpm/sharp@0.33.4/node\_modules/sharp/lib/index.d.ts:1084
+Defined in: node\_modules/.pnpm/sharp@0.34.1/node\_modules/sharp/lib/index.d.ts:1188
 
 Number of the primary page in a HEIF image
 
@@ -516,7 +584,7 @@ Number of the primary page in a HEIF image
 
 > `optional` **pages**: `number`
 
-Defined in: node\_modules/.pnpm/sharp@0.33.4/node\_modules/sharp/lib/index.d.ts:1076
+Defined in: node\_modules/.pnpm/sharp@0.34.1/node\_modules/sharp/lib/index.d.ts:1180
 
 Number of pages/frames contained within the image, with support for TIFF, HEIF, PDF, animated GIF and animated WebP
 
@@ -530,7 +598,7 @@ Number of pages/frames contained within the image, with support for TIFF, HEIF, 
 
 > `optional` **pixelDensityDescriptor**: `string`
 
-Defined in: [packages/core/src/types.ts:27](https://github.com/JonasKruckenberg/imagetools/blob/87fff79acddac50a50f7aee7c6a68a0623fbc68f/packages/core/src/types.ts#L27)
+Defined in: [packages/core/src/types.ts:27](https://github.com/JonasKruckenberg/imagetools/blob/aa84664d044e4b733cdf7005c6730584bc92ec90/packages/core/src/types.ts#L27)
 
 #### Inherited from
 
@@ -542,7 +610,7 @@ Defined in: [packages/core/src/types.ts:27](https://github.com/JonasKruckenberg/
 
 > `optional` **position**: `"top"` \| `"right top"` \| `"right"` \| `"right bottom"` \| `"bottom"` \| `"left bottom"` \| `"left"` \| `"left top"` \| `"north"` \| `"northeast"` \| `"east"` \| `"southeast"` \| `"south"` \| `"southwest"` \| `"west"` \| `"northwest"` \| `"center"` \| `"centre"` \| `"entropy"` \| `"attention"`
 
-Defined in: [packages/core/src/types.ts:28](https://github.com/JonasKruckenberg/imagetools/blob/87fff79acddac50a50f7aee7c6a68a0623fbc68f/packages/core/src/types.ts#L28)
+Defined in: [packages/core/src/types.ts:28](https://github.com/JonasKruckenberg/imagetools/blob/aa84664d044e4b733cdf7005c6730584bc92ec90/packages/core/src/types.ts#L28)
 
 #### Inherited from
 
@@ -554,7 +622,7 @@ Defined in: [packages/core/src/types.ts:28](https://github.com/JonasKruckenberg/
 
 > `optional` **progressive**: `true`
 
-Defined in: [packages/core/src/types.ts:29](https://github.com/JonasKruckenberg/imagetools/blob/87fff79acddac50a50f7aee7c6a68a0623fbc68f/packages/core/src/types.ts#L29)
+Defined in: [packages/core/src/types.ts:29](https://github.com/JonasKruckenberg/imagetools/blob/aa84664d044e4b733cdf7005c6730584bc92ec90/packages/core/src/types.ts#L29)
 
 #### Inherited from
 
@@ -566,7 +634,7 @@ Defined in: [packages/core/src/types.ts:29](https://github.com/JonasKruckenberg/
 
 > `optional` **quality**: `number`
 
-Defined in: [packages/core/src/types.ts:30](https://github.com/JonasKruckenberg/imagetools/blob/87fff79acddac50a50f7aee7c6a68a0623fbc68f/packages/core/src/types.ts#L30)
+Defined in: [packages/core/src/types.ts:30](https://github.com/JonasKruckenberg/imagetools/blob/aa84664d044e4b733cdf7005c6730584bc92ec90/packages/core/src/types.ts#L30)
 
 #### Inherited from
 
@@ -578,7 +646,7 @@ Defined in: [packages/core/src/types.ts:30](https://github.com/JonasKruckenberg/
 
 > `optional` **resolutionUnit**: `"inch"` \| `"cm"`
 
-Defined in: node\_modules/.pnpm/sharp@0.33.4/node\_modules/sharp/lib/index.d.ts:1108
+Defined in: node\_modules/.pnpm/sharp@0.34.1/node\_modules/sharp/lib/index.d.ts:1212
 
 The unit of resolution (density)
 
@@ -592,7 +660,7 @@ The unit of resolution (density)
 
 > `optional` **rotate**: `number`
 
-Defined in: [packages/core/src/types.ts:33](https://github.com/JonasKruckenberg/imagetools/blob/87fff79acddac50a50f7aee7c6a68a0623fbc68f/packages/core/src/types.ts#L33)
+Defined in: [packages/core/src/types.ts:33](https://github.com/JonasKruckenberg/imagetools/blob/aa84664d044e4b733cdf7005c6730584bc92ec90/packages/core/src/types.ts#L33)
 
 #### Inherited from
 
@@ -604,7 +672,7 @@ Defined in: [packages/core/src/types.ts:33](https://github.com/JonasKruckenberg/
 
 > `optional` **saturation**: `number` \| `""`
 
-Defined in: [packages/core/src/types.ts:31](https://github.com/JonasKruckenberg/imagetools/blob/87fff79acddac50a50f7aee7c6a68a0623fbc68f/packages/core/src/types.ts#L31)
+Defined in: [packages/core/src/types.ts:31](https://github.com/JonasKruckenberg/imagetools/blob/aa84664d044e4b733cdf7005c6730584bc92ec90/packages/core/src/types.ts#L31)
 
 #### Inherited from
 
@@ -616,7 +684,7 @@ Defined in: [packages/core/src/types.ts:31](https://github.com/JonasKruckenberg/
 
 > `optional` **size**: `number`
 
-Defined in: node\_modules/.pnpm/sharp@0.33.4/node\_modules/sharp/lib/index.d.ts:1058
+Defined in: node\_modules/.pnpm/sharp@0.34.1/node\_modules/sharp/lib/index.d.ts:1151
 
 Total size of image in bytes, for Stream and Buffer input only
 
@@ -630,7 +698,7 @@ Total size of image in bytes, for Stream and Buffer input only
 
 > `optional` **space**: keyof ColourspaceEnum
 
-Defined in: node\_modules/.pnpm/sharp@0.33.4/node\_modules/sharp/lib/index.d.ts:1064
+Defined in: node\_modules/.pnpm/sharp@0.34.1/node\_modules/sharp/lib/index.d.ts:1164
 
 Name of colour space interpretation
 
@@ -644,7 +712,7 @@ Name of colour space interpretation
 
 > **src**: `string`
 
-Defined in: [packages/core/src/types.ts:6](https://github.com/JonasKruckenberg/imagetools/blob/87fff79acddac50a50f7aee7c6a68a0623fbc68f/packages/core/src/types.ts#L6)
+Defined in: [packages/core/src/types.ts:6](https://github.com/JonasKruckenberg/imagetools/blob/aa84664d044e4b733cdf7005c6730584bc92ec90/packages/core/src/types.ts#L6)
 
 ***
 
@@ -652,7 +720,7 @@ Defined in: [packages/core/src/types.ts:6](https://github.com/JonasKruckenberg/i
 
 > `optional` **subifds**: `number`
 
-Defined in: node\_modules/.pnpm/sharp@0.33.4/node\_modules/sharp/lib/index.d.ts:1106
+Defined in: node\_modules/.pnpm/sharp@0.34.1/node\_modules/sharp/lib/index.d.ts:1210
 
 Number of Sub Image File Directories in an OME-TIFF image
 
@@ -664,9 +732,9 @@ Number of Sub Image File Directories in an OME-TIFF image
 
 ### tifftagPhotoshop?
 
-> `optional` **tifftagPhotoshop**: `Buffer`
+> `optional` **tifftagPhotoshop**: `Buffer`\<`ArrayBufferLike`\>
 
-Defined in: node\_modules/.pnpm/sharp@0.33.4/node\_modules/sharp/lib/index.d.ts:1098
+Defined in: node\_modules/.pnpm/sharp@0.34.1/node\_modules/sharp/lib/index.d.ts:1202
 
 Buffer containing raw TIFFTAG_PHOTOSHOP data, if present
 
@@ -680,7 +748,7 @@ Buffer containing raw TIFFTAG_PHOTOSHOP data, if present
 
 > `optional` **tint**: `string`
 
-Defined in: [packages/core/src/types.ts:32](https://github.com/JonasKruckenberg/imagetools/blob/87fff79acddac50a50f7aee7c6a68a0623fbc68f/packages/core/src/types.ts#L32)
+Defined in: [packages/core/src/types.ts:32](https://github.com/JonasKruckenberg/imagetools/blob/aa84664d044e4b733cdf7005c6730584bc92ec90/packages/core/src/types.ts#L32)
 
 #### Inherited from
 
@@ -692,7 +760,7 @@ Defined in: [packages/core/src/types.ts:32](https://github.com/JonasKruckenberg/
 
 > `optional` **width**: `number`
 
-Defined in: node\_modules/.pnpm/sharp@0.33.4/node\_modules/sharp/lib/index.d.ts:1060
+Defined in: node\_modules/.pnpm/sharp@0.34.1/node\_modules/sharp/lib/index.d.ts:1153
 
 Number of pixels wide (EXIF orientation is not taken into consideration)
 
@@ -704,9 +772,9 @@ Number of pixels wide (EXIF orientation is not taken into consideration)
 
 ### xmp?
 
-> `optional` **xmp**: `Buffer`
+> `optional` **xmp**: `Buffer`\<`ArrayBufferLike`\>
 
-Defined in: node\_modules/.pnpm/sharp@0.33.4/node\_modules/sharp/lib/index.d.ts:1096
+Defined in: node\_modules/.pnpm/sharp@0.34.1/node\_modules/sharp/lib/index.d.ts:1200
 
 Buffer containing raw XMP data, if present
 

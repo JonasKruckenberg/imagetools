@@ -10,7 +10,7 @@
 
 Defined in: packages/core/dist/output-formats.d.ts:8
 
-## Type declaration
+## Type Declaration
 
 ### img
 
