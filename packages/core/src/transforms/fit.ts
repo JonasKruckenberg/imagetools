@@ -10,7 +10,7 @@ export interface FitOptions {
 }
 
 export const getFit: TransformOption<FitOptions, FitValue> = (config, image) => {
-  let fit: FitValue | undefined = undefined
+  let fit: FitValue | undefined
 
   if (config.fit && fitValues.includes(config.fit)) {
     fit = config.fit
