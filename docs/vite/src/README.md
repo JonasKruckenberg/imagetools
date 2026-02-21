@@ -8,6 +8,7 @@
 
 ## Interfaces
 
+- [autoOrientOptions](interfaces/autoOrientOptions.md)
 - [BackgroundOptions](interfaces/BackgroundOptions.md)
 - [BlurOptions](interfaces/BlurOptions.md)
 - [EffortOptions](interfaces/EffortOptions.md)
@@ -50,48 +51,50 @@
 
 ## Variables
 
+- [autoOrient](variables/autoOrient.md)
+- [blur](variables/blur.md)
 - [builtinOutputFormats](variables/builtinOutputFormats.md)
 - [builtins](variables/builtins.md)
 - [fitValues](variables/fitValues.md)
+- [flatten](variables/flatten.md)
+- [flip](variables/flip.md)
+- [flop](variables/flop.md)
+- [format](variables/format.md)
+- [getBackground](variables/getBackground.md)
+- [getEffort](variables/getEffort.md)
+- [getFit](variables/getFit.md)
+- [getKernel](variables/getKernel.md)
+- [getLossless](variables/getLossless.md)
+- [getPosition](variables/getPosition.md)
+- [getProgressive](variables/getProgressive.md)
+- [getQuality](variables/getQuality.md)
+- [grayscale](variables/grayscale.md)
+- [hsb](variables/hsb.md)
+- [imgFormat](variables/imgFormat.md)
+- [invert](variables/invert.md)
 - [kernelValues](variables/kernelValues.md)
+- [median](variables/median.md)
+- [metadataFormat](variables/metadataFormat.md)
+- [normalize](variables/normalize.md)
+- [pictureFormat](variables/pictureFormat.md)
 - [positionShorthands](variables/positionShorthands.md)
 - [positionValues](variables/positionValues.md)
+- [resize](variables/resize.md)
+- [rotate](variables/rotate.md)
+- [srcsetFormat](variables/srcsetFormat.md)
+- [tint](variables/tint.md)
+- [urlFormat](variables/urlFormat.md)
 
 ## Functions
 
 - [applyTransforms](functions/applyTransforms.md)
-- [blur](functions/blur.md)
 - [extractEntries](functions/extractEntries.md)
-- [flatten](functions/flatten.md)
-- [flip](functions/flip.md)
-- [flop](functions/flop.md)
-- [format](functions/format.md)
 - [generateTransforms](functions/generateTransforms.md)
-- [getBackground](functions/getBackground.md)
-- [getEffort](functions/getEffort.md)
-- [getFit](functions/getFit.md)
-- [getKernel](functions/getKernel.md)
-- [getLossless](functions/getLossless.md)
 - [getMetadata](functions/getMetadata.md)
-- [getPosition](functions/getPosition.md)
-- [getProgressive](functions/getProgressive.md)
-- [getQuality](functions/getQuality.md)
-- [grayscale](functions/grayscale.md)
-- [hsb](functions/hsb.md)
 - [imagetools](functions/imagetools.md)
-- [imgFormat](functions/imgFormat.md)
-- [invert](functions/invert.md)
-- [median](functions/median.md)
-- [metadataFormat](functions/metadataFormat.md)
-- [normalize](functions/normalize.md)
 - [parseURL](functions/parseURL.md)
-- [pictureFormat](functions/pictureFormat.md)
-- [resize](functions/resize.md)
-- [rotate](functions/rotate.md)
+- [resolveConfigs](functions/resolveConfigs.md)
 - [setMetadata](functions/setMetadata.md)
-- [srcsetFormat](functions/srcsetFormat.md)
-- [tint](functions/tint.md)
-- [urlFormat](functions/urlFormat.md)
 
 ## References
 
@@ -122,12 +125,6 @@ Re-exports [ExtendTransforms](types/type-aliases/ExtendTransforms.md)
 ### Include
 
 Re-exports [Include](types/type-aliases/Include.md)
-
-***
-
-### resolveConfigs
-
-Re-exports [resolveConfigs](types/interfaces/VitePluginOptions.md#resolveconfigs)
 
 ***
 

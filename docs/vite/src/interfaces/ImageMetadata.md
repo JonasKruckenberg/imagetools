@@ -38,13 +38,39 @@ Defined in: packages/core/dist/types.d.ts:10
 
 ***
 
+### autoOrient
+
+> **autoOrient**: `object`
+
+Defined in: node\_modules/.pnpm/sharp@0.34.1/node\_modules/sharp/lib/index.d.ts:1157
+
+Any changed metadata after the image orientation is applied.
+
+#### height
+
+> **height**: `number`
+
+Number of pixels high (EXIF orientation is taken into consideration)
+
+#### width
+
+> **width**: `number`
+
+Number of pixels wide (EXIF orientation is taken into consideration)
+
+#### Inherited from
+
+`Metadata.autoOrient`
+
+***
+
 ### background?
 
-> `optional` **background**: `number` \| \{ `b`: `number`; `g`: `number`; `r`: `number`; \}
+> `optional` **background**: \{ `b`: `number`; `g`: `number`; `r`: `number`; \} \| \{ `gray`: `number`; \}
 
-Defined in: node\_modules/.pnpm/sharp@0.33.4/node\_modules/sharp/lib/index.d.ts:1102
+Defined in: node\_modules/.pnpm/sharp@0.34.1/node\_modules/sharp/lib/index.d.ts:1206
 
-Default background colour, if present, for PNG (bKGD) and GIF images, either an RGB Object or a single greyscale value
+Default background colour, if present, for PNG (bKGD) and GIF images
 
 #### Inherited from
 
@@ -57,6 +83,20 @@ Default background colour, if present, for PNG (bKGD) and GIF images, either an 
 > `optional` **backgroundDirective**: `string`
 
 Defined in: packages/core/dist/types.d.ts:11
+
+***
+
+### bitsPerSample?
+
+> `optional` **bitsPerSample**: `number`
+
+Defined in: node\_modules/.pnpm/sharp@0.34.1/node\_modules/sharp/lib/index.d.ts:1178
+
+Number of bits per sample for each channel (GIF, PNG).
+
+#### Inherited from
+
+`Metadata.bitsPerSample`
 
 ***
 
@@ -80,7 +120,7 @@ Defined in: packages/core/dist/types.d.ts:13
 
 > `optional` **channels**: `Channels`
 
-Defined in: node\_modules/.pnpm/sharp@0.33.4/node\_modules/sharp/lib/index.d.ts:1066
+Defined in: node\_modules/.pnpm/sharp@0.34.1/node\_modules/sharp/lib/index.d.ts:1166
 
 Number of bands e.g. 3 for sRGB, 4 for CMYK
 
@@ -90,11 +130,11 @@ Number of bands e.g. 3 for sRGB, 4 for CMYK
 
 ***
 
-### chromaSubsampling
+### chromaSubsampling?
 
-> **chromaSubsampling**: `string`
+> `optional` **chromaSubsampling**: `string`
 
-Defined in: node\_modules/.pnpm/sharp@0.33.4/node\_modules/sharp/lib/index.d.ts:1072
+Defined in: node\_modules/.pnpm/sharp@0.34.1/node\_modules/sharp/lib/index.d.ts:1172
 
 String containing JPEG chroma subsampling, 4:2:0 or 4:4:4 for RGB, 4:2:0:4 or 4:4:4:4 for CMYK
 
@@ -104,11 +144,25 @@ String containing JPEG chroma subsampling, 4:2:0 or 4:4:4 for RGB, 4:2:0:4 or 4:
 
 ***
 
+### comments?
+
+> `optional` **comments**: `CommentsMetadata`[]
+
+Defined in: node\_modules/.pnpm/sharp@0.34.1/node\_modules/sharp/lib/index.d.ts:1216
+
+Array of keyword/text pairs representing PNG text blocks, if present.
+
+#### Inherited from
+
+`Metadata.comments`
+
+***
+
 ### compression?
 
 > `optional` **compression**: `"av1"` \| `"hevc"`
 
-Defined in: node\_modules/.pnpm/sharp@0.33.4/node\_modules/sharp/lib/index.d.ts:1100
+Defined in: node\_modules/.pnpm/sharp@0.34.1/node\_modules/sharp/lib/index.d.ts:1204
 
 The encoder used to compress an HEIF file, `av1` (AVIF) or `hevc` (HEIC)
 
@@ -122,7 +176,7 @@ The encoder used to compress an HEIF file, `av1` (AVIF) or `hevc` (HEIC)
 
 > `optional` **delay**: `number`[]
 
-Defined in: node\_modules/.pnpm/sharp@0.33.4/node\_modules/sharp/lib/index.d.ts:1082
+Defined in: node\_modules/.pnpm/sharp@0.34.1/node\_modules/sharp/lib/index.d.ts:1186
 
 Delay in ms between each page in an animated image, provided as an array of integers.
 
@@ -136,7 +190,7 @@ Delay in ms between each page in an animated image, provided as an array of inte
 
 > `optional` **density**: `number`
 
-Defined in: node\_modules/.pnpm/sharp@0.33.4/node\_modules/sharp/lib/index.d.ts:1070
+Defined in: node\_modules/.pnpm/sharp@0.34.1/node\_modules/sharp/lib/index.d.ts:1170
 
 Number of pixels per inch (DPI), if present
 
@@ -150,7 +204,7 @@ Number of pixels per inch (DPI), if present
 
 > `optional` **depth**: `string`
 
-Defined in: node\_modules/.pnpm/sharp@0.33.4/node\_modules/sharp/lib/index.d.ts:1068
+Defined in: node\_modules/.pnpm/sharp@0.34.1/node\_modules/sharp/lib/index.d.ts:1168
 
 Name of pixel depth format e.g. uchar, char, ushort, float ...
 
@@ -162,9 +216,9 @@ Name of pixel depth format e.g. uchar, char, ushort, float ...
 
 ### exif?
 
-> `optional` **exif**: `Buffer`
+> `optional` **exif**: `Buffer`\<`ArrayBufferLike`\>
 
-Defined in: node\_modules/.pnpm/sharp@0.33.4/node\_modules/sharp/lib/index.d.ts:1090
+Defined in: node\_modules/.pnpm/sharp@0.34.1/node\_modules/sharp/lib/index.d.ts:1194
 
 Buffer containing raw EXIF data, if present
 
@@ -210,7 +264,7 @@ Defined in: packages/core/dist/types.d.ts:16
 
 > `optional` **format**: keyof FormatEnum
 
-Defined in: node\_modules/.pnpm/sharp@0.33.4/node\_modules/sharp/lib/index.d.ts:1056
+Defined in: node\_modules/.pnpm/sharp@0.34.1/node\_modules/sharp/lib/index.d.ts:1149
 
 Name of decoder used to decompress image data e.g. jpeg, png, webp, gif, svg
 
@@ -224,7 +278,7 @@ Name of decoder used to decompress image data e.g. jpeg, png, webp, gif, svg
 
 > `optional` **formatMagick**: `string`
 
-Defined in: node\_modules/.pnpm/sharp@0.33.4/node\_modules/sharp/lib/index.d.ts:1110
+Defined in: node\_modules/.pnpm/sharp@0.34.1/node\_modules/sharp/lib/index.d.ts:1214
 
 String containing format for images loaded via *magick
 
@@ -246,7 +300,7 @@ Defined in: packages/core/dist/types.d.ts:20
 
 > `optional` **hasAlpha**: `boolean`
 
-Defined in: node\_modules/.pnpm/sharp@0.33.4/node\_modules/sharp/lib/index.d.ts:1088
+Defined in: node\_modules/.pnpm/sharp@0.34.1/node\_modules/sharp/lib/index.d.ts:1192
 
 Boolean indicating the presence of an alpha transparency channel
 
@@ -260,7 +314,7 @@ Boolean indicating the presence of an alpha transparency channel
 
 > `optional` **hasProfile**: `boolean`
 
-Defined in: node\_modules/.pnpm/sharp@0.33.4/node\_modules/sharp/lib/index.d.ts:1086
+Defined in: node\_modules/.pnpm/sharp@0.34.1/node\_modules/sharp/lib/index.d.ts:1190
 
 Boolean indicating the presence of an embedded ICC profile
 
@@ -274,7 +328,7 @@ Boolean indicating the presence of an embedded ICC profile
 
 > `optional` **height**: `number`
 
-Defined in: node\_modules/.pnpm/sharp@0.33.4/node\_modules/sharp/lib/index.d.ts:1062
+Defined in: node\_modules/.pnpm/sharp@0.34.1/node\_modules/sharp/lib/index.d.ts:1155
 
 Number of pixels high (EXIF orientation is not taken into consideration)
 
@@ -294,9 +348,9 @@ Defined in: packages/core/dist/types.d.ts:18
 
 ### icc?
 
-> `optional` **icc**: `Buffer`
+> `optional` **icc**: `Buffer`\<`ArrayBufferLike`\>
 
-Defined in: node\_modules/.pnpm/sharp@0.33.4/node\_modules/sharp/lib/index.d.ts:1092
+Defined in: node\_modules/.pnpm/sharp@0.34.1/node\_modules/sharp/lib/index.d.ts:1196
 
 Buffer containing raw ICC profile data, if present
 
@@ -316,9 +370,9 @@ Defined in: packages/core/dist/types.d.ts:19
 
 ### iptc?
 
-> `optional` **iptc**: `Buffer`
+> `optional` **iptc**: `Buffer`\<`ArrayBufferLike`\>
 
-Defined in: node\_modules/.pnpm/sharp@0.33.4/node\_modules/sharp/lib/index.d.ts:1094
+Defined in: node\_modules/.pnpm/sharp@0.34.1/node\_modules/sharp/lib/index.d.ts:1198
 
 Buffer containing raw IPTC data, if present
 
@@ -328,11 +382,25 @@ Buffer containing raw IPTC data, if present
 
 ***
 
+### isPalette?
+
+> `optional` **isPalette**: `boolean`
+
+Defined in: node\_modules/.pnpm/sharp@0.34.1/node\_modules/sharp/lib/index.d.ts:1176
+
+Boolean indicating whether the image is palette-based (GIF, PNG).
+
+#### Inherited from
+
+`Metadata.isPalette`
+
+***
+
 ### isProgressive?
 
 > `optional` **isProgressive**: `boolean`
 
-Defined in: node\_modules/.pnpm/sharp@0.33.4/node\_modules/sharp/lib/index.d.ts:1074
+Defined in: node\_modules/.pnpm/sharp@0.34.1/node\_modules/sharp/lib/index.d.ts:1174
 
 Boolean indicating whether the image is interlaced using a progressive scan
 
@@ -354,7 +422,7 @@ Defined in: packages/core/dist/types.d.ts:21
 
 > `optional` **levels**: `LevelMetadata`[]
 
-Defined in: node\_modules/.pnpm/sharp@0.33.4/node\_modules/sharp/lib/index.d.ts:1104
+Defined in: node\_modules/.pnpm/sharp@0.34.1/node\_modules/sharp/lib/index.d.ts:1208
 
 Details of each level in a multi-level image provided as an array of objects, requires libvips compiled with support for OpenSlide
 
@@ -368,7 +436,7 @@ Details of each level in a multi-level image provided as an array of objects, re
 
 > `optional` **loop**: `number`
 
-Defined in: node\_modules/.pnpm/sharp@0.33.4/node\_modules/sharp/lib/index.d.ts:1080
+Defined in: node\_modules/.pnpm/sharp@0.34.1/node\_modules/sharp/lib/index.d.ts:1184
 
 Number of times to loop an animated image, zero refers to a continuous loop.
 
@@ -406,7 +474,7 @@ Defined in: packages/core/dist/types.d.ts:24
 
 > `optional` **orientation**: `number`
 
-Defined in: node\_modules/.pnpm/sharp@0.33.4/node\_modules/sharp/lib/index.d.ts:1054
+Defined in: node\_modules/.pnpm/sharp@0.34.1/node\_modules/sharp/lib/index.d.ts:1147
 
 Number value of the EXIF Orientation header, if present
 
@@ -420,7 +488,7 @@ Number value of the EXIF Orientation header, if present
 
 > `optional` **pageHeight**: `number`
 
-Defined in: node\_modules/.pnpm/sharp@0.33.4/node\_modules/sharp/lib/index.d.ts:1078
+Defined in: node\_modules/.pnpm/sharp@0.34.1/node\_modules/sharp/lib/index.d.ts:1182
 
 Number of pixels high each page in a multi-page image will be.
 
@@ -434,7 +502,7 @@ Number of pixels high each page in a multi-page image will be.
 
 > `optional` **pagePrimary**: `number`
 
-Defined in: node\_modules/.pnpm/sharp@0.33.4/node\_modules/sharp/lib/index.d.ts:1084
+Defined in: node\_modules/.pnpm/sharp@0.34.1/node\_modules/sharp/lib/index.d.ts:1188
 
 Number of the primary page in a HEIF image
 
@@ -448,7 +516,7 @@ Number of the primary page in a HEIF image
 
 > `optional` **pages**: `number`
 
-Defined in: node\_modules/.pnpm/sharp@0.33.4/node\_modules/sharp/lib/index.d.ts:1076
+Defined in: node\_modules/.pnpm/sharp@0.34.1/node\_modules/sharp/lib/index.d.ts:1180
 
 Number of pages/frames contained within the image, with support for TIFF, HEIF, PDF, animated GIF and animated WebP
 
@@ -494,7 +562,7 @@ Defined in: packages/core/dist/types.d.ts:28
 
 > `optional` **resolutionUnit**: `"inch"` \| `"cm"`
 
-Defined in: node\_modules/.pnpm/sharp@0.33.4/node\_modules/sharp/lib/index.d.ts:1108
+Defined in: node\_modules/.pnpm/sharp@0.34.1/node\_modules/sharp/lib/index.d.ts:1212
 
 The unit of resolution (density)
 
@@ -524,7 +592,7 @@ Defined in: packages/core/dist/types.d.ts:29
 
 > `optional` **size**: `number`
 
-Defined in: node\_modules/.pnpm/sharp@0.33.4/node\_modules/sharp/lib/index.d.ts:1058
+Defined in: node\_modules/.pnpm/sharp@0.34.1/node\_modules/sharp/lib/index.d.ts:1151
 
 Total size of image in bytes, for Stream and Buffer input only
 
@@ -538,7 +606,7 @@ Total size of image in bytes, for Stream and Buffer input only
 
 > `optional` **space**: keyof ColourspaceEnum
 
-Defined in: node\_modules/.pnpm/sharp@0.33.4/node\_modules/sharp/lib/index.d.ts:1064
+Defined in: node\_modules/.pnpm/sharp@0.34.1/node\_modules/sharp/lib/index.d.ts:1164
 
 Name of colour space interpretation
 
@@ -552,7 +620,7 @@ Name of colour space interpretation
 
 > `optional` **subifds**: `number`
 
-Defined in: node\_modules/.pnpm/sharp@0.33.4/node\_modules/sharp/lib/index.d.ts:1106
+Defined in: node\_modules/.pnpm/sharp@0.34.1/node\_modules/sharp/lib/index.d.ts:1210
 
 Number of Sub Image File Directories in an OME-TIFF image
 
@@ -564,9 +632,9 @@ Number of Sub Image File Directories in an OME-TIFF image
 
 ### tifftagPhotoshop?
 
-> `optional` **tifftagPhotoshop**: `Buffer`
+> `optional` **tifftagPhotoshop**: `Buffer`\<`ArrayBufferLike`\>
 
-Defined in: node\_modules/.pnpm/sharp@0.33.4/node\_modules/sharp/lib/index.d.ts:1098
+Defined in: node\_modules/.pnpm/sharp@0.34.1/node\_modules/sharp/lib/index.d.ts:1202
 
 Buffer containing raw TIFFTAG_PHOTOSHOP data, if present
 
@@ -588,7 +656,7 @@ Defined in: packages/core/dist/types.d.ts:30
 
 > `optional` **width**: `number`
 
-Defined in: node\_modules/.pnpm/sharp@0.33.4/node\_modules/sharp/lib/index.d.ts:1060
+Defined in: node\_modules/.pnpm/sharp@0.34.1/node\_modules/sharp/lib/index.d.ts:1153
 
 Number of pixels wide (EXIF orientation is not taken into consideration)
 
@@ -600,9 +668,9 @@ Number of pixels wide (EXIF orientation is not taken into consideration)
 
 ### xmp?
 
-> `optional` **xmp**: `Buffer`
+> `optional` **xmp**: `Buffer`\<`ArrayBufferLike`\>
 
-Defined in: node\_modules/.pnpm/sharp@0.33.4/node\_modules/sharp/lib/index.d.ts:1096
+Defined in: node\_modules/.pnpm/sharp@0.34.1/node\_modules/sharp/lib/index.d.ts:1200
 
 Buffer containing raw XMP data, if present
 

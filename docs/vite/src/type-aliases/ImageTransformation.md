@@ -6,7 +6,7 @@
 
 # Type Alias: ImageTransformation()
 
-> **ImageTransformation**: (`image`) => `Sharp` \| `Promise`\<`Sharp`\>
+> **ImageTransformation** = (`image`) => `Sharp` \| `Promise`\<`Sharp`\>
 
 Defined in: packages/core/dist/types.d.ts:47
 

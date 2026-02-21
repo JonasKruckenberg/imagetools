@@ -6,7 +6,7 @@
 
 # Interface: TransformFactoryContext
 
-Defined in: [packages/core/src/types.ts:45](https://github.com/JonasKruckenberg/imagetools/blob/87fff79acddac50a50f7aee7c6a68a0623fbc68f/packages/core/src/types.ts#L45)
+Defined in: [packages/core/src/types.ts:45](https://github.com/JonasKruckenberg/imagetools/blob/aa84664d044e4b733cdf7005c6730584bc92ec90/packages/core/src/types.ts#L45)
 
 ## Properties
 
@@ -14,7 +14,7 @@ Defined in: [packages/core/src/types.ts:45](https://github.com/JonasKruckenberg/
 
 > **logger**: [`Logger`](Logger.md)
 
-Defined in: [packages/core/src/types.ts:48](https://github.com/JonasKruckenberg/imagetools/blob/87fff79acddac50a50f7aee7c6a68a0623fbc68f/packages/core/src/types.ts#L48)
+Defined in: [packages/core/src/types.ts:48](https://github.com/JonasKruckenberg/imagetools/blob/aa84664d044e4b733cdf7005c6730584bc92ec90/packages/core/src/types.ts#L48)
 
 ***
 
@@ -22,7 +22,7 @@ Defined in: [packages/core/src/types.ts:48](https://github.com/JonasKruckenberg/
 
 > **manualSearchParams**: `URLSearchParams`
 
-Defined in: [packages/core/src/types.ts:47](https://github.com/JonasKruckenberg/imagetools/blob/87fff79acddac50a50f7aee7c6a68a0623fbc68f/packages/core/src/types.ts#L47)
+Defined in: [packages/core/src/types.ts:47](https://github.com/JonasKruckenberg/imagetools/blob/aa84664d044e4b733cdf7005c6730584bc92ec90/packages/core/src/types.ts#L47)
 
 ***
 
@@ -30,7 +30,7 @@ Defined in: [packages/core/src/types.ts:47](https://github.com/JonasKruckenberg/
 
 > **useParam**: (`parameter`) => `void`
 
-Defined in: [packages/core/src/types.ts:46](https://github.com/JonasKruckenberg/imagetools/blob/87fff79acddac50a50f7aee7c6a68a0623fbc68f/packages/core/src/types.ts#L46)
+Defined in: [packages/core/src/types.ts:46](https://github.com/JonasKruckenberg/imagetools/blob/aa84664d044e4b733cdf7005c6730584bc92ec90/packages/core/src/types.ts#L46)
 
 #### Parameters
 

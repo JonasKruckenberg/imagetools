@@ -6,13 +6,15 @@
 
 # Type Alias: TransformFactory()\<A\>
 
-> **TransformFactory**\<`A`\>: (`metadata`, `ctx`) => [`ImageTransformation`](ImageTransformation.md) \| `undefined`
+> **TransformFactory**\<`A`\> = (`metadata`, `ctx`) => [`ImageTransformation`](ImageTransformation.md) \| `undefined`
 
 Defined in: packages/core/dist/types.d.ts:45
 
 ## Type Parameters
 
-• **A** = `Record`\<`string`, `unknown`\>
+### A
+
+`A` = `Record`\<`string`, `unknown`\>
 
 ## Parameters
 

@@ -6,15 +6,19 @@
 
 # Type Alias: TransformOption()\<A, T\>
 
-> **TransformOption**\<`A`, `T`\>: (`metadata`, `image`) => `T` \| `undefined`
+> **TransformOption**\<`A`, `T`\> = (`metadata`, `image`) => `T` \| `undefined`
 
 Defined in: packages/core/dist/types.d.ts:46
 
 ## Type Parameters
 
-• **A** = `Record`\<`string`, `unknown`\>
+### A
 
-• **T** = `unknown`
+`A` = `Record`\<`string`, `unknown`\>
+
+### T
+
+`T` = `unknown`
 
 ## Parameters
 

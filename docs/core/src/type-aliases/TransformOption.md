@@ -6,15 +6,19 @@
 
 # Type Alias: TransformOption()\<A, T\>
 
-> **TransformOption**\<`A`, `T`\>: (`metadata`, `image`) => `T` \| `undefined`
+> **TransformOption**\<`A`, `T`\> = (`metadata`, `image`) => `T` \| `undefined`
 
-Defined in: [packages/core/src/types.ts:56](https://github.com/JonasKruckenberg/imagetools/blob/87fff79acddac50a50f7aee7c6a68a0623fbc68f/packages/core/src/types.ts#L56)
+Defined in: [packages/core/src/types.ts:56](https://github.com/JonasKruckenberg/imagetools/blob/aa84664d044e4b733cdf7005c6730584bc92ec90/packages/core/src/types.ts#L56)
 
 ## Type Parameters
 
-• **A** = `Record`\<`string`, `unknown`\>
+### A
 
-• **T** = `unknown`
+`A` = `Record`\<`string`, `unknown`\>
+
+### T
+
+`T` = `unknown`
 
 ## Parameters
 

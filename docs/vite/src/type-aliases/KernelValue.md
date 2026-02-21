@@ -6,6 +6,6 @@
 
 # Type Alias: KernelValue
 
-> **KernelValue**: *typeof* [`kernelValues`](../variables/kernelValues.md)\[`number`\]
+> **KernelValue** = *typeof* [`kernelValues`](../variables/kernelValues.md)\[`number`\]
 
 Defined in: packages/core/dist/transforms/kernel.d.ts:3

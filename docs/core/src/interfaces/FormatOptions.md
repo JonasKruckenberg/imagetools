@@ -6,7 +6,7 @@
 
 # Interface: FormatOptions
 
-Defined in: [packages/core/src/transforms/format.ts:9](https://github.com/JonasKruckenberg/imagetools/blob/87fff79acddac50a50f7aee7c6a68a0623fbc68f/packages/core/src/transforms/format.ts#L9)
+Defined in: [packages/core/src/transforms/format.ts:9](https://github.com/JonasKruckenberg/imagetools/blob/aa84664d044e4b733cdf7005c6730584bc92ec90/packages/core/src/transforms/format.ts#L9)
 
 ## Properties
 
@@ -14,4 +14,4 @@ Defined in: [packages/core/src/transforms/format.ts:9](https://github.com/JonasK
 
 > **format**: keyof `FormatEnum`
 
-Defined in: [packages/core/src/transforms/format.ts:10](https://github.com/JonasKruckenberg/imagetools/blob/87fff79acddac50a50f7aee7c6a68a0623fbc68f/packages/core/src/transforms/format.ts#L10)
+Defined in: [packages/core/src/transforms/format.ts:10](https://github.com/JonasKruckenberg/imagetools/blob/aa84664d044e4b733cdf7005c6730584bc92ec90/packages/core/src/transforms/format.ts#L10)

@@ -6,7 +6,7 @@
 
 # Type Alias: OutputFormat()
 
-> **OutputFormat**: (`args`?) => (`metadata`) => `unknown`
+> **OutputFormat** = (`args?`) => (`metadata`) => `unknown`
 
 Defined in: packages/core/dist/types.d.ts:55
 
@@ -20,7 +20,7 @@ The JS object returned by the image import.
 
 ## Returns
 
-`Function`
+> (`metadata`): `unknown`
 
 ### Parameters
 

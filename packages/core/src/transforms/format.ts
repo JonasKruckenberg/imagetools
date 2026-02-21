@@ -26,7 +26,6 @@ export const format: TransformFactory<FormatOptions> = (config) => {
       compression: format == 'heif' ? 'av1' : undefined,
       effort: getEffort(config, image),
       lossless: getLossless(config, image) as boolean,
-      // @ts-expect-error not every image type supports progressive
       progressive: getProgressive(config, image) as boolean,
       quality: getQuality(config, image)
     })
