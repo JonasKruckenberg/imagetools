@@ -21,7 +21,7 @@
     "prettier": "^3.0.3",
     "rollup": "^4.22.4",
     "tslib": "^2.6.1",
-    "typedoc": "^0.27.9",
+    "typedoc": "^0.28.0",
     "typedoc-plugin-markdown": "^4.4.2",
     "typescript": "^5.1.6",
     "typescript-eslint": "^8.56.0"
