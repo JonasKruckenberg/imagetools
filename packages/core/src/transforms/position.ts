@@ -42,7 +42,7 @@ export interface PositionOptions {
 }
 
 export const getPosition: TransformOption<PositionOptions, PositionValue> = (config, image) => {
-  let position: PositionValue | undefined = undefined
+  let position: PositionValue | undefined
 
   if (config.position && positionValues.includes(config.position)) {
     position = config.position
