@@ -74,160 +74,168 @@ export function imagetools(userOptions: Partial<VitePluginOptions> = {}): Plugin
       viteConfig = cfg
       basePath = createBasePath(viteConfig.base)
     },
-    async load(id) {
-      if (!filter(id)) return null
+    load: {
+      filter: { id: { include: pluginOptions.include, exclude: pluginOptions.exclude } },
+      async handler(id) {
+        if (!filter(id)) return null
 
-      const srcURL = parseURL(id)
-      const pathname = decodeURIComponent(srcURL.pathname)
+        const srcURL = parseURL(id)
+        const pathname = decodeURIComponent(srcURL.pathname)
 
-      // lazy loaders so that we can load the metadata in defaultDirectives if needed
-      // but if there are no directives then we can just skip loading
-      let lazyImg: Sharp
-      const lazyLoadImage = () => {
-        if (lazyImg) return lazyImg
-        return (lazyImg = sharp(pathname))
-      }
-
-      let lazyMetadata: Metadata
-      const lazyLoadMetadata = async () => {
-        if (lazyMetadata) return lazyMetadata
-        return (lazyMetadata = await lazyLoadImage().metadata())
-      }
-
-      const defaultDirectives =
-        typeof pluginOptions.defaultDirectives === 'function'
-          ? await pluginOptions.defaultDirectives(srcURL, lazyLoadMetadata)
-          : pluginOptions.defaultDirectives || new URLSearchParams()
-      const directives = new URLSearchParams({
-        ...Object.fromEntries(defaultDirectives),
-        ...Object.fromEntries(srcURL.searchParams)
-      })
-
-      if (!directives.toString()) return null
-
-      const img = lazyLoadImage()
-      const widthParam = directives.get('w')
-      const heightParam = directives.get('h')
-      if (directives.get('allowUpscale') !== 'true' && (widthParam || heightParam)) {
-        const metadata = await lazyLoadMetadata()
-        const clamp = (s: string, intrinsic: number) =>
-          [...new Set(s.split(';').map((d): string => (parseInt(d) <= intrinsic ? d : intrinsic.toString())))].join(';')
-
-        if (widthParam) {
-          const intrinsicWidth = metadata.width || 0
-          directives.set('w', clamp(widthParam, intrinsicWidth))
+        // lazy loaders so that we can load the metadata in defaultDirectives if needed
+        // but if there are no directives then we can just skip loading
+        let lazyImg: Sharp
+        const lazyLoadImage = () => {
+          if (lazyImg) return lazyImg
+          return (lazyImg = sharp(pathname))
         }
 
-        if (heightParam) {
-          const intrinsicHeight = metadata.height || 0
-          directives.set('h', clamp(heightParam, intrinsicHeight))
+        let lazyMetadata: Metadata
+        const lazyLoadMetadata = async () => {
+          if (lazyMetadata) return lazyMetadata
+          return (lazyMetadata = await lazyLoadImage().metadata())
         }
-      }
 
-      const parameters = extractEntries(directives)
-      const imageConfigs =
-        pluginOptions.resolveConfigs?.(parameters, outputFormats) ?? resolveConfigs(parameters, outputFormats)
+        const defaultDirectives =
+          typeof pluginOptions.defaultDirectives === 'function'
+            ? await pluginOptions.defaultDirectives(srcURL, lazyLoadMetadata)
+            : pluginOptions.defaultDirectives || new URLSearchParams()
+        const directives = new URLSearchParams({
+          ...Object.fromEntries(defaultDirectives),
+          ...Object.fromEntries(srcURL.searchParams)
+        })
 
-      const logger: Logger = {
-        info: (msg) => viteConfig.logger.info(msg),
-        warn: (msg) => this.warn(msg),
-        error: (msg) => this.error(msg)
-      }
+        if (!directives.toString()) return null
 
-      const imageHash = hash([await img.toBuffer()])
+        const img = lazyLoadImage()
+        const widthParam = directives.get('w')
+        const heightParam = directives.get('h')
+        if (directives.get('allowUpscale') !== 'true' && (widthParam || heightParam)) {
+          const metadata = await lazyLoadMetadata()
+          const clamp = (s: string, intrinsic: number) =>
+            [...new Set(s.split(';').map((d): string => (parseInt(d) <= intrinsic ? d : intrinsic.toString())))].join(
+              ';'
+            )
 
-      const executeTransform = async (id: string, imageConfig: ImageConfig) => {
-        let image: Sharp | undefined
-        let metadata: ImageMetadata
-        let cachedBuffer: Buffer | undefined
+          if (widthParam) {
+            const intrinsicWidth = metadata.width || 0
+            directives.set('w', clamp(widthParam, intrinsicWidth))
+          }
 
-        if (cacheOptions.enabled && (statSync(`${cacheOptions.dir}/${id}`, { throwIfNoEntry: false })?.size ?? 0) > 0) {
-          cachedBuffer = await readFile(`${cacheOptions.dir}/${id}`)
-          image = sharp(cachedBuffer)
-          metadata = (await image.metadata()) as ImageMetadata
-          // we set the format on the metadata during transformation using the format directive
-          // when restoring from the cache, we use sharp to read it from the image and that results in a different value for avif images
-          // see https://github.com/lovell/sharp/issues/2504 and https://github.com/lovell/sharp/issues/3746
-          if (imageConfig.format === 'avif' && metadata.format === 'heif' && metadata.compression === 'av1')
-            metadata.format = 'avif'
-        } else {
-          const { transforms } = generateTransforms(imageConfig, transformFactories, srcURL.searchParams, logger)
-          const res = await applyTransforms(transforms, img.clone(), pluginOptions.removeMetadata)
-          image = res.image
-          metadata = res.metadata
-          if (cacheOptions.enabled) {
-            cachedBuffer = await image.toBuffer()
-            await writeFile(`${cacheOptions.dir}/${id}`, cachedBuffer)
+          if (heightParam) {
+            const intrinsicHeight = metadata.height || 0
+            directives.set('h', clamp(heightParam, intrinsicHeight))
           }
         }
 
-        generatedImages.set(id, { image, metadata })
+        const parameters = extractEntries(directives)
+        const imageConfigs =
+          pluginOptions.resolveConfigs?.(parameters, outputFormats) ?? resolveConfigs(parameters, outputFormats)
 
-        if (directives.has('inline')) {
-          const inlineBuffer = cachedBuffer || (await image.toBuffer())
-          metadata.src = `data:image/${metadata.format};base64,${inlineBuffer.toString('base64')}`
-        } else if (viteConfig.command === 'serve') {
-          metadata.src = (viteConfig?.server?.origin ?? '') + basePath + id
-        } else {
-          const fileHandle = this.emitFile({
-            name: basename(pathname, extname(pathname)) + `.${metadata.format}`,
-            source: cachedBuffer || (await image.toBuffer()),
-            type: 'asset',
-            originalFileName: normalizePath(relative(viteConfig.root, srcURL.pathname))
-          })
-
-          metadata.src = `__VITE_ASSET__${fileHandle}__`
+        const logger: Logger = {
+          info: (msg) => viteConfig.logger.info(msg),
+          warn: (msg) => this.warn(msg),
+          error: (msg) => this.error(msg)
         }
 
-        return metadata as ProcessedImageMetadata
-      }
+        const imageHash = hash([await img.toBuffer()])
 
-      /** allows only one transform to be run for a given id */
-      async function synchronizedTransform(id: string, imageConfig: ImageConfig) {
-        let transformPromise = transformPromises.get(id)
-        if (transformPromise) return transformPromise
+        const executeTransform = async (id: string, imageConfig: ImageConfig) => {
+          let image: Sharp | undefined
+          let metadata: ImageMetadata
+          let cachedBuffer: Buffer | undefined
 
-        let resolve!: (v: ProcessedImageMetadata) => void
-        let reject!: (e: unknown) => void
+          if (
+            cacheOptions.enabled &&
+            (statSync(`${cacheOptions.dir}/${id}`, { throwIfNoEntry: false })?.size ?? 0) > 0
+          ) {
+            cachedBuffer = await readFile(`${cacheOptions.dir}/${id}`)
+            image = sharp(cachedBuffer)
+            metadata = (await image.metadata()) as ImageMetadata
+            // we set the format on the metadata during transformation using the format directive
+            // when restoring from the cache, we use sharp to read it from the image and that results in a different value for avif images
+            // see https://github.com/lovell/sharp/issues/2504 and https://github.com/lovell/sharp/issues/3746
+            if (imageConfig.format === 'avif' && metadata.format === 'heif' && metadata.compression === 'av1')
+              metadata.format = 'avif'
+          } else {
+            const { transforms } = generateTransforms(imageConfig, transformFactories, srcURL.searchParams, logger)
+            const res = await applyTransforms(transforms, img.clone(), pluginOptions.removeMetadata)
+            image = res.image
+            metadata = res.metadata
+            if (cacheOptions.enabled) {
+              cachedBuffer = await image.toBuffer()
+              await writeFile(`${cacheOptions.dir}/${id}`, cachedBuffer)
+            }
+          }
 
-        transformPromise = new Promise((res, rej) => {
-          resolve = res
-          reject = rej
-        })
+          generatedImages.set(id, { image, metadata })
 
-        transformPromises.set(id, transformPromise)
+          if (directives.has('inline')) {
+            const inlineBuffer = cachedBuffer || (await image.toBuffer())
+            metadata.src = `data:image/${metadata.format};base64,${inlineBuffer.toString('base64')}`
+          } else if (viteConfig.command === 'serve') {
+            metadata.src = (viteConfig?.server?.origin ?? '') + basePath + id
+          } else {
+            const fileHandle = this.emitFile({
+              name: basename(pathname, extname(pathname)) + `.${metadata.format}`,
+              source: cachedBuffer || (await image.toBuffer()),
+              type: 'asset',
+              originalFileName: normalizePath(relative(viteConfig.root, srcURL.pathname))
+            })
 
-        executeTransform(id, imageConfig)
-          .then(resolve, reject)
-          .finally(() => {
-            transformPromises.delete(id)
+            metadata.src = `__VITE_ASSET__${fileHandle}__`
+          }
+
+          return metadata as ProcessedImageMetadata
+        }
+
+        /** allows only one transform to be run for a given id */
+        async function synchronizedTransform(id: string, imageConfig: ImageConfig) {
+          let transformPromise = transformPromises.get(id)
+          if (transformPromise) return transformPromise
+
+          let resolve!: (v: ProcessedImageMetadata) => void
+          let reject!: (e: unknown) => void
+
+          transformPromise = new Promise((res, rej) => {
+            resolve = res
+            reject = rej
           })
 
-        return transformPromise
-      }
+          transformPromises.set(id, transformPromise)
 
-      const outputs = await Promise.all(
-        imageConfigs.map((config) => {
-          const id = generateImageID(config, imageHash)
-          return synchronizedTransform(id, config)
-        })
-      )
+          executeTransform(id, imageConfig)
+            .then(resolve, reject)
+            .finally(() => {
+              transformPromises.delete(id)
+            })
 
-      let outputFormat = urlFormat()
-      const asParam = directives.get('as')?.split(':')
-      const as = asParam ? asParam[0] : undefined
-      for (const [key, format] of Object.entries(outputFormats)) {
-        if (as === key) {
-          outputFormat = format(asParam && asParam[1] ? asParam[1].split(';') : undefined)
-          break
+          return transformPromise
         }
-      }
 
-      return dataToEsm(await outputFormat(outputs), {
-        namedExports: pluginOptions.namedExports ?? viteConfig.json?.namedExports ?? true,
-        compact: !!viteConfig.build.minify,
-        preferConst: true
-      })
+        const outputs = await Promise.all(
+          imageConfigs.map((config) => {
+            const id = generateImageID(config, imageHash)
+            return synchronizedTransform(id, config)
+          })
+        )
+
+        let outputFormat = urlFormat()
+        const asParam = directives.get('as')?.split(':')
+        const as = asParam ? asParam[0] : undefined
+        for (const [key, format] of Object.entries(outputFormats)) {
+          if (as === key) {
+            outputFormat = format(asParam && asParam[1] ? asParam[1].split(';') : undefined)
+            break
+          }
+        }
+
+        return dataToEsm(await outputFormat(outputs), {
+          namedExports: pluginOptions.namedExports ?? viteConfig.json?.namedExports ?? true,
+          compact: !!viteConfig.build.minify,
+          preferConst: true
+        })
+      }
     },
 
     configureServer(server) {
