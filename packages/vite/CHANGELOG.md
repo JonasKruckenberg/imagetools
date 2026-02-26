@@ -1,5 +1,15 @@
 # Change Log
 
+## 10.0.0
+
+### Major Changes
+
+- c30beff: breaking: require Vite 7 and Node 22
+
+### Minor Changes
+
+- c30beff: feat: implement Vite hook filters for improved performance
+
 ## 9.0.3
 
 ### Patch Changes
