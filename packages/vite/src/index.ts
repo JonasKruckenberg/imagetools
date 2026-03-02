@@ -169,7 +169,7 @@ export function imagetools(userOptions: Partial<VitePluginOptions> = {}): Plugin
             }
           }
 
-          if (cachedBuffer) {
+          if (cacheOptions.enabled && cachedBuffer) {
             cachedBuffers.set(id, cachedBuffer)
           }
 
