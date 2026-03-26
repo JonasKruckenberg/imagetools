@@ -51,7 +51,7 @@
     "imagetools-core": "workspace:^",
     "jest-image-snapshot": "^6.5.1",
     "jsdom": "^29.0.0",
-    "picomatch": "^4.0.0",
+    "picomatch": "^4.0.4",
     "rollup": "^4.59.0",
     "sharp": "^0.34.1",
     "tslib": "^2.6.1",
