@@ -66,6 +66,7 @@ export function imagetools(userOptions: Partial<VitePluginOptions> = {}): Plugin
   let basePath: string
 
   const generatedImages = new Map<string, { image?: Sharp; metadata: ImageMetadata }>()
+  const cachedBuffers = new Map<string, Buffer>()
 
   return {
     name: 'imagetools',
@@ -168,6 +169,10 @@ export function imagetools(userOptions: Partial<VitePluginOptions> = {}): Plugin
             }
           }
 
+          if (cacheOptions.enabled && cachedBuffer) {
+            cachedBuffers.set(id, cachedBuffer)
+          }
+
           generatedImages.set(id, { image, metadata })
 
           if (directives.has('inline')) {
@@ -258,6 +263,12 @@ export function imagetools(userOptions: Partial<VitePluginOptions> = {}): Plugin
           }
 
           res.setHeader('Content-Type', `image/${getMetadata(image, 'format')}`)
+
+          const cachedBuffer = cachedBuffers.get(id)
+          if (cachedBuffer) {
+            return res.finish(cachedBuffer)
+          }
+
           return image.clone().pipe(res)
         }
 
