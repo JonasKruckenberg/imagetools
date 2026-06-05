@@ -1,3 +1,9 @@
 packages:
   - 'packages/*'
   - 'examples/*'
+allowBuilds:
+  esbuild: true
+  sharp: true
+peerDependencyRules:
+  ignoreMissing:
+    - jest
