@@ -50,7 +50,6 @@ fixtures (see [project setup](#project-setup) for instructions on how to install
   [adding a changeset](https://github.com/atlassian/changesets/blob/main/docs/adding-a-changeset.md) for details.
 
 - When adding transforms,
-
   - does your use case absolutely require a new transform to be added or can it be archived some other way?
 
   - make sure the functions don't have any side-effects and don't keep state between invocations.
