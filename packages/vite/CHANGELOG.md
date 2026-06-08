@@ -1,5 +1,12 @@
 # Change Log
 
+## 10.0.1
+
+### Patch Changes
+
+- Updated dependencies [987ebef]
+  - imagetools-core@10.0.0
+
 ## 10.0.0
 
 ### Major Changes

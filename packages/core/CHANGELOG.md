@@ -1,5 +1,11 @@
 # Change Log
 
+## 10.0.0
+
+### Major Changes
+
+- 987ebef: breaking: require Node 22
+
 ## 9.1.0
 
 ### Minor Changes
