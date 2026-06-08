@@ -39,7 +39,7 @@
     "@types/jest-image-snapshot": "^6.4.1",
     "@vitest/coverage-v8": "^4.0.4",
     "jest-file-snapshot": "^0.7.0",
-    "jest-image-snapshot": "^6.5.1",
+    "jest-image-snapshot": "^6.5.2",
     "rollup": "^4.59.0",
     "sharp": "^0.34.1",
     "tslib": "^2.6.1",
