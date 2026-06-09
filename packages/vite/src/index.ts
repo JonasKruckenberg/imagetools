@@ -1,7 +1,8 @@
 import { basename, extname } from 'node:path'
 import { relative } from 'node:path/posix'
 import { statSync, mkdirSync, createReadStream } from 'node:fs'
-import { readFile, writeFile, opendir, stat, rm } from 'node:fs/promises'
+import { randomBytes } from 'node:crypto'
+import { readFile, writeFile, rename, opendir, stat, rm } from 'node:fs/promises'
 import { normalizePath, type Plugin, type ResolvedConfig } from 'vite'
 import {
   applyTransforms,
@@ -164,7 +165,10 @@ export function imagetools(userOptions: Partial<VitePluginOptions> = {}): Plugin
             metadata = res.metadata
             if (cacheOptions.enabled) {
               cachedBuffer = await image.toBuffer()
-              await writeFile(`${cacheOptions.dir}/${id}`, cachedBuffer)
+              // hidden temp file following rsync's .id.XXXXXX convention; leading dot omitted if id already has one
+              const tmp = `${cacheOptions.dir}/${id.startsWith('.') ? '' : '.'}${id}.${randomBytes(3).toString('hex')}`
+              await writeFile(tmp, cachedBuffer)
+              await rename(tmp, `${cacheOptions.dir}/${id}`)
             }
           }
 
