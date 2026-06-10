@@ -37,7 +37,7 @@
   "dependencies": {
     "@rollup/pluginutils": "^5.0.5",
     "imagetools-core": "workspace:^",
-    "sharp": "^0.34.1"
+    "sharp": "^0.35.0"
   },
   "peerDependencies": {
     "vite": ">=7.0.0"
@@ -53,7 +53,7 @@
     "jsdom": "^29.0.0",
     "picomatch": "^4.0.4",
     "rollup": "^4.59.0",
-    "sharp": "^0.34.1",
+    "sharp": "^0.35.0",
     "tslib": "^2.6.1",
     "typescript": "^5.1.6",
     "vite": "^7.1.12",
