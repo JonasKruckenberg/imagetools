@@ -1,5 +1,14 @@
 # Change Log
 
+## 10.0.1
+
+### Patch Changes
+
+- 77d4925: chore: upgrade to sharp 0.35
+- Updated dependencies [987ebef]
+- Updated dependencies [77d4925]
+  - imagetools-core@10.0.0
+
 ## 10.0.0
 
 ### Major Changes
