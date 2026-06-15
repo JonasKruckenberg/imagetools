@@ -1,5 +1,15 @@
 # Change Log
 
+## 10.0.0
+
+### Major Changes
+
+- 987ebef: breaking: require Node 22
+
+### Patch Changes
+
+- 77d4925: chore: upgrade to sharp 0.35
+
 ## 9.1.0
 
 ### Minor Changes
