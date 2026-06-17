@@ -18,6 +18,9 @@
     "type": "git",
     "url": "https://github.com/JonasKruckenberg/imagetools.git"
   },
+  "bugs": {
+    "url": "https://github.com/JonasKruckenberg/imagetools/issues"
+  },
   "keywords": [
     "resize-images",
     "responsive-images",
