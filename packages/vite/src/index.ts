@@ -159,6 +159,11 @@ export function imagetools(userOptions: Partial<VitePluginOptions> = {}): Plugin
             // value so emitted filenames don't change between cache misses and cache hits.
             if (typeof imageConfig.format === 'string' && metadata.format !== imageConfig.format)
               metadata.format = imageConfig.format as ImageMetadata['format']
+            // recompute pixelDensityDescriptor from config and the actual resized width.
+            // ImageConfig is typed as string | string[] but resolveConfigs always produces
+            // single string values via cartesian product, so this is always a string.
+            const parsedBasePixels = parseInt(String(imageConfig.basePixels || ''))
+            metadata.pixelDensityDescriptor = parsedBasePixels > 0 ? `${metadata.width / parsedBasePixels}x` : undefined
           } else {
             const { transforms } = generateTransforms(imageConfig, transformFactories, srcURL.searchParams, logger)
             const res = await applyTransforms(transforms, img.clone(), pluginOptions.removeMetadata)
