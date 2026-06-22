@@ -1,12 +1,10 @@
 import type { OutputFormat } from '../index.js'
 
 /**
- * This function calculates the cartesian product of two or more arrays and is straight from stackoverflow ;)
- * Should be replaced with something more legible but works for now.
+ * This function calculates the cartesian product of a set of sets.
  */
-const cartesian = (...a: [[string, string]][][]) =>
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  a.reduce((a: any, b: any) => a.flatMap((d: any) => b.map((e: any) => [d, e].flat())))
+const cartesian = <T>(sets: T[][]) =>
+  sets.reduce((acc, set) => acc.flatMap((x) => set.map((y) => [...x, y])), [[]] as T[][])
 
 /**
  * This function builds up all possible combinations the given entries can be combined
@@ -21,12 +19,10 @@ export function resolveConfigs(
   // create a new array of entries for each argument
   const singleArgumentEntries = entries
     .filter(([k]) => !(k in outputFormats))
-    .map(([key, values]) => values.map<[[string, string]]>((v) => [[key, v]]))
+    .map(([key, values]) => values.map<[string, string]>((v) => [key, v]))
 
   // do a cartesian product on all entries to get all combinations we need to produce
-  const combinations = singleArgumentEntries
-    // .filter(([key]) => !(key[0][0] in outputFormats))
-    .reduce((prev, cur) => (prev.length ? cartesian(prev, cur) : cur), [])
+  const combinations = cartesian(singleArgumentEntries)
 
   const metadataAddons = entries.filter(([k]) => k in outputFormats)
 
