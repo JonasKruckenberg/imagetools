@@ -150,8 +150,7 @@ export function imagetools(userOptions: Partial<VitePluginOptions> = {}): Plugin
             (statSync(`${cacheOptions.dir}/${id}`, { throwIfNoEntry: false })?.size ?? 0) > 0
           ) {
             cachedBuffer = await readFile(`${cacheOptions.dir}/${id}`)
-            image = sharp(cachedBuffer)
-            metadata = (await image.metadata()) as ImageMetadata
+            metadata = (await sharp(cachedBuffer).metadata()) as ImageMetadata
             // we set the format on the metadata during transformation using the format directive
             // when restoring from the cache, we use sharp to read it from the image and that results in a different value for avif images
             // see https://github.com/lovell/sharp/issues/2504 and https://github.com/lovell/sharp/issues/3746
@@ -165,6 +164,7 @@ export function imagetools(userOptions: Partial<VitePluginOptions> = {}): Plugin
             if (cacheOptions.enabled) {
               cachedBuffer = await image.toBuffer()
               await writeFile(`${cacheOptions.dir}/${id}`, cachedBuffer)
+              image = undefined
             }
           }
 
