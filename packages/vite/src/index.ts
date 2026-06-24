@@ -157,6 +157,11 @@ export function imagetools(userOptions: Partial<VitePluginOptions> = {}): Plugin
             // see https://github.com/lovell/sharp/issues/2504 and https://github.com/lovell/sharp/issues/3746
             if (imageConfig.format === 'avif' && metadata.format === 'heif' && metadata.compression === 'av1')
               metadata.format = 'avif'
+            // recompute pixelDensityDescriptor from config and the actual resized width
+            // ImageConfig is typed as string | string[] but resolveConfigs always produces
+            // single string values via cartesian product, so this is always a string
+            const parsedBasePixels = parseInt(String(imageConfig.basePixels || ''))
+            metadata.pixelDensityDescriptor = parsedBasePixels > 0 ? `${metadata.width / parsedBasePixels}x` : undefined
           } else {
             const { transforms } = generateTransforms(imageConfig, transformFactories, srcURL.searchParams, logger)
             const res = await applyTransforms(transforms, img.clone(), pluginOptions.removeMetadata)
