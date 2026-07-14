@@ -21,7 +21,7 @@ jobs:
           lfs: true
 
       - uses: pnpm/action-setup@v6.0.9
-      - uses: actions/setup-node@v6
+      - uses: actions/setup-node@v7
         with:
           node-version: 24.x
           cache: 'pnpm'
@@ -54,7 +54,7 @@ jobs:
           lfs: true
 
       - uses: pnpm/action-setup@v6.0.9
-      - uses: actions/setup-node@v6
+      - uses: actions/setup-node@v7
         with:
           node-version: 24.x
           cache: 'pnpm'
