@@ -565,6 +565,33 @@ describe('vite-imagetools', () => {
         expect(files).toHaveLength(1)
       })
     })
+
+    describe('cache.jpgFormat', () => {
+      test('keeps the jpg extension on cache hits', async () => {
+        const dir = './node_modules/.cache/imagetools_test_cache_jpg_format'
+        await rm(dir, { recursive: true, force: true })
+        const buildOnce = async () =>
+          (await build({
+            root: join(__dirname, '__fixtures__'),
+            logLevel: 'warn',
+            build: { write: false },
+            plugins: [
+              testEntry(`
+                            import Image from "./pexels-allec-gomes-5195763.png?format=jpg"
+                            window.__IMAGE__ = Image
+                        `),
+              imagetools({ cache: { dir } })
+            ]
+          })) as RollupOutput | RollupOutput[]
+
+        const coldFiles = getFiles(await buildOnce(), '**.jpg') as OutputAsset[]
+        const warmFiles = getFiles(await buildOnce(), '**.jpg') as OutputAsset[]
+
+        expect(coldFiles).toHaveLength(1)
+        expect(warmFiles).toHaveLength(1)
+        expect(warmFiles[0].fileName).toBe(coldFiles[0].fileName)
+      })
+    })
   })
 
   test('relative import', async () => {
