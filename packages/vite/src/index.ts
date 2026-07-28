@@ -153,10 +153,12 @@ export function imagetools(userOptions: Partial<VitePluginOptions> = {}): Plugin
             image = sharp(cachedBuffer)
             metadata = (await image.metadata()) as ImageMetadata
             // we set the format on the metadata during transformation using the format directive
-            // when restoring from the cache, we use sharp to read it from the image and that results in a different value for avif images
-            // see https://github.com/lovell/sharp/issues/2504 and https://github.com/lovell/sharp/issues/3746
-            if (imageConfig.format === 'avif' && metadata.format === 'heif' && metadata.compression === 'av1')
-              metadata.format = 'avif'
+            // when restoring from the cache, we use sharp to read it from the image and that can result in a
+            // different value: avif images are detected as heif (see https://github.com/lovell/sharp/issues/2504
+            // and https://github.com/lovell/sharp/issues/3746) and jpg is detected as jpeg. Restore the directive
+            // value so emitted filenames don't change between cache misses and cache hits.
+            if (typeof imageConfig.format === 'string' && metadata.format !== imageConfig.format)
+              metadata.format = imageConfig.format as ImageMetadata['format']
           } else {
             const { transforms } = generateTransforms(imageConfig, transformFactories, srcURL.searchParams, logger)
             const res = await applyTransforms(transforms, img.clone(), pluginOptions.removeMetadata)
