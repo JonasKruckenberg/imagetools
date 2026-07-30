@@ -300,8 +300,8 @@ describe('vite-imagetools', () => {
           })
           fail()
         } catch (err: unknown) {
-          const e = err as { plugin: string; message: string }
-          expect(e.plugin).toEqual('imagetools')
+          const e = err as { message: string; errors: { plugin: string }[] }
+          expect(e.errors[0].plugin).toEqual('imagetools')
           expect(e.message).toContain('An error')
         }
       })
