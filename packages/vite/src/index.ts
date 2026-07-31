@@ -1,7 +1,7 @@
 import { basename, extname } from 'node:path'
 import { relative } from 'node:path/posix'
 import { statSync, mkdirSync, createReadStream } from 'node:fs'
-import { readFile, writeFile, opendir, stat, rm } from 'node:fs/promises'
+import { readFile, opendir, stat, rm } from 'node:fs/promises'
 import { normalizePath, type Plugin, type ResolvedConfig } from 'vite'
 import {
   applyTransforms,
@@ -21,7 +21,7 @@ import {
 } from 'imagetools-core'
 import { createFilter, dataToEsm } from '@rollup/pluginutils'
 import sharp, { type Metadata, type Sharp } from 'sharp'
-import { createBasePath, generateImageID, hash } from './utils.js'
+import { createBasePath, generateImageID, hash, writeFileAtomic } from './utils.js'
 import type { VitePluginOptions } from './types.js'
 
 export type {
@@ -166,7 +166,7 @@ export function imagetools(userOptions: Partial<VitePluginOptions> = {}): Plugin
             metadata = res.metadata
             if (cacheOptions.enabled) {
               cachedBuffer = await image.toBuffer()
-              await writeFile(`${cacheOptions.dir}/${id}`, cachedBuffer)
+              await writeFileAtomic(`${cacheOptions.dir}/${id}`, cachedBuffer)
             }
           }
 
