@@ -1,4 +1,4 @@
-import { type InlineConfig, build, createLogger } from 'vite'
+import { type InlineConfig, build, createLogger, createServer } from 'vite'
 import { imagetools } from '../index'
 import { join } from 'path'
 import { getFiles, testEntry } from './util'
@@ -10,6 +10,8 @@ import { afterEach, describe, test, expect, it, vi } from 'vitest'
 import { createBasePath } from '../utils'
 import { existsSync } from 'node:fs'
 import { rm, utimes, readdir, copyFile } from 'node:fs/promises'
+import { createServer as createHttpServer } from 'node:http'
+import { type AddressInfo } from 'node:net'
 
 expect.extend({ toMatchImageSnapshot })
 
@@ -1054,6 +1056,35 @@ describe('vite-imagetools', () => {
     expect(asset).toHaveProperty('fileName', 'assets/with-metadata-CMyRTzDt.png')
     expect(asset).toHaveProperty('names', ['with-metadata.png'])
     expect(asset).toHaveProperty('originalFileNames', ['with-metadata.png'])
+  })
+
+  test('dev server serves transformed images through the middleware', async () => {
+    const vite = await createServer({
+      root: join(__dirname, '__fixtures__'),
+      logLevel: 'silent',
+      server: { middlewareMode: true },
+      plugins: [imagetools({ cache: { enabled: false } })]
+    })
+    const http = createHttpServer((req, res) => vite.middlewares(req, res))
+    await new Promise<void>((resolve) => http.listen(0, resolve))
+    const port = (http.address() as AddressInfo).port
+
+    // Loading the image through the dev server populates the generated images map
+    // and reports the dev server URL (basePath + id) on the metadata.
+    const module = await vite.transformRequest('/pexels-allec-gomes-5195763.png?w=300&format=webp')
+    const src = module?.code?.match(/\/@imagetools\/[a-f0-9]+/)?.[0]
+    expect(src).toBeTruthy()
+
+    const res = await fetch(`http://localhost:${port}${src}`)
+    expect(res.status).toBe(200)
+    expect(res.headers.get('content-type')).toBe('image/webp')
+    expect((await res.arrayBuffer()).byteLength).toBeGreaterThan(0)
+
+    const missing = await fetch(`http://localhost:${port}/@imagetools/does-not-exist`)
+    expect(missing.status).toBe(404)
+
+    await new Promise<void>((resolve) => http.close(resolve))
+    await vite.close()
   })
 
   describe('utils', () => {

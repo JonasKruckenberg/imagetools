@@ -143,6 +143,10 @@ describe('image format', () => {
 })
 
 describe('picture format', () => {
+  test('throws when the format is missing', () => {
+    expect(() => pictureFormat()([meta('/foo.jpg', 100, 50)])).toThrow('Could not determine image format')
+  })
+
   test('multiple image formats', () => {
     const output = pictureFormat()([
       meta('/foo.avif', 100, 50, 'avif'),

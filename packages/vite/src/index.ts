@@ -1,6 +1,6 @@
 import { basename, extname } from 'node:path'
 import { relative } from 'node:path/posix'
-import { statSync, mkdirSync, createReadStream } from 'node:fs'
+import { statSync, mkdirSync } from 'node:fs'
 import { readFile, writeFile, opendir, stat, rm } from 'node:fs/promises'
 import { normalizePath, type Plugin, type ResolvedConfig } from 'vite'
 import {
@@ -280,11 +280,6 @@ export function imagetools(userOptions: Partial<VitePluginOptions> = {}): Plugin
             throw new Error(`vite-imagetools cannot find image with id "${id}" this is likely an internal error`)
 
           const { image } = processedImage
-
-          if (!image) {
-            res.setHeader('Content-Type', `image/${processedImage.transforms.format}`)
-            return createReadStream(`${cacheOptions.dir}/${id}`).pipe(res)
-          }
 
           if (pluginOptions.removeMetadata === false) {
             image.withMetadata()
