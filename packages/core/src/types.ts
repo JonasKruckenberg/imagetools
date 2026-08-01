@@ -5,6 +5,10 @@ import { positionValues } from './transforms/position.js'
 export interface ProcessedImageMetadata extends ImageMetadata {
   src: string
   image: Sharp
+  /**
+   * The config used to generate this image.
+   */
+  config: ImageConfig
 }
 
 export interface ImageMetadata extends Metadata {
@@ -24,7 +28,6 @@ export interface ImageMetadata extends Metadata {
   lossless?: true
   median?: number
   normalize?: true
-  pixelDensityDescriptor?: string | undefined
   position?: (typeof positionValues)[number]
   progressive?: true
   quality?: number

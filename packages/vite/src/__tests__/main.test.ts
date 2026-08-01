@@ -893,6 +893,95 @@ describe('vite-imagetools', () => {
     expect(window.__IMAGE__).toBe('/assets/with-metadata-CMyRTzDt.png 600w')
   })
 
+  // test for https://github.com/JonasKruckenberg/imagetools/issues/751
+  test('basePixels produces consistent density descriptors on cache hits', async () => {
+    const dir = './node_modules/.cache/imagetools_test_base_pixels_cache'
+    await rm(dir, { recursive: true, force: true })
+    const config: InlineConfig = {
+      root: join(__dirname, '__fixtures__'),
+      logLevel: 'warn',
+      build: { write: false },
+      plugins: [
+        testEntry(`
+                    import Image from "./with-metadata.png?w=300;600&basePixels=300&as=srcset"
+                    window.__IMAGE__ = Image
+                `),
+        imagetools({ cache: { dir } })
+      ]
+    }
+    const evalBuild = async () => {
+      const bundle = (await build(config)) as RollupOutput | RollupOutput[]
+      const files = getFiles(bundle, '**.js') as OutputChunk[]
+      const { window } = new JSDOM(``, { runScripts: 'outside-only' })
+      window.eval(files[0].code)
+      return window.__IMAGE__ as string
+    }
+
+    const coldSrcset = await evalBuild()
+    // the cache should now contain one file per generated config, so the second build reads from it
+    expect(await readdir(dir)).toHaveLength(2)
+    const warmSrcset = await evalBuild()
+
+    expect(coldSrcset).toBe(warmSrcset)
+    expect(coldSrcset).toMatch(/ 1x, .+ 2x$/)
+    expect(coldSrcset).not.toMatch(/ \d+w/)
+  })
+
+  test('rotated images keep density descriptors consistent across cache hits', async () => {
+    const dir = './node_modules/.cache/imagetools_test_base_pixels_rotate_cache'
+    await rm(dir, { recursive: true, force: true })
+    const config: InlineConfig = {
+      root: join(__dirname, '__fixtures__'),
+      logLevel: 'warn',
+      build: { write: false },
+      plugins: [
+        testEntry(`
+                    import Image from "./pexels-allec-gomes-5195763.png?rotate=90&basePixels=400&as=srcset"
+                    window.__IMAGE__ = Image
+                `),
+        imagetools({ cache: { dir } })
+      ]
+    }
+    const evalBuild = async () => {
+      const bundle = (await build(config)) as RollupOutput | RollupOutput[]
+      const files = getFiles(bundle, '**.js') as OutputChunk[]
+      const { window } = new JSDOM(``, { runScripts: 'outside-only' })
+      window.eval(files[0].code)
+      return window.__IMAGE__ as string
+    }
+
+    const coldSrcset = await evalBuild()
+    const warmSrcset = await evalBuild()
+
+    // the source is 640x800, so `rotate=90` renders 800x640 without a resize; the cache-hit build
+    // must not fall back to the stale pre-rotation width (640) when deriving the density descriptor
+    expect(coldSrcset).toBe(warmSrcset)
+    expect(coldSrcset).toMatch(/ 2x$/)
+  })
+
+  test('rotated images keep density descriptors correct without a cache', async () => {
+    const config: InlineConfig = {
+      root: join(__dirname, '__fixtures__'),
+      logLevel: 'warn',
+      build: { write: false },
+      plugins: [
+        testEntry(`
+                    import Image from "./pexels-allec-gomes-5195763.png?rotate=90&basePixels=400&as=srcset"
+                    window.__IMAGE__ = Image
+                `),
+        imagetools({ cache: { enabled: false } })
+      ]
+    }
+    const bundle = (await build(config)) as RollupOutput | RollupOutput[]
+    const files = getFiles(bundle, '**.js') as OutputChunk[]
+    const { window } = new JSDOM(``, { runScripts: 'outside-only' })
+    window.eval(files[0].code)
+
+    // the source is 640x800, so `rotate=90` renders 800x640 without a resize; the density descriptor
+    // must be derived from the rendered width (800) even though the transforms report 640
+    expect(window.__IMAGE__ as string).toMatch(/ 2x$/)
+  })
+
   test('async output format', async () => {
     const bundle = (await build({
       root: join(__dirname, '__fixtures__'),

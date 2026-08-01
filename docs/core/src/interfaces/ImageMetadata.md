@@ -526,14 +526,6 @@ Number of pages/frames contained within the image, with support for TIFF, HEIF, 
 
 ***
 
-### pixelDensityDescriptor?
-
-> `optional` **pixelDensityDescriptor**: `string`
-
-Defined in: [packages/core/src/types.ts:27](https://github.com/JonasKruckenberg/imagetools/blob/aa84664d044e4b733cdf7005c6730584bc92ec90/packages/core/src/types.ts#L27)
-
-***
-
 ### position?
 
 > `optional` **position**: `"top"` \| `"right top"` \| `"right"` \| `"right bottom"` \| `"bottom"` \| `"left bottom"` \| `"left"` \| `"left top"` \| `"north"` \| `"northeast"` \| `"east"` \| `"southeast"` \| `"south"` \| `"southwest"` \| `"west"` \| `"northwest"` \| `"center"` \| `"centre"` \| `"entropy"` \| `"attention"`

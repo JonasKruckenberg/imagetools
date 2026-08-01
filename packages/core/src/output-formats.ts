@@ -1,4 +1,4 @@
-import type { ImageMetadata, Img, OutputFormat, Picture } from './types.js'
+import type { ImageMetadata, Img, OutputFormat, Picture, ProcessedImageMetadata } from './types.js'
 
 export const urlFormat: OutputFormat = () => (metadatas) => {
   const urls: string[] = metadatas.map((metadata) => metadata.src as string)
@@ -11,17 +11,35 @@ export const srcsetFormat: OutputFormat = () => metadatasToSourceset
 export const metadataFormat: OutputFormat = (whitelist) => (metadatas) => {
   const result = whitelist
     ? metadatas.map((cfg) => Object.fromEntries(Object.entries(cfg).filter(([k]) => whitelist.includes(k))))
-    : metadatas
-
-  result.forEach((m) => delete m.image)
+    : metadatas.map((cfg) => Object.fromEntries(Object.entries(cfg).filter(([k]) => k !== 'image' && k !== 'config')))
 
   return result.length === 1 ? result[0] : result
 }
 
-const metadatasToSourceset = (metadatas: ImageMetadata[]) =>
+/**
+ * Parses the `basePixels` directive into a positive number, or `undefined` if it is not set or invalid.
+ * A `basePixels` value of `0` or less disables pixel density descriptors.
+ */
+function parseBasePixels(value: string | string[] | undefined): number | undefined {
+  if (typeof value !== 'string') return undefined
+  const basePixels = Number(value)
+  return Number.isFinite(basePixels) && basePixels > 0 ? basePixels : undefined
+}
+
+/**
+ * Derives the pixel density descriptor (e.g. `"2x"`) for a single image from its `basePixels`
+ * directive and the final image width, or `undefined` if `basePixels` is not set.
+ */
+function getPixelDensityDescriptor(metadata: ProcessedImageMetadata): string | undefined {
+  const basePixels = parseBasePixels(metadata.config.basePixels)
+  if (!basePixels || !metadata.width) return undefined
+  return `${metadata.width / basePixels}x`
+}
+
+const metadatasToSourceset = (metadatas: ProcessedImageMetadata[]) =>
   metadatas
     .map((meta) => {
-      const density = meta.pixelDensityDescriptor
+      const density = getPixelDensityDescriptor(meta)
       return density ? `${meta.src} ${density}` : `${meta.src} ${meta.width}w`
     })
     .join(', ')
@@ -74,7 +92,7 @@ export const pictureFormat: OutputFormat = () => (metadatas) => {
     }
   }
 
-  const sourceMetadatas: Record<string, ImageMetadata[]> = {}
+  const sourceMetadatas: Record<string, ProcessedImageMetadata[]> = {}
   for (let i = 0; i < metadatas.length; i++) {
     const m = metadatas[i]
     const f = getFormat(m)

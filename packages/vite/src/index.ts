@@ -164,31 +164,39 @@ export function imagetools(userOptions: Partial<VitePluginOptions> = {}): Plugin
             const res = await applyTransforms(transforms, img.clone(), pluginOptions.removeMetadata)
             image = res.image
             metadata = res.metadata
+            // Transforms report their target dimensions on the metadata, but the encoded image can differ
+            // (e.g. `rotate` swaps width and height). Reconcile against the actual output so the metadata
+            // and the pixel density descriptors derived from it match the dimensions the cache-hit path
+            // reads back from the cached file.
+            const { data, info } = await image.toBuffer({ resolveWithObject: true })
+            cachedBuffer = data
+            metadata.width = info.width
+            metadata.height = info.height
             if (cacheOptions.enabled) {
-              cachedBuffer = await image.toBuffer()
               await writeFile(`${cacheOptions.dir}/${id}`, cachedBuffer)
             }
           }
 
-          generatedImages.set(id, { image, metadata })
+          const processedMetadata = { ...metadata, image, config: imageConfig } as ProcessedImageMetadata
+          generatedImages.set(id, { image, metadata: processedMetadata })
 
           if (directives.has('inline')) {
             const inlineBuffer = cachedBuffer || (await image.toBuffer())
-            metadata.src = `data:image/${metadata.format};base64,${inlineBuffer.toString('base64')}`
+            processedMetadata.src = `data:image/${processedMetadata.format};base64,${inlineBuffer.toString('base64')}`
           } else if (viteConfig.command === 'serve') {
-            metadata.src = (viteConfig?.server?.origin ?? '') + basePath + id
+            processedMetadata.src = (viteConfig?.server?.origin ?? '') + basePath + id
           } else {
             const fileHandle = this.emitFile({
-              name: basename(pathname, extname(pathname)) + `.${metadata.format}`,
+              name: basename(pathname, extname(pathname)) + `.${processedMetadata.format}`,
               source: cachedBuffer || (await image.toBuffer()),
               type: 'asset',
               originalFileName: normalizePath(relative(viteConfig.root, srcURL.pathname))
             })
 
-            metadata.src = `__VITE_ASSET__${fileHandle}__`
+            processedMetadata.src = `__VITE_ASSET__${fileHandle}__`
           }
 
-          return metadata as ProcessedImageMetadata
+          return processedMetadata
         }
 
         /** allows only one transform to be run for a given id */

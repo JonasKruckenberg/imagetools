@@ -37,7 +37,8 @@ aspect ratio
 Defined in: packages/core/dist/transforms/resize.d.ts:15
 
 The width in pixels for the 1x pixel density descriptor.
-If supplied, output will use pixel density descriptors rather than width descriptors.
+If supplied, the srcset, img and picture output formats use pixel density descriptors rather than width descriptors.
+This is consumed when generating the output, so it can be used with or without a `w`/`h`/`aspect` directive.
 
 ***
 
