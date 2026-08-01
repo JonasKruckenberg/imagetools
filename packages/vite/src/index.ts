@@ -138,7 +138,12 @@ export function imagetools(userOptions: Partial<VitePluginOptions> = {}): Plugin
           error: (msg) => this.error(msg)
         }
 
-        const imageHash = hash([await img.toBuffer()])
+        // Hash the source bytes rather than a decoded buffer. This runs for every
+        // image before the cache is consulted, so decoding here is paid on every
+        // build even when every entry is a cache hit. The file contents identify
+        // the image just as uniquely, and more conservatively: two encodings of
+        // the same pixels no longer share a cache key.
+        const imageHash = hash([await readFile(pathname)])
 
         const executeTransform = async (id: string, imageConfig: ImageConfig) => {
           let image: Sharp | undefined
