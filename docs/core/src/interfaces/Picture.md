@@ -6,7 +6,7 @@
 
 # Interface: Picture
 
-Defined in: [packages/core/src/types.ts:93](https://github.com/JonasKruckenberg/imagetools/blob/aa84664d044e4b733cdf7005c6730584bc92ec90/packages/core/src/types.ts#L93)
+Defined in: [core/src/types.ts:140](https://github.com/blt-r/imagetools/blob/c792392eda68f17d70a8f7e2a2fdb3d0f2a118ee/packages/core/src/types.ts#L140)
 
 The picture output format.
 
@@ -16,7 +16,7 @@ The picture output format.
 
 > **img**: `object`
 
-Defined in: [packages/core/src/types.ts:98](https://github.com/JonasKruckenberg/imagetools/blob/aa84664d044e4b733cdf7005c6730584bc92ec90/packages/core/src/types.ts#L98)
+Defined in: [core/src/types.ts:145](https://github.com/blt-r/imagetools/blob/c792392eda68f17d70a8f7e2a2fdb3d0f2a118ee/packages/core/src/types.ts#L145)
 
 #### h
 
@@ -36,6 +36,6 @@ Defined in: [packages/core/src/types.ts:98](https://github.com/JonasKruckenberg/
 
 > **sources**: `Record`\<`string`, `string`\>
 
-Defined in: [packages/core/src/types.ts:97](https://github.com/JonasKruckenberg/imagetools/blob/aa84664d044e4b733cdf7005c6730584bc92ec90/packages/core/src/types.ts#L97)
+Defined in: [core/src/types.ts:144](https://github.com/blt-r/imagetools/blob/c792392eda68f17d70a8f7e2a2fdb3d0f2a118ee/packages/core/src/types.ts#L144)
 
 Key is format. Value is srcset.

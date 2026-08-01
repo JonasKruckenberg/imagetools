@@ -1,4 +1,3 @@
-import { METADATA } from '../lib/metadata.js'
 import type { TransformFactory } from '../types.js'
 
 export interface autoOrientOptions {
@@ -10,9 +9,9 @@ export const autoOrient: TransformFactory<autoOrientOptions> = ({ noAutoOrient }
   if (noAutoOrient === '' || noAutoOrient === 'true') return
 
   if (noAutoOrient === undefined || noAutoOrient === 'false') {
-    return function autoOrientTransform(image) {
-      image[METADATA].height = image[METADATA].autoOrient.height
-      image[METADATA].width = image[METADATA].autoOrient.width
+    return function autoOrientTransform(state, image) {
+      state.info.height = state.info.autoOrient.height
+      state.info.width = state.info.autoOrient.width
       return image.autoOrient()
     }
   }

@@ -1,5 +1,4 @@
 import type { TransformFactory } from '../types.js'
-import { METADATA } from '../lib/metadata.js'
 import { getEffort } from './effort.js'
 import { getQuality } from './quality.js'
 import { getProgressive } from './progressive.js'
@@ -19,15 +18,15 @@ export const format: TransformFactory<FormatOptions> = (config) => {
     format = config.format
   }
 
-  return function formatTransform(image) {
-    image[METADATA].format = format
+  return function formatTransform(state, image) {
+    state.transforms.format = format
 
     return image.toFormat(format, {
       compression: format == 'heif' ? 'av1' : undefined,
-      effort: getEffort(config, image),
-      lossless: getLossless(config, image) as boolean,
-      progressive: getProgressive(config, image) as boolean,
-      quality: getQuality(config, image)
+      effort: getEffort(config, state),
+      lossless: getLossless(config, state) as boolean,
+      progressive: getProgressive(config, state) as boolean,
+      quality: getQuality(config, state)
     })
   }
 }

@@ -1,27 +1,36 @@
 import type { Metadata, Sharp } from 'sharp'
-import { kernelValues } from './transforms/kernel.js'
-import { positionValues } from './transforms/position.js'
+import type { kernelValues, positionValues } from './lib/values.js'
 
-export interface ProcessedImageMetadata extends ImageMetadata {
-  src: string
-  image: Sharp
-  /**
-   * The config used to generate this image.
-   */
-  config: ImageConfig
+/**
+ * Properties describing the image as it flows through the pipeline.
+ * Initialized from the source file and updated by transforms.
+ */
+export interface ImageInfo {
+  /** The width of the image in pixels. */
+  width: number
+  /** The height of the image in pixels. */
+  height: number
+  /** The dimensions of the image once its EXIF orientation is applied. */
+  autoOrient: { width: number; height: number }
 }
 
-export interface ImageMetadata extends Metadata {
+/**
+ * The values applied by each transform during the pipeline run, mirroring the
+ * options available as image query parameters. Only the transforms that were
+ * applied record a value.
+ */
+export interface AppliedTransforms {
+  format?: string
   allowUpscale?: boolean
-  aspect?: number | undefined
+  aspect?: number
   backgroundDirective?: string
-  blur?: number | boolean | undefined
-  brightness?: number | '' | undefined
+  blur?: number | boolean
+  brightness?: number | ''
   fit?: string
   flip?: true
   flop?: true
   flatten?: true
-  hue?: number | '' | undefined
+  hue?: number | ''
   invert?: true
   grayscale?: true
   kernel?: (typeof kernelValues)[number]
@@ -31,10 +40,38 @@ export interface ImageMetadata extends Metadata {
   position?: (typeof positionValues)[number]
   progressive?: true
   quality?: number
-  saturation?: number | '' | undefined
+  saturation?: number | ''
   tint?: string
   rotate?: number
-  [key: string]: unknown
+  effort?: number
+}
+
+/**
+ * The state threaded through the transform pipeline and returned by `applyTransforms`.
+ */
+export interface ImageMetadata {
+  info: ImageInfo
+  transforms: AppliedTransforms
+}
+
+/**
+ * A processed image, ready to be consumed by an output format: the pipeline
+ * `ImageMetadata`, the source `raw` metadata, the URL, config and sharp instance
+ * that produced it.
+ */
+export interface ProcessedImage extends ImageMetadata {
+  /** The URL of the image. */
+  src: string
+  /** The sharp instance of the processed image. */
+  image: Sharp
+  /** The config used to generate this image. */
+  config: ImageConfig
+  /**
+   * The sharp metadata of the image. On a cache miss this is read from the source
+   * before any transformations; when restored from a cache it is read from the
+   * processed output instead.
+   */
+  raw: Metadata
 }
 
 export type ImageConfig = Record<string, string | string[]>
@@ -51,27 +88,34 @@ export interface TransformFactoryContext {
   logger: Logger
 }
 
+/**
+ * Creates an `ImageTransformation` from the parsed directives, or returns
+ * `undefined` to skip the transform for this run.
+ */
 export type TransformFactory<A = Record<string, unknown>> = (
   metadata: Partial<ImageConfig & A>,
   ctx: TransformFactoryContext
 ) => ImageTransformation | undefined
 
+/**
+ * Reads a transform value from the parsed directives and the threaded state,
+ * recording the applied value on `state.transforms` when present.
+ */
 export type TransformOption<A = Record<string, unknown>, T = unknown> = (
   metadata: Partial<ImageConfig & A>,
-  image: Sharp
+  state: ImageMetadata
 ) => T | undefined
 
-export type ImageTransformation = (image: Sharp) => Sharp | Promise<Sharp>
-
-export interface TransformResult {
-  image: Sharp
-  metadata: ImageMetadata
-}
+/**
+ * A single step of the pipeline: reads from and writes to the threaded
+ * `ImageMetadata`, and returns the image to continue processing.
+ */
+export type ImageTransformation = (state: ImageMetadata, image: Sharp) => Sharp | Promise<Sharp>
 
 /**
  * The JS object returned by the image import.
  */
-export type OutputFormat = (args?: string[]) => (metadata: ProcessedImageMetadata[]) => unknown
+export type OutputFormat = (args?: string[]) => (metadata: ProcessedImage[]) => unknown
 
 /**
  * The img output format.

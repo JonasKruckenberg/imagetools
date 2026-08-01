@@ -6,9 +6,12 @@
 
 # Type Alias: TransformOption()\<A, T\>
 
-> **TransformOption**\<`A`, `T`\> = (`metadata`, `image`) => `T` \| `undefined`
+> **TransformOption**\<`A`, `T`\> = (`metadata`, `state`) => `T` \| `undefined`
 
-Defined in: packages/core/dist/types.d.ts:46
+Defined in: core/dist/types.d.ts:95
+
+Reads a transform value from the parsed directives and the threaded state,
+recording the applied value on `state.transforms` when present.
 
 ## Type Parameters
 
@@ -26,9 +29,9 @@ Defined in: packages/core/dist/types.d.ts:46
 
 `Partial`\<[`ImageConfig`](ImageConfig.md) & `A`\>
 
-### image
+### state
 
-`Sharp`
+[`ImageMetadata`](../interfaces/ImageMetadata.md)
 
 ## Returns
 

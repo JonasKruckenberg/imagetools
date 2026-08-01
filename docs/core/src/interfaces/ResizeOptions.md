@@ -6,7 +6,7 @@
 
 # Interface: ResizeOptions
 
-Defined in: [packages/core/src/transforms/resize.ts:9](https://github.com/JonasKruckenberg/imagetools/blob/aa84664d044e4b733cdf7005c6730584bc92ec90/packages/core/src/transforms/resize.ts#L9)
+Defined in: [core/src/transforms/resize.ts:8](https://github.com/blt-r/imagetools/blob/c792392eda68f17d70a8f7e2a2fdb3d0f2a118ee/packages/core/src/transforms/resize.ts#L8)
 
 ## Properties
 
@@ -14,7 +14,7 @@ Defined in: [packages/core/src/transforms/resize.ts:9](https://github.com/JonasK
 
 > **allowUpscale**: `""` \| `"true"`
 
-Defined in: [packages/core/src/transforms/resize.ts:17](https://github.com/JonasKruckenberg/imagetools/blob/aa84664d044e4b733cdf7005c6730584bc92ec90/packages/core/src/transforms/resize.ts#L17)
+Defined in: [core/src/transforms/resize.ts:16](https://github.com/blt-r/imagetools/blob/c792392eda68f17d70a8f7e2a2fdb3d0f2a118ee/packages/core/src/transforms/resize.ts#L16)
 
 Whether to allow making images larger. This is generally a waste, so is disabled by default.
 
@@ -24,7 +24,7 @@ Whether to allow making images larger. This is generally a waste, so is disabled
 
 > **aspect**: `string`
 
-Defined in: [packages/core/src/transforms/resize.ts:15](https://github.com/JonasKruckenberg/imagetools/blob/aa84664d044e4b733cdf7005c6730584bc92ec90/packages/core/src/transforms/resize.ts#L15)
+Defined in: [core/src/transforms/resize.ts:14](https://github.com/blt-r/imagetools/blob/c792392eda68f17d70a8f7e2a2fdb3d0f2a118ee/packages/core/src/transforms/resize.ts#L14)
 
 aspect ratio
 
@@ -34,7 +34,7 @@ aspect ratio
 
 > **basePixels**: `string`
 
-Defined in: [packages/core/src/transforms/resize.ts:22](https://github.com/JonasKruckenberg/imagetools/blob/aa84664d044e4b733cdf7005c6730584bc92ec90/packages/core/src/transforms/resize.ts#L22)
+Defined in: [core/src/transforms/resize.ts:22](https://github.com/blt-r/imagetools/blob/c792392eda68f17d70a8f7e2a2fdb3d0f2a118ee/packages/core/src/transforms/resize.ts#L22)
 
 The width in pixels for the 1x pixel density descriptor.
 If supplied, the srcset, img and picture output formats use pixel density descriptors rather than width descriptors.
@@ -46,7 +46,7 @@ This is consumed when generating the output, so it can be used with or without a
 
 > **h**: `string`
 
-Defined in: [packages/core/src/transforms/resize.ts:13](https://github.com/JonasKruckenberg/imagetools/blob/aa84664d044e4b733cdf7005c6730584bc92ec90/packages/core/src/transforms/resize.ts#L13)
+Defined in: [core/src/transforms/resize.ts:12](https://github.com/blt-r/imagetools/blob/c792392eda68f17d70a8f7e2a2fdb3d0f2a118ee/packages/core/src/transforms/resize.ts#L12)
 
 height in pixels
 
@@ -56,6 +56,6 @@ height in pixels
 
 > **w**: `string`
 
-Defined in: [packages/core/src/transforms/resize.ts:11](https://github.com/JonasKruckenberg/imagetools/blob/aa84664d044e4b733cdf7005c6730584bc92ec90/packages/core/src/transforms/resize.ts#L11)
+Defined in: [core/src/transforms/resize.ts:10](https://github.com/blt-r/imagetools/blob/c792392eda68f17d70a8f7e2a2fdb3d0f2a118ee/packages/core/src/transforms/resize.ts#L10)
 
 width in pixels

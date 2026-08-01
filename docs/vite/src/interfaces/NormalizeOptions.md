@@ -6,7 +6,7 @@
 
 # Interface: NormalizeOptions
 
-Defined in: packages/core/dist/transforms/normalize.d.ts:2
+Defined in: core/dist/transforms/normalize.d.ts:2
 
 ## Properties
 
@@ -14,4 +14,4 @@ Defined in: packages/core/dist/transforms/normalize.d.ts:2
 
 > **normalize**: `""` \| `"true"`
 
-Defined in: packages/core/dist/transforms/normalize.d.ts:3
+Defined in: core/dist/transforms/normalize.d.ts:3

@@ -6,12 +6,14 @@
 
 # Function: resolveConfigs()
 
-> **resolveConfigs**(`entries`, `outputFormats`): `ImageConfig`[]
+> **resolveConfigs**(`entries`, `outputFormats`): [`ImageConfig`](../type-aliases/ImageConfig.md)[]
 
-Defined in: packages/core/dist/lib/resolve-configs.d.ts:8
+Defined in: core/dist/lib/resolve-configs.d.ts:10
 
-This function builds up all possible combinations the given entries can be combined
-and returns it as an array of objects that can be given to a the transforms.
+Builds every combination the given URL entries can be combined into, as an
+array of configs that can be passed to the transforms. Output format
+parameters (e.g. `as=`) are appended to every combination instead of
+contributing to the product.
 
 ## Parameters
 
@@ -19,7 +21,7 @@ and returns it as an array of objects that can be given to a the transforms.
 
 \[`string`, `string`[]\][]
 
-The url parameter entries
+The URL parameter entries
 
 ### outputFormats
 
@@ -27,6 +29,6 @@ The url parameter entries
 
 ## Returns
 
-`ImageConfig`[]
+[`ImageConfig`](../type-aliases/ImageConfig.md)[]
 
-An array of directive options
+An array of directive configs

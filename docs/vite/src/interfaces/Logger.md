@@ -6,7 +6,7 @@
 
 # Interface: Logger
 
-Defined in: packages/core/dist/types.d.ts:35
+Defined in: core/dist/types.d.ts:76
 
 ## Properties
 
@@ -14,7 +14,7 @@ Defined in: packages/core/dist/types.d.ts:35
 
 > **error**: (`msg`) => `void`
 
-Defined in: packages/core/dist/types.d.ts:38
+Defined in: core/dist/types.d.ts:79
 
 #### Parameters
 
@@ -32,7 +32,7 @@ Defined in: packages/core/dist/types.d.ts:38
 
 > **info**: (`msg`) => `void`
 
-Defined in: packages/core/dist/types.d.ts:36
+Defined in: core/dist/types.d.ts:77
 
 #### Parameters
 
@@ -50,7 +50,7 @@ Defined in: packages/core/dist/types.d.ts:36
 
 > **warn**: (`msg`) => `void`
 
-Defined in: packages/core/dist/types.d.ts:37
+Defined in: core/dist/types.d.ts:78
 
 #### Parameters
 

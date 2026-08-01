@@ -6,7 +6,7 @@
 
 # Interface: MedianOptions
 
-Defined in: packages/core/dist/transforms/median.d.ts:2
+Defined in: core/dist/transforms/median.d.ts:2
 
 ## Properties
 
@@ -14,4 +14,4 @@ Defined in: packages/core/dist/transforms/median.d.ts:2
 
 > **median**: `string`
 
-Defined in: packages/core/dist/transforms/median.d.ts:3
+Defined in: core/dist/transforms/median.d.ts:3

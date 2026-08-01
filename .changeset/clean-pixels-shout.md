@@ -3,8 +3,22 @@
 'vite-imagetools': major
 ---
 
-breaking: remove the `pixelDensityDescriptor` field from `ImageMetadata`. Pixel density descriptors are now derived on the fly from the `basePixels` directive and the image's rendered `width` when generating srcsets, so they no longer depend on whether the image was restored from the cache. This also fixes `basePixels` producing width descriptors instead of density descriptors whenever a `rotate` directive changes the rendered dimensions, and makes `basePixels` emit a density descriptor even when used without a `w`/`h`/`aspect` directive (previously it silently fell back to a width descriptor).
+breaking: `ImageMetadata` is no longer a flat object extending sharp's `Metadata`. It is now `{ info: { width, height, autoOrient }, transforms: AppliedTransforms }`, where `transforms` records the values applied by each transform. Custom transforms and output formats that read or write these fields must be updated to the new shape.
 
-The `vite-imagetools` plugin now also reports the actual rendered width and height on the image metadata instead of the values declared by the transforms (which `rotate` never updates). The dimensions are reconciled against the encoded output on every transformation, not just when the cache is enabled, so metadata and the descriptors derived from it match the image that is actually served.
+breaking: `TransformOption` and `ImageTransformation` now receive the threaded `ImageMetadata` as their first argument instead of reading and writing state on the sharp instance. The `getMetadata`/`setMetadata` functions and the `METADATA` symbol are removed. `ProcessedImageMetadata` is renamed `ProcessedImage`, `TransformResult` is renamed `ApplyTransformsResult`, and `TransformState` is renamed `AppliedTransforms`.
 
-The config used to generate each image is now a required `ProcessedImageMetadata.config` field, which output format implementations can use to derive density descriptors. It is omitted from the `as=metadata` output.
+Custom transforms that previously stored their own values on `image[METADATA]` can record them on `state.transforms` instead. Because `AppliedTransforms` is an exported `interface`, it can be extended from your own code via declaration merging to add typed custom fields:
+
+```ts
+declare module 'imagetools-core' {
+  interface AppliedTransforms {
+    myCustomValue?: string
+  }
+}
+```
+
+Values written to `state.transforms` are included in the `as=metadata` output, so this also lets custom output formats consume them.
+
+breaking: the `pixelDensityDescriptor` field is removed from `ImageMetadata`. Pixel density descriptors are now derived on the fly from the `basePixels` directive and the rendered image width, so they no longer depend on the build cache and work with or without a `w`/`h`/`aspect` directive.
+
+The `vite-imagetools` plugin now reports the actual rendered width and height on the metadata, reconciled against the encoded output on every transformation, instead of the values declared by the transforms (which `rotate` never updated). The `as=metadata` output keeps its previous flat shape, so it is unchanged for existing users.

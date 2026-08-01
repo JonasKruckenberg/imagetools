@@ -1,39 +1,7 @@
 import type { TransformOption } from '../types.js'
-import { METADATA } from '../lib/metadata.js'
+import { positionValues, positionShorthands } from '../lib/values.js'
 
-export const positionValues = [
-  'top',
-  'right top',
-  'right',
-  'right bottom',
-  'bottom',
-  'left bottom',
-  'left',
-  'left top',
-  'north',
-  'northeast',
-  'east',
-  'southeast',
-  'south',
-  'southwest',
-  'west',
-  'northwest',
-  'center',
-  'centre',
-  'entropy',
-  'attention'
-] as const
-
-export const positionShorthands = [
-  'top',
-  'right top',
-  'right',
-  'right bottom',
-  'bottom',
-  'left bottom',
-  'left',
-  'left top'
-]
+export { positionValues, positionShorthands } from '../lib/values.js'
 
 export type PositionValue = (typeof positionValues)[number]
 
@@ -41,7 +9,7 @@ export interface PositionOptions {
   position: PositionValue
 }
 
-export const getPosition: TransformOption<PositionOptions, PositionValue> = (config, image) => {
+export const getPosition: TransformOption<PositionOptions, PositionValue> = (config, state) => {
   let position: PositionValue | undefined
 
   if (config.position && positionValues.includes(config.position)) {
@@ -53,7 +21,6 @@ export const getPosition: TransformOption<PositionOptions, PositionValue> = (con
   }
   if (!position) return
 
-  image[METADATA].position = position
-
+  state.transforms.position = position
   return position
 }

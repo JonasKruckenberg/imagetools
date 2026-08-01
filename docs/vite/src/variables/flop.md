@@ -8,4 +8,4 @@
 
 > `const` **flop**: [`TransformFactory`](../type-aliases/TransformFactory.md)\<[`FlopOptions`](../interfaces/FlopOptions.md)\>
 
-Defined in: packages/core/dist/transforms/flop.d.ts:5
+Defined in: core/dist/transforms/flop.d.ts:5

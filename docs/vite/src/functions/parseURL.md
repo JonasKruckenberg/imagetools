@@ -8,7 +8,7 @@
 
 > **parseURL**(`rawURL`): `URL`
 
-Defined in: packages/core/dist/lib/parse-url.d.ts:1
+Defined in: core/dist/lib/parse-url.d.ts:1
 
 ## Parameters
 

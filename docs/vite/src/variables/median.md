@@ -8,4 +8,4 @@
 
 > `const` **median**: [`TransformFactory`](../type-aliases/TransformFactory.md)\<[`MedianOptions`](../interfaces/MedianOptions.md)\>
 
-Defined in: packages/core/dist/transforms/median.d.ts:5
+Defined in: core/dist/transforms/median.d.ts:5

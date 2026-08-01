@@ -8,4 +8,4 @@
 
 > `const` **getLossless**: [`TransformOption`](../type-aliases/TransformOption.md)\<[`LosslessOptions`](../interfaces/LosslessOptions.md)\>
 
-Defined in: packages/core/dist/transforms/lossless.d.ts:5
+Defined in: core/dist/transforms/lossless.d.ts:5

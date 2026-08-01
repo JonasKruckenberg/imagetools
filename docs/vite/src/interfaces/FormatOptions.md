@@ -6,7 +6,7 @@
 
 # Interface: FormatOptions
 
-Defined in: packages/core/dist/transforms/format.d.ts:3
+Defined in: core/dist/transforms/format.d.ts:3
 
 ## Properties
 
@@ -14,4 +14,4 @@ Defined in: packages/core/dist/transforms/format.d.ts:3
 
 > **format**: keyof `FormatEnum`
 
-Defined in: packages/core/dist/transforms/format.d.ts:4
+Defined in: core/dist/transforms/format.d.ts:4

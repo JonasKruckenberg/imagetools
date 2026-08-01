@@ -1,24 +1,21 @@
 import { getPosition, PositionValue } from '../position'
-import sharp, { type Sharp } from 'sharp'
-import { join } from 'path'
-import { describe, beforeEach, expect, test } from 'vitest'
-import { METADATA } from '../../lib/metadata'
+import type { ImageMetadata } from '../../types'
+import { describe, expect, test } from 'vitest'
+
+const state = {
+  info: { width: 0, height: 0, autoOrient: { width: 0, height: 0 } },
+  transforms: {}
+} as ImageMetadata
 
 describe('position', () => {
-  let img: Sharp
-  beforeEach(() => {
-    img = sharp(join(__dirname, '../../__tests__/__fixtures__/pexels-allec-gomes-5195763.png'))
-    img[METADATA] = { chromaSubsampling: '' }
-  })
-
   test('keyword "position"', () => {
-    const res = getPosition({ position: 'top' }, img)
+    const res = getPosition({ position: 'top' }, state)
 
     expect(res).toEqual('top')
   })
 
   test('missing', () => {
-    const res = getPosition({}, img)
+    const res = getPosition({}, state)
 
     expect(res).toBeUndefined()
   })
@@ -30,7 +27,7 @@ describe('position', () => {
       const shorts = ['top', 'right top', 'right', 'right bottom', 'bottom', 'left bottom', 'left', 'left top']
 
       for (const s of shorts) {
-        const res = getPosition({ [s]: '' }, img)
+        const res = getPosition({ [s]: '' }, state)
 
         expect(res).toEqual(s)
       }
@@ -40,14 +37,14 @@ describe('position', () => {
   describe('arguments', () => {
     test('invalid', () => {
       //@ts-expect-error invalid args
-      const res = getPosition({ position: 'invalid' }, img)
+      const res = getPosition({ position: 'invalid' }, state)
 
       expect(res).toBeUndefined()
     })
 
     test('empty', () => {
       //@ts-expect-error invalid args
-      const res = getPosition({ position: '' }, img)
+      const res = getPosition({ position: '' }, state)
 
       expect(res).toBeUndefined()
     })
@@ -77,7 +74,7 @@ describe('position', () => {
       ]
 
       for (const arg of args) {
-        const res = getPosition({ position: arg }, img)
+        const res = getPosition({ position: arg }, state)
 
         expect(res).toEqual(arg)
       }

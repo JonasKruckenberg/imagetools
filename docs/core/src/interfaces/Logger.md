@@ -6,7 +6,7 @@
 
 # Interface: Logger
 
-Defined in: [packages/core/src/types.ts:39](https://github.com/JonasKruckenberg/imagetools/blob/aa84664d044e4b733cdf7005c6730584bc92ec90/packages/core/src/types.ts#L39)
+Defined in: [core/src/types.ts:79](https://github.com/blt-r/imagetools/blob/c792392eda68f17d70a8f7e2a2fdb3d0f2a118ee/packages/core/src/types.ts#L79)
 
 ## Properties
 
@@ -14,7 +14,7 @@ Defined in: [packages/core/src/types.ts:39](https://github.com/JonasKruckenberg/
 
 > **error**: (`msg`) => `void`
 
-Defined in: [packages/core/src/types.ts:42](https://github.com/JonasKruckenberg/imagetools/blob/aa84664d044e4b733cdf7005c6730584bc92ec90/packages/core/src/types.ts#L42)
+Defined in: [core/src/types.ts:82](https://github.com/blt-r/imagetools/blob/c792392eda68f17d70a8f7e2a2fdb3d0f2a118ee/packages/core/src/types.ts#L82)
 
 #### Parameters
 
@@ -32,7 +32,7 @@ Defined in: [packages/core/src/types.ts:42](https://github.com/JonasKruckenberg/
 
 > **info**: (`msg`) => `void`
 
-Defined in: [packages/core/src/types.ts:40](https://github.com/JonasKruckenberg/imagetools/blob/aa84664d044e4b733cdf7005c6730584bc92ec90/packages/core/src/types.ts#L40)
+Defined in: [core/src/types.ts:80](https://github.com/blt-r/imagetools/blob/c792392eda68f17d70a8f7e2a2fdb3d0f2a118ee/packages/core/src/types.ts#L80)
 
 #### Parameters
 
@@ -50,7 +50,7 @@ Defined in: [packages/core/src/types.ts:40](https://github.com/JonasKruckenberg/
 
 > **warn**: (`msg`) => `void`
 
-Defined in: [packages/core/src/types.ts:41](https://github.com/JonasKruckenberg/imagetools/blob/aa84664d044e4b733cdf7005c6730584bc92ec90/packages/core/src/types.ts#L41)
+Defined in: [core/src/types.ts:81](https://github.com/blt-r/imagetools/blob/c792392eda68f17d70a8f7e2a2fdb3d0f2a118ee/packages/core/src/types.ts#L81)
 
 #### Parameters
 

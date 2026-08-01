@@ -6,7 +6,7 @@
 
 # Interface: FitOptions
 
-Defined in: packages/core/dist/transforms/fit.d.ts:4
+Defined in: core/dist/transforms/fit.d.ts:5
 
 ## Properties
 
@@ -14,4 +14,4 @@ Defined in: packages/core/dist/transforms/fit.d.ts:4
 
 > **fit**: `"cover"` \| `"contain"` \| `"fill"` \| `"inside"` \| `"outside"`
 
-Defined in: packages/core/dist/transforms/fit.d.ts:5
+Defined in: core/dist/transforms/fit.d.ts:6

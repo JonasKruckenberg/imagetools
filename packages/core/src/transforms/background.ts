@@ -1,14 +1,12 @@
 import type { TransformOption } from '../types.js'
-import { METADATA } from '../lib/metadata.js'
 
 export interface BackgroundOptions {
   background: string
 }
 
-export const getBackground: TransformOption<BackgroundOptions, string> = ({ background }, image) => {
+export const getBackground: TransformOption<BackgroundOptions, string> = ({ background }, state) => {
   if (typeof background !== 'string' || !background.length) return
 
-  image[METADATA].backgroundDirective = background
-
+  state.transforms.backgroundDirective = background
   return background
 }

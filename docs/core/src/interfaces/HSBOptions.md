@@ -6,7 +6,7 @@
 
 # Interface: HSBOptions
 
-Defined in: [packages/core/src/transforms/hsb.ts:4](https://github.com/JonasKruckenberg/imagetools/blob/aa84664d044e4b733cdf7005c6730584bc92ec90/packages/core/src/transforms/hsb.ts#L4)
+Defined in: [core/src/transforms/hsb.ts:3](https://github.com/blt-r/imagetools/blob/c792392eda68f17d70a8f7e2a2fdb3d0f2a118ee/packages/core/src/transforms/hsb.ts#L3)
 
 ## Properties
 
@@ -14,7 +14,7 @@ Defined in: [packages/core/src/transforms/hsb.ts:4](https://github.com/JonasKruc
 
 > **brightness**: `string`
 
-Defined in: [packages/core/src/transforms/hsb.ts:7](https://github.com/JonasKruckenberg/imagetools/blob/aa84664d044e4b733cdf7005c6730584bc92ec90/packages/core/src/transforms/hsb.ts#L7)
+Defined in: [core/src/transforms/hsb.ts:6](https://github.com/blt-r/imagetools/blob/c792392eda68f17d70a8f7e2a2fdb3d0f2a118ee/packages/core/src/transforms/hsb.ts#L6)
 
 ***
 
@@ -22,7 +22,7 @@ Defined in: [packages/core/src/transforms/hsb.ts:7](https://github.com/JonasKruc
 
 > **hue**: `string`
 
-Defined in: [packages/core/src/transforms/hsb.ts:5](https://github.com/JonasKruckenberg/imagetools/blob/aa84664d044e4b733cdf7005c6730584bc92ec90/packages/core/src/transforms/hsb.ts#L5)
+Defined in: [core/src/transforms/hsb.ts:4](https://github.com/blt-r/imagetools/blob/c792392eda68f17d70a8f7e2a2fdb3d0f2a118ee/packages/core/src/transforms/hsb.ts#L4)
 
 ***
 
@@ -30,4 +30,4 @@ Defined in: [packages/core/src/transforms/hsb.ts:5](https://github.com/JonasKruc
 
 > **saturation**: `string`
 
-Defined in: [packages/core/src/transforms/hsb.ts:6](https://github.com/JonasKruckenberg/imagetools/blob/aa84664d044e4b733cdf7005c6730584bc92ec90/packages/core/src/transforms/hsb.ts#L6)
+Defined in: [core/src/transforms/hsb.ts:5](https://github.com/blt-r/imagetools/blob/c792392eda68f17d70a8f7e2a2fdb3d0f2a118ee/packages/core/src/transforms/hsb.ts#L5)

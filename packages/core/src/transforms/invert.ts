@@ -1,5 +1,4 @@
 import type { TransformFactory } from '../types.js'
-import { METADATA } from '../lib/metadata.js'
 
 export interface InvertOptions {
   invert: '' | 'true'
@@ -8,9 +7,8 @@ export interface InvertOptions {
 export const invert: TransformFactory<InvertOptions> = ({ invert }) => {
   if (invert !== '' && invert !== 'true') return
 
-  return function invertTransform(image) {
-    image[METADATA].invert = true
-
+  return function invertTransform(state, image) {
+    state.transforms.invert = true
     return image.negate()
   }
 }

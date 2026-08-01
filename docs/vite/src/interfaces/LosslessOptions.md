@@ -6,7 +6,7 @@
 
 # Interface: LosslessOptions
 
-Defined in: packages/core/dist/transforms/lossless.d.ts:2
+Defined in: core/dist/transforms/lossless.d.ts:2
 
 ## Properties
 
@@ -14,4 +14,4 @@ Defined in: packages/core/dist/transforms/lossless.d.ts:2
 
 > **lossless**: `""` \| `"true"`
 
-Defined in: packages/core/dist/transforms/lossless.d.ts:3
+Defined in: core/dist/transforms/lossless.d.ts:3

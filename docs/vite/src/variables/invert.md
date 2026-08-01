@@ -8,4 +8,4 @@
 
 > `const` **invert**: [`TransformFactory`](../type-aliases/TransformFactory.md)\<[`InvertOptions`](../interfaces/InvertOptions.md)\>
 
-Defined in: packages/core/dist/transforms/invert.d.ts:5
+Defined in: core/dist/transforms/invert.d.ts:5

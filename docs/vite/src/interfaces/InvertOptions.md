@@ -6,7 +6,7 @@
 
 # Interface: InvertOptions
 
-Defined in: packages/core/dist/transforms/invert.d.ts:2
+Defined in: core/dist/transforms/invert.d.ts:2
 
 ## Properties
 
@@ -14,4 +14,4 @@ Defined in: packages/core/dist/transforms/invert.d.ts:2
 
 > **invert**: `""` \| `"true"`
 
-Defined in: packages/core/dist/transforms/invert.d.ts:3
+Defined in: core/dist/transforms/invert.d.ts:3

@@ -8,4 +8,6 @@
 
 > `const` **fitValues**: readonly \[`"cover"`, `"contain"`, `"fill"`, `"inside"`, `"outside"`\]
 
-Defined in: packages/core/dist/transforms/fit.d.ts:2
+Defined in: core/dist/lib/values.d.ts:8
+
+Values accepted by the `fit` transform.

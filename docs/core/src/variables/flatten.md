@@ -8,4 +8,4 @@
 
 > `const` **flatten**: [`TransformFactory`](../type-aliases/TransformFactory.md)\<[`FlattenOptions`](../interfaces/FlattenOptions.md)\>
 
-Defined in: [packages/core/src/transforms/flatten.ts:9](https://github.com/JonasKruckenberg/imagetools/blob/aa84664d044e4b733cdf7005c6730584bc92ec90/packages/core/src/transforms/flatten.ts#L9)
+Defined in: [core/src/transforms/flatten.ts:8](https://github.com/blt-r/imagetools/blob/c792392eda68f17d70a8f7e2a2fdb3d0f2a118ee/packages/core/src/transforms/flatten.ts#L8)

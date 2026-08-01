@@ -8,7 +8,7 @@
 
 > **extractEntries**(`searchParams`): \[`string`, `string`[]\][]
 
-Defined in: packages/core/dist/lib/parse-url.d.ts:2
+Defined in: core/dist/lib/parse-url.d.ts:2
 
 ## Parameters
 

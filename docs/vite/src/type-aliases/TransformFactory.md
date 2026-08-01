@@ -8,7 +8,10 @@
 
 > **TransformFactory**\<`A`\> = (`metadata`, `ctx`) => [`ImageTransformation`](ImageTransformation.md) \| `undefined`
 
-Defined in: packages/core/dist/types.d.ts:45
+Defined in: core/dist/types.d.ts:90
+
+Creates an `ImageTransformation` from the parsed directives, or returns
+`undefined` to skip the transform for this run.
 
 ## Type Parameters
 

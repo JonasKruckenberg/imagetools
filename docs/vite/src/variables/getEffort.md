@@ -8,4 +8,4 @@
 
 > `const` **getEffort**: [`TransformOption`](../type-aliases/TransformOption.md)\<[`EffortOptions`](../interfaces/EffortOptions.md), `number`\>
 
-Defined in: packages/core/dist/transforms/effort.d.ts:5
+Defined in: core/dist/transforms/effort.d.ts:5

@@ -234,7 +234,7 @@ describe('vite-imagetools', () => {
                 return [
                   (config, context) => {
                     context.logger.info('An info message')
-                    return (image) => image
+                    return (_metadata, image) => image
                   }
                 ]
               },
@@ -263,7 +263,7 @@ describe('vite-imagetools', () => {
                 return [
                   (config, context) => {
                     context.logger.warn('A warning')
-                    return (image) => image
+                    return (_metadata, image) => image
                   }
                 ]
               },
@@ -290,7 +290,7 @@ describe('vite-imagetools', () => {
                   return [
                     (config, context) => {
                       context.logger.error('An error')
-                      return (image) => image
+                      return (_metadata, image) => image
                     }
                   ]
                 },
@@ -464,6 +464,7 @@ describe('vite-imagetools', () => {
         expect(window.__IMAGE__).toHaveProperty('isProgressive')
         expect(window.__IMAGE__).toHaveProperty('hasProfile')
         expect(window.__IMAGE__).toHaveProperty('hasAlpha')
+        expect(window.__IMAGE__).not.toHaveProperty('config')
       })
     })
 
@@ -802,6 +803,31 @@ describe('vite-imagetools', () => {
     expect(window.__IMAGE__).toHaveProperty('isProgressive')
     expect(window.__IMAGE__).toHaveProperty('hasProfile')
     expect(window.__IMAGE__).toHaveProperty('hasAlpha')
+    expect(window.__IMAGE__).not.toHaveProperty('config')
+  })
+
+  test('metadata import includes applied transform directives', async () => {
+    const bundle = (await build({
+      root: join(__dirname, '__fixtures__'),
+      logLevel: 'warn',
+      build: { write: false },
+      plugins: [
+        testEntry(`
+                    import Image from "./pexels-allec-gomes-5195763.png?w=300&flip=true&format=webp&as=metadata"
+                    window.__IMAGE__ = Image
+                `),
+        imagetools({ cache: { enabled: false } })
+      ]
+    })) as RollupOutput | RollupOutput[]
+
+    const files = getFiles(bundle, '**.js') as OutputChunk[]
+    const { window } = new JSDOM(``, { runScripts: 'outside-only' })
+    window.eval(files[0].code)
+
+    expect(window.__IMAGE__.width).toBe(300)
+    expect(window.__IMAGE__.format).toBe('webp')
+    expect(window.__IMAGE__.flip).toBe(true)
+    expect(window.__IMAGE__).toHaveProperty('height')
   })
 
   test('autoOrient is applied automatically', async () => {

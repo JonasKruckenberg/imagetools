@@ -6,9 +6,17 @@
 
 # Function: applyTransforms()
 
-> **applyTransforms**(`transforms`, `image`, `removeMetadata?`): `Promise`\<[`TransformResult`](../interfaces/TransformResult.md)\>
+> **applyTransforms**(`transforms`, `image`, `removeMetadata?`): `Promise`\<[`ApplyTransformsResult`](../interfaces/ApplyTransformsResult.md)\>
 
-Defined in: [packages/core/src/lib/apply-transforms.ts:5](https://github.com/JonasKruckenberg/imagetools/blob/aa84664d044e4b733cdf7005c6730584bc92ec90/packages/core/src/lib/apply-transforms.ts#L5)
+Defined in: [core/src/lib/apply-transforms.ts:28](https://github.com/blt-r/imagetools/blob/c792392eda68f17d70a8f7e2a2fdb3d0f2a118ee/packages/core/src/lib/apply-transforms.ts#L28)
+
+Runs the pipeline over an image, threading a mutable `ImageMetadata` through
+each transform. The state is initialized from the source file, so transforms
+see the source dimensions and format before they run.
+
+When `removeMetadata` is `true` (the default), private metadata (`exif`,
+`iptc`, `xmp`, `tifftagPhotoshop`, `icc`) is stripped from the returned
+`raw`; otherwise `withMetadata` is kept on the output image.
 
 ## Parameters
 
@@ -16,14 +24,22 @@ Defined in: [packages/core/src/lib/apply-transforms.ts:5](https://github.com/Jon
 
 [`ImageTransformation`](../type-aliases/ImageTransformation.md)[]
 
+The pipeline steps to apply, in order.
+
 ### image
 
 `Sharp`
+
+The image to process.
 
 ### removeMetadata?
 
 `boolean` = `true`
 
+Whether to strip private metadata from the output.
+
 ## Returns
 
-`Promise`\<[`TransformResult`](../interfaces/TransformResult.md)\>
+`Promise`\<[`ApplyTransformsResult`](../interfaces/ApplyTransformsResult.md)\>
+
+The transformed image, threaded state, and source metadata.

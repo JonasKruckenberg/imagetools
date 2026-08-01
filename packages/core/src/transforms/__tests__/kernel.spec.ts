@@ -1,24 +1,21 @@
 import { getKernel, KernelValue } from '../kernel'
-import { join } from 'path'
-import sharp, { type Sharp } from 'sharp'
-import { describe, beforeEach, expect, test } from 'vitest'
-import { METADATA } from '../../lib/metadata'
+import type { ImageMetadata } from '../../types'
+import { describe, expect, test } from 'vitest'
+
+const state = {
+  info: { width: 0, height: 0, autoOrient: { width: 0, height: 0 } },
+  transforms: {}
+} as ImageMetadata
 
 describe('kernel', () => {
-  let img: Sharp
-  beforeEach(() => {
-    img = sharp(join(__dirname, '../../__tests__/__fixtures__/pexels-allec-gomes-5195763.png'))
-    img[METADATA] = { chromaSubsampling: '' }
-  })
-
   test('keyword "kernel"', () => {
-    const res = getKernel({ kernel: 'cubic' }, img)
+    const res = getKernel({ kernel: 'cubic' }, state)
 
     expect(res).toEqual('cubic')
   })
 
   test('missing', () => {
-    const res = getKernel({}, img)
+    const res = getKernel({}, state)
 
     expect(res).toBeUndefined()
   })
@@ -26,14 +23,14 @@ describe('kernel', () => {
   describe('arguments', () => {
     test('invalid', () => {
       //@ts-expect-error invalid args
-      const res = getKernel({ kernel: 'invalid' }, img)
+      const res = getKernel({ kernel: 'invalid' }, state)
 
       expect(res).toBeUndefined()
     })
 
     test('empty', () => {
       //@ts-expect-error invalid args
-      const res = getKernel({ kernel: '' }, img)
+      const res = getKernel({ kernel: '' }, state)
 
       expect(res).toBeUndefined()
     })
@@ -42,7 +39,7 @@ describe('kernel', () => {
       const args: KernelValue[] = ['nearest', 'cubic', 'mitchell', 'lanczos2', 'lanczos3']
 
       for (const arg of args) {
-        const res = getKernel({ kernel: arg }, img)
+        const res = getKernel({ kernel: arg }, state)
 
         expect(res).toEqual(arg)
       }
