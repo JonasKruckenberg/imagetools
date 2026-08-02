@@ -1,7 +1,7 @@
 import { basename, extname } from 'node:path'
 import { relative } from 'node:path/posix'
 import { statSync, mkdirSync } from 'node:fs'
-import { readFile, writeFile, opendir, stat, rm } from 'node:fs/promises'
+import { readFile, opendir, stat, rm } from 'node:fs/promises'
 import { normalizePath, type Plugin, type ResolvedConfig } from 'vite'
 import {
   applyTransforms,
@@ -20,7 +20,7 @@ import {
 } from 'imagetools-core'
 import { createFilter, dataToEsm } from '@rollup/pluginutils'
 import sharp, { type Metadata, type Sharp } from 'sharp'
-import { createBasePath, generateImageID, hash } from './utils.js'
+import { createBasePath, generateImageID, hash, writeFileAtomic } from './utils.js'
 import type { VitePluginOptions } from './types.js'
 
 export type {
@@ -137,7 +137,8 @@ export function imagetools(userOptions: Partial<VitePluginOptions> = {}): Plugin
           error: (msg) => this.error(msg)
         }
 
-        const imageHash = hash([await img.toBuffer()])
+        // hash the source bytes to avoid going through Sharp which would result in an image decode
+        const imageHash = hash([await readFile(pathname)])
 
         const executeTransform = async (id: string, imageConfig: ImageConfig) => {
           let image: Sharp | undefined
@@ -187,7 +188,7 @@ export function imagetools(userOptions: Partial<VitePluginOptions> = {}): Plugin
             metadata.info.width = info.width
             metadata.info.height = info.height
             if (cacheOptions.enabled) {
-              await writeFile(`${cacheOptions.dir}/${id}`, cachedBuffer)
+              await writeFileAtomic(`${cacheOptions.dir}/${id}`, cachedBuffer)
             }
           }
 

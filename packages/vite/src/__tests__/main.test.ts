@@ -7,9 +7,9 @@ import { type OutputAsset, type OutputChunk, type RollupOutput } from 'rollup'
 import { JSDOM } from 'jsdom'
 import sharp from 'sharp'
 import { afterEach, describe, test, expect, it, vi } from 'vitest'
-import { createBasePath } from '../utils'
+import { createBasePath, writeFileAtomic } from '../utils'
 import { existsSync } from 'node:fs'
-import { rm, utimes, readdir, copyFile } from 'node:fs/promises'
+import { rm, utimes, readdir, copyFile, mkdir, readFile } from 'node:fs/promises'
 import { createServer as createHttpServer } from 'node:http'
 import { type AddressInfo } from 'node:net'
 
@@ -529,7 +529,7 @@ describe('vite-imagetools', () => {
       test('is consistent', async () => {
         const image = (await readdir(dir))[0]
 
-        expect(image).toBe('025427654209b031953f8db8178d897aafa026ce')
+        expect(image).toBe('2140167b8e6e7157f578cd3ab633ef5f189dbe66')
       })
     })
 
@@ -1095,6 +1095,54 @@ describe('vite-imagetools', () => {
       expect(createBasePath('/base/')).toBe('/base/@imagetools/')
       expect(createBasePath('http://localhost:9000/frontend')).toBe('http://localhost:9000/frontend/@imagetools/')
       expect(createBasePath('http://localhost:9000/frontend/')).toBe('http://localhost:9000/frontend/@imagetools/')
+    })
+
+    describe('writeFileAtomic', () => {
+      const dir = './node_modules/.cache/imagetools_test_write_atomic'
+
+      afterEach(async () => {
+        await rm(dir, { recursive: true, force: true })
+      })
+
+      test('writes the full contents and leaves no temporary files behind', async () => {
+        await mkdir(dir, { recursive: true })
+        const target = `${dir}/entry`
+
+        await writeFileAtomic(target, Buffer.from('complete'))
+
+        expect(await readFile(target, 'utf8')).toBe('complete')
+        expect(await readdir(dir)).toEqual(['entry'])
+      })
+
+      test('a concurrent reader never observes a partially written file', async () => {
+        await mkdir(dir, { recursive: true })
+        const target = `${dir}/entry`
+        const oldContent = Buffer.alloc(4 * 1024 * 1024, 'a')
+        const newContent = Buffer.alloc(4 * 1024 * 1024, 'b')
+        await writeFileAtomic(target, oldContent)
+
+        // read the target repeatedly while a rewrite is in flight. A plain
+        // writeFile() truncates then fills, so readers catch short/mixed content —
+        // exactly the state that later passes the cache's `size > 0` guard and
+        // gets handed to sharp as a valid entry.
+        const sizes = new Set<number>()
+        let reading = true
+        const reader = (async () => {
+          while (reading) {
+            try {
+              sizes.add((await readFile(target)).length)
+            } catch {
+              sizes.add(-1) // target missing entirely
+            }
+          }
+        })()
+
+        await writeFileAtomic(target, newContent)
+        reading = false
+        await reader
+
+        expect([...sizes]).toEqual([oldContent.length])
+      })
     })
   })
 })
