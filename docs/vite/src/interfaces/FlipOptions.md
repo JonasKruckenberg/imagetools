@@ -6,7 +6,7 @@
 
 # Interface: FlipOptions
 
-Defined in: core/dist/transforms/flip.d.ts:2
+Defined in: packages/core/dist/transforms/flip.d.ts:2
 
 ## Properties
 
@@ -14,4 +14,4 @@ Defined in: core/dist/transforms/flip.d.ts:2
 
 > **flip**: `""` \| `"true"`
 
-Defined in: core/dist/transforms/flip.d.ts:3
+Defined in: packages/core/dist/transforms/flip.d.ts:3

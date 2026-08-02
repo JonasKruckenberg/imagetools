@@ -8,4 +8,4 @@
 
 > `const` **getQuality**: [`TransformOption`](../type-aliases/TransformOption.md)\<[`QualityOptions`](../interfaces/QualityOptions.md), `number`\>
 
-Defined in: core/dist/transforms/quality.d.ts:5
+Defined in: packages/core/dist/transforms/quality.d.ts:5

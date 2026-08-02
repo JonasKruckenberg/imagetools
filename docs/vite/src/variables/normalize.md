@@ -8,4 +8,4 @@
 
 > `const` **normalize**: [`TransformFactory`](../type-aliases/TransformFactory.md)\<[`NormalizeOptions`](../interfaces/NormalizeOptions.md)\>
 
-Defined in: core/dist/transforms/normalize.d.ts:5
+Defined in: packages/core/dist/transforms/normalize.d.ts:5

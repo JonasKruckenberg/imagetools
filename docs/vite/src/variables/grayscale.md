@@ -8,4 +8,4 @@
 
 > `const` **grayscale**: [`TransformFactory`](../type-aliases/TransformFactory.md)\<[`GrayscaleOptions`](../interfaces/GrayscaleOptions.md)\>
 
-Defined in: core/dist/transforms/grayscale.d.ts:5
+Defined in: packages/core/dist/transforms/grayscale.d.ts:5

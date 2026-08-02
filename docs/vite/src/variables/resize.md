@@ -8,4 +8,4 @@
 
 > `const` **resize**: [`TransformFactory`](../type-aliases/TransformFactory.md)\<[`ResizeOptions`](../interfaces/ResizeOptions.md)\>
 
-Defined in: core/dist/transforms/resize.d.ts:18
+Defined in: packages/core/dist/transforms/resize.d.ts:17

@@ -6,7 +6,7 @@
 
 # Interface: QualityOptions
 
-Defined in: core/dist/transforms/quality.d.ts:2
+Defined in: packages/core/dist/transforms/quality.d.ts:2
 
 ## Properties
 
@@ -14,4 +14,4 @@ Defined in: core/dist/transforms/quality.d.ts:2
 
 > **quality**: `string`
 
-Defined in: core/dist/transforms/quality.d.ts:3
+Defined in: packages/core/dist/transforms/quality.d.ts:3

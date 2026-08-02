@@ -6,7 +6,7 @@
 
 # Interface: BlurOptions
 
-Defined in: core/dist/transforms/blur.d.ts:2
+Defined in: packages/core/dist/transforms/blur.d.ts:2
 
 ## Properties
 
@@ -14,4 +14,4 @@ Defined in: core/dist/transforms/blur.d.ts:2
 
 > **blur**: `string`
 
-Defined in: core/dist/transforms/blur.d.ts:3
+Defined in: packages/core/dist/transforms/blur.d.ts:3

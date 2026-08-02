@@ -8,7 +8,6 @@
 
 > `const` **pictureFormat**: [`OutputFormat`](../type-aliases/OutputFormat.md)
 
-Defined in: [core/src/output-formats.ts:131](https://github.com/blt-r/imagetools/blob/c792392eda68f17d70a8f7e2a2fdb3d0f2a118ee/packages/core/src/output-formats.ts#L131)
+Defined in: [packages/core/src/output-formats.ts:60](https://github.com/JonasKruckenberg/imagetools/blob/aa84664d044e4b733cdf7005c6730584bc92ec90/packages/core/src/output-formats.ts#L60)
 
-Emits the `<picture>` sources per format plus the `img` fallback, which should
-be specified last.
+fallback format should be specified last

@@ -6,7 +6,7 @@
 
 # Interface: TransformFactoryContext
 
-Defined in: [core/src/types.ts:85](https://github.com/blt-r/imagetools/blob/c792392eda68f17d70a8f7e2a2fdb3d0f2a118ee/packages/core/src/types.ts#L85)
+Defined in: [packages/core/src/types.ts:45](https://github.com/JonasKruckenberg/imagetools/blob/aa84664d044e4b733cdf7005c6730584bc92ec90/packages/core/src/types.ts#L45)
 
 ## Properties
 
@@ -14,7 +14,7 @@ Defined in: [core/src/types.ts:85](https://github.com/blt-r/imagetools/blob/c792
 
 > **logger**: [`Logger`](Logger.md)
 
-Defined in: [core/src/types.ts:88](https://github.com/blt-r/imagetools/blob/c792392eda68f17d70a8f7e2a2fdb3d0f2a118ee/packages/core/src/types.ts#L88)
+Defined in: [packages/core/src/types.ts:48](https://github.com/JonasKruckenberg/imagetools/blob/aa84664d044e4b733cdf7005c6730584bc92ec90/packages/core/src/types.ts#L48)
 
 ***
 
@@ -22,7 +22,7 @@ Defined in: [core/src/types.ts:88](https://github.com/blt-r/imagetools/blob/c792
 
 > **manualSearchParams**: `URLSearchParams`
 
-Defined in: [core/src/types.ts:87](https://github.com/blt-r/imagetools/blob/c792392eda68f17d70a8f7e2a2fdb3d0f2a118ee/packages/core/src/types.ts#L87)
+Defined in: [packages/core/src/types.ts:47](https://github.com/JonasKruckenberg/imagetools/blob/aa84664d044e4b733cdf7005c6730584bc92ec90/packages/core/src/types.ts#L47)
 
 ***
 
@@ -30,7 +30,7 @@ Defined in: [core/src/types.ts:87](https://github.com/blt-r/imagetools/blob/c792
 
 > **useParam**: (`parameter`) => `void`
 
-Defined in: [core/src/types.ts:86](https://github.com/blt-r/imagetools/blob/c792392eda68f17d70a8f7e2a2fdb3d0f2a118ee/packages/core/src/types.ts#L86)
+Defined in: [packages/core/src/types.ts:46](https://github.com/JonasKruckenberg/imagetools/blob/aa84664d044e4b733cdf7005c6730584bc92ec90/packages/core/src/types.ts#L46)
 
 #### Parameters
 

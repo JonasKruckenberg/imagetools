@@ -8,6 +8,4 @@
 
 > `const` **positionShorthands**: `string`[]
 
-Defined in: core/dist/lib/values.d.ts:14
-
-Position values that can also be given as a bare directive, e.g. `?top`.
+Defined in: packages/core/dist/transforms/position.d.ts:3

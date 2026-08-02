@@ -6,7 +6,7 @@
 
 # Interface: Picture
 
-Defined in: core/dist/types.d.ts:124
+Defined in: packages/core/dist/types.d.ts:75
 
 The picture output format.
 
@@ -16,7 +16,7 @@ The picture output format.
 
 > **img**: `object`
 
-Defined in: core/dist/types.d.ts:129
+Defined in: packages/core/dist/types.d.ts:80
 
 #### h
 
@@ -36,6 +36,6 @@ Defined in: core/dist/types.d.ts:129
 
 > **sources**: `Record`\<`string`, `string`\>
 
-Defined in: core/dist/types.d.ts:128
+Defined in: packages/core/dist/types.d.ts:79
 
 Key is format. Value is srcset.

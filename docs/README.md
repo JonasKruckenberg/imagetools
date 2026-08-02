@@ -1,39 +1,3 @@
-**imagetools**
-
-***
-
-**imagetools**
-
-***
-
-**imagetools**
-
-***
-
-**imagetools**
-
-***
-
-**imagetools**
-
-***
-
-**imagetools**
-
-***
-
-**imagetools**
-
-***
-
-**imagetools**
-
-***
-
-**imagetools**
-
-***
-
 **imagetools** • [**Docs**](_media/modules.md)
 
 # Imagetools documentation

@@ -8,4 +8,4 @@
 
 > `const` **format**: [`TransformFactory`](../type-aliases/TransformFactory.md)\<[`FormatOptions`](../interfaces/FormatOptions.md)\>
 
-Defined in: [core/src/transforms/format.ts:12](https://github.com/blt-r/imagetools/blob/c792392eda68f17d70a8f7e2a2fdb3d0f2a118ee/packages/core/src/transforms/format.ts#L12)
+Defined in: [packages/core/src/transforms/format.ts:13](https://github.com/JonasKruckenberg/imagetools/blob/aa84664d044e4b733cdf7005c6730584bc92ec90/packages/core/src/transforms/format.ts#L13)

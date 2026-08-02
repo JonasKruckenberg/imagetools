@@ -8,4 +8,4 @@
 
 > `const` **builtins**: ([`TransformFactory`](../type-aliases/TransformFactory.md) \| [`TransformFactory`](../type-aliases/TransformFactory.md) \| [`TransformFactory`](../type-aliases/TransformFactory.md) \| [`TransformFactory`](../type-aliases/TransformFactory.md) \| [`TransformFactory`](../type-aliases/TransformFactory.md) \| [`TransformFactory`](../type-aliases/TransformFactory.md) \| [`TransformFactory`](../type-aliases/TransformFactory.md) \| [`TransformFactory`](../type-aliases/TransformFactory.md) \| [`TransformFactory`](../type-aliases/TransformFactory.md) \| [`TransformFactory`](../type-aliases/TransformFactory.md) \| [`TransformFactory`](../type-aliases/TransformFactory.md) \| [`TransformFactory`](../type-aliases/TransformFactory.md) \| [`TransformFactory`](../type-aliases/TransformFactory.md) \| [`TransformFactory`](../type-aliases/TransformFactory.md))[]
 
-Defined in: core/dist/builtins.d.ts:1
+Defined in: packages/core/dist/builtins.d.ts:1

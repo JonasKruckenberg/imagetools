@@ -8,4 +8,4 @@
 
 > `const` **getBackground**: [`TransformOption`](../type-aliases/TransformOption.md)\<[`BackgroundOptions`](../interfaces/BackgroundOptions.md), `string`\>
 
-Defined in: core/dist/transforms/background.d.ts:5
+Defined in: packages/core/dist/transforms/background.d.ts:5

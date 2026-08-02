@@ -6,7 +6,7 @@
 
 # Interface: ProgressiveOptions
 
-Defined in: core/dist/transforms/progressive.d.ts:2
+Defined in: packages/core/dist/transforms/progressive.d.ts:2
 
 ## Properties
 
@@ -14,4 +14,4 @@ Defined in: core/dist/transforms/progressive.d.ts:2
 
 > **progressive**: `""` \| `"true"`
 
-Defined in: core/dist/transforms/progressive.d.ts:3
+Defined in: packages/core/dist/transforms/progressive.d.ts:3

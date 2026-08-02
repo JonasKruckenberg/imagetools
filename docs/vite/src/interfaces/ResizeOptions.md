@@ -6,7 +6,7 @@
 
 # Interface: ResizeOptions
 
-Defined in: core/dist/transforms/resize.d.ts:2
+Defined in: packages/core/dist/transforms/resize.d.ts:2
 
 ## Properties
 
@@ -14,7 +14,7 @@ Defined in: core/dist/transforms/resize.d.ts:2
 
 > **allowUpscale**: `""` \| `"true"`
 
-Defined in: core/dist/transforms/resize.d.ts:10
+Defined in: packages/core/dist/transforms/resize.d.ts:10
 
 Whether to allow making images larger. This is generally a waste, so is disabled by default.
 
@@ -24,7 +24,7 @@ Whether to allow making images larger. This is generally a waste, so is disabled
 
 > **aspect**: `string`
 
-Defined in: core/dist/transforms/resize.d.ts:8
+Defined in: packages/core/dist/transforms/resize.d.ts:8
 
 aspect ratio
 
@@ -34,7 +34,7 @@ aspect ratio
 
 > **basePixels**: `string`
 
-Defined in: core/dist/transforms/resize.d.ts:16
+Defined in: packages/core/dist/transforms/resize.d.ts:15
 
 The width in pixels for the 1x pixel density descriptor.
 If supplied, the srcset, img and picture output formats use pixel density descriptors rather than width descriptors.
@@ -46,7 +46,7 @@ This is consumed when generating the output, so it can be used with or without a
 
 > **h**: `string`
 
-Defined in: core/dist/transforms/resize.d.ts:6
+Defined in: packages/core/dist/transforms/resize.d.ts:6
 
 height in pixels
 
@@ -56,6 +56,6 @@ height in pixels
 
 > **w**: `string`
 
-Defined in: core/dist/transforms/resize.d.ts:4
+Defined in: packages/core/dist/transforms/resize.d.ts:4
 
 width in pixels

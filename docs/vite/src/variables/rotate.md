@@ -8,4 +8,4 @@
 
 > `const` **rotate**: [`TransformFactory`](../type-aliases/TransformFactory.md)\<[`RotateOptions`](../interfaces/RotateOptions.md)\>
 
-Defined in: core/dist/transforms/rotate.d.ts:5
+Defined in: packages/core/dist/transforms/rotate.d.ts:5

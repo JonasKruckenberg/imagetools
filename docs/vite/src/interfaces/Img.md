@@ -6,7 +6,7 @@
 
 # Interface: Img
 
-Defined in: core/dist/types.d.ts:108
+Defined in: packages/core/dist/types.d.ts:59
 
 The img output format.
 
@@ -16,7 +16,7 @@ The img output format.
 
 > **h**: `number`
 
-Defined in: core/dist/types.d.ts:118
+Defined in: packages/core/dist/types.d.ts:69
 
 The intrinsic height. May not be the rendered height.
 Helps prevent reflow. See https://html.com/attributes/img-height/
@@ -27,7 +27,7 @@ Helps prevent reflow. See https://html.com/attributes/img-height/
 
 > **src**: `string`
 
-Defined in: core/dist/types.d.ts:109
+Defined in: packages/core/dist/types.d.ts:60
 
 ***
 
@@ -35,7 +35,7 @@ Defined in: core/dist/types.d.ts:109
 
 > `optional` **srcset**: `string`
 
-Defined in: core/dist/types.d.ts:119
+Defined in: packages/core/dist/types.d.ts:70
 
 ***
 
@@ -43,6 +43,6 @@ Defined in: core/dist/types.d.ts:119
 
 > **w**: `number`
 
-Defined in: core/dist/types.d.ts:113
+Defined in: packages/core/dist/types.d.ts:64
 
 The intrinsic width

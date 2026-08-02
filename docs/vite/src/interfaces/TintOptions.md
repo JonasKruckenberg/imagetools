@@ -6,7 +6,7 @@
 
 # Interface: TintOptions
 
-Defined in: core/dist/transforms/tint.d.ts:2
+Defined in: packages/core/dist/transforms/tint.d.ts:2
 
 ## Properties
 
@@ -14,4 +14,4 @@ Defined in: core/dist/transforms/tint.d.ts:2
 
 > **tint**: `string`
 
-Defined in: core/dist/transforms/tint.d.ts:3
+Defined in: packages/core/dist/transforms/tint.d.ts:3

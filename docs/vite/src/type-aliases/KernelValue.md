@@ -8,4 +8,4 @@
 
 > **KernelValue** = *typeof* [`kernelValues`](../variables/kernelValues.md)\[`number`\]
 
-Defined in: core/dist/transforms/kernel.d.ts:4
+Defined in: packages/core/dist/transforms/kernel.d.ts:3

@@ -8,4 +8,4 @@
 
 > `const` **hsb**: [`TransformFactory`](../type-aliases/TransformFactory.md)\<[`HSBOptions`](../interfaces/HSBOptions.md)\>
 
-Defined in: core/dist/transforms/hsb.d.ts:7
+Defined in: packages/core/dist/transforms/hsb.d.ts:7

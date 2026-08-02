@@ -6,7 +6,7 @@
 
 # Interface: KernelOptions
 
-Defined in: core/dist/transforms/kernel.d.ts:5
+Defined in: packages/core/dist/transforms/kernel.d.ts:4
 
 ## Properties
 
@@ -14,4 +14,4 @@ Defined in: core/dist/transforms/kernel.d.ts:5
 
 > **kernel**: `"nearest"` \| `"cubic"` \| `"mitchell"` \| `"lanczos2"` \| `"lanczos3"`
 
-Defined in: core/dist/transforms/kernel.d.ts:6
+Defined in: packages/core/dist/transforms/kernel.d.ts:5

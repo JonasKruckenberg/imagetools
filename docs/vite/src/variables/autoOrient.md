@@ -8,4 +8,4 @@
 
 > `const` **autoOrient**: [`TransformFactory`](../type-aliases/TransformFactory.md)\<[`autoOrientOptions`](../interfaces/autoOrientOptions.md)\>
 
-Defined in: core/dist/transforms/autoOrient.d.ts:5
+Defined in: packages/core/dist/transforms/autoOrient.d.ts:5

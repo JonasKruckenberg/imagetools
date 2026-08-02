@@ -8,7 +8,7 @@
 
 > **OutputFormat** = (`args?`) => (`metadata`) => `unknown`
 
-Defined in: core/dist/types.d.ts:104
+Defined in: packages/core/dist/types.d.ts:55
 
 The JS object returned by the image import.
 
@@ -26,7 +26,7 @@ The JS object returned by the image import.
 
 #### metadata
 
-[`ProcessedImage`](../interfaces/ProcessedImage.md)[]
+[`ProcessedImageMetadata`](../interfaces/ProcessedImageMetadata.md)[]
 
 ### Returns
 

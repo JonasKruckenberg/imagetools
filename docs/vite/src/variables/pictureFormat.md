@@ -8,7 +8,6 @@
 
 > `const` **pictureFormat**: [`OutputFormat`](../type-aliases/OutputFormat.md)
 
-Defined in: core/dist/output-formats.d.ts:24
+Defined in: packages/core/dist/output-formats.d.ts:7
 
-Emits the `<picture>` sources per format plus the `img` fallback, which should
-be specified last.
+fallback format should be specified last

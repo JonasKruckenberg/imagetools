@@ -6,7 +6,7 @@
 
 # Interface: CacheOptions
 
-Defined in: [vite/src/types.ts:100](https://github.com/blt-r/imagetools/blob/c792392eda68f17d70a8f7e2a2fdb3d0f2a118ee/packages/vite/src/types.ts#L100)
+Defined in: [packages/vite/src/types.ts:100](https://github.com/JonasKruckenberg/imagetools/blob/aa84664d044e4b733cdf7005c6730584bc92ec90/packages/vite/src/types.ts#L100)
 
 ## Properties
 
@@ -14,7 +14,7 @@ Defined in: [vite/src/types.ts:100](https://github.com/blt-r/imagetools/blob/c79
 
 > `optional` **dir**: `string`
 
-Defined in: [vite/src/types.ts:109](https://github.com/blt-r/imagetools/blob/c792392eda68f17d70a8f7e2a2fdb3d0f2a118ee/packages/vite/src/types.ts#L109)
+Defined in: [packages/vite/src/types.ts:109](https://github.com/JonasKruckenberg/imagetools/blob/aa84664d044e4b733cdf7005c6730584bc92ec90/packages/vite/src/types.ts#L109)
 
 Where should the cached images be stored. Default is './node_modules/.cache/imagetools'
 
@@ -24,7 +24,7 @@ Where should the cached images be stored. Default is './node_modules/.cache/imag
 
 > `optional` **enabled**: `boolean`
 
-Defined in: [vite/src/types.ts:104](https://github.com/blt-r/imagetools/blob/c792392eda68f17d70a8f7e2a2fdb3d0f2a118ee/packages/vite/src/types.ts#L104)
+Defined in: [packages/vite/src/types.ts:104](https://github.com/JonasKruckenberg/imagetools/blob/aa84664d044e4b733cdf7005c6730584bc92ec90/packages/vite/src/types.ts#L104)
 
 Should the image cache be enabled. Default is true
 
@@ -34,6 +34,6 @@ Should the image cache be enabled. Default is true
 
 > `optional` **retention**: `number`
 
-Defined in: [vite/src/types.ts:114](https://github.com/blt-r/imagetools/blob/c792392eda68f17d70a8f7e2a2fdb3d0f2a118ee/packages/vite/src/types.ts#L114)
+Defined in: [packages/vite/src/types.ts:114](https://github.com/JonasKruckenberg/imagetools/blob/aa84664d044e4b733cdf7005c6730584bc92ec90/packages/vite/src/types.ts#L114)
 
 For how many seconds to keep transformed images cached. Default is undefined, which keeps the images forever.

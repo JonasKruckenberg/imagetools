@@ -6,18 +6,11 @@
 
 # Type Alias: ImageTransformation()
 
-> **ImageTransformation** = (`state`, `image`) => `Sharp` \| `Promise`\<`Sharp`\>
+> **ImageTransformation** = (`image`) => `Sharp` \| `Promise`\<`Sharp`\>
 
-Defined in: [core/src/types.ts:113](https://github.com/blt-r/imagetools/blob/c792392eda68f17d70a8f7e2a2fdb3d0f2a118ee/packages/core/src/types.ts#L113)
-
-A single step of the pipeline: reads from and writes to the threaded
-`ImageMetadata`, and returns the image to continue processing.
+Defined in: [packages/core/src/types.ts:61](https://github.com/JonasKruckenberg/imagetools/blob/aa84664d044e4b733cdf7005c6730584bc92ec90/packages/core/src/types.ts#L61)
 
 ## Parameters
-
-### state
-
-[`ImageMetadata`](../interfaces/ImageMetadata.md)
 
 ### image
 

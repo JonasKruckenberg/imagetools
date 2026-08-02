@@ -8,4 +8,4 @@
 
 > **FitValue** = *typeof* [`fitValues`](../variables/fitValues.md)\[`number`\]
 
-Defined in: core/dist/transforms/fit.d.ts:4
+Defined in: packages/core/dist/transforms/fit.d.ts:3

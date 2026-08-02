@@ -8,4 +8,4 @@
 
 > `const` **blur**: [`TransformFactory`](../type-aliases/TransformFactory.md)\<[`BlurOptions`](../interfaces/BlurOptions.md)\>
 
-Defined in: core/dist/transforms/blur.d.ts:5
+Defined in: packages/core/dist/transforms/blur.d.ts:5

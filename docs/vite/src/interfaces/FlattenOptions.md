@@ -6,7 +6,7 @@
 
 # Interface: FlattenOptions
 
-Defined in: core/dist/transforms/flatten.d.ts:2
+Defined in: packages/core/dist/transforms/flatten.d.ts:2
 
 ## Properties
 
@@ -14,4 +14,4 @@ Defined in: core/dist/transforms/flatten.d.ts:2
 
 > **flatten**: `""` \| `"true"`
 
-Defined in: core/dist/transforms/flatten.d.ts:3
+Defined in: packages/core/dist/transforms/flatten.d.ts:3

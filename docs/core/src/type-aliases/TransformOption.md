@@ -6,12 +6,9 @@
 
 # Type Alias: TransformOption()\<A, T\>
 
-> **TransformOption**\<`A`, `T`\> = (`metadata`, `state`) => `T` \| `undefined`
+> **TransformOption**\<`A`, `T`\> = (`metadata`, `image`) => `T` \| `undefined`
 
-Defined in: [core/src/types.ts:104](https://github.com/blt-r/imagetools/blob/c792392eda68f17d70a8f7e2a2fdb3d0f2a118ee/packages/core/src/types.ts#L104)
-
-Reads a transform value from the parsed directives and the threaded state,
-recording the applied value on `state.transforms` when present.
+Defined in: [packages/core/src/types.ts:56](https://github.com/JonasKruckenberg/imagetools/blob/aa84664d044e4b733cdf7005c6730584bc92ec90/packages/core/src/types.ts#L56)
 
 ## Type Parameters
 
@@ -29,9 +26,9 @@ recording the applied value on `state.transforms` when present.
 
 `Partial`\<[`ImageConfig`](ImageConfig.md) & `A`\>
 
-### state
+### image
 
-[`ImageMetadata`](../interfaces/ImageMetadata.md)
+`Sharp`
 
 ## Returns
 

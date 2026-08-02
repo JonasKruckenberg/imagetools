@@ -8,6 +8,4 @@
 
 > `const` **kernelValues**: readonly \[`"nearest"`, `"cubic"`, `"mitchell"`, `"lanczos2"`, `"lanczos3"`\]
 
-Defined in: core/dist/lib/values.d.ts:10
-
-Values accepted by the `kernel` transform.
+Defined in: packages/core/dist/transforms/kernel.d.ts:2

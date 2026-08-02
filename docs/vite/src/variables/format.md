@@ -8,4 +8,4 @@
 
 > `const` **format**: [`TransformFactory`](../type-aliases/TransformFactory.md)\<[`FormatOptions`](../interfaces/FormatOptions.md)\>
 
-Defined in: core/dist/transforms/format.d.ts:6
+Defined in: packages/core/dist/transforms/format.d.ts:6

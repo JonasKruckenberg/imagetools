@@ -1,0 +1,781 @@
+[**imagetools**](../../../README.md)
+
+***
+
+[imagetools](../../../modules.md) / [core/src](../README.md) / ProcessedImageMetadata
+
+# Interface: ProcessedImageMetadata
+
+Defined in: [packages/core/src/types.ts:5](https://github.com/JonasKruckenberg/imagetools/blob/aa84664d044e4b733cdf7005c6730584bc92ec90/packages/core/src/types.ts#L5)
+
+## Extends
+
+- [`ImageMetadata`](ImageMetadata.md)
+
+## Indexable
+
+\[`key`: `string`\]: `unknown`
+
+## Properties
+
+### allowUpscale?
+
+> `optional` **allowUpscale**: `boolean`
+
+Defined in: [packages/core/src/types.ts:11](https://github.com/JonasKruckenberg/imagetools/blob/aa84664d044e4b733cdf7005c6730584bc92ec90/packages/core/src/types.ts#L11)
+
+#### Inherited from
+
+[`ImageMetadata`](ImageMetadata.md).[`allowUpscale`](ImageMetadata.md#allowupscale)
+
+***
+
+### aspect?
+
+> `optional` **aspect**: `number`
+
+Defined in: [packages/core/src/types.ts:12](https://github.com/JonasKruckenberg/imagetools/blob/aa84664d044e4b733cdf7005c6730584bc92ec90/packages/core/src/types.ts#L12)
+
+#### Inherited from
+
+[`ImageMetadata`](ImageMetadata.md).[`aspect`](ImageMetadata.md#aspect)
+
+***
+
+### autoOrient
+
+> **autoOrient**: `object`
+
+Defined in: node\_modules/.pnpm/sharp@0.34.1/node\_modules/sharp/lib/index.d.ts:1157
+
+Any changed metadata after the image orientation is applied.
+
+#### height
+
+> **height**: `number`
+
+Number of pixels high (EXIF orientation is taken into consideration)
+
+#### width
+
+> **width**: `number`
+
+Number of pixels wide (EXIF orientation is taken into consideration)
+
+#### Inherited from
+
+[`ImageMetadata`](ImageMetadata.md).[`autoOrient`](ImageMetadata.md#autoorient)
+
+***
+
+### background?
+
+> `optional` **background**: \{ `b`: `number`; `g`: `number`; `r`: `number`; \} \| \{ `gray`: `number`; \}
+
+Defined in: node\_modules/.pnpm/sharp@0.34.1/node\_modules/sharp/lib/index.d.ts:1206
+
+Default background colour, if present, for PNG (bKGD) and GIF images
+
+#### Inherited from
+
+[`ImageMetadata`](ImageMetadata.md).[`background`](ImageMetadata.md#background)
+
+***
+
+### backgroundDirective?
+
+> `optional` **backgroundDirective**: `string`
+
+Defined in: [packages/core/src/types.ts:13](https://github.com/JonasKruckenberg/imagetools/blob/aa84664d044e4b733cdf7005c6730584bc92ec90/packages/core/src/types.ts#L13)
+
+#### Inherited from
+
+[`ImageMetadata`](ImageMetadata.md).[`backgroundDirective`](ImageMetadata.md#backgrounddirective)
+
+***
+
+### bitsPerSample?
+
+> `optional` **bitsPerSample**: `number`
+
+Defined in: node\_modules/.pnpm/sharp@0.34.1/node\_modules/sharp/lib/index.d.ts:1178
+
+Number of bits per sample for each channel (GIF, PNG).
+
+#### Inherited from
+
+[`ImageMetadata`](ImageMetadata.md).[`bitsPerSample`](ImageMetadata.md#bitspersample)
+
+***
+
+### blur?
+
+> `optional` **blur**: `number` \| `boolean`
+
+Defined in: [packages/core/src/types.ts:14](https://github.com/JonasKruckenberg/imagetools/blob/aa84664d044e4b733cdf7005c6730584bc92ec90/packages/core/src/types.ts#L14)
+
+#### Inherited from
+
+[`ImageMetadata`](ImageMetadata.md).[`blur`](ImageMetadata.md#blur)
+
+***
+
+### brightness?
+
+> `optional` **brightness**: `number` \| `""`
+
+Defined in: [packages/core/src/types.ts:15](https://github.com/JonasKruckenberg/imagetools/blob/aa84664d044e4b733cdf7005c6730584bc92ec90/packages/core/src/types.ts#L15)
+
+#### Inherited from
+
+[`ImageMetadata`](ImageMetadata.md).[`brightness`](ImageMetadata.md#brightness)
+
+***
+
+### channels?
+
+> `optional` **channels**: `Channels`
+
+Defined in: node\_modules/.pnpm/sharp@0.34.1/node\_modules/sharp/lib/index.d.ts:1166
+
+Number of bands e.g. 3 for sRGB, 4 for CMYK
+
+#### Inherited from
+
+[`ImageMetadata`](ImageMetadata.md).[`channels`](ImageMetadata.md#channels)
+
+***
+
+### chromaSubsampling?
+
+> `optional` **chromaSubsampling**: `string`
+
+Defined in: node\_modules/.pnpm/sharp@0.34.1/node\_modules/sharp/lib/index.d.ts:1172
+
+String containing JPEG chroma subsampling, 4:2:0 or 4:4:4 for RGB, 4:2:0:4 or 4:4:4:4 for CMYK
+
+#### Inherited from
+
+[`ImageMetadata`](ImageMetadata.md).[`chromaSubsampling`](ImageMetadata.md#chromasubsampling)
+
+***
+
+### comments?
+
+> `optional` **comments**: `CommentsMetadata`[]
+
+Defined in: node\_modules/.pnpm/sharp@0.34.1/node\_modules/sharp/lib/index.d.ts:1216
+
+Array of keyword/text pairs representing PNG text blocks, if present.
+
+#### Inherited from
+
+[`ImageMetadata`](ImageMetadata.md).[`comments`](ImageMetadata.md#comments)
+
+***
+
+### compression?
+
+> `optional` **compression**: `"av1"` \| `"hevc"`
+
+Defined in: node\_modules/.pnpm/sharp@0.34.1/node\_modules/sharp/lib/index.d.ts:1204
+
+The encoder used to compress an HEIF file, `av1` (AVIF) or `hevc` (HEIC)
+
+#### Inherited from
+
+[`ImageMetadata`](ImageMetadata.md).[`compression`](ImageMetadata.md#compression)
+
+***
+
+### config
+
+> **config**: `Record`\<`string`, `string` \| `string`[]\>
+
+Defined in: [packages/core/src/types.ts:11](https://github.com/JonasKruckenberg/imagetools/blob/3f4389f9b6a97e2a753278cf1b9b6b4bcea5684a/packages/core/src/types.ts#L11)
+
+The config used to generate this image.
+
+***
+
+### delay?
+
+> `optional` **delay**: `number`[]
+
+Defined in: node\_modules/.pnpm/sharp@0.34.1/node\_modules/sharp/lib/index.d.ts:1186
+
+Delay in ms between each page in an animated image, provided as an array of integers.
+
+#### Inherited from
+
+[`ImageMetadata`](ImageMetadata.md).[`delay`](ImageMetadata.md#delay)
+
+***
+
+### density?
+
+> `optional` **density**: `number`
+
+Defined in: node\_modules/.pnpm/sharp@0.34.1/node\_modules/sharp/lib/index.d.ts:1170
+
+Number of pixels per inch (DPI), if present
+
+#### Inherited from
+
+[`ImageMetadata`](ImageMetadata.md).[`density`](ImageMetadata.md#density)
+
+***
+
+### depth?
+
+> `optional` **depth**: `string`
+
+Defined in: node\_modules/.pnpm/sharp@0.34.1/node\_modules/sharp/lib/index.d.ts:1168
+
+Name of pixel depth format e.g. uchar, char, ushort, float ...
+
+#### Inherited from
+
+[`ImageMetadata`](ImageMetadata.md).[`depth`](ImageMetadata.md#depth)
+
+***
+
+### exif?
+
+> `optional` **exif**: `Buffer`\<`ArrayBufferLike`\>
+
+Defined in: node\_modules/.pnpm/sharp@0.34.1/node\_modules/sharp/lib/index.d.ts:1194
+
+Buffer containing raw EXIF data, if present
+
+#### Inherited from
+
+[`ImageMetadata`](ImageMetadata.md).[`exif`](ImageMetadata.md#exif)
+
+***
+
+### fit?
+
+> `optional` **fit**: `string`
+
+Defined in: [packages/core/src/types.ts:16](https://github.com/JonasKruckenberg/imagetools/blob/aa84664d044e4b733cdf7005c6730584bc92ec90/packages/core/src/types.ts#L16)
+
+#### Inherited from
+
+[`ImageMetadata`](ImageMetadata.md).[`fit`](ImageMetadata.md#fit)
+
+***
+
+### flatten?
+
+> `optional` **flatten**: `true`
+
+Defined in: [packages/core/src/types.ts:19](https://github.com/JonasKruckenberg/imagetools/blob/aa84664d044e4b733cdf7005c6730584bc92ec90/packages/core/src/types.ts#L19)
+
+#### Inherited from
+
+[`ImageMetadata`](ImageMetadata.md).[`flatten`](ImageMetadata.md#flatten)
+
+***
+
+### flip?
+
+> `optional` **flip**: `true`
+
+Defined in: [packages/core/src/types.ts:17](https://github.com/JonasKruckenberg/imagetools/blob/aa84664d044e4b733cdf7005c6730584bc92ec90/packages/core/src/types.ts#L17)
+
+#### Inherited from
+
+[`ImageMetadata`](ImageMetadata.md).[`flip`](ImageMetadata.md#flip)
+
+***
+
+### flop?
+
+> `optional` **flop**: `true`
+
+Defined in: [packages/core/src/types.ts:18](https://github.com/JonasKruckenberg/imagetools/blob/aa84664d044e4b733cdf7005c6730584bc92ec90/packages/core/src/types.ts#L18)
+
+#### Inherited from
+
+[`ImageMetadata`](ImageMetadata.md).[`flop`](ImageMetadata.md#flop)
+
+***
+
+### format?
+
+> `optional` **format**: keyof FormatEnum
+
+Defined in: node\_modules/.pnpm/sharp@0.34.1/node\_modules/sharp/lib/index.d.ts:1149
+
+Name of decoder used to decompress image data e.g. jpeg, png, webp, gif, svg
+
+#### Inherited from
+
+[`ImageMetadata`](ImageMetadata.md).[`format`](ImageMetadata.md#format)
+
+***
+
+### formatMagick?
+
+> `optional` **formatMagick**: `string`
+
+Defined in: node\_modules/.pnpm/sharp@0.34.1/node\_modules/sharp/lib/index.d.ts:1214
+
+String containing format for images loaded via *magick
+
+#### Inherited from
+
+[`ImageMetadata`](ImageMetadata.md).[`formatMagick`](ImageMetadata.md#formatmagick)
+
+***
+
+### grayscale?
+
+> `optional` **grayscale**: `true`
+
+Defined in: [packages/core/src/types.ts:22](https://github.com/JonasKruckenberg/imagetools/blob/aa84664d044e4b733cdf7005c6730584bc92ec90/packages/core/src/types.ts#L22)
+
+#### Inherited from
+
+[`ImageMetadata`](ImageMetadata.md).[`grayscale`](ImageMetadata.md#grayscale)
+
+***
+
+### hasAlpha?
+
+> `optional` **hasAlpha**: `boolean`
+
+Defined in: node\_modules/.pnpm/sharp@0.34.1/node\_modules/sharp/lib/index.d.ts:1192
+
+Boolean indicating the presence of an alpha transparency channel
+
+#### Inherited from
+
+[`ImageMetadata`](ImageMetadata.md).[`hasAlpha`](ImageMetadata.md#hasalpha)
+
+***
+
+### hasProfile?
+
+> `optional` **hasProfile**: `boolean`
+
+Defined in: node\_modules/.pnpm/sharp@0.34.1/node\_modules/sharp/lib/index.d.ts:1190
+
+Boolean indicating the presence of an embedded ICC profile
+
+#### Inherited from
+
+[`ImageMetadata`](ImageMetadata.md).[`hasProfile`](ImageMetadata.md#hasprofile)
+
+***
+
+### height?
+
+> `optional` **height**: `number`
+
+Defined in: node\_modules/.pnpm/sharp@0.34.1/node\_modules/sharp/lib/index.d.ts:1155
+
+Number of pixels high (EXIF orientation is not taken into consideration)
+
+#### Inherited from
+
+[`ImageMetadata`](ImageMetadata.md).[`height`](ImageMetadata.md#height)
+
+***
+
+### hue?
+
+> `optional` **hue**: `number` \| `""`
+
+Defined in: [packages/core/src/types.ts:20](https://github.com/JonasKruckenberg/imagetools/blob/aa84664d044e4b733cdf7005c6730584bc92ec90/packages/core/src/types.ts#L20)
+
+#### Inherited from
+
+[`ImageMetadata`](ImageMetadata.md).[`hue`](ImageMetadata.md#hue)
+
+***
+
+### icc?
+
+> `optional` **icc**: `Buffer`\<`ArrayBufferLike`\>
+
+Defined in: node\_modules/.pnpm/sharp@0.34.1/node\_modules/sharp/lib/index.d.ts:1196
+
+Buffer containing raw ICC profile data, if present
+
+#### Inherited from
+
+[`ImageMetadata`](ImageMetadata.md).[`icc`](ImageMetadata.md#icc)
+
+***
+
+### image
+
+> **image**: `Sharp`
+
+Defined in: [packages/core/src/types.ts:7](https://github.com/JonasKruckenberg/imagetools/blob/aa84664d044e4b733cdf7005c6730584bc92ec90/packages/core/src/types.ts#L7)
+
+***
+
+### invert?
+
+> `optional` **invert**: `true`
+
+Defined in: [packages/core/src/types.ts:21](https://github.com/JonasKruckenberg/imagetools/blob/aa84664d044e4b733cdf7005c6730584bc92ec90/packages/core/src/types.ts#L21)
+
+#### Inherited from
+
+[`ImageMetadata`](ImageMetadata.md).[`invert`](ImageMetadata.md#invert)
+
+***
+
+### iptc?
+
+> `optional` **iptc**: `Buffer`\<`ArrayBufferLike`\>
+
+Defined in: node\_modules/.pnpm/sharp@0.34.1/node\_modules/sharp/lib/index.d.ts:1198
+
+Buffer containing raw IPTC data, if present
+
+#### Inherited from
+
+[`ImageMetadata`](ImageMetadata.md).[`iptc`](ImageMetadata.md#iptc)
+
+***
+
+### isPalette?
+
+> `optional` **isPalette**: `boolean`
+
+Defined in: node\_modules/.pnpm/sharp@0.34.1/node\_modules/sharp/lib/index.d.ts:1176
+
+Boolean indicating whether the image is palette-based (GIF, PNG).
+
+#### Inherited from
+
+[`ImageMetadata`](ImageMetadata.md).[`isPalette`](ImageMetadata.md#ispalette)
+
+***
+
+### isProgressive?
+
+> `optional` **isProgressive**: `boolean`
+
+Defined in: node\_modules/.pnpm/sharp@0.34.1/node\_modules/sharp/lib/index.d.ts:1174
+
+Boolean indicating whether the image is interlaced using a progressive scan
+
+#### Inherited from
+
+[`ImageMetadata`](ImageMetadata.md).[`isProgressive`](ImageMetadata.md#isprogressive)
+
+***
+
+### kernel?
+
+> `optional` **kernel**: `"nearest"` \| `"cubic"` \| `"mitchell"` \| `"lanczos2"` \| `"lanczos3"`
+
+Defined in: [packages/core/src/types.ts:23](https://github.com/JonasKruckenberg/imagetools/blob/aa84664d044e4b733cdf7005c6730584bc92ec90/packages/core/src/types.ts#L23)
+
+#### Inherited from
+
+[`ImageMetadata`](ImageMetadata.md).[`kernel`](ImageMetadata.md#kernel)
+
+***
+
+### levels?
+
+> `optional` **levels**: `LevelMetadata`[]
+
+Defined in: node\_modules/.pnpm/sharp@0.34.1/node\_modules/sharp/lib/index.d.ts:1208
+
+Details of each level in a multi-level image provided as an array of objects, requires libvips compiled with support for OpenSlide
+
+#### Inherited from
+
+[`ImageMetadata`](ImageMetadata.md).[`levels`](ImageMetadata.md#levels)
+
+***
+
+### loop?
+
+> `optional` **loop**: `number`
+
+Defined in: node\_modules/.pnpm/sharp@0.34.1/node\_modules/sharp/lib/index.d.ts:1184
+
+Number of times to loop an animated image, zero refers to a continuous loop.
+
+#### Inherited from
+
+[`ImageMetadata`](ImageMetadata.md).[`loop`](ImageMetadata.md#loop)
+
+***
+
+### lossless?
+
+> `optional` **lossless**: `true`
+
+Defined in: [packages/core/src/types.ts:24](https://github.com/JonasKruckenberg/imagetools/blob/aa84664d044e4b733cdf7005c6730584bc92ec90/packages/core/src/types.ts#L24)
+
+#### Inherited from
+
+[`ImageMetadata`](ImageMetadata.md).[`lossless`](ImageMetadata.md#lossless)
+
+***
+
+### median?
+
+> `optional` **median**: `number`
+
+Defined in: [packages/core/src/types.ts:25](https://github.com/JonasKruckenberg/imagetools/blob/aa84664d044e4b733cdf7005c6730584bc92ec90/packages/core/src/types.ts#L25)
+
+#### Inherited from
+
+[`ImageMetadata`](ImageMetadata.md).[`median`](ImageMetadata.md#median)
+
+***
+
+### normalize?
+
+> `optional` **normalize**: `true`
+
+Defined in: [packages/core/src/types.ts:26](https://github.com/JonasKruckenberg/imagetools/blob/aa84664d044e4b733cdf7005c6730584bc92ec90/packages/core/src/types.ts#L26)
+
+#### Inherited from
+
+[`ImageMetadata`](ImageMetadata.md).[`normalize`](ImageMetadata.md#normalize)
+
+***
+
+### orientation?
+
+> `optional` **orientation**: `number`
+
+Defined in: node\_modules/.pnpm/sharp@0.34.1/node\_modules/sharp/lib/index.d.ts:1147
+
+Number value of the EXIF Orientation header, if present
+
+#### Inherited from
+
+[`ImageMetadata`](ImageMetadata.md).[`orientation`](ImageMetadata.md#orientation)
+
+***
+
+### pageHeight?
+
+> `optional` **pageHeight**: `number`
+
+Defined in: node\_modules/.pnpm/sharp@0.34.1/node\_modules/sharp/lib/index.d.ts:1182
+
+Number of pixels high each page in a multi-page image will be.
+
+#### Inherited from
+
+[`ImageMetadata`](ImageMetadata.md).[`pageHeight`](ImageMetadata.md#pageheight)
+
+***
+
+### pagePrimary?
+
+> `optional` **pagePrimary**: `number`
+
+Defined in: node\_modules/.pnpm/sharp@0.34.1/node\_modules/sharp/lib/index.d.ts:1188
+
+Number of the primary page in a HEIF image
+
+#### Inherited from
+
+[`ImageMetadata`](ImageMetadata.md).[`pagePrimary`](ImageMetadata.md#pageprimary)
+
+***
+
+### pages?
+
+> `optional` **pages**: `number`
+
+Defined in: node\_modules/.pnpm/sharp@0.34.1/node\_modules/sharp/lib/index.d.ts:1180
+
+Number of pages/frames contained within the image, with support for TIFF, HEIF, PDF, animated GIF and animated WebP
+
+#### Inherited from
+
+[`ImageMetadata`](ImageMetadata.md).[`pages`](ImageMetadata.md#pages)
+
+***
+
+### position?
+
+> `optional` **position**: `"top"` \| `"right top"` \| `"right"` \| `"right bottom"` \| `"bottom"` \| `"left bottom"` \| `"left"` \| `"left top"` \| `"north"` \| `"northeast"` \| `"east"` \| `"southeast"` \| `"south"` \| `"southwest"` \| `"west"` \| `"northwest"` \| `"center"` \| `"centre"` \| `"entropy"` \| `"attention"`
+
+Defined in: [packages/core/src/types.ts:28](https://github.com/JonasKruckenberg/imagetools/blob/aa84664d044e4b733cdf7005c6730584bc92ec90/packages/core/src/types.ts#L28)
+
+#### Inherited from
+
+[`ImageMetadata`](ImageMetadata.md).[`position`](ImageMetadata.md#position)
+
+***
+
+### progressive?
+
+> `optional` **progressive**: `true`
+
+Defined in: [packages/core/src/types.ts:29](https://github.com/JonasKruckenberg/imagetools/blob/aa84664d044e4b733cdf7005c6730584bc92ec90/packages/core/src/types.ts#L29)
+
+#### Inherited from
+
+[`ImageMetadata`](ImageMetadata.md).[`progressive`](ImageMetadata.md#progressive)
+
+***
+
+### quality?
+
+> `optional` **quality**: `number`
+
+Defined in: [packages/core/src/types.ts:30](https://github.com/JonasKruckenberg/imagetools/blob/aa84664d044e4b733cdf7005c6730584bc92ec90/packages/core/src/types.ts#L30)
+
+#### Inherited from
+
+[`ImageMetadata`](ImageMetadata.md).[`quality`](ImageMetadata.md#quality)
+
+***
+
+### resolutionUnit?
+
+> `optional` **resolutionUnit**: `"inch"` \| `"cm"`
+
+Defined in: node\_modules/.pnpm/sharp@0.34.1/node\_modules/sharp/lib/index.d.ts:1212
+
+The unit of resolution (density)
+
+#### Inherited from
+
+[`ImageMetadata`](ImageMetadata.md).[`resolutionUnit`](ImageMetadata.md#resolutionunit)
+
+***
+
+### rotate?
+
+> `optional` **rotate**: `number`
+
+Defined in: [packages/core/src/types.ts:33](https://github.com/JonasKruckenberg/imagetools/blob/aa84664d044e4b733cdf7005c6730584bc92ec90/packages/core/src/types.ts#L33)
+
+#### Inherited from
+
+[`ImageMetadata`](ImageMetadata.md).[`rotate`](ImageMetadata.md#rotate)
+
+***
+
+### saturation?
+
+> `optional` **saturation**: `number` \| `""`
+
+Defined in: [packages/core/src/types.ts:31](https://github.com/JonasKruckenberg/imagetools/blob/aa84664d044e4b733cdf7005c6730584bc92ec90/packages/core/src/types.ts#L31)
+
+#### Inherited from
+
+[`ImageMetadata`](ImageMetadata.md).[`saturation`](ImageMetadata.md#saturation)
+
+***
+
+### size?
+
+> `optional` **size**: `number`
+
+Defined in: node\_modules/.pnpm/sharp@0.34.1/node\_modules/sharp/lib/index.d.ts:1151
+
+Total size of image in bytes, for Stream and Buffer input only
+
+#### Inherited from
+
+[`ImageMetadata`](ImageMetadata.md).[`size`](ImageMetadata.md#size)
+
+***
+
+### space?
+
+> `optional` **space**: keyof ColourspaceEnum
+
+Defined in: node\_modules/.pnpm/sharp@0.34.1/node\_modules/sharp/lib/index.d.ts:1164
+
+Name of colour space interpretation
+
+#### Inherited from
+
+[`ImageMetadata`](ImageMetadata.md).[`space`](ImageMetadata.md#space)
+
+***
+
+### src
+
+> **src**: `string`
+
+Defined in: [packages/core/src/types.ts:6](https://github.com/JonasKruckenberg/imagetools/blob/aa84664d044e4b733cdf7005c6730584bc92ec90/packages/core/src/types.ts#L6)
+
+***
+
+### subifds?
+
+> `optional` **subifds**: `number`
+
+Defined in: node\_modules/.pnpm/sharp@0.34.1/node\_modules/sharp/lib/index.d.ts:1210
+
+Number of Sub Image File Directories in an OME-TIFF image
+
+#### Inherited from
+
+[`ImageMetadata`](ImageMetadata.md).[`subifds`](ImageMetadata.md#subifds)
+
+***
+
+### tifftagPhotoshop?
+
+> `optional` **tifftagPhotoshop**: `Buffer`\<`ArrayBufferLike`\>
+
+Defined in: node\_modules/.pnpm/sharp@0.34.1/node\_modules/sharp/lib/index.d.ts:1202
+
+Buffer containing raw TIFFTAG_PHOTOSHOP data, if present
+
+#### Inherited from
+
+[`ImageMetadata`](ImageMetadata.md).[`tifftagPhotoshop`](ImageMetadata.md#tifftagphotoshop)
+
+***
+
+### tint?
+
+> `optional` **tint**: `string`
+
+Defined in: [packages/core/src/types.ts:32](https://github.com/JonasKruckenberg/imagetools/blob/aa84664d044e4b733cdf7005c6730584bc92ec90/packages/core/src/types.ts#L32)
+
+#### Inherited from
+
+[`ImageMetadata`](ImageMetadata.md).[`tint`](ImageMetadata.md#tint)
+
+***
+
+### width?
+
+> `optional` **width**: `number`
+
+Defined in: node\_modules/.pnpm/sharp@0.34.1/node\_modules/sharp/lib/index.d.ts:1153
+
+Number of pixels wide (EXIF orientation is not taken into consideration)
+
+#### Inherited from
+
+[`ImageMetadata`](ImageMetadata.md).[`width`](ImageMetadata.md#width)
+
+***
+
+### xmp?
+
+> `optional` **xmp**: `Buffer`\<`ArrayBufferLike`\>
+
+Defined in: node\_modules/.pnpm/sharp@0.34.1/node\_modules/sharp/lib/index.d.ts:1200
+
+Buffer containing raw XMP data, if present
+
+#### Inherited from
+
+[`ImageMetadata`](ImageMetadata.md).[`xmp`](ImageMetadata.md#xmp)

@@ -6,7 +6,7 @@
 
 # Interface: Img
 
-Defined in: [core/src/types.ts:123](https://github.com/blt-r/imagetools/blob/c792392eda68f17d70a8f7e2a2fdb3d0f2a118ee/packages/core/src/types.ts#L123)
+Defined in: [packages/core/src/types.ts:76](https://github.com/JonasKruckenberg/imagetools/blob/aa84664d044e4b733cdf7005c6730584bc92ec90/packages/core/src/types.ts#L76)
 
 The img output format.
 
@@ -16,7 +16,7 @@ The img output format.
 
 > **h**: `number`
 
-Defined in: [core/src/types.ts:133](https://github.com/blt-r/imagetools/blob/c792392eda68f17d70a8f7e2a2fdb3d0f2a118ee/packages/core/src/types.ts#L133)
+Defined in: [packages/core/src/types.ts:86](https://github.com/JonasKruckenberg/imagetools/blob/aa84664d044e4b733cdf7005c6730584bc92ec90/packages/core/src/types.ts#L86)
 
 The intrinsic height. May not be the rendered height.
 Helps prevent reflow. See https://html.com/attributes/img-height/
@@ -27,7 +27,7 @@ Helps prevent reflow. See https://html.com/attributes/img-height/
 
 > **src**: `string`
 
-Defined in: [core/src/types.ts:124](https://github.com/blt-r/imagetools/blob/c792392eda68f17d70a8f7e2a2fdb3d0f2a118ee/packages/core/src/types.ts#L124)
+Defined in: [packages/core/src/types.ts:77](https://github.com/JonasKruckenberg/imagetools/blob/aa84664d044e4b733cdf7005c6730584bc92ec90/packages/core/src/types.ts#L77)
 
 ***
 
@@ -35,7 +35,7 @@ Defined in: [core/src/types.ts:124](https://github.com/blt-r/imagetools/blob/c79
 
 > `optional` **srcset**: `string`
 
-Defined in: [core/src/types.ts:134](https://github.com/blt-r/imagetools/blob/c792392eda68f17d70a8f7e2a2fdb3d0f2a118ee/packages/core/src/types.ts#L134)
+Defined in: [packages/core/src/types.ts:87](https://github.com/JonasKruckenberg/imagetools/blob/aa84664d044e4b733cdf7005c6730584bc92ec90/packages/core/src/types.ts#L87)
 
 ***
 
@@ -43,6 +43,6 @@ Defined in: [core/src/types.ts:134](https://github.com/blt-r/imagetools/blob/c79
 
 > **w**: `number`
 
-Defined in: [core/src/types.ts:128](https://github.com/blt-r/imagetools/blob/c792392eda68f17d70a8f7e2a2fdb3d0f2a118ee/packages/core/src/types.ts#L128)
+Defined in: [packages/core/src/types.ts:81](https://github.com/JonasKruckenberg/imagetools/blob/aa84664d044e4b733cdf7005c6730584bc92ec90/packages/core/src/types.ts#L81)
 
 The intrinsic width

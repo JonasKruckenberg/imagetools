@@ -8,4 +8,4 @@
 
 > `const` **getProgressive**: [`TransformOption`](../type-aliases/TransformOption.md)\<[`ProgressiveOptions`](../interfaces/ProgressiveOptions.md)\>
 
-Defined in: core/dist/transforms/progressive.d.ts:5
+Defined in: packages/core/dist/transforms/progressive.d.ts:5

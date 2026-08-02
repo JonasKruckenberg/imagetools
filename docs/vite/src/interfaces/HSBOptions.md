@@ -6,7 +6,7 @@
 
 # Interface: HSBOptions
 
-Defined in: core/dist/transforms/hsb.d.ts:2
+Defined in: packages/core/dist/transforms/hsb.d.ts:2
 
 ## Properties
 
@@ -14,7 +14,7 @@ Defined in: core/dist/transforms/hsb.d.ts:2
 
 > **brightness**: `string`
 
-Defined in: core/dist/transforms/hsb.d.ts:5
+Defined in: packages/core/dist/transforms/hsb.d.ts:5
 
 ***
 
@@ -22,7 +22,7 @@ Defined in: core/dist/transforms/hsb.d.ts:5
 
 > **hue**: `string`
 
-Defined in: core/dist/transforms/hsb.d.ts:3
+Defined in: packages/core/dist/transforms/hsb.d.ts:3
 
 ***
 
@@ -30,4 +30,4 @@ Defined in: core/dist/transforms/hsb.d.ts:3
 
 > **saturation**: `string`
 
-Defined in: core/dist/transforms/hsb.d.ts:4
+Defined in: packages/core/dist/transforms/hsb.d.ts:4

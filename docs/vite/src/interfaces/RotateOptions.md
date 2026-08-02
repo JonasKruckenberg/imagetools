@@ -6,7 +6,7 @@
 
 # Interface: RotateOptions
 
-Defined in: core/dist/transforms/rotate.d.ts:2
+Defined in: packages/core/dist/transforms/rotate.d.ts:2
 
 ## Properties
 
@@ -14,4 +14,4 @@ Defined in: core/dist/transforms/rotate.d.ts:2
 
 > **rotate**: `string`
 
-Defined in: core/dist/transforms/rotate.d.ts:3
+Defined in: packages/core/dist/transforms/rotate.d.ts:3

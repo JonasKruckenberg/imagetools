@@ -8,4 +8,4 @@
 
 > `const` **tint**: [`TransformFactory`](../type-aliases/TransformFactory.md)\<[`TintOptions`](../interfaces/TintOptions.md)\>
 
-Defined in: core/dist/transforms/tint.d.ts:5
+Defined in: packages/core/dist/transforms/tint.d.ts:5

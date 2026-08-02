@@ -6,7 +6,7 @@
 
 # Interface: BackgroundOptions
 
-Defined in: core/dist/transforms/background.d.ts:2
+Defined in: packages/core/dist/transforms/background.d.ts:2
 
 ## Properties
 
@@ -14,4 +14,4 @@ Defined in: core/dist/transforms/background.d.ts:2
 
 > **background**: `string`
 
-Defined in: core/dist/transforms/background.d.ts:3
+Defined in: packages/core/dist/transforms/background.d.ts:3

@@ -6,7 +6,7 @@
 
 # Interface: EffortOptions
 
-Defined in: core/dist/transforms/effort.d.ts:2
+Defined in: packages/core/dist/transforms/effort.d.ts:2
 
 ## Properties
 
@@ -14,4 +14,4 @@ Defined in: core/dist/transforms/effort.d.ts:2
 
 > **effort**: `string`
 
-Defined in: core/dist/transforms/effort.d.ts:3
+Defined in: packages/core/dist/transforms/effort.d.ts:3

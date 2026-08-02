@@ -6,7 +6,7 @@
 
 # Interface: TransformFactoryContext
 
-Defined in: core/dist/types.d.ts:81
+Defined in: packages/core/dist/types.d.ts:40
 
 ## Properties
 
@@ -14,7 +14,7 @@ Defined in: core/dist/types.d.ts:81
 
 > **logger**: [`Logger`](Logger.md)
 
-Defined in: core/dist/types.d.ts:84
+Defined in: packages/core/dist/types.d.ts:43
 
 ***
 
@@ -22,7 +22,7 @@ Defined in: core/dist/types.d.ts:84
 
 > **manualSearchParams**: `URLSearchParams`
 
-Defined in: core/dist/types.d.ts:83
+Defined in: packages/core/dist/types.d.ts:42
 
 ***
 
@@ -30,7 +30,7 @@ Defined in: core/dist/types.d.ts:83
 
 > **useParam**: (`parameter`) => `void`
 
-Defined in: core/dist/types.d.ts:82
+Defined in: packages/core/dist/types.d.ts:41
 
 #### Parameters
 

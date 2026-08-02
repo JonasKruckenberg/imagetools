@@ -6,7 +6,7 @@
 
 # Interface: FlattenOptions
 
-Defined in: [core/src/transforms/flatten.ts:4](https://github.com/blt-r/imagetools/blob/c792392eda68f17d70a8f7e2a2fdb3d0f2a118ee/packages/core/src/transforms/flatten.ts#L4)
+Defined in: [packages/core/src/transforms/flatten.ts:5](https://github.com/JonasKruckenberg/imagetools/blob/aa84664d044e4b733cdf7005c6730584bc92ec90/packages/core/src/transforms/flatten.ts#L5)
 
 ## Properties
 
@@ -14,4 +14,4 @@ Defined in: [core/src/transforms/flatten.ts:4](https://github.com/blt-r/imagetoo
 
 > **flatten**: `""` \| `"true"`
 
-Defined in: [core/src/transforms/flatten.ts:5](https://github.com/blt-r/imagetools/blob/c792392eda68f17d70a8f7e2a2fdb3d0f2a118ee/packages/core/src/transforms/flatten.ts#L5)
+Defined in: [packages/core/src/transforms/flatten.ts:6](https://github.com/JonasKruckenberg/imagetools/blob/aa84664d044e4b733cdf7005c6730584bc92ec90/packages/core/src/transforms/flatten.ts#L6)

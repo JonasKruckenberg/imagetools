@@ -6,7 +6,7 @@
 
 # Interface: autoOrientOptions
 
-Defined in: core/dist/transforms/autoOrient.d.ts:2
+Defined in: packages/core/dist/transforms/autoOrient.d.ts:2
 
 ## Properties
 
@@ -14,4 +14,4 @@ Defined in: core/dist/transforms/autoOrient.d.ts:2
 
 > **noAutoOrient**: `""` \| `"true"` \| `"false"`
 
-Defined in: core/dist/transforms/autoOrient.d.ts:3
+Defined in: packages/core/dist/transforms/autoOrient.d.ts:3

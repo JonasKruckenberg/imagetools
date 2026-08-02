@@ -8,4 +8,4 @@
 
 > `const` **flip**: [`TransformFactory`](../type-aliases/TransformFactory.md)\<[`FlipOptions`](../interfaces/FlipOptions.md)\>
 
-Defined in: core/dist/transforms/flip.d.ts:5
+Defined in: packages/core/dist/transforms/flip.d.ts:5

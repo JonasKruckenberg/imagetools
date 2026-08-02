@@ -8,8 +8,6 @@
 
 ## Interfaces
 
-- [AppliedTransforms](interfaces/AppliedTransforms.md)
-- [ApplyTransformsResult](interfaces/ApplyTransformsResult.md)
 - [autoOrientOptions](interfaces/autoOrientOptions.md)
 - [BackgroundOptions](interfaces/BackgroundOptions.md)
 - [BlurOptions](interfaces/BlurOptions.md)
@@ -21,7 +19,6 @@
 - [FormatOptions](interfaces/FormatOptions.md)
 - [GrayscaleOptions](interfaces/GrayscaleOptions.md)
 - [HSBOptions](interfaces/HSBOptions.md)
-- [ImageInfo](interfaces/ImageInfo.md)
 - [ImageMetadata](interfaces/ImageMetadata.md)
 - [Img](interfaces/Img.md)
 - [InvertOptions](interfaces/InvertOptions.md)
@@ -32,13 +29,14 @@
 - [NormalizeOptions](interfaces/NormalizeOptions.md)
 - [Picture](interfaces/Picture.md)
 - [PositionOptions](interfaces/PositionOptions.md)
-- [ProcessedImage](interfaces/ProcessedImage.md)
+- [ProcessedImageMetadata](interfaces/ProcessedImageMetadata.md)
 - [ProgressiveOptions](interfaces/ProgressiveOptions.md)
 - [QualityOptions](interfaces/QualityOptions.md)
 - [ResizeOptions](interfaces/ResizeOptions.md)
 - [RotateOptions](interfaces/RotateOptions.md)
 - [TintOptions](interfaces/TintOptions.md)
 - [TransformFactoryContext](interfaces/TransformFactoryContext.md)
+- [TransformResult](interfaces/TransformResult.md)
 
 ## Type Aliases
 
@@ -92,9 +90,11 @@
 - [applyTransforms](functions/applyTransforms.md)
 - [extractEntries](functions/extractEntries.md)
 - [generateTransforms](functions/generateTransforms.md)
+- [getMetadata](functions/getMetadata.md)
 - [imagetools](functions/imagetools.md)
 - [parseURL](functions/parseURL.md)
 - [resolveConfigs](functions/resolveConfigs.md)
+- [setMetadata](functions/setMetadata.md)
 
 ## References
 
