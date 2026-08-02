@@ -1,7 +1,7 @@
 import type { TransformOption } from '../types.js'
-import { METADATA } from '../lib/metadata.js'
+import { fitValues } from '../lib/values.js'
 
-export const fitValues = ['cover', 'contain', 'fill', 'inside', 'outside'] as const
+export { fitValues } from '../lib/values.js'
 
 export type FitValue = (typeof fitValues)[number]
 
@@ -9,20 +9,19 @@ export interface FitOptions {
   fit: FitValue
 }
 
-export const getFit: TransformOption<FitOptions, FitValue> = (config, image) => {
+export const getFit: TransformOption<FitOptions, FitValue> = (config, state) => {
   let fit: FitValue | undefined
 
   if (config.fit && fitValues.includes(config.fit)) {
     fit = config.fit
   } else {
     fit = Object.keys(config).find(
-      (k: string): k is FitValue => (fitValues as unknown as string[]).includes(k) && config[k] === ''
+      (k: string): k is FitValue => fitValues.some((value) => value === k) && config[k] === ''
     )
   }
 
   if (!fit) return
 
-  image[METADATA].fit = fit
-
+  state.transforms.fit = fit
   return fit
 }

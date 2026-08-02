@@ -1,69 +1,65 @@
 import { getEffort } from '../effort'
-import sharp, { type Sharp } from 'sharp'
-import { join } from 'path'
-import { describe, beforeEach, expect, test, it } from 'vitest'
-import { METADATA } from '../../lib/metadata'
+import type { ImageMetadata } from '../../types'
+import { describe, expect, test, it } from 'vitest'
+
+const state = (format: string) =>
+  ({
+    info: { width: 0, height: 0, autoOriented: { width: 0, height: 0 } },
+    transforms: { format }
+  }) as ImageMetadata
 
 describe('effort', () => {
-  let img: Sharp
-  beforeEach(() => {
-    img = sharp(join(__dirname, '../../__tests__/__fixtures__/pexels-allec-gomes-5195763.png'))
-  })
-
   test('keyword "effort"', () => {
-    const res = getEffort({ effort: '3' }, img)
+    const res = getEffort({ effort: '3' }, state('webp'))
 
     expect(res).toEqual(3)
   })
 
   test('missing', () => {
-    const res = getEffort({}, img)
+    const res = getEffort({}, state('webp'))
 
     expect(res).toBeUndefined()
   })
 
   describe('arguments', () => {
     test('invalid', () => {
-      const res = getEffort({ effort: 'invalid' }, img)
+      const res = getEffort({ effort: 'invalid' }, state('webp'))
 
       expect(res).toBeUndefined()
     })
 
     test('empty', () => {
-      const res = getEffort({ effort: '' }, img)
+      const res = getEffort({ effort: '' }, state('webp'))
 
       expect(res).toBeUndefined()
     })
 
     test('integer', () => {
-      const res = getEffort({ effort: '3' }, img)
+      const res = getEffort({ effort: '3' }, state('webp'))
 
       expect(res).toEqual(3)
     })
 
     it('rounds float to int', () => {
-      const res = getEffort({ effort: '3.5' }, img)
+      const res = getEffort({ effort: '3.5' }, state('webp'))
 
       expect(res).toEqual(3)
     })
 
-    it('sets to minimum effort with "min"', async () => {
-      img[METADATA] = { format: 'webp' }
-      const res = getEffort({ effort: 'min' }, img)
+    it('sets to minimum effort with "min"', () => {
+      const res = getEffort({ effort: 'min' }, state('webp'))
 
       expect(res).toEqual(0)
     })
 
-    it('sets to maximum effort with "max"', async () => {
-      img[METADATA] = { format: 'webp' }
-      const res = getEffort({ effort: 'max' }, img)
+    it('sets to maximum effort with "max"', () => {
+      const res = getEffort({ effort: 'max' }, state('webp'))
 
       expect(res).toEqual(6)
     })
 
-    it('ignores effort when not applicable', async () => {
-      img[METADATA] = { format: 'jpeg' }
-      const res = getEffort({ effort: 'max' }, img)
+    it('ignores effort when not applicable', () => {
+      const res = getEffort({ effort: 'max' }, state('jpeg'))
 
       expect(res).toBeUndefined()
     })

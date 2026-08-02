@@ -1,16 +1,18 @@
-import type { OutputFormat } from '../index.js'
+import type { ImageConfig, OutputFormat } from '../types.js'
 
 /**
- * This function calculates the cartesian product of a set of sets.
+ * Computes the cartesian product of an array of sets.
  */
 const cartesian = <T>(sets: T[][]) =>
   sets.reduce((acc, set) => acc.flatMap((x) => set.map((y) => [...x, y])), [[]] as T[][])
 
 /**
- * This function builds up all possible combinations the given entries can be combined
- * and returns it as an array of objects that can be given to a the transforms.
- * @param entries The url parameter entries
- * @returns An array of directive options
+ * Builds every combination the given URL entries can be combined into, as an
+ * array of configs that can be passed to the transforms. Output format
+ * parameters (e.g. `as=`) are appended to every combination instead of
+ * contributing to the product.
+ * @param entries The URL parameter entries
+ * @returns An array of directive configs
  */
 export function resolveConfigs(
   entries: Array<[string, string[]]>,
@@ -31,5 +33,3 @@ export function resolveConfigs(
 
   return out.length ? out : [Object.fromEntries(metadataAddons)]
 }
-
-export type ImageConfig = Record<string, string | string[]>

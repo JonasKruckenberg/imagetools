@@ -1,7 +1,7 @@
 import type { TransformOption } from '../types.js'
-import { METADATA } from '../lib/metadata.js'
+import { kernelValues } from '../lib/values.js'
 
-export const kernelValues = ['nearest', 'cubic', 'mitchell', 'lanczos2', 'lanczos3'] as const
+export { kernelValues } from '../lib/values.js'
 
 export type KernelValue = (typeof kernelValues)[number]
 
@@ -9,10 +9,9 @@ export interface KernelOptions {
   kernel: KernelValue
 }
 
-export const getKernel: TransformOption<KernelOptions, KernelValue> = ({ kernel }, image) => {
+export const getKernel: TransformOption<KernelOptions, KernelValue> = ({ kernel }, state) => {
   if (kernel && kernelValues.includes(kernel)) {
-    image[METADATA].kernel = kernel
-
+    state.transforms.kernel = kernel
     return kernel
   }
 }

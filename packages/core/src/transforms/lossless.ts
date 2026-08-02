@@ -1,14 +1,12 @@
 import type { TransformOption } from '../types.js'
-import { METADATA } from '../lib/metadata.js'
 
 export interface LosslessOptions {
   lossless: '' | 'true'
 }
 
-export const getLossless: TransformOption<LosslessOptions> = ({ lossless }, image) => {
+export const getLossless: TransformOption<LosslessOptions> = ({ lossless }, state) => {
   if (lossless !== '' && lossless !== 'true') return
 
-  image[METADATA].lossless = true
-
+  state.transforms.lossless = true
   return true
 }

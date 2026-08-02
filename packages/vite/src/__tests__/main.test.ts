@@ -1,4 +1,4 @@
-import { type InlineConfig, build, createLogger } from 'vite'
+import { type InlineConfig, build, createLogger, createServer } from 'vite'
 import { imagetools } from '../index'
 import { join } from 'path'
 import { getFiles, testEntry } from './util'
@@ -10,6 +10,8 @@ import { afterEach, describe, test, expect, it, vi } from 'vitest'
 import { createBasePath, writeFileAtomic } from '../utils'
 import { existsSync } from 'node:fs'
 import { rm, utimes, readdir, copyFile, mkdir, readFile } from 'node:fs/promises'
+import { createServer as createHttpServer } from 'node:http'
+import { type AddressInfo } from 'node:net'
 
 expect.extend({ toMatchImageSnapshot })
 
@@ -234,7 +236,7 @@ describe('vite-imagetools', () => {
                 return [
                   (config, context) => {
                     context.logger.info('An info message')
-                    return (image) => image
+                    return (_metadata, image) => image
                   }
                 ]
               },
@@ -263,7 +265,7 @@ describe('vite-imagetools', () => {
                 return [
                   (config, context) => {
                     context.logger.warn('A warning')
-                    return (image) => image
+                    return (_metadata, image) => image
                   }
                 ]
               },
@@ -290,7 +292,7 @@ describe('vite-imagetools', () => {
                   return [
                     (config, context) => {
                       context.logger.error('An error')
-                      return (image) => image
+                      return (_metadata, image) => image
                     }
                   ]
                 },
@@ -464,6 +466,7 @@ describe('vite-imagetools', () => {
         expect(window.__IMAGE__).toHaveProperty('isProgressive')
         expect(window.__IMAGE__).toHaveProperty('hasProfile')
         expect(window.__IMAGE__).toHaveProperty('hasAlpha')
+        expect(window.__IMAGE__).not.toHaveProperty('config')
       })
     })
 
@@ -802,6 +805,31 @@ describe('vite-imagetools', () => {
     expect(window.__IMAGE__).toHaveProperty('isProgressive')
     expect(window.__IMAGE__).toHaveProperty('hasProfile')
     expect(window.__IMAGE__).toHaveProperty('hasAlpha')
+    expect(window.__IMAGE__).not.toHaveProperty('config')
+  })
+
+  test('metadata import includes applied transform directives', async () => {
+    const bundle = (await build({
+      root: join(__dirname, '__fixtures__'),
+      logLevel: 'warn',
+      build: { write: false },
+      plugins: [
+        testEntry(`
+                    import Image from "./pexels-allec-gomes-5195763.png?w=300&flip=true&format=webp&as=metadata"
+                    window.__IMAGE__ = Image
+                `),
+        imagetools({ cache: { enabled: false } })
+      ]
+    })) as RollupOutput | RollupOutput[]
+
+    const files = getFiles(bundle, '**.js') as OutputChunk[]
+    const { window } = new JSDOM(``, { runScripts: 'outside-only' })
+    window.eval(files[0].code)
+
+    expect(window.__IMAGE__.width).toBe(300)
+    expect(window.__IMAGE__.format).toBe('webp')
+    expect(window.__IMAGE__.flip).toBe(true)
+    expect(window.__IMAGE__).toHaveProperty('height')
   })
 
   test('autoOrient is applied automatically', async () => {
@@ -893,6 +921,95 @@ describe('vite-imagetools', () => {
     expect(window.__IMAGE__).toBe('/assets/with-metadata-CMyRTzDt.png 600w')
   })
 
+  // test for https://github.com/JonasKruckenberg/imagetools/issues/751
+  test('basePixels produces consistent density descriptors on cache hits', async () => {
+    const dir = './node_modules/.cache/imagetools_test_base_pixels_cache'
+    await rm(dir, { recursive: true, force: true })
+    const config: InlineConfig = {
+      root: join(__dirname, '__fixtures__'),
+      logLevel: 'warn',
+      build: { write: false },
+      plugins: [
+        testEntry(`
+                    import Image from "./with-metadata.png?w=300;600&basePixels=300&as=srcset"
+                    window.__IMAGE__ = Image
+                `),
+        imagetools({ cache: { dir } })
+      ]
+    }
+    const evalBuild = async () => {
+      const bundle = (await build(config)) as RollupOutput | RollupOutput[]
+      const files = getFiles(bundle, '**.js') as OutputChunk[]
+      const { window } = new JSDOM(``, { runScripts: 'outside-only' })
+      window.eval(files[0].code)
+      return window.__IMAGE__ as string
+    }
+
+    const coldSrcset = await evalBuild()
+    // the cache should now contain one file per generated config, so the second build reads from it
+    expect(await readdir(dir)).toHaveLength(2)
+    const warmSrcset = await evalBuild()
+
+    expect(coldSrcset).toBe(warmSrcset)
+    expect(coldSrcset).toMatch(/ 1x, .+ 2x$/)
+    expect(coldSrcset).not.toMatch(/ \d+w/)
+  })
+
+  test('rotated images keep density descriptors consistent across cache hits', async () => {
+    const dir = './node_modules/.cache/imagetools_test_base_pixels_rotate_cache'
+    await rm(dir, { recursive: true, force: true })
+    const config: InlineConfig = {
+      root: join(__dirname, '__fixtures__'),
+      logLevel: 'warn',
+      build: { write: false },
+      plugins: [
+        testEntry(`
+                    import Image from "./pexels-allec-gomes-5195763.png?rotate=90&basePixels=400&as=srcset"
+                    window.__IMAGE__ = Image
+                `),
+        imagetools({ cache: { dir } })
+      ]
+    }
+    const evalBuild = async () => {
+      const bundle = (await build(config)) as RollupOutput | RollupOutput[]
+      const files = getFiles(bundle, '**.js') as OutputChunk[]
+      const { window } = new JSDOM(``, { runScripts: 'outside-only' })
+      window.eval(files[0].code)
+      return window.__IMAGE__ as string
+    }
+
+    const coldSrcset = await evalBuild()
+    const warmSrcset = await evalBuild()
+
+    // the source is 640x800, so `rotate=90` renders 800x640 without a resize; the cache-hit build
+    // must not fall back to the stale pre-rotation width (640) when deriving the density descriptor
+    expect(coldSrcset).toBe(warmSrcset)
+    expect(coldSrcset).toMatch(/ 2x$/)
+  })
+
+  test('rotated images keep density descriptors correct without a cache', async () => {
+    const config: InlineConfig = {
+      root: join(__dirname, '__fixtures__'),
+      logLevel: 'warn',
+      build: { write: false },
+      plugins: [
+        testEntry(`
+                    import Image from "./pexels-allec-gomes-5195763.png?rotate=90&basePixels=400&as=srcset"
+                    window.__IMAGE__ = Image
+                `),
+        imagetools({ cache: { enabled: false } })
+      ]
+    }
+    const bundle = (await build(config)) as RollupOutput | RollupOutput[]
+    const files = getFiles(bundle, '**.js') as OutputChunk[]
+    const { window } = new JSDOM(``, { runScripts: 'outside-only' })
+    window.eval(files[0].code)
+
+    // the source is 640x800, so `rotate=90` renders 800x640 without a resize; the density descriptor
+    // must be derived from the rendered width (800) even though the transforms report 640
+    expect(window.__IMAGE__ as string).toMatch(/ 2x$/)
+  })
+
   test('async output format', async () => {
     const bundle = (await build({
       root: join(__dirname, '__fixtures__'),
@@ -939,6 +1056,35 @@ describe('vite-imagetools', () => {
     expect(asset).toHaveProperty('fileName', 'assets/with-metadata-CMyRTzDt.png')
     expect(asset).toHaveProperty('names', ['with-metadata.png'])
     expect(asset).toHaveProperty('originalFileNames', ['with-metadata.png'])
+  })
+
+  test('dev server serves transformed images through the middleware', async () => {
+    const vite = await createServer({
+      root: join(__dirname, '__fixtures__'),
+      logLevel: 'silent',
+      server: { middlewareMode: true },
+      plugins: [imagetools({ cache: { enabled: false } })]
+    })
+    const http = createHttpServer((req, res) => vite.middlewares(req, res))
+    await new Promise<void>((resolve) => http.listen(0, resolve))
+    const port = (http.address() as AddressInfo).port
+
+    // Loading the image through the dev server populates the generated images map
+    // and reports the dev server URL (basePath + id) on the metadata.
+    const module = await vite.transformRequest('/pexels-allec-gomes-5195763.png?w=300&format=webp')
+    const src = module?.code?.match(/\/@imagetools\/[a-f0-9]+/)?.[0]
+    expect(src).toBeTruthy()
+
+    const res = await fetch(`http://localhost:${port}${src}`)
+    expect(res.status).toBe(200)
+    expect(res.headers.get('content-type')).toBe('image/webp')
+    expect((await res.arrayBuffer()).byteLength).toBeGreaterThan(0)
+
+    const missing = await fetch(`http://localhost:${port}/@imagetools/does-not-exist`)
+    expect(missing.status).toBe(404)
+
+    await new Promise<void>((resolve) => http.close(resolve))
+    await vite.close()
   })
 
   describe('utils', () => {

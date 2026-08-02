@@ -1,6 +1,6 @@
 import { basename, extname } from 'node:path'
 import { relative } from 'node:path/posix'
-import { statSync, mkdirSync, createReadStream } from 'node:fs'
+import { statSync, mkdirSync } from 'node:fs'
 import { readFile, opendir, stat, rm } from 'node:fs/promises'
 import { normalizePath, type Plugin, type ResolvedConfig } from 'vite'
 import {
@@ -9,13 +9,12 @@ import {
   builtinOutputFormats,
   extractEntries,
   generateTransforms,
-  getMetadata,
   parseURL,
   urlFormat,
   resolveConfigs,
   type Logger,
   type OutputFormat,
-  type ProcessedImageMetadata,
+  type ProcessedImage,
   type ImageMetadata,
   type ImageConfig
 } from 'imagetools-core'
@@ -42,7 +41,7 @@ const defaultOptions: VitePluginOptions = {
 
 export * from 'imagetools-core'
 
-const transformPromises = new Map<string, Promise<ProcessedImageMetadata>>()
+const transformPromises = new Map<string, Promise<ProcessedImage>>()
 
 export function imagetools(userOptions: Partial<VitePluginOptions> = {}): Plugin {
   const pluginOptions: VitePluginOptions = { ...defaultOptions, ...userOptions }
@@ -65,7 +64,7 @@ export function imagetools(userOptions: Partial<VitePluginOptions> = {}): Plugin
   let viteConfig: ResolvedConfig
   let basePath: string
 
-  const generatedImages = new Map<string, { image?: Sharp; metadata: ImageMetadata }>()
+  const generatedImages = new Map<string, ProcessedImage>()
 
   return {
     name: 'imagetools',
@@ -144,6 +143,7 @@ export function imagetools(userOptions: Partial<VitePluginOptions> = {}): Plugin
         const executeTransform = async (id: string, imageConfig: ImageConfig) => {
           let image: Sharp | undefined
           let metadata: ImageMetadata
+          let raw: Metadata
           let cachedBuffer: Buffer | undefined
 
           if (
@@ -152,44 +152,73 @@ export function imagetools(userOptions: Partial<VitePluginOptions> = {}): Plugin
           ) {
             cachedBuffer = await readFile(`${cacheOptions.dir}/${id}`)
             image = sharp(cachedBuffer)
-            metadata = (await image.metadata()) as ImageMetadata
+            raw = await image.metadata()
+            // On a cache hit the transforms are not re-run, so the applied-transform values
+            // (`flip`, `quality`, `rotate`, ...) cannot be reconstructed from the encoded file.
+            // Only `format` is restored below.
+            metadata = {
+              info: {
+                width: raw.width,
+                height: raw.height,
+                autoOriented: raw.autoOrient
+              },
+              transforms: {
+                format: raw.format
+              }
+            }
             // we set the format on the metadata during transformation using the format directive
             // when restoring from the cache, we use sharp to read it from the image and that can result in a
             // different value: avif images are detected as heif (see https://github.com/lovell/sharp/issues/2504
             // and https://github.com/lovell/sharp/issues/3746) and jpg is detected as jpeg. Restore the directive
             // value so emitted filenames don't change between cache misses and cache hits.
-            if (typeof imageConfig.format === 'string' && metadata.format !== imageConfig.format)
-              metadata.format = imageConfig.format as ImageMetadata['format']
+            if (typeof imageConfig.format === 'string' && metadata.transforms.format !== imageConfig.format)
+              metadata.transforms.format = imageConfig.format
           } else {
             const { transforms } = generateTransforms(imageConfig, transformFactories, srcURL.searchParams, logger)
             const res = await applyTransforms(transforms, img.clone(), pluginOptions.removeMetadata)
             image = res.image
             metadata = res.metadata
+            raw = res.raw
+            // Transforms report their target dimensions on the metadata, but the encoded image can differ
+            // (e.g. `rotate` swaps width and height). Reconcile against the actual output so the metadata
+            // and the pixel density descriptors derived from it match the dimensions the cache-hit path
+            // reads back from the cached file.
+            const { data, info } = await image.toBuffer({ resolveWithObject: true })
+            cachedBuffer = data
+            metadata.info.width = info.width
+            metadata.info.height = info.height
             if (cacheOptions.enabled) {
-              cachedBuffer = await image.toBuffer()
               await writeFileAtomic(`${cacheOptions.dir}/${id}`, cachedBuffer)
             }
           }
 
-          generatedImages.set(id, { image, metadata })
+          const processedMetadata: ProcessedImage = {
+            src: '',
+            image,
+            config: imageConfig,
+            info: metadata.info,
+            transforms: metadata.transforms,
+            sharpMetadata: raw
+          }
+          generatedImages.set(id, processedMetadata)
 
           if (directives.has('inline')) {
             const inlineBuffer = cachedBuffer || (await image.toBuffer())
-            metadata.src = `data:image/${metadata.format};base64,${inlineBuffer.toString('base64')}`
+            processedMetadata.src = `data:image/${processedMetadata.transforms.format};base64,${inlineBuffer.toString('base64')}`
           } else if (viteConfig.command === 'serve') {
-            metadata.src = (viteConfig?.server?.origin ?? '') + basePath + id
+            processedMetadata.src = (viteConfig?.server?.origin ?? '') + basePath + id
           } else {
             const fileHandle = this.emitFile({
-              name: basename(pathname, extname(pathname)) + `.${metadata.format}`,
+              name: basename(pathname, extname(pathname)) + `.${processedMetadata.transforms.format}`,
               source: cachedBuffer || (await image.toBuffer()),
               type: 'asset',
               originalFileName: normalizePath(relative(viteConfig.root, srcURL.pathname))
             })
 
-            metadata.src = `__VITE_ASSET__${fileHandle}__`
+            processedMetadata.src = `__VITE_ASSET__${fileHandle}__`
           }
 
-          return metadata as ProcessedImageMetadata
+          return processedMetadata
         }
 
         /** allows only one transform to be run for a given id */
@@ -197,7 +226,7 @@ export function imagetools(userOptions: Partial<VitePluginOptions> = {}): Plugin
           let transformPromise = transformPromises.get(id)
           if (transformPromise) return transformPromise
 
-          let resolve!: (v: ProcessedImageMetadata) => void
+          let resolve!: (v: ProcessedImage) => void
           let reject!: (e: unknown) => void
 
           transformPromise = new Promise((res, rej) => {
@@ -246,21 +275,18 @@ export function imagetools(userOptions: Partial<VitePluginOptions> = {}): Plugin
         if (req.url?.startsWith(basePath)) {
           const [, id] = req.url.split(basePath)
 
-          const { image, metadata } = generatedImages.get(id) ?? {}
+          const processedImage = generatedImages.get(id)
 
-          if (!metadata)
+          if (!processedImage)
             throw new Error(`vite-imagetools cannot find image with id "${id}" this is likely an internal error`)
 
-          if (!image) {
-            res.setHeader('Content-Type', `image/${metadata.format}`)
-            return createReadStream(`${cacheOptions.dir}/${id}`).pipe(res)
-          }
+          const { image } = processedImage
 
           if (pluginOptions.removeMetadata === false) {
             image.withMetadata()
           }
 
-          res.setHeader('Content-Type', `image/${getMetadata(image, 'format')}`)
+          res.setHeader('Content-Type', `image/${processedImage.transforms.format}`)
           return image.clone().pipe(res)
         }
 

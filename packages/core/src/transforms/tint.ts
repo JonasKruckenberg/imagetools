@@ -1,5 +1,4 @@
 import type { TransformFactory } from '../types.js'
-import { METADATA } from '../lib/metadata.js'
 
 export interface TintOptions {
   tint: string
@@ -8,9 +7,8 @@ export interface TintOptions {
 export const tint: TransformFactory<TintOptions> = ({ tint }) => {
   if (typeof tint !== 'string' || !tint.length) return
 
-  return function tintTransform(image) {
-    image[METADATA].tint = '#' + tint
-
+  return function tintTransform(state, image) {
+    state.transforms.tint = '#' + tint
     return image.tint('#' + tint)
   }
 }

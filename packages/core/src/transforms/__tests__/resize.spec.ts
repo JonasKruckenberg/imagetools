@@ -350,6 +350,27 @@ describe('aspect', () => {
 
       expect(await image.toBuffer()).toMatchImageSnapshot()
     })
+
+    test('records the requested aspect ratio', async () => {
+      const { metadata } = await applyTransforms(
+        //@ts-expect-error we know this is safe
+        [resize({ aspect: '4:3', allowUpscale: 'true' }, dirCtx)],
+        img
+      )
+
+      expect(metadata.transforms.aspect).toBeCloseTo(4 / 3, 5)
+      expect(metadata.transforms.allowUpscale).toBe(true)
+    })
+
+    test('records the resolved aspect ratio when both dimensions are given', async () => {
+      const { metadata } = await applyTransforms(
+        //@ts-expect-error we know this is safe
+        [resize({ w: '600', h: '600', fit: 'cover' }, dirCtx)],
+        img
+      )
+
+      expect(metadata.transforms.aspect).toBeCloseTo(1, 5)
+    })
   })
 })
 
