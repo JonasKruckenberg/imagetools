@@ -188,16 +188,6 @@ The encoder used to compress an HEIF file, `av1` (AVIF) or `hevc` (HEIC)
 
 ***
 
-### config
-
-> **config**: `Record`\<`string`, `string` \| `string`[]\>
-
-Defined in: [packages/core/src/types.ts:11](https://github.com/JonasKruckenberg/imagetools/blob/3f4389f9b6a97e2a753278cf1b9b6b4bcea5684a/packages/core/src/types.ts#L11)
-
-The config used to generate this image.
-
-***
-
 ### delay?
 
 > `optional` **delay**: `number`[]
@@ -601,6 +591,18 @@ Number of pages/frames contained within the image, with support for TIFF, HEIF, 
 #### Inherited from
 
 [`ImageMetadata`](ImageMetadata.md).[`pages`](ImageMetadata.md#pages)
+
+***
+
+### pixelDensityDescriptor?
+
+> `optional` **pixelDensityDescriptor**: `string`
+
+Defined in: [packages/core/src/types.ts:27](https://github.com/JonasKruckenberg/imagetools/blob/aa84664d044e4b733cdf7005c6730584bc92ec90/packages/core/src/types.ts#L27)
+
+#### Inherited from
+
+[`ImageMetadata`](ImageMetadata.md).[`pixelDensityDescriptor`](ImageMetadata.md#pixeldensitydescriptor)
 
 ***
 
