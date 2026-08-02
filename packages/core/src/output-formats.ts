@@ -30,11 +30,11 @@ type FlatMetadata = Omit<Metadata, 'format'> &
 
 function flatten(metadata: ProcessedImage): FlatMetadata {
   return {
-    ...metadata.raw,
+    ...metadata.sharpMetadata,
     ...metadata.transforms,
     width: metadata.info.width,
     height: metadata.info.height,
-    format: metadata.transforms.format ?? metadata.raw.format,
+    format: metadata.transforms.format ?? metadata.sharpMetadata.format,
     src: metadata.src
   }
 }

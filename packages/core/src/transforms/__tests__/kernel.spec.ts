@@ -3,7 +3,7 @@ import type { ImageMetadata } from '../../types'
 import { describe, expect, test } from 'vitest'
 
 const state = {
-  info: { width: 0, height: 0, autoOrient: { width: 0, height: 0 } },
+  info: { width: 0, height: 0, autoOriented: { width: 0, height: 0 } },
   transforms: {}
 } as ImageMetadata
 

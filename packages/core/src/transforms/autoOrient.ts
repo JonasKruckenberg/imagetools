@@ -10,8 +10,8 @@ export const autoOrient: TransformFactory<autoOrientOptions> = ({ noAutoOrient }
 
   if (noAutoOrient === undefined || noAutoOrient === 'false') {
     return function autoOrientTransform(state, image) {
-      state.info.height = state.info.autoOrient.height
-      state.info.width = state.info.autoOrient.width
+      state.info.height = state.info.autoOriented.height
+      state.info.width = state.info.autoOriented.width
       return image.autoOrient()
     }
   }

@@ -11,7 +11,7 @@ export interface ImageInfo {
   /** The height of the image in pixels. */
   height: number
   /** The dimensions of the image once its EXIF orientation is applied. */
-  autoOrient: { width: number; height: number }
+  autoOriented: { width: number; height: number }
 }
 
 /**
@@ -56,7 +56,7 @@ export interface ImageMetadata {
 
 /**
  * A processed image, ready to be consumed by an output format: the pipeline
- * `ImageMetadata`, the source `raw` metadata, the URL, config and sharp instance
+ * `ImageMetadata`, the source Sharp metadata, the URL, config and sharp instance
  * that produced it.
  */
 export interface ProcessedImage extends ImageMetadata {
@@ -71,7 +71,7 @@ export interface ProcessedImage extends ImageMetadata {
    * before any transformations; when restored from a cache it is read from the
    * processed output instead.
    */
-  raw: Metadata
+  sharpMetadata: Metadata
 }
 
 export type ImageConfig = Record<string, string | string[]>

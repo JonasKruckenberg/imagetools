@@ -4,7 +4,7 @@ import { describe, expect, test, it } from 'vitest'
 
 const state = (format: string) =>
   ({
-    info: { width: 0, height: 0, autoOrient: { width: 0, height: 0 } },
+    info: { width: 0, height: 0, autoOriented: { width: 0, height: 0 } },
     transforms: { format }
   }) as ImageMetadata
 

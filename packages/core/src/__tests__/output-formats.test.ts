@@ -13,10 +13,10 @@ function meta(
 ): ProcessedImage {
   return {
     src,
-    info: { width, height, autoOrient: { width, height } },
+    info: { width, height, autoOriented: { width, height } },
     transforms: { format, ...transforms },
     config,
-    raw: {
+    sharpMetadata: {
       format,
       width,
       height,

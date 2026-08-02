@@ -160,7 +160,7 @@ export function imagetools(userOptions: Partial<VitePluginOptions> = {}): Plugin
               info: {
                 width: raw.width,
                 height: raw.height,
-                autoOrient: raw.autoOrient
+                autoOriented: raw.autoOrient
               },
               transforms: {
                 format: raw.format
@@ -198,7 +198,7 @@ export function imagetools(userOptions: Partial<VitePluginOptions> = {}): Plugin
             config: imageConfig,
             info: metadata.info,
             transforms: metadata.transforms,
-            raw
+            sharpMetadata: raw
           }
           generatedImages.set(id, processedMetadata)
 

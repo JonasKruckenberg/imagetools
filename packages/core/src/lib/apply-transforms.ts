@@ -46,7 +46,7 @@ export async function applyTransforms(
     info: {
       width: raw.width,
       height: raw.height,
-      autoOrient: raw.autoOrient
+      autoOriented: raw.autoOrient
     },
     transforms: {
       format: raw.format

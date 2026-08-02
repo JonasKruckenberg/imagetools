@@ -24,7 +24,7 @@ describe('applyTransforms', () => {
 
     expect(metadata.info.width).toBeTypeOf('number')
     expect(metadata.info.height).toBeTypeOf('number')
-    expect(metadata.info.autoOrient).toBeDefined()
+    expect(metadata.info.autoOriented).toBeDefined()
     expect(metadata.transforms.format).toBeTypeOf('string')
   })
 
