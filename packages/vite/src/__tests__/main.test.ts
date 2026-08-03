@@ -865,7 +865,7 @@ describe('vite-imagetools', () => {
     expect(window.__IMAGE__).not.toHaveProperty('config')
   })
 
-  test('metadata import includes applied transform directives', async () => {
+  test('metadata import does not include applied transform directives', async () => {
     const bundle = (await build({
       root: join(__dirname, '__fixtures__'),
       logLevel: 'warn',
@@ -885,8 +885,40 @@ describe('vite-imagetools', () => {
 
     expect(window.__IMAGE__.width).toBe(300)
     expect(window.__IMAGE__.format).toBe('webp')
-    expect(window.__IMAGE__.flip).toBe(true)
+    expect(window.__IMAGE__).not.toHaveProperty('flip')
     expect(window.__IMAGE__).toHaveProperty('height')
+  })
+
+  test('metadata import omits transform directives on a cache hit', async () => {
+    const dir = './node_modules/.cache/imagetools_test_metadata_cache_hit'
+    await rm(dir, { recursive: true, force: true })
+
+    const buildMetadata = async () => {
+      const bundle = (await build({
+        root: join(__dirname, '__fixtures__'),
+        logLevel: 'warn',
+        build: { write: false },
+        plugins: [
+          testEntry(`
+                    import Image from "./pexels-allec-gomes-5195763.png?w=300&flip=true&format=webp&as=metadata"
+                    window.__IMAGE__ = Image
+                `),
+          imagetools({ cache: { dir } })
+        ]
+      })) as RollupOutput | RollupOutput[]
+
+      const files = getFiles(bundle, '**.js') as OutputChunk[]
+      const { window } = new JSDOM(``, { runScripts: 'outside-only' })
+      window.eval(files[0].code)
+      return window.__IMAGE__
+    }
+
+    await buildMetadata() // cold: writes the cache entry
+    const warm = await buildMetadata() // warm: served from the cache
+
+    expect(warm.width).toBe(300)
+    expect(warm.format).toBe('webp')
+    expect(warm).not.toHaveProperty('flip')
   })
 
   test('autoOrient is applied automatically', async () => {

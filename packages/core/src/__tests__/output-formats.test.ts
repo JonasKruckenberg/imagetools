@@ -77,7 +77,7 @@ describe('metadata format', () => {
     ])
   })
 
-  test('includes the values threaded through the transforms', () => {
+  test('does not include the values threaded through the transforms', () => {
     const output = metadataFormat()([
       meta('/foo.jpg', 300, 150, 'webp', {}, {}, { flip: true, quality: 80, rotate: 90, tint: '#ff0000', fit: 'cover' })
     ])
@@ -86,13 +86,13 @@ describe('metadata format', () => {
       src: '/foo.jpg',
       width: 300,
       height: 150,
-      format: 'webp',
-      flip: true,
-      quality: 80,
-      rotate: 90,
-      tint: '#ff0000',
-      fit: 'cover'
+      format: 'webp'
     })
+    expect(output).not.toHaveProperty('flip')
+    expect(output).not.toHaveProperty('quality')
+    expect(output).not.toHaveProperty('rotate')
+    expect(output).not.toHaveProperty('tint')
+    expect(output).not.toHaveProperty('fit')
   })
 
   test('whitelist', () => {
