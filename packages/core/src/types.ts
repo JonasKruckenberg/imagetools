@@ -67,9 +67,9 @@ export interface ProcessedImage extends ImageMetadata {
   /** The directives used to generate this image. */
   config: ImageConfig
   /**
-   * The sharp metadata of the image. On a cache miss this is read from the source
-   * before any transformations; when restored from a cache it is read from the
-   * processed output instead.
+   * The sharp metadata of the processed image, read from the encoded output,
+   * so it is identical whether the image came from a cache hit or a fresh
+   * process.
    */
   sharpMetadata: Metadata
 }

@@ -180,7 +180,6 @@ export function imagetools(userOptions: Partial<VitePluginOptions> = {}): Plugin
             const res = await applyTransforms(transforms, img.clone(), pluginOptions.removeMetadata)
             image = res.image
             metadata = res.metadata
-            raw = res.raw
             // Transforms report their target dimensions on the metadata, but the encoded image can differ
             // (e.g. `rotate` swaps width and height). Reconcile against the actual output so the metadata
             // and the pixel density descriptors derived from it match the dimensions the cache-hit path
@@ -189,6 +188,9 @@ export function imagetools(userOptions: Partial<VitePluginOptions> = {}): Plugin
             cachedBuffer = data
             metadata.info.width = info.width
             metadata.info.height = info.height
+            // Read the metadata from the encoded output so a cache miss reports the
+            // same `sharpMetadata` as the cache-hit path reads back from the file.
+            raw = await sharp(cachedBuffer).metadata()
             if (cacheOptions.enabled) {
               await writeFileAtomic(`${cacheOptions.dir}/${id}`, cachedBuffer)
             }

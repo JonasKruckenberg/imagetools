@@ -921,6 +921,39 @@ describe('vite-imagetools', () => {
     expect(warm).not.toHaveProperty('flip')
   })
 
+  test('metadata import is identical on a cache hit and a cache miss', async () => {
+    const dir = './node_modules/.cache/imagetools_test_metadata_parity'
+    await rm(dir, { recursive: true, force: true })
+
+    const buildMetadata = async () => {
+      const bundle = (await build({
+        root: join(__dirname, '__fixtures__'),
+        logLevel: 'warn',
+        build: { write: false },
+        plugins: [
+          testEntry(`
+                    import Image from "./pexels-allec-gomes-5195763.png?w=300&flip=true&format=webp&as=metadata"
+                    window.__IMAGE__ = Image
+                `),
+          imagetools({ cache: { dir } })
+        ]
+      })) as RollupOutput | RollupOutput[]
+
+      const files = getFiles(bundle, '**.js') as OutputChunk[]
+      const { window } = new JSDOM(``, { runScripts: 'outside-only' })
+      window.eval(files[0].code)
+      return window.__IMAGE__
+    }
+
+    const cold = await buildMetadata() // cache miss
+    const warm = await buildMetadata() // cache hit
+
+    const { src: coldSrc, ...coldRest } = cold
+    const { src: warmSrc, ...warmRest } = warm
+    expect(coldSrc).toBe(warmSrc)
+    expect(warmRest).toEqual(coldRest)
+  })
+
   test('autoOrient is applied automatically', async () => {
     const bundle = (await build({
       root: join(__dirname, '__fixtures__'),
