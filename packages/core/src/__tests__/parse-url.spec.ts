@@ -46,4 +46,13 @@ describe('extractEntries', () => {
 
     expect(asObject).toHaveProperty('w', ['300', '400', '500'])
   })
+
+  it('keeps values containing ":" whole', () => {
+    const src = new URL('/test.jpg?aspect=16:9;4:3', 'file:///')
+
+    const entries = extractEntries(src.searchParams)
+    const asObject = Object.fromEntries(entries)
+
+    expect(asObject).toHaveProperty('aspect', ['16:9;4:3'])
+  })
 })

@@ -66,8 +66,8 @@ function pick<T extends object>(source: T, keys: string[]): Partial<T> {
  * Parses the `basePixels` directive into a positive number, or `undefined` if it is not set or invalid.
  * A `basePixels` value of `0` or less disables pixel density descriptors.
  */
-function parseBasePixels(value: string | string[] | undefined): number | undefined {
-  if (typeof value !== 'string') return undefined
+function parseBasePixels(value: string | undefined): number | undefined {
+  if (typeof value !== 'string' || !value) return undefined
   const basePixels = Number(value)
   return Number.isFinite(basePixels) && basePixels > 0 ? basePixels : undefined
 }

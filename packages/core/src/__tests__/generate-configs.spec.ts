@@ -2,7 +2,7 @@ import { resolveConfigs } from '../lib/resolve-configs'
 import { builtinOutputFormats } from '../'
 import { describe, test, it, expect } from 'vitest'
 
-describe('generateConfigs', () => {
+describe('resolveConfigs', () => {
   it('accepts and array of entries', () => {
     const e: [string, string[]][] = [
       ['foo', ['bar']],
@@ -13,7 +13,7 @@ describe('generateConfigs', () => {
     expect(() => resolveConfigs(e, builtinOutputFormats)).not.toThrow()
   })
 
-  it('returns an array of objects', () => {
+  it('returns an array of configs', () => {
     const e: [string, string[]][] = [
       ['foo', ['bar']],
       ['hello', ['world']],
@@ -26,7 +26,7 @@ describe('generateConfigs', () => {
     expect(res[0]).toBeInstanceOf(Object)
   })
 
-  it('returns a single object if only single arguments are used', () => {
+  it('returns a single config if only single arguments are used', () => {
     const e: [string, string[]][] = [
       ['foo', ['bar']],
       ['hello', ['world']],
@@ -35,11 +35,10 @@ describe('generateConfigs', () => {
 
     const res = resolveConfigs(e, builtinOutputFormats)
 
-    expect(res).toBeInstanceOf(Array)
     expect(res).toHaveLength(1)
   })
 
-  it('returns a single object if only single arguments are used', () => {
+  it('returns a config per combination of argument values', () => {
     const e: [string, string[]][] = [
       ['foo', ['bar']],
       ['hello', ['world']],
@@ -48,7 +47,6 @@ describe('generateConfigs', () => {
 
     const res = resolveConfigs(e, builtinOutputFormats)
 
-    expect(res).toBeInstanceOf(Array)
     expect(res).toHaveLength(2)
   })
 
@@ -83,7 +81,7 @@ describe('generateConfigs', () => {
     }
   })
 
-  test('returned objects all have string values', () => {
+  test('config objects all have string values', () => {
     const e: [string, string[]][] = [
       ['width', ['300', '400']],
       ['height', ['100', '700']]
@@ -91,9 +89,9 @@ describe('generateConfigs', () => {
 
     const res = resolveConfigs(e, builtinOutputFormats)
 
-    for (const options of res) {
-      for (const key in options) {
-        expect(typeof options[key]).toBe('string')
+    for (const config of res) {
+      for (const key in config) {
+        expect(typeof config[key]).toBe('string')
       }
     }
   })
@@ -141,5 +139,41 @@ describe('generateConfigs', () => {
     const res = resolveConfigs(e, builtinOutputFormats)
 
     expect(res).toHaveLength(1)
+    expect(res[0]).toEqual({})
+  })
+
+  test('output format parameters are excluded from the image configs', () => {
+    const e: [string, string[]][] = [
+      ['width', ['300', '400']],
+      ['metadata', ['width', 'height']]
+    ]
+
+    const res = resolveConfigs(e, builtinOutputFormats)
+
+    expect(res[0]).toEqual({ width: '300' })
+    expect(res).toHaveLength(2)
+  })
+
+  test('the as output format selector is excluded from the image configs', () => {
+    const e: [string, string[]][] = [
+      ['width', ['300']],
+      ['as', ['metadata']]
+    ]
+
+    const res = resolveConfigs(e, builtinOutputFormats)
+
+    expect(res).toEqual([{ width: '300' }])
+  })
+
+  test('a custom output format suppresses a directive of the same name', () => {
+    const e: [string, string[]][] = [
+      ['width', ['300']],
+      ['blur', ['5']]
+    ]
+    const outputFormats = { ...builtinOutputFormats, blur: () => () => '' }
+
+    const res = resolveConfigs(e, outputFormats)
+
+    expect(res).toEqual([{ width: '300' }])
   })
 })

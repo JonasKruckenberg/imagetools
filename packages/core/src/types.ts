@@ -64,7 +64,7 @@ export interface ProcessedImage extends ImageMetadata {
   src: string
   /** The sharp instance of the processed image. */
   image: Sharp
-  /** The config used to generate this image. */
+  /** The directives used to generate this image. */
   config: ImageConfig
   /**
    * The sharp metadata of the image. On a cache miss this is read from the source
@@ -74,7 +74,12 @@ export interface ProcessedImage extends ImageMetadata {
   sharpMetadata: Metadata
 }
 
-export type ImageConfig = Record<string, string | string[]>
+/**
+ * The directives for a single image. Each value is resolved to a single string
+ * by the cartesian product computed in `resolveConfigs`, so consumers never have
+ * to handle array values.
+ */
+export type ImageConfig = Record<string, string>
 
 export interface Logger {
   info: (msg: string) => void

@@ -7,7 +7,7 @@ import { type OutputAsset, type OutputChunk, type RollupOutput } from 'rollup'
 import { JSDOM } from 'jsdom'
 import sharp from 'sharp'
 import { afterEach, describe, test, expect, it, vi } from 'vitest'
-import { createBasePath, writeFileAtomic } from '../utils'
+import { createBasePath, writeFileAtomic, generateImageID, hash } from '../utils'
 import { existsSync } from 'node:fs'
 import { rm, utimes, readdir, copyFile, mkdir, readFile } from 'node:fs/promises'
 import { createServer as createHttpServer } from 'node:http'
@@ -527,10 +527,67 @@ describe('vite-imagetools', () => {
       })
 
       test('is consistent', async () => {
-        const image = (await readdir(dir))[0]
+        const dir = './node_modules/.cache/imagetools_test_cache_dir'
+        await rm(dir, { recursive: true, force: true })
+        const root = join(__dirname, '__fixtures__')
+        await build({
+          root,
+          logLevel: 'warn',
+          build: { write: false },
+          plugins: [
+            testEntry(`
+                            import Image from "./pexels-allec-gomes-5195763.png?w=300"
+                            export default Image
+                        `),
+            imagetools({ cache: { dir } })
+          ]
+        })
 
-        expect(image).toBe('2140167b8e6e7157f578cd3ab633ef5f189dbe66')
+        const imageHash = hash([await readFile(join(__dirname, '__fixtures__', 'pexels-allec-gomes-5195763.png'))])
+        expect(await readdir(dir)).toEqual([generateImageID({ w: '300' }, imageHash)])
       })
+    })
+
+    test('output format parameters do not create separate cache entries', async () => {
+      const dir = './node_modules/.cache/imagetools_test_cache_output_format'
+      await rm(dir, { recursive: true, force: true })
+
+      const buildImport = async (directives: string) => {
+        await build({
+          root: join(__dirname, '__fixtures__'),
+          logLevel: 'warn',
+          build: { write: false },
+          plugins: [
+            testEntry(`
+                import Image from "./pexels-allec-gomes-5195763.png?w=300&${directives}"
+                export default Image
+            `),
+            imagetools({ cache: { dir } })
+          ]
+        })
+      }
+
+      const imageHash = hash([await readFile(join(__dirname, '__fixtures__', 'pexels-allec-gomes-5195763.png'))])
+      const expectedId = generateImageID({ w: '300' }, imageHash)
+
+      for (const directives of [
+        'metadata=width',
+        'metadata=width;height',
+        'as=metadata',
+        'as=url',
+        'as=srcset',
+        'as=picture'
+      ]) {
+        await buildImport(directives)
+      }
+
+      // the directives are the same, so every import shares one cache entry even
+      // though their output format parameters differ
+      expect(await readdir(dir)).toEqual([expectedId])
+
+      // a change in an actual directive produces a separate entry
+      await buildImport('w=200&metadata=width')
+      expect(await readdir(dir)).toEqual([expectedId, generateImageID({ w: '200' }, imageHash)])
     })
 
     describe('cache.avifFormat', () => {

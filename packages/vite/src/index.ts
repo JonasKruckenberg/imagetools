@@ -171,7 +171,9 @@ export function imagetools(userOptions: Partial<VitePluginOptions> = {}): Plugin
             // different value: avif images are detected as heif (see https://github.com/lovell/sharp/issues/2504
             // and https://github.com/lovell/sharp/issues/3746) and jpg is detected as jpeg. Restore the directive
             // value so emitted filenames don't change between cache misses and cache hits.
-            if (typeof imageConfig.format === 'string' && metadata.transforms.format !== imageConfig.format)
+            // `ImageConfig` values are always strings, so a missing `format` is the only
+            // `undefined` case; custom `resolveConfigs` overrides must return string values.
+            if (imageConfig.format !== undefined && metadata.transforms.format !== imageConfig.format)
               metadata.transforms.format = imageConfig.format
           } else {
             const { transforms } = generateTransforms(imageConfig, transformFactories, srcURL.searchParams, logger)

@@ -7,7 +7,7 @@ function meta(
   width: number,
   height = width,
   format?: string,
-  config: Record<string, string | string[]> = {},
+  config: Record<string, string> = {},
   raw: Partial<Metadata> = {},
   transforms: Partial<AppliedTransforms> = {}
 ): ProcessedImage {
