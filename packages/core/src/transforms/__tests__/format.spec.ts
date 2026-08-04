@@ -87,13 +87,13 @@ describe('format', () => {
     test('avif', async () => {
       const { metadata } = await applyTransforms([format({ format: 'avif' }, dirCtx)!], img)
 
-      expect(metadata).toHaveProperty('format', 'avif')
+      expect(metadata.transforms).toHaveProperty('format', 'avif')
     })
 
     test('heif', async () => {
       const { metadata } = await applyTransforms([format({ format: 'heif' }, dirCtx)!], img)
 
-      expect(metadata).toHaveProperty('format', 'heif')
+      expect(metadata.transforms).toHaveProperty('format', 'heif')
     })
 
     test('tiff', async () => {
@@ -132,13 +132,13 @@ describe('format', () => {
     test('avif w/ quality', async () => {
       const { metadata } = await applyTransforms([format({ format: 'avif', quality: '10' }, dirCtx)!], img)
 
-      expect(metadata).toHaveProperty('format', 'avif')
+      expect(metadata.transforms).toHaveProperty('format', 'avif')
     })
 
     test('heif w/ quality', async () => {
       const { metadata } = await applyTransforms([format({ format: 'heif', quality: '10' }, dirCtx)!], img)
 
-      expect(metadata).toHaveProperty('format', 'heif')
+      expect(metadata.transforms).toHaveProperty('format', 'heif')
     })
 
     test('jpeg w/ progressive', async () => {

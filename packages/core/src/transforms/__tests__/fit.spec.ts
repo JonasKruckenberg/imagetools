@@ -1,24 +1,21 @@
 import { getFit, FitValue } from '../fit'
-import { join } from 'path'
-import sharp, { type Sharp } from 'sharp'
-import { describe, beforeEach, test, expect } from 'vitest'
-import { METADATA } from '../../lib/metadata'
+import type { ImageMetadata } from '../../types'
+import { describe, expect, test } from 'vitest'
+
+const state = {
+  info: { width: 0, height: 0, autoOriented: { width: 0, height: 0 } },
+  transforms: {}
+} as ImageMetadata
 
 describe('fit', () => {
-  let img: Sharp
-  beforeEach(() => {
-    img = sharp(join(__dirname, '../../__tests__/__fixtures__/pexels-allec-gomes-5195763.png'))
-    img[METADATA] = { chromaSubsampling: '' }
-  })
-
   test('keyword "fit"', () => {
-    const res = getFit({ fit: 'cover' }, img)
+    const res = getFit({ fit: 'cover' }, state)
 
     expect(res).toEqual('cover')
   })
 
   test('missing', () => {
-    const res = getFit({}, img)
+    const res = getFit({}, state)
 
     expect(res).toBeUndefined()
   })
@@ -28,7 +25,7 @@ describe('fit', () => {
       const shorts: FitValue[] = ['cover', 'contain', 'fill', 'inside', 'outside']
 
       for (const short of shorts) {
-        const res = getFit({ [short]: 'invalid' }, img)
+        const res = getFit({ [short]: 'invalid' }, state)
 
         expect(res).toBeUndefined()
       }
@@ -38,7 +35,7 @@ describe('fit', () => {
       const shorts: FitValue[] = ['cover', 'contain', 'fill', 'inside', 'outside']
 
       for (const short of shorts) {
-        const res = getFit({ [short]: '' }, img)
+        const res = getFit({ [short]: '' }, state)
 
         expect(res).toEqual(short)
       }
@@ -47,13 +44,13 @@ describe('fit', () => {
 
   describe('arguments', () => {
     test('invalid', () => {
-      const res = getFit({ fit: 'invalid' }, img)
+      const res = getFit({ fit: 'invalid' }, state)
 
       expect(res).toBeUndefined()
     })
 
     test('empty', () => {
-      const res = getFit({ getFit: '' }, img)
+      const res = getFit({ getFit: '' }, state)
 
       expect(res).toBeUndefined()
     })
@@ -62,7 +59,7 @@ describe('fit', () => {
       const args: FitValue[] = ['cover', 'contain', 'fill', 'inside', 'outside']
 
       for (const arg of args) {
-        const res = getFit({ fit: arg }, img)
+        const res = getFit({ fit: arg }, state)
 
         expect(res).toEqual(arg)
       }

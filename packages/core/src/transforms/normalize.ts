@@ -1,5 +1,4 @@
 import type { TransformFactory } from '../types.js'
-import { METADATA } from '../lib/metadata.js'
 
 export interface NormalizeOptions {
   normalize: '' | 'true'
@@ -8,9 +7,8 @@ export interface NormalizeOptions {
 export const normalize: TransformFactory<NormalizeOptions> = ({ normalize }) => {
   if (normalize !== '' && normalize !== 'true') return
 
-  return function normalizeTransform(image) {
-    image[METADATA].normalize = true
-
+  return function normalizeTransform(state, image) {
+    state.transforms.normalize = true
     return image.normalize()
   }
 }

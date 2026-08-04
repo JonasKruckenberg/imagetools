@@ -1,5 +1,66 @@
 # Change Log
 
+## 11.0.0
+
+### Major Changes
+
+- 3b3c42b: breaking: `ImageMetadata` is no longer a flat object extending sharp's `Metadata`. It is now
+  `{ info: { width, height, autoOrient }, transforms: AppliedTransforms }`, where `transforms` records the values
+  applied by each transform. Custom transforms and output formats that read or write these fields must be updated to the
+  new shape.
+
+  breaking: `TransformOption` and `ImageTransformation` now receive the threaded `ImageMetadata` as their first argument
+  instead of reading and writing state on the sharp instance. The `getMetadata`/`setMetadata` functions and the
+  `METADATA` symbol are removed. `ProcessedImageMetadata` is renamed `ProcessedImage`, `TransformResult` is renamed
+  `ApplyTransformsResult`, and `TransformState` is renamed `AppliedTransforms`.
+
+  Custom transforms that previously stored their own values on `image[METADATA]` can record them on `state.transforms`
+  instead. Because `AppliedTransforms` is an exported `interface`, it can be extended from your own code via declaration
+  merging to add typed custom fields:
+
+  ```ts
+  declare module 'imagetools-core' {
+    interface AppliedTransforms {
+      myCustomValue?: string
+    }
+  }
+  ```
+
+  Values written to `state.transforms` are included in the `as=metadata` output, so this also lets custom output formats
+  consume them.
+
+  breaking: the `pixelDensityDescriptor` field is removed from `ImageMetadata`. Pixel density descriptors are now
+  derived on the fly from the `basePixels` directive and the rendered image width, so they no longer depend on the build
+  cache and work with or without a `w`/`h`/`aspect` directive.
+
+  The `vite-imagetools` plugin now reports the actual rendered width and height on the metadata, reconciled against the
+  encoded output on every transformation, instead of the values declared by the transforms (which `rotate` never
+  updated). The `as=metadata` output keeps its previous flat shape, so it is unchanged for existing users.
+
+- efe000b: breaking: require vite 8
+
+### Patch Changes
+
+- d0dc5ab: fix: write build cache entries atomically, so an interrupted build can't leave a truncated entry that later
+  builds read back as valid
+- e7cef2f: perf: hash the source file bytes instead of a decoded buffer when building cache keys, so the plugin no
+  longer pays a full sharp decode for every image on every build
+- febf95d: fix: keep the `format` directive's value when restoring images from the build cache, so emitted asset
+  filenames no longer flip between `.jpg` and `.jpeg`
+- 8b44393: chore: upgrade to sharp 0.35.3"
+- Updated dependencies [3b3c42b]
+- Updated dependencies [8b44393]
+  - imagetools-core@11.0.0
+
+## 10.0.1
+
+### Patch Changes
+
+- 77d4925: chore: upgrade to sharp 0.35
+- Updated dependencies [987ebef]
+- Updated dependencies [77d4925]
+  - imagetools-core@10.0.0
+
 ## 10.0.0
 
 ### Major Changes

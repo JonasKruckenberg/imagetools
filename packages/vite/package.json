@@ -1,7 +1,7 @@
 {
   "name": "vite-imagetools",
   "description": "Load and transform images using a toolbox of import directives!",
-  "version": "10.0.0",
+  "version": "11.0.0",
   "type": "module",
   "types": "dist/index.d.ts",
   "exports": {
@@ -37,10 +37,10 @@
   "dependencies": {
     "@rollup/pluginutils": "^5.0.5",
     "imagetools-core": "workspace:^",
-    "sharp": "^0.34.1"
+    "sharp": "^0.35.3"
   },
   "peerDependencies": {
-    "vite": ">=7.0.0"
+    "vite": ">=8.0.0"
   },
   "devDependencies": {
     "@rollup/plugin-typescript": "^12.0.0",
@@ -49,14 +49,14 @@
     "@types/picomatch": "^4.0.0",
     "@vitest/coverage-v8": "^4.0.4",
     "imagetools-core": "workspace:^",
-    "jest-image-snapshot": "^6.5.1",
-    "jsdom": "^29.0.0",
-    "picomatch": "^4.0.0",
+    "jest-image-snapshot": "^6.5.2",
+    "jsdom": "^30.0.0",
+    "picomatch": "^4.0.4",
     "rollup": "^4.59.0",
-    "sharp": "^0.34.1",
+    "sharp": "^0.35.3",
     "tslib": "^2.6.1",
     "typescript": "^5.1.6",
-    "vite": "^7.1.12",
+    "vite": "^8.0.0",
     "vitest": "^4.0.4"
   }
 }

@@ -1,5 +1,4 @@
 import type { FitEnum } from 'sharp'
-import { METADATA } from '../lib/metadata.js'
 import type { TransformFactory } from '../types.js'
 import { getBackground } from './background.js'
 import { getFit } from './fit.js'
@@ -17,7 +16,8 @@ export interface ResizeOptions {
   allowUpscale: '' | 'true'
   /**
    * The width in pixels for the 1x pixel density descriptor.
-   * If supplied, output will use pixel density descriptors rather than width descriptors.
+   * If supplied, the srcset, img and picture output formats use pixel density descriptors rather than width descriptors.
+   * This is consumed when generating the output, so it can be used with or without a `w`/`h`/`aspect` directive.
    */
   basePixels: string
 }
@@ -52,20 +52,19 @@ export const resize: TransformFactory<ResizeOptions> = (config, context) => {
   const height = parseInt(config.h || '')
   const aspect = parseAspect(config.aspect || '')
   const allowUpscale = config.allowUpscale === '' || config.allowUpscale === 'true'
-  const basePixels = parseInt(config.basePixels || '')
 
   if (!width && !height && !aspect) return
 
-  return function resizeTransform(image) {
-    const fit = getFit(config, image) as keyof FitEnum | undefined
+  return function resizeTransform(state, image) {
+    const fit = getFit(config, state) as keyof FitEnum | undefined
     // calculate finalWidth & finalHeight
-    const originalWidth = image[METADATA].width as number
-    const originalHeight = image[METADATA].height as number
+    const originalWidth = state.info.width
+    const originalHeight = state.info.height
     const originalAspect = originalWidth / originalHeight
 
-    let finalWidth = width,
-      finalHeight = height,
-      finalAspect = aspect
+    let finalWidth = width
+    let finalHeight = height
+    let finalAspect: number | undefined = aspect
 
     if (aspect && !width && !height) {
       // only aspect was given, need to calculate which dimension to crop
@@ -126,20 +125,20 @@ export const resize: TransformFactory<ResizeOptions> = (config, context) => {
     finalWidth = Math.round(finalWidth)
     finalHeight = Math.round(finalHeight)
 
-    image[METADATA].height = finalHeight
-    image[METADATA].width = finalWidth
-    image[METADATA].aspect = finalAspect
-    image[METADATA].allowUpscale = allowUpscale
-    image[METADATA].pixelDensityDescriptor = basePixels > 0 ? finalWidth / basePixels + 'x' : undefined
+    state.transforms.aspect = finalAspect
+    state.transforms.allowUpscale = allowUpscale
+
+    state.info.height = finalHeight
+    state.info.width = finalWidth
 
     return image.resize({
       width: finalWidth || undefined,
       height: finalHeight || undefined,
       withoutEnlargement: !allowUpscale,
       fit,
-      position: getPosition(config, image),
-      kernel: getKernel(config, image),
-      background: getBackground(config, image)
+      position: getPosition(config, state),
+      kernel: getKernel(config, state),
+      background: getBackground(config, state)
     })
   }
 }

@@ -1,24 +1,21 @@
-import sharp, { type Sharp } from 'sharp'
 import { getLossless } from '../lossless'
-import { join } from 'path'
-import { describe, beforeEach, expect, test } from 'vitest'
-import { METADATA } from '../../lib/metadata'
+import type { ImageMetadata } from '../../types'
+import { describe, expect, test } from 'vitest'
+
+const state = {
+  info: { width: 0, height: 0, autoOriented: { width: 0, height: 0 } },
+  transforms: {}
+} as ImageMetadata
 
 describe('lossless', () => {
-  let img: Sharp
-  beforeEach(() => {
-    img = sharp(join(__dirname, '../../__tests__/__fixtures__/pexels-allec-gomes-5195763.png'))
-    img[METADATA] = { chromaSubsampling: '' }
-  })
-
   test('keyword "lossless"', () => {
-    const res = getLossless({ lossless: 'true' }, img)
+    const res = getLossless({ lossless: 'true' }, state)
 
     expect(res).toEqual(true)
   })
 
   test('missing', () => {
-    const res = getLossless({}, img)
+    const res = getLossless({}, state)
 
     expect(res).toBeUndefined()
   })
@@ -26,19 +23,19 @@ describe('lossless', () => {
   describe('arguments', () => {
     test('invalid', () => {
       //@ts-expect-error invalid args
-      const res = getLossless({ lossless: 'invalid' }, img)
+      const res = getLossless({ lossless: 'invalid' }, state)
 
       expect(res).toBeUndefined()
     })
 
     test('empty', () => {
-      const res = getLossless({ lossless: '' }, img)
+      const res = getLossless({ lossless: '' }, state)
 
       expect(res).toEqual(true)
     })
 
     test('true', () => {
-      const res = getLossless({ lossless: 'true' }, img)
+      const res = getLossless({ lossless: 'true' }, state)
 
       expect(res).toEqual(true)
     })

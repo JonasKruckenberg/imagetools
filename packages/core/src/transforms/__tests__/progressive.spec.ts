@@ -1,24 +1,21 @@
-import sharp, { type Sharp } from 'sharp'
 import { getProgressive } from '../progressive'
-import { join } from 'path'
-import { describe, beforeEach, expect, test } from 'vitest'
-import { METADATA } from '../../lib/metadata'
+import type { ImageMetadata } from '../../types'
+import { describe, expect, test } from 'vitest'
+
+const state = {
+  info: { width: 0, height: 0, autoOriented: { width: 0, height: 0 } },
+  transforms: {}
+} as ImageMetadata
 
 describe('progressive', () => {
-  let img: Sharp
-  beforeEach(() => {
-    img = sharp(join(__dirname, '../../__tests__/__fixtures__/pexels-allec-gomes-5195763.png'))
-    img[METADATA] = { chromaSubsampling: '' }
-  })
-
   test('keyword "progressive"', () => {
-    const res = getProgressive({ progressive: 'true' }, img)
+    const res = getProgressive({ progressive: 'true' }, state)
 
     expect(res).toEqual(true)
   })
 
   test('missing', () => {
-    const res = getProgressive({}, img)
+    const res = getProgressive({}, state)
 
     expect(res).toBeUndefined()
   })
@@ -26,19 +23,19 @@ describe('progressive', () => {
   describe('arguments', () => {
     test('invalid', () => {
       //@ts-expect-error invalid args
-      const res = getProgressive({ progressive: 'invalid' }, img)
+      const res = getProgressive({ progressive: 'invalid' }, state)
 
       expect(res).toBeUndefined()
     })
 
     test('empty', () => {
-      const res = getProgressive({ progressive: '' }, img)
+      const res = getProgressive({ progressive: '' }, state)
 
       expect(res).toEqual(true)
     })
 
     test('true', () => {
-      const res = getProgressive({ progressive: 'true' }, img)
+      const res = getProgressive({ progressive: 'true' }, state)
 
       expect(res).toEqual(true)
     })

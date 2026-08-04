@@ -1,5 +1,4 @@
 import type { TransformOption } from '../types.js'
-import { getMetadata, setMetadata } from '../lib/metadata.js'
 
 export interface EffortOptions {
   effort: string
@@ -23,14 +22,13 @@ function parseEffort(effort: string, format: string) {
   return parseInt(effort)
 }
 
-export const getEffort: TransformOption<EffortOptions, number> = ({ effort: _effort }, image) => {
+export const getEffort: TransformOption<EffortOptions, number> = ({ effort: _effort }, state) => {
   if (!_effort) return
 
-  const format = (getMetadata(image, 'format') ?? '') as string
+  const format = state.transforms.format ?? ''
   const effort = parseEffort(_effort, format)
   if (!Number.isInteger(effort)) return
 
-  setMetadata(image, 'effort', effort)
-
+  state.transforms.effort = effort
   return effort
 }
