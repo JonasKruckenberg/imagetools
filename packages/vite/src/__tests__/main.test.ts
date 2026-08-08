@@ -7,7 +7,7 @@ import { type OutputAsset, type OutputChunk, type RollupOutput } from 'rollup'
 import { JSDOM } from 'jsdom'
 import sharp from 'sharp'
 import { afterEach, describe, test, expect, it, vi } from 'vitest'
-import { createBasePath, writeFileAtomic } from '../utils'
+import { createBasePath, writeFileAtomic, generateImageID, hash } from '../utils'
 import { existsSync } from 'node:fs'
 import { rm, utimes, readdir, copyFile, mkdir, readFile } from 'node:fs/promises'
 import { createServer as createHttpServer } from 'node:http'
@@ -527,10 +527,67 @@ describe('vite-imagetools', () => {
       })
 
       test('is consistent', async () => {
-        const image = (await readdir(dir))[0]
+        const dir = './node_modules/.cache/imagetools_test_cache_dir'
+        await rm(dir, { recursive: true, force: true })
+        const root = join(__dirname, '__fixtures__')
+        await build({
+          root,
+          logLevel: 'warn',
+          build: { write: false },
+          plugins: [
+            testEntry(`
+                            import Image from "./pexels-allec-gomes-5195763.png?w=300"
+                            export default Image
+                        `),
+            imagetools({ cache: { dir } })
+          ]
+        })
 
-        expect(image).toBe('2140167b8e6e7157f578cd3ab633ef5f189dbe66')
+        const imageHash = hash([await readFile(join(__dirname, '__fixtures__', 'pexels-allec-gomes-5195763.png'))])
+        expect(await readdir(dir)).toEqual([generateImageID({ w: '300' }, imageHash)])
       })
+    })
+
+    test('output format parameters do not create separate cache entries', async () => {
+      const dir = './node_modules/.cache/imagetools_test_cache_output_format'
+      await rm(dir, { recursive: true, force: true })
+
+      const buildImport = async (directives: string) => {
+        await build({
+          root: join(__dirname, '__fixtures__'),
+          logLevel: 'warn',
+          build: { write: false },
+          plugins: [
+            testEntry(`
+                import Image from "./pexels-allec-gomes-5195763.png?w=300&${directives}"
+                export default Image
+            `),
+            imagetools({ cache: { dir } })
+          ]
+        })
+      }
+
+      const imageHash = hash([await readFile(join(__dirname, '__fixtures__', 'pexels-allec-gomes-5195763.png'))])
+      const expectedId = generateImageID({ w: '300' }, imageHash)
+
+      for (const directives of [
+        'metadata=width',
+        'metadata=width;height',
+        'as=metadata',
+        'as=url',
+        'as=srcset',
+        'as=picture'
+      ]) {
+        await buildImport(directives)
+      }
+
+      // the directives are the same, so every import shares one cache entry even
+      // though their output format parameters differ
+      expect(await readdir(dir)).toEqual([expectedId])
+
+      // a change in an actual directive produces a separate entry
+      await buildImport('w=200&metadata=width')
+      expect(await readdir(dir)).toEqual([expectedId, generateImageID({ w: '200' }, imageHash)])
     })
 
     describe('cache.avifFormat', () => {
@@ -808,7 +865,7 @@ describe('vite-imagetools', () => {
     expect(window.__IMAGE__).not.toHaveProperty('config')
   })
 
-  test('metadata import includes applied transform directives', async () => {
+  test('metadata import does not include applied transform directives', async () => {
     const bundle = (await build({
       root: join(__dirname, '__fixtures__'),
       logLevel: 'warn',
@@ -828,8 +885,73 @@ describe('vite-imagetools', () => {
 
     expect(window.__IMAGE__.width).toBe(300)
     expect(window.__IMAGE__.format).toBe('webp')
-    expect(window.__IMAGE__.flip).toBe(true)
+    expect(window.__IMAGE__).not.toHaveProperty('flip')
     expect(window.__IMAGE__).toHaveProperty('height')
+  })
+
+  test('metadata import omits transform directives on a cache hit', async () => {
+    const dir = './node_modules/.cache/imagetools_test_metadata_cache_hit'
+    await rm(dir, { recursive: true, force: true })
+
+    const buildMetadata = async () => {
+      const bundle = (await build({
+        root: join(__dirname, '__fixtures__'),
+        logLevel: 'warn',
+        build: { write: false },
+        plugins: [
+          testEntry(`
+                    import Image from "./pexels-allec-gomes-5195763.png?w=300&flip=true&format=webp&as=metadata"
+                    window.__IMAGE__ = Image
+                `),
+          imagetools({ cache: { dir } })
+        ]
+      })) as RollupOutput | RollupOutput[]
+
+      const files = getFiles(bundle, '**.js') as OutputChunk[]
+      const { window } = new JSDOM(``, { runScripts: 'outside-only' })
+      window.eval(files[0].code)
+      return window.__IMAGE__
+    }
+
+    await buildMetadata() // cold: writes the cache entry
+    const warm = await buildMetadata() // warm: served from the cache
+
+    expect(warm.width).toBe(300)
+    expect(warm.format).toBe('webp')
+    expect(warm).not.toHaveProperty('flip')
+  })
+
+  test('metadata import is identical on a cache hit and a cache miss', async () => {
+    const dir = './node_modules/.cache/imagetools_test_metadata_parity'
+    await rm(dir, { recursive: true, force: true })
+
+    const buildMetadata = async () => {
+      const bundle = (await build({
+        root: join(__dirname, '__fixtures__'),
+        logLevel: 'warn',
+        build: { write: false },
+        plugins: [
+          testEntry(`
+                    import Image from "./pexels-allec-gomes-5195763.png?w=300&flip=true&format=webp&as=metadata"
+                    window.__IMAGE__ = Image
+                `),
+          imagetools({ cache: { dir } })
+        ]
+      })) as RollupOutput | RollupOutput[]
+
+      const files = getFiles(bundle, '**.js') as OutputChunk[]
+      const { window } = new JSDOM(``, { runScripts: 'outside-only' })
+      window.eval(files[0].code)
+      return window.__IMAGE__
+    }
+
+    const cold = await buildMetadata() // cache miss
+    const warm = await buildMetadata() // cache hit
+
+    const { src: coldSrc, ...coldRest } = cold
+    const { src: warmSrc, ...warmRest } = warm
+    expect(coldSrc).toBe(warmSrc)
+    expect(warmRest).toEqual(coldRest)
   })
 
   test('autoOrient is applied automatically', async () => {

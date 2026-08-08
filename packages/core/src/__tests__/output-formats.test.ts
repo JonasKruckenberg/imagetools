@@ -7,7 +7,7 @@ function meta(
   width: number,
   height = width,
   format?: string,
-  config: Record<string, string | string[]> = {},
+  config: Record<string, string> = {},
   raw: Partial<Metadata> = {},
   transforms: Partial<AppliedTransforms> = {}
 ): ProcessedImage {
@@ -77,7 +77,7 @@ describe('metadata format', () => {
     ])
   })
 
-  test('includes the values threaded through the transforms', () => {
+  test('does not include the values threaded through the transforms', () => {
     const output = metadataFormat()([
       meta('/foo.jpg', 300, 150, 'webp', {}, {}, { flip: true, quality: 80, rotate: 90, tint: '#ff0000', fit: 'cover' })
     ])
@@ -86,12 +86,7 @@ describe('metadata format', () => {
       src: '/foo.jpg',
       width: 300,
       height: 150,
-      format: 'webp',
-      flip: true,
-      quality: 80,
-      rotate: 90,
-      tint: '#ff0000',
-      fit: 'cover'
+      format: 'webp'
     })
   })
 

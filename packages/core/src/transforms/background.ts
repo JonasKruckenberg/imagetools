@@ -5,7 +5,7 @@ export interface BackgroundOptions {
 }
 
 export const getBackground: TransformOption<BackgroundOptions, string> = ({ background }, state) => {
-  if (typeof background !== 'string' || !background.length) return
+  if (typeof background !== 'string' || !background) return
 
   state.transforms.backgroundDirective = background
   return background

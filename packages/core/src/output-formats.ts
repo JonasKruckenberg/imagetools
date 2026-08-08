@@ -1,5 +1,5 @@
 import type { Metadata } from 'sharp'
-import type { AppliedTransforms, Img, OutputFormat, Picture, ProcessedImage } from './types.js'
+import type { Img, OutputFormat, Picture, ProcessedImage } from './types.js'
 
 /**
  * Emits the URL of the image, or an array of URLs when multiple configs are resolved.
@@ -18,20 +18,19 @@ export const srcsetFormat: OutputFormat = () => metadatasToSourceset
 
 /**
  * The flat object emitted by the `as=metadata` output format: the raw sharp
- * metadata of the source image combined with the values threaded through the
- * transforms, with `width`, `height` and `format` reflecting the final output,
- * plus the image URL.
+ * metadata of the image combined with the final output `width`, `height` and
+ * `format`, plus the image URL. The applied-transform directives are not
+ * included, since they cannot be reconstructed from a cached file, keeping the
+ * output identical between cache hits and misses.
  */
-type FlatMetadata = Omit<Metadata, 'format'> &
-  Omit<AppliedTransforms, 'format'> & {
-    format: string
-    src: string
-  }
+type FlatMetadata = Omit<Metadata, 'format'> & {
+  format: string
+  src: string
+}
 
 function flatten(metadata: ProcessedImage): FlatMetadata {
   return {
     ...metadata.sharpMetadata,
-    ...metadata.transforms,
     width: metadata.info.width,
     height: metadata.info.height,
     format: metadata.transforms.format ?? metadata.sharpMetadata.format,
@@ -66,8 +65,8 @@ function pick<T extends object>(source: T, keys: string[]): Partial<T> {
  * Parses the `basePixels` directive into a positive number, or `undefined` if it is not set or invalid.
  * A `basePixels` value of `0` or less disables pixel density descriptors.
  */
-function parseBasePixels(value: string | string[] | undefined): number | undefined {
-  if (typeof value !== 'string') return undefined
+function parseBasePixels(value: string | undefined): number | undefined {
+  if (typeof value !== 'string' || !value) return undefined
   const basePixels = Number(value)
   return Number.isFinite(basePixels) && basePixels > 0 ? basePixels : undefined
 }
