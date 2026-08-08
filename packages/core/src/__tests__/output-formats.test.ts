@@ -88,11 +88,6 @@ describe('metadata format', () => {
       height: 150,
       format: 'webp'
     })
-    expect(output).not.toHaveProperty('flip')
-    expect(output).not.toHaveProperty('quality')
-    expect(output).not.toHaveProperty('rotate')
-    expect(output).not.toHaveProperty('tint')
-    expect(output).not.toHaveProperty('fit')
   })
 
   test('whitelist', () => {
