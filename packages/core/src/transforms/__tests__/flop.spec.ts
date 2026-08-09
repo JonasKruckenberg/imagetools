@@ -29,8 +29,14 @@ describe('flop', () => {
 
   describe('arguments', () => {
     test('invalid', () => {
-      //@ts-expect-error invalid args
-      const res = flop({ flop: 'invalid' }, dirCtx)
+      //@ts-expect-error invalid flop values are validated at runtime
+      const throwingFn = () => flop({ flop: 'invalid' }, dirCtx)
+
+      expect(throwingFn).toThrow('Invalid flop value: "invalid", expected "true", "false" or a bare "flop" directive')
+    })
+
+    test('false', () => {
+      const res = flop({ flop: 'false' }, dirCtx)
 
       expect(res).toBeUndefined()
     })

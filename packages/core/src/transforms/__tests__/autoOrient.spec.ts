@@ -36,10 +36,12 @@ describe('autoOrient', () => {
 
   describe('arguments', () => {
     test('invalid', () => {
-      // @ts-expect-error invalid args
+      //@ts-expect-error invalid noAutoOrient values are validated at runtime
       const throwingFn = () => autoOrient({ noAutoOrient: 'invalid' }, dirCtx)
 
-      expect(throwingFn).toThrow()
+      expect(throwingFn).toThrow(
+        'Invalid noAutoOrient value: "invalid", expected "true", "false" or a bare "noAutoOrient" directive'
+      )
     })
 
     test('empty', () => {

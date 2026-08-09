@@ -1,4 +1,5 @@
 import type { Metadata } from 'sharp'
+import { orFalseToDisable, parseFloatDirective } from './lib/parse.js'
 import type { Img, OutputFormat, Picture, ProcessedImage } from './types.js'
 
 /**
@@ -62,13 +63,15 @@ function pick<T extends object>(source: T, keys: string[]): Partial<T> {
 }
 
 /**
- * Parses the `basePixels` directive into a positive number, or `undefined` if it is not set or invalid.
- * A `basePixels` value of `0` or less disables pixel density descriptors.
+ * Parses the `basePixels` directive into a positive number, or `undefined` if it is not set
+ * or set to `0` or less (which disables pixel density descriptors).
+ * @throws When the directive is set to a non-numeric value.
  */
 function parseBasePixels(value: string | undefined): number | undefined {
-  if (typeof value !== 'string' || !value) return undefined
-  const basePixels = Number(value)
-  return Number.isFinite(basePixels) && basePixels > 0 ? basePixels : undefined
+  if (value === undefined || value === '' || value === 'false') return undefined
+  const basePixels = parseFloatDirective('basePixels', value, orFalseToDisable('a positive number of pixels'))
+  if (basePixels === undefined) return undefined
+  return basePixels > 0 ? basePixels : undefined
 }
 
 /**

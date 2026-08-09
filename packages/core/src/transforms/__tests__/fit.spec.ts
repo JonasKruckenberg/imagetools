@@ -44,13 +44,22 @@ describe('fit', () => {
 
   describe('arguments', () => {
     test('invalid', () => {
-      const res = getFit({ fit: 'invalid' }, state)
+      //@ts-expect-error invalid fit values are validated at runtime
+      const throwingFn = () => getFit({ fit: 'invalid' }, state)
 
-      expect(res).toBeUndefined()
+      expect(throwingFn).toThrow(
+        'Invalid fit value: "invalid", expected one of "cover", "contain", "fill", "inside" or "outside", or "false" to disable'
+      )
     })
 
     test('empty', () => {
       const res = getFit({ getFit: '' }, state)
+
+      expect(res).toBeUndefined()
+    })
+
+    test('false disables', () => {
+      const res = getFit({ fit: 'false' }, state)
 
       expect(res).toBeUndefined()
     })

@@ -233,12 +233,24 @@ describe('srcset format', () => {
     expect(output).toEqual('/foo.jpg 1x, /bar.jpg 2x')
   })
 
-  test('falls back to width descriptors when basePixels is not a positive number', () => {
+  test('falls back to width descriptors when basePixels is zero or negative', () => {
     const output = srcsetFormat()([
       meta('/foo.jpg', 500, 500, undefined, { basePixels: '0' }),
-      meta('/bar.jpg', 500, 500, undefined, { basePixels: 'abc' })
+      meta('/bar.jpg', 500, 500, undefined, { basePixels: '-1' })
     ])
 
     expect(output).toEqual('/foo.jpg 500w, /bar.jpg 500w')
+  })
+
+  test('falls back to width descriptors when basePixels is false', () => {
+    const output = srcsetFormat()([meta('/foo.jpg', 500, 500, undefined, { basePixels: 'false' })])
+
+    expect(output).toEqual('/foo.jpg 500w')
+  })
+
+  test('throws an invalid directive error when basePixels is not numeric', () => {
+    expect(() => srcsetFormat()([meta('/foo.jpg', 500, 500, undefined, { basePixels: 'abc' })])).toThrow(
+      'Invalid basePixels value: "abc", expected a positive number of pixels, or "false" to disable'
+    )
   })
 })

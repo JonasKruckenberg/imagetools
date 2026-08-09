@@ -29,8 +29,16 @@ describe('grayscale', () => {
 
   describe('arguments', () => {
     test('invalid', () => {
-      //@ts-expect-error invalid args
-      const res = grayscale({ grayscale: 'invalid' }, dirCtx)
+      //@ts-expect-error invalid grayscale values are validated at runtime
+      const throwingFn = () => grayscale({ grayscale: 'invalid' }, dirCtx)
+
+      expect(throwingFn).toThrow(
+        'Invalid grayscale value: "invalid", expected "true", "false" or a bare "grayscale" directive'
+      )
+    })
+
+    test('false', () => {
+      const res = grayscale({ grayscale: 'false' }, dirCtx)
 
       expect(res).toBeUndefined()
     })

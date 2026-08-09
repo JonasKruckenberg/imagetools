@@ -1,4 +1,5 @@
 import type { TransformFactory } from '../types.js'
+import { orFalseToDisable, parseFloatDirective, parseIntegerDirective } from '../lib/parse.js'
 
 export interface HSBOptions {
   hue: string
@@ -7,9 +8,9 @@ export interface HSBOptions {
 }
 
 export const hsb: TransformFactory<HSBOptions> = (config) => {
-  const hue = config.hue && parseInt(config.hue)
-  const saturation = config.saturation && parseFloat(config.saturation)
-  const brightness = config.brightness && parseFloat(config.brightness)
+  const hue = parseIntegerDirective('hue', config.hue, orFalseToDisable('an angle in degrees'))
+  const saturation = parseFloatDirective('saturation', config.saturation, orFalseToDisable('a number'))
+  const brightness = parseFloatDirective('brightness', config.brightness, orFalseToDisable('a number'))
 
   if (!hue && !saturation && !brightness) return
 

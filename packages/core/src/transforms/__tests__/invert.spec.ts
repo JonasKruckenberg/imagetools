@@ -29,8 +29,16 @@ describe('invert', () => {
 
   describe('arguments', () => {
     test('invalid', () => {
-      //@ts-expect-error invalid args
-      const res = invert({ invert: 'invalid' }, dirCtx)
+      //@ts-expect-error invalid invert values are validated at runtime
+      const throwingFn = () => invert({ invert: 'invalid' }, dirCtx)
+
+      expect(throwingFn).toThrow(
+        'Invalid invert value: "invalid", expected "true", "false" or a bare "invert" directive'
+      )
+    })
+
+    test('false', () => {
+      const res = invert({ invert: 'false' }, dirCtx)
 
       expect(res).toBeUndefined()
     })

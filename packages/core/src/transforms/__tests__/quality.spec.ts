@@ -22,13 +22,37 @@ describe('quality', () => {
 
   describe('arguments', () => {
     test('invalid', () => {
-      const res = getQuality({ quality: 'invalid' }, state)
+      const throwingFn = () => getQuality({ quality: 'invalid' }, state)
 
-      expect(res).toBeUndefined()
+      expect(throwingFn).toThrow(
+        'Invalid quality value: "invalid", expected an integer between 0 and 100, or "false" to disable'
+      )
+    })
+
+    test('out of range', () => {
+      const throwingFn = () => getQuality({ quality: '150' }, state)
+
+      expect(throwingFn).toThrow(
+        'Invalid quality value: "150", expected an integer between 0 and 100, or "false" to disable'
+      )
+    })
+
+    test('negative', () => {
+      const throwingFn = () => getQuality({ quality: '-1' }, state)
+
+      expect(throwingFn).toThrow(
+        'Invalid quality value: "-1", expected an integer between 0 and 100, or "false" to disable'
+      )
     })
 
     test('empty', () => {
       const res = getQuality({ quality: '' }, state)
+
+      expect(res).toBeUndefined()
+    })
+
+    test('false disables', () => {
+      const res = getQuality({ quality: 'false' }, state)
 
       expect(res).toBeUndefined()
     })
@@ -39,10 +63,24 @@ describe('quality', () => {
       expect(res).toEqual(3)
     })
 
-    it('rounds float to int', () => {
-      const res = getQuality({ quality: '3.5' }, state)
+    test('zero is applied, not dropped', () => {
+      const res = getQuality({ quality: '0' }, state)
 
-      expect(res).toEqual(3)
+      expect(res).toEqual(0)
+    })
+
+    it('rejects a fractional quality instead of truncating it', () => {
+      const throwingFn = () => getQuality({ quality: '3.5' }, state)
+
+      expect(throwingFn).toThrow(
+        'Invalid quality value: "3.5", expected an integer between 0 and 100, or "false" to disable'
+      )
+    })
+
+    it('accepts scientific notation', () => {
+      const res = getQuality({ quality: '1e1' }, state)
+
+      expect(res).toEqual(10)
     })
   })
 })

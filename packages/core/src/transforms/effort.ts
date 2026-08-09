@@ -1,4 +1,5 @@
 import type { TransformOption } from '../types.js'
+import { orFalseToDisable, parseIntegerDirective } from '../lib/parse.js'
 
 export interface EffortOptions {
   effort: string
@@ -13,20 +14,22 @@ const FORMAT_TO_EFFORT_RANGE: Record<string, [number, number]> = {
   webp: [0, 6]
 }
 
-function parseEffort(effort: string, format: string) {
-  if (effort === 'min') {
-    return FORMAT_TO_EFFORT_RANGE[format]?.[0]
-  } else if (effort === 'max') {
-    return FORMAT_TO_EFFORT_RANGE[format]?.[1]
-  }
-  return parseInt(effort)
+function parseEffort(effort: string | undefined, format: string): number | undefined {
+  if (effort === undefined || effort === '') return undefined
+  if (effort === 'min') return FORMAT_TO_EFFORT_RANGE[format]?.[0]
+  if (effort === 'max') return FORMAT_TO_EFFORT_RANGE[format]?.[1]
+  return parseIntegerDirective('effort', effort, orFalseToDisable('"min", "max" or an integer'))
 }
 
-export const getEffort: TransformOption<EffortOptions, number> = ({ effort: _effort }, state) => {
-  if (!_effort) return
-
-  const format = state.transforms.format ?? ''
-  const effort = parseEffort(_effort, format)
+/**
+ * Resolves the `effort` value from the parsed directives. `"min"` and `"max"`
+ * map to the extremes of the range for the target format recorded on `state`,
+ * and integers pass through. Throws for invalid values; range validation is
+ * left to sharp. Returns `undefined` when the directive is absent, and records
+ * the applied value on `state.transforms`.
+ */
+export const getEffort: TransformOption<EffortOptions, number> = ({ effort: effortDirective }, state) => {
+  const effort = parseEffort(effortDirective, state.transforms.format ?? '')
   if (!Number.isInteger(effort)) return
 
   state.transforms.effort = effort

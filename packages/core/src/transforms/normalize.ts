@@ -1,11 +1,12 @@
 import type { TransformFactory } from '../types.js'
+import { parseBooleanDirective } from '../lib/parse.js'
 
 export interface NormalizeOptions {
-  normalize: '' | 'true'
+  normalize: '' | 'true' | 'false'
 }
 
 export const normalize: TransformFactory<NormalizeOptions> = ({ normalize }) => {
-  if (normalize !== '' && normalize !== 'true') return
+  if (parseBooleanDirective('normalize', normalize) !== true) return
 
   return function normalizeTransform(state, image) {
     state.transforms.normalize = true

@@ -29,8 +29,16 @@ describe('normalize', () => {
 
   describe('arguments', () => {
     test('invalid', () => {
-      //@ts-expect-error  invalid args
-      const res = normalize({ normalize: 'invalid' }, dirCtx)
+      //@ts-expect-error invalid normalize values are validated at runtime
+      const throwingFn = () => normalize({ normalize: 'invalid' }, dirCtx)
+
+      expect(throwingFn).toThrow(
+        'Invalid normalize value: "invalid", expected "true", "false" or a bare "normalize" directive'
+      )
+    })
+
+    test('false', () => {
+      const res = normalize({ normalize: 'false' }, dirCtx)
 
       expect(res).toBeUndefined()
     })

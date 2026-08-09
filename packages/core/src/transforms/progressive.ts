@@ -1,11 +1,18 @@
 import type { TransformOption } from '../types.js'
+import { parseBooleanDirective } from '../lib/parse.js'
 
 export interface ProgressiveOptions {
-  progressive: '' | 'true'
+  progressive: '' | 'true' | 'false'
 }
 
-export const getProgressive: TransformOption<ProgressiveOptions> = ({ progressive }, state) => {
-  if (progressive !== '' && progressive !== 'true') return
+/**
+ * Resolves the `progressive` directive into a boolean: a bare `progressive`
+ * or `progressive=true` enables it and `progressive=false` disables it.
+ * Returns `undefined` when the directive is absent, and records the applied
+ * value on `state.transforms`.
+ */
+export const getProgressive: TransformOption<ProgressiveOptions, boolean> = ({ progressive }, state) => {
+  if (parseBooleanDirective('progressive', progressive) !== true) return
 
   state.transforms.progressive = true
   return true

@@ -1,5 +1,12 @@
-import type { FitEnum } from 'sharp'
 import type { TransformFactory } from '../types.js'
+import {
+  invalidDirectiveValue,
+  orFalseToDisable,
+  parseBooleanDirective,
+  parseFloatDirective,
+  parseIntegerDirective,
+  parsePositiveIntegerDirective
+} from '../lib/parse.js'
 import { getBackground } from './background.js'
 import { getFit } from './fit.js'
 import { getKernel } from './kernel.js'
@@ -13,7 +20,7 @@ export interface ResizeOptions {
   /** aspect ratio */
   aspect: string
   /** Whether to allow making images larger. This is generally a waste, so is disabled by default. */
-  allowUpscale: '' | 'true'
+  allowUpscale: '' | 'true' | 'false'
   /**
    * The width in pixels for the 1x pixel density descriptor.
    * If supplied, the srcset, img and picture output formats use pixel density descriptors rather than width descriptors.
@@ -28,35 +35,50 @@ export interface ResizeOptions {
  * @param aspect
  * @returns
  */
-function parseAspect(aspect: string): number | undefined {
+function parseAspect(aspect: string | undefined): number | undefined {
+  if (aspect === undefined || aspect === '' || aspect === 'false') return undefined
+
   const parts = aspect.split(':')
 
   let aspectRatio
   if (parts.length === 1) {
     // the string was a float
-    aspectRatio = parseFloat(parts[0])
+    aspectRatio = parseFloatDirective(
+      'aspect',
+      parts[0],
+      orFalseToDisable('a ratio such as "16:9" or a positive number')
+    )
   } else if (parts.length === 2) {
     // the string was a colon delimited aspect ratio
-    const [width, height] = parts.map((str) => parseInt(str))
+    const width = parseIntegerDirective(
+      'aspect',
+      parts[0],
+      orFalseToDisable('a ratio such as "16:9" or a positive number')
+    )
+    const height = parseIntegerDirective(
+      'aspect',
+      parts[1],
+      orFalseToDisable('a ratio such as "16:9" or a positive number')
+    )
 
-    if (!width || !height) return undefined
-
-    aspectRatio = width / height
+    if (width && height) aspectRatio = width / height
   }
-  if (!aspectRatio || aspectRatio <= 0) return undefined
+  if (!aspectRatio || aspectRatio <= 0) {
+    throw invalidDirectiveValue('aspect', aspect, orFalseToDisable('a ratio such as "16:9" or a positive number'))
+  }
   return aspectRatio
 }
 
 export const resize: TransformFactory<ResizeOptions> = (config, context) => {
-  const width = parseInt(config.w || '')
-  const height = parseInt(config.h || '')
-  const aspect = parseAspect(config.aspect || '')
-  const allowUpscale = config.allowUpscale === '' || config.allowUpscale === 'true'
+  const width = parsePositiveIntegerDirective('w', config.w, orFalseToDisable('a positive width in pixels')) ?? 0
+  const height = parsePositiveIntegerDirective('h', config.h, orFalseToDisable('a positive height in pixels')) ?? 0
+  const aspect = parseAspect(config.aspect)
+  const allowUpscale = parseBooleanDirective('allowUpscale', config.allowUpscale) ?? false
 
   if (!width && !height && !aspect) return
 
   return function resizeTransform(state, image) {
-    const fit = getFit(config, state) as keyof FitEnum | undefined
+    const fit = getFit(config, state)
     // calculate finalWidth & finalHeight
     const originalWidth = state.info.width
     const originalHeight = state.info.height

@@ -36,15 +36,22 @@ describe('position', () => {
 
   describe('arguments', () => {
     test('invalid', () => {
-      //@ts-expect-error invalid args
-      const res = getPosition({ position: 'invalid' }, state)
+      //@ts-expect-error invalid position values are validated at runtime
+      const throwingFn = () => getPosition({ position: 'invalid' }, state)
+
+      expect(throwingFn).toThrow(
+        'Invalid position value: "invalid", expected one of "top", "right top", "right", "right bottom", "bottom", "left bottom", "left", "left top", "north", "northeast", "east", "southeast", "south", "southwest", "west", "northwest", "center", "centre", "entropy" or "attention", or "false" to disable'
+      )
+    })
+
+    test('empty', () => {
+      const res = getPosition({ position: '' }, state)
 
       expect(res).toBeUndefined()
     })
 
-    test('empty', () => {
-      //@ts-expect-error invalid args
-      const res = getPosition({ position: '' }, state)
+    test('false disables', () => {
+      const res = getPosition({ position: 'false' }, state)
 
       expect(res).toBeUndefined()
     })

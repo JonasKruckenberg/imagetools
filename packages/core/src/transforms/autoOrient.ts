@@ -1,4 +1,5 @@
 import type { TransformFactory } from '../types.js'
+import { parseBooleanDirective } from '../lib/parse.js'
 
 export interface autoOrientOptions {
   noAutoOrient: '' | 'true' | 'false'
@@ -6,15 +7,11 @@ export interface autoOrientOptions {
 
 export const autoOrient: TransformFactory<autoOrientOptions> = ({ noAutoOrient }) => {
   // This is an opt out. We apply autoOrient by default.
-  if (noAutoOrient === '' || noAutoOrient === 'true') return
+  if (parseBooleanDirective('noAutoOrient', noAutoOrient) === true) return
 
-  if (noAutoOrient === undefined || noAutoOrient === 'false') {
-    return function autoOrientTransform(state, image) {
-      state.info.height = state.info.autoOriented.height
-      state.info.width = state.info.autoOriented.width
-      return image.autoOrient()
-    }
+  return function autoOrientTransform(state, image) {
+    state.info.height = state.info.autoOriented.height
+    state.info.width = state.info.autoOriented.width
+    return image.autoOrient()
   }
-
-  throw new Error(`Invalid noAutoOrient value: ${noAutoOrient}`)
 }

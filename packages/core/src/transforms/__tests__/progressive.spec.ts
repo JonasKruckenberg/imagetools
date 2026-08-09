@@ -22,8 +22,16 @@ describe('progressive', () => {
 
   describe('arguments', () => {
     test('invalid', () => {
-      //@ts-expect-error invalid args
-      const res = getProgressive({ progressive: 'invalid' }, state)
+      //@ts-expect-error invalid progressive values are validated at runtime
+      const throwingFn = () => getProgressive({ progressive: 'invalid' }, state)
+
+      expect(throwingFn).toThrow(
+        'Invalid progressive value: "invalid", expected "true", "false" or a bare "progressive" directive'
+      )
+    })
+
+    test('false', () => {
+      const res = getProgressive({ progressive: 'false' }, state)
 
       expect(res).toBeUndefined()
     })
