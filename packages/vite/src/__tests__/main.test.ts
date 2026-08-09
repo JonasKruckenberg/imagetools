@@ -430,6 +430,26 @@ describe('vite-imagetools', () => {
         expect(files).toHaveLength(2)
       })
 
+      test('const can be disabled with false', async () => {
+        const bundle = (await build({
+          root: join(__dirname, '__fixtures__'),
+          logLevel: 'warn',
+          build: { write: false },
+          plugins: [
+            testEntry(`
+                            import Image from "./with-metadata.png?w=false"
+                            window.__IMAGE__ = Image
+                        `),
+            imagetools({
+              defaultDirectives: new URLSearchParams('w=300;500')
+            })
+          ]
+        })) as RollupOutput | RollupOutput[]
+
+        const files = getFiles(bundle, '**.png') as OutputAsset[]
+        expect(files).toHaveLength(1)
+      })
+
       test('function with with metadata import', async () => {
         const bundle = (await build({
           root: join(__dirname, '__fixtures__'),
@@ -814,6 +834,121 @@ describe('vite-imagetools', () => {
     })
 
     await expect(p).rejects.toBeDefined()
+  })
+
+  test('annotates transform errors with the image path and directives', async () => {
+    const p = build({
+      root: join(__dirname, '__fixtures__'),
+      logLevel: 'silent',
+      build: { write: false },
+      plugins: [
+        testEntry(`
+                    import Image from "./pexels-allec-gomes-5195763.png?format=not-a-format"
+                    export default Image
+                `),
+        imagetools({ cache: { enabled: false } })
+      ]
+    })
+
+    const err = await p.catch((e: unknown) => e)
+    const rollupError = (err as { errors?: Array<{ id?: string; plugin?: string }> }).errors?.[0]
+
+    expect(rollupError?.id).toContain('pexels-allec-gomes-5195763.png')
+    expect(rollupError?.id).toContain('format=not-a-format')
+    expect(rollupError?.plugin).toBe('imagetools')
+  })
+
+  test('reports an actionable error for invalid directive values', async () => {
+    const p = build({
+      root: join(__dirname, '__fixtures__'),
+      logLevel: 'silent',
+      build: { write: false },
+      plugins: [
+        testEntry(`
+                    import Image from "./pexels-allec-gomes-5195763.png?w=100&fit=bogus"
+                    export default Image
+                `),
+        imagetools({ cache: { enabled: false } })
+      ]
+    })
+
+    await expect(p).rejects.toThrow(
+      /pexels-allec-gomes-5195763\.png\?w=100&fit=bogus[\s\S]*Invalid fit value: "bogus", expected one of "cover", "contain", "fill", "inside" or "outside"/
+    )
+  })
+
+  test('validates encoding options with a format directive', async () => {
+    const p = build({
+      root: join(__dirname, '__fixtures__'),
+      logLevel: 'silent',
+      build: { write: false },
+      plugins: [
+        testEntry(`
+                    import Image from "./pexels-allec-gomes-5195763.png?format=webp&quality=abc"
+                    export default Image
+                `),
+        imagetools({ cache: { enabled: false } })
+      ]
+    })
+
+    await expect(p).rejects.toThrow(
+      /pexels-allec-gomes-5195763\.png\?format=webp&quality=abc[\s\S]*Invalid quality value: "abc", expected an integer between 0 and 100/
+    )
+  })
+
+  test('rejects non-positive dimensions', async () => {
+    const p = build({
+      root: join(__dirname, '__fixtures__'),
+      logLevel: 'silent',
+      build: { write: false },
+      plugins: [
+        testEntry(`
+                    import Image from "./pexels-allec-gomes-5195763.png?w=-100"
+                    export default Image
+                `),
+        imagetools({ cache: { enabled: false } })
+      ]
+    })
+
+    await expect(p).rejects.toThrow(
+      /pexels-allec-gomes-5195763\.png\?w=-100[\s\S]*Invalid w value: "-100", expected a positive width in pixels/
+    )
+  })
+
+  test('accepts "false" as a no-op for boolean directives', async () => {
+    const p = build({
+      root: join(__dirname, '__fixtures__'),
+      logLevel: 'silent',
+      build: { write: false },
+      plugins: [
+        testEntry(`
+                    import Image from "./pexels-allec-gomes-5195763.png?flip=false&w=300"
+                    export default Image
+                `),
+        imagetools({ cache: { enabled: false } })
+      ]
+    })
+
+    await expect(p).resolves.toBeDefined()
+  })
+
+  test('rejects an empty format value from a trailing semicolon', async () => {
+    const p = build({
+      root: join(__dirname, '__fixtures__'),
+      logLevel: 'silent',
+      build: { write: false },
+      plugins: [
+        testEntry(`
+                    import Image from "./pexels-allec-gomes-5195763.png?format=avif;webp;png;"
+                    export default Image
+                `),
+        imagetools({ cache: { enabled: false } })
+      ]
+    })
+
+    await expect(p).rejects.toThrow(
+      /pexels-allec-gomes-5195763\.png\?format=avif;webp;png;[\s\S]*Invalid format value: "", expected one of "heic", "heif", "avif", "jpeg", "jpg", "jpe", "tile", "dz", "png", "raw", "tiff", "tif", "webp", "gif", "jp2", "jpx", "j2k", "j2c" or "jxl", or "false" to disable/
+    )
   })
 
   test('no directives', async () => {
