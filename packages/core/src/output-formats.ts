@@ -92,11 +92,10 @@ const metadatasToSourceset = (metadatas: ProcessedImage[]) =>
     })
     .join(', ')
 
-/** normalizes the format for use in mime-type */
-const getFormat = (m: ProcessedImage) => {
-  if (!m.transforms.format) throw new Error(`Could not determine image format`)
-  return m.transforms.format.replace('jpg', 'jpeg')
-}
+/** the format of the processed image, as detected by sharp and used for mime-types */
+const getFormat = (m: ProcessedImage) =>
+  // sharp detects AVIF-encoded images as `heif`, so use the mime type to disambiguate
+  m.sharpMetadata.mediaType === 'image/avif' ? 'avif' : m.sharpMetadata.format
 
 /**
  * Emits the `src`, `w` and `h` of the largest image, plus a `srcset` when
