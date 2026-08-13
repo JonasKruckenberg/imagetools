@@ -14,7 +14,7 @@
     "doc": "pnpm run --filter imagetools-core build && typedoc"
   },
   "devDependencies": {
-    "@changesets/cli": "^2.31.0",
+    "@changesets/cli": "^3.0.0",
     "@eslint/js": "^10.0.1",
     "@rollup/plugin-typescript": "^12.3.0",
     "eslint": "^10.4.1",
