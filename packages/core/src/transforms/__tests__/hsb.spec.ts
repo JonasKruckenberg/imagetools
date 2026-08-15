@@ -29,13 +29,19 @@ describe('hue', () => {
 
   describe('arguments', () => {
     test('invalid', () => {
-      const res = hsb({ hue: 'invalid' }, dirCtx)
+      const throwingFn = () => hsb({ hue: 'invalid' }, dirCtx)
 
-      expect(res).toBeUndefined()
+      expect(throwingFn).toThrow('Invalid hue value: "invalid", expected an angle in degrees, or "false" to disable')
     })
 
     test('empty', () => {
       const res = hsb({ hue: '' }, dirCtx)
+
+      expect(res).toBeUndefined()
+    })
+
+    test('false disables', () => {
+      const res = hsb({ hue: 'false' }, dirCtx)
 
       expect(res).toBeUndefined()
     })
@@ -47,9 +53,9 @@ describe('hue', () => {
     })
 
     test('float', () => {
-      const res = hsb({ hue: '4.3' }, dirCtx)
+      const throwingFn = () => hsb({ hue: '4.3' }, dirCtx)
 
-      expect(res).toBeInstanceOf(Function)
+      expect(throwingFn).toThrow('Invalid hue value: "4.3", expected an angle in degrees, or "false" to disable')
     })
 
     test('negative integer', () => {
@@ -59,9 +65,9 @@ describe('hue', () => {
     })
 
     test('negative float', () => {
-      const res = hsb({ hue: '-4.3' }, dirCtx)
+      const throwingFn = () => hsb({ hue: '-4.3' }, dirCtx)
 
-      expect(res).toBeInstanceOf(Function)
+      expect(throwingFn).toThrow('Invalid hue value: "-4.3", expected an angle in degrees, or "false" to disable')
     })
   })
 
@@ -117,9 +123,9 @@ describe('saturation', () => {
 
   describe('arguments', () => {
     test('invalid', () => {
-      const res = hsb({ saturation: 'invalid' }, dirCtx)
+      const throwingFn = () => hsb({ saturation: 'invalid' }, dirCtx)
 
-      expect(res).toBeUndefined()
+      expect(throwingFn).toThrow('Invalid saturation value: "invalid", expected a number, or "false" to disable')
     })
 
     test('empty', () => {
@@ -187,9 +193,9 @@ describe('brightness', () => {
 
   describe('arguments', () => {
     test('invalid', () => {
-      const res = hsb({ brightness: 'invalid' }, dirCtx)
+      const throwingFn = () => hsb({ brightness: 'invalid' }, dirCtx)
 
-      expect(res).toBeUndefined()
+      expect(throwingFn).toThrow('Invalid brightness value: "invalid", expected a number, or "false" to disable')
     })
 
     test('empty', () => {

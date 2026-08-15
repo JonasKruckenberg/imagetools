@@ -1,4 +1,5 @@
 import type { Metadata } from 'sharp'
+import { orFalseToDisable, parseFloatDirective } from './lib/parse.js'
 import type { Img, OutputFormat, Picture, ProcessedImage } from './types.js'
 
 /**
@@ -62,13 +63,15 @@ function pick<T extends object>(source: T, keys: string[]): Partial<T> {
 }
 
 /**
- * Parses the `basePixels` directive into a positive number, or `undefined` if it is not set or invalid.
- * A `basePixels` value of `0` or less disables pixel density descriptors.
+ * Parses the `basePixels` directive into a positive number, or `undefined` if it is not set
+ * or set to `0` or less (which disables pixel density descriptors).
+ * @throws When the directive is set to a non-numeric value.
  */
 function parseBasePixels(value: string | undefined): number | undefined {
-  if (typeof value !== 'string' || !value) return undefined
-  const basePixels = Number(value)
-  return Number.isFinite(basePixels) && basePixels > 0 ? basePixels : undefined
+  if (value === undefined || value === '' || value === 'false') return undefined
+  const basePixels = parseFloatDirective('basePixels', value, orFalseToDisable('a positive number of pixels'))
+  if (basePixels === undefined) return undefined
+  return basePixels > 0 ? basePixels : undefined
 }
 
 /**
@@ -89,11 +92,10 @@ const metadatasToSourceset = (metadatas: ProcessedImage[]) =>
     })
     .join(', ')
 
-/** normalizes the format for use in mime-type */
-const getFormat = (m: ProcessedImage) => {
-  if (!m.transforms.format) throw new Error(`Could not determine image format`)
-  return m.transforms.format.replace('jpg', 'jpeg')
-}
+/** the format of the processed image, as detected by sharp and used for mime-types */
+const getFormat = (m: ProcessedImage) =>
+  // sharp detects AVIF-encoded images as `heif`, so use the mime type to disambiguate
+  m.sharpMetadata.mediaType === 'image/avif' ? 'avif' : m.sharpMetadata.format
 
 /**
  * Emits the `src`, `w` and `h` of the largest image, plus a `srcset` when

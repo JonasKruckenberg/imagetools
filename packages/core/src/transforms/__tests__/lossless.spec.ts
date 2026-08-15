@@ -22,8 +22,16 @@ describe('lossless', () => {
 
   describe('arguments', () => {
     test('invalid', () => {
-      //@ts-expect-error invalid args
-      const res = getLossless({ lossless: 'invalid' }, state)
+      //@ts-expect-error invalid lossless values are validated at runtime
+      const throwingFn = () => getLossless({ lossless: 'invalid' }, state)
+
+      expect(throwingFn).toThrow(
+        'Invalid lossless value: "invalid", expected "true", "false" or a bare "lossless" directive'
+      )
+    })
+
+    test('false', () => {
+      const res = getLossless({ lossless: 'false' }, state)
 
       expect(res).toBeUndefined()
     })

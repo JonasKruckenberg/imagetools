@@ -1,11 +1,12 @@
 import type { TransformFactory } from '../types.js'
+import { parseBooleanDirective } from '../lib/parse.js'
 
 export interface GrayscaleOptions {
-  grayscale: '' | 'true'
+  grayscale: '' | 'true' | 'false'
 }
 
 export const grayscale: TransformFactory<GrayscaleOptions> = ({ grayscale }) => {
-  if (grayscale !== '' && grayscale !== 'true') return
+  if (parseBooleanDirective('grayscale', grayscale) !== true) return
 
   return function grayscaleTransform(state, image) {
     state.transforms.grayscale = true

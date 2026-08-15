@@ -22,15 +22,22 @@ describe('kernel', () => {
 
   describe('arguments', () => {
     test('invalid', () => {
-      //@ts-expect-error invalid args
-      const res = getKernel({ kernel: 'invalid' }, state)
+      //@ts-expect-error invalid kernel values are validated at runtime
+      const throwingFn = () => getKernel({ kernel: 'invalid' }, state)
+
+      expect(throwingFn).toThrow(
+        'Invalid kernel value: "invalid", expected one of "nearest", "cubic", "mitchell", "lanczos2" or "lanczos3", or "false" to disable'
+      )
+    })
+
+    test('empty', () => {
+      const res = getKernel({ kernel: '' }, state)
 
       expect(res).toBeUndefined()
     })
 
-    test('empty', () => {
-      //@ts-expect-error invalid args
-      const res = getKernel({ kernel: '' }, state)
+    test('false disables', () => {
+      const res = getKernel({ kernel: 'false' }, state)
 
       expect(res).toBeUndefined()
     })

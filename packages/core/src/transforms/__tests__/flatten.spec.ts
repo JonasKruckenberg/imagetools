@@ -29,8 +29,16 @@ describe('flatten', () => {
 
   describe('arguments', () => {
     test('invalid', () => {
-      //@ts-expect-error invalid args
-      const res = flatten({ flatten: 'invalid' }, dirCtx)
+      //@ts-expect-error invalid flatten values are validated at runtime
+      const throwingFn = () => flatten({ flatten: 'invalid' }, dirCtx)
+
+      expect(throwingFn).toThrow(
+        'Invalid flatten value: "invalid", expected "true", "false" or a bare "flatten" directive'
+      )
+    })
+
+    test('false', () => {
+      const res = flatten({ flatten: 'false' }, dirCtx)
 
       expect(res).toBeUndefined()
     })

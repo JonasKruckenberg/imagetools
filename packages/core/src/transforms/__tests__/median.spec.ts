@@ -29,15 +29,33 @@ describe('median', () => {
 
   describe('arguments', () => {
     test('invalid', () => {
-      const res = median({ median: 'invalid' }, dirCtx)
+      const throwingFn = () => median({ median: 'invalid' }, dirCtx)
+
+      expect(throwingFn).toThrow(
+        'Invalid median value: "invalid", expected an integer between 1 and 1000, or "false" to disable'
+      )
+    })
+
+    test('true', () => {
+      const throwingFn = () => median({ median: 'true' }, dirCtx)
+
+      expect(throwingFn).toThrow(
+        'Invalid median value: "true", expected an integer between 1 and 1000, or "false" to disable'
+      )
+    })
+
+    test('false', () => {
+      const res = median({ median: 'false' }, dirCtx)
 
       expect(res).toBeUndefined()
     })
 
     test('empty', () => {
-      const res = median({ median: '' }, dirCtx)
+      const throwingFn = () => median({ median: '' }, dirCtx)
 
-      expect(res).toBeUndefined()
+      expect(throwingFn).toThrow(
+        'Invalid median value: "", expected an integer between 1 and 1000, or "false" to disable'
+      )
     })
 
     test('integer', () => {
@@ -46,10 +64,20 @@ describe('median', () => {
       expect(res).toBeInstanceOf(Function)
     })
 
-    it('rounds float to int', () => {
-      const res = median({ median: '3.5' }, dirCtx)
+    it('rejects a float instead of truncating it', () => {
+      const throwingFn = () => median({ median: '3.5' }, dirCtx)
 
-      expect(res).toBeInstanceOf(Function)
+      expect(throwingFn).toThrow(
+        'Invalid median value: "3.5", expected an integer between 1 and 1000, or "false" to disable'
+      )
+    })
+
+    it('rejects a negative size', () => {
+      const throwingFn = () => median({ median: '-3' }, dirCtx)
+
+      expect(throwingFn).toThrow(
+        'Invalid median value: "-3", expected an integer between 1 and 1000, or "false" to disable'
+      )
     })
   })
 

@@ -37,13 +37,33 @@ describe('width', () => {
 
   describe('arguments', () => {
     test('invalid', () => {
-      const res = resize({ w: 'invalid' }, dirCtx)
+      const throwingFn = () => resize({ w: 'invalid' }, dirCtx)
 
-      expect(res).toBeUndefined()
+      expect(throwingFn).toThrow(
+        'Invalid w value: "invalid", expected a positive width in pixels, or "false" to disable'
+      )
+    })
+
+    test('non-positive', () => {
+      const throwingFn = () => resize({ w: '-100' }, dirCtx)
+
+      expect(throwingFn).toThrow('Invalid w value: "-100", expected a positive width in pixels, or "false" to disable')
+    })
+
+    test('zero', () => {
+      const throwingFn = () => resize({ w: '0' }, dirCtx)
+
+      expect(throwingFn).toThrow('Invalid w value: "0", expected a positive width in pixels, or "false" to disable')
     })
 
     test('empty', () => {
       const res = resize({ w: '' }, dirCtx)
+
+      expect(res).toBeUndefined()
+    })
+
+    test('false disables', () => {
+      const res = resize({ w: 'false' }, dirCtx)
 
       expect(res).toBeUndefined()
     })
@@ -54,10 +74,12 @@ describe('width', () => {
       expect(res).toBeInstanceOf(Function)
     })
 
-    test('rounds float to int', () => {
-      const res = resize({ h: '300.75' }, dirCtx)
+    test('rejects a fractional width instead of truncating it', () => {
+      const throwingFn = () => resize({ w: '300.75' }, dirCtx)
 
-      expect(res).toBeInstanceOf(Function)
+      expect(throwingFn).toThrow(
+        'Invalid w value: "300.75", expected a positive width in pixels, or "false" to disable'
+      )
     })
   })
 
@@ -98,13 +120,33 @@ describe('height', () => {
 
   describe('arguments', () => {
     test('invalid', () => {
-      const res = resize({ h: 'invalid' }, dirCtx)
+      const throwingFn = () => resize({ h: 'invalid' }, dirCtx)
 
-      expect(res).toBeUndefined()
+      expect(throwingFn).toThrow(
+        'Invalid h value: "invalid", expected a positive height in pixels, or "false" to disable'
+      )
+    })
+
+    test('non-positive', () => {
+      const throwingFn = () => resize({ h: '-100' }, dirCtx)
+
+      expect(throwingFn).toThrow('Invalid h value: "-100", expected a positive height in pixels, or "false" to disable')
+    })
+
+    test('zero', () => {
+      const throwingFn = () => resize({ h: '0' }, dirCtx)
+
+      expect(throwingFn).toThrow('Invalid h value: "0", expected a positive height in pixels, or "false" to disable')
     })
 
     test('empty', () => {
       const res = resize({ h: '' }, dirCtx)
+
+      expect(res).toBeUndefined()
+    })
+
+    test('false disables', () => {
+      const res = resize({ h: 'false' }, dirCtx)
 
       expect(res).toBeUndefined()
     })
@@ -115,10 +157,12 @@ describe('height', () => {
       expect(res).toBeInstanceOf(Function)
     })
 
-    test('rounds float to int', () => {
-      const res = resize({ h: '300.75' }, dirCtx)
+    test('rejects a fractional height instead of truncating it', () => {
+      const throwingFn = () => resize({ h: '300.75' }, dirCtx)
 
-      expect(res).toBeInstanceOf(Function)
+      expect(throwingFn).toThrow(
+        'Invalid h value: "300.75", expected a positive height in pixels, or "false" to disable'
+      )
     })
   })
 
@@ -215,9 +259,11 @@ describe('aspect', () => {
 
   describe('arguments', () => {
     test('invalid aspect', () => {
-      const res = resize({ aspect: 'invalid' }, dirCtx)
+      const throwingFn = () => resize({ aspect: 'invalid' }, dirCtx)
 
-      expect(res).toBeUndefined()
+      expect(throwingFn).toThrow(
+        'Invalid aspect value: "invalid", expected a ratio such as "16:9" or a positive number, or "false" to disable'
+      )
     })
 
     test('invalid ar', () => {
@@ -238,6 +284,12 @@ describe('aspect', () => {
       expect(res).toBeUndefined()
     })
 
+    test('false disables', () => {
+      const res = resize({ aspect: 'false' }, dirCtx)
+
+      expect(res).toBeUndefined()
+    })
+
     test('integer', () => {
       const res = resize({ aspect: '1' }, dirCtx)
 
@@ -251,9 +303,11 @@ describe('aspect', () => {
     })
 
     test('negative number', () => {
-      const res = resize({ aspect: '-1.5' }, dirCtx)
+      const throwingFn = () => resize({ aspect: '-1.5' }, dirCtx)
 
-      expect(res).toBeUndefined()
+      expect(throwingFn).toThrow(
+        'Invalid aspect value: "-1.5", expected a ratio such as "16:9" or a positive number, or "false" to disable'
+      )
     })
 
     test('string', () => {
@@ -395,8 +449,16 @@ describe('allowUpscale', () => {
 
   describe('arguments', () => {
     test('invalid allowUpscale', () => {
-      //@ts-expect-error invalid args
-      const res = resize({ allowUpscale: 'invalid', w: '300' }, dirCtx)
+      //@ts-expect-error invalid allowUpscale values are validated at runtime
+      const throwingFn = () => resize({ allowUpscale: 'invalid', w: '300' }, dirCtx)
+
+      expect(throwingFn).toThrow(
+        'Invalid allowUpscale value: "invalid", expected "true", "false" or a bare "allowUpscale" directive'
+      )
+    })
+
+    test('false', () => {
+      const res = resize({ allowUpscale: 'false', w: '300' }, dirCtx)
 
       expect(res).toBeInstanceOf(Function)
     })
@@ -420,11 +482,14 @@ describe('allowUpscale', () => {
       img = sharp(join(__dirname, '../../__tests__/__fixtures__/pexels-allec-gomes-5195763.png'))
     })
 
-    test('w/ multiple dimensions', async () => {
-      //@ts-expect-error we know this is safe
-      const { image } = await applyTransforms([resize({ allowUpscale: 'true', w: '300;900' }, dirCtx)], img)
+    test('rejects multiple dimensions as a single value', async () => {
+      // multi-value directives are split into separate configs by resolveConfigs,
+      // so the transform itself must reject them
+      const throwingFn = () => resize({ allowUpscale: 'true', w: '300;900' }, dirCtx)
 
-      expect(await image.toBuffer()).toMatchImageSnapshot()
+      expect(throwingFn).toThrow(
+        'Invalid w value: "300;900", expected a positive width in pixels, or "false" to disable'
+      )
     })
 
     test('w/ width', async () => {
@@ -434,11 +499,12 @@ describe('allowUpscale', () => {
       expect(await image.toBuffer()).toMatchImageSnapshot()
     })
 
-    test('w/ height', async () => {
-      //@ts-expect-error we know this is safe
-      const { image } = await applyTransforms([resize({ allowUpscale: 'true', h: '300;900' }, dirCtx)], img)
+    test('rejects multiple heights as a single value', async () => {
+      const throwingFn = () => resize({ allowUpscale: 'true', h: '300;900' }, dirCtx)
 
-      expect(await image.toBuffer()).toMatchImageSnapshot()
+      expect(throwingFn).toThrow(
+        'Invalid h value: "300;900", expected a positive height in pixels, or "false" to disable'
+      )
     })
 
     test('w/ aspect', async () => {

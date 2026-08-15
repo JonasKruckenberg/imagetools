@@ -29,8 +29,14 @@ describe('flip', () => {
 
   describe('arguments', () => {
     test('invalid', () => {
-      //@ts-expect-error invalid args
-      const res = flip({ flip: 'invalid' }, dirCtx)
+      //@ts-expect-error invalid flip values are validated at runtime
+      const throwingFn = () => flip({ flip: 'invalid' }, dirCtx)
+
+      expect(throwingFn).toThrow('Invalid flip value: "invalid", expected "true", "false" or a bare "flip" directive')
+    })
+
+    test('false', () => {
+      const res = flip({ flip: 'false' }, dirCtx)
 
       expect(res).toBeUndefined()
     })

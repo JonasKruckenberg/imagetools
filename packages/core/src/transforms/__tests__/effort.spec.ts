@@ -23,13 +23,21 @@ describe('effort', () => {
 
   describe('arguments', () => {
     test('invalid', () => {
-      const res = getEffort({ effort: 'invalid' }, state('webp'))
+      const throwingFn = () => getEffort({ effort: 'invalid' }, state('webp'))
 
-      expect(res).toBeUndefined()
+      expect(throwingFn).toThrow(
+        'Invalid effort value: "invalid", expected "min", "max" or an integer, or "false" to disable'
+      )
     })
 
     test('empty', () => {
       const res = getEffort({ effort: '' }, state('webp'))
+
+      expect(res).toBeUndefined()
+    })
+
+    test('false disables', () => {
+      const res = getEffort({ effort: 'false' }, state('webp'))
 
       expect(res).toBeUndefined()
     })
@@ -40,10 +48,12 @@ describe('effort', () => {
       expect(res).toEqual(3)
     })
 
-    it('rounds float to int', () => {
-      const res = getEffort({ effort: '3.5' }, state('webp'))
+    it('rejects a float instead of truncating it', () => {
+      const throwingFn = () => getEffort({ effort: '3.5' }, state('webp'))
 
-      expect(res).toEqual(3)
+      expect(throwingFn).toThrow(
+        'Invalid effort value: "3.5", expected "min", "max" or an integer, or "false" to disable'
+      )
     })
 
     it('sets to minimum effort with "min"', () => {
@@ -62,6 +72,12 @@ describe('effort', () => {
       const res = getEffort({ effort: 'max' }, state('jpeg'))
 
       expect(res).toBeUndefined()
+    })
+
+    it('uses the format recorded on state over a conflicting format directive', () => {
+      const res = getEffort({ effort: 'max', format: 'webp' }, state('avif'))
+
+      expect(res).toEqual(9)
     })
   })
 })

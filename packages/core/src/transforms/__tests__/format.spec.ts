@@ -30,21 +30,31 @@ describe('format', () => {
 
   describe('arguments', () => {
     test('invalid', () => {
-      //@ts-expect-error invalid args
-      const res = format({ format: 'invalid' }, dirCtx)
+      //@ts-expect-error invalid format values are validated at runtime
+      const throwingFn = () => format({ format: 'invalid' }, dirCtx)
 
-      expect(res).toThrow()
+      expect(throwingFn).toThrow(
+        'Invalid format value: "invalid", expected one of "heic", "heif", "avif", "jpeg", "jpg", "jpe", "tile", "dz", "png", "raw", "tiff", "tif", "webp", "gif", "jp2", "jpx", "j2k", "j2c" or "jxl", or "false" to disable'
+      )
     })
 
     test('empty', () => {
-      //@ts-expect-error invalid args
-      const res = format({ format: '' }, dirCtx)
+      //@ts-expect-error an empty format is not a valid format value
+      const throwingFn = () => format({ format: '' }, dirCtx)
+
+      expect(throwingFn).toThrow(
+        'Invalid format value: "", expected one of "heic", "heif", "avif", "jpeg", "jpg", "jpe", "tile", "dz", "png", "raw", "tiff", "tif", "webp", "gif", "jp2", "jpx", "j2k", "j2c" or "jxl", or "false" to disable'
+      )
+    })
+
+    test('false disables', () => {
+      const res = format({ format: 'false' }, dirCtx)
 
       expect(res).toBeUndefined()
     })
 
     test('valid', () => {
-      const formats: Array<keyof FormatEnum> = ['avif', 'jpg', 'jpeg', 'png', 'heif', 'webp', 'tiff']
+      const formats: Array<keyof FormatEnum> = ['avif', 'jpg', 'jpeg', 'png', 'heif', 'webp', 'tiff', 'tif', 'jpe']
 
       for (const f of formats) {
         const res = format({ format: f }, dirCtx)

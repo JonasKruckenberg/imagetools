@@ -44,6 +44,10 @@
 
 ## Directives
 
+> Every directive accepts `false` as a value, which disables that directive. This is useful for overriding a default
+> directive (e.g. one set through the `defaultDirectives` plugin option) for a single image: `?format=false` leaves the
+> image in its original format and `?blur=false` disables blurring.
+
 ### Background
 
 • **Keyword**: `background`<br> • **Type**: _string_<br>
@@ -168,13 +172,14 @@ import Image from 'exmaple.jpg?flop=true'
 
 ### Format
 
-• **Keyword**: `format`<br> • **Type**: _jxl_\| _heif_ \| _avif_ \| _jpeg_ \| _jpg_ \| _png_ \| _tiff_ \| _webp_ \|
-_gif_<br>
+• **Keyword**: `format`<br> • **Type**: _heic_\| _heif_ \| _avif_ \| _jpeg_ \| _jpg_ \| _jpe_ \| _tile_ \|
+_dz_ \| _png_ \| _raw_ \| _tiff_ \| _tif_ \| _webp_ \| _gif_ \| _jp2_ \| _jpx_ \| _j2k_ \| _j2c_ \| _jxl_<br>
 
 Convert the image into the given format.
 
 > NOTE: Converting to the `gif` format requires libvips compiled with support for ImageMagick or GraphicsMagick See
 > [The sharp docs](https://sharp.pixelplumbing.com/install#custom-libvips) for details.
+> Some formats require a libvips build with optional support, e.g. `jp2`/`jpx`/`j2k`/`j2c` need OpenJPEG and `jxl` needs JPEG XL support; requesting one the installed libvips cannot write produces an error.
 
 • **Example**:
 
@@ -272,7 +277,7 @@ import losslessAvif from 'example.jpg?format=avif&lossless=true';
 
 ### Median
 
-• **Keyword**: `median`<br> • **Type**: _float_\| _boolean_<br>
+• **Keyword**: `median`<br> • **Type**: _integer_<br>
 
 Applies a median filter. This is commonly used to remove noise from images.
 

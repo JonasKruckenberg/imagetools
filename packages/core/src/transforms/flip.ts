@@ -1,11 +1,12 @@
 import type { TransformFactory } from '../types.js'
+import { parseBooleanDirective } from '../lib/parse.js'
 
 export interface FlipOptions {
-  flip: '' | 'true'
+  flip: '' | 'true' | 'false'
 }
 
 export const flip: TransformFactory<FlipOptions> = ({ flip }) => {
-  if (flip !== '' && flip !== 'true') return
+  if (parseBooleanDirective('flip', flip) !== true) return
 
   return function flipTransform(state, image) {
     state.transforms.flip = true

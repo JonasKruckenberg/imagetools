@@ -138,15 +138,24 @@ describe('image format', () => {
 })
 
 describe('picture format', () => {
-  test('throws when the format is missing', () => {
-    expect(() => pictureFormat()([meta('/foo.jpg', 100, 50)])).toThrow('Could not determine image format')
+  test('uses the processed image format when no format transform recorded one', () => {
+    const output = pictureFormat()([meta('/foo.webp', 100, 50, undefined, {}, { format: 'webp' })])
+
+    expect(output).toStrictEqual({
+      sources: {},
+      img: {
+        src: '/foo.webp',
+        w: 100,
+        h: 50
+      }
+    })
   })
 
   test('multiple image formats', () => {
     const output = pictureFormat()([
-      meta('/foo.avif', 100, 50, 'avif'),
+      meta('/foo.avif', 100, 50, 'avif', {}, { format: 'heif', mediaType: 'image/avif' }),
       meta('/foo.webp', 100, 50, 'webp'),
-      meta('/foo.jpg', 100, 50, 'jpg')
+      meta('/foo.jpg', 100, 50, 'jpeg')
     ])
 
     expect(output).toStrictEqual({
@@ -164,12 +173,12 @@ describe('picture format', () => {
 
   test('multiple image formats and sizes', () => {
     const output = pictureFormat()([
-      meta('/foo-100.avif', 100, 50, 'avif'),
+      meta('/foo-100.avif', 100, 50, 'avif', {}, { format: 'heif', mediaType: 'image/avif' }),
       meta('/foo-100.webp', 100, 50, 'webp'),
-      meta('/foo-100.jpg', 100, 50, 'jpg'),
-      meta('/foo-50.avif', 50, 25, 'avif'),
+      meta('/foo-100.jpg', 100, 50, 'jpeg'),
+      meta('/foo-50.avif', 50, 25, 'avif', {}, { format: 'heif', mediaType: 'image/avif' }),
       meta('/foo-50.webp', 50, 25, 'webp'),
-      meta('/foo-50.jpg', 50, 25, 'jpg')
+      meta('/foo-50.jpg', 50, 25, 'jpeg')
     ])
 
     expect(output).toStrictEqual({
@@ -188,12 +197,12 @@ describe('picture format', () => {
 
   test('multiple image formats and sizes with pixel density descriptors', () => {
     const output = pictureFormat()([
-      meta('/foo-100.avif', 100, 50, 'avif', { basePixels: '100' }),
+      meta('/foo-100.avif', 100, 50, 'avif', { basePixels: '100' }, { format: 'heif', mediaType: 'image/avif' }),
       meta('/foo-100.webp', 100, 50, 'webp', { basePixels: '100' }),
-      meta('/foo-100.jpg', 100, 50, 'jpg', { basePixels: '100' }),
-      meta('/foo-50.avif', 50, 25, 'avif', { basePixels: '100' }),
+      meta('/foo-100.jpg', 100, 50, 'jpeg', { basePixels: '100' }),
+      meta('/foo-50.avif', 50, 25, 'avif', { basePixels: '100' }, { format: 'heif', mediaType: 'image/avif' }),
       meta('/foo-50.webp', 50, 25, 'webp', { basePixels: '100' }),
-      meta('/foo-50.jpg', 50, 25, 'jpg', { basePixels: '100' })
+      meta('/foo-50.jpg', 50, 25, 'jpeg', { basePixels: '100' })
     ])
 
     expect(output).toStrictEqual({
@@ -233,12 +242,24 @@ describe('srcset format', () => {
     expect(output).toEqual('/foo.jpg 1x, /bar.jpg 2x')
   })
 
-  test('falls back to width descriptors when basePixels is not a positive number', () => {
+  test('falls back to width descriptors when basePixels is zero or negative', () => {
     const output = srcsetFormat()([
       meta('/foo.jpg', 500, 500, undefined, { basePixels: '0' }),
-      meta('/bar.jpg', 500, 500, undefined, { basePixels: 'abc' })
+      meta('/bar.jpg', 500, 500, undefined, { basePixels: '-1' })
     ])
 
     expect(output).toEqual('/foo.jpg 500w, /bar.jpg 500w')
+  })
+
+  test('falls back to width descriptors when basePixels is false', () => {
+    const output = srcsetFormat()([meta('/foo.jpg', 500, 500, undefined, { basePixels: 'false' })])
+
+    expect(output).toEqual('/foo.jpg 500w')
+  })
+
+  test('throws an invalid directive error when basePixels is not numeric', () => {
+    expect(() => srcsetFormat()([meta('/foo.jpg', 500, 500, undefined, { basePixels: 'abc' })])).toThrow(
+      'Invalid basePixels value: "abc", expected a positive number of pixels, or "false" to disable'
+    )
   })
 })

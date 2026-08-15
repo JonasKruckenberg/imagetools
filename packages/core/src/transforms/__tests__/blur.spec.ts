@@ -29,7 +29,15 @@ describe('blur', () => {
 
   describe('arguments', () => {
     test('invalid', () => {
-      const res = blur({ blur: 'invalid arg' }, dirCtx)
+      const throwingFn = () => blur({ blur: 'invalid arg' }, dirCtx)
+
+      expect(throwingFn).toThrow(
+        'Invalid blur value: "invalid arg", expected a number between 0.3 and 1000, "true", "false" or a bare "blur" directive'
+      )
+    })
+
+    test('false', () => {
+      const res = blur({ blur: 'false' }, dirCtx)
 
       expect(res).toBeUndefined()
     })
@@ -56,6 +64,22 @@ describe('blur', () => {
       const res = blur({ blur: '3.5' }, dirCtx)
 
       expect(res).toBeInstanceOf(Function)
+    })
+
+    test('rejects a negative sigma', () => {
+      const throwingFn = () => blur({ blur: '-3' }, dirCtx)
+
+      expect(throwingFn).toThrow(
+        'Invalid blur value: "-3", expected a number between 0.3 and 1000, "true", "false" or a bare "blur" directive'
+      )
+    })
+
+    test('rejects an out-of-range sigma', () => {
+      const throwingFn = () => blur({ blur: '1001' }, dirCtx)
+
+      expect(throwingFn).toThrow(
+        'Invalid blur value: "1001", expected a number between 0.3 and 1000, "true", "false" or a bare "blur" directive'
+      )
     })
   })
 

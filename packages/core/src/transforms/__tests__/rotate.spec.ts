@@ -29,13 +29,19 @@ describe('rotate', () => {
 
   describe('arguments', () => {
     test('invalid', () => {
-      const res = rotate({ rotate: 'invalid' }, dirCtx)
+      const throwingFn = () => rotate({ rotate: 'invalid' }, dirCtx)
 
-      expect(res).toBeUndefined()
+      expect(throwingFn).toThrow('Invalid rotate value: "invalid", expected an angle in degrees, or "false" to disable')
     })
 
     test('empty', () => {
       const res = rotate({ rotate: '' }, dirCtx)
+
+      expect(res).toBeUndefined()
+    })
+
+    test('false disables', () => {
+      const res = rotate({ rotate: 'false' }, dirCtx)
 
       expect(res).toBeUndefined()
     })
@@ -46,10 +52,10 @@ describe('rotate', () => {
       expect(res).toBeInstanceOf(Function)
     })
 
-    it('rounds float to int', () => {
-      const res = rotate({ rotate: '90.75' }, dirCtx)
+    it('rejects a fractional angle instead of truncating it', () => {
+      const throwingFn = () => rotate({ rotate: '90.75' }, dirCtx)
 
-      expect(res).toBeInstanceOf(Function)
+      expect(throwingFn).toThrow('Invalid rotate value: "90.75", expected an angle in degrees, or "false" to disable')
     })
   })
 
