@@ -281,20 +281,10 @@ export function imagetools(userOptions: Partial<VitePluginOptions> = {}): Plugin
 
           const processedImage = generatedImages.get(id)
 
-          // Respond to a miss instead of throwing. The status was already 404
-          // either way — Connect's fallback handler produces one — but a throw
-          // additionally makes Vite treat this as an *internal server error*,
+          // Respond to a miss instead of throwing. The status is 404 regardless,
+          // but a throw makes Vite treat this as an *internal server error*,
           // which in dev raises the error overlay over the whole page. That is a
-          // large consequence for one image failing to resolve, and in a browser
-          // test harness the overlay sits above the page and silently swallows
-          // clicks aimed at it.
-          //
-          // Throwing also loses the reader: the stack unwinds through middleware
-          // Vite registered earlier, so its top frames are unrelated ones such as
-          // hostValidation and cors rather than this plugin.
-          //
-          // The log keeps the diagnosis, and the body says which id was missed
-          // rather than returning a generic HTML error page.
+          // large consequence for one image failing to resolve.
           if (!processedImage) {
             server.config.logger.warn(
               `vite-imagetools cannot find image with requested id "${id}"`
