@@ -281,8 +281,18 @@ export function imagetools(userOptions: Partial<VitePluginOptions> = {}): Plugin
 
           const processedImage = generatedImages.get(id)
 
-          if (!processedImage)
-            throw new Error(`vite-imagetools cannot find image with id "${id}" this is likely an internal error`)
+          // Respond to a miss instead of throwing. The status is 404 regardless,
+          // but a throw makes Vite treat this as an *internal server error*,
+          // which in dev raises the error overlay over the whole page. That is a
+          // large consequence for one image failing to resolve.
+          if (!processedImage) {
+            server.config.logger.error(`vite-imagetools cannot find image with requested id "${id}"`)
+
+            res.statusCode = 404
+            res.setHeader('Content-Type', 'text/plain')
+            res.end(`vite-imagetools has no image with id "${id}"`)
+            return
+          }
 
           const { image } = processedImage
 
