@@ -1207,10 +1207,6 @@ describe('vite-imagetools', () => {
     expect(res.headers.get('content-type')).toBe('image/webp')
     expect((await res.arrayBuffer()).byteLength).toBeGreaterThan(0)
 
-    // A miss is answered, not thrown. The status was 404 either way, so it is the
-    // rest of this that pins the behaviour: the body names the id instead of being
-    // a generic HTML error page, and Vite is never told this was an internal
-    // server error — which is what raises the dev overlay over the whole page.
     const missing = await fetch(`http://localhost:${port}/@imagetools/does-not-exist`)
     expect(missing.status).toBe(404)
     expect(await missing.text()).toContain('does-not-exist')
