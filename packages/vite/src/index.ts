@@ -286,7 +286,7 @@ export function imagetools(userOptions: Partial<VitePluginOptions> = {}): Plugin
           // which in dev raises the error overlay over the whole page. That is a
           // large consequence for one image failing to resolve.
           if (!processedImage) {
-            server.config.logger.warn(`vite-imagetools cannot find image with requested id "${id}"`)
+            server.config.logger.error(`vite-imagetools cannot find image with requested id "${id}"`)
 
             res.statusCode = 404
             res.setHeader('Content-Type', 'text/plain')
