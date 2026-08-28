@@ -1181,9 +1181,14 @@ describe('vite-imagetools', () => {
   })
 
   test('dev server serves transformed images through the middleware', async () => {
+    const logger = createLogger('silent')
+    const loggedErrors: string[] = []
+    logger.error = (msg) => loggedErrors.push(msg)
+
     const vite = await createServer({
       root: join(__dirname, '__fixtures__'),
       logLevel: 'silent',
+      customLogger: logger,
       server: { middlewareMode: true },
       plugins: [imagetools({ cache: { enabled: false } })]
     })
@@ -1202,8 +1207,15 @@ describe('vite-imagetools', () => {
     expect(res.headers.get('content-type')).toBe('image/webp')
     expect((await res.arrayBuffer()).byteLength).toBeGreaterThan(0)
 
+    // A miss is answered, not thrown. The status was 404 either way, so it is the
+    // rest of this that pins the behaviour: the body names the id instead of being
+    // a generic HTML error page, and Vite is never told this was an internal
+    // server error — which is what raises the dev overlay over the whole page.
     const missing = await fetch(`http://localhost:${port}/@imagetools/does-not-exist`)
     expect(missing.status).toBe(404)
+    expect(await missing.text()).toContain('does-not-exist')
+    expect(loggedErrors.join('\n')).toContain('cannot find image with id "does-not-exist"')
+    expect(loggedErrors.join('\n')).not.toContain('Internal server error')
 
     await new Promise<void>((resolve) => http.close(resolve))
     await vite.close()
