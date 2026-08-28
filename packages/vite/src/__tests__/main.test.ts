@@ -1210,7 +1210,7 @@ describe('vite-imagetools', () => {
     const missing = await fetch(`http://localhost:${port}/@imagetools/does-not-exist`)
     expect(missing.status).toBe(404)
     expect(await missing.text()).toContain('does-not-exist')
-    expect(loggedErrors.join('\n')).toContain('cannot find image with id "does-not-exist"')
+    expect(loggedErrors.join('\n')).toContain('vite-imagetools cannot find image with id "does-not-exist"')
     expect(loggedErrors.join('\n')).not.toContain('Internal server error')
 
     await new Promise<void>((resolve) => http.close(resolve))
