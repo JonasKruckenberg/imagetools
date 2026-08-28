@@ -1,5 +1,11 @@
 # Change Log
 
+## 12.0.1
+
+### Patch Changes
+
+- 937fd37: fix: log an unknown image ID instead of throwing
+
 ## 12.0.0
 
 ### Major Changes
