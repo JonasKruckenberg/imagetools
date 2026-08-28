@@ -297,7 +297,7 @@ export function imagetools(userOptions: Partial<VitePluginOptions> = {}): Plugin
           // rather than returning a generic HTML error page.
           if (!processedImage) {
             server.config.logger.error(
-              `vite-imagetools cannot find image with id "${id}" this is likely an internal error`
+              `vite-imagetools cannot find image with requested id "${id}"`
             )
 
             res.statusCode = 404
