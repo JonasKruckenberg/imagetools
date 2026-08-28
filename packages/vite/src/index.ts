@@ -296,7 +296,7 @@ export function imagetools(userOptions: Partial<VitePluginOptions> = {}): Plugin
           // The log keeps the diagnosis, and the body says which id was missed
           // rather than returning a generic HTML error page.
           if (!processedImage) {
-            server.config.logger.error(
+            server.config.logger.warn(
               `vite-imagetools cannot find image with requested id "${id}"`
             )
 
