@@ -1217,6 +1217,46 @@ describe('vite-imagetools', () => {
     await vite.close()
   })
 
+  test('dev server serves identical bytes on a cache miss and a cache hit', async () => {
+    const dir = './node_modules/.cache/imagetools_test_serve_idempotency'
+    await rm(dir, { recursive: true, force: true })
+
+    const serveOnce = async (importPath: string) => {
+      const vite = await createServer({
+        root: join(__dirname, '__fixtures__'),
+        logLevel: 'silent',
+        customLogger: createLogger('silent'),
+        server: { middlewareMode: true },
+        plugins: [imagetools({ cache: { dir } })]
+      })
+      const http = createHttpServer((req, res) => vite.middlewares(req, res))
+      await new Promise<void>((resolve) => http.listen(0, resolve))
+      const port = (http.address() as AddressInfo).port
+
+      const module = await vite.transformRequest(importPath)
+      const src = module?.code?.match(/\/@imagetools\/[a-f0-9]+/)?.[0]
+      expect(src).toBeTruthy()
+
+      const res = await fetch(`http://localhost:${port}${src}`)
+      const bytes = Buffer.from(await res.arrayBuffer())
+
+      await new Promise<void>((resolve) => http.close(resolve))
+      await vite.close()
+      return bytes
+    }
+
+    const cold = await serveOnce('/pexels-allec-gomes-5195763.png?w=300&format=avif')
+
+    // the cold render wrote the transformed bytes to the cache
+    const cachedFile = (await readdir(dir))[0]
+    const cachedBytes = await readFile(join(dir, cachedFile))
+
+    const warm = await serveOnce('/pexels-allec-gomes-5195763.png?w=300&format=avif')
+
+    expect(cold.equals(cachedBytes)).toBe(true)
+    expect(warm.equals(cold)).toBe(true)
+  })
+
   describe('utils', () => {
     test('createBasePath', () => {
       expect(createBasePath('')).toBe('/@imagetools/')
