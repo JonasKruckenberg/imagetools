@@ -65,4 +65,30 @@ describe('tint', () => {
       expect(await image.toBuffer()).toMatchImageSnapshot()
     })
   })
+
+  describe('color formats', () => {
+    const sample = () =>
+      sharp({ create: { width: 8, height: 8, channels: 3, background: { r: 120, g: 120, b: 120 } } })
+
+    test('bare hex still gets a leading hash', async () => {
+      const { image, metadata } = await applyTransforms([tint({ tint: 'ffaa22' }, dirCtx)!], sample())
+
+      expect(metadata.transforms.tint).toEqual('#ffaa22')
+      expect(await image.toBuffer()).toBeInstanceOf(Buffer)
+    })
+
+    test('hex color with leading hash', async () => {
+      const { image, metadata } = await applyTransforms([tint({ tint: '#ffaa22' }, dirCtx)!], sample())
+
+      expect(metadata.transforms.tint).toEqual('#ffaa22')
+      expect(await image.toBuffer()).toBeInstanceOf(Buffer)
+    })
+
+    test('rgba color', async () => {
+      const { image, metadata } = await applyTransforms([tint({ tint: 'rgba(10,33,127)' }, dirCtx)!], sample())
+
+      expect(metadata.transforms.tint).toEqual('rgba(10,33,127)')
+      expect(await image.toBuffer()).toBeInstanceOf(Buffer)
+    })
+  })
 })
