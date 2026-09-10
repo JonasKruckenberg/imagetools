@@ -67,8 +67,7 @@ describe('tint', () => {
   })
 
   describe('color formats', () => {
-    const sample = () =>
-      sharp({ create: { width: 8, height: 8, channels: 3, background: { r: 120, g: 120, b: 120 } } })
+    const sample = () => sharp({ create: { width: 8, height: 8, channels: 3, background: { r: 120, g: 120, b: 120 } } })
 
     test('bare hex still gets a leading hash', async () => {
       const { image, metadata } = await applyTransforms([tint({ tint: 'ffaa22' }, dirCtx)!], sample())
