@@ -81,6 +81,9 @@ interface OutputMetadata {
 }
 ```
 
+This object is exported as the `OutputMetadata` type (alias `FlatMetadata`) from `imagetools-core`, so you can use it
+in your own type declarations.
+
 > NOTE: `vite-imagetools` respects the `json.namedExports` vite configuration option, so when namedExports are disabled,
 > you are unable to use destructured imports!
 
