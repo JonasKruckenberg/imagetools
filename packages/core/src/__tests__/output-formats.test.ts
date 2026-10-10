@@ -1,4 +1,13 @@
-import { urlFormat, metadataFormat, imgFormat, pictureFormat, srcsetFormat } from '../output-formats'
+import {
+  urlFormat,
+  metadataFormat,
+  imgFormat,
+  pictureFormat,
+  srcsetFormat,
+  flattenMetadata,
+  type FlatMetadata,
+  type OutputMetadata
+} from '../output-formats'
 import type { Metadata, ProcessedImage, AppliedTransforms } from '../types'
 import { describe, test, expect } from 'vitest'
 
@@ -97,6 +106,33 @@ describe('metadata format', () => {
       { width: 100, src: '/foo.jpg' },
       { width: 200, src: '/bar.jpg' }
     ])
+  })
+})
+
+describe('flattenMetadata', () => {
+  test('produces the flat metadata emitted by the metadata format', () => {
+    const output: FlatMetadata = flattenMetadata(meta('/foo.jpg', 100, 50, 'jpg'))
+
+    const expected: OutputMetadata = {
+      src: '/foo.jpg',
+      width: 100,
+      height: 50,
+      format: 'jpg'
+    }
+    expect(output).toMatchObject(expected)
+  })
+
+  test('prefers the applied format over the sharp metadata format', () => {
+    const output = flattenMetadata(meta('/foo.webp', 100, 50, 'jpg', {}, {}, { format: 'webp' }))
+
+    expect(output.format).toBe('webp')
+  })
+
+  test('is re-exported from the package entry', async () => {
+    const index = await import('../index')
+
+    expect(index.flattenMetadata).toBe(flattenMetadata)
+    expect(typeof index.flattenMetadata).toBe('function')
   })
 })
 
