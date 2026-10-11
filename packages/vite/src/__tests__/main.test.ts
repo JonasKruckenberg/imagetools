@@ -470,6 +470,54 @@ describe('vite-imagetools', () => {
       })
     })
 
+    describe('cache.enabled', () => {
+      test('does not write cache files when disabled', async () => {
+        const dir = './node_modules/.cache/imagetools_test_cache_disabled'
+        await rm(dir, { recursive: true, force: true })
+        await build({
+          root: join(__dirname, '__fixtures__'),
+          logLevel: 'warn',
+          build: { write: false },
+          plugins: [
+            testEntry(`
+                            import Image from "./pexels-allec-gomes-5195763.png?w=300"
+                            export default Image
+                        `),
+            imagetools({ cache: { dir, enabled: false } })
+          ]
+        })
+
+        expect(existsSync(dir) ? await readdir(dir) : []).toHaveLength(0)
+      })
+
+      test('writes a cache file when enabled, and a different file after changing import params', async () => {
+        const dir = './node_modules/.cache/imagetools_test_cache_enabled'
+        await rm(dir, { recursive: true, force: true })
+        const root = join(__dirname, '__fixtures__')
+        const config: (width: number) => InlineConfig = (width) => ({
+          root,
+          logLevel: 'warn',
+          build: { write: false },
+          plugins: [
+            testEntry(`
+                            import Image from "./pexels-allec-gomes-5195763.png?w=${width}"
+                            export default Image
+                        `),
+            imagetools({ cache: { dir, enabled: true } })
+          ]
+        })
+
+        await build(config(300))
+        const image_300 = (await readdir(dir))[0]
+        expect(image_300).toBeTypeOf('string')
+
+        await build(config(200))
+        const image_200 = (await readdir(dir)).find((name) => name !== image_300)
+        expect(image_200).toBeTypeOf('string')
+        expect(image_200).not.toBe(image_300)
+      })
+    })
+
     describe('cache.retention', () => {
       test('is used to clear cache with retention of 86400', async () => {
         const dir = './node_modules/.cache/imagetools_test_cache_retention'
