@@ -41,7 +41,17 @@ const defaultOptions: VitePluginOptions = {
 
 export * from 'imagetools-core'
 
-const transformPromises = new Map<string, Promise<ProcessedImage>>()
+/** The result of transforming one image: the same for every build that loads it, so it can be shared. */
+interface TransformResult {
+  image: Sharp
+  metadata: ImageMetadata
+  raw: Metadata
+  cachedBuffer: Buffer | undefined
+}
+
+// Shared by every build in the process. Only the transform is shared; anything tied to a build, like
+// the asset it emits, must be created by that build (see `emitTransform`).
+const transformPromises = new Map<string, Promise<TransformResult>>()
 
 export function imagetools(userOptions: Partial<VitePluginOptions> = {}): Plugin {
   const pluginOptions: VitePluginOptions = { ...defaultOptions, ...userOptions }
@@ -140,7 +150,7 @@ export function imagetools(userOptions: Partial<VitePluginOptions> = {}): Plugin
         // hash the source bytes to avoid going through Sharp which would result in an image decode
         const imageHash = hash([await readFile(pathname)])
 
-        const executeTransform = async (id: string, imageConfig: ImageConfig) => {
+        const executeTransform = async (id: string, imageConfig: ImageConfig): Promise<TransformResult> => {
           let image: Sharp | undefined
           let metadata: ImageMetadata
           let raw: Metadata
@@ -196,6 +206,12 @@ export function imagetools(userOptions: Partial<VitePluginOptions> = {}): Plugin
             }
           }
 
+          return { image, metadata, raw, cachedBuffer }
+        }
+
+        /** turns a transform into this build's output: the asset it emits, or the URL it serves in dev */
+        const emitTransform = async (id: string, imageConfig: ImageConfig) => {
+          const { image, metadata, raw, cachedBuffer } = await synchronizedTransform(id, imageConfig)
           const processedMetadata: ProcessedImage = {
             src: '',
             image,
@@ -225,12 +241,12 @@ export function imagetools(userOptions: Partial<VitePluginOptions> = {}): Plugin
           return processedMetadata
         }
 
-        /** allows only one transform to be run for a given id */
+        /** allows only one transform to be run for a given id, whichever build asks for it */
         async function synchronizedTransform(id: string, imageConfig: ImageConfig) {
           let transformPromise = transformPromises.get(id)
           if (transformPromise) return transformPromise
 
-          let resolve!: (v: ProcessedImage) => void
+          let resolve!: (v: TransformResult) => void
           let reject!: (e: unknown) => void
 
           transformPromise = new Promise((res, rej) => {
@@ -252,7 +268,7 @@ export function imagetools(userOptions: Partial<VitePluginOptions> = {}): Plugin
         const outputs = await Promise.all(
           imageConfigs.map((config) => {
             const id = generateImageID(config, imageHash)
-            return synchronizedTransform(id, config)
+            return emitTransform(id, config)
           })
         )
 

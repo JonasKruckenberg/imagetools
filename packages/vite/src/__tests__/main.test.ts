@@ -1,4 +1,4 @@
-import { type InlineConfig, build, createLogger, createServer } from 'vite'
+import { type InlineConfig, type Plugin, build, createLogger, createServer } from 'vite'
 import { imagetools } from '../index'
 import { join } from 'path'
 import { getFiles, testEntry } from './util'
@@ -1215,6 +1215,61 @@ describe('vite-imagetools', () => {
 
     await new Promise<void>((resolve) => http.close(resolve))
     await vite.close()
+  })
+
+  describe('concurrent builds', () => {
+    // Two builds in one process (e.g. client and SSR) that load the same image at the same time must each
+    // emit the asset themselves. A transform promise shared between them hands one build the file handle
+    // that the other build emitted, and rendering the asset URL then fails with "unknown file".
+    test('each build emits its own asset for the same image', async () => {
+      const image = 'pexels-allec-gomes-5195763.png'
+      let loading = 0
+      let release!: () => void
+      const bothLoading = new Promise<void>((resolve) => (release = resolve))
+      // Holds each build until both are loading the image, so that their transforms overlap.
+      const barrier: Plugin = {
+        name: 'test-barrier',
+        enforce: 'pre',
+        async load(id) {
+          if (!id.includes(image)) return null
+          if (++loading === 2) release()
+          await bothLoading
+          return null
+        }
+      }
+      const run = () =>
+        build({
+          root: join(__dirname, '__fixtures__'),
+          logLevel: 'warn',
+          build: { write: false },
+          plugins: [
+            testEntry(`
+                            import Image from "./${image}?w=300&format=webp"
+                            window.__IMAGE__ = Image
+                        `),
+            barrier,
+            imagetools({
+              cache: { enabled: false },
+              extendTransforms: (builtins) => [
+                ...builtins,
+                () => async (_state, img) => {
+                  await new Promise((resolve) => setTimeout(resolve, 50))
+                  return img
+                }
+              ]
+            })
+          ]
+        }) as Promise<RollupOutput>
+
+      const outputs = await Promise.all([run(), run()])
+
+      for (const output of outputs) {
+        const [asset] = getFiles(output, '**.webp') as OutputAsset[]
+        expect(asset).toBeDefined()
+        const chunk = output.output.find((entry) => entry.type === 'chunk' && entry.isEntry) as OutputChunk
+        expect(chunk.code).toContain(asset.fileName)
+      }
+    })
   })
 
   describe('utils', () => {
