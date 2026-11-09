@@ -388,9 +388,7 @@ import Images from 'example.jpg?aspect=16:9&h=200;400;700'
 
 • **Keyword**: `allowUpscale`<br> • **Type**: _boolean_<br>
 
-Allows the image to be made larger than the original. By default, if the specified or calculated width or height is
-greater than the original width or height, the image keeps its original width, height and aspect ratio instead. Must be
-passed with a [width](#width), [height](#height) or [aspect](#aspect) directive.
+Allows the image to be made larger than the original. Must be passed with a [width](#width), [height](#height) or [aspect](#aspect) directive.
 
 > NOTE: This replaces the `withoutEnlargement` and `withoutReduction` directives, which were removed in
 > `imagetools-core` 4.0. Not enlarging is now the default, and `withoutReduction` has no replacement.
