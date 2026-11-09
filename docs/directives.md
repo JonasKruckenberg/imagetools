@@ -25,8 +25,7 @@
   - [Width](#width)
   - [Height](#height)
   - [Aspect](#aspect)
-  - [Without Enlargement](#without-enlargement)
-  - [Without Reduction](#without-reduction)
+  - [Allow Upscale](#allow-upscale)
   - [Rotate](#rotate)
   - [Tint](#tint)
   - [Metadata](#metadata)
@@ -385,34 +384,21 @@ import Images from 'example.jpg?aspect=16:9&h=200;400;700'
 
 ---
 
-### Without Enlargement
+### Allow Upscale
 
-• **Keyword**: `withoutEnlargement`<br> • **Type**: _boolean_<br>
+• **Keyword**: `allowUpscale`<br> • **Type**: _boolean_<br>
 
-Prevents the image from being resized if the specified or calculated width or height are greater than the original width or height. Must be passed with a [width](#width), [height](#height) or [aspect](#aspect) directive.
+Allows the image to be made larger than the original. Must be passed with a [width](#width), [height](#height) or [aspect](#aspect) directive.
 
-• **Example**:
-
-```js
-import Image from 'example.jpg?w=200;400&withoutEnlargement'
-import Image from 'example.jpg?aspect=16:9&withoutEnlargement'
-import Images from 'example.jpg?aspect=16:9&h=200;400;700&withoutEnlargement'
-```
-
----
-
-### Without Reduction
-
-• **Keyword**: `withoutReduction`<br> • **Type**: _boolean_<br>
-
-Prevents the image from being resized if the specified or calculated width or height are less than the original width or height. Must be passed with a [width](#width), [height](#height) or [aspect](#aspect) directive.
+> NOTE: This replaces the `withoutEnlargement` and `withoutReduction` directives, which were removed in
+> `imagetools-core` 4.0. Not enlarging is now the default, and `withoutReduction` has no replacement.
 
 • **Example**:
 
 ```js
-import Image from 'example.jpg?height=300;600;900&withoutReduction'
-import Image from 'example.jpg?aspect=9:16&withoutReduction'
-import Images from 'example.jpg?aspect=16:9&h=200;400;700&withoutEnlargement&withoutReduction'
+import Image from 'example.jpg?w=2000&allowUpscale'
+import Images from 'example.jpg?w=200;400;2000&allowUpscale'
+import Image from 'example.jpg?aspect=16:9&h=2000&allowUpscale'
 ```
 
 ---
