@@ -1,5 +1,12 @@
 # Change Log
 
+## 12.0.2
+
+### Patch Changes
+
+- c351ccd: fix: serve cached bytes verbatim in dev so a cache hit is byte-identical to the original render instead of
+  re-encoding lossy images
+
 ## 12.0.1
 
 ### Patch Changes
