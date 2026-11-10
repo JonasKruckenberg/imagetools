@@ -1207,6 +1207,13 @@ describe('vite-imagetools', () => {
     expect(res.headers.get('content-type')).toBe('image/webp')
     expect((await res.arrayBuffer()).byteLength).toBeGreaterThan(0)
 
+    // `jpg` is a valid format directive but not a registered media type
+    const jpgModule = await vite.transformRequest('/pexels-allec-gomes-5195763.png?w=300&format=jpg')
+    const jpgSrc = jpgModule?.code?.match(/\/@imagetools\/[a-f0-9]+/)?.[0]
+    const jpgRes = await fetch(`http://localhost:${port}${jpgSrc}`)
+    expect(jpgRes.headers.get('content-type')).toBe('image/jpeg')
+    await jpgRes.arrayBuffer()
+
     const missing = await fetch(`http://localhost:${port}/@imagetools/does-not-exist`)
     expect(missing.status).toBe(404)
     expect(await missing.text()).toContain('does-not-exist')

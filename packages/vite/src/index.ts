@@ -20,7 +20,7 @@ import {
 } from 'imagetools-core'
 import { createFilter, dataToEsm } from '@rollup/pluginutils'
 import sharp, { type Metadata, type Sharp } from 'sharp'
-import { createBasePath, generateImageID, hash, writeFileAtomic } from './utils.js'
+import { createBasePath, generateImageID, hash, mimeType, writeFileAtomic } from './utils.js'
 import type { VitePluginOptions } from './types.js'
 
 export type {
@@ -208,7 +208,7 @@ export function imagetools(userOptions: Partial<VitePluginOptions> = {}): Plugin
 
           if (directives.has('inline')) {
             const inlineBuffer = cachedBuffer || (await image.toBuffer())
-            processedMetadata.src = `data:image/${processedMetadata.transforms.format};base64,${inlineBuffer.toString('base64')}`
+            processedMetadata.src = `data:${mimeType(processedMetadata.transforms.format) ?? ''};base64,${inlineBuffer.toString('base64')}`
           } else if (viteConfig.command === 'serve') {
             processedMetadata.src = (viteConfig?.server?.origin ?? '') + basePath + id
           } else {
@@ -300,7 +300,8 @@ export function imagetools(userOptions: Partial<VitePluginOptions> = {}): Plugin
             image.withMetadata()
           }
 
-          res.setHeader('Content-Type', `image/${processedImage.transforms.format}`)
+          const type = mimeType(processedImage.transforms.format)
+          if (type) res.setHeader('Content-Type', type)
           return image.clone().pipe(res)
         }
 
