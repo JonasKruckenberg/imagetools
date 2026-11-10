@@ -144,14 +144,14 @@ export function imagetools(userOptions: Partial<VitePluginOptions> = {}): Plugin
           let image: Sharp | undefined
           let metadata: ImageMetadata
           let raw: Metadata
-          let cachedBuffer: Buffer | undefined
+          let outputBuffer: Buffer
 
           if (
             cacheOptions.enabled &&
             (statSync(`${cacheOptions.dir}/${id}`, { throwIfNoEntry: false })?.size ?? 0) > 0
           ) {
-            cachedBuffer = await readFile(`${cacheOptions.dir}/${id}`)
-            image = sharp(cachedBuffer)
+            outputBuffer = await readFile(`${cacheOptions.dir}/${id}`)
+            image = sharp(outputBuffer)
             raw = await image.metadata()
             // On a cache hit the transforms are not re-run, so the applied-transform values
             // (`flip`, `quality`, `rotate`, ...) cannot be reconstructed from the encoded file.
@@ -185,14 +185,14 @@ export function imagetools(userOptions: Partial<VitePluginOptions> = {}): Plugin
             // and the pixel density descriptors derived from it match the dimensions the cache-hit path
             // reads back from the cached file.
             const { data, info } = await image.toBuffer({ resolveWithObject: true })
-            cachedBuffer = data
+            outputBuffer = data
             metadata.info.width = info.width
             metadata.info.height = info.height
             // Read the metadata from the encoded output so a cache miss reports the
             // same `sharpMetadata` as the cache-hit path reads back from the file.
-            raw = await sharp(cachedBuffer).metadata()
+            raw = await sharp(outputBuffer).metadata()
             if (cacheOptions.enabled) {
-              await writeFileAtomic(`${cacheOptions.dir}/${id}`, cachedBuffer)
+              await writeFileAtomic(`${cacheOptions.dir}/${id}`, outputBuffer)
             }
           }
 
@@ -204,7 +204,6 @@ export function imagetools(userOptions: Partial<VitePluginOptions> = {}): Plugin
             transforms: metadata.transforms,
             sharpMetadata: raw
           }
-          const outputBuffer = cachedBuffer || (await image.toBuffer())
           generatedImages.set(id, { format: processedMetadata.transforms.format, buffer: outputBuffer })
 
           if (directives.has('inline')) {
