@@ -25,6 +25,11 @@ export const createBasePath = (base?: string) => {
   return (base?.replace(/\/$/, '') || '') + '/@imagetools/'
 }
 
+/** The media type for a format directive value: `jpg` is a valid format but only `image/jpeg` is registered */
+export const mimeType = (format?: string) => {
+  return format && `image/${format.replace('jpg', 'jpeg')}`
+}
+
 export function generateImageID(config: ImageConfig, imageHash: string) {
   return hash([JSON.stringify(config), imageHash])
 }
