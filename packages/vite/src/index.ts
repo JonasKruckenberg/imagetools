@@ -64,7 +64,7 @@ export function imagetools(userOptions: Partial<VitePluginOptions> = {}): Plugin
   let viteConfig: ResolvedConfig
   let basePath: string
 
-  const generatedImages = new Map<string, ProcessedImage>()
+  const generatedImages = new Map<string, { format: string | undefined; buffer: Buffer }>()
 
   return {
     name: 'imagetools',
@@ -144,14 +144,14 @@ export function imagetools(userOptions: Partial<VitePluginOptions> = {}): Plugin
           let image: Sharp | undefined
           let metadata: ImageMetadata
           let raw: Metadata
-          let cachedBuffer: Buffer | undefined
+          let outputBuffer: Buffer
 
           if (
             cacheOptions.enabled &&
             (statSync(`${cacheOptions.dir}/${id}`, { throwIfNoEntry: false })?.size ?? 0) > 0
           ) {
-            cachedBuffer = await readFile(`${cacheOptions.dir}/${id}`)
-            image = sharp(cachedBuffer)
+            outputBuffer = await readFile(`${cacheOptions.dir}/${id}`)
+            image = sharp(outputBuffer)
             raw = await image.metadata()
             // On a cache hit the transforms are not re-run, so the applied-transform values
             // (`flip`, `quality`, `rotate`, ...) cannot be reconstructed from the encoded file.
@@ -185,14 +185,14 @@ export function imagetools(userOptions: Partial<VitePluginOptions> = {}): Plugin
             // and the pixel density descriptors derived from it match the dimensions the cache-hit path
             // reads back from the cached file.
             const { data, info } = await image.toBuffer({ resolveWithObject: true })
-            cachedBuffer = data
+            outputBuffer = data
             metadata.info.width = info.width
             metadata.info.height = info.height
             // Read the metadata from the encoded output so a cache miss reports the
             // same `sharpMetadata` as the cache-hit path reads back from the file.
-            raw = await sharp(cachedBuffer).metadata()
+            raw = await sharp(outputBuffer).metadata()
             if (cacheOptions.enabled) {
-              await writeFileAtomic(`${cacheOptions.dir}/${id}`, cachedBuffer)
+              await writeFileAtomic(`${cacheOptions.dir}/${id}`, outputBuffer)
             }
           }
 
@@ -204,17 +204,16 @@ export function imagetools(userOptions: Partial<VitePluginOptions> = {}): Plugin
             transforms: metadata.transforms,
             sharpMetadata: raw
           }
-          generatedImages.set(id, processedMetadata)
+          generatedImages.set(id, { format: processedMetadata.transforms.format, buffer: outputBuffer })
 
           if (directives.has('inline')) {
-            const inlineBuffer = cachedBuffer || (await image.toBuffer())
-            processedMetadata.src = `data:image/${processedMetadata.transforms.format};base64,${inlineBuffer.toString('base64')}`
+            processedMetadata.src = `data:image/${processedMetadata.transforms.format};base64,${outputBuffer.toString('base64')}`
           } else if (viteConfig.command === 'serve') {
             processedMetadata.src = (viteConfig?.server?.origin ?? '') + basePath + id
           } else {
             const fileHandle = this.emitFile({
               name: basename(pathname, extname(pathname)) + `.${processedMetadata.transforms.format}`,
-              source: cachedBuffer || (await image.toBuffer()),
+              source: outputBuffer,
               type: 'asset',
               originalFileName: normalizePath(relative(viteConfig.root, srcURL.pathname))
             })
@@ -279,13 +278,13 @@ export function imagetools(userOptions: Partial<VitePluginOptions> = {}): Plugin
         if (req.url?.startsWith(basePath)) {
           const [, id] = req.url.split(basePath)
 
-          const processedImage = generatedImages.get(id)
+          const generated = generatedImages.get(id)
 
           // Respond to a miss instead of throwing. The status is 404 regardless,
           // but a throw makes Vite treat this as an *internal server error*,
           // which in dev raises the error overlay over the whole page. That is a
           // large consequence for one image failing to resolve.
-          if (!processedImage) {
+          if (!generated) {
             server.config.logger.error(`vite-imagetools cannot find image with requested id "${id}"`)
 
             res.statusCode = 404
@@ -294,14 +293,10 @@ export function imagetools(userOptions: Partial<VitePluginOptions> = {}): Plugin
             return
           }
 
-          const { image } = processedImage
+          const { format, buffer } = generated
 
-          if (pluginOptions.removeMetadata === false) {
-            image.withMetadata()
-          }
-
-          res.setHeader('Content-Type', `image/${processedImage.transforms.format}`)
-          return image.clone().pipe(res)
+          res.setHeader('Content-Type', `image/${format}`)
+          return res.end(buffer)
         }
 
         next()
