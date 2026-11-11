@@ -23,12 +23,20 @@ export const srcsetFormat: OutputFormat = () => metadatasToSourceset
  * included, since they cannot be reconstructed from a cached file, keeping the
  * output identical between cache hits and misses.
  */
-type FlatMetadata = Omit<Metadata, 'format'> & {
+export type FlatMetadata = Omit<Metadata, 'format'> & {
   format: string
   src: string
 }
 
-function flatten(metadata: ProcessedImage): FlatMetadata {
+/**
+ * The object emitted by the `as=metadata` (`as=meta`) output format. Alias of {@link FlatMetadata}.
+ */
+export type OutputMetadata = FlatMetadata
+
+/**
+ * Flattens a processed image into its {@link FlatMetadata}, as emitted by the `metadata` output format.
+ */
+export function flattenMetadata(metadata: ProcessedImage): FlatMetadata {
   return {
     ...metadata.sharpMetadata,
     width: metadata.info.width,
@@ -42,7 +50,9 @@ function flatten(metadata: ProcessedImage): FlatMetadata {
  * Emits the flat metadata of the image, or only the `whitelist` keys of it.
  */
 export const metadataFormat: OutputFormat = (whitelist) => (metadatas) => {
-  const result = whitelist ? metadatas.map((metadata) => pick(flatten(metadata), whitelist)) : metadatas.map(flatten)
+  const result = whitelist
+    ? metadatas.map((metadata) => pick(flattenMetadata(metadata), whitelist))
+    : metadatas.map(flattenMetadata)
 
   return result.length === 1 ? result[0] : result
 }
