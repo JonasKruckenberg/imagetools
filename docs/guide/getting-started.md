@@ -15,6 +15,10 @@ Now you can transform image by importing them like this:
 import Image from 'example.jpg?w=400&h=300&format=webp'
 ```
 
+Only imports whose query names a directive or selects an output format are transformed. Imports carrying nothing but
+vite's own asset queries, such as `example.jpg?url` or `example.jpg?inline`, are left to vite and give you the source
+image.
+
 ## Basic usage
 
 Transforms are designed to be interoperable, so you start with a buildtool plugin and switch to a serverless function
