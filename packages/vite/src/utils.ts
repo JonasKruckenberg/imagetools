@@ -25,8 +25,8 @@ export const createBasePath = (base?: string) => {
   return (base?.replace(/\/$/, '') || '') + '/@imagetools/'
 }
 
-export function generateImageID(config: ImageConfig, imageHash: string) {
-  return hash([JSON.stringify(config), imageHash])
+export function generateImageID(config: ImageConfig, imageHash: string, removeMetadata = true) {
+  return hash([JSON.stringify(config), imageHash, String(removeMetadata)])
 }
 
 export function hash(keyParts: Array<string | NodeJS.ArrayBufferView>) {
