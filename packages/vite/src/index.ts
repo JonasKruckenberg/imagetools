@@ -250,7 +250,7 @@ export function imagetools(userOptions: Partial<VitePluginOptions> = {}): Plugin
 
         const outputs = await Promise.all(
           imageConfigs.map((config) => {
-            const id = generateImageID(config, imageHash)
+            const id = generateImageID(config, imageHash, pluginOptions.removeMetadata)
             return synchronizedTransform(id, config)
           })
         )

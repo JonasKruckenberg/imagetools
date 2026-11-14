@@ -590,6 +590,37 @@ describe('vite-imagetools', () => {
       expect(await readdir(dir)).toEqual([expectedId, generateImageID({ w: '200' }, imageHash)])
     })
 
+    test('changing removeMetadata creates separate cache entries', async () => {
+      const dir = './node_modules/.cache/imagetools_test_cache_remove_metadata'
+      await rm(dir, { recursive: true, force: true })
+
+      const buildWithRemoveMetadata = async (removeMetadata: boolean) => {
+        const res = await build({
+          root: join(__dirname, '__fixtures__'),
+          logLevel: 'warn',
+          build: { write: false },
+          plugins: [
+            testEntry(`
+                import Image from "./Landscape_5.jpg?w=300&format=jpeg"
+                export default Image
+            `),
+            imagetools({ removeMetadata, cache: { enabled: true, dir } })
+          ]
+        })
+        const output = (Array.isArray(res) ? res[0] : res) as RollupOutput
+        const asset = output.output.find((o) => o.type === 'asset' && o.fileName.endsWith('.jpeg')) as OutputAsset
+        return sharp(asset.source).metadata()
+      }
+
+      const metaKept = await buildWithRemoveMetadata(false)
+      expect(metaKept.exif).toBeDefined()
+
+      const metaRemoved = await buildWithRemoveMetadata(true)
+      expect(metaRemoved.exif).toBeUndefined()
+
+      expect(await readdir(dir)).toHaveLength(2)
+    })
+
     describe('cache.avifFormat', () => {
       test('is avif format', async () => {
         const dir = './node_modules/.cache/imagetools_test_cache_dir'
