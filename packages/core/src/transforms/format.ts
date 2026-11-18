@@ -4,12 +4,13 @@ import { getQuality } from './quality.js'
 import { getProgressive } from './progressive.js'
 import { getLossless } from './lossless.js'
 import type { FormatEnum } from 'sharp'
+import { useParams } from '../lib/use-params.js'
 
 export interface FormatOptions {
   format: keyof FormatEnum
 }
 
-export const format: TransformFactory<FormatOptions> = (config) => {
+export const format: TransformFactory<FormatOptions> = (config, ctx) => {
   let format: keyof FormatEnum
 
   if (!config.format) {
@@ -17,6 +18,8 @@ export const format: TransformFactory<FormatOptions> = (config) => {
   } else {
     format = config.format
   }
+
+  useParams(config, ctx, ['format', 'quality', 'effort', 'lossless', 'progressive'])
 
   return function formatTransform(state, image) {
     state.transforms.format = format

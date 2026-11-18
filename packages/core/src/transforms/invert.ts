@@ -4,8 +4,10 @@ export interface InvertOptions {
   invert: '' | 'true'
 }
 
-export const invert: TransformFactory<InvertOptions> = ({ invert }) => {
+export const invert: TransformFactory<InvertOptions> = ({ invert }, ctx) => {
   if (invert !== '' && invert !== 'true') return
+
+  ctx.useParam('invert')
 
   return function invertTransform(state, image) {
     state.transforms.invert = true

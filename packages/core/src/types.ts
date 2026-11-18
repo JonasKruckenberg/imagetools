@@ -88,6 +88,11 @@ export interface Logger {
 }
 
 export interface TransformFactoryContext {
+  /**
+   * Reports a directive the factory acts on: one read by the transform it
+   * returns, or an opt-out that makes it return none. Reported directives are
+   * collected into the `parametersUsed` returned by `generateTransforms`.
+   */
   useParam: (parameter: string) => void
   manualSearchParams: URLSearchParams
   logger: Logger
