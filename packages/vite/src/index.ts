@@ -104,9 +104,6 @@ export function imagetools(userOptions: Partial<VitePluginOptions> = {}): Plugin
           ...Object.fromEntries(srcURL.searchParams)
         })
 
-        if (!directives.toString()) return null
-
-        const img = lazyLoadImage()
         const widthParam = directives.get('w')
         const heightParam = directives.get('h')
         if (directives.get('allowUpscale') !== 'true' && (widthParam || heightParam)) {
@@ -136,6 +133,21 @@ export function imagetools(userOptions: Partial<VitePluginOptions> = {}): Plugin
           warn: (msg) => this.warn(msg),
           error: (msg) => this.error(msg)
         }
+
+        // Vite's own asset queries (`?url`, `?raw&no-inline`, ...) are handed to the plugin as directives
+        // too, so a non-empty query is not on its own a reason to transform the image. The image is left to
+        // Vite unless the query selects an output format with `as`, or names a directive one of the
+        // transforms acts on, which shows up as a transform list differing from the one an empty query
+        // generates.
+        const transformNames = (config: ImageConfig) =>
+          generateTransforms(config, transformFactories, srcURL.searchParams, logger)
+            .transforms.map((transform) => transform.name)
+            .join(';')
+        const withoutDirectives = transformNames({})
+        if (!directives.has('as') && imageConfigs.every((config) => transformNames(config) === withoutDirectives))
+          return null
+
+        const img = lazyLoadImage()
 
         // hash the source bytes to avoid going through Sharp which would result in an image decode
         const imageHash = hash([await readFile(pathname)])
