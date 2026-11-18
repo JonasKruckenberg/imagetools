@@ -1,4 +1,5 @@
 import type { TransformFactory } from '../types.js'
+import { useParams } from '../lib/use-params.js'
 
 export interface HSBOptions {
   hue: string
@@ -6,12 +7,14 @@ export interface HSBOptions {
   brightness: string
 }
 
-export const hsb: TransformFactory<HSBOptions> = (config) => {
+export const hsb: TransformFactory<HSBOptions> = (config, ctx) => {
   const hue = config.hue && parseInt(config.hue)
   const saturation = config.saturation && parseFloat(config.saturation)
   const brightness = config.brightness && parseFloat(config.brightness)
 
   if (!hue && !saturation && !brightness) return
+
+  useParams(config, ctx, ['hue', 'saturation', 'brightness'])
 
   return function hsbTransform(state, image) {
     state.transforms.hue = hue

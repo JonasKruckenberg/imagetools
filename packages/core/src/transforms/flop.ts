@@ -4,8 +4,10 @@ export interface FlopOptions {
   flop: '' | 'true'
 }
 
-export const flop: TransformFactory<FlopOptions> = ({ flop }) => {
+export const flop: TransformFactory<FlopOptions> = ({ flop }, ctx) => {
   if (flop !== '' && flop !== 'true') return
+
+  ctx.useParam('flop')
 
   return function flopTransform(state, image) {
     state.transforms.flop = true

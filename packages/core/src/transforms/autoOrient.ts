@@ -4,7 +4,10 @@ export interface autoOrientOptions {
   noAutoOrient: '' | 'true' | 'false'
 }
 
-export const autoOrient: TransformFactory<autoOrientOptions> = ({ noAutoOrient }) => {
+export const autoOrient: TransformFactory<autoOrientOptions> = ({ noAutoOrient }, ctx) => {
+  // Reported whatever its value, since an opt-out acts by skipping the transform.
+  if (noAutoOrient !== undefined) ctx.useParam('noAutoOrient')
+
   // This is an opt out. We apply autoOrient by default.
   if (noAutoOrient === '' || noAutoOrient === 'true') return
 

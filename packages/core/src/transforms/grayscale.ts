@@ -4,8 +4,10 @@ export interface GrayscaleOptions {
   grayscale: '' | 'true'
 }
 
-export const grayscale: TransformFactory<GrayscaleOptions> = ({ grayscale }) => {
+export const grayscale: TransformFactory<GrayscaleOptions> = ({ grayscale }, ctx) => {
   if (grayscale !== '' && grayscale !== 'true') return
+
+  ctx.useParam('grayscale')
 
   return function grayscaleTransform(state, image) {
     state.transforms.grayscale = true

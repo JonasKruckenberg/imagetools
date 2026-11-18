@@ -1,5 +1,7 @@
 import type { FitEnum } from 'sharp'
 import type { TransformFactory } from '../types.js'
+import { useParams } from '../lib/use-params.js'
+import { fitValues, positionShorthands } from '../lib/values.js'
 import { getBackground } from './background.js'
 import { getFit } from './fit.js'
 import { getKernel } from './kernel.js'
@@ -54,6 +56,20 @@ export const resize: TransformFactory<ResizeOptions> = (config, context) => {
   const allowUpscale = config.allowUpscale === '' || config.allowUpscale === 'true'
 
   if (!width && !height && !aspect) return
+
+  useParams(config, context, [
+    'w',
+    'h',
+    'aspect',
+    'allowUpscale',
+    'fit',
+    'position',
+    'kernel',
+    'background',
+    // fit and position can also be given as a bare directive, such as `?cover` or `?top`
+    ...fitValues,
+    ...positionShorthands
+  ])
 
   return function resizeTransform(state, image) {
     const fit = getFit(config, state) as keyof FitEnum | undefined
